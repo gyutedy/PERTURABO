@@ -1,18 +1,18 @@
 {
   "version": "1.0.0",
   "description": "Registry des campagnes actives pour le mode live (v2-live). Source de vérité : quelle chaîne Twitch appartient à quelle campagne. Le payout/captions/watermarks restent dans le fichier directive référencé — jamais de duplication.",
-  "updated_at": "2026-09-10",
+  "updated_at": "2026-10-16",
   "campaigns": [
     {
       "campaign_id": "2026-07-24_AISHAH_SOFEY_MULTI",
       "creator_name": "Aishah Sofey",
       "directive_file": "campaign_directive.json",
-      "twitch_channels": ["aishahsofeyy"],
+      "twitch_channels": ["aishahsofey"],
       "cycle": {
         "start": "2026-07-20",
-        "end": "2026-07-31"
+        "end": "2026-11-15"
       },
-      "notes": "Cycle TERMINÉ au 2026-07-31 — renouveler la directive Whop (nouveau cycle) avant toute session réelle. Les sessions sur aishahsofeyy ressortiront campaign_eligible=false (expired_cycle) en attendant."
+      "notes": "Cycle relancé le 2026-10-16 (prolongation +30j, fin 2026-11-15). ⚠️ Login Twitch corrigé : le vrai canal est 'aishahsofey' ('aishahsofeyy' n'existe pas — vérifié via GQL). Les sessions sur aishahsofey ressortent désormais campaign_eligible=true."
     }
   ]
 }

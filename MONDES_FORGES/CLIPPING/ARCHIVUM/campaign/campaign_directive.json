@@ -1,7 +1,7 @@
 {
   "campaign_id": "2026-07-24_AISHAH_SOFEY_MULTI",
   "creator_name": "Aishah Sofey",
-  "parsed_at": "2026-09-05T10:05:08.105072",
+  "parsed_at": "2026-10-16T00:00:00.000000",
   "source_file": "ARCHIVUM/campaign/clipify_aishahsofey_directive.md",
   "platforms": [
     "TikTok",
@@ -93,6 +93,6 @@
   },
   "cycle": {
     "start": "2026-07-20",
-    "end": "2026-07-31"
+    "end": "2026-11-15"
   }
 }
