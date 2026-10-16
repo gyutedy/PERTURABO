@@ -1,0 +1,688 @@
+{
+  "generated_at": "2026-10-16T01:12:11Z",
+  "source": "https://www.twitch.tv/videos/2899196990",
+  "engine": "auto_detect",
+  "total_words_analyzed": 24288,
+  "total_candidates_raw": 20,
+  "total_accepted": 20,
+  "total_auto_rejected": 0,
+  "candidates": [
+    {
+      "candidate_id": "9780877cc2",
+      "start_sec": 7833.62,
+      "end_sec": 7863.62,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "02:10:33.620",
+      "top_words": " Yeah  makeup  is  done  makeup  said  I  do  need  to  get  changed.  How  long  did  I  take  it  took  about  two  hours?  I  did  it  all  on  stream  though",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.9,
+          "clarity": 6.9,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.42,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 8.91
+      }
+    },
+    {
+      "candidate_id": "4fd0bd61cb",
+      "start_sec": 6964.4,
+      "end_sec": 6994.4,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "01:56:04.400",
+      "top_words": " I  suck.  I  suck.  I'm  so  bad.  Yo,  I  love  her.  She's  so  good.  Isn't  it  amazing  and  beautiful  and  gorgeous?  Like,  just  so  good.  So  good.  I  love  her.  She's  so  nice.",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.6,
+          "clarity": 7.2,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.38,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 8.88
+      }
+    },
+    {
+      "candidate_id": "40f526ac56",
+      "start_sec": 6992.0,
+      "end_sec": 7052.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "01:56:32.000",
+      "top_words": " Okay,  who  told  me  Bonnie's  the  guy  with  my  whole  entire  TikTok  section,  comment  section?  I  just  keep  calling  Bonnie  a  girl,  because  Bonnie  sounds  like  a  girl  name,  and  t",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.6,
+          "clarity": 10,
+          "quotability": 6.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.35,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 8.85
+      }
+    },
+    {
+      "candidate_id": "bf4c0de95a",
+      "start_sec": 6894.06,
+      "end_sec": 6924.06,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "01:54:54.060",
+      "top_words": " Which  kid,  the  guy  who  screamed  put  in  Bonnie?  Is  this  based  off  of  Avatar?  No,  this  is  Bonnie,  but  it  doesn't  look  like  it  because  I  need  to  put  on  my  stuff.  Look.  ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.1,
+          "clarity": 8.4,
+          "quotability": 6.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.91,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 7.91
+      }
+    },
+    {
+      "candidate_id": "dc959c1771",
+      "start_sec": 8386.38,
+      "end_sec": 8416.38,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "02:19:46.380",
+      "top_words": " much  for  the  subs  I  appreciate  y 'all  Repeat  right.  How  are  you  gonna  scare  us  tonight?  I  just  good  question  Yeah,  I  think  I  should  change  to  the  same  outfit  from  yeste",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.4,
+          "clarity": 7.3,
+          "quotability": 6.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.82,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 7.82
+      }
+    },
+    {
+      "candidate_id": "2e7f416bf2",
+      "start_sec": 369.69,
+      "end_sec": 399.69,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:06:09.690",
+      "top_words": " Thanks  for  watching!",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.3,
+          "clarity": 5.2,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.25,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 7.25
+      }
+    },
+    {
+      "candidate_id": "b45509b004",
+      "start_sec": 8095.64,
+      "end_sec": 8125.64,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "02:14:55.640",
+      "top_words": " like  it  wants  me  to  verify  my  email  and  there's  like  no  email  to  verify  I've  Resent  it  like  ten  times.  Oh,  okay  Sure,  is  that  good?  I  use  my  mouse  at  the  same  time  ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 6.8,
+          "clarity": 7.6,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.24,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 7.24
+      }
+    },
+    {
+      "candidate_id": "82a79ce27c",
+      "start_sec": 8158.44,
+      "end_sec": 8188.44,
+      "duration_sec": 30.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "02:15:58.440",
+      "top_words": " forgot  to  change  my  oh  My  god,  I'm  such  a  chud.  Am  I  messing  you  up?  I  see  never  mind  never  mind.  Do  your  thing  Um,  I  totally  meant  to  do  that.  I  literally  forgot  t",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 6.7,
+          "clarity": 7.8,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 5.79,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 6.79
+      }
+    },
+    {
+      "candidate_id": "c7ee3dabb5",
+      "start_sec": 567.0,
+      "end_sec": 603.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.86,
+      "signal_start": "00:09:27.000",
+      "top_words": " to  turn  into  Bonnie.  So  that's  why  the  title  is  transforming  into  Bonnie  That's  what  we're  doing  right  now  have  my  beautiful  makeup  artist  here  helping  me  out  doing  the  ",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.4,
+          "clarity": 6.9,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.93,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.93
+      }
+    },
+    {
+      "candidate_id": "9ec5f0ff47",
+      "start_sec": 7467.0,
+      "end_sec": 7503.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.86,
+      "signal_start": "02:04:27.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.4,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.63,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.63
+      }
+    },
+    {
+      "candidate_id": "fd9bc3bd26",
+      "start_sec": 6567.0,
+      "end_sec": 6603.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.84,
+      "signal_start": "01:49:27.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.4,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.62,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.62
+      }
+    },
+    {
+      "candidate_id": "79935e6c6b",
+      "start_sec": 9357.0,
+      "end_sec": 9417.0,
+      "duration_sec": 60.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.84,
+      "signal_start": "02:35:57.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.4,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 5.34,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.34
+      }
+    },
+    {
+      "candidate_id": "c9010712c2",
+      "start_sec": 7377.0,
+      "end_sec": 7413.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.82,
+      "signal_start": "02:02:57.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.3,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.59,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.59
+      }
+    },
+    {
+      "candidate_id": "371fce588e",
+      "start_sec": 117.0,
+      "end_sec": 177.0,
+      "duration_sec": 60.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.82,
+      "signal_start": "00:01:57.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.3,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 5.32,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.32
+      }
+    },
+    {
+      "candidate_id": "63f2775307",
+      "start_sec": 207.0,
+      "end_sec": 243.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.8,
+      "signal_start": "00:03:27.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.2,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.58,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.58
+      }
+    },
+    {
+      "candidate_id": "79e650f161",
+      "start_sec": 7317.0,
+      "end_sec": 7353.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.72,
+      "signal_start": "02:01:57.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.9,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.5,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.5
+      }
+    },
+    {
+      "candidate_id": "e1dc59c95b",
+      "start_sec": 9447.0,
+      "end_sec": 9483.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.72,
+      "signal_start": "02:37:27.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.9,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.5,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.5
+      }
+    },
+    {
+      "candidate_id": "d3fd9dc1cf",
+      "start_sec": 507.0,
+      "end_sec": 543.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.7,
+      "signal_start": "00:08:27.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.8,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.48,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.48
+      }
+    },
+    {
+      "candidate_id": "e88eb7e38b",
+      "start_sec": 2277.0,
+      "end_sec": 2313.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.7,
+      "signal_start": "00:37:57.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.8,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.48,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.48
+      }
+    },
+    {
+      "candidate_id": "7e1946a66a",
+      "start_sec": 7257.0,
+      "end_sec": 7293.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.7,
+      "signal_start": "02:00:57.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.8,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 5.48,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.48
+      }
+    }
+  ]
+}
