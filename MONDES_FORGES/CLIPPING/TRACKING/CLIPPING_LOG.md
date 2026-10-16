@@ -868,3 +868,11 @@ F00_CAPTEURS/CODEBASE/capteurs.py
 - Conformité directive verifiée a l'export : @hiaishahsofey + #aishahsofey, anglais, zero OF, longueurs OK.
 - Incident Pages : build Jekyll en echec sur les nouveaux contenus -> .nojekyll (site statique pur), toutes les pages servent 200.
 - Chaine F00B->F00D->F04->F06->F05->EXPORT fermee avec gate operateur a chaque frégate.
+
+## [2026-10-16] CERVEAU PARTAGÉ — repli oracle automatique (premium → oracle → off)
+- Nouveau module unique `MONDES_FORGES/CLIPPING/SHARED/brain.py` : tout appel IA du tronc CLIPPING passe par lui. `ask()` résout premium (NVIDIA NIM kimi-k3 / CLIPPING_*) → oracle (passerelle AI_GATEWAY_*) → off, avec trace des échecs.
+- Frégates branchées : F00B `libs/vox_premium.py`, F00C `f00c_vox.py` (bloc brain du manifeste + `--transcript`/`--no-brain`), F04 `libs/premium_client.py` (chat premium → repli oracle).
+- Motif : run 38831207071 échoué `Payment Required: Insufficient credits` — une clé premium qui tombe ne bloque plus le pipeline.
+- Contrat public `CONTRACTS/premium_bus_schema.json` ; exemples de secrets mis à jour (aucune clé dans les fichiers).
+- Workflows : secrets NVIDIA_NIM_* + AI_GATEWAY_* injectés (matrix F00B, analysis F00C).
+- Doctrine : `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.

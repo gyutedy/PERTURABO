@@ -261,8 +261,13 @@ jobs:
 
       - name: Scoring global (chaîne auto_detector inchangée)
         env:
+          # Cerveau partagé : premium (NVIDIA NIM) d'abord, repli oracle
+          # (passerelle AI_GATEWAY_*) si la clé premium est absente/refusée.
           NVIDIA_NIM_API_KEY: ${{ secrets.NVIDIA_NIM_API_KEY }}
           NVIDIA_NIM_MODEL: moonshotai/kimi-k3
+          AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}
+          AI_GATEWAY_BASE_URL: ${{ secrets.AI_GATEWAY_BASE_URL }}
+          AI_GATEWAY_MODEL: ${{ secrets.AI_GATEWAY_MODEL }}
           VOD_DURATION: ${{ needs.prepare.outputs.duration }}
           VOD_TITLE: ${{ needs.prepare.outputs.title }}
           VOD_UPLOAD: ${{ needs.prepare.outputs.upload_date }}

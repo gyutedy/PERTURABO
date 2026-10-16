@@ -741,3 +741,26 @@ détermine le nombre d'angles/clip packs produits par l'adaptateur.
 - Chaîne complète exécutée : F00B (matrice) → F00D (blur) → F04 (overlay+métadonnées) → F06 (caviar_bound) → F05 (packs) → EXPORT. Gate opérateur à chaque frégate.
 - Infra : `.nojekyll` ajouté (le build Jekyll Pages cassait sur les nouveaux contenus ; le site est 100 % statique).
 - Prochaine session possible : nouvelle VOD via le workflow matrice (l'oracle est auto-déclenché), ou branche clipify pour l'expédition des packs.
+
+## [2026-10-16] CERVEAU PARTAGÉ — premium → oracle → off
+
+- **Module unique** `MONDES_FORGES/CLIPPING/SHARED/brain.py` : tout appel IA du
+  tronc CLIPPING passe par `ask()`. Résolution automatique `premium`
+  (NVIDIA NIM kimi-k3 / `CLIPPING_*`) → `oracle` (passerelle `AI_GATEWAY_*`) →
+  `off`. Stdlib `urllib` uniquement, jamais de clé loggée/renvoyée.
+- **Frégates branchées** :
+  - F00B `libs/vox_premium.py` (score de reframing + arbitrage) ;
+  - F00C `f00c_vox.py` (bloc `brain` du manifeste, `--transcript`, `--no-brain`) ;
+  - F04 `libs/premium_client.py` (`chat` premium → repli oracle, `last_mode`).
+- **Motif** : run `38831207071` échoué `Payment Required: Insufficient credits`.
+  Une clé premium qui tombe ne bloque plus le pipeline.
+- **Contrats** : `CONTRACTS/premium_bus_schema.json` (public) ; exemples F00B et
+  copywriter annotés (le fichier réel reste gitignored).
+- **Workflows** : `perturabo_transcribe_matrix.yml` (scoring global) et
+  `perturabo_vox_c_analysis.yml` reçoivent `NVIDIA_NIM_*` + `AI_GATEWAY_*`.
+- **Doctrine** : `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.
+- **Diagnostic** : `python3 .../SHARED/brain.py` (mode dispo) et `--ping`
+  (test de raisonnement réel).
+- **Prochaine étape** : fournir les secrets `AI_GATEWAY_*` au repo, puis lancer
+  le workflow matrice — le repli oracle doit prendre le relais si le premium
+  refuse (402).

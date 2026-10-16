@@ -248,3 +248,16 @@
   F06 GO (caviar_bound v3, soumis à la partition) → F05 GO → EXPORT.
 - **Prochaine étape hors pipeline** : exécution du pack par le bras armé
   (LACRIMAE) → rendu MP4 9:16 → contrôle qualité → soumission campagne.
+
+## 2026-10-16 — Tri sémantique via le cerveau partagé (F00C branché)
+
+- **Nouvelles fonctions** dans `f00c_vox.py` : `load_transcript_words`,
+  `brain_rank_segments`. Le manifeste porte un bloc `brain` :
+  `{mode, scores, note}` — jamais bloquant.
+- **Modes** : `premium` (NVIDIA NIM) → `oracle` (passerelle `AI_GATEWAY_*`) →
+  `off`. En `off` ou sans transcript textuel, le tri plateforme reste seul juge
+  (`note` explicite). Les segments ne sont **jamais** mutés (contrat F00C intact).
+- **CLI** : `--transcript <transcript.json>` (words) et `--no-brain` (désactive).
+- **Workflow** `perturabo_vox_c_analysis.yml` : secrets `NVIDIA_NIM_*` +
+  `AI_GATEWAY_*` injectés à l'étape d'analyse.
+- Doctrine : `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.

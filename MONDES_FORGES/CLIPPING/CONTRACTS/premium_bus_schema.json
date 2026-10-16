@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PERTURABO CLIPPING — Premium Bus (cerveau partagé)",
+  "description": "Schema PUBLIC (commite) du bus premium/oracle du CLIPPING. Il documente comment les frégates (F00B arbitrage, F00C tri sémantique, F04 copywriter) atteignent le cerveau partagé SHARED/brain.py. Aucune clé n'y figure jamais : seuls des NOMS de variables d'environnement.",
+  "type": "object",
+  "required": ["mode_resolution", "premium", "oracle"],
+  "properties": {
+    "mode_resolution": {
+      "type": "array",
+      "description": "Ordre de préférence appliqué par brain.available_mode(). Le premier mode prêt gagne.",
+      "items": { "enum": ["premium", "oracle", "off"] },
+      "default": ["premium", "oracle", "off"]
+    },
+    "premium": {
+      "type": "object",
+      "description": "Clé directe d'un provider (NVIDIA NIM / CLIPPING_*). Voie rapide quand la clé est valide.",
+      "required": ["env_var_name"],
+      "properties": {
+        "env_var_name": {
+          "type": "string",
+          "description": "Variable lue en priorité. brain.py essaie NVIDIA_NIM_API_KEY → CLIPPING_F00B_API_KEY → CLIPPING_PREMIUM_API_KEY.",
+          "examples": ["NVIDIA_NIM_API_KEY", "CLIPPING_F00B_API_KEY", "CLIPPING_PREMIUM_API_KEY"]
+        },
+        "base_url_env_var": { "type": "string", "default": "NVIDIA_NIM_BASE_URL" },
+        "base_url_default": { "type": "string", "default": "https://integrate.api.nvidia.com/v1" },
+        "model_env_var": { "type": "string", "default": "NVIDIA_NIM_MODEL" },
+        "model_default": { "type": "string", "default": "moonshotai/kimi-k3" }
+      }
+    },
+    "oracle": {
+      "type": "object",
+      "description": "Repli : passerelle partagée CORE/ai_gateway.py (raisonnement sandbox). S'active quand la clé premium est absente OU refusée (401/402/403/429/5xx/réseau).",
+      "required": ["api_key_env_var", "base_url_env_var"],
+      "properties": {
+        "api_key_env_var": { "type": "string", "default": "AI_GATEWAY_API_KEY" },
+        "base_url_env_var": { "type": "string", "default": "AI_GATEWAY_BASE_URL" },
+        "model_env_var": { "type": "string", "default": "AI_GATEWAY_MODEL" },
+        "model_default": { "type": "string", "default": "anthropic/claude-sonnet-4.6" }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "description": "Doctrine de sécurité non négociable du bus.",
+      "properties": {
+        "keys_in_files": { "const": false },
+        "keys_logged": { "const": false },
+        "keys_returned_in_manifests": { "const": false },
+        "dependency": { "const": "stdlib-urllib-only" },
+        "off_is_fatal": { "const": false }
+      }
+    }
+  },
+  "examples": [
+    {
+      "mode_resolution": ["premium", "oracle", "off"],
+      "premium": { "env_var_name": "NVIDIA_NIM_API_KEY" },
+      "oracle": {
+        "api_key_env_var": "AI_GATEWAY_API_KEY",
+        "base_url_env_var": "AI_GATEWAY_BASE_URL"
+      },
+      "safety": {
+        "keys_in_files": false,
+        "keys_logged": false,
+        "keys_returned_in_manifests": false,
+        "dependency": "stdlib-urllib-only",
+        "off_is_fatal": false
+      }
+    }
+  ]
+}

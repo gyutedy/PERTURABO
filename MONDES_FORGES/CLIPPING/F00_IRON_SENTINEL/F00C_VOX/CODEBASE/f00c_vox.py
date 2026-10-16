@@ -59,6 +59,14 @@ try:
 except Exception:  # pragma: no cover - path fallback if SHARED is elsewhere
     viral_segments_to_candidates = None
 
+try:  # cerveau partagé (premium → oracle → off) — jamais bloquant
+    from brain import ask as _brain_ask, available_mode as _brain_mode  # noqa: E402
+except Exception:  # pragma: no cover - cerveau indisponible : tri sémantique désactivé
+    _brain_ask = None
+
+    def _brain_mode():
+        return "off"
+
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
@@ -279,6 +287,86 @@ def top_viral_segments(heatmap: list[dict], count: int = 5, min_gap_seconds: flo
         "attention_norm": row["attention_norm"],
         "rank": index + 1,
     } for index, row in enumerate(picked)]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Cerveau partagé — tri sémantique optionnel des segments (premium/oracle)
+# ─────────────────────────────────────────────────────────────────────────────
+
+BRAIN_SYSTEM = (
+    "Tu es le tri sémantique de PERTURABO (F00C, plateformes). Pour chaque pic "
+    "d'attention d'un stream, juge le POTENTIEL VIRAL court (hook, tension, "
+    "payoff) sur 0..10. Réponds UNIQUEMENT en JSON : "
+    "{\"score\": <0..10>, \"reason\": \"<8 mots max>\"}"
+)
+
+
+def load_transcript_words(path: Path | None) -> list:
+    """Charge les mots d'un transcript.json (merge_transcripts) ; [] si absent."""
+    if not path:
+        return []
+    try:
+        doc = json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    return doc.get("words") or []
+
+
+def _window_text(words: list, start: float, end: float, limit: int = 1200) -> str:
+    chunk = [str(w.get("word", "")).strip() for w in words
+             if start <= _as_float(w.get("start")) < end]
+    return " ".join(chunk)[:limit].strip()
+
+
+def _as_float(value, default: float = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def brain_rank_segments(segments: list, words: list, depth: int = 5,
+                        timeout: float = 25.0) -> dict:
+    """Score sémantique des `depth` meilleurs segments via le cerveau partagé.
+
+    Retourne un bloc observable ``{mode, scores, note}`` :
+      * ``off`` (aucune clé premium/oracle) → scores vides, note explicite ;
+      * pas de transcript textuel → le tri plateforme reste seul juge ;
+      * sinon → un score de reframing par segment (clé = start_sec).
+
+    Ne mute JAMAIS les segments (le manifeste reste le contrat F00C intact).
+    """
+    mode = _brain_mode()
+    if not segments:
+        return {"mode": mode, "scores": [], "note": "aucun segment"}
+    if _brain_ask is None or mode == "off":
+        return {"mode": "off", "scores": [],
+                "note": "cerveau indisponible (clés premium/oracle absentes)"}
+    if not words:
+        return {"mode": mode, "scores": [],
+                "note": "pas de transcript textuel : tri sémantique ignoré"}
+    ordered = sorted(segments, key=lambda s: _as_float(s.get("attention_norm")),
+                     reverse=True)[:max(1, depth)]
+    scores = []
+    for seg in ordered:
+        start = _as_float(seg.get("start_sec"))
+        text = _window_text(words, start, _as_float(seg.get("end_sec")))
+        if not text:
+            continue
+        res = _brain_ask(BRAIN_SYSTEM, f'Extrait: "{text}"', temperature=0.2,
+                         max_tokens=60, expect_json=True, timeout=timeout)
+        if res.get("status") != "ok":
+            continue
+        obj = res.get("content") or {}
+        score = max(0.0, min(10.0, _as_float(obj.get("score"))))
+        scores.append({
+            "start_sec": start,
+            "attention_norm": seg.get("attention_norm"),
+            "brain_score": round(score, 2),
+            "reason": str(obj.get("reason", ""))[:80],
+        })
+    return {"mode": mode, "scores": scores,
+            "note": None if scores else "aucun score produit (texte vide)"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -532,7 +620,8 @@ def emit_candidats(manifest: dict, out_path: Path, top: int | None = None) -> di
 def analyze(reference: str, out_path: Path, work_dir: Path | None = None,
             heatmap_buckets: int = 120, download_budget_seconds: float = 0,
             cookies_path: Path | None = None, media_source: str | None = None,
-            fetch_replayed: bool = False) -> dict:
+            fetch_replayed: bool = False, transcript_path: Path | None = None,
+            use_brain: bool = True) -> dict:
     started = datetime.now(timezone.utc)
     work_dir = Path(work_dir or out_path.parent / "live_media")
     resolved = resolve_source(reference)
@@ -584,6 +673,9 @@ def analyze(reference: str, out_path: Path, work_dir: Path | None = None,
 
     status = "full" if heatmap else ("metadata_only" if not media_error else "metadata_only_media_error")
     fused_heatmap = fuse_heatmaps(heatmap, replayed_curve)
+    brain_block = {"mode": _brain_mode(), "scores": [], "note": "désactivé (--no-brain)"}
+    if use_brain:
+        brain_block = brain_rank_segments(segments, load_transcript_words(transcript_path))
     manifest = {
         "schema_version": SCHEMA_VERSION,
         "generated_at": started.isoformat(),
@@ -608,6 +700,7 @@ def analyze(reference: str, out_path: Path, work_dir: Path | None = None,
             "metadata_raw": metadata,
         },
         "media_error": media_error,
+        "brain": brain_block,
         "pipeline": {
             "name": "F00C_VOX",
             "version": "1.0.0",
@@ -637,6 +730,10 @@ def main(argv: list[str] | None = None) -> int:
                         help="Média séparé de la source : chemin local ou URL directe (métadonnées = source)")
     parser.add_argument("--fetch-replayed", action="store_true",
                         help="Récupérer la barre rouge YouTube (Most Replayed via yt-dlp --dump-json)")
+    parser.add_argument("--transcript", default=None,
+                        help="transcript.json (words) pour le tri sémantique du cerveau partagé")
+    parser.add_argument("--no-brain", action="store_true",
+                        help="Désactiver le cerveau partagé (tri plateforme seul)")
     parser.add_argument("--webhook-url", default=None,
                         help="URL du webhook Salle de Guerre (POST du payload complet)")
     parser.add_argument("--webhook-token", default=None,
@@ -655,6 +752,8 @@ def main(argv: list[str] | None = None) -> int:
             cookies_path=Path(args.cookies_file) if args.cookies_file else None,
             media_source=args.media_source,
             fetch_replayed=args.fetch_replayed,
+            transcript_path=Path(args.transcript) if args.transcript else None,
+            use_brain=not args.no_brain,
         )
         summary = {"status": manifest["status"], "out": str(args.out)}
         if args.to_candidats:

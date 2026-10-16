@@ -1,21 +1,41 @@
 """
-vox_premium.py — P5 : arbitrage premium (clé NVIDIA / kimi-k3)
-================================================================
+vox_premium.py — P5 : arbitrage par le CERVEAU PARTAGÉ (double mode).
+====================================================================
+
 N'analyse QUE les finalistes (les survivants des étages 0-2). Deux rôles :
   1. Score sémantique "potentiel de reframing" (hooks_pur.json) 0..10.
   2. Verdict final : relit chaque top_words + intensité → ok / weak / skip.
 
-Dégradation gracieuse : sans clé / sans réseau, renvoie un score neutre
-(5.0) pour ne jamais bloquer le pipeline. NE lit jamais la valeur de la clé
-(elle vient de l'environnement côté serveur).
+Depuis la refonte « cerveau partagé », ce module ne parle plus directement à
+un provider : il passe par ``SHARED/brain.py``, qui résout automatiquement le
+mode  premium (clé NVIDIA/CLIPPING_*)  →  oracle (passerelle AI_GATEWAY_*)
+→  off. Une clé premium absente OU refusée bascule sur l'oracle : le pipeline
+n'est jamais bloqué.
+
+Dégradation gracieuse : sans aucun cerveau disponible, renvoie un score neutre
+(5.0) et ``used_premium=False`` pour ne jamais bloquer. NE lit jamais la valeur
+d'une clé (elle vient de l'environnement côté serveur).
 """
 
-import json
 import os
-import urllib.request
+import sys
 
-DEFAULT_BASE = "https://integrate.api.nvidia.com/v1"
-DEFAULT_MODEL = "moonshotai/kimi-k3"
+_LIBS_DIR = os.path.dirname(os.path.abspath(__file__))
+_CODEBASE_DIR = os.path.dirname(_LIBS_DIR)
+_CLIPPING_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(_CODEBASE_DIR)))
+_SHARED_DIR = os.path.join(_CLIPPING_ROOT, "SHARED")
+for _p in (_SHARED_DIR, _LIBS_DIR):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+try:
+    from brain import ask as _brain_ask, available_mode as _brain_mode
+except Exception:  # pragma: no cover - cerveau indisponible : dégradation neutre
+    _brain_ask = None
+
+    def _brain_mode():
+        return "off"
+
 
 _SYSTEM = (
     "Tu es l'arbitre viral de PERTURABO (mode PUR). Pour chaque extrait de "
@@ -26,56 +46,44 @@ _SYSTEM = (
     "\"reason\": \"<10 mots max>\"}"
 )
 
-def _env_key():
-    return os.environ.get("NVIDIA_NIM_API_KEY") or os.environ.get("CLIPPING_F00B_API_KEY") or os.environ.get("AI_GATEWAY_API_KEY")
 
-def _base_url():
-    return os.environ.get("NVIDIA_NIM_BASE_URL") or os.environ.get("AI_GATEWAY_BASE_URL") or DEFAULT_BASE
+def brain_mode():
+    """Mode courant du cerveau partagé : premium | oracle | off."""
+    return _brain_mode()
 
-def _model():
-    return os.environ.get("NVIDIA_NIM_MODEL") or DEFAULT_MODEL
 
 def score_reframing(top_words, intensity=0.5, timeout=25):
-    """Retourne {score, transformation, reason, used_premium:bool}."""
-    key = _env_key()
-    if not key or not (top_words or "").strip():
-        return {"score": 5.0, "transformation": None, "reason": "no premium/no text", "used_premium": False}
+    """Retourne {score, transformation, reason, used_premium, brain_mode}."""
     text = (top_words or "").strip()[:1500]
-    payload = {
-        "model": _model(),
-        "messages": [
-            {"role": "system", "content": _SYSTEM},
-            {"role": "user", "content": f"Extrait (intensité {intensity}): \"{text}\""},
-        ],
-        "temperature": 0.2,
-        "max_tokens": 80,
-    }
-    req = urllib.request.Request(
-        _base_url() + "/chat/completions",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        method="POST",
+    if not text or _brain_ask is None:
+        return {"score": 5.0, "transformation": None,
+                "reason": "no brain/no text", "used_premium": False,
+                "brain_mode": "off"}
+    res = _brain_ask(
+        _SYSTEM,
+        f"Extrait (intensité {intensity}): \"{text}\"",
+        temperature=0.2, max_tokens=80, expect_json=True, timeout=timeout,
     )
+    if res.get("status") != "ok":
+        return {"score": 5.0, "transformation": None,
+                "reason": f"brain_{res.get('mode', 'off')}: {res.get('error')}",
+                "used_premium": False, "brain_mode": res.get("mode", "off")}
+    obj = res.get("content") or {}
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-        content = data["choices"][0]["message"]["content"]
-        # extraire le JSON (parfois enveloppé)
-        mm = re.search(r"\{.*\}", content, re.S)
-        obj = json.loads(mm.group(0)) if mm else {}
         score = float(obj.get("score", 5.0))
-        return {
-            "score": round(max(0.0, min(10.0, score)), 2),
-            "transformation": obj.get("transformation"),
-            "reason": str(obj.get("reason", ""))[:120],
-            "used_premium": True,
-        }
-    except Exception as e:
-        return {"score": 5.0, "transformation": None, "reason": f"premium_error: {type(e).__name__}", "used_premium": False}
+    except (TypeError, ValueError):
+        score = 5.0
+    return {
+        "score": round(max(0.0, min(10.0, score)), 2),
+        "transformation": obj.get("transformation"),
+        "reason": str(obj.get("reason", ""))[:120],
+        "used_premium": True,
+        "brain_mode": res.get("mode", "off"),
+    }
 
 
 def arbitrate(finalists, words=None, trigger_words=None):
-    """Enrichit chaque finaliste d'un verdict premium + un score reframing.
+    """Enrichit chaque finaliste d'un verdict cerveau + un score reframing.
     Renvoie finalists triés par (reframing + intensité)."""
     out = []
     for c in finalists:
@@ -87,6 +95,7 @@ def arbitrate(finalists, words=None, trigger_words=None):
             "transformation": r["transformation"],
             "reason": r["reason"],
             "used_premium": r["used_premium"],
+            "brain_mode": r["brain_mode"],
         }
         # verdict combiné : intensité réelle + reframing
         combo = 0.5 * intens * 10 + 0.5 * r["score"]

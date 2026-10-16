@@ -28,9 +28,22 @@ compatible avec le poste faible du Warsmith.
 
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_SHARED = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(_HERE))), "SHARED")
+if _SHARED not in sys.path:
+    sys.path.insert(0, _SHARED)
+try:  # cerveau partagé : repli oracle si la clé premium est absente/refusée
+    from brain import ask as _brain_ask, available_mode as _brain_mode
+except Exception:  # pragma: no cover - cerveau indisponible : mode premium seul
+    _brain_ask = None
+
+    def _brain_mode():
+        return "off"
 
 CONTRACTS_DIR = "CONTRACTS"
 DEFAULT_ENV_VAR = "CLIPPING_PREMIUM_API_KEY"
@@ -52,6 +65,8 @@ class PremiumClient:
         self._forge_root = forge_root
         self._load_env_local()
         self.config = self._load_config()
+        # Renseigné à chaque appel : "premium" | "oracle" | "off" (observable).
+        self.last_mode: str | None = None
 
     def _load_env_local(self):
         """Charge un .env.local OU .env (repo ou forge) si présent — stdlib,
@@ -140,12 +155,41 @@ class PremiumClient:
         return text
 
     # ------------------------------------------------------------------
+    def _premium_ready(self) -> bool:
+        return bool(self._api_key() and self.config.get("model_id")
+                    and self._base_url())
+
     def chat(self, system_prompt: str, user_prompt: str) -> str:
-        self.require_config()
-        provider = self.config.get("provider", "other")
-        if provider == "anthropic":
-            return self._chat_anthropic(system_prompt, user_prompt)
-        return self._chat_openai_compatible(system_prompt, user_prompt)
+        """Génère une réponse via le cerveau partagé.
+
+        Ordre : premium direct (config complète) → repli oracle (passerelle
+        ``AI_GATEWAY_*``) → erreur explicite si aucun cerveau. Le mode réellement
+        utilisé est exposé dans ``self.last_mode`` (jamais la clé)."""
+        if self._premium_ready():
+            try:
+                provider = self.config.get("provider", "other")
+                if provider == "anthropic":
+                    out = self._chat_anthropic(system_prompt, user_prompt)
+                else:
+                    out = self._chat_openai_compatible(system_prompt, user_prompt)
+                self.last_mode = "premium"
+                return out
+            except PremiumClientError:
+                # clé refusée/absente en pratique (401/402/403/429/5xx/réseau)
+                # → on ne bloque pas : le repli oracle prend la main ci-dessous.
+                pass
+        if _brain_ask is not None:
+            res = _brain_ask(system_prompt, user_prompt, temperature=0.7,
+                             max_tokens=self.config.get("max_tokens_per_call", 4096),
+                             expect_json=False)
+            if res.get("status") == "ok":
+                self.last_mode = res.get("mode")
+                return res.get("content") or ""
+        self.last_mode = "off"
+        raise PremiumClientError(
+            "Aucun cerveau disponible — configurer la clé premium "
+            f"('{self._env_var_name()}') ou la passerelle oracle "
+            "(AI_GATEWAY_API_KEY/AI_GATEWAY_BASE_URL).")
 
     def _chat_openai_compatible(self, system_prompt: str, user_prompt: str) -> str:
         url = self._base_url().rstrip("/") + "/chat/completions"

@@ -196,4 +196,19 @@ chaque étape, push final sur la branche du run. Guide : `GUIDE_UTILISATION/21_M
 
 ---
 
+## 🧠 CERVEAU PARTAGÉ — premium → oracle → off (2026-10-16)
+
+Tout appel IA du tronc CLIPPING passe désormais par un point d'entrée unique,
+`MONDES_FORGES/CLIPPING/SHARED/brain.py`. Il résout le mode automatiquement :
+**premium** (NVIDIA NIM kimi-k3 / `CLIPPING_*`) → **oracle** (passerelle
+`AI_GATEWAY_*`) → **off** (dégradation gracieuse, jamais de crash). Une clé
+premium absente ou refusée (401/402/403/429/5xx) bascule sur l'oracle sans
+interrompre le pipeline — réponse directe au run `38831207071` échoué en
+`Payment Required: Insufficient credits`. Frégates branchées : F00B
+(`libs/vox_premium.py`), F00C (`f00c_vox.py`), F04 (`libs/premium_client.py`).
+Contrat public : `MONDES_FORGES/CLIPPING/CONTRACTS/premium_bus_schema.json`.
+Guide : `MONDES_FORGES/CLIPPING/GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.
+
+---
+
 *IV Légion — le Fer qui Veille, maintenant en temps réel.*

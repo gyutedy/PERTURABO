@@ -28,6 +28,7 @@ Ici, **un guide par mode**. Chaque guide explique, étape par étape et avec les
 | `18_MODE_LIVE_V2.md` | **live (branche `v2-live`)** | ✅ radar chat temps réel, gate hybride, board téléphone |
 | `19_MODE_VOX_C_YOUTUBE.md` | **VOX-C (F00C)** | ✅ YouTube/Twitch/local + pont PUR `--to-candidats` |
 | `20_NOTE_TECHNIQUE_PUR_BRIDGE_F00C.md` | Note technique | ✅ Unité du schéma `candidates` |
+| `22_MODE_CERVEAU_PARTAGE.md` | **Cerveau partagé** | ✅ premium → oracle → off (F00B/F00C/F04) |
 | `_PIEGES_APPRIS.md` | Tous | ✅ Les leçons du siège test — **à lire avant chaque siège** |
 | `_PIEGES_APPRIS_PUR.md` | PUR | ✅ Pièges PUR + pont F00C |
 

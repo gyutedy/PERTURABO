@@ -313,3 +313,21 @@ Run workflow complet sur NOUVELLE VOD = validation finale de production. Le prem
   métadonnées réelles (200 peaks → candidats → arbitrage premium → report).
 - Leçon d'architecture : **toute donnée produite dans un job et consommée dans un
   autre doit transiter par outputs/artefacts — jamais par supposition.**
+
+## 2026-10-16 — Cerveau partagé : repli oracle automatique (F00B branché)
+
+- **Contexte** : le run `38831207071` a échoué en `[EXECUTION_FAILED] Payment
+  Required: Insufficient credits`. La clé premium ne doit plus jamais bloquer.
+- **Nouveau module** `MONDES_FORGES/CLIPPING/SHARED/brain.py` : point d'entrée IA
+  unique. `ask()` résout `premium` (NVIDIA NIM kimi-k3 / `CLIPPING_*`) →
+  `oracle` (passerelle `AI_GATEWAY_*`) → `off`, avec `trace` des échecs.
+  Stdlib `urllib` uniquement, aucune clé loggée/renvoyée.
+- **`vox_premium.py` rebranché** : plus aucun provider direct. `score_reframing`
+  et `arbitrate` passent par `brain.ask` ; le verdict expose `brain_mode` et
+  `used_premium`. En `off`, score neutre 5.0 (jamais de blocage).
+- **Workflow** `perturabo_transcribe_matrix.yml` : l'étape « Scoring global »
+  reçoit désormais `AI_GATEWAY_API_KEY/BASE_URL/MODEL` (repli) en plus de
+  `NVIDIA_NIM_API_KEY`.
+- **Schéma public** `CONTRACTS/premium_bus_schema.json` + commentaires d'exemple
+  F00B mis à jour.
+- Détail doctrine : `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.
