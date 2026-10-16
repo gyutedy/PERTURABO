@@ -28,7 +28,7 @@
 - No onlyfans mentioning such as "OF Creator" can use Popular influencer, Content creator, or Twitch streamer.
 - ⚠️ Always follow the announcement for the current cycle. We will sometimes ask for only certain content to be clipped for that cycle.
 - Approved content for July 24 cycle: Anything from her streams from 7/20 forward, can be on other streams as long she's the main focus of the clip. No reaction clips.
-- Source: https://www.twitch.tv/aishahsofeyy
+- Source: https://www.twitch.tv/aishahsofey
 
 ## 🔖 Caption & Tagging Requirements
 - Aishah Sofey must be the main focus or topic
@@ -86,5 +86,5 @@
 
 ## 📅 Campaign Cycle
 - **Start:** 2026-07-20
-- **End:** 2026-07-31
+- **End:** 2026-11-15 (prolongation +30j relancée le 2026-10-16)
 - **Approved content:** Anything from her streams from 7/20 forward, can be on other streams as long she's the main focus of the clip. No reaction clips.
