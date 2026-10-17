@@ -129,17 +129,26 @@ class PremiumClient:
 
     # ------------------------------------------------------------------
     def require_config(self):
+        """Valide qu'un cerveau est joignable — premium OU oracle.
+
+        Important : l'absence de clé premium n'est plus une erreur fatale
+        (repli oracle). On ne lève que si AUCUN mode n'est disponible."""
+        if self._premium_ready():
+            return
+        if _brain_ask is not None and _brain_mode() != "off":
+            return
+        details = []
         if not self._api_key():
-            raise PremiumClientError(
-                f"Clé premium absente — définir la var d'env '{self._env_var_name()}' "
-                f"(config: CONTRACTS/copywriter_secrets.json)")
+            details.append(f"clé '{self._env_var_name()}' absente")
         if not self.config.get("model_id"):
-            raise PremiumClientError(
-                "model_id manquant dans copywriter_secrets.json "
-                "(remplir par le Warsmith)")
+            details.append("model_id manquant")
         if not self._base_url():
-            raise PremiumClientError(
-                "base_url manquant (provider inconnu ou champ base_url absent)")
+            details.append("base_url manquante")
+        raise PremiumClientError(
+            "Aucun cerveau disponible — premium incomplet ("
+            + ", ".join(details)
+            + ") et aucune passerelle oracle (AI_GATEWAY_API_KEY/"
+            "AI_GATEWAY_BASE_URL).")
 
     def extract_json(self, text: str) -> str:
         text = text.strip()
