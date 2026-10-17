@@ -62,7 +62,8 @@ def score_reframing(top_words, intensity=0.5, timeout=25):
     res = _brain_ask(
         _SYSTEM,
         f"Extrait (intensité {intensity}): \"{text}\"",
-        temperature=0.2, max_tokens=80, expect_json=True, timeout=timeout,
+        temperature=0.2, max_tokens=120, expect_json=True,
+        timeout=timeout, retries=1,
     )
     if res.get("status") != "ok":
         return {"score": 5.0, "transformation": None,

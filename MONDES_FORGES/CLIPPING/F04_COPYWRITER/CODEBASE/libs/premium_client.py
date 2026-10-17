@@ -165,8 +165,10 @@ class PremiumClient:
 
     # ------------------------------------------------------------------
     def _premium_ready(self) -> bool:
-        return bool(self._api_key() and self.config.get("model_id")
-                    and self._base_url())
+        model_id = str(self.config.get("model_id") or "")
+        base_url = str(self._base_url() or "")
+        return bool(self._api_key() and model_id and base_url
+                    and "<" not in model_id and "<" not in base_url)
 
     def chat(self, system_prompt: str, user_prompt: str) -> str:
         """Génère une réponse via le cerveau partagé.
@@ -190,7 +192,8 @@ class PremiumClient:
         if _brain_ask is not None:
             res = _brain_ask(system_prompt, user_prompt, temperature=0.7,
                              max_tokens=self.config.get("max_tokens_per_call", 4096),
-                             expect_json=False)
+                             expect_json=False, retries=1,
+                             timeout=float(self.config.get("timeout_seconds", 240)))
             if res.get("status") == "ok":
                 self.last_mode = res.get("mode")
                 return res.get("content") or ""

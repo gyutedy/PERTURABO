@@ -354,7 +354,8 @@ def brain_rank_segments(segments: list, words: list, depth: int = 5,
         if not text:
             continue
         res = _brain_ask(BRAIN_SYSTEM, f'Extrait: "{text}"', temperature=0.2,
-                         max_tokens=60, expect_json=True, timeout=timeout)
+                         max_tokens=100, expect_json=True, timeout=timeout,
+                         retries=1)
         if res.get("status") != "ok":
             continue
         obj = res.get("content") or {}
