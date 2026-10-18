@@ -55,6 +55,14 @@ def _angle_id(idx):
     return "A%02d" % (idx + 1)
 
 
+def _derive_transcript_path(candidats_path):
+    for suffix in ("_candidats_selected.json", "_candidats.json"):
+        if candidats_path.endswith(suffix):
+            return candidats_path[: -len(suffix)] + "_transcript.json"
+    base, _ext = os.path.splitext(candidats_path)
+    return base + "_transcript.json"
+
+
 def _word_window(all_words, start_sec, end_sec):
     out = []
     for w in all_words:
@@ -145,10 +153,13 @@ def main():
     except CandidatesReadError as exc:
         print("[PUR_MONTAGE] ERREUR: {}".format(exc), file=sys.stderr)
         sys.exit(1)
-    transcript_path = args.transcript or args.candidats.replace("_candidats.json", "_transcript.json")
+    transcript_path = args.transcript or _derive_transcript_path(args.candidats)
     transcript_words = []
     if transcript_path and os.path.exists(transcript_path):
         transcript_words = load_json(transcript_path).get("words") or []
+    else:
+        print("[PUR_MONTAGE] ATTENTION: transcript introuvable (%s) — captions mot-à-mot vides"
+              % transcript_path, file=sys.stderr)
     camp_id = cands.get("campaign_id") or cands.get("campaign") or "pur"
     candidates = cands.get("candidates", [])
     candidates = candidates[:nb]

@@ -60,4 +60,4 @@ jobs:
           git config user.email "director@perturabo.iron"
           git add MONDES_FORGES/CLIPPING/ARCHIVUM/montage/packs
           git commit -m "[F05/F06] montage PUR (${{ inputs.asset_mode }} x${{ inputs.nb_videos }}) — packs viraux -> ARCHIVUM/montage/packs" || echo "nothing to commit"
-          git push origin HEAD:main
+          git push origin "HEAD:${GITHUB_REF_NAME}"
