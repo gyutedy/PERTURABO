@@ -764,3 +764,39 @@ détermine le nombre d'angles/clip packs produits par l'adaptateur.
 - **Prochaine étape** : fournir les secrets `AI_GATEWAY_*` au repo, puis lancer
   le workflow matrice — le repli oracle doit prendre le relais si le premium
   refuse (402).
+
+## [2026-10-18] ORACLE RELAY — raisonnement sans clé (remplace la passerelle HTTP)
+
+- **Décision d'architecture** : le mode `oracle` n'appelle plus aucun provider et
+  ne câble aucune clé. C'est un **relais fichier** : question dans
+  `CLIPPING/ORACLE/pending/<id>.json`, réponse dans `CLIPPING/ORACLE/answers.json`.
+  L'id est le SHA-256 tronqué de `{system, user, expect_json}` — même question,
+  même id, donc une réponse est réutilisée automatiquement.
+- **Nouveau module** `SHARED/oracle_relay.py` (stdlib : `json`, `hashlib`,
+  `pathlib`) + CLI `list|show|answer|status`. Écriture atomique, `answers.json`
+  corrompu toléré, question jamais supprimée (`pending` → `answered`).
+- **`SHARED/brain.py`** : `ask()` renvoie désormais
+  `status ∈ {ok, pending, error, off}` + `question_id` / `question_path`.
+  La passerelle `AI_GATEWAY_*` a été **supprimée** de brain (plus de `urllib`
+  pour l'oracle). `ORACLE_RELAY_STRICT=1` transforme `pending` en `error`.
+- **Frégates** : F00B expose `brain_status` + `oracle_question` ; F00C expose
+  `pending_questions` dans son bloc `brain` ; F04 expose
+  `last_mode="oracle_pending"` + `last_question`.
+- **Contrats** : `CONTRACTS/oracle_relay_schema.json` (nouveau),
+  `premium_bus_schema.json` réécrit (`oracle.type=file-relay`,
+  `oracle_requires_key=false`), exemples de secrets alignés.
+- **CI** : `.github/scripts/persist_oracle_relay.sh` (non bloquant, `if: always()`)
+  ajouté à `perturabo_transcribe_matrix.yml`, `perturabo_transcribe.yml`,
+  `perturabo_vox_c_analysis.yml`, `perturabo_f04_copywriting.yml`.
+  Ces workflows poussent maintenant sur **la branche du run** (`github.ref_name`)
+  et non plus sur `main` / `v2-live` en dur. `voxc` passe en `contents: write`.
+- **Tests** : 12/12 verts (`SHARED/tests/test_oracle_relay.py`,
+  `SHARED/tests/test_brain_relay.py`) — aucun réseau, aucune clé.
+- **Doctrine** : `GUIDE_UTILISATION/23_MODE_ORACLE_RELAY.md` (nouveau),
+  `22_MODE_CERVEAU_PARTAGE.md` réécrit.
+- **Plan** : `TRACKING/PLAN_ORACLE_RELAY.md` (P0→P6).
+- **Prochaine étape** : lancer un run matrice sans clé premium ; en fin de run,
+  `oracle_relay.py list` doit montrer les questions, l'opérateur répond, relance.
+- **Reste ouvert (hors périmètre)** : `F00B_VOX/CODEBASE/libs/auto_detector.py`
+  garde une référence `AI_GATEWAY_*` pour Whisper — c'est de la transcription,
+  pas du raisonnement ; à trancher séparément.

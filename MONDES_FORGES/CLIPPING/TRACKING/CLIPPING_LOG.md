@@ -876,3 +876,25 @@ F00_CAPTEURS/CODEBASE/capteurs.py
 - Contrat public `CONTRACTS/premium_bus_schema.json` ; exemples de secrets mis à jour (aucune clé dans les fichiers).
 - Workflows : secrets NVIDIA_NIM_* + AI_GATEWAY_* injectés (matrix F00B, analysis F00C).
 - Doctrine : `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.
+
+## [2026-10-18] ORACLE RELAY — le repli oracle devient un relais fichier sans clé
+
+- **Motif** : la passerelle `AI_GATEWAY_*` supposait encore une clé et un provider.
+  Le relais supprime les deux : `brain.ask()` écrit la question dans
+  `ORACLE/pending/<id>.json`, l'opérateur répond dans `ORACLE/answers.json`.
+- **Module** `SHARED/oracle_relay.py` (stdlib, CLI `list|show|answer|status`) —
+  id = SHA-256 tronqué des prompts, écriture atomique, `pending` → `answered`.
+- **`SHARED/brain.py`** : statuts `ok|pending|error|off`, `question_id` exposé,
+  passerelle HTTP retirée. `ORACLE_RELAY_STRICT=1` = arrêt net sur `pending`.
+- **Frégates** : F00B (`brain_status`, `oracle_question`), F00C
+  (`pending_questions`), F04 (`last_mode="oracle_pending"`, `last_question`).
+  Un `pending` n'échoue pas : le run dégrade et la question est persistée.
+- **Contrats** : `oracle_relay_schema.json` (nouveau) ; `premium_bus_schema.json`
+  réécrit (`file-relay`, aucune clé) ; exemples de secrets alignés.
+- **CI** : `persist_oracle_relay.sh` non bloquant (`if: always()`) sur les 4
+  workflows à frégates ; push sur la branche du run (plus de `HEAD:main`).
+- **Tests** : 12/12 verts, aucun réseau, aucune clé.
+- **Doctrine** : `GUIDE_UTILISATION/23_MODE_ORACLE_RELAY.md` +
+  `22_MODE_CERVEAU_PARTAGE.md` réécrit. Plan : `TRACKING/PLAN_ORACLE_RELAY.md`.
+- **Prochain** : run matrice sans clé → `oracle_relay.py list` → réponses → relance.
+
