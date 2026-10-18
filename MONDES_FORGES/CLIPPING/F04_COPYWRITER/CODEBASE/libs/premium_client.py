@@ -65,8 +65,10 @@ class PremiumClient:
         self._forge_root = forge_root
         self._load_env_local()
         self.config = self._load_config()
-        # Renseigné à chaque appel : "premium" | "oracle" | "off" (observable).
+        # Renseigné à chaque appel : "premium" | "oracle" | "oracle_pending" | "off".
         self.last_mode: str | None = None
+        # Id de la question oracle si le raisonnement attend une réponse.
+        self.last_question: str | None = None
 
     def _load_env_local(self):
         """Charge un .env.local OU .env (repo ou forge) si présent — stdlib,
@@ -147,8 +149,8 @@ class PremiumClient:
         raise PremiumClientError(
             "Aucun cerveau disponible — premium incomplet ("
             + ", ".join(details)
-            + ") et aucune passerelle oracle (AI_GATEWAY_API_KEY/"
-            "AI_GATEWAY_BASE_URL).")
+            + ") et relais oracle indisponible "
+            "(ORACLE_RELAY_ENABLED=1, ORACLE/answers.json).")
 
     def extract_json(self, text: str) -> str:
         text = text.strip()
@@ -173,9 +175,10 @@ class PremiumClient:
     def chat(self, system_prompt: str, user_prompt: str) -> str:
         """Génère une réponse via le cerveau partagé.
 
-        Ordre : premium direct (config complète) → repli oracle (passerelle
-        ``AI_GATEWAY_*``) → erreur explicite si aucun cerveau. Le mode réellement
-        utilisé est exposé dans ``self.last_mode`` (jamais la clé)."""
+        Ordre : premium direct (config complète) → relais oracle fichier
+        (``ORACLE/pending`` → ``answers.json``) → erreur explicite si aucun
+        cerveau. Le mode réellement utilisé est exposé dans ``self.last_mode``
+        (jamais la clé) ; ``self.last_question`` porte l'id à répondre."""
         if self._premium_ready():
             try:
                 provider = self.config.get("provider", "other")
@@ -193,15 +196,24 @@ class PremiumClient:
             res = _brain_ask(system_prompt, user_prompt, temperature=0.7,
                              max_tokens=self.config.get("max_tokens_per_call", 4096),
                              expect_json=False, retries=1,
-                             timeout=float(self.config.get("timeout_seconds", 240)))
+                             timeout=float(self.config.get("timeout_seconds", 240)),
+                             source="F04")
             if res.get("status") == "ok":
                 self.last_mode = res.get("mode")
+                self.last_question = None
                 return res.get("content") or ""
+            if res.get("status") == "pending":
+                self.last_mode = "oracle_pending"
+                self.last_question = res.get("question_id")
+                raise PremiumClientError(
+                    "Question oracle en attente "
+                    f"({self.last_question}) — répondre via "
+                    "SHARED/oracle_relay.py answer puis relancer le run.")
         self.last_mode = "off"
         raise PremiumClientError(
             "Aucun cerveau disponible — configurer la clé premium "
-            f"('{self._env_var_name()}') ou la passerelle oracle "
-            "(AI_GATEWAY_API_KEY/AI_GATEWAY_BASE_URL).")
+            f"('{self._env_var_name()}') ou activer le relais oracle "
+            "(ORACLE_RELAY_ENABLED=1, questions dans ORACLE/pending/).")
 
     def _chat_openai_compatible(self, system_prompt: str, user_prompt: str) -> str:
         url = self._base_url().rstrip("/") + "/chat/completions"

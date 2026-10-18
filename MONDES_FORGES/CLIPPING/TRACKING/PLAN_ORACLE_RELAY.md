@@ -14,10 +14,10 @@
 | # | Livrable | Fichiers principaux | État |
 |---|---|---|---|
 | P0 | Plan fragmenté + point de reprise | `TRACKING/PLAN_ORACLE_RELAY.md` | ✅ |
-| P1 | Cœur du relais + tests | `SHARED/oracle_relay.py`, `SHARED/tests/test_oracle_relay.py` | ⬜ |
-| P2 | `brain.py` branché sur le relais (suppression passerelle HTTP) | `SHARED/brain.py` | ⬜ |
-| P3 | Contrats + exemples + README ORACLE | `CONTRACTS/oracle_relay_schema.json`, `CONTRACTS/premium_bus_schema.json`, `ORACLE/README.md`, `ORACLE/answers.example.json`, `ORACLE/answers.json` | ⬜ |
-| P4 | Frégates : état `pending` observable (F00B, F00C, F04) | `F00B_VOX/.../vox_premium.py`, `F00C_VOX/.../f00c_vox.py`, `F04_COPYWRITER/.../premium_client.py` | ⬜ |
+| P1 | Cœur du relais + tests | `SHARED/oracle_relay.py`, `SHARED/tests/test_oracle_relay.py` | ✅ |
+| P2 | `brain.py` branché sur le relais (suppression passerelle HTTP) | `SHARED/brain.py` | ✅ |
+| P3 | Contrats + exemples + README ORACLE | `CONTRACTS/oracle_relay_schema.json`, `CONTRACTS/premium_bus_schema.json`, `ORACLE/README.md`, `ORACLE/answers.example.json`, `ORACLE/answers.json` | ✅ |
+| P4 | Frégates : état `pending` observable (F00B, F00C, F04) | `F00B_VOX/.../vox_premium.py`, `F00C_VOX/.../f00c_vox.py`, `F04_COPYWRITER/.../premium_client.py` | ✅ |
 | P5 | CI : persistance des questions (commit/push auto) | `.github/workflows/perturabo_transcribe_matrix.yml`, `perturabo_vox_c_analysis.yml`, `perturabo_f04_copywriting.yml`, `perturabo_transcribe.yml` | ⬜ |
 | P6 | Docs opérateur + tracking + continuité | `GUIDE_UTILISATION/23_MODE_ORACLE_RELAY.md`, `22_MODE_CERVEAU_PARTAGE.md`, `TRACKING/CLIPPING_LOG.md`, `CONTINUATION_F00.md` | ⬜ |
 

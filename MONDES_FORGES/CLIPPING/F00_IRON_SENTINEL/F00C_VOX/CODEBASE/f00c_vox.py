@@ -330,7 +330,9 @@ def brain_rank_segments(segments: list, words: list, depth: int = 5,
     """Score sémantique des `depth` meilleurs segments via le cerveau partagé.
 
     Retourne un bloc observable ``{mode, scores, note}`` :
-      * ``off`` (aucune clé premium/oracle) → scores vides, note explicite ;
+      * ``off`` (aucune clé premium, relais oracle désactivé) → scores vides ;
+      * ``oracle`` sans réponse → questions écrites dans ORACLE/pending/, note
+        explicite et ``pending_questions`` renseigné ;
       * pas de transcript textuel → le tri plateforme reste seul juge ;
       * sinon → un score de reframing par segment (clé = start_sec).
 
@@ -348,6 +350,7 @@ def brain_rank_segments(segments: list, words: list, depth: int = 5,
     ordered = sorted(segments, key=lambda s: _as_float(s.get("attention_norm")),
                      reverse=True)[:max(1, depth)]
     scores = []
+    pending_questions = []
     for seg in ordered:
         start = _as_float(seg.get("start_sec"))
         text = _window_text(words, start, _as_float(seg.get("end_sec")))
@@ -355,7 +358,11 @@ def brain_rank_segments(segments: list, words: list, depth: int = 5,
             continue
         res = _brain_ask(BRAIN_SYSTEM, f'Extrait: "{text}"', temperature=0.2,
                          max_tokens=100, expect_json=True, timeout=timeout,
-                         retries=1)
+                         retries=1, source="F00C")
+        if res.get("status") == "pending":
+            if res.get("question_id"):
+                pending_questions.append(res["question_id"])
+            continue
         if res.get("status") != "ok":
             continue
         obj = res.get("content") or {}
@@ -366,8 +373,12 @@ def brain_rank_segments(segments: list, words: list, depth: int = 5,
             "brain_score": round(score, 2),
             "reason": str(obj.get("reason", ""))[:80],
         })
-    return {"mode": mode, "scores": scores,
-            "note": None if scores else "aucun score produit (texte vide)"}
+    note = None if scores else "aucun score produit (texte vide)"
+    if pending_questions:
+        note = ("questions en attente (relais oracle): "
+                + ", ".join(pending_questions[:5]))
+    return {"mode": mode, "scores": scores, "note": note,
+            "pending_questions": pending_questions}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
