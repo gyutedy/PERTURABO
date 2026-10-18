@@ -1,0 +1,739 @@
+{
+  "generated_at": "2026-10-18T05:03:08Z",
+  "source": "https://www.twitch.tv/videos/2901790628",
+  "engine": "auto_detect",
+  "total_words_analyzed": 10982,
+  "total_candidates_raw": 20,
+  "total_accepted": 20,
+  "total_auto_rejected": 0,
+  "candidates": [
+    {
+      "candidate_id": "f23924bd48",
+      "start_sec": 354.28,
+      "end_sec": 384.28,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:05:54.280",
+      "top_words": " Y 'all  Yeah,  this  is  cucumber  Where  the  hell  is  the  key?  Is  it  like  a  seasonal  vegetable?  Oh  right  here,  right?  Oh,  yeah.  Yeah,  surely.  Oh  girl.  I  don't  know.  I  might  ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.9,
+          "clarity": 8.9,
+          "quotability": 9.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.63,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 10
+      }
+    },
+    {
+      "candidate_id": "927573db6d",
+      "start_sec": 1091.26,
+      "end_sec": 1121.26,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:18:11.260",
+      "top_words": " Okay,  now  you  gotta  find  it  cause  I  don't  know  what  it  looks  like.  It's  like  glass  and  green.  It's  like  giving  Saratoga  but  green.  Oh.  What  is  that?  What  is  that?  The ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.1,
+          "clarity": 8.4,
+          "quotability": 9.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.36,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.86
+      }
+    },
+    {
+      "candidate_id": "60249a8637",
+      "start_sec": 914.4,
+      "end_sec": 944.4,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:15:14.400",
+      "top_words": " you  mean?  Look,  one  more  time  over  here.  This  crispy  treat  ice  cream  sandwich.  Wait,  you  want  to  try  it?  Y 'all,  this  is  not  a  part  of  the  challenge,  but  girl,  we  need",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.8,
+          "clarity": 9.0,
+          "quotability": 7.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.15,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.65
+      }
+    },
+    {
+      "candidate_id": "444307e34f",
+      "start_sec": 1251.45,
+      "end_sec": 1311.45,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:20:51.450",
+      "top_words": " Okay,  let's  go  to  checkout.  What  is  going  on?  Are  we  going  to  make  it  to  the  concert?  What  time  is  it?  7  o 'clock?  Yeah,  we  just  eat  quickly.  Hopefully.  What  are  we  d",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.1,
+          "clarity": 9.8,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 7.04,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.54
+      }
+    },
+    {
+      "candidate_id": "7c37b8e3eb",
+      "start_sec": 881.74,
+      "end_sec": 911.74,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:14:41.740",
+      "top_words": " Mochi?  No  mochi?  Ew.  Oh,  wait,  let's  check  over  here.  Where,  where,  where?  Right  here.  Literally,  they  do  have  it.  That's  like  the  bottom  of  the  thing.  Yeah,  you're  good.",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.7,
+          "clarity": 8.2,
+          "quotability": 7.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.0,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.5
+      }
+    },
+    {
+      "candidate_id": "99956ba904",
+      "start_sec": 1721.68,
+      "end_sec": 1751.68,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:28:41.680",
+      "top_words": " You  too.  You  too.  Oh  girl.  This  is  the  wrong  one  to  be  in  today.  Where's  the  car  at?  Oh  girl.  Sorry.  You  walk  around  like  you're  on  high  alert.  Girl,  yes.  No,  no.  Yo",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.0,
+          "clarity": 9.1,
+          "quotability": 6.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.99,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.48
+      }
+    },
+    {
+      "candidate_id": "cd66024cca",
+      "start_sec": 977.18,
+      "end_sec": 1037.18,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:16:17.180",
+      "top_words": " let's  do  that.  I  remember  this  is  my  first  brand  that  actually  like  gave  me  something.  They  gave  me  like  a  $10  gift  card  or  something.  Oh  my  god,  period!  A  good  $10?  ",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.7,
+          "clarity": 10,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.97,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.47
+      }
+    },
+    {
+      "candidate_id": "176a85556e",
+      "start_sec": 734.4,
+      "end_sec": 764.4,
+      "duration_sec": 30.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:12:14.400",
+      "top_words": " What  is  it  called?  Out  of  where  you're  at?  Yeah,  I  really  like  California.  We  already  went  there,  right?  Yeah.  Is  it  on  the  back  wall?  Is  nobody  watching  us?  I'm  lookin",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 7.1,
+          "clarity": 8.9,
+          "quotability": 10,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.89,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.39
+      }
+    },
+    {
+      "candidate_id": "42acf3c6f3",
+      "start_sec": 762.0,
+      "end_sec": 822.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:12:42.000",
+      "top_words": " available.  Let's  see.  Do  you  ever  plan  on  doing  this?  Moving?  On  what?  Moving  out  of  Florida?  Probably  not.  Anytime  soon  because  I'm  really  indecisive.  Like  I  grew  up  in ",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.0,
+          "clarity": 10,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.8,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.3
+      }
+    },
+    {
+      "candidate_id": "16d233ca44",
+      "start_sec": 1047.97,
+      "end_sec": 1077.97,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:17:27.970",
+      "top_words": " Not  sponsored  though.  Water,  water,  water.  Water,  water,  water.  Hi,  how  are  you?  Yeah,  sure.  Hey  y 'all.  Very  good.  Okay.  Okay,  there  we  go.  Bottle  of  water,  flavor  of  wa",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.2,
+          "clarity": 8.0,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.65,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.15
+      }
+    },
+    {
+      "candidate_id": "ea0914e149",
+      "start_sec": 945.96,
+      "end_sec": 977.38,
+      "duration_sec": 31.42,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:15:45.960",
+      "top_words": " Let's  see.  Y 'all,  what  other?  Okay,  what  other?  Show  them  the  other  options.  Y 'all,  which  ones?  Bro,  skip  the  mochi  entirely.  Oh,  oh,  y 'all  saw  it?  I  didn't  even  see  ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 9.1,
+          "clarity": 7.6,
+          "quotability": 10,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.64,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 8.64
+      }
+    },
+    {
+      "candidate_id": "cdce450236",
+      "start_sec": 232.0,
+      "end_sec": 292.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 1.0,
+      "signal_start": "00:03:52.000",
+      "top_words": " There  it  is.  It's  okay.  Y 'all  this  is  a  little  ghetto.  I  think  I  went  to  this  Walmart  before,  but  I  think  it  matches.  Where  you  shot  it.  A  lot  of  people  go  to  Publi",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 10,
+          "clarity": 9.8,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 7.26,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 8.27
+      }
+    },
+    {
+      "candidate_id": "00006daf35",
+      "start_sec": 474.8,
+      "end_sec": 534.8,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:07:54.800",
+      "top_words": " Okay.  Which  ones?  Wait,  what's  the...  I  never  learned  the  difference  between.  I  think  these  are  more  spicier.  These  are  more  mild.  Okay.  So  which  ones?  I've  never  had  tha",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.6,
+          "clarity": 10,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 7.2,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 8.2
+      }
+    },
+    {
+      "candidate_id": "ee08a8bb44",
+      "start_sec": 405.32,
+      "end_sec": 465.32,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:06:45.320",
+      "top_words": " market.  This  ain't  nothing  else  to  go.  Okay.  Now  we  gotta  get  takis  Right?  We  should  have  went  to  the  market  Oh,  I  don't  know  I  feel  like  they  they  shouldn't  they  shou",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.0,
+          "clarity": 10,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 7.05,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 8.05
+      }
+    },
+    {
+      "candidate_id": "f7ac0c60b7",
+      "start_sec": 567.0,
+      "end_sec": 627.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:09:27.000",
+      "top_words": " Okay,  matcha.  Okay,  mochi.  Oh,  yeah.  Okay,  let's  go.  You  ever  seen  them  live  or  no?  What?  No,  I  never.  Have  you?  Never,  yeah.  You  didn't?  At  Coachella.  Oh,  you  went  to ",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.6,
+          "clarity": 9.8,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.92,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 7.92
+      }
+    },
+    {
+      "candidate_id": "c769d8cc06",
+      "start_sec": 1122.0,
+      "end_sec": 1182.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.9,
+      "signal_start": "00:18:42.000",
+      "top_words": " There  you  go.  I  haven't  had  a  lot  since  the  bullet  time.  Yes,  yes.  Okay,  where  is  it  at?  You're  here  at  Mt.  Valley  Water.  Okay.  But  that's  not  the  glass  one.  That's  t",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.0,
+          "clarity": 9.8,
+          "quotability": 10,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.77,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 7.77
+      }
+    },
+    {
+      "candidate_id": "6c607e4fe3",
+      "start_sec": 1437.0,
+      "end_sec": 1497.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.85,
+      "signal_start": "00:23:57.000",
+      "top_words": " yeah  i'm  gonna  try  i'm  gonna  try  to  stream  i'm  gonna  try  to  use  my  phone  to  to  stream  while  we're  going  inside  hopefully  it  works  if  it  if  it  starts  lagging  let  us  k",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.6,
+          "clarity": 10,
+          "quotability": 3.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 5.9,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 1.0,
+        "malus_total": 0,
+        "final": 6.9
+      }
+    },
+    {
+      "candidate_id": "ecd38ddba5",
+      "start_sec": 27.0,
+      "end_sec": 87.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 1.0,
+      "signal_start": "00:00:27.000",
+      "top_words": " Yo,  it's  been  a  minute  since  I've  IRL'd.  Really?  Yeah.  And  then  go  to  First  and  Jess.  Yeah.  Yeah.  Y 'all  can  hear  me.  Hey  y 'all",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 10,
+          "clarity": 5.9,
+          "quotability": 4.5,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 5.86,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 2.5,
+        "malus_total": -1.5,
+        "final": 6.86
+      }
+    },
+    {
+      "candidate_id": "6c78d83b70",
+      "start_sec": 162.0,
+      "end_sec": 222.0,
+      "duration_sec": 60.0,
+      "signal_type": "energy",
+      "signal_intensity": 0.81,
+      "signal_start": "00:02:42.000",
+      "top_words": " If  you  With  a  car  mess  up  any  other  songs  I  mean  not  any  other  song  if  we  don't  mention  any  other  songs  and  it's  so  just  let  us  know  what  song  No,  yeah,  I'm  not  in",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 9.3,
+          "clarity": 10,
+          "quotability": 3.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.06,
+        "bonuses": [
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 1.0,
+        "malus_total": -1.5,
+        "final": 5.56
+      }
+    },
+    {
+      "candidate_id": "48ccd11eb7",
+      "start_sec": 1652.0,
+      "end_sec": 1703.0,
+      "duration_sec": 51.0,
+      "signal_type": "energy",
+      "signal_intensity": 0.67,
+      "signal_start": "00:27:32.000",
+      "top_words": " thank  you  okay  hey  where  is  the  penny  i  can  hold  the  phone  number  you  gonna  be  okay  oh  i'm  in  it  oh  thank  you  wait  sis  we're  not  two  times  though  and  our  hair  looks",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 7.8,
+          "clarity": 9.0,
+          "quotability": 3.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 5.55,
+        "bonuses": [],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 0,
+        "malus_total": -1.5,
+        "final": 4.05
+      }
+    }
+  ]
+}
