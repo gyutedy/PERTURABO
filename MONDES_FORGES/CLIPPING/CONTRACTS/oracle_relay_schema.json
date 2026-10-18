@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://perturabo.local/contracts/oracle_relay_schema.json",
+  "title": "PERTURABO CLIPPING — Oracle Relay (questions/réponses sans clé)",
+  "description": "Contrat PUBLIC du relais de raisonnement. Aucune clé, aucun endpoint : une question est écrite dans ORACLE/pending/<id>.json, la réponse est ajoutée dans ORACLE/answers.json. L'id est le SHA-256 tronqué à 16 caractères de {system, user, expect_json} sérialisés en JSON canonique.",
+  "type": "object",
+  "required": ["version", "transport", "question", "answer"],
+  "properties": {
+    "version": { "const": 1 },
+    "transport": {
+      "type": "object",
+      "required": ["type", "pending_dir", "answers_file"],
+      "properties": {
+        "type": { "const": "file-relay" },
+        "pending_dir": { "const": "MONDES_FORGES/CLIPPING/ORACLE/pending" },
+        "answers_file": { "const": "MONDES_FORGES/CLIPPING/ORACLE/answers.json" },
+        "enabled_env_var": { "const": "ORACLE_RELAY_ENABLED" },
+        "dir_env_var": { "const": "ORACLE_RELAY_DIR" },
+        "strict_env_var": { "const": "ORACLE_RELAY_STRICT" },
+        "strict_effect": { "const": "pending->error" }
+      }
+    },
+    "question": { "$ref": "#/definitions/question" },
+    "answer": { "$ref": "#/definitions/answer_entry" },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "max_prompt_chars": { "type": "integer", "minimum": 1, "default": 200000 },
+        "max_answers_per_file": { "type": "integer", "minimum": 1 },
+        "delivery": { "enum": ["graceful-pending", "strict-error"], "default": "graceful-pending" }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{16}$",
+      "description": "16 premiers caractères hex du SHA-256 canonique des prompts."
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "question": {
+      "type": "object",
+      "required": ["id", "sha256", "status", "created_at", "expect_json", "system", "user"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/definitions/id" },
+        "sha256": { "$ref": "#/definitions/sha256" },
+        "status": { "enum": ["pending", "answered"] },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "source": { "enum": ["F00B", "F00C", "F04", "F06", "cli", "unknown"] },
+        "expect_json": { "type": "boolean" },
+        "system": { "type": "string" },
+        "user": { "type": "string" }
+      }
+    },
+    "answer_entry": {
+      "type": "object",
+      "required": ["content", "expect_json", "answered_at", "answered_by"],
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "description": "Objet JSON si expect_json=true, texte libre sinon.",
+          "oneOf": [
+            { "type": "object" },
+            { "type": "array" },
+            { "type": "string" },
+            { "type": "number" },
+            { "type": "boolean" }
+          ]
+        },
+        "expect_json": { "type": "boolean" },
+        "answered_at": { "type": "string", "format": "date-time" },
+        "answered_by": { "type": "string", "default": "operator" },
+        "model": { "type": ["string", "null"] },
+        "note": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": 1,
+      "transport": {
+        "type": "file-relay",
+        "pending_dir": "MONDES_FORGES/CLIPPING/ORACLE/pending",
+        "answers_file": "MONDES_FORGES/CLIPPING/ORACLE/answers.json",
+        "enabled_env_var": "ORACLE_RELAY_ENABLED",
+        "dir_env_var": "ORACLE_RELAY_DIR",
+        "strict_env_var": "ORACLE_RELAY_STRICT",
+        "strict_effect": "pending->error"
+      },
+      "question": {
+        "id": "3f8a1b2c4d5e6f70",
+        "sha256": "3f8a1b2c4d5e6f703f8a1b2c4d5e6f703f8a1b2c4d5e6f703f8a1b2c4d5e6f70",
+        "status": "pending",
+        "created_at": "2026-10-18T00:00:00+00:00",
+        "source": "F00B",
+        "expect_json": true,
+        "system": "Tu es l'arbitre viral de PERTURABO.",
+        "user": "Extrait (intensité 0.7): \"...\""
+      },
+      "answer": {
+        "content": { "score": 7.5, "transformation": "neutre→dramatique", "reason": "hook fort" },
+        "expect_json": true,
+        "answered_at": "2026-10-18T00:05:00+00:00",
+        "answered_by": "agent",
+        "model": "sandbox",
+        "note": null,
+        "source": "F00B"
+      }
+    }
+  ]
+}
