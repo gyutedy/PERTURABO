@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: v2-live
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -148,5 +148,9 @@ jobs:
           done
 
           cd "$GITHUB_WORKSPACE"
-          git pull --rebase origin v2-live || true
-          git push origin HEAD:v2-live || echo "::warning::push échoué"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "::warning::push échoué"
+
+      - name: Persister le relais oracle (questions/réponses)
+        if: always()
+        run: bash .github/scripts/persist_oracle_relay.sh "${{ github.ref_name }}"

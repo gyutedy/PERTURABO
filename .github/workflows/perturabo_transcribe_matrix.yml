@@ -307,6 +307,10 @@ jobs:
           # FIX du piège historique : pousser VERS LA BRANCHE DU RUN, jamais HEAD:main
           git push origin "HEAD:${BRANCH}"
 
+      - name: Persister le relais oracle (questions/réponses)
+        if: always()
+        run: bash .github/scripts/persist_oracle_relay.sh "${{ github.ref_name }}"
+
       - name: Upload artefact final (filet de sécurité)
         if: always()
         uses: actions/upload-artifact@v4

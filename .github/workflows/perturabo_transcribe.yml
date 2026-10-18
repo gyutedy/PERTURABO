@@ -119,4 +119,8 @@ jobs:
           git config user.email "oracle@perturabo.iron"
           git add "$DEST"
           git commit -m "[F00B_VOX] auto_detect v${VODID}: transcript + candidats" || echo "nothing to commit"
-          git push origin HEAD:main
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Persister le relais oracle (questions/réponses)
+        if: always()
+        run: bash .github/scripts/persist_oracle_relay.sh "${{ github.ref_name }}"
