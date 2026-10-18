@@ -345,3 +345,20 @@ Run workflow complet sur NOUVELLE VOD = validation finale de production. Le prem
 - **Provenance** : `ARCHIVUM/montage/transcripts/v2901790628_candidats_selected.json`.
 - **Suivant** : F04_COPYWRITER PUR (VOX direct) avec
   `candidats_path=MONDES_FORGES/CLIPPING/F00_IRON_SENTINEL/F00B_VOX/OUT/candidats.json`.
+
+## 2026-10-18 — F04 → F05/F06 → EXPORT → clôture du siège (v2901790628)
+
+- **F04** (run 39112395311, blur, 5 clips) : overlays A01–A05 dans `ARCHIVUM/copywriting/`.
+- **F05/F06** (run 39112879893) : 5 packs viraux dans `ARCHIVUM/montage/packs/`
+  (`production_pack_A01..A05.json` + `montage_pack_index.json`).
+- **Correctifs** : dérivation du transcript pour `*_candidats_selected.json` ;
+  push montage sur `GITHUB_REF_NAME` (branches divergentes) ;
+  `IW_CUSTOS.load_liber` tolère un ledger sans bloc `iw_custos`.
+- **Export** : `EXPORT/production_pack_pur_v2901790628_A01..A05.json`,
+  `EXPORT/montage_pack_index_v2901790628.json`,
+  `EXPORT/packager_summary_pur_v2901790628.md`.
+- **Vérification** : 5/5 packs conformes au contenu (VOD, fenêtres, durée 30 s,
+  captions word-timed, compliance `#ad`). Écart de schéma canonique F05 préexistant
+  (identique aux exports PUR antérieurs).
+- **Clôture** : `IW_CUSTOS --mode close-campaign` — `campaign_status: closed`,
+  `siege_closed_at: 2026-10-18T08:56:25Z`.

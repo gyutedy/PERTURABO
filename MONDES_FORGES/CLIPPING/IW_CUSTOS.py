@@ -85,7 +85,11 @@ def load_liber() -> dict:
     if not os.path.exists(LIBER_PATH):
         raise FileNotFoundError(f"liber_clipping.json introuvable: {LIBER_PATH}")
     with open(LIBER_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+    data.setdefault("fregates_status", {})
+    data.setdefault("iw_custos", {})
+    data["iw_custos"].setdefault("errors", [])
+    return data
 
 
 def save_liber(data: dict):

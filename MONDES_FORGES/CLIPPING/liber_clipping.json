@@ -2,12 +2,19 @@
   "mode": "whop",
   "sub_mode": "pur",
   "campaign_id": "SOPHIE_RAIN_CLIPIFY_US_2026",
-  "campaign_status": "active",
+  "campaign_status": "closed",
   "inputs_warsmith": {
     "platform_target": "youtube_shorts",
     "market_target": "us_young_english",
     "nb_videos_finales": 1,
     "asset_mode": "blur",
     "exemple_description": ""
-  }
+  },
+  "fregates_status": {},
+  "iw_custos": {
+    "errors": [],
+    "last_validation": "2026-10-18T08:56:25Z"
+  },
+  "siege_closed_at": "2026-10-18T08:56:25Z",
+  "last_event": "campaign_closed"
 }

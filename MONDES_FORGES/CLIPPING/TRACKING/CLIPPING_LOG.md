@@ -898,3 +898,5 @@ F00_CAPTEURS/CODEBASE/capteurs.py
   `22_MODE_CERVEAU_PARTAGE.md` réécrit. Plan : `TRACKING/PLAN_ORACLE_RELAY.md`.
 - **Prochain** : run matrice sans clé → `oracle_relay.py list` → réponses → relance.
 
+
+## [2026-10-18T08:56:25Z] campaign_closed — SOPHIE_RAIN_CLIPIFY_US_2026 — siege_closed_at: 2026-10-18T08:56:25Z

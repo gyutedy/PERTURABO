@@ -1,0 +1,308 @@
+{
+  "pack_id": "pur-A02",
+  "generated_at": "2026-10-18T08:48:44Z",
+  "mode": "pur",
+  "asset_mode": "blur",
+  "identite": {
+    "campaign_id": "pur",
+    "angle_id": "A02",
+    "pack_index": 2,
+    "pack_total": 5
+  },
+  "cibles": {
+    "target_platform": "youtube_shorts",
+    "target_market": "us_young_english"
+  },
+  "source": {
+    "vod_url": "https://www.twitch.tv/videos/2901790628",
+    "start_sec": 1091.26,
+    "end_sec": 1121.26,
+    "duration_sec": 30.0,
+    "signal_type": "punchline",
+    "signal_intensity": 0.9,
+    "source_permission": "campaign_provided"
+  },
+  "copywriting": {
+    "overlay_title": "What Is This Green Glass? The Answer Is Shocking",
+    "overlay_lines": 1,
+    "rationale": "By turning a casual on‑camera question into a sharp, mystery‑driven hook, the title reframes the clip from a simple observation into a high‑curiosity teaser. The question format instantly triggers the viewer’s need to know, while the “shocking” payoff promises a payoff that aligns with the video’s punchline, ensuring the overlay delivers the promised intrigue and boosts swipe‑rate on YouTube Shorts."
+  },
+  "montage_instructions": {
+    "metadata": {
+      "generated_at": "2026-10-18T08:48:44Z",
+      "generator": "F06_DIRECTOR",
+      "version": "2.0.0-viral",
+      "doctrine_source": "ARCHIVUM/montage/patterns/",
+      "campaign_id": "pur",
+      "angle_id": "A02",
+      "segment_id": "927573db6d"
+    },
+    "segment": {
+      "source_url": "https://www.twitch.tv/videos/2901790628",
+      "start_sec": 1091.26,
+      "end_sec": 1121.26,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "emotion": "shock"
+    },
+    "hook": {
+      "duration_sec": 3,
+      "philosophy": "0-3s : visage speaker, PAS de B-roll, voix claire",
+      "zoom": {
+        "type": "brutal_impact",
+        "intensity": "108-115%",
+        "easing": "NONE"
+      }
+    },
+    "body": {
+      "duration_sec": 27.0,
+      "cuts": [
+        {
+          "type": "idea_cut",
+          "moment_sec": 1.25,
+          "word_anchor": "Okay,",
+          "technique": "couper quand le speaker change d'idee"
+        },
+        {
+          "type": "idea_cut",
+          "moment_sec": 1.39,
+          "word_anchor": "now",
+          "technique": "couper quand le speaker change d'idee"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 5.23,
+          "word_anchor": "green.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "idea_cut",
+          "moment_sec": 7.65,
+          "word_anchor": "Saratoga",
+          "technique": "couper quand le speaker change d'idee"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 10.41,
+          "word_anchor": "is",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 11.57,
+          "word_anchor": "that?",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 14.59,
+          "word_anchor": "Sani?",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 16.35,
+          "word_anchor": "Sani.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 20.01,
+          "word_anchor": "here?",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "smash_cut",
+          "moment_sec": 20.01,
+          "word_anchor": "here?",
+          "technique": "cut brutal zero transition sur la punchline",
+          "sfx_sync": "whoosh_fast/impact"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 23.69,
+          "word_anchor": "here.",
+          "technique": "couper exactement sur la respiration du speaker"
+        }
+      ],
+      "zooms": [
+        {
+          "type": "brutal_impact",
+          "intensity_pct": "108-115%",
+          "duration_in": "0.1s (2-3 frames a 30fps)",
+          "duration_out": "0.1s (retour immediat)",
+          "easing": "NONE",
+          "target": "centre du visage du speaker",
+          "sfx_sync": "impact (50-60%) synchronise frame-exacte",
+          "moment_sec": 11.57,
+          "word_anchor": "that?"
+        },
+        {
+          "type": "brutal_impact",
+          "intensity_pct": "108-115%",
+          "duration_in": "0.1s (2-3 frames a 30fps)",
+          "duration_out": "0.1s (retour immediat)",
+          "easing": "NONE",
+          "target": "centre du visage du speaker",
+          "sfx_sync": "impact (50-60%) synchronise frame-exacte",
+          "moment_sec": 20.01,
+          "word_anchor": "here?"
+        }
+      ],
+      "text_overlays": {
+        "main_title": {
+          "text": "What Is This Green Glass? The Answer Is Shocking",
+          "font": "Montserrat ExtraBold / Bebas Neue (800-900)",
+          "fallback": "Arial Black, Impact",
+          "color": "#FFFFFF",
+          "accent": "#FFD700 (jaune) ou #00FF88 (vert)",
+          "outline": "#000000 (3-4px)",
+          "shadow": "drop-shadow 2px 2px 4px rgba(0,0,0,0.8)",
+          "max_lines": 1,
+          "position": "haut vers le centre",
+          "font_size": "64-72px",
+          "animation": "pop_in (scale 0 -> 110% -> 100% en 0.2s)",
+          "visible": "toute la duree"
+        },
+        "captions": {
+          "source": "TRANSCRIPT du speech (word-by-word)",
+          "text_sample": " Okay,  now  you  gotta  find  it  cause  I  don't  know  what  it  looks  like.  It's  like  glass  and  green.  It's  like  giving  Saratoga  but  green.  Oh.  What  is  that?  What  is  that?  The ",
+          "font": "Montserrat Bold / Poppins Bold (700)",
+          "color": "blanc outline sombre",
+          "highlight": "mots-cles en accent (jaune/vert)",
+          "animation": "word_by_word"
+        },
+        "safe_zones": {
+          "top": "10% (titre de la vidéo)",
+          "bottom": "15% (boutons like/comment/share)",
+          "right": "5% (bouton subscribe)",
+          "safe_area": "centre 70% de l'écran"
+        }
+      },
+      "audio": {
+        "principle": "La voix du speaker est TOUJOURS prioritaire.",
+        "volume_hierarchy": {
+          "1_speaker_voice": "0dB (référence — toujours le plus fort)",
+          "2_captions_sync": "sync avec la voix",
+          "3_sfx_impact": "-6dB à -12dB sous la voix",
+          "4_music_bed": "-15dB à -20dB sous la voix",
+          "5_sfx_background": "-20dB à -25dB (presque inaudible)"
+        },
+        "sfx_events": [
+          {
+            "name": "whoosh",
+            "when": "transition/changement de plan",
+            "volume": "-12dB"
+          },
+          {
+            "name": "impact",
+            "when": "au moment exact du zoom brutal",
+            "volume": "-8dB",
+            "sync": "frame exacte"
+          },
+          {
+            "name": "pop",
+            "when": "apparition texte/chiffre",
+            "volume": "-10dB"
+          },
+          {
+            "name": "boom",
+            "when": "moment de shock/twist",
+            "volume": "-8dB",
+            "sync": "snap_zoom + flash"
+          }
+        ],
+        "music_be": {
+          "enabled": false,
+          "note": "pas de musique sur le hook (0-3s)"
+        }
+      },
+      "energy_curve": [
+        {
+          "moment": "0:00",
+          "energy": 100
+        },
+        {
+          "moment": "0:06",
+          "energy": 70
+        },
+        {
+          "moment": "0:15",
+          "energy": 90
+        },
+        {
+          "moment": "0:25",
+          "energy": 100
+        },
+        {
+          "moment": "0:30",
+          "energy": 60
+        }
+      ],
+      "pacing": "rapide — aucun temps mort"
+    },
+    "outro": {
+      "duration_sec": 1,
+      "type": "fade_to_black",
+      "note": "PAS de CTA 'Follow for more' en PUR — finir sur la chute"
+    },
+    "anti_detection": {
+      "obligatoire": true,
+      "principe": "Empreinte digitale unique par clip.",
+      "techniques": [
+        {
+          "name": "mirror",
+          "action": "Flip horizontal sur CHAQUE clip"
+        },
+        {
+          "name": "speed",
+          "action": "vitesse 1.02x-1.08x",
+          "optimal": "1.05x"
+        },
+        {
+          "name": "crop",
+          "action": "crop 2-3%",
+          "optimal": "2.5%"
+        },
+        {
+          "name": "sfx_background_layer",
+          "action": "bruit de fond leger continu",
+          "volume": "10-15%"
+        },
+        {
+          "name": "color_shift",
+          "action": "variation de teinte 2-5 degres"
+        },
+        {
+          "name": "trim",
+          "action": "1-2 frames trimees au debut/fin"
+        }
+      ]
+    },
+    "platform_rules": {
+      "platform": "youtube_shorts",
+      "max_duration_sec": 60,
+      "min_duration_sec": 15,
+      "hook_duration_sec": 3,
+      "aspect_ratio": "9:16",
+      "resolution": "1080x1920"
+    },
+    "style": {
+      "pacing": "fast",
+      "energy_level": "high",
+      "color_palette": "contraste fort — blanc/accent jaune",
+      "text_treatment": "bold"
+    },
+    "compliance": {
+      "disclosure": "#ad",
+      "submit_deadline_min": 60,
+      "platform": "youtube_shorts"
+    }
+  },
+  "compliance": {
+    "disclosure": "#ad",
+    "submit_deadline_min": 60,
+    "anti_detection_applied": true
+  }
+}
