@@ -1,0 +1,22 @@
+{
+  "gate": "F00B",
+  "vod_url": "https://www.twitch.tv/videos/2873615032",
+  "vod_id": "2873615032",
+  "session": "aishahsofey_matrix_20260919",
+  "decided_at": "2026-09-19T16:44:34.875Z",
+  "decided_by": "warsmith",
+  "source_verdict": "Salle de Contrôle — gate_f00b_v2873615032.html",
+  "regle": "5 clips max (doctrine session). Pas de clip sans verdict.",
+  "decisions": [
+    {"candidate_id": "62ac79ed87", "status": "approved", "start": "00:14:57.000", "duration_sec": 60.0, "score": 9.7,  "signal_type": "mixed"},
+    {"candidate_id": "1d3c465c61", "status": "approved", "start": "00:17:32.000", "duration_sec": 60.0, "score": 9.65, "signal_type": "mixed"},
+    {"candidate_id": "4bdc43d3a1", "status": "approved", "start": "00:29:07.600", "duration_sec": 30.0, "score": 9.59, "signal_type": "mixed"},
+    {"candidate_id": "fe6982e55c", "status": "approved", "start": "00:22:57.000", "duration_sec": 60.0, "score": 9.54, "signal_type": "mixed"},
+    {"candidate_id": "b4a1cf9305", "status": "approved", "start": "00:29:42.000", "duration_sec": 60.0, "score": 8.57, "signal_type": "mixed"},
+    {"candidate_id": "c43d328a9b", "status": "rejected", "motif": "non retenu par l'opérateur — zone muted sans audio transcrit"},
+    {"candidate_id": "6d95e9c64c", "status": "rejected", "motif": "non retenu par l'opérateur — zone muted sans audio transcrit"},
+    {"candidate_id": "3281c42b0b", "status": "rejected", "motif": "non retenu par l'opérateur — zone muted sans audio transcrit"},
+    {"candidate_id": "aab63a5c91", "status": "rejected", "motif": "non retenu par l'opérateur (gate F00B 2026-09-19)"},
+    {"candidate_id": "b3e297ab81", "status": "rejected", "motif": "non retenu par l'opérateur (gate F00B 2026-09-19)"}
+  ]
+}

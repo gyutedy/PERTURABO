@@ -1,0 +1,196 @@
+{
+  "generated_at": "2026-10-18T08:24:46Z",
+  "source": "https://www.twitch.tv/videos/2901790628",
+  "engine": "operator_selection_v1",
+  "vod_url": "https://www.twitch.tv/videos/2901790628",
+  "vod_id": "2901790628",
+  "selection": {
+    "decided_by": "warsmith",
+    "decided_at": "2026-10-18T05:03:08Z",
+    "rule": "5 clips max (selection operateur sur 20 candidats)",
+    "total_source_candidates": 20,
+    "total_selected": 5,
+    "source_candidates_file": "MONDES_FORGES/CLIPPING/ARCHIVUM/montage/transcripts/v2901790628_candidats.json",
+    "review_run": "39098370185"
+  },
+  "total_candidates_raw": 20,
+  "total_accepted": 5,
+  "total_auto_rejected": 0,
+  "candidates": [
+    {
+      "candidate_id": "f23924bd48",
+      "start_sec": 354.28,
+      "end_sec": 384.28,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:05:54.280",
+      "top_words": " Y 'all  Yeah,  this  is  cucumber  Where  the  hell  is  the  key?  Is  it  like  a  seasonal  vegetable?  Oh  right  here,  right?  Oh,  yeah.  Yeah,  surely.  Oh  girl.  I  don't  know.  I  might  ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.9,
+          "clarity": 8.9,
+          "quotability": 9.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.63,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 10
+      }
+    },
+    {
+      "candidate_id": "927573db6d",
+      "start_sec": 1091.26,
+      "end_sec": 1121.26,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:18:11.260",
+      "top_words": " Okay,  now  you  gotta  find  it  cause  I  don't  know  what  it  looks  like.  It's  like  glass  and  green.  It's  like  giving  Saratoga  but  green.  Oh.  What  is  that?  What  is  that?  The ",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.1,
+          "clarity": 8.4,
+          "quotability": 9.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.36,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.86
+      }
+    },
+    {
+      "candidate_id": "60249a8637",
+      "start_sec": 914.4,
+      "end_sec": 944.4,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:15:14.400",
+      "top_words": " you  mean?  Look,  one  more  time  over  here.  This  crispy  treat  ice  cream  sandwich.  Wait,  you  want  to  try  it?  Y 'all,  this  is  not  a  part  of  the  challenge,  but  girl,  we  need",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.8,
+          "clarity": 9.0,
+          "quotability": 7.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.15,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.65
+      }
+    },
+    {
+      "candidate_id": "7c37b8e3eb",
+      "start_sec": 881.74,
+      "end_sec": 911.74,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:14:41.740",
+      "top_words": " Mochi?  No  mochi?  Ew.  Oh,  wait,  let's  check  over  here.  Where,  where,  where?  Right  here.  Literally,  they  do  have  it.  That's  like  the  bottom  of  the  thing.  Yeah,  you're  good.",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.7,
+          "clarity": 8.2,
+          "quotability": 7.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 7.0,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.5
+      }
+    },
+    {
+      "candidate_id": "99956ba904",
+      "start_sec": 1721.68,
+      "end_sec": 1751.68,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "signal_start": "00:28:41.680",
+      "top_words": " You  too.  You  too.  Oh  girl.  This  is  the  wrong  one  to  be  in  today.  Where's  the  car  at?  Oh  girl.  Sorry.  You  walk  around  like  you're  on  high  alert.  Girl,  yes.  No,  no.  Yo",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 8.0,
+          "clarity": 9.1,
+          "quotability": 6.0,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 6.99,
+        "bonuses": [
+          {
+            "rule": "moment_unique",
+            "delta": 1.5
+          },
+          {
+            "rule": "haute_intensite",
+            "delta": 1.0
+          }
+        ],
+        "maluses": [],
+        "bonus_total": 2.5,
+        "malus_total": 0,
+        "final": 9.48
+      }
+    }
+  ]
+}

@@ -1,22 +1,187 @@
 {
   "gate": "F00B",
-  "vod_url": "https://www.twitch.tv/videos/2873615032",
-  "vod_id": "2873615032",
-  "session": "aishahsofey_matrix_20260919",
-  "decided_at": "2026-09-19T16:44:34.875Z",
+  "vod_url": "https://www.twitch.tv/videos/2901790628",
+  "vod_id": "2901790628",
+  "session": "aishahsofey_matrix_20261018_run39098370185",
+  "decided_at": "2026-10-18T05:03:08Z",
   "decided_by": "warsmith",
-  "source_verdict": "Salle de Contrôle — gate_f00b_v2873615032.html",
+  "source_verdict": "preview operateur — selection GO/NO (20 candidats)",
   "regle": "5 clips max (doctrine session). Pas de clip sans verdict.",
   "decisions": [
-    {"candidate_id": "62ac79ed87", "status": "approved", "start": "00:14:57.000", "duration_sec": 60.0, "score": 9.7,  "signal_type": "mixed"},
-    {"candidate_id": "1d3c465c61", "status": "approved", "start": "00:17:32.000", "duration_sec": 60.0, "score": 9.65, "signal_type": "mixed"},
-    {"candidate_id": "4bdc43d3a1", "status": "approved", "start": "00:29:07.600", "duration_sec": 30.0, "score": 9.59, "signal_type": "mixed"},
-    {"candidate_id": "fe6982e55c", "status": "approved", "start": "00:22:57.000", "duration_sec": 60.0, "score": 9.54, "signal_type": "mixed"},
-    {"candidate_id": "b4a1cf9305", "status": "approved", "start": "00:29:42.000", "duration_sec": 60.0, "score": 8.57, "signal_type": "mixed"},
-    {"candidate_id": "c43d328a9b", "status": "rejected", "motif": "non retenu par l'opérateur — zone muted sans audio transcrit"},
-    {"candidate_id": "6d95e9c64c", "status": "rejected", "motif": "non retenu par l'opérateur — zone muted sans audio transcrit"},
-    {"candidate_id": "3281c42b0b", "status": "rejected", "motif": "non retenu par l'opérateur — zone muted sans audio transcrit"},
-    {"candidate_id": "aab63a5c91", "status": "rejected", "motif": "non retenu par l'opérateur (gate F00B 2026-09-19)"},
-    {"candidate_id": "b3e297ab81", "status": "rejected", "motif": "non retenu par l'opérateur (gate F00B 2026-09-19)"}
+    {
+      "candidate_id": "f23924bd48",
+      "status": "approved",
+      "start": "00:05:54.280",
+      "duration_sec": 30.0,
+      "score": 10,
+      "signal_type": "punchline"
+    },
+    {
+      "candidate_id": "927573db6d",
+      "status": "approved",
+      "start": "00:18:11.260",
+      "duration_sec": 30.0,
+      "score": 9.86,
+      "signal_type": "punchline"
+    },
+    {
+      "candidate_id": "60249a8637",
+      "status": "approved",
+      "start": "00:15:14.400",
+      "duration_sec": 30.0,
+      "score": 9.65,
+      "signal_type": "punchline"
+    },
+    {
+      "candidate_id": "444307e34f",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 9.54,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "7c37b8e3eb",
+      "status": "approved",
+      "start": "00:14:41.740",
+      "duration_sec": 30.0,
+      "score": 9.5,
+      "signal_type": "punchline"
+    },
+    {
+      "candidate_id": "99956ba904",
+      "status": "approved",
+      "start": "00:28:41.680",
+      "duration_sec": 30.0,
+      "score": 9.48,
+      "signal_type": "punchline"
+    },
+    {
+      "candidate_id": "cd66024cca",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 9.47,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "176a85556e",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 30.0,
+      "score": 9.39,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "42acf3c6f3",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 9.3,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "16d233ca44",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 30.0,
+      "score": 9.15,
+      "signal_type": "punchline",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "ea0914e149",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 31.42,
+      "score": 8.64,
+      "signal_type": "punchline",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "cdce450236",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 8.27,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "00006daf35",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 8.2,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "ee08a8bb44",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 8.05,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "f7ac0c60b7",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 7.92,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "c769d8cc06",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 7.77,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "6c607e4fe3",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 6.9,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "ecd38ddba5",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 6.86,
+      "signal_type": "mixed",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "6c78d83b70",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 60.0,
+      "score": 5.56,
+      "signal_type": "energy",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    },
+    {
+      "candidate_id": "48ccd11eb7",
+      "status": "rejected",
+      "start": null,
+      "duration_sec": 51.0,
+      "score": 4.05,
+      "signal_type": "energy",
+      "motif": "non retenu par l'operateur — selection 5/20"
+    }
   ]
 }

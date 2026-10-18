@@ -331,3 +331,17 @@ Run workflow complet sur NOUVELLE VOD = validation finale de production. Le prem
 - **Schéma public** `CONTRACTS/premium_bus_schema.json` + commentaires d'exemple
   F00B mis à jour.
 - Détail doctrine : `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md`.
+
+## 2026-10-18 — Sélection opérateur de la matrice v2901790628 (run 39098370185)
+
+- **Source** : matrice 15 segments réussie (14 min 45 s, 17 artefacts), 10 982 mots,
+  4 039 messages chat, 20 candidats bruts / 20 acceptés.
+- **Gate Warsmith** : 5 candidats approuvés sur 20 (règle « 5 clips max »),
+  revue via page de sélection GO/NO (export `vox_selection_2026-10-18-1.json`).
+- **Silos** : `OUT/candidats.json` (schéma canonique `candidates`, 5 retenus),
+  `OUT/gate_verdict.json` (20 verdicts, 5 `approved`), `IN/gate_decisions.json`
+  (décisions de la session). L'ancienne session du 2026-09-19 est archivée en
+  `IN/gate_decisions_20260919_asf.json`.
+- **Provenance** : `ARCHIVUM/montage/transcripts/v2901790628_candidats_selected.json`.
+- **Suivant** : F04_COPYWRITER PUR (VOX direct) avec
+  `candidats_path=MONDES_FORGES/CLIPPING/F00_IRON_SENTINEL/F00B_VOX/OUT/candidats.json`.
