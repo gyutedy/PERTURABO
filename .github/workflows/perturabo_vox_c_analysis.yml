@@ -94,7 +94,7 @@ jobs:
           SIEGE_WEBHOOK_TOKEN: ${{ secrets.SIEGE_WEBHOOK_TOKEN }}
           # Cerveau partagé : tri sémantique premium → repli oracle → off.
           NVIDIA_NIM_API_KEY: ${{ secrets.NVIDIA_NIM_API_KEY }}
-          NVIDIA_NIM_MODEL: moonshotai/kimi-k3
+          NVIDIA_NIM_MODEL: openai/gpt-oss-20b
           AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}
           AI_GATEWAY_BASE_URL: ${{ secrets.AI_GATEWAY_BASE_URL }}
           AI_GATEWAY_MODEL: ${{ secrets.AI_GATEWAY_MODEL }}

@@ -61,7 +61,7 @@ PREMIUM_ENV_VARS = (
     "CLIPPING_PREMIUM_API_KEY",
 )
 DEFAULT_PREMIUM_BASE = "https://integrate.api.nvidia.com/v1"
-DEFAULT_PREMIUM_MODEL = "moonshotai/kimi-k3"
+DEFAULT_PREMIUM_MODEL = "openai/gpt-oss-20b"
 
 # ─── Oracle relais (fichiers, aucune clé, aucun réseau) ─────────────────────
 try:  # import local : le relais vit dans le même dossier SHARED

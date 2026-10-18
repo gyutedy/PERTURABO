@@ -39,7 +39,7 @@ jobs:
       contents: write
     env:
       NVIDIA_NIM_API_KEY: ${{ secrets.NVIDIA_NIM_API_KEY }}
-      NVIDIA_NIM_MODEL: moonshotai/kimi-k3
+      NVIDIA_NIM_MODEL: openai/gpt-oss-20b
       CLIPPING_PREMIUM_API_KEY: ${{ secrets.NVIDIA_NIM_API_KEY }}
     steps:
       - uses: actions/checkout@v4
@@ -98,7 +98,7 @@ jobs:
           cat > MONDES_FORGES/CLIPPING/CONTRACTS/copywriter_secrets.json <<'EOF'
           {
             "env_var_name": "CLIPPING_PREMIUM_API_KEY",
-            "model_id": "moonshotai/kimi-k3",
+            "model_id": "openai/gpt-oss-20b",
             "provider": "other",
             "base_url": "https://integrate.api.nvidia.com/v1",
             "max_tokens_per_call": 4096,
@@ -108,7 +108,7 @@ jobs:
             "temperature_default": 0.7
           }
           EOF
-          echo "copywriter_secrets.json -> NVIDIA (kimi-k3)"
+          echo "copywriter_secrets.json -> NVIDIA (gpt-oss-20b)"
 
       - name: F04 assets par clip (résilient — retry + commit par clip)
         run: |
