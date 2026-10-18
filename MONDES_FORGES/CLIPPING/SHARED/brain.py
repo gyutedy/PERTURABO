@@ -13,11 +13,16 @@ Modes, résolus automatiquement par ordre de préférence :
   1. ``premium`` — clé directe d'un provider NVIDIA NIM / CLIPPING_*
      (``NVIDIA_NIM_API_KEY`` → ``CLIPPING_F00B_API_KEY``
      → ``CLIPPING_PREMIUM_API_KEY``).
-  2. ``oracle``  — passerelle partagée PERTURABO (``CORE/ai_gateway.py``) :
-     ``AI_GATEWAY_API_KEY`` + ``AI_GATEWAY_BASE_URL``. Sert de repli quand la
-     clé premium est absente OU refusée (401/403/429/5xx/réseau).
-  3. ``off``     — aucune clé disponible : on n'invente rien. Chaque frégate
-     décide de sa dégradation gracieuse (score neutre, tri plateforme seul…).
+  2. ``oracle``  — relais fichier SANS clé (``SHARED/oracle_relay.py``) :
+     la question est écrite dans ``ORACLE/pending/``, l'opérateur/agent répond
+     dans ``ORACLE/answers.json``, le run suivant consomme la réponse.
+     S'active quand la clé premium est absente OU refusée (401/402/403/429/5xx).
+  3. ``off``     — relais désactivé et aucune clé : on n'invente rien. Chaque
+     frégate décide de sa dégradation gracieuse (score neutre, tri seul…).
+
+État ``pending`` : une question attend une réponse. Le pipeline n'échoue pas,
+il dégrade et expose ``question_id``. ``ORACLE_RELAY_STRICT=1`` transforme
+``pending`` en ``error`` pour un arrêt net volontaire.
 
 Doctrine de sécurité (non négociable) :
 
@@ -58,11 +63,14 @@ PREMIUM_ENV_VARS = (
 DEFAULT_PREMIUM_BASE = "https://integrate.api.nvidia.com/v1"
 DEFAULT_PREMIUM_MODEL = "moonshotai/kimi-k3"
 
-# ─── Oracle partagé (passerelle CORE/ai_gateway.py) ─────────────────────────
-GATEWAY_KEY_VAR = "AI_GATEWAY_API_KEY"
-GATEWAY_BASE_VAR = "AI_GATEWAY_BASE_URL"
-GATEWAY_MODEL_VAR = "AI_GATEWAY_MODEL"
-DEFAULT_GATEWAY_MODEL = "anthropic/claude-sonnet-4.6"
+# ─── Oracle relais (fichiers, aucune clé, aucun réseau) ─────────────────────
+try:  # import local : le relais vit dans le même dossier SHARED
+    import oracle_relay as _relay
+except Exception:  # pragma: no cover - relais absent : mode off
+    _relay = None
+
+RELAY_PROVIDER = "ORACLE_RELAY"
+RELAY_MODEL = "sandbox-agent"
 
 USER_AGENT = "PERTURABO-BRAIN/1.0"
 
@@ -86,8 +94,8 @@ def premium_ready() -> bool:
 
 
 def oracle_ready() -> bool:
-    return bool(_clean(os.environ.get(GATEWAY_KEY_VAR))
-                and _clean(os.environ.get(GATEWAY_BASE_VAR)))
+    """Vrai si le relais fichier est disponible et activé."""
+    return _relay is not None and _relay.relay_enabled()
 
 
 def available_mode() -> str:
@@ -109,13 +117,6 @@ def _premium_base() -> str:
 
 def _premium_model() -> str:
     return _clean(os.environ.get("NVIDIA_NIM_MODEL")) or DEFAULT_PREMIUM_MODEL
-
-
-def _gateway_chat_url() -> str:
-    base = _clean(os.environ.get(GATEWAY_BASE_VAR)).rstrip("/")
-    if base.endswith("/api/v1"):
-        return base + "/chat/completions"
-    return base + "/api/v1/chat/completions"
 
 
 def _post_chat(url: str, key: str, payload: dict, timeout: float) -> str:
@@ -216,18 +217,22 @@ def _chat_openai_compatible(url: str, key: str, model: str, system_prompt: str,
 def ask(system_prompt: str, user_prompt: str, *, model: str | None = None,
         temperature: float = 0.2, max_tokens: int = 256,
         expect_json: bool = True, timeout: float = 25.0,
-        retries: int = 2) -> dict:
-    """Interroge le cerveau partagé : premium d'abord, oracle en repli.
+        retries: int = 2, source: str | None = None) -> dict:
+    """Interroge le cerveau partagé : premium d'abord, relais oracle ensuite.
+
+    ``source`` identifie la frégate émettrice (F00B/F00C/F04) dans la question.
 
     Retourne ::
 
         {
-          "status": "ok" | "error" | "off",
+          "status": "ok" | "pending" | "error" | "off",
           "content": dict | str | None,   # dict si expect_json=True
           "mode": "premium" | "oracle" | "off",
           "provider": str | None,          # nom de la var, jamais sa valeur
           "model": str | None,
           "error": str | None,
+          "question_id": str | None,       # si relais oracle
+          "question_path": str | None,     # si relais oracle
           "trace": [ {"mode": ..., "error": ...}, ... ]  # échecs avant succès
         }
     """
@@ -248,22 +253,40 @@ def ask(system_prompt: str, user_prompt: str, *, model: str | None = None,
                     "error": None, "trace": trace}
         trace.append({"mode": "premium", "provider": prem_var, "error": result["error"]})
 
-    # 2. Oracle partagé (cerveau du sandbox / passerelle)
+    # 2. Oracle relais fichier (aucune clé, aucun réseau)
     if oracle_ready():
-        gmodel = model or _clean(os.environ.get(GATEWAY_MODEL_VAR)) or DEFAULT_GATEWAY_MODEL
-        result = _chat_openai_compatible(
-            _gateway_chat_url(), _clean(os.environ[GATEWAY_KEY_VAR]), gmodel,
-            system_prompt, user_prompt, temperature, max_tokens,
-            expect_json, timeout, retries,
-        )
-        if result["status"] == "ok":
-            return {"status": "ok", "content": result["content"], "mode": "oracle",
-                    "provider": GATEWAY_KEY_VAR, "model": gmodel,
-                    "error": None, "trace": trace}
-        trace.append({"mode": "oracle", "provider": GATEWAY_KEY_VAR, "error": result["error"]})
+        qid = _relay.question_id(system_prompt, user_prompt, expect_json)
+        entry = _relay.get_answer(qid)
+        if entry:
+            content = entry.get("content")
+            if expect_json and isinstance(content, str):
+                try:
+                    content = extract_json(content)
+                except json.JSONDecodeError as exc:
+                    trace.append({"mode": "oracle", "provider": RELAY_PROVIDER,
+                                  "error": f"réponse JSON invalide: {exc}"})
+                    content = None
+            if content is not None:
+                return {"status": "ok", "content": content, "mode": "oracle",
+                        "provider": RELAY_PROVIDER,
+                        "model": entry.get("model") or RELAY_MODEL,
+                        "error": None, "trace": trace,
+                        "question_id": qid, "question_path": None}
+
+        question = _relay.write_question(
+            system_prompt, user_prompt, expect_json=expect_json, source=source)
+        pending_msg = f"question en attente: {question['id']}"
+        trace.append({"mode": "oracle", "provider": RELAY_PROVIDER,
+                      "error": pending_msg})
+        status = "error" if _relay.relay_strict() else "pending"
+        return {"status": status, "content": None, "mode": "oracle",
+                "provider": RELAY_PROVIDER, "model": RELAY_MODEL,
+                "error": pending_msg, "trace": trace,
+                "question_id": question["id"],
+                "question_path": question["path"]}
 
     # 3. Aucun cerveau : état observable, jamais de crash
-    last_error = trace[-1]["error"] if trace else "aucune clé (premium/oracle) configurée"
+    last_error = trace[-1]["error"] if trace else "aucune clé premium, relais oracle désactivé"
     return {"status": "off" if not trace else "error", "content": None,
             "mode": "off", "provider": None, "model": None,
             "error": last_error, "trace": trace}
@@ -276,7 +299,10 @@ if __name__ == "__main__":  # pragma: no cover - diagnostic manuel
     parser.add_argument("--ping", action="store_true", help="Test de raisonnement réel")
     parser.add_argument("--prompt", default="Réponds uniquement: {\"ping\": \"pong\"}")
     args = parser.parse_args()
-    print(json.dumps({"available_mode": available_mode()}, indent=2))
+    diag = {"available_mode": available_mode()}
+    if _relay is not None:
+        diag["relay"] = _relay.status()
+    print(json.dumps(diag, indent=2, ensure_ascii=False))
     if args.ping:
         res = ask("Tu es un test de connectivité.", args.prompt, max_tokens=32)
         print(json.dumps(res, indent=2, ensure_ascii=False))
