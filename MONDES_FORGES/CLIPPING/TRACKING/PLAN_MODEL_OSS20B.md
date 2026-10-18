@@ -10,9 +10,9 @@
 | # | Livrable | Fichiers | État |
 |---|---|---|---|
 | M0 | Plan fragmenté + point de reprise | `TRACKING/PLAN_MODEL_OSS20B.md` | ✅ |
-| M1 | Bascule dans le code et la CI | `SHARED/brain.py`, 4 workflows | ⬜ |
-| M2 | Contrats et documentation opérateur | `CONTRACTS/premium_bus_schema.json`, `README_V2.md`, `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md` | ⬜ |
-| M3 | Garde-fou anti-dérive + validation | `SHARED/tests/test_model_config.py`, suite `SHARED/tests` | ⬜ |
+| M1 | Bascule dans le code et la CI | `SHARED/brain.py`, 4 workflows | ✅ |
+| M2 | Contrats et documentation opérateur | `CONTRACTS/premium_bus_schema.json`, `README_V2.md`, `GUIDE_UTILISATION/22_MODE_CERVEAU_PARTAGE.md` | ✅ |
+| M3 | Garde-fou anti-dérive + validation | `SHARED/tests/test_model_config.py`, suite `SHARED/tests` | ✅ |
 
 ## Périmètre exact
 
