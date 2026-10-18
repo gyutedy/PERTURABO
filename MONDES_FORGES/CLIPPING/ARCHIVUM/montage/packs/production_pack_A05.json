@@ -1,0 +1,284 @@
+{
+  "pack_id": "pur-A05",
+  "generated_at": "2026-10-18T08:48:44Z",
+  "mode": "pur",
+  "asset_mode": "blur",
+  "identite": {
+    "campaign_id": "pur",
+    "angle_id": "A05",
+    "pack_index": 5,
+    "pack_total": 5
+  },
+  "cibles": {
+    "target_platform": "youtube_shorts",
+    "target_market": "us_young_english"
+  },
+  "source": {
+    "vod_url": "https://www.twitch.tv/videos/2901790628",
+    "start_sec": 1721.68,
+    "end_sec": 1751.68,
+    "duration_sec": 30.0,
+    "signal_type": "punchline",
+    "signal_intensity": 0.9,
+    "source_permission": "campaign_provided"
+  },
+  "copywriting": {
+    "overlay_title": "Wrong Car? Watch the Shocked Reaction",
+    "overlay_lines": 1,
+    "rationale": "Reframes the mundane “wrong car” moment into a dramatic, curiosity‑driven hook that promises a vivid reaction, aligning the overlay with the clip’s punchline and boosting swipe‑rate on YouTube Shorts."
+  },
+  "montage_instructions": {
+    "metadata": {
+      "generated_at": "2026-10-18T08:48:44Z",
+      "generator": "F06_DIRECTOR",
+      "version": "2.0.0-viral",
+      "doctrine_source": "ARCHIVUM/montage/patterns/",
+      "campaign_id": "pur",
+      "angle_id": "A05",
+      "segment_id": "99956ba904"
+    },
+    "segment": {
+      "source_url": "https://www.twitch.tv/videos/2901790628",
+      "start_sec": 1721.68,
+      "end_sec": 1751.68,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
+      "emotion": "shock"
+    },
+    "hook": {
+      "duration_sec": 3,
+      "philosophy": "0-3s : visage speaker, PAS de B-roll, voix claire",
+      "zoom": {
+        "type": "brutal_impact",
+        "intensity": "108-115%",
+        "easing": "NONE"
+      }
+    },
+    "body": {
+      "duration_sec": 27.0,
+      "cuts": [
+        {
+          "type": "breath_cut",
+          "moment_sec": 3.35,
+          "word_anchor": "girl.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 10.77,
+          "word_anchor": "at?",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 15.07,
+          "word_anchor": "girl.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 17.59,
+          "word_anchor": "alert.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 20.65,
+          "word_anchor": "girl.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "smash_cut",
+          "moment_sec": 20.65,
+          "word_anchor": "girl.",
+          "technique": "cut brutal zero transition sur la punchline",
+          "sfx_sync": "whoosh_fast/impact"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 25.13,
+          "word_anchor": "yeah.",
+          "technique": "couper exactement sur la respiration du speaker"
+        }
+      ],
+      "zooms": [
+        {
+          "type": "brutal_impact",
+          "intensity_pct": "108-115%",
+          "duration_in": "0.1s (2-3 frames a 30fps)",
+          "duration_out": "0.1s (retour immediat)",
+          "easing": "NONE",
+          "target": "centre du visage du speaker",
+          "sfx_sync": "impact (50-60%) synchronise frame-exacte",
+          "moment_sec": 10.77,
+          "word_anchor": "at?"
+        },
+        {
+          "type": "snap_zoom",
+          "intensity_pct": "115-130%",
+          "duration_in": "1 frame (instantane)",
+          "duration_out": "fade 0.3s",
+          "easing": "NONE",
+          "target": "centre du visage du speaker",
+          "sfx_sync": "boom (60%) + flash blanc subtil (1-2 frames)",
+          "moment_sec": 20.65,
+          "word_anchor": "girl."
+        }
+      ],
+      "text_overlays": {
+        "main_title": {
+          "text": "Wrong Car? Watch the Shocked Reaction",
+          "font": "Montserrat ExtraBold / Bebas Neue (800-900)",
+          "fallback": "Arial Black, Impact",
+          "color": "#FFFFFF",
+          "accent": "#FFD700 (jaune) ou #00FF88 (vert)",
+          "outline": "#000000 (3-4px)",
+          "shadow": "drop-shadow 2px 2px 4px rgba(0,0,0,0.8)",
+          "max_lines": 1,
+          "position": "haut vers le centre",
+          "font_size": "64-72px",
+          "animation": "pop_in (scale 0 -> 110% -> 100% en 0.2s)",
+          "visible": "toute la duree"
+        },
+        "captions": {
+          "source": "TRANSCRIPT du speech (word-by-word)",
+          "text_sample": " You  too.  You  too.  Oh  girl.  This  is  the  wrong  one  to  be  in  today.  Where's  the  car  at?  Oh  girl.  Sorry.  You  walk  around  like  you're  on  high  alert.  Girl,  yes.  No,  no.  Yo",
+          "font": "Montserrat Bold / Poppins Bold (700)",
+          "color": "blanc outline sombre",
+          "highlight": "mots-cles en accent (jaune/vert)",
+          "animation": "word_by_word"
+        },
+        "safe_zones": {
+          "top": "10% (titre de la vidéo)",
+          "bottom": "15% (boutons like/comment/share)",
+          "right": "5% (bouton subscribe)",
+          "safe_area": "centre 70% de l'écran"
+        }
+      },
+      "audio": {
+        "principle": "La voix du speaker est TOUJOURS prioritaire.",
+        "volume_hierarchy": {
+          "1_speaker_voice": "0dB (référence — toujours le plus fort)",
+          "2_captions_sync": "sync avec la voix",
+          "3_sfx_impact": "-6dB à -12dB sous la voix",
+          "4_music_bed": "-15dB à -20dB sous la voix",
+          "5_sfx_background": "-20dB à -25dB (presque inaudible)"
+        },
+        "sfx_events": [
+          {
+            "name": "whoosh",
+            "when": "transition/changement de plan",
+            "volume": "-12dB"
+          },
+          {
+            "name": "impact",
+            "when": "au moment exact du zoom brutal",
+            "volume": "-8dB",
+            "sync": "frame exacte"
+          },
+          {
+            "name": "pop",
+            "when": "apparition texte/chiffre",
+            "volume": "-10dB"
+          },
+          {
+            "name": "boom",
+            "when": "moment de shock/twist",
+            "volume": "-8dB",
+            "sync": "snap_zoom + flash"
+          }
+        ],
+        "music_be": {
+          "enabled": false,
+          "note": "pas de musique sur le hook (0-3s)"
+        }
+      },
+      "energy_curve": [
+        {
+          "moment": "0:00",
+          "energy": 100
+        },
+        {
+          "moment": "0:06",
+          "energy": 70
+        },
+        {
+          "moment": "0:15",
+          "energy": 90
+        },
+        {
+          "moment": "0:25",
+          "energy": 100
+        },
+        {
+          "moment": "0:30",
+          "energy": 60
+        }
+      ],
+      "pacing": "rapide — aucun temps mort"
+    },
+    "outro": {
+      "duration_sec": 1,
+      "type": "fade_to_black",
+      "note": "PAS de CTA 'Follow for more' en PUR — finir sur la chute"
+    },
+    "anti_detection": {
+      "obligatoire": true,
+      "principe": "Empreinte digitale unique par clip.",
+      "techniques": [
+        {
+          "name": "mirror",
+          "action": "Flip horizontal sur CHAQUE clip"
+        },
+        {
+          "name": "speed",
+          "action": "vitesse 1.02x-1.08x",
+          "optimal": "1.05x"
+        },
+        {
+          "name": "crop",
+          "action": "crop 2-3%",
+          "optimal": "2.5%"
+        },
+        {
+          "name": "sfx_background_layer",
+          "action": "bruit de fond leger continu",
+          "volume": "10-15%"
+        },
+        {
+          "name": "color_shift",
+          "action": "variation de teinte 2-5 degres"
+        },
+        {
+          "name": "trim",
+          "action": "1-2 frames trimees au debut/fin"
+        }
+      ]
+    },
+    "platform_rules": {
+      "platform": "youtube_shorts",
+      "max_duration_sec": 60,
+      "min_duration_sec": 15,
+      "hook_duration_sec": 3,
+      "aspect_ratio": "9:16",
+      "resolution": "1080x1920"
+    },
+    "style": {
+      "pacing": "fast",
+      "energy_level": "high",
+      "color_palette": "contraste fort — blanc/accent jaune",
+      "text_treatment": "bold"
+    },
+    "compliance": {
+      "disclosure": "#ad",
+      "submit_deadline_min": 60,
+      "platform": "youtube_shorts"
+    }
+  },
+  "compliance": {
+    "disclosure": "#ad",
+    "submit_deadline_min": 60,
+    "anti_detection_applied": true
+  }
+}

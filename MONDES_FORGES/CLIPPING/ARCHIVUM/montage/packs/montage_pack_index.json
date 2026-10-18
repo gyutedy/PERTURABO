@@ -1,8 +1,29 @@
 {
-  "invalidated": "2026-09-10T22:05:00Z — annulé par l'opérateur : packs générés sans validation Warsmith. Sera régénéré après gate appliqué.",
-  "campaign_id": "LIVE_JOE_BARTOLOZZI_20260910",
+  "campaign_id": "pur",
   "mode": "pur",
-  "asset_mode": "overlay_only",
-  "pack_count": 0,
-  "packs": []
+  "asset_mode": "blur",
+  "pack_count": 5,
+  "generated_at": "2026-10-18T08:48:44Z",
+  "packs": [
+    {
+      "angle_id": "A01",
+      "file": "production_pack_A01.json"
+    },
+    {
+      "angle_id": "A02",
+      "file": "production_pack_A02.json"
+    },
+    {
+      "angle_id": "A03",
+      "file": "production_pack_A03.json"
+    },
+    {
+      "angle_id": "A04",
+      "file": "production_pack_A04.json"
+    },
+    {
+      "angle_id": "A05",
+      "file": "production_pack_A05.json"
+    }
+  ]
 }

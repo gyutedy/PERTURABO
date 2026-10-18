@@ -1,49 +1,49 @@
 {
-  "pack_id": "LIVE_JOE_BARTOLOZZI_20260910-A03",
-  "generated_at": "2026-09-10T21:21:29Z",
+  "pack_id": "pur-A03",
+  "generated_at": "2026-10-18T08:48:44Z",
   "mode": "pur",
-  "asset_mode": "overlay_only",
+  "asset_mode": "blur",
   "identite": {
-    "campaign_id": "LIVE_JOE_BARTOLOZZI_20260910",
+    "campaign_id": "pur",
     "angle_id": "A03",
     "pack_index": 3,
-    "pack_total": 3
+    "pack_total": 5
   },
   "cibles": {
     "target_platform": "youtube_shorts",
     "target_market": "us_young_english"
   },
   "source": {
-    "vod_url": "https://www.twitch.tv/videos/2869752708",
-    "start_sec": 5162.0,
-    "end_sec": 5206.0,
-    "duration_sec": 44.0,
-    "signal_type": "chat_spike",
-    "signal_intensity": 0.6,
+    "vod_url": "https://www.twitch.tv/videos/2901790628",
+    "start_sec": 914.4,
+    "end_sec": 944.4,
+    "duration_sec": 30.0,
+    "signal_type": "punchline",
+    "signal_intensity": 0.9,
     "source_permission": "campaign_provided"
   },
   "copywriting": {
-    "overlay_title": "SHE DIDN'T KNOW HER MUSIC WAS BLASTING\nThen she tried to sell him something",
-    "overlay_lines": 2,
-    "rationale": "Reframe neutre→dramatique fidèle à la source : le clip montre littéralement la streamer qui découvre en direct que sa musique tournait à fond ('I didn't know the music was up... My bad, my bad... I'm so quiet'), puis pivote aussitôt vers 'Bro, how much for the La—'. Ligne 1 : condense l'embarras réel (musique audible pour tous sauf elle) en contradiction visuelle qui crée le vide cognitif et set up le payoff (S2). Ligne 2 : foreshadow le pivot brutal vers la négociation sans révéler la formulation exacte, forçant la rétention jusqu'à la chute — les deux beats sont dans la vidéo, zéro clickbait non livré. Ton hot take intrigue calibré pour le scroll passif Shorts (S18) et le marché us_young_english, sans slang mort. Chaque ligne < 60 chars, lisible en overlay 9:16."
+    "overlay_title": "The Crispy Ice Cream Sandwich That Will Blow Your Mind",
+    "overlay_lines": 1,
+    "rationale": "Reframes a casual snack moment into a dramatic food hack, turning the mundane into a curiosity‑driven hook that promises a surprising twist, boosting swipe‑rate."
   },
   "montage_instructions": {
     "metadata": {
-      "generated_at": "2026-09-10T21:21:29Z",
+      "generated_at": "2026-10-18T08:48:44Z",
       "generator": "F06_DIRECTOR",
       "version": "2.0.0-viral",
       "doctrine_source": "ARCHIVUM/montage/patterns/",
-      "campaign_id": "LIVE_JOE_BARTOLOZZI_20260910",
+      "campaign_id": "pur",
       "angle_id": "A03",
-      "segment_id": "fd06bcadbb"
+      "segment_id": "60249a8637"
     },
     "segment": {
-      "source_url": "https://www.twitch.tv/videos/2869752708",
-      "start_sec": 5162.0,
-      "end_sec": 5206.0,
-      "duration_sec": 44.0,
-      "signal_type": "chat_spike",
-      "signal_intensity": 0.6,
+      "source_url": "https://www.twitch.tv/videos/2901790628",
+      "start_sec": 914.4,
+      "end_sec": 944.4,
+      "duration_sec": 30.0,
+      "signal_type": "punchline",
+      "signal_intensity": 0.9,
       "emotion": "shock"
     },
     "hook": {
@@ -56,137 +56,116 @@
       }
     },
     "body": {
-      "duration_sec": 41.0,
+      "duration_sec": 27.0,
       "cuts": [
         {
           "type": "breath_cut",
-          "moment_sec": 0.0,
+          "moment_sec": 0.92,
+          "word_anchor": "mean?",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "idea_cut",
+          "moment_sec": 3.3,
+          "word_anchor": "Look,",
+          "technique": "couper quand le speaker change d'idee"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 5.56,
+          "word_anchor": "here.",
           "technique": "couper exactement sur la respiration du speaker"
         },
         {
           "type": "breath_cut",
-          "moment_sec": 3.0,
+          "moment_sec": 9.3,
+          "word_anchor": "sandwich.",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "idea_cut",
+          "moment_sec": 10.1,
+          "word_anchor": "Wait,",
+          "technique": "couper quand le speaker change d'idee"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 11.12,
+          "word_anchor": "it?",
+          "technique": "couper exactement sur la respiration du speaker"
+        },
+        {
+          "type": "idea_cut",
+          "moment_sec": 16.08,
+          "word_anchor": "but",
+          "technique": "couper quand le speaker change d'idee"
+        },
+        {
+          "type": "breath_cut",
+          "moment_sec": 18.4,
+          "word_anchor": "that.",
           "technique": "couper exactement sur la respiration du speaker"
         },
         {
           "type": "breath_cut",
-          "moment_sec": 6.0,
+          "moment_sec": 23.04,
+          "word_anchor": "know.",
           "technique": "couper exactement sur la respiration du speaker"
         },
         {
           "type": "breath_cut",
-          "moment_sec": 9.0,
+          "moment_sec": 24.38,
+          "word_anchor": "Where?",
           "technique": "couper exactement sur la respiration du speaker"
         },
         {
           "type": "breath_cut",
-          "moment_sec": 12.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 15.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 18.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 21.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 24.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 27.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 30.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 33.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 36.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 39.0,
-          "technique": "couper exactement sur la respiration du speaker"
-        },
-        {
-          "type": "breath_cut",
-          "moment_sec": 42.0,
+          "moment_sec": 27.88,
+          "word_anchor": "okay.",
           "technique": "couper exactement sur la respiration du speaker"
         },
         {
           "type": "smash_cut",
-          "moment_sec": 37.4,
+          "moment_sec": 27.88,
+          "word_anchor": "okay.",
           "technique": "cut brutal zero transition sur la punchline",
           "sfx_sync": "whoosh_fast/impact"
-        },
-        {
-          "type": "idea_cut",
-          "moment_sec": 22.0,
-          "technique": "couper quand le speaker change d'idee"
         }
       ],
       "zooms": [
         {
           "type": "brutal_impact",
-          "moment_sec": 13.2,
           "intensity_pct": "108-115%",
           "duration_in": "0.1s (2-3 frames a 30fps)",
           "duration_out": "0.1s (retour immediat)",
           "easing": "NONE",
           "target": "centre du visage du speaker",
-          "sfx_sync": "impact (50-60%) synchronise frame-exacte"
+          "sfx_sync": "impact (50-60%) synchronise frame-exacte",
+          "moment_sec": 11.12,
+          "word_anchor": "it?"
         },
         {
           "type": "snap_zoom",
-          "moment_sec": 26.4,
           "intensity_pct": "115-130%",
           "duration_in": "1 frame (instantane)",
           "duration_out": "fade 0.3s",
           "easing": "NONE",
           "target": "centre du visage du speaker",
-          "sfx_sync": "boom (60%) + flash blanc subtil (1-2 frames)"
-        },
-        {
-          "type": "snap_zoom",
-          "moment_sec": 39.6,
-          "intensity_pct": "115-130%",
-          "duration_in": "1 frame (instantane)",
-          "duration_out": "fade 0.3s",
-          "easing": "NONE",
-          "target": "centre du visage du speaker",
-          "sfx_sync": "boom (60%) + flash blanc subtil (1-2 frames)"
+          "sfx_sync": "boom (60%) + flash blanc subtil (1-2 frames)",
+          "moment_sec": 27.88,
+          "word_anchor": "okay."
         }
       ],
       "text_overlays": {
         "main_title": {
-          "text": "SHE DIDN'T KNOW HER MUSIC WAS BLASTING\nThen she tried to sell him something",
+          "text": "The Crispy Ice Cream Sandwich That Will Blow Your Mind",
           "font": "Montserrat ExtraBold / Bebas Neue (800-900)",
           "fallback": "Arial Black, Impact",
           "color": "#FFFFFF",
           "accent": "#FFD700 (jaune) ou #00FF88 (vert)",
           "outline": "#000000 (3-4px)",
           "shadow": "drop-shadow 2px 2px 4px rgba(0,0,0,0.8)",
-          "max_lines": 2,
+          "max_lines": 1,
           "position": "haut vers le centre",
           "font_size": "64-72px",
           "animation": "pop_in (scale 0 -> 110% -> 100% en 0.2s)",
@@ -194,17 +173,28 @@
         },
         "captions": {
           "source": "TRANSCRIPT du speech (word-by-word)",
-          "text_sample": "chat, joe_bartolozzi, clip, moment, insane",
+          "text_sample": " you  mean?  Look,  one  more  time  over  here.  This  crispy  treat  ice  cream  sandwich.  Wait,  you  want  to  try  it?  Y 'all,  this  is  not  a  part  of  the  challenge,  but  girl,  we  need",
           "font": "Montserrat Bold / Poppins Bold (700)",
           "color": "blanc outline sombre",
           "highlight": "mots-cles en accent (jaune/vert)",
           "animation": "word_by_word"
         },
-        "safe_zones": {}
+        "safe_zones": {
+          "top": "10% (titre de la vidéo)",
+          "bottom": "15% (boutons like/comment/share)",
+          "right": "5% (bouton subscribe)",
+          "safe_area": "centre 70% de l'écran"
+        }
       },
       "audio": {
         "principle": "La voix du speaker est TOUJOURS prioritaire.",
-        "volume_hierarchy": {},
+        "volume_hierarchy": {
+          "1_speaker_voice": "0dB (référence — toujours le plus fort)",
+          "2_captions_sync": "sync avec la voix",
+          "3_sfx_impact": "-6dB à -12dB sous la voix",
+          "4_music_bed": "-15dB à -20dB sous la voix",
+          "5_sfx_background": "-20dB à -25dB (presque inaudible)"
+        },
         "sfx_events": [
           {
             "name": "whoosh",
@@ -240,19 +230,19 @@
           "energy": 100
         },
         {
-          "moment": "0:08",
+          "moment": "0:06",
           "energy": 70
         },
         {
-          "moment": "0:22",
+          "moment": "0:15",
           "energy": 90
         },
         {
-          "moment": "0:37",
+          "moment": "0:25",
           "energy": 100
         },
         {
-          "moment": "0:44",
+          "moment": "0:30",
           "energy": 60
         }
       ],
