@@ -35,7 +35,7 @@
               ┌──────────────────┼───────────────────┐
               ▼                  ▼                   ▼
         1. premium          2. oracle           3. off
-     NVIDIA NIM kimi-k3   relais fichier      dégradation gracieuse
+  NVIDIA NIM gpt-oss-20b  relais fichier      dégradation gracieuse
      (clé CLIPPING_*)     ORACLE/answers.json (score neutre / tri
                           (aucune clé,         plateforme seul)
                            aucun réseau)
@@ -52,7 +52,7 @@ existe : tri sémantique, sélection de segments, copywriter.
 | Mode | Variables | Rôle |
 |---|---|---|
 | premium | `NVIDIA_NIM_API_KEY` → `CLIPPING_F00B_API_KEY` → `CLIPPING_PREMIUM_API_KEY` | voie rapide (lue en premier) |
-| premium | `NVIDIA_NIM_BASE_URL`, `NVIDIA_NIM_MODEL` | surcharge base/modèle (défauts : `integrate.api.nvidia.com/v1`, `moonshotai/kimi-k3`) |
+| premium | `NVIDIA_NIM_BASE_URL`, `NVIDIA_NIM_MODEL` | surcharge base/modèle (défauts : `integrate.api.nvidia.com/v1`, `openai/gpt-oss-20b`) |
 | oracle | `ORACLE_RELAY_ENABLED` (`1`) | active/désactive le relais fichier |
 | oracle | `ORACLE_RELAY_DIR` | dossier du relais (défaut : `CLIPPING/ORACLE`) |
 | oracle | `ORACLE_RELAY_STRICT` (`0`) | `1` transforme `pending` en `error` |
