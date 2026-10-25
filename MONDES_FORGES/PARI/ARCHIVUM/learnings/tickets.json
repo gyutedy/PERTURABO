@@ -1,0 +1,24 @@
+{
+  "note": "LEDGER DE TOUS LES TICKETS — gagnants ET perdants. Le biais de survie est une hérésie.",
+  "tickets": [
+    {
+      "id": "TICKET_0001",
+      "date": "2025-10-20",
+      "type": "exemple",
+      "nb_jambes": 2,
+      "jambes": [
+        {"match": "Lions vs City", "marche": "MT_PROLIFIQUE", "selection": "MT2", "cote": 2.10},
+        {"match": "Utd vs Rovers", "marche": "OU_2.5", "selection": "O2.5", "cote": 1.72}
+      ],
+      "cote_totale": 3.61,
+      "mise_units": 1.0,
+      "mise_devise": {"montant": 500, "devise": "FC"},
+      "resultat": "gagné",
+      "pnl_units": 2.61,
+      "score_predit": {"p_modele": 0.68, "source": "siege M1+M2"},
+      "note_warsmith": "Exemple format — replace par tes vrais tickets"
+    }
+  ],
+  "devise_reference": "USD",
+  "consumer_doc": "À chaque settle : F06_TRACKER met à jour pnl_units + calibration.json"
+}

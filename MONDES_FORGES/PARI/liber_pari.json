@@ -1,0 +1,104 @@
+{
+  "fleet_status": "pack_ready",
+  "siege_id": "PARI-DEMO-20261025-0635",
+  "monde": "pari",
+  "warsmith_brief": {
+    "mode": null,
+    "ligue": null,
+    "horizon": null,
+    "notes": null
+  },
+  "tyrant_report": {
+    "status": "done",
+    "carte_valid": null,
+    "nb_proies": null,
+    "nb_no_bet": null,
+    "seuil_ev_applique": null,
+    "recommandation": null,
+    "justification": null,
+    "output_path": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json"
+  },
+  "f01_sentinel": {
+    "status": "done",
+    "output_path": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json",
+    "intel_hash": null,
+    "matchs_count": 0,
+    "mode_source": null
+  },
+  "f02_breacher": {
+    "status": "done",
+    "output_path": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json",
+    "analysis_hash": null,
+    "matchs_analyses": 0
+  },
+  "f03_forgeward": {
+    "status": "done",
+    "output_path": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json",
+    "values_count": 0,
+    "no_bet_count": 0,
+    "ev_max": null,
+    "predictions_hash": null
+  },
+  "f04_herald": {
+    "status": "done",
+    "output_path": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json",
+    "reports_count": 0,
+    "oracle_utilise": null,
+    "reports_hash": null
+  },
+  "f05_packager": {
+    "status": "done",
+    "output_path": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json",
+    "pack_top": 0,
+    "mise_totale_units": null,
+    "dashboard_path": null,
+    "pack_hash": null
+  },
+  "f06_tracker": {
+    "status": "idle",
+    "tickets_tracked": 0,
+    "roi_pct": null,
+    "calibration_path": null,
+    "last_settle": null
+  },
+  "iw_custos": {
+    "last_validation": "2026-10-25T06:35:27Z",
+    "errors": []
+  },
+  "gate_decisions": {
+    "gate_1": {
+      "label": "Validation carte TYRANT (GO/NO-GO siège)",
+      "validated": true,
+      "timestamp": "2026-10-25T06:35:27Z",
+      "notes": "auto (PARI_AUTO_GATES)"
+    },
+    "gate_2": {
+      "label": "Validation analyses BREACHER (probas, matrice)",
+      "validated": true,
+      "timestamp": "2026-10-25T06:35:27Z",
+      "notes": "auto (PARI_AUTO_GATES)"
+    },
+    "gate_3": {
+      "label": "Validation verdicts FORGEWARD (EV, Kelly, combinés)",
+      "validated": true,
+      "timestamp": "2026-10-25T06:35:27Z",
+      "notes": "auto (PARI_AUTO_GATES)"
+    },
+    "gate_4": {
+      "label": "Validation pari pack + dashboard HERALD/PACKAGER",
+      "validated": false,
+      "timestamp": null,
+      "notes": null
+    }
+  },
+  "siege_timestamps": {
+    "start": "2026-10-25T06:35:26Z",
+    "tyrant_done": "2026-10-25T06:35:26Z",
+    "intel_done": "2026-10-25T06:35:27Z",
+    "breach_done": "2026-10-25T06:35:27Z",
+    "value_done": "2026-10-25T06:35:27Z",
+    "herald_done": "2026-10-25T06:35:27Z",
+    "pack_done": "2026-10-25T06:35:27Z",
+    "end": null
+  }
+}
