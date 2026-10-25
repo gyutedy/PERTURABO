@@ -1,0 +1,746 @@
+{
+  "ligue": "Ligue de Simulation",
+  "ligue_tier": "exotique",
+  "horizon": "journée",
+  "seed_warsmith": "DEMO",
+  "matchs": [
+    {
+      "id": "M1",
+      "dom": "Cyclops",
+      "ext": "Trench",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1560,
+        "ext": 1410
+      },
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 15.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 10,
+          "marques": 14.0,
+          "encaisses": 10.0,
+          "marques_mt1": 7.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 4.0,
+          "encaisses_mt2": 6.0
+        }
+      },
+      "cotes": {
+        "1": 1.83,
+        "X": 3.79,
+        "2": 4.07,
+        "o2.5": 1.86,
+        "u2.5": 2.14,
+        "mt1": 3.75,
+        "mte": 3.47,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M2",
+      "dom": "Lions",
+      "ext": "Garrison",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1590,
+        "ext": 1350
+      },
+      "stats": {
+        "dom": {
+          "mj": 10,
+          "marques": 15.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 10,
+          "marques": 13.0,
+          "encaisses": 9.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 4.0,
+          "encaisses_mt2": 5.0
+        }
+      },
+      "cotes": {
+        "1": 1.71,
+        "X": 3.54,
+        "2": 5.34,
+        "o2.5": 2.0,
+        "u2.5": 2.34,
+        "mt1": 3.58,
+        "mte": 3.74,
+        "mt2": 2.34
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M3",
+      "dom": "Bastion",
+      "ext": "Lions",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1500,
+        "ext": 1590
+      },
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 16.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 9,
+          "marques": 15.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 2.65,
+        "X": 3.76,
+        "2": 2.43,
+        "o2.5": 1.85,
+        "u2.5": 1.99,
+        "mt1": 3.23,
+        "mte": 3.84,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M4",
+      "dom": "Legion",
+      "ext": "Utd Iron",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1585,
+        "ext": 1620
+      },
+      "stats": {
+        "dom": {
+          "mj": 9,
+          "marques": 14.0,
+          "encaisses": 7.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 15.0,
+          "encaisses": 4.0,
+          "marques_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 2.0
+        }
+      },
+      "cotes": {
+        "1": 2.4,
+        "X": 3.94,
+        "2": 2.6,
+        "o2.5": 1.81,
+        "u2.5": 1.93,
+        "mt1": 2.97,
+        "mte": 2.93,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M5",
+      "dom": "Orbital",
+      "ext": "Rovers",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1440,
+        "ext": 1480
+      },
+      "stats": {
+        "dom": {
+          "mj": 7,
+          "marques": 14.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 15.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 2.42,
+        "X": 4.0,
+        "2": 2.55,
+        "o2.5": 2.13,
+        "u2.5": 2.06,
+        "mt1": 3.2,
+        "mte": 3.07,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M6",
+      "dom": "Utd Iron",
+      "ext": "Rovers",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1620,
+        "ext": 1480
+      },
+      "stats": {
+        "dom": {
+          "mj": 7,
+          "marques": 15.0,
+          "encaisses": 4.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 2.0
+        },
+        "ext": {
+          "mj": 7,
+          "marques": 14.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 1.85,
+        "X": 3.38,
+        "2": 4.57,
+        "o2.5": 1.66,
+        "u2.5": 1.82,
+        "mt1": 3.85,
+        "mte": 3.76,
+        "mt2": 2.28
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M7",
+      "dom": "Utd Iron",
+      "ext": "Athletic",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1620,
+        "ext": 1520
+      },
+      "stats": {
+        "dom": {
+          "mj": 9,
+          "marques": 16.0,
+          "encaisses": 5.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 14.0,
+          "encaisses": 8.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 5.0
+        }
+      },
+      "cotes": {
+        "1": 1.94,
+        "X": 3.77,
+        "2": 3.65,
+        "o2.5": 2.06,
+        "u2.5": 2.06,
+        "mt1": 3.12,
+        "mte": 3.46,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M8",
+      "dom": "Utd Iron",
+      "ext": "Sapper",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1620,
+        "ext": 1330
+      },
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 14.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 13.0,
+          "encaisses": 8.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 5.0
+        }
+      },
+      "cotes": {
+        "1": 1.67,
+        "X": 3.38,
+        "2": 6.28,
+        "o2.5": 1.94,
+        "u2.5": 2.23,
+        "mt1": 3.39,
+        "mte": 3.51,
+        "mt2": 2.02
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M9",
+      "dom": "Orbital",
+      "ext": "Rampart",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1440,
+        "ext": 1380
+      },
+      "stats": {
+        "dom": {
+          "mj": 9,
+          "marques": 13.0,
+          "encaisses": 9.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 10,
+          "marques": 13.0,
+          "encaisses": 7.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 2.05,
+        "X": 3.32,
+        "2": 3.76,
+        "o2.5": 1.61,
+        "u2.5": 2.1,
+        "mt1": 3.61,
+        "mte": 3.56,
+        "mt2": 2.19
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M10",
+      "dom": "Orbital",
+      "ext": "Athletic",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1440,
+        "ext": 1520
+      },
+      "stats": {
+        "dom": {
+          "mj": 7,
+          "marques": 15.0,
+          "encaisses": 5.0,
+          "marques_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 10,
+          "marques": 13.0,
+          "encaisses": 5.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 3.0
+        }
+      },
+      "cotes": {
+        "1": 2.6,
+        "X": 3.55,
+        "2": 2.57,
+        "o2.5": 1.67,
+        "u2.5": 1.67,
+        "mt1": 3.72,
+        "mte": 3.22,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M11",
+      "dom": "Vigil",
+      "ext": "Legion",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1495,
+        "ext": 1585
+      },
+      "stats": {
+        "dom": {
+          "mj": 9,
+          "marques": 15.0,
+          "encaisses": 8.0,
+          "marques_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 5.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 14.0,
+          "encaisses": 7.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 2.65,
+        "X": 3.88,
+        "2": 2.38,
+        "o2.5": 1.97,
+        "u2.5": 2.02,
+        "mt1": 3.69,
+        "mte": 3.7,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M12",
+      "dom": "Ironside",
+      "ext": "Perturabo SC",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1545,
+        "ext": 1700
+      },
+      "stats": {
+        "dom": {
+          "mj": 10,
+          "marques": 13.0,
+          "encaisses": 7.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 7,
+          "marques": 16.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        }
+      },
+      "cotes": {
+        "1": 2.96,
+        "X": 3.57,
+        "2": 2.29,
+        "o2.5": 1.7,
+        "u2.5": 2.01,
+        "mt1": 3.0,
+        "mte": 3.42,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M13",
+      "dom": "Perturabo SC",
+      "ext": "Rovers",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1700,
+        "ext": 1480
+      },
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 17.0,
+          "encaisses": 5.0,
+          "marques_mt1": 7.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 7,
+          "marques": 12.0,
+          "encaisses": 6.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        }
+      },
+      "cotes": {
+        "1": 1.73,
+        "X": 3.64,
+        "2": 4.93,
+        "o2.5": 1.88,
+        "u2.5": 1.95,
+        "mt1": 2.92,
+        "mte": 3.77,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M14",
+      "dom": "Bastion",
+      "ext": "Forge FC",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1500,
+        "ext": 1560
+      },
+      "stats": {
+        "dom": {
+          "mj": 7,
+          "marques": 16.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 7,
+          "marques": 13.0,
+          "encaisses": 8.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 5.0
+        }
+      },
+      "cotes": {
+        "1": 2.51,
+        "X": 3.37,
+        "2": 2.78,
+        "o2.5": 1.96,
+        "u2.5": 1.65,
+        "mt1": 3.29,
+        "mte": 3.84,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M15",
+      "dom": "Forge FC",
+      "ext": "Vigil",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1560,
+        "ext": 1495
+      },
+      "stats": {
+        "dom": {
+          "mj": 9,
+          "marques": 14.0,
+          "encaisses": 5.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 15.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        }
+      },
+      "cotes": {
+        "1": 2.03,
+        "X": 3.96,
+        "2": 3.22,
+        "o2.5": 1.63,
+        "u2.5": 1.88,
+        "mt1": 3.14,
+        "mte": 3.72,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M16",
+      "dom": "City Steel",
+      "ext": "Rampart",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1610,
+        "ext": 1380
+      },
+      "stats": {
+        "dom": {
+          "mj": 7,
+          "marques": 15.0,
+          "encaisses": 4.0,
+          "marques_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt1": 2.0,
+          "encaisses_mt2": 2.0
+        },
+        "ext": {
+          "mj": 7,
+          "marques": 11.0,
+          "encaisses": 7.0,
+          "marques_mt1": 5.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 1.72,
+        "X": 3.93,
+        "2": 4.56,
+        "o2.5": 2.02,
+        "u2.5": 2.24,
+        "mt1": 3.36,
+        "mte": 3.86,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M17",
+      "dom": "Custodia",
+      "ext": "Ironside",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1470,
+        "ext": 1545
+      },
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 12.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 13.0,
+          "encaisses": 8.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 4.0,
+          "encaisses_mt2": 4.0
+        }
+      },
+      "cotes": {
+        "1": 2.58,
+        "X": 3.44,
+        "2": 2.65,
+        "o2.5": 1.86,
+        "u2.5": 1.98,
+        "mt1": 3.85,
+        "mte": 3.25,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    },
+    {
+      "id": "M18",
+      "dom": "Orbital",
+      "ext": "Utd Iron",
+      "date": "2026-10-25",
+      "elo": {
+        "dom": 1440,
+        "ext": 1620
+      },
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 15.0,
+          "encaisses": 8.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 5.0
+        },
+        "ext": {
+          "mj": 10,
+          "marques": 13.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt1": 3.0,
+          "encaisses_mt2": 3.0
+        }
+      },
+      "cotes": {
+        "1": 3.07,
+        "X": 3.54,
+        "2": 2.24,
+        "o2.5": 2.06,
+        "u2.5": 1.67,
+        "mt1": 3.08,
+        "mte": 3.47,
+        "mt2": 2.1
+      },
+      "notes": "SC: match de simulation — enjeu équilibré, absences mineures."
+    }
+  ]
+}

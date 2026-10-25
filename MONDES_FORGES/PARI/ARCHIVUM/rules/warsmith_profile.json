@@ -1,0 +1,20 @@
+{
+  "profil": "warsmith_pari",
+  "devise": "USD",
+  "bankroll_ref": 100,
+  "unite_definition": "1u = 1% de bankroll",
+  "seuil_ev_top5": 0.03,
+  "seuil_ev_exotique": 0.08,
+  "kelly_fraction": 0.25,
+  "mise_max_pct_bankroll": 0.05,
+  "mise_max_pct_exotique": 0.03,
+  "budget_loterie_pct": 0.02,
+  "combiné_max_jambes": 3,
+  "combiné_kelly_fraction": 0.125,
+  "marches_actifs": ["MT_PROLIFIQUE", "OU_2.5", "1X2"],
+  "ligues_consideres_top5": ["Premier League", "La Liga", "Serie A", "Bundesliga", "Ligue 1"],
+  "ligues_top5_match_pattern": ["premier league", "la liga", "liga santander", "serie a", "bundesliga", "ligue 1"],
+  "stop_hebdo_perte_pct": 0.20,
+  "auj_disclaimer": "Le pari est un divertissement à maîtriser. On analyse des probabilités, on ne promet rien.",
+  "note_currency": "Les mises Winner Bet se font en FC (franc congolais). Le monde archive tout en UNITÉS et convertit à la devise de référence (USD) pour le ROI — la conversion se fait au taux du jour, hors du calcul de probabilité."
+}

@@ -1,0 +1,27 @@
+{
+  "demon": "Winner Bet",
+  "url": "https://winner.bet/fr/sportsbook/upcoming",
+  "devise": "FC (franc congolais) / USD",
+  "marches": {
+    "MT_PROLIFIQUE": {
+      "cote_typique_mt2": 2.10,
+      "part_but_mt2_globale": 0.55,
+      "p_atteinte": 0.476,
+      "historique_marge": null,
+      "verdict": "CHASSE PRIORITAIRE — mais P(MT2>MT1) < part des buts : calcul STRICT via matrice",
+      "note": "Cote quasi-constante 2.10 → le biais du public s'ancrage : potentiellement sous-coté. Marge locale à mesurer à chaque siege."
+    },
+    "OU_2.5": {
+      "cote_typique_o25": null,
+      "historique_marge": null,
+      "verdict": "soumis à donnée"
+    },
+    "1X2": {
+      "historique_marge": null,
+      "verdict": "soumis à donnée"
+    }
+  },
+  "biais_public": "favoris sur-cotés le jour du match ; l'argent des parieurs locaux écrase parfois la cote dès l'ouverture",
+  "champ_connaissance": "marge observée à chaque siège : IW_CUSTOS archive la marge par marché dans learnings/calibration.json",
+  "last_observation": null
+}

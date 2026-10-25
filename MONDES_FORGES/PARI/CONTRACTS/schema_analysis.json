@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "schema_analysis — sortie F02 BREACHER",
+  "type": "object",
+  "required": ["generated_at", "ligue", "analyses"],
+  "properties": {
+    "generated_at": {"type": "string"},
+    "ligue": {"type": "string"},
+    "ligue_moyennes": {
+      "type": "object",
+      "properties": {
+        "buts_dom_moy": {"type": "number"},
+        "buts_ext_moy": {"type": "number"},
+        "part_mt1_ligue": {"type": "number", "description": "≈0.42-0.44 par défaut, mesuré si data"}
+      }
+    },
+    "analyses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "probas", "lambdas", "data_quality"],
+        "properties": {
+          "id": {"type": "string"},
+          "match": {"type": "string"},
+          "lambdas": {
+            "type": "object",
+            "properties": {
+              "dom_total": {"type": "number"}, "ext_total": {"type": "number"},
+              "dom_mt1": {"type": "number"}, "dom_mt2": {"type": "number"},
+              "ext_mt1": {"type": "number"}, "ext_mt2": {"type": "number"}
+            }
+          },
+          "probas": {
+            "type": "object",
+            "properties": {
+              "1": {"type": "number"}, "X": {"type": "number"}, "2": {"type": "number"},
+              "o2.5": {"type": "number"}, "u2.5": {"type": "number"},
+              "btts": {"type": "number"},
+              "mt1_plus": {"type": "number", "description": "P(MT1 > MT2)"},
+              "mte": {"type": "number", "description": "P(MT1 = MT2) — inclut 0-0/0-0, tue le pari MT2"},
+              "mt2_plus": {"type": "number", "description": "P(MT2 > MT1) ≠ part des buts en MT2"},
+              "score_le_plus_probable": {"type": "string"}
+            }
+          },
+          "data_quality": {
+            "type": "object",
+            "properties": {
+              "niveau": {"type": "string", "enum": ["haute", "moyenne", "basse"]},
+              "flags": {"type": "array", "items": {"type": "string"},
+                "description": "ex: mt_splits_estimates, mj_insuffisant"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

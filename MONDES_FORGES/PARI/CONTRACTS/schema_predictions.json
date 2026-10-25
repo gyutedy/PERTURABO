@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "schema_predictions — sortie F03 FORGEWARD",
+  "type": "object",
+  "required": ["generated_at", "predictions"],
+  "properties": {
+    "generated_at": {"type": "string"},
+    "seuil_ev_applique": {"type": "number"},
+    "predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "selections", "verdict"],
+        "properties": {
+          "id": {"type": "string"},
+          "match": {"type": "string"},
+          "selections": {
+            "type": "array",
+            "description": "une entrée par marché avec cote dispo",
+            "items": {
+              "type": "object",
+              "required": ["marche", "selection", "cote", "p_modele", "ev"],
+              "properties": {
+                "marche": {"type": "string", "enum": ["1X2", "OU_2.5", "MT_PROLIFIQUE", "BTTS"]},
+                "selection": {"type": "string", "description": "1 | X | 2 | O2.5 | U2.5 | MT1 | MTE | MT2 | BTTS"},
+                "cote": {"type": "number"},
+                "cote_juste_marche": {"type": "number", "description": "no-vig"},
+                "p_modele": {"type": "number"},
+                "p_marche_novig": {"type": "number"},
+                "ev": {"type": "number", "description": "P_modele × cote − 1"},
+                "verdict": {"type": "string", "enum": ["VALUE", "THIN", "NO_BET"]},
+                "mise_units": {"type": ["number", "null"],
+                  "description": "¼ Kelly plafonné, null si NO_BET"}
+              }
+            }
+          },
+          "verdict": {"type": "string", "enum": ["GO", "THIN", "NO_BET"],
+            "description": "GO = au moins une VALUE sur le match"},
+          "meilleure_ev": {"type": ["number", "null"]}
+        }
+      }
+    },
+    "combines": {
+      "type": "array",
+      "description": "combinés candidats : jambes indépendantes toutes +EV",
+      "items": {
+        "type": "object",
+        "properties": {
+          "jambes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {"match_id": {"type": "string"}, "selection": {"type": "string"}, "cote": {"type": "number"}}
+            }
+          },
+          "cote_totale": {"type": "number"},
+          "ev_combine": {"type": "number", "description": "Π(1+EV_jambe) − 1"},
+          "mise_units": {"type": "number", "description": "⅛ Kelly, max 1u, max 3 jambes"}
+        }
+      }
+    }
+  }
+}

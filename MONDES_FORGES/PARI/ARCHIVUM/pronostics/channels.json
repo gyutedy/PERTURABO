@@ -1,0 +1,16 @@
+{
+  "note": "Tracker de pronostiqueurs : les pronostics sont des DONNÉES TESTABLES, jamais un moteur de calcul (biais de survie interdit).",
+  "channels": [
+    {
+      "slug": "exemple_canal_1",
+      "nom": "Exemple Pronostic TV",
+      "platform": "youtube",
+      "url": "https://youtube.com/@exemple",
+      "status": "_tracking",
+      "pronostics_count": 0,
+      "taux_reussite": null,
+      "roi_s'il_avait_ete_suivi": null
+    }
+  ],
+  "note_fonctionnement": "F00 CAPTEURS collecte le pronostic (match, marché, cote). F06 TRACKER note le résultat après match. Après 50+ pronostics : classement learnings."
+}

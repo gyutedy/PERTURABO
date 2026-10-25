@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "schema_match_intel — sortie F01 SENTINEL",
+  "type": "object",
+  "required": ["generated_at", "source", "ligue", "matchs"],
+  "properties": {
+    "generated_at": {"type": "string"},
+    "source": {"type": "string", "description": "fixtures file | cotes_txt | capture_oracle | api-football"},
+    "ligue": {"type": "string"},
+    "ligue_tier": {"type": "string", "enum": ["top5", "secondaire", "exotique"],
+      "description": "conditionne le seuil EV (3% / 8%)"},
+    "matchs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "dom", "ext", "stats"],
+        "properties": {
+          "id": {"type": "string"},
+          "dom": {"type": "string"},
+          "ext": {"type": "string"},
+          "date": {"type": "string"},
+          "elo": {
+            "type": "object",
+            "properties": {"dom": {"type": "number"}, "ext": {"type": "number"}}
+          },
+          "stats": {
+            "type": "object",
+            "required": ["dom", "ext"],
+            "properties": {
+              "dom": {"$ref": "#/definitions/team_stats"},
+              "ext": {"$ref": "#/definitions/team_stats"}
+            }
+          },
+          "cotes": {
+            "type": ["object", "null"],
+            "description": "cotes Winner Bet validées par le Warsmith (null en mode radar)",
+            "properties": {
+              "1": {"type": "number"}, "X": {"type": "number"}, "2": {"type": "number"},
+              "o2.5": {"type": "number"}, "u2.5": {"type": "number"},
+              "mt1": {"type": "number"}, "mte": {"type": "number"}, "mt2": {"type": "number"}
+            }
+          },
+          "notes": {"type": "string", "description": "contexte qualitatif : enjeu, fatigue, absences"}
+        }
+      }
+    }
+  },
+  "definitions": {
+    "team_stats": {
+      "type": "object",
+      "required": ["mj", "marques", "encaisses"],
+      "properties": {
+        "mj": {"type": "integer", "minimum": 1},
+        "marques": {"type": "number"},
+        "encaisses": {"type": "number"},
+        "marques_mt1": {"type": ["number", "null"], "description": "null → part ligue par défaut + flag estimate"},
+        "marques_mt2": {"type": ["number", "null"]},
+        "encaisses_mt1": {"type": ["number", "null"]},
+        "encaisses_mt2": {"type": ["number", "null"]}
+      }
+    }
+  }
+}

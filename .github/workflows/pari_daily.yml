@@ -1,0 +1,78 @@
+# PARI DAILY — Cron du monde forge PARI
+# Radar du matin → analyse → pari pack → dashboard → artefacts commités → Telegram
+#
+# Secrets requis (Settings → Secrets and variables → Actions) :
+#   TELEGRAM_BOT_TOKEN  (optionnel : push Telegram)
+#   TELEGRAM_CHAT_ID    (optionnel)
+#   API_FOOTBALL_KEY    (optionnel : fixtures live plus tard)
+#   ORACLE_API_KEY      (optionnel : TYRANT/HERALD LLM)
+#
+# Sans secrets Telegram, le pipeline tourne et commit quand même ses artefacts.
+
+name: pari-daily
+on:
+  schedule:
+    - cron: "30 6 * * *"   # 06:30 UTC — le matin, avant les matchs
+  workflow_dispatch: {}     # lancement manuel
+
+permissions:
+  contents: write
+
+jobs:
+  siege:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Radar + Siège + Pack + Dashboard
+        env:
+          ORACLE_API_KEY: ${{ secrets.ORACLE_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode demo
+          # NOTE v1: démo tant que les connecteurs live ne sont pas branchés.
+          # Quand la carte du jour est fournie (ARCHIVUM/fixtures/matches.json),
+          # remplacer par:
+          #   python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode radar
+          #   python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode siege
+          #   python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode pack --top 10
+
+      - name: Commit artefacts
+        run: |
+          git config user.name "IW_CUSTOS[bot]"
+          git config user.email "custos@perturabo.iron"
+          git add MONDES_FORGES/PARI
+          git diff --staged --quiet || git commit -m "🛡️ PARI: siège quotidien (artefacts radar/pack/dashboard)"
+          git push
+
+      - name: Telegram — push du pack
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -z "${TELEGRAM_BOT_TOKEN}" ] || [ -z "${TELEGRAM_CHAT_ID}" ]; then
+            echo "Secrets Telegram absents — push sauté (réultat commit)"; exit 0
+          fi
+          MSG=$(python - <<'EOF'
+          import json, os
+          path = "MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json"
+          try:
+              pack = json.load(open(path, encoding="utf-8"))
+          except Exception:
+              print("⚠️ Pack indisponible"); raise SystemExit
+          m = pack.get("metriques", {})
+          lines = ["🛡️ *PARI — DIRECTION DES SIÈGES*", ""]
+          for x in pack.get("top_picks", [])[:10]:
+              lines.append(f"{x['rang']}. {x['match']} — {x['selection_label']} @{x['cote']} EV {x['ev']*100:+.1f}% mise {x['mise_units']}u")
+          lines += ["", f"📊 Mise totale: {m.get('mise_totale_units')}u · NO BET: {m.get('nb_no_bet')}",
+                    pack.get("disclaimer", ""), "", "_Opérateur : le placement est ton dernier mot._"]
+          print("\n".join(lines))
+          EOF
+          )
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" -d parse_mode="Markdown" \
+            --data-urlencode text="${MSG}" > /dev/null

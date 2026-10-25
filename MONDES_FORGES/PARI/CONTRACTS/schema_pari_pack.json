@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "schema_pari_pack — sortie F05 PACKAGER",
+  "type": "object",
+  "required": ["generated_at", "siege_id", "top_picks", "no_bet", "loterie"],
+  "properties": {
+    "generated_at": {"type": "string"},
+    "siege_id": {"type": "string"},
+    "devise": {"type": "string", "description": "USD de référence ; mises en unités (1u = 1% bankroll)"},
+    "top_picks": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["rang", "match_id", "match", "marche", "selection", "cote", "ev", "mise_units"],
+        "properties": {
+          "rang": {"type": "integer"},
+          "match_id": {"type": "string"},
+          "match": {"type": "string"},
+          "marche": {"type": "string"},
+          "selection": {"type": "string"},
+          "cote": {"type": "number"},
+          "p_modele": {"type": "number"},
+          "ev": {"type": "number"},
+          "mise_units": {"type": "number", "description": "¼ Kelly plafonné"},
+          "note_risque": {"type": "string"}
+        }
+      }
+    },
+    "no_bet": {
+      "type": "array",
+      "description": "matchs/marchés sans value — interdiction formelle",
+      "items": {
+        "type": "object",
+        "properties": {
+          "match": {"type": "string"},
+          "raison": {"type": "string", "description": "cote vidée | data insuffisante | EV<seuil"}
+        }
+      }
+    },
+    "combines": {"type": "array"},
+    "loterie": {
+      "type": "object",
+      "description": "zone divertissement séparée — budget bloqué, jamais dans le capital de chasse",
+      "properties": {
+        "budget_pct_bankroll": {"type": "number", "description": "défaut 2%"},
+        "tickets_suggeres": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "metriques": {
+      "type": "object",
+      "properties": {
+        "mise_totale_units": {"type": "number"},
+        "ev_moyenne_pct": {"type": "number"},
+        "nb_matchs_analyses": {"type": "integer"},
+        "nb_no_bet": {"type": "integer"}
+      }
+    },
+    "disclaimer": {
+      "type": "string",
+      "description": "jeu responsable obligatoire sur tout artefact final"
+    }
+  }
+}
