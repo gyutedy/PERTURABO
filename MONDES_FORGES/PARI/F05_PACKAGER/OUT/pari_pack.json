@@ -1,0 +1,184 @@
+{
+  "generated_at": "2026-10-25T06:52:15Z",
+  "siege_id": null,
+  "devise": "USD",
+  "titre": "DIRECTION DES SIÈGES — TOP 10",
+  "top_picks": [
+    {
+      "match_id": "M2",
+      "match": "Lions vs Garrison",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.34,
+      "p_modele": 0.8657,
+      "ev": 1.0257,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 1
+    },
+    {
+      "match_id": "M9",
+      "match": "Orbital vs Rampart",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.1,
+      "p_modele": 0.8448,
+      "ev": 0.7741,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 2
+    },
+    {
+      "match_id": "M15",
+      "match": "Forge FC vs Vigil",
+      "marche": "1X2",
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 3.96,
+      "p_modele": 0.429,
+      "ev": 0.6988,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 3
+    },
+    {
+      "match_id": "M4",
+      "match": "Legion vs Utd Iron",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 1.93,
+      "p_modele": 0.8569,
+      "ev": 0.6538,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 4
+    },
+    {
+      "match_id": "M4",
+      "match": "Legion vs Utd Iron",
+      "marche": "1X2",
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 3.94,
+      "p_modele": 0.4173,
+      "ev": 0.6442,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 5
+    },
+    {
+      "match_id": "M16",
+      "match": "City Steel vs Rampart",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.24,
+      "p_modele": 0.7278,
+      "ev": 0.6303,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 6
+    },
+    {
+      "match_id": "M15",
+      "match": "Forge FC vs Vigil",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 1.88,
+      "p_modele": 0.8571,
+      "ev": 0.6113,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 7
+    },
+    {
+      "match_id": "M8",
+      "match": "Utd Iron vs Sapper",
+      "marche": "1X2",
+      "selection": "2",
+      "selection_label": "Victoire Extérieur",
+      "cote": 6.28,
+      "p_modele": 0.2561,
+      "ev": 0.6083,
+      "mise_units": 2.88,
+      "note_risque": "qualité data: haute",
+      "rang": 8
+    },
+    {
+      "match_id": "M1",
+      "match": "Cyclops vs Trench",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.14,
+      "p_modele": 0.7481,
+      "ev": 0.6009,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 9
+    },
+    {
+      "match_id": "M10",
+      "match": "Orbital vs Athletic",
+      "marche": "1X2",
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 3.55,
+      "p_modele": 0.4505,
+      "ev": 0.5993,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 10
+    }
+  ],
+  "no_bet": [],
+  "combines": [
+    {
+      "jambes": [
+        {
+          "match_id": "M2",
+          "selection": "u2.5",
+          "cote": 2.34,
+          "p_modele": 0.8657
+        },
+        {
+          "match_id": "M9",
+          "selection": "u2.5",
+          "cote": 2.1,
+          "p_modele": 0.8448
+        },
+        {
+          "match_id": "M15",
+          "selection": "X",
+          "cote": 3.96,
+          "p_modele": 0.429
+        }
+      ],
+      "cote_totale": 19.46,
+      "ev_combine": 5.1051,
+      "mise_units": 1.0
+    }
+  ],
+  "loterie": {
+    "budget_pct_bankroll": 0.02,
+    "note": "Zone DIVERTISSEMENT séparée. Combinés 10+ jambes cote 100+ : jamais dans le capital de chasse.",
+    "tickets_suggeres": []
+  },
+  "metriques": {
+    "mise_totale_units": 30.88,
+    "ev_moyenne_pct": 0.6847,
+    "nb_matchs_analyses": 18,
+    "nb_no_bet": 0,
+    "nb_matchs_go": 18
+  },
+  "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
+  "carte_tyran": {
+    "ligue": "Ligue de Simulation",
+    "ligue_tier": "exotique",
+    "seuil_ev": 0.08
+  }
+}

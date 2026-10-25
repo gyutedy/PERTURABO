@@ -1,0 +1,156 @@
+{
+  "generated_at": "2026-10-25T06:52:15Z",
+  "ligue": "Ligue de Simulation",
+  "ligue_tier": "exotique",
+  "seuil_ev_applique": 0.08,
+  "go": 18,
+  "no_bet": 0,
+  "recommandation": "GO — carte analysable",
+  "justification": "Tier: exotique. 18 GO / 0 NO BET. Gate 1 à valider par le Warsmith.",
+  "verdicts": [
+    {
+      "id": "M1",
+      "match": "Cyclops vs Trench",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M2",
+      "match": "Lions vs Garrison",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M3",
+      "match": "Bastion vs Lions",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M4",
+      "match": "Legion vs Utd Iron",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M5",
+      "match": "Orbital vs Rovers",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M6",
+      "match": "Utd Iron vs Rovers",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M7",
+      "match": "Utd Iron vs Athletic",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M8",
+      "match": "Utd Iron vs Sapper",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M9",
+      "match": "Orbital vs Rampart",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M10",
+      "match": "Orbital vs Athletic",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M11",
+      "match": "Vigil vs Legion",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M12",
+      "match": "Ironside vs Perturabo SC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M13",
+      "match": "Perturabo SC vs Rovers",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M14",
+      "match": "Bastion vs Forge FC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M15",
+      "match": "Forge FC vs Vigil",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M16",
+      "match": "City Steel vs Rampart",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M17",
+      "match": "Custodia vs Ironside",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M18",
+      "match": "Orbital vs Utd Iron",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    }
+  ]
+}

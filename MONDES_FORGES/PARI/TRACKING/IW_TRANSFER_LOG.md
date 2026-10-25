@@ -16,3 +16,13 @@
 | 2026-10-25T06:35:27Z | F03/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json | 7c468e8dcac59d00ffd7b09989a22544 | OK |
 | 2026-10-25T06:35:27Z | F04/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json | 7227a0feff5542ce9a5cde4a817e1297 | OK |
 | 2026-10-25T06:35:27Z | F05/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json | 26ec05db828d574fc7952b229d96d6b4 | OK |
+| 2026-10-25T06:49:44Z | F01/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json | 3503a343f59cdb913a8d14a1e68c967b | OK |
+| 2026-10-25T06:49:44Z | F02/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json | 97a955b448ae5f6bacf4c3ce04a1bd32 | OK |
+| 2026-10-25T06:52:15Z | F01/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json | 1f90ef53aaa4860f5b068ce6873db1fd | OK |
+| 2026-10-25T06:52:15Z | F02/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json | 7f526722441f7dedee7d3891b77e9c4d | OK |
+| 2026-10-25T06:52:15Z | TYRANT/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json | c87b090eb168bfafe12848fa77cdb45b | OK |
+| 2026-10-25T06:52:15Z | F01/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json | db802ff01678fd2c35baf8158c12a7f0 | OK |
+| 2026-10-25T06:52:15Z | F02/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json | 7f526722441f7dedee7d3891b77e9c4d | OK |
+| 2026-10-25T06:52:15Z | F03/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json | 317820feca8c14e1985bec80110a55e1 | OK |
+| 2026-10-25T06:52:15Z | F04/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json | 28fc270af496fb7770c655d3ae8db644 | OK |
+| 2026-10-25T06:52:15Z | F05/CODEBASE | /home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json | 249e35084bf0c4abe1ec69ca3ada11d1 | OK |

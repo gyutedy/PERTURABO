@@ -1,12 +1,4 @@
-# Artefacts noirs du monde PARI / livrables d'exécution
+# Charbons noirs seulement — les OUT (radar, pack, dashboard) restent dans
+# l'historique git : c'est le journal des sièges du monde.
 __pycache__/
 *.pyc
-F00_RADAR/OUT/
-F01_SENTINEL/OUT/
-F02_BREACHER/OUT/
-F03_FORGEWARD/OUT/
-F04_HERALD/OUT/
-F05_PACKAGER/OUT/
-TYRANT/OUT/
-SHARED/OUT/
-ORCHESTRATOR/TRACKING/DEMO_NOTE.md

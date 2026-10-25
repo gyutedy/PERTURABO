@@ -1,0 +1,114 @@
+{
+  "generated_at": "2026-10-25T06:52:15Z",
+  "reports": [
+    {
+      "id": "M1",
+      "match": "Cyclops vs Trench",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
+    },
+    {
+      "id": "M2",
+      "match": "Lions vs Garrison",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
+    },
+    {
+      "id": "M3",
+      "match": "Bastion vs Lions",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
+    },
+    {
+      "id": "M4",
+      "match": "Legion vs Utd Iron",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
+    },
+    {
+      "id": "M5",
+      "match": "Orbital vs Rovers",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
+    },
+    {
+      "id": "M6",
+      "match": "Utd Iron vs Rovers",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
+    },
+    {
+      "id": "M7",
+      "match": "Utd Iron vs Athletic",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
+    },
+    {
+      "id": "M8",
+      "match": "Utd Iron vs Sapper",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
+    },
+    {
+      "id": "M9",
+      "match": "Orbital vs Rampart",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
+    },
+    {
+      "id": "M10",
+      "match": "Orbital vs Athletic",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
+    },
+    {
+      "id": "M11",
+      "match": "Vigil vs Legion",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M11_fiche.md"
+    },
+    {
+      "id": "M12",
+      "match": "Ironside vs Perturabo SC",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M12_fiche.md"
+    },
+    {
+      "id": "M13",
+      "match": "Perturabo SC vs Rovers",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M13_fiche.md"
+    },
+    {
+      "id": "M14",
+      "match": "Bastion vs Forge FC",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M14_fiche.md"
+    },
+    {
+      "id": "M15",
+      "match": "Forge FC vs Vigil",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M15_fiche.md"
+    },
+    {
+      "id": "M16",
+      "match": "City Steel vs Rampart",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M16_fiche.md"
+    },
+    {
+      "id": "M17",
+      "match": "Custodia vs Ironside",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M17_fiche.md"
+    },
+    {
+      "id": "M18",
+      "match": "Orbital vs Utd Iron",
+      "verdict": "GO",
+      "file": "/home/daytona/worktrees/th7304jtrn9zd8a3cz3xmbcxmx8gz2fc/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M18_fiche.md"
+    }
+  ],
+  "oracle_utilise": false
+}

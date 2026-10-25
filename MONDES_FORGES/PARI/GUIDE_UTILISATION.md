@@ -25,7 +25,80 @@ Ouvre ensuite :
 
 ## 2. Scanner une VRAIE ligue (mode radar)
 
-### Étape 1 — La carte des matchs
+### ⚡ La voie CAPTEURS (recommandée — 90% auto)
+
+**Étape 1 — la bibliothèque de stats** (football-data.co.uk, **sans aucune clé**) :
+
+```bash
+cd MONDES_FORGES/PARI
+# E0 = Premier League · SP1 = La Liga · I1 = Serie A · D1 = Bundesliga · F1 = Ligue 1
+python F00_RADAR/CODEBASE/capteurs.py build-stats --league E0 --season 2627 \
+    --include-seasons 2526 --last 12 --out ARCHIVUM/teams/E0_2627.json
+```
+
+`--include-seasons` fusionne la saison précédente — **indispensable en début de
+saison** (< 6 matchs/équipe sinon NO BET d'office). Fenêtre glissante : les
+12 derniers matchs **par équipe**, split Domicile/Extérieur + split mi-temps.
+
+**Étape 2 — les Elo** (ClubElo, sans clé — fonctionne mieux depuis GitHub Actions) :
+
+```bash
+python F00_RADAR/CODEBASE/capteurs.py build-elo --date 2026-10-25 \
+    --out ARCHIVUM/teams/elo_2026-10-25.json
+```
+
+**Étape 3 — ta carte de matchs** (tu ne colles QUE les paires de noms) :
+
+```json
+{"ligue": "Premier League", "horizon": "journée du 25-10",
+ "matchs": [
+   {"id": "M1", "dom": "Arsenal", "ext": "Man City", "cotes": null},
+   {"id": "M2", "dom": "Liverpool", "ext": "Chelsea", "cotes": null}
+ ]}
+```
+
+**Étape 4 — l'injection** (stats + Elo auto dans la carte) :
+
+```bash
+python F00_RADAR/CODEBASE/capteurs.py inject --stats ARCHIVUM/teams/E0_2627.json \
+    --carte ARCHIVUM/fixtures/matches.json --elo ARCHIVUM/teams/elo_2026-10-25.json
+```
+
+Les équipes manquantes sont signalées « Zero Data, Zero Calc » — corrige le nom
+ou remplit à la main, jamais d'invention.
+
+**Étape 5 — le radar** : `python ORCHESTRATOR/CODEBASE/orchestrator.py --mode radar --fixtures ARCHIVUM/fixtures/matches.json`
+
+### 🗓️ Le calendrier automatique (clés optionnelles)
+
+```bash
+# API-Football (100 req/jour gratis — API_FOOTBALL_KEY en Secret) :
+python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \
+    --league-id 39 --date 2026-10-25 --out ARCHIVUM/fixtures/calendrier.json
+
+# ou football-data.org (12 compétitions gratis — FOOTBALL_DATA_ORG_KEY) :
+python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source football-data-org \
+    --competition PL --date-from 2026-10-24 --date-to 2026-10-27 \
+    --out ARCHIVUM/fixtures/calendrier.json
+```
+
+Le calendrier donne les paires + ids + horaires ; fusionne-la avec ta carte
+puis inject. Sans clé : les paires se collent à la main (2 minutes).
+
+### 📮 Telegram — le canal principal privé
+
+```bash
+# 1. @BotFather → /newbot → copie le TOKEN
+# 2. Envoie un message à ton bot puis ouvre:
+#    https://api.telegram.org/bot<TOKEN>/getUpdates → copie chat.id
+# 3. Mets les 2 clés : Settings → Keys (workspace) ET GitHub Secrets
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode telegram-test
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode notify   # pousse le pari pack
+```
+
+Sans clés, la commande affiche les instructions et ne casse jamais rien.
+
+### Étape manuelle — La carte des matchs (sans capteurs)
 Crée `ARCHIVUM/fixtures/matches.json` :
 
 ```json
@@ -56,7 +129,7 @@ Sources pour remplir la carte (whitelist) : FBref, FootyStats, SoccerSTATS,
 Flashscore, Transfermarkt, ClubElo. **Zero Data, Zero Calc** : si tu ne
 trouves pas, ne devine pas — marque `"cotes": null` et attends.
 
-### Étape 2 — Lancer
+### Puis — Lancer
 ```bash
 python ORCHESTRATOR/CODEBASE/orchestrator.py --mode radar
 ```

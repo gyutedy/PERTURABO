@@ -28,18 +28,30 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Radar + Siège + Pack + Dashboard
+      - name: Capteurs + Radar (donnée réelle) ou Démo si pas de carte
         env:
-          ORACLE_API_KEY: ${{ secrets.ORACLE_API_KEY }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
         run: |
-          python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode demo
-          # NOTE v1: démo tant que les connecteurs live ne sont pas branchés.
-          # Quand la carte du jour est fournie (ARCHIVUM/fixtures/matches.json),
-          # remplacer par:
-          #   python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode radar
-          #   python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode siege
-          #   python MONDES_FORGES/PARI/ORCHESTRATOR/CODEBASE/orchestrator.py --mode pack --top 10
+          cd MONDES_FORGES/PARI
+          if [ -f ARCHIVUM/fixtures/matches.json ]; then
+            # 1. stats live football-data.co.uk (sans clé) — fusion saison précédente
+            python F00_RADAR/CODEBASE/capteurs.py build-stats --league E0 --season 2627 \
+              --include-seasons 2526 --last 12 --out ARCHIVUM/teams/E0_2627.json || true
+            # 2. Elo ClubElo (sans clé, gracieux si indisponible)
+            python F00_RADAR/CODEBASE/capteurs.py build-elo --date $(date -u +%F) \
+              --out ARCHIVUM/teams/elo_du_jour.json || true
+            # 3. inject stats+Elo dans la carte (noms corrigés à la main si manquants)
+            python F00_RADAR/CODEBASE/capteurs.py inject --stats ARCHIVUM/teams/E0_2627.json \
+              --carte ARCHIVUM/fixtures/matches.json \
+              --elo ARCHIVUM/teams/elo_du_jour.json || true
+            # 4. radar sur donnée réelle
+            python ORCHESTRATOR/CODEBASE/orchestrator.py --mode radar \
+              --fixtures ARCHIVUM/fixtures/matches.json
+          else
+            echo "Pas de carte du jour (ARCHIVUM/fixtures/matches.json) — démo"
+            python ORCHESTRATOR/CODEBASE/orchestrator.py --mode demo
+          fi
 
       - name: Commit artefacts
         run: |
@@ -49,7 +61,7 @@ jobs:
           git diff --staged --quiet || git commit -m "🛡️ PARI: siège quotidien (artefacts radar/pack/dashboard)"
           git push
 
-      - name: Telegram — push du pack
+      - name: Telegram — push du radar (+ pack si présent)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -59,20 +71,26 @@ jobs:
           fi
           MSG=$(python - <<'EOF'
           import json, os
-          path = "MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json"
-          try:
-              pack = json.load(open(path, encoding="utf-8"))
-          except Exception:
-              print("⚠️ Pack indisponible"); raise SystemExit
-          m = pack.get("metriques", {})
-          lines = ["🛡️ *PARI — DIRECTION DES SIÈGES*", ""]
-          for x in pack.get("top_picks", [])[:10]:
-              lines.append(f"{x['rang']}. {x['match']} — {x['selection_label']} @{x['cote']} EV {x['ev']*100:+.1f}% mise {x['mise_units']}u")
-          lines += ["", f"📊 Mise totale: {m.get('mise_totale_units')}u · NO BET: {m.get('nb_no_bet')}",
-                    pack.get("disclaimer", ""), "", "_Opérateur : le placement est ton dernier mot._"]
-          print("\n".join(lines))
+          parts = []
+          radar = "MONDES_FORGES/PARI/SHARED/OUT/RADAR.md"
+          pack  = "MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json"
+          if os.path.exists(radar):
+              parts.append(open(radar, encoding="utf-8").read()[:3800])
+          if os.path.exists(pack):
+              d = json.load(open(pack, encoding="utf-8"))
+              m = d.get("metriques", {})
+          else:
+              m = {}
+          if not parts:
+              print("⚠️ Aucun artefact généré")
+          else:
+              if d and m:
+                  parts.append(f"\n📊 Mise totale: {m.get('mise_totale_units')}u · NO BET: {m.get('nb_no_bet')}")
+              parts.append("_L'opérateur place le pari — dernière porte._")
+              print("\n\n".join(parts))
           EOF
           )
+
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-            -d chat_id="${TELEGRAM_CHAT_ID}" -d parse_mode="Markdown" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
             --data-urlencode text="${MSG}" > /dev/null

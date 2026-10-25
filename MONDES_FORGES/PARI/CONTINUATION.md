@@ -17,8 +17,8 @@
 
 ## PROCHAINES ÉTAPES (à faire plus tard)
 
-1. Connecteurs API live : Clé API-Football (Secret GitHub) → récupération auto du fixtures de la ligue au lieu du fichier manuel (F01 `--live`).
-2. Alerte ilot/valeur en direct : deuxième Action à T-2h qui re-scanne les cotes collées et alerte Telegram si l'EV s'estompe.
+1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
+2. ~~Alerte cotes/valeur en direct~~ 🟡 **MOITIÉ FAITE** : notificateur Telegram branché (`orchestrator.py --mode notify` + `--mode telegram-test`, messages du pari pack). Reste : l'analyse du mouvements de cotes (2e Action à T-2h qui re-scanne les cotes collées si l'EV s'estompe).
 3. Commandes bot avancées : `/radar`, `/pack`, `/roi`, `/match <id>` (webhook Telegram — nécessite un endpointalways-on, route Cloudflare Worker gratuite possible).
 4. Backtest Football-Data.co.uk : charger 5 saisons CSV → calibrer les shares arrière-pensée réelle par ligue + poids Elo.
 5. OCR winner bet : si clé Oracle vision disponible, mode capture d'écran complète dans le bot.

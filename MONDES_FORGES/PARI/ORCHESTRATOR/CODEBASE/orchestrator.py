@@ -252,7 +252,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="ORCHESTRATOR — monde PARI")
     parser.add_argument("--mode", required=True,
-                        choices=["radar", "siege", "pack", "demo", "imprime"])
+                        choices=["radar", "siege", "pack", "demo", "imprime", "notify", "telegram-test"])
     parser.add_argument("--ids", default=None, help="M1,M2 en mode siege (vide = carte complète)")
     parser.add_argument("--fixtures", default=None)
     parser.add_argument("--top", type=int, default=10)
@@ -272,6 +272,13 @@ def main():
         sys.exit(0 if ok else 1)
     elif args.mode == "demo":
         ok = mode_demo()
+        sys.exit(0 if ok else 1)
+    elif args.mode == "notify":
+        ok = run_frigate(P("ORCHESTRATOR", "CODEBASE", "notifier.py"),
+                         "--pack", P("F05_PACKAGER", "OUT", "pari_pack.json"))
+        sys.exit(0 if ok else 1)
+    elif args.mode == "telegram-test":
+        ok = run_frigate(P("ORCHESTRATOR", "CODEBASE", "notifier.py"), "--text", "PING du monde PARI 🛡️ — canal opérationnel.")
         sys.exit(0 if ok else 1)
 
 

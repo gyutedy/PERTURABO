@@ -1,0 +1,36 @@
+{
+  "ligue": "Premier League",
+  "horizon": "test-capteurs",
+  "matchs": [
+    {
+      "id": "T1",
+      "dom": "Arsenal",
+      "ext": "Man City",
+      "cotes": null,
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 28.0,
+          "encaisses": 8.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 18.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 20.0,
+          "encaisses": 15.0,
+          "marques_mt1": 11.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 13.0
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "inject CAPTEURS 2026-10-25T06:48:51Z: 2 auto / 0 manquants",
+    "inject CAPTEURS 2026-10-25T06:49:44Z: 2 auto / 0 manquants"
+  ]
+}
