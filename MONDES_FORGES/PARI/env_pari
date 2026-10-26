@@ -1,0 +1,11 @@
+# Env du monde PARI — valeurs reelles mises par demande explicite de l'operateur (periode de test).
+# ATTENTION : ce fichier est versionne volontairement dans le repo (decision operateur).
+# Apres la periode de test : revoquer le token via @BotFather (/revoke) et vider ce fichier.
+
+TELEGRAM_BOT_TOKEN=8791243287:AAEThmWUhVHHaJ2ZONDWgRoCKJDNYdNh2CY
+TELEGRAM_CHAT_ID=7710898895
+
+# Cles optionnelles (fixtures live / LLM) — laisser vides si pas fournies :
+API_FOOTBALL_KEY=
+FOOTBALL_DATA_ORG_KEY=
+ORACLE_API_KEY=

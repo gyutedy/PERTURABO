@@ -22,16 +22,57 @@ from datetime import datetime, timezone
 API = "https://api.telegram.org"
 
 
+def _load_env_file():
+    """Charge MONDES_FORGES/PARI/.env (ou env_pari) si les vars ne sont pas deja posees.
+    Les variables d'environnement reelles (GitHub Secrets, workspace) priment toujours."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for name in (".env", "env_pari"):
+        path = os.path.normpath(os.path.join(here, "..", "..", name))
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    if k.strip() and v.strip():
+                        os.environ.setdefault(k.strip(), v.strip())
+        except OSError as e:
+            print(f"[TELEGRAM] ⚠️ env illisible ({os.path.basename(path)}): {e}")
+
+
+def default_chat(token: str):
+    """Dernier recours : déduit le chat_id du dernier message reçu par le bot (getUpdates)."""
+    try:
+        with urllib.request.urlopen(f"{API}/bot{token}/getUpdates?limit=5", timeout=30) as r:
+            ups = json.loads(r.read().decode())
+        for u in reversed(ups.get("result", [])):
+            c = (u.get("message") or {}).get("chat", {})
+            if c.get("id"):
+                return str(c["id"])
+    except Exception:
+        pass
+    return None
+
+
 def send(text: str) -> bool:
+    _load_env_file()
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
-    if not token or not chat:
-        print("[TELEGRAM] ❌ Clés absentes. Ajoute-les (jamais dans le code) :")
-        print("   1. @BotFather → /newbot → copie le token")
-        print("   2. Envoie un message à ton bot, puis ouvre "
-              "https://api.telegram.org/bot<TOKEN>/getUpdates → chat.id")
-        print("   3. Settings → Keys (workspace) ET GitHub Secrets → "
-              "TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID")
+    if not token:
+        print("[TELEGRAM] ❌ TELEGRAM_BOT_TOKEN absent (@BotFather → /newbot).")
+        return False
+    if not chat:
+        chat = default_chat(token)
+        if chat:
+            print(f"[TELEGRAM] ℹ️ chat_id déduit de getUpdates")
+    if not chat:
+        print("[TELEGRAM] ❌ chat_id introuvable :")
+        print("   1. Mets TELEGRAM_CHAT_ID dans env_pari (ou .env) à la racine du monde PARI,")
+        print("      ou dans les GitHub Secrets du workflow,")
+        print("   2. ou envoie simplement un message à ton bot puis relance (déduit via getUpdates).")
         return False
     ok = True
     for i in range(0, len(text), 3800):

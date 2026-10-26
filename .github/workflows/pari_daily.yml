@@ -1,13 +1,16 @@
 # PARI DAILY — Cron du monde forge PARI
 # Radar du matin → analyse → pari pack → dashboard → artefacts commités → Telegram
 #
-# Secrets requis (Settings → Secrets and variables → Actions) :
-#   TELEGRAM_BOT_TOKEN  (optionnel : push Telegram)
-#   TELEGRAM_CHAT_ID    (optionnel)
-#   API_FOOTBALL_KEY    (optionnel : fixtures live plus tard)
-#   ORACLE_API_KEY      (optionnel : TYRANT/HERALD LLM)
+# Creds Telegram (au choix, dans l'ordre de priorité) :
+#   1. Secrets GitHub : TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID (optionnel)
+#   2. Fichier versionné MONDES_FORGES/PARI/env_pari (ou .env) — chargé par notifier.py
+#   3. Sinon chat inféré via getUpdates (il faut avoir écrit au bot au moins une fois)
+#   4. Sinon : le pipeline tourne et commit ses artefacts quand même — pas de push Telegram
 #
-# Sans secrets Telegram, le pipeline tourne et commit quand même ses artefacts.
+# Secrets optionnels :
+#   API_FOOTBALL_KEY    (fixtures live plus tard)
+#   FOOTBALL_DATA_ORG_KEY
+#   ORACLE_API_KEY      (TYRANT/HERALD LLM)
 
 name: pari-daily
 on:
@@ -66,31 +69,9 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          if [ -z "${TELEGRAM_BOT_TOKEN}" ] || [ -z "${TELEGRAM_CHAT_ID}" ]; then
-            echo "Secrets Telegram absents — push sauté (réultat commit)"; exit 0
-          fi
-          MSG=$(python - <<'EOF'
-          import json, os
-          parts = []
-          radar = "MONDES_FORGES/PARI/SHARED/OUT/RADAR.md"
-          pack  = "MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json"
-          if os.path.exists(radar):
-              parts.append(open(radar, encoding="utf-8").read()[:3800])
-          if os.path.exists(pack):
-              d = json.load(open(pack, encoding="utf-8"))
-              m = d.get("metriques", {})
-          else:
-              m = {}
-          if not parts:
-              print("⚠️ Aucun artefact généré")
-          else:
-              if d and m:
-                  parts.append(f"\n📊 Mise totale: {m.get('mise_totale_units')}u · NO BET: {m.get('nb_no_bet')}")
-              parts.append("_L'opérateur place le pari — dernière porte._")
-              print("\n\n".join(parts))
-          EOF
-          )
-
-          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-            -d chat_id="${TELEGRAM_CHAT_ID}" \
-            --data-urlencode text="${MSG}" > /dev/null
+          # notifier.py charge lui-même MONDES_FORGES/PARI/.env ou env_pari si les
+          # secrets GitHub sont absents, sinon il déduit le chat via getUpdates.
+          cd MONDES_FORGES/PARI
+          python ORCHESTRATOR/CODEBASE/notifier.py \
+            --radar SHARED/OUT/RADAR.md \
+            --pack F05_PACKAGER/OUT/pari_pack.json

@@ -139,6 +139,7 @@ def cmd_inject(args):
 
 
 def cmd_telegram_test(args):
+    sys.path.insert(0, os.path.join(HERE, "..", "..", "ORCHESTRATOR", "CODEBASE"))
     import notifier
     ok = notifier.send("PING du monde PARI 🛡️ — les capteurs et le canal sont opérationnels.")
     sys.exit(0 if ok else 1)
