@@ -16,7 +16,7 @@
 |---|---|---|
 | Seuil EV minimum | **+3%** | **+8%** |
 | Seuil Kelly | ¼ Kelly | ¼ Kelly |
-| Mise max (par siège) | 5% bankroll | 3% bankroll |
+| Mise max (par siège) | **3% bankroll** (audit corpus 2026-10 : le corpus pro retient 1–2% avant Kelly) | 3% bankroll |
 | Combinés max | 3 jambes, toutes +EV, ⅛ Kelly, max 1u | idem |
 | Loterie (comb. 1M+ jambes) | budget séparé ≤ 2% bankroll | idem |
 
@@ -29,6 +29,19 @@
 ## Zero Data, Zero Calc
 
 Toute donnée manquante est **déclarée** (flag `estimate` + qualité data baissée), jamais comblée en silence. Si l'échantillon est insuffisant (< 6 matchs stats, < 5 matchs cotes) → NO BET obligatoire sur le marché concerné. Une EV calculée sur de la data pourrie est une perte sèche à retardement.
+
+## Moteur vs doctrine — le scope (audit corpus 2026-10-27)
+
+Rappel de freshness_sources Art. 4 : le moteur n'écoute pas les contenus. Audit des 26 transcriptions, précision de scope :
+
+**Moteur (données autorisées)** : stats froides (FBref, football-data.co.uk, ClubElo…), cotes Winner Bet, Elo. Rien d'autre.
+
+**Doctrine / données testables — JAMAIS moteur :**
+- **Exchanges & trading Betfair** (lay, home lay, lay away, scalping over/under) : le monde parie chez un bookmaker, pas sur un exchange. Ces transcriptions = doctrine de discipline (variance, gestion du risque), pas des marchés ouverts au siège.
+- **Arbitrage, latence, courtsiding** : exploits d'exécution et d'infrastructure, hors scope du siège quantitatif.
+- **Bonus, free bets, promos** (extra places, 2-up early payout, boosts, goals galore bonus) : la doctrine advantage play ne s'applique pas chez Winner Bet. Si une offre équivalente existe un jour → addendum de règles AVANT usage, jamais improvisé.
+- **Systèmes de mise alternatifs** (1-3-2-6, martingale, parlays dégradés) : le test 1-3-2-6 de 30 jours (−40 £ contre flat staking +9,30 £) confirme l'hérésie. Seuls EV + Kelly fractionnel gouvernent la mise.
+- **Pronostics YouTube / fiches d'analyse** : données testables (déjà verrouillé par freshness Art. 4).
 
 ## Les tickets (F06 TRACKER)
 

@@ -55,7 +55,7 @@ Incohérence → rejeter le jeu de données et redemander.
   EV = P_modèle × cote − 1.
   Seuil : +3% (Top 5). +8% (liga exotique/D2/Chine — marge + variance accrues).
   Si EV > seuil : mise = ¼ Kelly : f = 0.25 × (P×cote−1)/(cote−1), plafonnée à
-  5% de bankroll. Combinés : chaque jambe doit être +EV seule, EV_combiné =
+  3% de bankroll (audit corpus 2026-10). Combinés : chaque jambe doit être +EV seule, EV_combiné =
   Π(1+EV_jambe) − 1, mise ⅛ Kelly, max 1u, max 3 jambes.
 
 ─── VERDICT (format de sortie) ────────────────────────────────────────

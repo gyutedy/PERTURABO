@@ -6,7 +6,7 @@
   "seuil_ev_top5": 0.03,
   "seuil_ev_exotique": 0.08,
   "kelly_fraction": 0.25,
-  "mise_max_pct_bankroll": 0.05,
+  "mise_max_pct_bankroll": 0.03,
   "mise_max_pct_exotique": 0.03,
   "budget_loterie_pct": 0.02,
   "combiné_max_jambes": 3,
@@ -15,6 +15,8 @@
   "ligues_consideres_top5": ["Premier League", "La Liga", "Serie A", "Bundesliga", "Ligue 1"],
   "ligues_top5_match_pattern": ["premier league", "la liga", "liga santander", "serie a", "bundesliga", "ligue 1"],
   "stop_hebdo_perte_pct": 0.20,
+  "recalibration_post_stop": "après le stop hebdo : unité recalculée = 1% du NOUVEAU solde (corpus ev_11_steps step 10) ",
+  "doctrine_moteur": "Moteur = cotes Winner Bet + stats froides uniquement. Exchanges/trading, arbitrage, latence/courtsiding, bonus-promos, systèmes de mise alternatifs = doctrine inspirante, jamais moteur (audit corpus 2026-10-27).",
   "auj_disclaimer": "Le pari est un divertissement à maîtriser. On analyse des probabilités, on ne promet rien.",
   "note_currency": "Les mises Winner Bet se font en FC (franc congolais). Le monde archive tout en UNITÉS et convertit à la devise de référence (USD) pour le ROI — la conversion se fait au taux du jour, hors du calcul de probabilité."
 }

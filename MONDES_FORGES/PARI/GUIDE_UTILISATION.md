@@ -251,7 +251,7 @@ mode prompt quand tu discutes. N'utilises jamais les deux sans validation Warsmi
 
 ## 8. Hérésies — mémo
 
-❌ Pari auto · ❌ martingale · ❌ mise ≥ 5% · ❌ données inventées ·
+❌ Pari auto · ❌ martingale · ❌ mise ≥ 3% · ❌ données inventées ·
 ❌ pronostics YouTube dans le moteur · ❌ ledger filtré (gagnants seulement).
 
 *Fer au-dedans, Fer au-dehors.*
