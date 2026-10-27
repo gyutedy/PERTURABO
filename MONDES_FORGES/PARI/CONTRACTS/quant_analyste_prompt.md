@@ -4,6 +4,10 @@
 > C'est le contrat du comptement pour l'analyse **hors pipeline** (mode "discussion").
 > La version pipeline = les scripts du monde. Les deux partagent les mêmes math.
 
+> **Input cotes : TXT, JSON direct ou capture screenshot OCR — toujours validé dans un parseur avant tout calcul.**
+> **L'OCR/capture n'est qu'un moyen d'arriver à des cotes valides, jamais une source de probabilité.**
+> **Contexte non-binaire (blessures, fatigue, enjeu)** = notes de porte uniquement, sous réserve de fraîcheur, jamais dans le calcul.
+
 ---
 
 SYSTEM PROMPT / INSTRUCTIONS DE CONTEXTE :

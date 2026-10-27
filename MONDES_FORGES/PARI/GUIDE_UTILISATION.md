@@ -151,8 +151,10 @@ Trois façons — c'est toi qui choisis :
    puis : `python F01_SENTINEL/CODEBASE/sentinel.py --input <carte> --cotes-txt cotes.txt`
 2. **JSON direct** : colle les cotes dans la carte (`m["cotes"] = {"1":…}`) — idéal quand
    tu as tout sous la main.
-3. **Capture d'écran** (plus tard, clé Oracle vision) : via le bot Telegram, tu envoies
-   la photo → OCR → JSON reconstitué à valider → puis cotes acceptées.
+3. **Capture screenshot → OCR → texte** (flux officiel, documenté à part via `TPL_capture_ocr.md`) :
+   tu capturas une page bookmaker qui affiche ligue, compétition, équipes, cotes, heure → OCR produit le texte → parseur reconstitut le JSON → tu valides avant calcul.
+
+> ⚠️ Règle de non-implication : la ligue d'une capture propre ton bookmaker est **affichée par le livreur**, pas devinée. Si la capture ne donne pas les champs minimums (équipes, ligue, cotes), on ne devine pas → on bloque en Porte 1 (Zero Data, Zero Calc).
 
 ⚠️ **Contrat** : peu importe le mode, le parseur affiche le JSON reconstitué
 et tu valides AVANT le calcul d'EV. Une cote mal lue = une EV mensongère.

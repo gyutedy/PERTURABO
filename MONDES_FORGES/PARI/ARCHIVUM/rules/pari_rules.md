@@ -48,3 +48,11 @@ Rappel de freshness_sources Art. 4 : le moteur n'écoute pas les contenus. Audit
 - Le ledger prend **TOUT** : gagnants ET perdants. Le biais de survie est une hérésie.
 - Chaque ticket : jambes, cotes, mise, marché, résultat, date. Après 50 tickets : calibration + pondération learnings.
 - Les pronostics YouTube sont collectés et notés comme données testables — jamais entrés dans le moteur de calcul.
+
+## Input cotes : capture screenshot / OCR
+
+- Le flux capture screenshot → OCR → texte est **autorisé comme input de cotes** (parallèle TXT brut / JSON direct).
+- Il ne doit jamais servir de source de probabilité directe ni de stats.
+- La ligue dans une capture propre ton bookmaker est **donnée affichée par le livreur**, pas devinée.
+- Si la capture ne donne pas les champs minimums (équipes, ligue, cotes), on ne devine pas : on bloque en Porte 1 (Zero Data, Zero Calc).
+- Le résultat OCR reconstitué doit être **validé par l'utilisateur (parseur visible) avant tout calcul**.
