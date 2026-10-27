@@ -1,7 +1,7 @@
 # Transcription brute — ev_11_steps — TO_CONFIRM
 
 - **ID vidéo** : TO_CONFIRM
-- **Chaîne** : (chaîne "data betting" — à confirmer)
+- **Chaîne** : (chaîne data betting — à confirmer)
 - **URL** : https://www.youtube.com/watch?v=TO_CONFIRM
 - **Date de publication (upload YouTube)** : TO_CONFIRM
 - **Date de récupération de la transcription** : 2026-10-27
