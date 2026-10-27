@@ -1,3 +1,70 @@
 # Template — Capture / OCR (input cotes)
 
-> À remplir quand une capture screenshot est utilisée comme source de cotes.\n> Ce template n'est **pas une transcription de vidéo**, c'est un fiche métier de capture/OCR.\n\n## Métadonnées de la capture\n\n- **Date de la capture** : AAAA-MM-JJ\n- **Heure de la capture** : HH:MM (dans la timezone du bookmaker affiché)\n- **Source / bookmaker** : nom du bookmaker ou page vue\n- **Ligue affichée par le bookmaker** : code ou nom (ex : `E0`, `La Liga`, `Ligue 1`)\n- **Compétition affichée** : championnat / coupe / autre\n- **Type de capture** : ton bookmaker / web externe / autre\n- **Statut de la ligue** : connue (affichée) / flou (à confirmer) / aucune (à demander)\n\n## Matchs visibles dans la capture\n\n| Équipe domicile | Équipe extérieur | Marché | Cote lue | Cote corrigée après validation | Heure match (affichée) | Notes |\n|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |\n\n## Cotes attendues / marchés\n\n- 1X2 (win / draw / lose)\n- Over/Under 2.5 (si disponible)\n- Mi-temps (MT1 / égalité / MT2) si disponible\n\n## Résultat OCR reconstitué (avant validation)\n\n> À remplir depuis le texte OCR produit, avant validation humaine.\n\n```\n[\n  {\n    \"match\": \"teamA vs teamB\",\n    \"ligue\": \"E0\",\n    \"cotes\": {\n      \"1X2_win\": null,\n      \"1X2_draw\": null,\n      \"1X2_lose\": null,\n      \"ou25\": null,\n      \"mt1\": null,\n      \"mt2\": null\n    }\n  }\n]\n```\n\n## Validation humaine (obligatoire avant calcul)\n\n- [ ] Le JSON reconstitué a été affiché à l'utilisateur\n- [ ] Les cotes ont été vérifiées champ par champ\n- [ ] La ligue est confirmée (pas devinée sauf si affichée clairement)\n- [ ] Aucun marché inventé n'a été conservé\n- [ ] L'heure de la capture est notée\n- [ ] La source est notée dans le ticket / ledger\n\n## Notes de contexte (non-binaire)\n\n> Blessures, fatigue, enjeu, contexte — uniquement en note de porte, jamais dans le calcul.\n\n- Contexte saisi : \n- Source de l'info : \n- Date de l'info : \n- Fraîcheur : OK / À vérifier / OBSOLÈTE SI\n\n## Destination\n\n- Si validation OK → injection dans carte en tant qu'input cotes\n- Si validation NOK → correction + revalidation, pas de calcul\n
+> À remplir quand une capture screenshot est utilisée comme source de cotes.
+> Ce template n'est **pas une transcription de vidéo**, c'est un fiche métier de capture/OCR.
+
+## Métadonnées de la capture
+
+- **Date de la capture** : AAAA-MM-JJ
+- **Heure de la capture** : HH:MM (dans la timezone du bookmaker affiché)
+- **Source / bookmaker** : nom du bookmaker ou page vue
+- **Ligue affichée par le bookmaker** : code ou nom (ex : `E0`, `La Liga`, `Ligue 1`)
+- **Compétition affichée** : championnat / coupe / autre
+- **Type de capture** : ton bookmaker / web externe / autre
+- **Statut de la ligue** : connue (affichée) / flou (à confirmer) / aucune (à demander)
+
+## Matchs visibles dans la capture
+
+| Équipe domicile | Équipe extérieur | Marché | Cote lue | Cote corrigée après validation | Heure match (affichée) | Notes |
+|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |
+
+## Cotes attendues / marchés
+
+- 1X2 (win / draw / lose)
+- Over/Under 2.5 (si disponible)
+- Mi-temps (MT1 / égalité / MT2) si disponible
+
+## Résultat OCR reconstitué (avant validation)
+
+> À remplir depuis le texte OCR produit, avant validation humaine.
+
+```json
+[
+  {
+    "match": "teamA vs teamB",
+    "ligue": "E0",
+    "cotes": {
+      "1X2_win": null,
+      "1X2_draw": null,
+      "1X2_lose": null,
+      "ou25": null,
+      "mt1": null,
+      "mt2": null
+    }
+  }
+]
+```
+
+## Validation humaine (obligatoire avant calcul)
+
+- [ ] Le JSON reconstitué a été affiché à l'utilisateur
+- [ ] Les cotes ont été vérifiées champ par champ
+- [ ] La ligue est confirmée (pas devinée sauf si affichée clairement)
+- [ ] Aucun marché inventé n'a été conservé
+- [ ] L'heure de la capture est notée
+- [ ] La source est notée dans le ticket / ledger
+
+## Notes de contexte (non-binaire)
+
+> Blessures, fatigue, enjeu, contexte — uniquement en note de porte, jamais dans le calcul.
+
+- Contexte saisi : 
+- Source de l'info : 
+- Date de l'info : 
+- Fraîcheur : OK / À vérifier / OBSOLÈTE SI
+
+## Destination
+
+- Si validation OK → injection dans carte en tant qu'input cotes
+- Si validation NOK → correction + revalidation, pas de calcul\n
