@@ -182,6 +182,30 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
     print("\n[ORCH] ⛔ GATE 3 requise → validation verdicts FORGEWARD")
     custos("gate", "--gate", "3", "--decision", "yes", "--notes", "auto (PARI_AUTO_GATES)")
 
+    # — Phase 2 (v2) : filtre qualitatif borné SI des notes non binaires existent —
+    notes_path = P("ARCHIVUM", "fixtures", "notes_qualitatives.json")
+    if os.path.exists(notes_path):
+        custos("check-out", "--frigate", "TYRANT")
+        qualitative_out = P("TYRANT", "OUT", "qualitative_verdict.json")
+        run_frigate(P("TYRANT", "CODEBASE", "qualitative.py"),
+                    "--predictions", pred_out,
+                    "--notes", notes_path,
+                    "--analysis", analysis_out)
+        custos("check-in", "--frigate", "TYRANT", "--output", qualitative_out)
+
+    # — Phase 3 (v2) : Top 3 marchés + score commun + Preview 1 (données brutes) —
+    pred_source = (P("F03_FORGEWARD", "OUT", "predictions_filtered.json")
+                   if os.path.exists(P("F03_FORGEWARD", "OUT", "predictions_filtered.json"))
+                   else pred_out)
+    run_frigate(P("F03_FORGEWARD", "CODEBASE", "top3.py"),
+                "--predictions", pred_source,
+                "--analysis", analysis_out,
+                "--notes-filter", P("TYRANT", "OUT", "qualitative_verdict.json"))
+    run_frigate(P("F05_PACKAGER", "CODEBASE", "preview1.py"),
+                "--predictions", pred_source,
+                "--carte", fixtures)
+    print("[ORCH] ✅ Top 3 + Preview 1 générés (SHARED/OUT/preview1.html)")
+
     custos("check-out", "--frigate", "F04")
     run_frigate(P("F04_HERALD", "CODEBASE", "herald.py"),
                 "--analysis", analysis_out, "--predictions", pred_out, "--carte", carte_out)
@@ -190,7 +214,7 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
     custos("check-out", "--frigate", "F05")
     pack_out = P("F05_PACKAGER", "OUT", "pari_pack.json")
     run_frigate(P("F05_PACKAGER", "CODEBASE", "packager.py"),
-                "--predictions", pred_out, "--analysis", analysis_out, "--carte", carte_out,
+                "--predictions", pred_source, "--analysis", analysis_out, "--carte", carte_out,
                 "--top", str(top_pack), "--output", pack_out)
     run_frigate(P("F05_PACKAGER", "CODEBASE", "dashboard.py"),
                 "--radar", P("F00_RADAR", "OUT", "radar.json"),

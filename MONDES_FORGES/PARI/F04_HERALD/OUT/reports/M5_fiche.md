@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Orbital vs Rovers
-*Générée le 2026-10-25 06:52 UTC — siege_id courant*
+*Générée le 2026-10-29 08:11 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 32.9%
 

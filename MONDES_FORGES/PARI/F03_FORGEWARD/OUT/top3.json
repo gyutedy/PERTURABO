@@ -1,0 +1,697 @@
+{
+  "generated_at": "2026-10-29T08:11:56Z",
+  "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
+  "source_predictions": "predictions_filtered.json",
+  "matchs": [
+    {
+      "id": "M1",
+      "match": "Cyclops vs Trench",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [
+        "mt2",
+        "mte"
+      ],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.14,
+          "p_modele": 0.7481,
+          "ev": 0.6009
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.79,
+          "p_modele": 0.3495,
+          "ev": 0.3246
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 1
+    },
+    {
+      "id": "M2",
+      "match": "Lions vs Garrison",
+      "verdict_modele": "NO_BET",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": true,
+      "marches_exclus_qualitatifs": [
+        "mt2",
+        "mte"
+      ],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.34,
+          "p_modele": 0.8657,
+          "ev": 1.0257
+        },
+        {
+          "rang": 2,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.74,
+          "p_modele": 0.4056,
+          "ev": 0.5169
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.54,
+          "p_modele": 0.4222,
+          "ev": 0.4946
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 2
+    },
+    {
+      "id": "M3",
+      "match": "Bastion vs Lions",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.99,
+          "p_modele": 0.7379,
+          "ev": 0.4684
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.76,
+          "p_modele": 0.3657,
+          "ev": 0.375
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.84,
+          "p_modele": 0.3233,
+          "ev": 0.2415
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 3
+    },
+    {
+      "id": "M4",
+      "match": "Legion vs Utd Iron",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.93,
+          "p_modele": 0.8569,
+          "ev": 0.6538
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.94,
+          "p_modele": 0.4173,
+          "ev": 0.6442
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 2.93,
+          "p_modele": 0.3981,
+          "ev": 0.1664
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 4
+    },
+    {
+      "id": "M5",
+      "match": "Orbital vs Rovers",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.0,
+          "p_modele": 0.3322,
+          "ev": 0.3288
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.06,
+          "p_modele": 0.6421,
+          "ev": 0.3227
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 5
+    },
+    {
+      "id": "M6",
+      "match": "Utd Iron vs Rovers",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.82,
+          "p_modele": 0.6903,
+          "ev": 0.2563
+        },
+        {
+          "rang": 2,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.76,
+          "p_modele": 0.3065,
+          "ev": 0.1524
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.38,
+          "p_modele": 0.3217,
+          "ev": 0.0873
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 6
+    },
+    {
+      "id": "M7",
+      "match": "Utd Iron vs Athletic",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.06,
+          "p_modele": 0.7752,
+          "ev": 0.5969
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.77,
+          "p_modele": 0.3613,
+          "ev": 0.3621
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.46,
+          "p_modele": 0.3392,
+          "ev": 0.1736
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 7
+    },
+    {
+      "id": "M8",
+      "match": "Utd Iron vs Sapper",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 6.28,
+          "p_modele": 0.2561,
+          "ev": 0.6083
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.23,
+          "p_modele": 0.7118,
+          "ev": 0.5873
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.38,
+          "p_modele": 0.352,
+          "ev": 0.1898
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 8
+    },
+    {
+      "id": "M9",
+      "match": "Orbital vs Rampart",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.1,
+          "p_modele": 0.8448,
+          "ev": 0.7741
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.32,
+          "p_modele": 0.4203,
+          "ev": 0.3954
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.56,
+          "p_modele": 0.3849,
+          "ev": 0.3702
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 9
+    },
+    {
+      "id": "M10",
+      "match": "Orbital vs Athletic",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.55,
+          "p_modele": 0.4505,
+          "ev": 0.5993
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.67,
+          "p_modele": 0.8842,
+          "ev": 0.4766
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.22,
+          "p_modele": 0.4224,
+          "ev": 0.3601
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 10
+    },
+    {
+      "id": "M11",
+      "match": "Vigil vs Legion",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.02,
+          "p_modele": 0.7388,
+          "ev": 0.4924
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.88,
+          "p_modele": 0.367,
+          "ev": 0.424
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.7,
+          "p_modele": 0.3236,
+          "ev": 0.1973
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 11
+    },
+    {
+      "id": "M12",
+      "match": "Ironside vs Perturabo SC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.01,
+          "p_modele": 0.787,
+          "ev": 0.5819
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.57,
+          "p_modele": 0.3842,
+          "ev": 0.3716
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.42,
+          "p_modele": 0.3509,
+          "ev": 0.2001
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 12
+    },
+    {
+      "id": "M13",
+      "match": "Perturabo SC vs Rovers",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.95,
+          "p_modele": 0.7535,
+          "ev": 0.4693
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.64,
+          "p_modele": 0.3549,
+          "ev": 0.2918
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.77,
+          "p_modele": 0.334,
+          "ev": 0.2592
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 13
+    },
+    {
+      "id": "M15",
+      "match": "Forge FC vs Vigil",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.96,
+          "p_modele": 0.429,
+          "ev": 0.6988
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.88,
+          "p_modele": 0.8571,
+          "ev": 0.6113
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.72,
+          "p_modele": 0.3964,
+          "ev": 0.4746
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 14
+    },
+    {
+      "id": "M16",
+      "match": "City Steel vs Rampart",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.24,
+          "p_modele": 0.7278,
+          "ev": 0.6303
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.93,
+          "p_modele": 0.3198,
+          "ev": 0.2568
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.86,
+          "p_modele": 0.3239,
+          "ev": 0.2503
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 15
+    },
+    {
+      "id": "M17",
+      "match": "Custodia vs Ironside",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.98,
+          "p_modele": 0.7826,
+          "ev": 0.5495
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.44,
+          "p_modele": 0.3827,
+          "ev": 0.3165
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.25,
+          "p_modele": 0.351,
+          "ev": 0.1407
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 16
+    },
+    {
+      "id": "M18",
+      "match": "Orbital vs Utd Iron",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.54,
+          "p_modele": 0.4109,
+          "ev": 0.4546
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.67,
+          "p_modele": 0.8282,
+          "ev": 0.3831
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.47,
+          "p_modele": 0.3761,
+          "ev": 0.3051
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 17
+    },
+    {
+      "id": "M14",
+      "match": "Bastion vs Forge FC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 9.2,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.51,
+          "p_modele": 0.5175,
+          "ev": 0.2989
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 18
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+# CONTRACTS — schema_top3.json (v2)
+
+Le **Top 3 des marchés** forgé par le monde forger (Phase 3) + le **score commun** 01-10.
+Producteur : `F03_FORGEWARD/CODEBASE/top3.py` (lecture predictions[filtered], analysis,
+qualitative_verdict). Consommateurs : Preview 1, Preview 2 (ticket final), Telegram
+(message `/data`), F06 tracker (calibration).
+
+## Règles de classement (verrouillées)
+
+1. **Top 3 par match** : tri par EV desc, à égalité par `p_modele` desc.
+   Seuls les VERDICT `VALUE` sont éligibles si au moins un existe ; sinon tous les
+   marchés chiffrés (affichage informatif, jamais un push).
+2. **Score commun 01-10** (le "scoring à la clipping") :
+   `10 × (0.30 × qualité_data + 0.40 × proba_max_top + 0.30 × edge_EV)`
+   — qualité data : haute=1.0 · moyenne=0.75 · basse=0.45 ;
+   — proba_max_top normalisée sur 65% ; edge EV borné [0,1] (0.5 + 5×EV_max).
+   Comparable entre matchs, entre ligues et entre campagnes (calibration F06).
+3. **Buckets** : score ≥ 7 → `HAUTE` · ≥ 5 → `MOYENNE` · < 5 → `FAIBLE`.
+4. Le filtre qualitatif TYRANT (notes non binaires)** précède le Top 3 :
+   marchés exclus → jamais dans un Top 3 exploitable ; NO BET recommandé → badge.
+
+## Schéma
+
+```json
+{
+  "generated_at": "ISO8601",
+  "methode": "Top 3 = tri EV puis p_modele ...",
+  "source_predictions": "predictions_filtered.json",
+  "matchs": [
+    {
+      "id": "M1",
+      "match": "Arsenal vs Chelsea",
+      "verdict_modele": "GO|NO_BET",
+      "bucket": "HAUTE|MOYENNE|FAIBLE",
+      "score_commun": 7.8,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": ["mt2"],
+      "quality_data": "haute|moyenne|basse",
+      "rang_global": 1,
+      "top3": [
+        {"rang": 1, "marche": "OU_2.5", "selection": "u2.5",
+         "selection_label": "Under 2.5", "cote": 2.14,
+         "p_modele": 0.7481, "ev": 0.60}
+      ]
+    }
+  ]
+}
+```
+
+## Articles dérivés
+
+- `SHARED/OUT/TOP3.md` — rendu texte (source du message Telegram `/data`),
+  les rangs Top 3 y sont visibles HORS ticket final (décision : dans le ticket
+  final ils sont dans un message à part).
+- `SHARED/OUT/preview1.html` — rendu graphique DATA BRUTES (charte PERTURABO).

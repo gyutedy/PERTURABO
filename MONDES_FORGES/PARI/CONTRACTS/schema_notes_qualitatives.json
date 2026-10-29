@@ -1,0 +1,57 @@
+# CONTRACTS — schema_notes_qualitatives.json (v2)
+
+Infos **non binaires** fournies par l'opérateur (blessures, suspensions, fatigue,
+enjeux, météo, motivation…) ou par l'Oracle (HERALD, clé optionnelle). Producteur :
+opérateur / Oracle. Consommateur : `TYRANT/CODEBASE/qualitative.py`.
+
+## Règle sacrée (v2, décision verrouillée)
+
+L'info non binaire N'ENTRE JAMAIS dans les maths (F02 Poisson / F03 de-marging).
+Son effet est **borné** à trois choses :
+1. **exclure** des marchés éligibles (ex. fatigue élevé → MT2/MTÉ sortent) ;
+2. **monter** le seuil d'EV exigé (ex. +3 pts de marge) ;
+3. **recommander** le NO BET (≥ 2 impacts élèvés, ou 1 élèvé + data basse).
+Elle ne crée jamais de probabilité, n'ajoute jamais de +EV.
+
+## Schéma
+
+```json
+{
+  "generated_at": "ISO8601",
+  "source": "operateurbil | oracle",
+  "notes": [
+    {
+      "match_id": "M1",           // doit correspondre à un id de la carte
+      "themes": {
+        "blessures":   {"impact": "eleve|moyen|faible", "detail": "texte libre"},
+        "suspensions": {"impact": "eleve|moyen|faible", "detail": "..."},
+        "fatigue":     {"impact": "eleve|moyen|faible", "detail": "3e match en 7 jours"},
+        "enjeux":      {"impact": ..., "detail": "finale de coupe"},
+        "meteo":       {"impact": ..., "detail": "pluie forte annoncée"},
+        "motivation":  {"impact": ..., "detail": "..."}
+      }
+    }
+  ]
+}
+```
+
+## Table bornée (implémentée dans TYRANT/qualitative.py)
+
+| Thème | impact élèvé | impact moyen | impact faible |
+|---|---|---|---|
+| fatigue | exclut `mt2`, `mte` · seuil +4 pts | seuil +2 pts | — |
+| blessures | seuil +3 pts | seuil +1 pt | — |
+| suspensions | seuil +3 pts | seuil +1 pt | — |
+| enjeux | seuil +3 pts | seuil +1 pt | — |
+| meteo | exclut `o2.5`, `o3.5` · seuil +2 pts | seuil +1 pt | — |
+| motivation | seuil +2 pts | seuil +1 pt | — |
+| autre thème | seuil +2 pts | seuil +1 pt | — |
+| impact inconnu/illisible | seuil +3 pts (défavorable) | — | — |
+
+**NO BET recommandé** : ≥ 2 thèmes élèvés · OU 1 élèvé + data_quality `basse` ·
+OU bonus seuil ≥ 6 pts et data non « haute ».
+
+## Emplacement de la file d'attente par campagne
+
+`ARCHIVUM/fixtures/notes_qualitatives.json` (une campagne à la fois).
+Absent → le monde tourne 100 % binaire, aucun effet.

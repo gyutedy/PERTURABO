@@ -1,0 +1,189 @@
+{
+  "generated_at": "2026-10-29T08:11:56Z",
+  "methode": "filtre qualitatif BORNÉ (exclusion de marches / hausse du seuil d'EV / NO BET recommandé). Jamais de probabilité ajoutée.",
+  "source_notes": "opérateur (notes non binaires)",
+  "verdicts": [
+    {
+      "match_id": "M1",
+      "themes": {
+        "fatigue": {
+          "impact": "eleve",
+          "detail": "3e match en 7 jours, rotation probable du 11 de départ"
+        }
+      },
+      "n_impacts_eleves": 1,
+      "bonus_seuil_ev": 0.04,
+      "marches_exclus": [
+        "mt2",
+        "mte"
+      ],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M2",
+      "themes": {
+        "fatigue": {
+          "impact": "eleve",
+          "detail": "tournée continentale"
+        },
+        "blessures": {
+          "impact": "eleve",
+          "detail": "milieu défensif titulaire absent"
+        }
+      },
+      "n_impacts_eleves": 2,
+      "bonus_seuil_ev": 0.07,
+      "marches_exclus": [
+        "mt2",
+        "mte"
+      ],
+      "quality_data": "haute",
+      "no_bet_recommande": true
+    },
+    {
+      "match_id": "M3",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M4",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M5",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M6",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M7",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M8",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M9",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M10",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M11",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M12",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M13",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M14",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M15",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M16",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M17",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    },
+    {
+      "match_id": "M18",
+      "themes": {},
+      "n_impacts_eleves": 0,
+      "bonus_seuil_ev": 0.0,
+      "marches_exclus": [],
+      "quality_data": "haute",
+      "no_bet_recommande": false
+    }
+  ]
+}

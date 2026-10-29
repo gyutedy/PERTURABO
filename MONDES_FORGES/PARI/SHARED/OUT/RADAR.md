@@ -1,5 +1,5 @@
 # RADAR DE SIÈGE — Ligue de Simulation
-*Généré le 2026-10-25T06:52:15Z — moteur: Dixon-Coles PARI*
+*Généré le 2026-10-29T08:11:55Z — moteur: Dixon-Coles PARI*
 
 | Rang | Match | λ total | P(O2.5) | P(MT2>) | Score |
 |---|---|---|---|---|---|
