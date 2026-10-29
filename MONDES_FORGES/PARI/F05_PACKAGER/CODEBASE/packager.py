@@ -117,10 +117,10 @@ def main():
     print(f"[PACKAGER] 🏆 {pack['titre']}")
     for x in pack["top_picks"]:
         print(f"  #{x['rang']:>2} {x['match']:<26} {x['selection_label']:<22} "
-              f"cote {x['cote']:<5} EV {x['ev']:+.1%} mise {x['mise_units']}u")
+              f"cote {x['cote']:<5} EV {x['ev']:+.1%} mise {x['mise_units'] or 0}u")
     m = pack["metriques"]
     print(f"[PACKAGER] Mise totale: {m['mise_totale_units']}u — EV moyenne: "
-          f"{m['ev_moyenne_pct']:+.1%} — NO BET: {m['nb_no_bet']}/{m['nb_matchs_analyses']}")
+          f"{(m['ev_moyenne_pct'] or 0):+.1%} — NO BET: {m['nb_no_bet']}/{m['nb_matchs_analyses']}")
     for c in pack["combines"]:
         print(f"  🧩 COMBINÉ {len(c['jambes'])} jambes — cote {c['cote_totale']} — EV {c['ev_combine']:+.1%} — {c['mise_units']}u")
     print(f"[PACKAGER] Disclaimer embarqué. Sortie: {args.output}")

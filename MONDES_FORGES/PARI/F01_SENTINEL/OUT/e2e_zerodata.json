@@ -1,0 +1,38 @@
+{
+  "captures": [
+    {
+      "id": "BLOC_001",
+      "competition": null,
+      "date": null,
+      "heure": null,
+      "matchs": [
+        {
+          "id": "M1",
+          "dom": "Arsenal",
+          "ext": "Chelsea",
+          "cotes": {
+            "1": 1.85,
+            "X": 3.6,
+            "2": 4.2
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X"
+          ],
+          "warnings": [
+            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
+          ]
+        }
+      ],
+      "warnings": [
+        "compétition/ligue absente — marque manuelle avant siège (Zero Data, Zero Calc)"
+      ]
+    }
+  ],
+  "warnings": [
+    "BLOC_001: compétition/ligue absente — marque manuelle avant siège (Zero Data, Zero Calc)"
+  ],
+  "statut": "A_VALIDER",
+  "n_matchs": 1
+}

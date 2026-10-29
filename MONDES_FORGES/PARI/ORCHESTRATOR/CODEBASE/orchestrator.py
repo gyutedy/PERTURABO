@@ -252,10 +252,17 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="ORCHESTRATOR — monde PARI")
     parser.add_argument("--mode", required=True,
-                        choices=["radar", "siege", "pack", "demo", "imprime", "notify", "telegram-test"])
+                        choices=["radar", "siege", "pack", "demo", "imprime", "notify",
+                                 "telegram-test", "input-capture"])
     parser.add_argument("--ids", default=None, help="M1,M2 en mode siege (vide = carte complète)")
     parser.add_argument("--fixtures", default=None)
     parser.add_argument("--top", type=int, default=10)
+    parser.add_argument("--capture", default=None,
+                        help="fichier texte OCR (mode input-capture)")
+    parser.add_argument("--valider", action="store_true",
+                        help="valide le JSON reconstitué de la capture (Porte 1)")
+    parser.add_argument("--out-carte", default=P("ARCHIVUM", "fixtures", "matches.json"),
+                        help="destination de la carte flaggée (mode input-capture)")
     args = parser.parse_args()
 
     if args.mode == "imprime":
@@ -280,6 +287,15 @@ def main():
     elif args.mode == "telegram-test":
         ok = run_frigate(P("ORCHESTRATOR", "CODEBASE", "notifier.py"), "--text", "PING du monde PARI 🛡️ — canal opérationnel.")
         sys.exit(0 if ok else 1)
+    elif args.mode == "input-capture":
+        cmd = [sys.executable, P("F01_SENTINEL", "CODEBASE", "input_capture.py"),
+               "--out-json", P("F01_SENTINEL", "OUT", "capture_parsed.json")]
+        if args.capture:
+            cmd += ["--capture", args.capture]
+        if args.valider:
+            cmd += ["--valider", "--out-carte", args.out_carte]
+        r = subprocess.run(cmd)
+        sys.exit(0 if r.returncode == 0 else 1)
 
 
 if __name__ == "__main__":

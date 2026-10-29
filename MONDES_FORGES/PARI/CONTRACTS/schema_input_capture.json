@@ -1,0 +1,57 @@
+# CONTRACTS — schema_input_capture.json (v2)
+
+Flux **capture bookmaker → OCR → JSON reconstitué**. Nouveau contrat transversal de la
+campagne (v2). Producteur : module `F01_SENTINEL/CODEBASE/input_capture.py`.
+Consommateurs : Warsmith (validation Porte 1), carte fixtures → TYRANT/F02/F03/F05.
+
+## Le cycle de l'opérateur
+
+1. Capture l'écran du bookmaker (ligue/coupe, date, heure, matchs, marchés + cotes).
+2. OCR (hors monde, texte brut) → fichier txt.
+3. `input_capture.py --capture <txt>` → `capture_parsed.json` (statut `A_VALIDER`).
+4. **Opérateur relis le JSON reconstitué** — rien ne part en calcul avant ça (Porte 1).
+5. `input_capture.py --capture <txt> --valider --out-carte ARCHIVUM/fixtures/matches.json`
+   → carte fixtures + `--mode siege` ensuite.
+
+## Schéma
+
+```json
+{
+  "generated_at": "ISO8601",
+  "statut": "A_VALIDER" | "VALIDE",
+  "n_matchs": int,
+  "captures": [
+    {
+      "id": "BLOC_001",
+      "competition": "Premier League | Coupe du Congo | null (⚠️ si null → manuel)",
+      "date": "AAAA-MM-JJ",
+      "heure": "HH:MM",
+      "matchs": [
+        {
+          "id": "M1",
+          "dom": "Equipe A",
+          "ext": "Equipe B",
+          "cotes": {"1": 1.85, "X": 3.60, "2": 4.20, "o2.5": 1.70,
+                     "u2.5": 2.05, "mt1": 2.10, "mte": 3.10, "mt2": 2.20,
+                     "btts": 1.95, "btts_no": 1.85 /*...*/},
+          "marches_disponibles": ["1", "X", "2", "o2.5", "..."],
+          "warnings": ["..."]
+        }
+      ],
+      "warnings": ["compétition/ligue absente ..."]
+    }
+  ],
+  "warnings": ["AUCUN match reconnu ...", "..."]
+}
+```
+
+## Règles
+
+1. **Zero Data, Zero Calc** : compétition, match, ou cote absents → signalés `warnings`,
+   jamais devinés. Le match sans compétition ne part pas en siège avant complétion manuelle.
+2. **Marchés** : la capture donne les cotes disponibles pour chaque match ; le monde
+   n'analyse que des marchés affichés par le book (côte la plus injuste + proba la plus haute).
+3. **Pas de conversion de devise** dans ce module — le budget se pose après (Phase backroll).
+4. Le JSON reconstitué portant des warnings ne bloque PAS la validation — le Warsmith
+   contrôle la bonne affectation des colonnes (1X2 par position, par exemple).
+5. Statut `VALIDE` requis pour `--out-carte` (sinon refus, pas de sortie carte).

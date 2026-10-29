@@ -1,0 +1,93 @@
+{
+  "captures": [
+    {
+      "id": "BLOC_001",
+      "competition": "Premier League - England 2026-10-29 18:00",
+      "date": "2026-10-29",
+      "heure": "18:00",
+      "matchs": [
+        {
+          "id": "M1",
+          "dom": "Arsenal",
+          "ext": "Chelsea",
+          "cotes": {
+            "o2.5": 1.7,
+            "u2.5": 2.05,
+            "mt1": 2.1,
+            "mt2": 2.2,
+            "1": 1.85,
+            "X": 3.6,
+            "2": 4.2
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "o2.5",
+            "u2.5"
+          ],
+          "warnings": [
+            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
+          ]
+        },
+        {
+          "id": "M2",
+          "dom": "Liverpool",
+          "ext": "Everton",
+          "cotes": {
+            "1": 1.55,
+            "X": 4.1,
+            "2": 6.0,
+            "btts": 1.95,
+            "btts_no": 1.85
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "btts",
+            "btts_no"
+          ],
+          "warnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_002",
+      "competition": "Ligue 1 - France 19:45",
+      "date": "2026-10-29",
+      "heure": "19:45",
+      "matchs": [
+        {
+          "id": "M3",
+          "dom": "Monaco",
+          "ext": "Bottled",
+          "cotes": {
+            "o1.5": 1.25,
+            "u1.5": 3.9,
+            "1": 1.62,
+            "X": 3.8,
+            "2": 5.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "o1.5",
+            "u1.5"
+          ],
+          "warnings": [
+            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
+          ]
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "statut": "VALIDE",
+  "n_matchs": 3
+}

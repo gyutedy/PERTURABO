@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T06:52:15Z",
+  "generated_at": "2026-10-29T08:05:53Z",
   "source": "siege_file",
   "ligue": "Ligue de Simulation",
   "ligue_tier": "exotique",
@@ -8,7 +8,7 @@
       "id": "M1",
       "dom": "Cyclops",
       "ext": "Trench",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1560,
         "ext": 1410
@@ -49,7 +49,7 @@
       "id": "M2",
       "dom": "Lions",
       "ext": "Garrison",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1590,
         "ext": 1350
@@ -90,7 +90,7 @@
       "id": "M3",
       "dom": "Bastion",
       "ext": "Lions",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1500,
         "ext": 1590
@@ -131,7 +131,7 @@
       "id": "M4",
       "dom": "Legion",
       "ext": "Utd Iron",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1585,
         "ext": 1620
@@ -172,7 +172,7 @@
       "id": "M5",
       "dom": "Orbital",
       "ext": "Rovers",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1440,
         "ext": 1480
@@ -213,7 +213,7 @@
       "id": "M6",
       "dom": "Utd Iron",
       "ext": "Rovers",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1620,
         "ext": 1480
@@ -254,7 +254,7 @@
       "id": "M7",
       "dom": "Utd Iron",
       "ext": "Athletic",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1620,
         "ext": 1520
@@ -295,7 +295,7 @@
       "id": "M8",
       "dom": "Utd Iron",
       "ext": "Sapper",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1620,
         "ext": 1330
@@ -336,7 +336,7 @@
       "id": "M9",
       "dom": "Orbital",
       "ext": "Rampart",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1440,
         "ext": 1380
@@ -377,7 +377,7 @@
       "id": "M10",
       "dom": "Orbital",
       "ext": "Athletic",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1440,
         "ext": 1520
@@ -418,7 +418,7 @@
       "id": "M11",
       "dom": "Vigil",
       "ext": "Legion",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1495,
         "ext": 1585
@@ -459,7 +459,7 @@
       "id": "M12",
       "dom": "Ironside",
       "ext": "Perturabo SC",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1545,
         "ext": 1700
@@ -500,7 +500,7 @@
       "id": "M13",
       "dom": "Perturabo SC",
       "ext": "Rovers",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1700,
         "ext": 1480
@@ -541,7 +541,7 @@
       "id": "M14",
       "dom": "Bastion",
       "ext": "Forge FC",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1500,
         "ext": 1560
@@ -582,7 +582,7 @@
       "id": "M15",
       "dom": "Forge FC",
       "ext": "Vigil",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1560,
         "ext": 1495
@@ -623,7 +623,7 @@
       "id": "M16",
       "dom": "City Steel",
       "ext": "Rampart",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1610,
         "ext": 1380
@@ -664,7 +664,7 @@
       "id": "M17",
       "dom": "Custodia",
       "ext": "Ironside",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1470,
         "ext": 1545
@@ -705,7 +705,7 @@
       "id": "M18",
       "dom": "Orbital",
       "ext": "Utd Iron",
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "elo": {
         "dom": 1440,
         "ext": 1620

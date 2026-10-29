@@ -194,7 +194,20 @@ def analyse_match(m, avg):
 
 
 def analyse_fixtures(matchs):
-    avg = league_averages(matchs)
+    try:
+        avg = league_averages(matchs)
+    except ValueError:
+        # Zero Data, Zero Calc : aucune stat d'équipe → analyses vides, pas de crash.
+        # Le flux capture seul (cotes sans stats historiques) doit être complété
+        # par la bibliothèque de stats (capteurs build-stats + inject) avant siège.
+        return {
+            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "ligue": matchs[0].get("ligue", "?") if matchs else "?",
+            "ligue_moyennes": None,
+            "analyses": [],
+            "message": ("Zero Data, Zero Calc — aucune stat d'équipe dans la carte. "
+                        "Ajoute les stats via capteurs.py build-stats + inject, ou une carte manuelle."),
+        }
     return {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "ligue": matchs[0].get("ligue", "?") if matchs else "?",
