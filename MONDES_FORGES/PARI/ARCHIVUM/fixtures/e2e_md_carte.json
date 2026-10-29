@@ -1,0 +1,300 @@
+{
+  "source": "input_capture",
+  "generated_at": "2026-10-29T12:10:30Z",
+  "ligue": "Capture — ligue à confirmer",
+  "horizon": "capture capture",
+  "matchs": [
+    {
+      "id": "M1",
+      "dom": "AL Shoulla FC",
+      "ext": "AL Washm FC",
+      "ligue": "Arabie saoudite - Second Division",
+      "date": null,
+      "heure": "13:10",
+      "cotes": {
+        "1": 2.02,
+        "X": 3.15,
+        "2": 3.35
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X"
+      ]
+    },
+    {
+      "id": "M2",
+      "dom": "Phnom Penh Crown FC",
+      "ext": "Kitchee",
+      "ligue": "Clubs internationaux - AFC Champions League Two",
+      "date": null,
+      "heure": "13:15",
+      "cotes": {
+        "1": 1.79,
+        "X": 3.65,
+        "2": 3.6,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "u1.5": 1.51,
+        "o1.5": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "o1.5",
+        "u1.5"
+      ]
+    },
+    {
+      "id": "M3",
+      "dom": "Shanghai Shenhua FC",
+      "ext": "Machida Zelvia",
+      "ligue": "Clubs internationaux - AFC Champions League Two",
+      "date": null,
+      "heure": "13:15",
+      "cotes": {
+        "1": 4.8,
+        "X": 3.75,
+        "2": 1.58,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "u1.5": 1.39,
+        "o1.5": 2.37
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "o1.5",
+        "u1.5"
+      ]
+    },
+    {
+      "id": "M4",
+      "dom": "Tai Po FC",
+      "ext": "BG Pathum United",
+      "ligue": "Clubs internationaux - AFC Champions League Two",
+      "date": null,
+      "heure": "13:15",
+      "cotes": {
+        "1": 6.0,
+        "X": 4.4,
+        "2": 1.41,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "u1.5": 1.46,
+        "o1.5": 2.2
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "o1.5",
+        "u1.5"
+      ]
+    },
+    {
+      "id": "M5",
+      "dom": "Aarhus Fremad",
+      "ext": "FC Copenhagen",
+      "ligue": "Danemark - DBU Pokalen",
+      "date": null,
+      "heure": "13:30",
+      "cotes": {
+        "1": 8.4,
+        "X": 5.4,
+        "2": 1.23,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "u1.5": 1.62,
+        "o1.5": 1.91
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "o1.5",
+        "u1.5"
+      ]
+    },
+    {
+      "id": "M6",
+      "dom": "CD Numancia",
+      "ext": "Real Oviedo",
+      "ligue": "Espagne - Copa del Rey",
+      "date": null,
+      "heure": "18:00",
+      "cotes": {
+        "1": 3.75,
+        "X": 3.3,
+        "2": 1.83,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "u1.5": 1.29,
+        "o1.5": 2.77
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "o1.5",
+        "u1.5"
+      ]
+    },
+    {
+      "id": "M7",
+      "dom": "Shabana FC",
+      "ext": "Migori Youth FC",
+      "ligue": "Kenya - Premier League",
+      "date": null,
+      "heure": "12:00",
+      "cotes": {
+        "1": 2.15,
+        "X": 2.8,
+        "2": 3.5,
+        "u2.5": 1.39,
+        "o2.5": 2.72,
+        "1X": 1.31,
+        "X2": 1.49,
+        "12": 1.43
+      },
+      "marches_disponibles": [
+        "1",
+        "12",
+        "1X",
+        "2",
+        "X",
+        "X2",
+        "o2.5",
+        "u2.5"
+      ]
+    },
+    {
+      "id": "M8",
+      "dom": "FC Zorya Luhansk",
+      "ext": "FC Kryvbas Kryviy Rih",
+      "ligue": "Ukraine - Ukraine Cup",
+      "date": null,
+      "heure": "12:00",
+      "cotes": {
+        "1": 1.41,
+        "X": 4.3,
+        "2": 6.0,
+        "u2.5": 2.05,
+        "o2.5": 1.66,
+        "1X": 1.09,
+        "X2": 2.5,
+        "12": 1.2
+      },
+      "marches_disponibles": [
+        "1",
+        "12",
+        "1X",
+        "2",
+        "X",
+        "X2",
+        "o2.5",
+        "u2.5"
+      ]
+    },
+    {
+      "id": "M9",
+      "dom": "Shakhtar Donetsk U21",
+      "ext": "Obolon-D Kyiv",
+      "ligue": "Ukraine - U21 Premier Liga 2",
+      "date": null,
+      "heure": "12:00",
+      "cotes": {
+        "1": 1.08,
+        "X": 8.7,
+        "2": 14.0,
+        "u2.5": 3.7,
+        "o2.5": 1.22
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "o2.5",
+        "u2.5"
+      ]
+    },
+    {
+      "id": "M10",
+      "dom": "Olympia Yerevan",
+      "ext": "FC Ararat-Armenia",
+      "ligue": "Arménie - Armenian Cup",
+      "date": null,
+      "heure": "12:30",
+      "cotes": {
+        "1": 6.2,
+        "X": 4.8,
+        "2": 1.36,
+        "u2.5": 3.0,
+        "o2.5": 1.32,
+        "1X": 2.6,
+        "X2": 1.13,
+        "12": 1.19
+      },
+      "marches_disponibles": [
+        "1",
+        "12",
+        "1X",
+        "2",
+        "X",
+        "X2",
+        "o2.5",
+        "u2.5"
+      ]
+    },
+    {
+      "id": "M11",
+      "dom": "Avia Swidnik",
+      "ext": "RKS Radomiak Radom",
+      "ligue": "Pologne - Puchar Polski",
+      "date": null,
+      "heure": "12:30",
+      "cotes": {
+        "1": 4.1,
+        "X": 3.55,
+        "2": 1.69,
+        "u2.5": 2.12,
+        "o2.5": 1.61,
+        "1X": 1.94,
+        "X2": 1.18,
+        "12": 1.27
+      },
+      "marches_disponibles": [
+        "1",
+        "12",
+        "1X",
+        "2",
+        "X",
+        "X2",
+        "o2.5",
+        "u2.5"
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@ Le flux de campagne officiel. Tout est opérable **depuis Telegram** (PC et tel)
 avec une commande à chaque étape et les deux previews servies sur GitHub Pages.
 
 ```
-/start → /capture (OCR du book) → /budget 6000 → /combos 3:3:2:2
+/start → /capture (txt, md, png/jpg, pdf, docx) → /budget 6000 → /combos 3:3:2:2
      → /valider-1 → PREVIEW 1 (données brutes) → relecture
      → /valider-2 → PREVIEW 2 (ticket final) → /data → tickets posés → F06
 ```
@@ -20,7 +20,7 @@ avec une commande à chaque étape et les deux previews servies sur GitHub Pages
 | Commande | Ce que ça fait |
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre) |
-| `/capture <fichier>` | Texte OCR de la capture du book → JSON reconstitué (A_VALIDE) — **relis-le, c'est la Porte 1** |
+| `/capture <fichier>` | Capture du book (txt, markdown, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER) — **relis-le, c'est la Porte 1** |
 | `/budget 6000 / 3000` | Budget du jour (FC) + mise du ticket sûr (optionnel) |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
 | `/valider-1` | Valide le JSON → carte → injection stats (si ligue couverte) → siège → **Top 3 + PREVIEW 1** |
@@ -36,9 +36,11 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
 
 ### Ce que le monde fait exactement à chaque étape
 
-1. **/capture** : parseur capte ligue/coupe, date, heure, matchs, tous les marchés
-   affichés (1X2, O/U toutes lignes, MT1/MTÉ/MT2, BTTS). Champs manquants → warning,
-   jamais deviné (Zero Data, Zero Calc). JSON reconstitué = à relire avant tout calcul.
+1. **/capture** : extracteur multi-format (txt/md direct, PDF/DOCX texte, image OCR si
+   tesseract est installe) puis parseur (tableau markdown Winner Bet ou lignes OCR).
+   Capte ligue/coupe, date, heure, matchs, tous les marches affiches (1X2, O/U toutes
+   lignes, MT1/MTE/MT2, BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning,
+   jamais devine (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
 2. **/valider-1** : carte validée → tentative d'injection des **stats historiques**
    (football-data.co.uk + ClubElo, sans clé) ; si la ligue n'est pas couverte → avertissement
    explicite, le siège sortira NO BET tant que les mj/marques/encaisses manquent.

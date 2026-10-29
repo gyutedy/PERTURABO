@@ -11,7 +11,8 @@ Cartographie des journaux du monde.
 | `F05_TICKETS/F05_TICKETS_LOG.md` | Compositions de tickets + backroll par campagne (v2) | F05 combinator |
 | `SHARED/STATE/campagne.json` | État du cycle de campagne Telegram (/start → /valider-2) | workflow.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |
-| `F01_SENTINEL/F01_LOG.md` | Collectes + nettoyages de données | F01 |
+| `F01_SENTINEL/F01_LOG.md` | Collectes + nettoyages de donnees | F01 |
+| `F01_SENTINEL/OUT/capture_parsed.json` | JSON reconstitue de la capture (txt/md/png/pdf/docx) | F01 input_capture |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |
 | `F03_FORGEWARD/F03_LOG.md` | EV, values, misa Kelly | F03 |
 | `F04_HERALD/F04_LOG.md` | Fiches rédigées (+ usage Oracle) | F04 |

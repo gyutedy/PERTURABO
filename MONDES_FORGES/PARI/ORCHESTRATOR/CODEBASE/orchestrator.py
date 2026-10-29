@@ -284,7 +284,7 @@ def main():
     parser.add_argument("--cmd", default=None,
                         help="commandes workflow Telegram Ex: '/start /capture f.txt'")
     parser.add_argument("--capture", default=None,
-                        help="fichier texte OCR (mode input-capture)")
+                        help="fichier capture txt/md/png/pdf/docx (mode input-capture)")
     parser.add_argument("--valider", action="store_true",
                         help="valide le JSON reconstitué de la capture (Porte 1)")
     parser.add_argument("--out-carte", default=P("ARCHIVUM", "fixtures", "matches.json"),

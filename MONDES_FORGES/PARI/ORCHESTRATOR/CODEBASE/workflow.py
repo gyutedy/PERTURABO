@@ -5,7 +5,7 @@ Le cycle de campagne opérable **depuis Telegram** (PC et téléphone), avec une
 commande à chaque étape et les deux previews servies sur GitHub Pages.
 
   /start           ouvre la campagne du jour (reset propre, garde le budget)
-  /capture <file>  texte OCR de la capture du book → JSON reconstitué (A_VALIDER)
+  /capture <file>  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
   /budget 6000     budget du jour en FC (+reads optionnels /tau 2900 ...)
   valider-1        épingle le JSON capture → carte → siège → Top3 → PREVIEW 1
   /corriger-1      (rejoue /capture après correction de la capture OCR)
@@ -85,19 +85,18 @@ def cmd_start(st, arg):
     st["capturer_statut"] = None
     st["previews"] = {}
     save(st)
-    tell(f"🛡️ Campagne **{st['campagne']}** ouverte.\n"
-         "1️⃣ OCR de ta capture (Winner Bet : ligue, date, heure, matchs, cotes) → "
-         "`/capture <fichier>`\n"
-         "2️⃣ `/budget 6000` et `/combos 3`\n"
-         "3️⃣ `/valider-1` → PREVIEW 1 (données brutes) → tu relis → `/valider-2`"
-         " après vérif → PREVIEW 2 (ticket final)")
+    tell(f"Campagne **{st['campagne']}** ouverte.\n"
+         "1. Capture Winner Bet (txt, md, png/jpg, pdf, docx) → `/capture <fichier>`\n"
+         "2. `/budget 6000` et `/combos 3`\n"
+         "3. `/valider-1` → PREVIEW 1 (donnees brutes) → tu relis → `/valider-2`"
+         " apres verif → PREVIEW 2 (ticket final)")
 
 
 def cmd_capture(st, fichier):
     if not st.get("campagne"):
         tell("⛔ Pas de campagne — `/start` d'abord."); return
     if not fichier or not os.path.exists(fichier):
-        tell(f"⛔ Fichier OCR introuvable : {fichier} — /capture <fichier>"); return
+        tell(f"Fichier capture introuvable : {fichier} — /capture <txt|md|png|pdf|docx>"); return
     st["capture"] = fichier
     st["steps"]["capture"] = _now()
     ok, _ = run_orch("--mode", "input-capture", "--capture", fichier)
@@ -108,10 +107,10 @@ def cmd_capture(st, fichier):
     warn = len(jf.get("warnings", [])) if jf else 0
     st["capturer_statut"] = "A_VALIDER"
     save(st)
-    tell(f"📥 Capture parsée : **{n} match(s)**, {warn} warning(s) — "
-         "règle Zero Data, Zero Calc : **relis le JSON reconstitué** "
-         "(SHARED/OUT/capture_parsed.json puis relance avec --valider) → "
-         "si ok : `/valider-1`")
+    fmt = (jf or {}).get("source_format") or "texte"
+    tell(f"Capture parsee ({fmt}) : **{n} match(s)**, {warn} warning(s) — "
+         "regle Zero Data, Zero Calc : **relis le JSON reconstitue** "
+         "(F01_SENTINEL/OUT/capture_parsed.json) → si ok : `/valider-1`")
 
 
 def cmd_budget(st, text):
@@ -258,7 +257,7 @@ def cmd_stop(st, arg):
 
 CMDS = {
     "start": (cmd_start, "ouvre la campagne"),
-    "capture": (cmd_capture, "texte OCR de la capture"),
+        "capture": (cmd_capture, "capture txt/md/png/pdf/docx"),
     "budget": (cmd_budget, "budget du jour en FC"),
     "combos": (cmd_combos, "nb tickets (+jambes)"),
     "valider-1": (cmd_valider1, "valide preview 1 → siège"),
@@ -295,7 +294,8 @@ def main():
     connu = {k.replace("-", "") for k, v in CMDS.items() if v and v[0]}
     args = []
     for tok in [a for a in sys.argv[1:] if not a.startswith("--")]:
-        head = tok.lstrip("/").split()[0].lower().replace("-", "") if tok else ""
+        bits = tok.lstrip("/").split() if tok else []
+        head = bits[0].lower().replace("-", "") if bits else ""
         if tok.startswith("/") and head in connu:
             args.append(tok)
         elif args:

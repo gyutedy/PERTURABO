@@ -22,6 +22,8 @@ import os
 import re
 from datetime import datetime, timezone
 
+from extract_input import extract_from_path
+
 COTE_FULL_RE = re.compile(r"^\d{1,3}[.,]\d{1,2}$")
 
 # --- Marchés reconnus (labels Winner Bet + variantes OCR) ---------------------
@@ -86,10 +88,200 @@ def is_competition_line(line: str) -> bool:
     return any(k in low for k in COMPETITION_KEYWORDS) and "vs" not in low
 
 
+LOCKED_TOKENS = {"verrouille", "verrouillé", "locked", "—", "-", "–", "n/a", "na", ""}
+
+HEADER_MAP = {
+    "1": "1", "x": "X", "2": "2",
+    "1st": "mt1", "1er": "mt1", "mt1": "mt1", "1re mt": "mt1",
+    "egal": "mte", "égal": "mte", "egalite": "mte", "égalité": "mte", "mte": "mte",
+    "2nd": "mt2", "2e": "mt2", "mt2": "mt2", "2e mt": "mt2",
+    "moins": "under", "under": "under", "u": "under",
+    "plus": "over", "over": "over", "o": "over",
+    "1x": "1X", "x2": "X2", "12": "12",
+    "btts": "btts", "gg": "btts",
+}
+
+
+def _is_md_table(text: str) -> bool:
+    lines = [ln for ln in text.splitlines() if ln.strip().startswith("|")]
+    return len(lines) >= 2 and any("---" in ln or ":-" in ln for ln in lines[:4])
+
+
+def _split_md_row(line: str):
+    raw = line.strip()
+    if raw.startswith("|"):
+        raw = raw[1:]
+    if raw.endswith("|"):
+        raw = raw[:-1]
+    return [c.strip() for c in raw.split("|")]
+
+
+def _clean_cell(cell: str) -> str:
+    cell = cell.replace("<br>", "\n").replace("<br/>", "\n").replace("<br />", "\n")
+    cell = re.sub(r"\*\*([^*]+)\*\*", r"\1", cell)
+    cell = re.sub(r"<[^>]+>", " ", cell)
+    return " ".join(cell.replace("\n", " | ").split())
+
+
+def _cote_or_none(cell: str):
+    raw = _clean_cell(cell).strip().lower().replace(",", ".")
+    if raw in LOCKED_TOKENS or "verrouill" in raw:
+        return None
+    m = COTE_FULL_RE.match(raw.replace(" ", ""))
+    if not m:
+        return None
+    val = float(m.group(0).replace(",", "."))
+    if 1.01 <= val <= 500:
+        return val
+    return None
+
+
+def parse_markdown_table(capture_text: str):
+    """Parse un tableau markdown Winner Bet (competition+match, horaire, 1/X/2, MT, O/U)."""
+    warnings = []
+    blocs_by_comp = {}
+    header = None
+    bloc_idx = 0
+    n = 0
+
+    def bloc_for(comp, date, heure):
+        nonlocal bloc_idx
+        key = (comp or "?", date or "?", heure or "?")
+        if key not in blocs_by_comp:
+            bloc_idx += 1
+            blocs_by_comp[key] = {
+                "id": f"BLOC_{bloc_idx:03d}",
+                "competition": comp,
+                "date": date,
+                "heure": heure,
+                "matchs": [],
+                "warnings": [],
+            }
+        return blocs_by_comp[key]
+
+    for raw_line in capture_text.splitlines():
+        line = raw_line.strip()
+        if not line.startswith("|"):
+            continue
+        cells = _split_md_row(line)
+        if not cells:
+            continue
+        joined = "|".join(c.lower() for c in cells)
+        if "---" in line or ":-" in line:
+            continue
+        if header is None and ("1" in joined and "x" in joined and "2" in joined):
+            header = [_clean_cell(c).lower() for c in cells]
+            continue
+        if header is None:
+            continue
+        if len(cells) < 3:
+            continue
+
+        first = cells[0].replace("<br>", "\n").replace("<br/>", "\n").replace("<br />", "\n")
+        first = re.sub(r"\*\*([^*]+)\*\*", r"\1", first)
+        parts = [p.strip() for p in re.split(r"\n|<br\s*/?>", first) if p.strip()]
+        competition = None
+        match_line = None
+        if len(parts) >= 2:
+            competition = re.sub(r"<[^>]+>", "", parts[0]).strip()
+            match_line = re.sub(r"<[^>]+>", "", parts[-1]).strip()
+        else:
+            match_line = re.sub(r"<[^>]+>", "", parts[0] if parts else "").strip()
+            if " - " in match_line and " vs " not in match_line.lower():
+                maybe_comp, rest = match_line.split(" - ", 1)
+                if any(k in maybe_comp.lower() for k in COMPETITION_KEYWORDS):
+                    competition = maybe_comp.strip()
+                    match_line = rest.strip()
+
+        teams = TEAMSEP_RE.split(match_line, maxsplit=1)
+        if len(teams) != 2:
+            vs = re.split(r"\s+vs\.?\s+", match_line, maxsplit=1, flags=re.IGNORECASE)
+            teams = vs if len(vs) == 2 else None
+        if not teams or len(teams) != 2:
+            warnings.append(f"ligne tableau ignoree (pas de vs): {match_line[:80]}")
+            continue
+        dom, ext = teams[0].strip(), teams[1].strip()
+        if not dom or not ext:
+            continue
+
+        col = {header[i]: cells[i] if i < len(cells) else "" for i in range(len(header))}
+        horaire = _clean_cell(col.get("horaire") or col.get("heure") or "")
+        cur_heure = None
+        t = TIME_RE.search(horaire)
+        if t:
+            cur_heure = f"{int(t.group(1)):02d}:{int(t.group(2)):02d}"
+        cur_date = None
+        d = DATE_RE.search(horaire) or DATE_RE.search(capture_text)
+        if d:
+            cur_date = d.group(1)
+
+        cotes = {}
+        m_warn = []
+        ligne_totale = None
+        for h, cell in col.items():
+            hkey = h.strip().lower()
+            if hkey in ("competition & match", "compétition & match", "match", "horaire", "heure",
+                        "ligne (total)", "ligne", "total"):
+                if hkey.startswith("ligne"):
+                    raw_l = _clean_cell(cell).replace(",", ".")
+                    try:
+                        ligne_totale = float(raw_l)
+                    except ValueError:
+                        ligne_totale = None
+                continue
+            mapped = HEADER_MAP.get(hkey)
+            if mapped in ("over", "under"):
+                val = _cote_or_none(cell)
+                if val is None:
+                    if _clean_cell(cell).strip() and _clean_cell(cell).strip().lower() not in LOCKED_TOKENS:
+                        m_warn.append(f"{hkey} illisible: {_clean_cell(cell)}")
+                    continue
+                if ligne_totale in (1.5, 2.5, 3.5):
+                    tag = ("o" if mapped == "over" else "u") + str(ligne_totale)
+                    cotes[tag] = val
+                else:
+                    m_warn.append(f"{mapped} sans ligne totale — cote non rattachee")
+                continue
+            if not mapped:
+                continue
+            val = _cote_or_none(cell)
+            if val is None:
+                continue
+            cotes[mapped] = val
+
+        n += 1
+        match = {
+            "id": f"M{n}",
+            "dom": dom,
+            "ext": ext,
+            "cotes": cotes,
+            "marches_disponibles": sorted(cotes.keys()),
+            "warnings": m_warn,
+        }
+        b = bloc_for(competition, cur_date, cur_heure)
+        if not b["heure"] and cur_heure:
+            b["heure"] = cur_heure
+        b["matchs"].append(match)
+
+    blocs = list(blocs_by_comp.values())
+    for b in blocs:
+        if not b["competition"]:
+            b["warnings"].append("competition/ligue absente — marque manuelle avant siege (Zero Data, Zero Calc)")
+        for w in b["warnings"]:
+            warnings.append(f"{b['id']}: {w}")
+    if n == 0:
+        warnings.append("AUCUN match reconnu dans le tableau markdown")
+    return {"captures": blocs, "warnings": warnings, "statut": "A_VALIDER", "n_matchs": n,
+            "source_format": "markdown_table"}
+
+
 def parse_capture(capture_text: str):
     """Parse le texte OCR d'une capture de bookmaker (multi-blocs).
     Sortie : {"captures": [bloc…], "warnings": […], "statut": "A_VALIDER"}
     """
+    if _is_md_table(capture_text):
+        return parse_markdown_table(capture_text)
+
     warnings = []
     blocs = []
     cur_competition = None
@@ -273,18 +465,29 @@ def to_carte(parsed: dict, ligue_default="Capture — ligue à confirmer"):
 
 def main():
     here = os.path.dirname(os.path.abspath(__file__))
-    parser = argparse.ArgumentParser(description="F01 SENTINEL — input capture OCR")
-    parser.add_argument("--capture", required=False, help="fichier texte OCR de la capture")
+    parser = argparse.ArgumentParser(description="F01 SENTINEL — input capture multi-format")
+    parser.add_argument("--capture", required=False,
+                        help="fichier capture : txt, md, png/jpg, pdf, docx")
     parser.add_argument("--out-json", default=os.path.join(here, "..", "OUT", "capture_parsed.json"))
     parser.add_argument("--valider", action="store_true", help="l'opérateur a validé le JSON reconstitué")
     parser.add_argument("--out-carte", default=None, help="écrire la carte fixtures (si validé)")
     args = parser.parse_args()
 
     if not args.capture:
-        print("[INPUT-CAPTURE] usage: --capture <texte OCR> [--valider] [--out-carte carte.json]")
+        print("[INPUT-CAPTURE] usage: --capture <txt|md|png|jpg|pdf|docx> [--valider] [--out-carte carte.json]")
         return 2
-    with open(args.capture, "r", encoding="utf-8") as f:
-        parsed = parse_capture(f.read())
+    extracted = extract_from_path(args.capture)
+    extra_warn = list(extracted.get("warnings") or [])
+    text = extracted.get("text") or ""
+    if not text.strip():
+        parsed = {"captures": [], "warnings": extra_warn + ["AUCUN texte extractible — Zero Data, Zero Calc"],
+                  "statut": "A_VALIDER", "n_matchs": 0, "source_format": extracted.get("format")}
+    else:
+        parsed = parse_capture(text)
+        parsed["warnings"] = extra_warn + list(parsed.get("warnings") or [])
+        parsed["source_format"] = extracted.get("format")
+        if _is_md_table(text):
+            parsed["source_format"] = extracted.get("format") + "+markdown_table"
     if args.valider:
         parsed["statut"] = "VALIDE"
 

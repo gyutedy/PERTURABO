@@ -6,9 +6,11 @@ Consommateurs : Warsmith (validation Porte 1), carte fixtures → TYRANT/F02/F03
 
 ## Le cycle de l'opérateur
 
-1. Capture l'écran du bookmaker (ligue/coupe, date, heure, matchs, marchés + cotes).
-2. OCR (hors monde, texte brut) → fichier txt.
-3. `input_capture.py --capture <txt>` → `capture_parsed.json` (statut `A_VALIDER`).
+1. Capture l'ecran du bookmaker (ligue/coupe, date, heure, matchs, marches + cotes)
+   sous n'importe quel format : txt, markdown, png/jpg, pdf, docx.
+2. Extracteur (`extract_input.py`) sort le texte brut. Tableau markdown Winner Bet
+   parse nativement. Image : OCR tesseract si present, sinon Zero Data.
+3. `input_capture.py --capture <fichier>` → `capture_parsed.json` (statut `A_VALIDER`).
 4. **Opérateur relis le JSON reconstitué** — rien ne part en calcul avant ça (Porte 1).
 5. `input_capture.py --capture <txt> --valider --out-carte ARCHIVUM/fixtures/matches.json`
    → carte fixtures + `--mode siege` ensuite.
