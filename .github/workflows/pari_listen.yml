@@ -1,0 +1,97 @@
+# PARI LISTEN — une commande Telegram = un run
+# Relais : Cloudflare Worker (webhook) → workflow_dispatch → workflow.py
+# Le Worker a deja filtre chat_id. Ici on execute, on commit, on repond
+# via notifier.py (tell() dans workflow.py).
+#
+# Inputs:
+#   cmd           /start | /capture | /budget 6000 | /combos 3 | /valider-1 | ...
+#   capture_text  corps markdown Winner Bet (uniquement pour /capture)
+
+name: pari-listen
+on:
+  workflow_dispatch:
+    inputs:
+      cmd:
+        description: "Commande passee a workflow.py"
+        required: true
+        type: string
+      capture_text:
+        description: "Markdown Winner Bet (meme message que /capture)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pari-campagne
+  cancel-in-progress: false
+
+jobs:
+  commande:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Inbox capture Telegram (si fournie)
+        env:
+          CAPTURE_TEXT: ${{ github.event.inputs.capture_text }}
+          CMD: ${{ github.event.inputs.cmd }}
+        run: |
+          cd MONDES_FORGES/PARI
+          mkdir -p F01_SENTINEL/IN
+          if [ -n "$CAPTURE_TEXT" ]; then
+            printf '%s\n' "$CAPTURE_TEXT" > F01_SENTINEL/IN/capture_telegram.md
+            echo "[listen] inbox ecrite ($(wc -c < F01_SENTINEL/IN/capture_telegram.md) octets)"
+          else
+            echo "[listen] pas de capture_text (cmd=$CMD)"
+          fi
+
+      - name: Executer workflow.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+          ORACLE_API_KEY: ${{ secrets.ORACLE_API_KEY }}
+          CMD: ${{ github.event.inputs.cmd }}
+        run: |
+          cd MONDES_FORGES/PARI
+          echo "[listen] cmd=$CMD"
+          python ORCHESTRATOR/CODEBASE/workflow.py $CMD
+
+      - name: Commit artefacts
+        run: |
+          git config user.name "IW_CUSTOS[bot]"
+          git config user.email "custos@perturabo.iron"
+          git add MONDES_FORGES/PARI
+          git diff --staged --quiet || git commit -m "PARI: commande Telegram ${{ github.event.inputs.cmd }}"
+          git push
+
+  pages:
+    needs: commande
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparer le site (previews + dashboard)
+        run: |
+          mkdir -p _site
+          cp MONDES_FORGES/PARI/SHARED/OUT/*.html _site/ 2>/dev/null || true
+          cp MONDES_FORGES/PARI/SHARED/OUT/*.md _site/ 2>/dev/null || true
+          ls -la _site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - uses: actions/deploy-pages@v4
+        id: pages
