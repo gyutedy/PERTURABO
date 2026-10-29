@@ -50,7 +50,16 @@
 - [x] Règle de fraîcheur : `ARCHIVUM/rules/freshness_sources.md` — TOUTE source porte sa date de publication ; info d'une saison passée = à recroiser avant usage ; le moteur de probas n'utilise JAMAIS les transcriptions (hérésie).
 - [ ] **EN ATTENTE WARSMITH** : stocker les transcriptions (outil externe du Warsmith) → `--add` → `--dates` après confirmation des dates YouTube → dépouillement fiches.
 
-## PROCHAINES ÉTAPES (à faire plus tard)
+## ETAT v2.1 — MULTI-FORMAT (2026-10-29)
+
+- [x] **Phase A** : entree flexible txt/md/png/pdf/docx (`extract_input.py`) + parseur tableau markdown Winner Bet (11 matchs de la capture type). Image sans tesseract = Zero Data, Zero Calc.
+- [x] **Phase B** : previews 1 et 2 deja en place — revalidees e2e (groupe 2 = 11/11, groupe 3 = 11/11).
+- [x] **Phase C** : workflow Telegram + GitHub Actions `pari-daily` deja en place (Pages + notifier). `/capture` accepte tous les formats.
+- [x] **Phase D** : docs (GUIDE, README, CONTINUATION, contrat schema_input_capture) + e2e_multiformat 9/9 + regression groupe 1 9/9.
+
+Pret pour le **premier test reel** : coller le markdown Winner Bet via `/capture F01_SENTINEL/OUT/capture_winnerbet.md` (ou un .txt/.pdf/.docx equivalent), puis `/budget` `/combos` `/valider-1`. Sans stats historiques le siege sort NO BET — c'est la doctrine, pas un bug.
+
+## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
 2. ~~Alerte cotes/valeur en direct~~ 🟡 **MOITIÉ FAITE** : notificateur Telegram branché (`orchestrator.py --mode notify` + `--mode telegram-test`, messages du pari pack). Reste : l'analyse du mouvements de cotes (2e Action à T-2h qui re-scanne les cotes collées si l'EV s'estompe).

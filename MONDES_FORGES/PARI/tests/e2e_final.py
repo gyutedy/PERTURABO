@@ -128,14 +128,9 @@ def main():
                        "schema_top3.json", "schema_ticket_final.json"))
     check("FINAL.contrats", contrats_ok, "4 contrats v2")
 
-    try:
-        import yaml
-        yml = rd(os.path.join(WROOT, ".github", "workflows", "pari_daily.yml")) or ""
-        yaml.safe_load(yml)
-        ok = "deploy-pages" in yml and "tickets" in yml
-        check("FINAL.workflow_gh", ok, "pari_daily.yml : tickets + Pages déploaiment")
-    except Exception as e:
-        check("FINAL.workflow_gh", False, str(e)[:80])
+    yml = rd(os.path.join(WROOT, ".github", "workflows", "pari_daily.yml")) or ""
+    ok = "deploy-pages" in yml and "tickets" in yml and "pari-daily" in yml
+    check("FINAL.workflow_gh", ok, "pari_daily.yml : tickets + Pages")
 
     n_fail = sum(1 for _, ok_, _ in CHECKS if not ok_)
     print("=" * 70)
