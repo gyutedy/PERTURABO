@@ -1,6 +1,6 @@
 ### 🛡️ PERTURABO · PARI — TOP 3 MARCHÉS PAR MATCH (score commun 01-10)
 
-*generated 2026-10-29T08:11:56Z — 18 matchs classés*
+*generated 2026-10-29T08:15:07Z — 18 matchs classés*
 
 - **#1 Cyclops vs Trench** — score **10.0/10** — bucket 🟢 HAUTE (données haute) · marchés exclus: mt2, mte
     1. Under 2.5 — cote 2.14 — proba 75% — EV +60.1%

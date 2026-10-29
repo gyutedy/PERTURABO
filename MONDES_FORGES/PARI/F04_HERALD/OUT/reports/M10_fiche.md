@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Orbital vs Athletic
-*Générée le 2026-10-29 08:11 UTC — siege_id courant*
+*Générée le 2026-10-29 08:15 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 59.9%
 

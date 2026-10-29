@@ -1,6 +1,6 @@
 {
-  "fleet_status": "tyrant_report_ready",
-  "siege_id": "PARI-DEMO-20261029-0811",
+  "fleet_status": "pack_ready",
+  "siege_id": "PARI-DEMO-20261029-0815",
   "monde": "pari",
   "warsmith_brief": {
     "mode": null,
@@ -16,7 +16,7 @@
     "seuil_ev_applique": null,
     "recommandation": null,
     "justification": null,
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/TYRANT/OUT/qualitative_verdict.json"
+    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json"
   },
   "f01_sentinel": {
     "status": "done",
@@ -62,26 +62,26 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-10-29T08:11:56Z",
+    "last_validation": "2026-10-29T08:15:07Z",
     "errors": []
   },
   "gate_decisions": {
     "gate_1": {
       "label": "Validation carte TYRANT (GO/NO-GO siège)",
       "validated": true,
-      "timestamp": "2026-10-29T08:11:56Z",
+      "timestamp": "2026-10-29T08:15:07Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_2": {
       "label": "Validation analyses BREACHER (probas, matrice)",
       "validated": true,
-      "timestamp": "2026-10-29T08:11:56Z",
+      "timestamp": "2026-10-29T08:15:07Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_3": {
       "label": "Validation verdicts FORGEWARD (EV, Kelly, combinés)",
       "validated": true,
-      "timestamp": "2026-10-29T08:11:56Z",
+      "timestamp": "2026-10-29T08:15:07Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_4": {
@@ -92,13 +92,13 @@
     }
   },
   "siege_timestamps": {
-    "start": "2026-10-29T08:11:54Z",
-    "tyrant_done": "2026-10-29T08:11:56Z",
-    "intel_done": "2026-10-29T08:11:55Z",
-    "breach_done": "2026-10-29T08:11:56Z",
-    "value_done": "2026-10-29T08:11:56Z",
-    "herald_done": "2026-10-29T08:11:56Z",
-    "pack_done": "2026-10-29T08:11:56Z",
+    "start": "2026-10-29T08:15:06Z",
+    "tyrant_done": "2026-10-29T08:15:06Z",
+    "intel_done": "2026-10-29T08:15:06Z",
+    "breach_done": "2026-10-29T08:15:07Z",
+    "value_done": "2026-10-29T08:15:07Z",
+    "herald_done": "2026-10-29T08:15:07Z",
+    "pack_done": "2026-10-29T08:15:07Z",
     "end": null
   }
 }

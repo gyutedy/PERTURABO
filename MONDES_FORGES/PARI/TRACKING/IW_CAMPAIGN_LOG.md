@@ -654,3 +654,89 @@
 ## [2026-10-29T08:11:56Z] F05 — check-out — status: processing
 
 ## [2026-10-29T08:11:56Z] F05 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:9be1aa4f8a1bd9ed1ca51f65c8096b2c — status:done
+
+## [2026-10-29T08:15:05Z] TYRANT — check-out — status: processing
+
+## [2026-10-29T08:15:05Z] TYRANT — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:52c63fa0927bd5612171cd39c7f069e0 — status:done
+
+## [2026-10-29T08:15:05Z] F01 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:ed96c04416c7ca3b248013d4930bf8bc — status:done
+
+## [2026-10-29T08:15:05Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:05Z] F02 — check-out — status: processing
+
+## [2026-10-29T08:15:05Z] F02 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:6703382d94d176f63d9fe218cb8b6f2a — status:done
+
+## [2026-10-29T08:15:05Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:05Z] F03 — check-out — status: processing
+
+## [2026-10-29T08:15:05Z] F03 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:7be84211254ebd7b193de6fa77183916 — status:done
+
+## [2026-10-29T08:15:05Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:05Z] F04 — check-out — status: processing
+
+## [2026-10-29T08:15:05Z] F04 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:327de0408f3715f1f93d86e2d1934581 — status:done
+
+## [2026-10-29T08:15:05Z] F05 — check-out — status: processing
+
+## [2026-10-29T08:15:05Z] F05 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:269fc828e42370b3814ffffccac822da — status:done
+
+## [2026-10-29T08:15:06Z] RESET — nouveau siège PARI-DEMO-20261029-0815 initialisé
+
+## [2026-10-29T08:15:06Z] F01 — check-out — status: processing
+
+## [2026-10-29T08:15:06Z] F01 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:6ca1e7774100780c2829c128d210bcc8 — status:done
+
+## [2026-10-29T08:15:06Z] F02 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:cd954aa8a9b3b23ed56913427604b111 — status:done
+
+## [2026-10-29T08:15:06Z] TYRANT — check-out — status: processing
+
+## [2026-10-29T08:15:06Z] TYRANT — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:170ee0d75a8aadf8037188b9374961c8 — status:done
+
+## [2026-10-29T08:15:06Z] F01 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:6d97c60062577717d06313cf51851f85 — status:done
+
+## [2026-10-29T08:15:06Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:06Z] F02 — check-out — status: processing
+
+## [2026-10-29T08:15:06Z] F02 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:cd954aa8a9b3b23ed56913427604b111 — status:done
+
+## [2026-10-29T08:15:06Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:06Z] F03 — check-out — status: processing
+
+## [2026-10-29T08:15:06Z] F03 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:626fa06736bcee48062e24ed8d78eb92 — status:done
+
+## [2026-10-29T08:15:06Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:06Z] F04 — check-out — status: processing
+
+## [2026-10-29T08:15:06Z] F04 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:6a2161f072fc7370efa2e4dbacff2bcb — status:done
+
+## [2026-10-29T08:15:06Z] F05 — check-out — status: processing
+
+## [2026-10-29T08:15:07Z] F05 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:e458848b0bf06d68580430edc7f5f1b3 — status:done
+
+## [2026-10-29T08:15:07Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:07Z] F02 — check-out — status: processing
+
+## [2026-10-29T08:15:07Z] F02 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:bf5b72ace674d08a8c4ec8796211c245 — status:done
+
+## [2026-10-29T08:15:07Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:07Z] F03 — check-out — status: processing
+
+## [2026-10-29T08:15:07Z] F03 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:212c35800b0fd91b183a418d991e09f7 — status:done
+
+## [2026-10-29T08:15:07Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-29T08:15:07Z] F04 — check-out — status: processing
+
+## [2026-10-29T08:15:07Z] F04 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:392de0e1862d3f69f474376b70176915 — status:done
+
+## [2026-10-29T08:15:07Z] F05 — check-out — status: processing
+
+## [2026-10-29T08:15:07Z] F05 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:c44021243d0506540061b150e7f87143 — status:done

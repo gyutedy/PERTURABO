@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Custodia vs Ironside
-*Générée le 2026-10-29 08:11 UTC — siege_id courant*
+*Générée le 2026-10-29 08:15 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 54.9%
 

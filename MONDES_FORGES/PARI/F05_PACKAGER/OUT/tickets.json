@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-10-29T08:15:05Z",
+  "tickets": [
+    {
+      "rang_ticket": 1,
+      "classe": "SUR_TICKET",
+      "nb_jambes": 3,
+      "jambes": [
+        {
+          "match_id": "M1",
+          "match": "Cyclops vs Trench",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.14,
+          "p_modele": 0.7481,
+          "score_commun": 10.0
+        },
+        {
+          "match_id": "M3",
+          "match": "Bastion vs Lions",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.99,
+          "p_modele": 0.7379,
+          "score_commun": 10.0
+        },
+        {
+          "match_id": "M4",
+          "match": "Legion vs Utd Iron",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.93,
+          "p_modele": 0.8569,
+          "score_commun": 10.0
+        }
+      ],
+      "cote_totale": 8.22,
+      "p_aggregee": 0.473,
+      "ev_limitee": null,
+      "mise_fc": 3000.0,
+      "mise_units": null,
+      "retour_si_gagne_fc": 24657.29
+    },
+    {
+      "rang_ticket": 2,
+      "classe": "AUTRE",
+      "nb_jambes": 2,
+      "jambes": [
+        {
+          "match_id": "M5",
+          "match": "Orbital vs Rovers",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.0,
+          "p_modele": 0.3322,
+          "score_commun": 10.0
+        },
+        {
+          "match_id": "M6",
+          "match": "Utd Iron vs Rovers",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.82,
+          "p_modele": 0.6903,
+          "score_commun": 10.0
+        }
+      ],
+      "cote_totale": 7.28,
+      "p_aggregee": 0.229,
+      "ev_limitee": null,
+      "mise_fc": 1500.0,
+      "mise_units": null,
+      "retour_si_gagne_fc": 10920.0
+    },
+    {
+      "rang_ticket": 3,
+      "classe": "AUTRE",
+      "nb_jambes": 2,
+      "jambes": [
+        {
+          "match_id": "M12",
+          "match": "Ironside vs Perturabo SC",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.01,
+          "p_modele": 0.787,
+          "score_commun": 10.0
+        },
+        {
+          "match_id": "M13",
+          "match": "Perturabo SC vs Rovers",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.95,
+          "p_modele": 0.7535,
+          "score_commun": 10.0
+        }
+      ],
+      "cote_totale": 3.92,
+      "p_aggregee": 0.593,
+      "ev_limitee": null,
+      "mise_fc": 1500.0,
+      "mise_units": null,
+      "retour_si_gagne_fc": 5879.25
+    }
+  ],
+  "budget": {
+    "budget_fc": 6000.0,
+    "alloue_fc": 6000.0,
+    "reste_fc": 0.0,
+    "taux_fc_usd": null
+  },
+  "regles": {
+    "jambes_max": 4,
+    "mise_min_fc": 100.0,
+    "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
+    "division": "> 4 jambes → division en deux classes de fiabilité"
+  },
+  "warnings": [
+    "1 match(s) NO BET recommandé (filtre qualitatif) — exclus des tickets"
+  ]
+}

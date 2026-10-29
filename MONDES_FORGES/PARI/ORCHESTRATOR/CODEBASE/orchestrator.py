@@ -277,7 +277,7 @@ def main():
     parser = argparse.ArgumentParser(description="ORCHESTRATOR — monde PARI")
     parser.add_argument("--mode", required=True,
                         choices=["radar", "siege", "pack", "demo", "imprime", "notify",
-                                 "telegram-test", "input-capture"])
+                                 "telegram-test", "input-capture", "tickets"])
     parser.add_argument("--ids", default=None, help="M1,M2 en mode siege (vide = carte complète)")
     parser.add_argument("--fixtures", default=None)
     parser.add_argument("--top", type=int, default=10)
@@ -287,6 +287,12 @@ def main():
                         help="valide le JSON reconstitué de la capture (Porte 1)")
     parser.add_argument("--out-carte", default=P("ARCHIVUM", "fixtures", "matches.json"),
                         help="destination de la carte flaggée (mode input-capture)")
+    parser.add_argument("--combos", type=int, default=3, help="nb de tickets demandés (mode tickets)")
+    parser.add_argument("--jambes", default=None, help="nb matchs par ticket, ex 3 ou 3:2:2 (mode tickets)")
+    parser.add_argument("--budget-fc", type=float, default=0.0, help="budget du jour en FC (mode tickets)")
+    parser.add_argument("--surticket-fc", type=float, default=0.0, help="mise du ticket sûr en FC")
+    parser.add_argument("--mises-fc", default=None, help="mises explicites 3000:1000:1000")
+    parser.add_argument("--taux-fc-usd", type=float, default=None, help="taux FC→USD pour les unités")
     args = parser.parse_args()
 
     if args.mode == "imprime":
@@ -311,7 +317,20 @@ def main():
     elif args.mode == "telegram-test":
         ok = run_frigate(P("ORCHESTRATOR", "CODEBASE", "notifier.py"), "--text", "PING du monde PARI 🛡️ — canal opérationnel.")
         sys.exit(0 if ok else 1)
-    elif args.mode == "input-capture":
+    elif args.mode == "tickets":
+        cmd = [sys.executable, P("F05_PACKAGER", "CODEBASE", "combinator.py"),
+               "--tickets", str(args.combos),
+               "--budget-fc", str(args.budget_fc), "--surticket-fc", str(args.surticket_fc)]
+        if args.jambes:
+            cmd += ["--jambes", args.jambes]
+        if args.mises_fc:
+            cmd += ["--mises-fc", args.mises_fc]
+        if args.taux_fc_usd:
+            cmd += ["--taux-fc-usd", str(args.taux_fc_usd)]
+        r = subprocess.run(cmd)
+        if r.returncode == 0:
+            run_frigate(P("F05_PACKAGER", "CODEBASE", "preview2.py"))
+        sys.exit(0 if r.returncode == 0 else 1)
         cmd = [sys.executable, P("F01_SENTINEL", "CODEBASE", "input_capture.py"),
                "--out-json", P("F01_SENTINEL", "OUT", "capture_parsed.json")]
         if args.capture:

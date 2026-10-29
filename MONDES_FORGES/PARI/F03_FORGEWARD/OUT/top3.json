@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T08:11:56Z",
+  "generated_at": "2026-10-29T08:15:07Z",
   "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
   "source_predictions": "predictions_filtered.json",
   "matchs": [
