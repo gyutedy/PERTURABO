@@ -5,7 +5,8 @@ Le cycle de campagne opérable **depuis Telegram** (PC et téléphone), avec une
 commande à chaque étape et les deux previews servies sur GitHub Pages.
 
   /start           ouvre la campagne du jour (reset propre, garde le budget)
-  /capture <file>  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
+  /capture [file]  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
+                   sans chemin : lit F01_SENTINEL/IN/capture_telegram.md (inbox Telegram)
   /budget 6000     budget du jour en FC (+reads optionnels /tau 2900 ...)
   valider-1        épingle le JSON capture → carte → siège → Top3 → PREVIEW 1
   /corriger-1      (rejoue /capture après correction de la capture OCR)
@@ -92,12 +93,29 @@ def cmd_start(st, arg):
          " apres verif → PREVIEW 2 (ticket final)")
 
 
+INBOX_CAPTURE = P("F01_SENTINEL", "IN", "capture_telegram.md")
+
+
+def resolve_capture(fichier):
+    """Chemin local si fourni et present, sinon inbox Telegram (texte colle)."""
+    path = (fichier or "").strip()
+    if path and os.path.exists(path):
+        return path
+    if os.path.exists(INBOX_CAPTURE):
+        return INBOX_CAPTURE
+    return None
+
+
 def cmd_capture(st, fichier):
     if not st.get("campagne"):
         tell("⛔ Pas de campagne — `/start` d'abord."); return
-    if not fichier or not os.path.exists(fichier):
-        tell(f"Fichier capture introuvable : {fichier} — /capture <txt|md|png|pdf|docx>"); return
-    st["capture"] = fichier
+    path = resolve_capture(fichier)
+    if not path:
+        tell("Fichier capture introuvable — /capture <txt|md|png|pdf|docx> "
+             "ou colle le tableau markdown dans le meme message Telegram "
+             "(inbox F01_SENTINEL/IN/capture_telegram.md).")
+        return
+    st["capture"] = path
     st["steps"]["capture"] = _now()
     ok, _ = run_orch("--mode", "input-capture", "--capture", fichier)
     if not ok:

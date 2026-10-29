@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pari.telegram.listen.v1",
+  "description": "Contrat du relais Telegram (Cloudflare Worker) vers GitHub Actions pari_listen. Le Worker n'invente rien : il extrait cmd + capture_text du message, refuse le chat etranger, et dispatch. Aucun calcul ici.",
+  "type": "object",
+  "required": ["cmd", "chat_id"],
+  "properties": {
+    "cmd": {
+      "type": "string",
+      "description": "Commande passee telle quelle a workflow.py. Ex: /start, /budget 6000, /combos 3:3:2:2, /capture, /valider-1.",
+      "pattern": "^/(start|capture|budget|combos|valider-1|valider-2|data|status|roi|stop)( .*)?$"
+    },
+    "capture_text": {
+      "type": ["string", "null"],
+      "description": "Corps markdown Winner Bet colle dans le meme message que /capture. Null si commande autre que /capture. Plafond 4096 octets (limite Telegram). png/pdf hors v1."
+    },
+    "chat_id": {
+      "type": "string",
+      "description": "Telegram chat.id de l'operateur. Doit matcher TELEGRAM_CHAT_ID (allowlist 1 operateur)."
+    },
+    "update_id": {
+      "type": ["integer", "null"]
+    },
+    "message_id": {
+      "type": ["integer", "null"]
+    }
+  },
+  "additionalProperties": false
+}
