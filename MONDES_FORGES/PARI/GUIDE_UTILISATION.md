@@ -9,8 +9,16 @@ Tout ce qu'il faut savoir pour opérer le monde, pas à pas. (Warsmith = toi.)
 Le flux de campagne officiel. Tout est opérable **depuis Telegram** (PC et tel),
 avec une commande à chaque étape et les deux previews servies sur GitHub Pages.
 
+**Ecoute Telegram (Phase 8)** : Cloudflare Worker (`ORCHESTRATOR/LISTEN`) recoit
+le webhook, filtre `chat_id`, ACK, puis `workflow_dispatch` `pari_listen.yml`.
+GitHub execute `workflow.py` et `notifier.py` repond. Sans Worker deploye +
+`setWebhook`, `/start` dans le chat n'atteint pas le siege (le bot savait
+envoyer, pas ecouter). Runbook : `ORCHESTRATOR/LISTEN/README.md`.
+
 ```
-/start → /capture (txt, md, png/jpg, pdf, docx) → /budget 6000 → /combos 3:3:2:2
+Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
+/start → /capture (tableau markdown DANS le meme message)
+     → /budget 6000 → /combos 3:3:2:2
      → /valider-1 → PREVIEW 1 (données brutes) → relecture
      → /valider-2 → PREVIEW 2 (ticket final) → /data → tickets posés → F06
 ```
@@ -20,7 +28,7 @@ avec une commande à chaque étape et les deux previews servies sur GitHub Pages
 | Commande | Ce que ça fait |
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre) |
-| `/capture <fichier>` | Capture du book (txt, markdown, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER) — **relis-le, c'est la Porte 1** |
+| `/capture` | Telegram v1 : colle le tableau markdown Winner Bet **dans le meme message**. CLI : `/capture <fichier>` (txt/md/png/pdf/docx). JSON reconstitue = Porte 1 |
 | `/budget 6000 / 3000` | Budget du jour (FC) + mise du ticket sûr (optionnel) |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
 | `/valider-1` | Valide le JSON → carte → injection stats (si ligue couverte) → siège → **Top 3 + PREVIEW 1** |
@@ -157,15 +165,36 @@ python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source football-data-org \
 Le calendrier donne les paires + ids + horaires ; fusionne-la avec ta carte
 puis inject. Sans clé : les paires se collent à la main (2 minutes).
 
-### 📮 Telegram — le canal principal privé
+### Telegram — le canal principal privé (écoute + envoi)
+
+Sans Worker, le bot **envoie** (notifier) mais **n'écoute pas**. `/start` dans
+le chat n'atteint pas GitHub.
 
 ```bash
-# 1. @BotFather → /newbot → copie le TOKEN
-# 2. Envoie un message à ton bot puis ouvre:
-#    https://api.telegram.org/bot<TOKEN>/getUpdates → copie chat.id
-# 3. Mets les 2 clés : Settings → Keys (workspace) ET GitHub Secrets
+# 1. @BotFather → /newbot → TOKEN
+# 2. Ecris au bot → getUpdates → chat.id
+# 3. Secrets GitHub : TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
+# 4. Deploy Worker (une fois) — detail : ORCHESTRATOR/LISTEN/README.md
+cd MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN
+npx wrangler deploy
+npx wrangler secret put TELEGRAM_BOT_TOKEN
+npx wrangler secret put TELEGRAM_CHAT_ID
+npx wrangler secret put TELEGRAM_WEBHOOK_SECRET
+npx wrangler secret put GITHUB_DISPATCH_TOKEN
+# 5. Brancher le webhook
+curl -s "https://api.telegram.org/bot${TOKEN}/setWebhook" \
+  -d "url=https://pari-listen.<compte>.workers.dev" \
+  -d "secret_token=${SECRET}"
+```
+
+Puis dans Telegram : `/start`. ACK Worker (~1 s) puis reponse campagne (~1 min).
+`/capture` = tableau markdown dans le **meme** message (plafond 4096). png/pdf plus tard.
+
+Test envoi seul (sans webhook) :
+
+```bash
 python ORCHESTRATOR/CODEBASE/orchestrator.py --mode telegram-test
-python ORCHESTRATOR/CODEBASE/orchestrator.py --mode notify   # pousse le pari pack
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode notify
 ```
 
 Sans clés, la commande affiche les instructions et ne casse jamais rien.
