@@ -7,6 +7,9 @@ Cartographie des journaux du monde.
 | `IW_CAMPAIGN_LOG.md` | Journal général (check-out/check-in, gates, reset) | IW_CUSTOS.py |
 | `IW_TRANSFER_LOG.md` | Transferts inter-frégates (source → dest, md5) | IW_CUSTOS.py |
 | `TYRANT/TYRANT_LOG.md` | Verdicts de carte GO/NO-GO | TYRANT |
+| `TYRANT/QUALITATIVE_LOG.md` | Verdicts du filtre non-binaire borné (exclusions, seuils, NO BET rec.) | TYRANT qualitative |
+| `F05_TICKETS/F05_TICKETS_LOG.md` | Compositions de tickets + backroll par campagne (v2) | F05 combinator |
+| `SHARED/STATE/campagne.json` | État du cycle de campagne Telegram (/start → /valider-2) | workflow.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |
 | `F01_SENTINEL/F01_LOG.md` | Collectes + nettoyages de données | F01 |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |

@@ -1,0 +1,122 @@
+{
+  "source": "input_capture",
+  "generated_at": "2026-10-29T08:25:37Z",
+  "ligue": "Capture — ligue à confirmer",
+  "horizon": "capture 2026-10-29",
+  "matchs": [
+    {
+      "id": "M1",
+      "dom": "Arsenal",
+      "ext": "Chelsea",
+      "ligue": "Premier League - England 2026-10-29 18:00",
+      "date": "2026-10-29",
+      "heure": "18:00",
+      "cotes": {
+        "o2.5": 1.7,
+        "u2.5": 2.05,
+        "mt1": 2.1,
+        "mt2": 2.2,
+        "1": 1.85,
+        "X": 3.6,
+        "2": 4.2
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "o2.5",
+        "u2.5"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 28.0,
+          "encaisses": 8.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 18.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 22.0,
+          "encaisses": 14.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 16.0,
+          "encaisses_mt2": 5.0
+        }
+      }
+    },
+    {
+      "id": "M2",
+      "dom": "Liverpool",
+      "ext": "Everton",
+      "ligue": "Premier League - England 2026-10-29 18:00",
+      "date": "2026-10-29",
+      "heure": "18:00",
+      "cotes": {
+        "1": 1.55,
+        "X": 4.1,
+        "2": 6.0,
+        "btts": 1.95,
+        "btts_no": 1.85
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "btts",
+        "btts_no"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 20.0,
+          "encaisses": 12.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 3.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 9.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 11.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 6.0
+        }
+      }
+    },
+    {
+      "id": "M3",
+      "dom": "Monaco",
+      "ext": "Bottled",
+      "ligue": "Ligue 1 - France 19:45",
+      "date": "2026-10-29",
+      "heure": "19:45",
+      "cotes": {
+        "o1.5": 1.25,
+        "u1.5": 3.9,
+        "1": 1.62,
+        "X": 3.8,
+        "2": 5.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "o1.5",
+        "u1.5"
+      ],
+      "stats": {}
+    }
+  ],
+  "warnings": [
+    "inject CAPTEURS 2026-10-29T08:25:40Z: 4 auto / 2 manquants"
+  ]
+}

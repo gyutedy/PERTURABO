@@ -277,10 +277,12 @@ def main():
     parser = argparse.ArgumentParser(description="ORCHESTRATOR — monde PARI")
     parser.add_argument("--mode", required=True,
                         choices=["radar", "siege", "pack", "demo", "imprime", "notify",
-                                 "telegram-test", "input-capture", "tickets"])
+                                 "telegram-test", "input-capture", "tickets", "workflow"])
     parser.add_argument("--ids", default=None, help="M1,M2 en mode siege (vide = carte complète)")
     parser.add_argument("--fixtures", default=None)
     parser.add_argument("--top", type=int, default=10)
+    parser.add_argument("--cmd", default=None,
+                        help="commandes workflow Telegram Ex: '/start /capture f.txt'")
     parser.add_argument("--capture", default=None,
                         help="fichier texte OCR (mode input-capture)")
     parser.add_argument("--valider", action="store_true",
@@ -317,6 +319,12 @@ def main():
     elif args.mode == "telegram-test":
         ok = run_frigate(P("ORCHESTRATOR", "CODEBASE", "notifier.py"), "--text", "PING du monde PARI 🛡️ — canal opérationnel.")
         sys.exit(0 if ok else 1)
+    elif args.mode == "workflow":
+        cmd = [sys.executable, P("ORCHESTRATOR", "CODEBASE", "workflow.py")]
+        if args.cmd:
+            cmd += [x for x in args.cmd.split() if x]
+        r = subprocess.run(cmd)
+        sys.exit(0 if r.returncode == 0 else 1)
     elif args.mode == "tickets":
         cmd = [sys.executable, P("F05_PACKAGER", "CODEBASE", "combinator.py"),
                "--tickets", str(args.combos),
@@ -331,6 +339,7 @@ def main():
         if r.returncode == 0:
             run_frigate(P("F05_PACKAGER", "CODEBASE", "preview2.py"))
         sys.exit(0 if r.returncode == 0 else 1)
+    elif args.mode == "input-capture":
         cmd = [sys.executable, P("F01_SENTINEL", "CODEBASE", "input_capture.py"),
                "--out-json", P("F01_SENTINEL", "OUT", "capture_parsed.json")]
         if args.capture:

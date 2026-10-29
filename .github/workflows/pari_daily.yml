@@ -16,10 +16,38 @@ name: pari-daily
 on:
   schedule:
     - cron: "30 6 * * *"   # 06:30 UTC — le matin, avant les matchs
-  workflow_dispatch: {}     # lancement manuel
+  workflow_dispatch:
+    # campagne déclenchée par l'opérateur (Telegram / bouton) — v2
+    inputs:
+      tickets_mode:
+        description: "Compose les tickets (1 = oui)"
+        default: "0"
+        required: false
+      budget_fc:
+        description: "Budget du jour en FC (backroll)"
+        default: "0"
+        required: false
+      surticket_fc:
+        description: "Mise du ticket sûr en FC"
+        default: "0"
+        required: false
+      combos:
+        description: "Nombre de tickets"
+        default: "3"
+        required: false
+      jambes:
+        description: "Matchs par ticket ex: 3:2:2"
+        default: ""
+        required: false
+      taux_fc_usd:
+        description: "Taux FC→USD (unités 1u=1% bankroll)"
+        default: ""
+        required: false
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   siege:
@@ -56,15 +84,35 @@ jobs:
             python ORCHESTRATOR/CODEBASE/orchestrator.py --mode demo
           fi
 
-      - name: Commit artefacts
+      - name: Tickets (v2, si demandé) — combinés + backroll + PREVIEW 2
+        env:
+          TICKETS_MODE: ${{ github.event.inputs.tickets_mode }}
+          BUDGET_FC: ${{ github.event.inputs.budget_fc }}
+          SURTICKET_FC: ${{ github.event.inputs.surticket_fc }}
+          COMBOS: ${{ github.event.inputs.combos }}
+          JAMBES: ${{ github.event.inputs.jambes }}
+          TAUX_FC_USD: ${{ github.event.inputs.taux_fc_usd }}
+        run: |
+          cd MONDES_FORGES/PARI
+          if [ "$TICKETS_MODE" = "1" ] && [ -f F03_FORGEWARD/OUT/top3.json ]; then
+            CMD="--combos ${COMBOS:-3} --budget-fc ${BUDGET_FC:-0} --surticket-fc ${SURTICKET_FC:-0}"
+            if [ -n "$JAMBES" ]; then CMD="$CMD --jambes $JAMBES"; fi
+            if [ -n "$TAUX_FC_USD" ]; then CMD="$CMD --taux-fc-usd $TAUX_FC_USD"; fi
+            echo "[tickets args] $CMD"
+            python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets $CMD
+          else
+            echo "[tickets] mode tickets non demandé (TICKETS_MODE=$TICKETS_MODE) — skip"
+          fi
+
+      - name: Commit artefacts (previews + tickets inclus)
         run: |
           git config user.name "IW_CUSTOS[bot]"
           git config user.email "custos@perturabo.iron"
           git add MONDES_FORGES/PARI
-          git diff --staged --quiet || git commit -m "🛡️ PARI: siège quotidien (artefacts radar/pack/dashboard)"
+          git diff --staged --quiet || git commit -m "🛡️ PARI: siège quotidien (artefacts radar/pack/dashboard/preview1/preview2/tickets)"
           git push
 
-      - name: Telegram — push du radar (+ pack si présent)
+      - name: Telegram — push du radar (+ pack si présent, + ticket final s'il existe)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -75,3 +123,42 @@ jobs:
           python ORCHESTRATOR/CODEBASE/notifier.py \
             --radar SHARED/OUT/RADAR.md \
             --pack F05_PACKAGER/OUT/pari_pack.json
+          # /data — les rangs Top 3 en message dédié (message spécial decisi,
+          # jamais noye dans le ticket final) :
+          if [ -f SHARED/OUT/TOP3.md ]; then
+            python ORCHESTRATOR/CODEBASE/notifier.py --text "DATA — Top 3 marchés + score commun:\n$(cat SHARED/OUT/TOP3.md)"
+          fi
+          #/TICKETS.md (résumé du ticket final si composé) :
+          if [ -f SHARED/OUT/TICKETS.md ]; then
+            python ORCHESTRATOR/CODEBASE/notifier.py --text "$(cat SHARED/OUT/TICKETS.md)"
+          fi
+          # liens des previews (Pages) — avec URL du site
+          SITE_URL="${{ steps.pages.outputs.page_url }}"
+          if [ -n "$SITE_URL" ]; then
+            python ORCHESTRATOR/CODEBASE/notifier.py \
+              --text "VUES :\n• PREVIEW 1 (données brutes): $SITE_URL/preview1.html\n• PREVIEW 2 (ticket final): $SITE_URL/preview2.html"
+          fi
+
+  pages:
+    needs: siege
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Préparer le site (previews + dashboard)
+        run: |
+          mkdir -p _site/jour
+          cp MONDES_FORGES/PARI/SHARED/OUT/*.html _site/ 2>/dev/null || true
+          cp MONDES_FORGES/PARI/SHARED/OUT/*.md _site/ 2>/dev/null || true
+          ls -la _site
+
+      - name: Upload artifact Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy Pages
+        id: pages
+        uses: actions/deploy-pages@v4

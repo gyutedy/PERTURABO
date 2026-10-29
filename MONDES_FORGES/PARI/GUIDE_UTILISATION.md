@@ -4,6 +4,76 @@ Tout ce qu'il faut savoir pour opérer le monde, pas à pas. (Warsmith = toi.)
 
 ---
 
+## 0. LE CYCLE DE CAMPAGNE v2 (Telegram → GitHub Actions → Pages)
+
+Le flux de campagne officiel. Tout est opérable **depuis Telegram** (PC et tel),
+avec une commande à chaque étape et les deux previews servies sur GitHub Pages.
+
+```
+/start → /capture (OCR du book) → /budget 6000 → /combos 3:3:2:2
+     → /valider-1 → PREVIEW 1 (données brutes) → relecture
+     → /valider-2 → PREVIEW 2 (ticket final) → /data → tickets posés → F06
+```
+
+### Les commandes de campagne
+
+| Commande | Ce que ça fait |
+|---|---|
+| `/start` | Ouvre la campagne du jour (reset propre) |
+| `/capture <fichier>` | Texte OCR de la capture du book → JSON reconstitué (A_VALIDE) — **relis-le, c'est la Porte 1** |
+| `/budget 6000 / 3000` | Budget du jour (FC) + mise du ticket sûr (optionnel) |
+| `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
+| `/valider-1` | Valide le JSON → carte → injection stats (si ligue couverte) → siège → **Top 3 + PREVIEW 1** |
+| `/data` | Les rangs du **Top 3 + score commun** en message spécial (hors ticket final) |
+| `/valider-2` | Compose les tickets + backroll → **PREVIEW 2 (ticket final)** |
+| `/status`, `/roi`, `/stop` | État de campagne, ROI F06, clôture |
+
+Équivalent terminal (si tu bosses depuis un PC sans bot) :
+```bash
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode workflow --cmd "/start /capture c.txt /budget 6000 /combos 3"
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 6000 --surticket-fc 3000
+```
+
+### Ce que le monde fait exactement à chaque étape
+
+1. **/capture** : parseur capte ligue/coupe, date, heure, matchs, tous les marchés
+   affichés (1X2, O/U toutes lignes, MT1/MTÉ/MT2, BTTS). Champs manquants → warning,
+   jamais deviné (Zero Data, Zero Calc). JSON reconstitué = à relire avant tout calcul.
+2. **/valider-1** : carte validée → tentative d'injection des **stats historiques**
+   (football-data.co.uk + ClubElo, sans clé) ; si la ligue n'est pas couverte → avertissement
+   explicite, le siège sortira NO BET tant que les mj/marques/encaisses manquent.
+   Puis F02 (Poisson/Dixon-Coles) → F03 (de-marging, EV, Kelly) → filtre qualitatif
+   (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html).
+3. **/valider-2** : tickets depuis la classe de fiabilité (ticket sûr = scores les plus
+   hauts, reste réparti ; match FAIBLE et NO BET/qualitatif exclus) + **backroll**
+   (budget jour, sur-ticket, division si > 4 jambes) → PREVIEW 2 (SHARED/OUT/preview2.html).
+4. **Placement** : tu poses les tickets chez Winner Bet, puis loggens F06
+   (`tracker.py add --file ticket.json`) — TOUS les tickets, gagnants comme perdants.
+
+### Les infos non binaires (blessures, fatigue, enjeux…)
+
+Fichiers `ARCHIVUM/fixtures/notes_qualitatives.json` (contrat schema_notes_qualitatives.json).
+Effets **bornés** — jamais dans les maths : exclusion de marchés, seuil EV relevé,
+NO BET recommandé. Détail dans la section TYRANT ci-dessous (contrat + table).
+
+### Les deux previews
+
+| | Fichier | Contenu |
+|---|---|---|
+| PREVIEW 1 | `SHARED/OUT/preview1.html` | données BRUTES : cotes reconstituées, probas froides, EV, Top 3 + score + bucket, notes non binaires, qualité data — menu déroulant par match |
+| PREVIEW 2 | `SHARED/OUT/preview2.html` | le TICKET FINAL : cartes de tickets, sur-ticket en or, budget alloué/reste, cotes et probas — hommage graphique PERTURABO |
+
+Les deux sont responsive (PC/téléphone). Sur GitHub Pages, le workflow `pari-daily`
+push `SHARED/OUT` dans le dossier Pages — les liens arrivent dans Telegram.
+
+### Oracle (clé premium, optionnel)
+
+`ORACLE_API_KEY` (Secret GitHub, OpenAI-compatible) est utilisé par TYRANT/HERALD
+**hors du job du monde forger**, pour le qualitatif et la rédaction — jamais pour les
+chiffres. Sans clé : le monde tourne à 100 %.
+
+---
+
 ## 1. Le premier lancé en 5 minutes (mode DEMO)
 
 ```bash

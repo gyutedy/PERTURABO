@@ -28,15 +28,24 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 ---
 
-## LES 2 MODES
+## LES MODES
 
 | Mode | Commande | Ce que ça fait |
 |---|---|---|
+| `input-capture` | `orchestrator.py --mode input-capture --capture c.txt [--valider]` | **Capture Winner Bet → OCR → JSON reconstitué** (ligue, date, heure, marchés, cotes) → validation Porte 1 → carte |
+| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /budget, /combos, /valider-1, /valider-2, /data, /status, /voi, /stop |
 | `radar` | `orchestrator.py --mode radar` | Scan de **toute la ligue** : classement de tous les matchs du jour (buts attendus, P(O2.5), P(MT2 > MT1)) → TOP 20 |
-| `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET |
+| `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET (+ filtre qualitatif + Top 3 + Preview 1) |
+| `tickets` | `orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 6000 --surticket-fc 3000` | **Combinés + backroll** (ticket sûr + reste divisé) → tickets.json + PREVIEW 2 |
 | `pack` | `orchestrator.py --mode pack` | Assemblage du pari pack final + dashboard HTML |
-| `tracker` | `orchestrator.py --mode ticket ...` | Ledger : tickets (gagnants ET perdants), ROI, calibration, pronostiqueurs |
-| `demo` | `orchestrator.py --mode demo` | Pipeline complet sur une ligue simulée (test) |
+| `demo` | `orchestrator.py --mode demo` | Pipeline complet sur une ligue simulée (test, incl. Top 3 + previews v2) |
+
+### Les deux previews (v2)
+
+| | Fichier | Contenu |
+|---|---|---|
+| PREVIEW 1 | `SHARED/OUT/preview1.html` | données brutes : cotes, probas froides, EV, **Top 3 marchés + score commun 01-10** (buckets HAUTE/MOYENNE/FAIBLE), notes non binaires, qualité data — menu déroulant par match, responsive |
+| PREVIEW 2 | `SHARED/OUT/preview2.html` | **ticket final** : cartes de tickets (sur-ticket = matchs au score le plus haut), backroll (budget alloué/reste) — charte PERTURABO, responsive |
 
 ---
 

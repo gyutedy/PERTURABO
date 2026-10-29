@@ -1,0 +1,61 @@
+# CONTRACTS — schema_ticket_final.json (v2)
+
+Le **ticket final** de la campagne (Phases 4+5) : composition des combinaisons +
+**backroll** (budget du jour opérateur). Producteur : `F05_PACKAGER/CODEBASE/combinator.py`
+(lecture top3.json). Consommateurs : Preview 2, Telegram (TICKETS.md), F06 TRACKER,
+l'opérateur chez Winner Bet.
+
+## Règles
+
+1. **Source** : uniquement le Top 3 forgé (pred VERDICT VALUE). Les matchs bucket
+   `FAIBLE` et NO BET recommandé (filtre qualitatif TYRANT) sont **exclus**.
+2. **Ticket sûr (SUR_TICKET)** : les matchs au score le plus élevé
+   (buckets HAUTE d'abord, puis densité du top3). Les autres tickets prennent
+   le reste, réparti équitablement.
+3. **Limite** : si le nb de jambes demandé dépasse `jambes_max` (défaut 4), le monde
+   **divise par deux les classes de fiabilité** (classe A puis B) — jamais une mosaïque
+   de 8 jambes (règle de complexité gagnée).
+4. **Backroll** (le budget du jour, en FC) :
+   - `budget_fc` + `surticket_fc` (le ticket sûr) → le reste divisé équitablement ;
+   - ou `mises_fc` explicites (« 3000:1000:1000 ») ;
+   - mise < `mise_min_fc` (100 FC par défaut) → warning « hors mise » (pas de mise posée) ;
+   - si `taux_fc_usd` est fourni, les mises sont converties en **unités**
+     (1u = 1% bankroll) pour le tracker F06 — jamais divisé par la devise dans le calcul.
+5. Le monde **N'ENVOIE PAS** le pari à un book — l'opérateur pose, F06 enregistre.
+6. **Ledger total** : TOUT ticket gagné OU perdu est log-ge par F06 (pas de choix).
+
+## Schéma
+
+```json
+{
+  "generated_at": "ISO8601",
+  "tickets": [
+    {
+      "rang_ticket": 1,
+      "classe": "SUR_TICKET | AUTRE | FILE_MIXTE",
+      "nb_jambes": 3,
+      "jambes": [
+        {"match_id": "M1", "match": "Arsenal vs Chelsea",
+         "selection": "u2.5", "selection_label": "Under 2.5",
+         "cote": 2.14, "p_modele": 0.748, "score_commun": 9.2}
+      ],
+      "cote_totale": 8.22,
+      "p_aggregee": 0.47,
+      "mise_fc": 3000.0,
+      "mise_units": null,          // si taux_fc_usd fourni → 1u = 1% bankroll
+      "retour_si_gagne_fc": 24660.0
+    }
+  ],
+  "budget": {"budget_fc": 6000, "alloue_fc": 6000, "reste_fc": 0, "taux_fc_usd": null},
+  "regles": {"jambes_max": 4, "mise_min_fc": 100,
+             "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
+             "division": "> 4 jambes → division en deux classes de fiabilité"},
+  "warnings": ["NO BET recommandé exclu...", "..."]
+}
+```
+
+## Rendus
+
+- `SHARED/OUT/preview2.html` — carte graphique du ticket final (charte PERTURABO,
+  responsive).
+- `SHARED/OUT/TICKETS.md` — résumé texte envoyé sur Telegram à la validation 2.
