@@ -15,6 +15,7 @@ avec une carte équipée de stats (scénario "stats injectées") et vérifie :
 """
 
 import os
+import shutil
 import subprocess
 import sys
 import json
@@ -94,6 +95,7 @@ def main():
     subprocess.run([PY, "ORCHESTRATOR/CODEBASE/orchestrator.py", "--mode", "siege",
                     "--fixtures", carte], capture_output=True, text=True, cwd=WORLD,
                    env=ENV, timeout=600)
+    shutil.copy(carte, p("ARCHIVUM", "fixtures", "matches.json"))
     t3 = json.loads(rd(p("F03_FORGEWARD", "OUT", "top3.json")) or "{}")
     ok = t3.get("matchs") and max(m.get("score_commun", 0) for m in t3["matchs"]) >= 5
     check("FINAL.top3_peuple", ok, f"{len(t3.get('matchs', []))} matchs classés")

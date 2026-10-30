@@ -1142,3 +1142,5 @@
 ## [2026-10-30T17:16:24Z] F05 — check-out — status: processing
 
 ## [2026-10-30T17:16:24Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:ee72adf2ca7515596b2544d8da045748 — status:done
+
+## [2026-10-30T17:55:00Z] v2.2.3 — e2e_final aligne carte stats dans matches.json apres siege (garde prod inchangee). e2e_final 13/13, e2e_listen 30/30. Autre sandbox credits a sec au git checkout artefacts. Operateur : /data ; ne pas /valider-2 si NO BET.

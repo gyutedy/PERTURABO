@@ -59,7 +59,7 @@
 
 ## ETAT v2.2 — ECOUTE TELEGRAM LIVE (2026-10-30)
 
-- [x] **Phase 8** : relais Cloudflare Worker (`ORCHESTRATOR/LISTEN`) + Action `pari_listen.yml` + inbox `F01_SENTINEL/IN/capture_telegram.md` + contrat `schema_listen.json`. `/capture` Telegram = tableau markdown **dans le meme message**. e2e_listen 25/25 (zero reseau). png/pdf + KV hors v1.
+- [x] **Phase 8** : relais Cloudflare Worker (`ORCHESTRATOR/LISTEN`) + Action `pari_listen.yml` + inbox `F01_SENTINEL/IN/capture_telegram.md` + contrat `schema_listen.json`. `/capture` Telegram = tableau markdown **dans le meme message**. e2e_listen 30/30 (zero reseau). png/pdf + KV hors v1.
 - [x] **Worker deploye** : `https://pari-listen.pari-listen.workers.dev` — webhook Telegram pose avec `secret_token`.
 - [x] **Repo vivant** : `gyutedy/PERTURABO` branche `pari-forge-perturabo-xs4c` (`GH_OWNER=gyutedy`). Ancien compte `jfbjfojfonf` = Actions desactive (`Actions has been disabled for this user`) — ne plus dispatcher la.
 - [x] **`pari_listen.yml` aussi sur default branch** `v2-live-vox-c` (GitHub n'indexe workflow_dispatch que depuis la default). Le job checkout `GH_REF=pari-forge-perturabo-xs4c`.
@@ -68,10 +68,13 @@
 - [x] **Premier /start LIVE OK** (2026-10-30) : ACK Worker + message `Campagne **PARI-20261030** ouverte.` Campagne ouverte, en attente capture.
 - [x] **v2.2.1 parseur markdown Telegram** (2026-10-30) : `_normalize_md_table` reassembles les rangs casses (`<br>` → newline). Prefix junk (`. |`) ignore. `Inde - IFL Equipe vs Equipe` separe competition/match. `workflow.py` passe le chemin inbox (plus `fichier` vide). Pas de scrape Winner.bet.
 - [x] **v2.2.2 siege LIVE** (2026-10-30) : `/valider-1` force `PARI_AUTO_GATES=1` (workflow.py + `pari_listen.yml`) → F02/F03/top3 ecrasent la demo. `/data` refuse un TOP3 Cyclops. `/valider-2` refuse si 0 match eligible. `Aujourd'hui` → date UTC. `inject_stats` scanne toutes les ligues de la carte (whitelist E0/SP1/I1/D1/F1). forgeward emet NO_BET si analyse absente. Pas de scrape.
+- [x] **v2.2.3 e2e_final aligne** (2026-10-30) : apres `/valider-1` le test copie la carte stats (`e2e_final_carte.json`) dans `matches.json` puis siege → `/valider-2` compose 3 tickets. Garde prod inchangee (carte live vs TOP3 demo = refuse). e2e_final 13/13, e2e_listen 30/30. Autre sandbox a plante sur credits au `git checkout` artefacts — termine ici.
 
-**Prochaine etape operateur** : `/valider-1` de nouveau (ecrase TOP3 demo). Attendre NO BET sur IFL/Iran/Israel. Ne pas `/valider-2`. Pour un siege chiffré : recapture une ligue whitelist (PL/LaLiga/Serie A/Bundesliga/Ligue 1).
+**Campagne LIVE 2026-10-30** : `/start` → `/capture` (Konyaspor, Ligue 1, Bundesliga, LaLiga, Championship…) → `/budget 3000` → `/combos 4` → `/valider-1` OK (warning stats + VALIDATION 1). `/valider-2` pas encore.
 
-**Handoff prochain agent** : ne pas relancer wrangler/setWebhook. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
+**Prochaine etape operateur** : `/data` pour lire le Top 3. Si NO BET (ligues hors whitelist / stats absentes) → ne pas `/valider-2`. Pour un siege chiffre : recapture une ligue whitelist (PL/LaLiga/Serie A/Bundesliga/Ligue 1) puis `/valider-1` `/valider-2`.
+
+**Handoff prochain agent** : ne pas relancer wrangler/setWebhook. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Ne pas committer les artefacts e2e (OUT/STATE). Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
