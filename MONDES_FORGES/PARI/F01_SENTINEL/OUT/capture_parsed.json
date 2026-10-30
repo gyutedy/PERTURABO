@@ -2,22 +2,23 @@
   "captures": [
     {
       "id": "BLOC_001",
-      "competition": "Premier League - England 2026-10-29 18:00",
-      "date": "2026-10-29",
-      "heure": "18:00",
+      "competition": "Inde - IFL",
+      "date": null,
+      "heure": "14:00",
       "matchs": [
         {
           "id": "M1",
-          "dom": "Arsenal",
-          "ext": "Chelsea",
+          "dom": "Real Kashmir",
+          "ext": "Nagaland United SC",
           "cotes": {
-            "o2.5": 1.7,
-            "u2.5": 2.05,
-            "mt1": 2.1,
-            "mt2": 2.2,
-            "1": 1.85,
-            "X": 3.6,
-            "2": 4.2
+            "1": 1.41,
+            "X": 4.6,
+            "2": 5.5,
+            "u2.5": 2.37,
+            "o2.5": 1.5,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
           },
           "marches_disponibles": [
             "1",
@@ -25,30 +26,9 @@
             "X",
             "mt1",
             "mt2",
+            "mte",
             "o2.5",
             "u2.5"
-          ],
-          "warnings": [
-            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
-          ]
-        },
-        {
-          "id": "M2",
-          "dom": "Liverpool",
-          "ext": "Everton",
-          "cotes": {
-            "1": 1.55,
-            "X": 4.1,
-            "2": 6.0,
-            "btts": 1.95,
-            "btts_no": 1.85
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "btts",
-            "btts_no"
           ],
           "warnings": []
         }
@@ -57,37 +37,129 @@
     },
     {
       "id": "BLOC_002",
-      "competition": "Ligue 1 - France 19:45",
-      "date": "2026-10-29",
-      "heure": "19:45",
+      "competition": "Iran - Pro League",
+      "date": null,
+      "heure": "14:00",
       "matchs": [
         {
-          "id": "M3",
-          "dom": "Monaco",
-          "ext": "Bottled",
+          "id": "M2",
+          "dom": "Nassaji Mazandaran FC",
+          "ext": "Persepolis FC",
           "cotes": {
-            "o1.5": 1.25,
-            "u1.5": 3.9,
-            "1": 1.62,
-            "X": 3.8,
-            "2": 5.1
+            "1": 8.0,
+            "X": 3.7,
+            "2": 1.41,
+            "u2.5": 1.45,
+            "o2.5": 2.5,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
           },
           "marches_disponibles": [
             "1",
             "2",
             "X",
-            "o1.5",
-            "u1.5"
+            "mt1",
+            "mt2",
+            "mte",
+            "o2.5",
+            "u2.5"
           ],
-          "warnings": [
-            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
-          ]
+          "warnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_003",
+      "competition": "Israël - National League",
+      "date": null,
+      "heure": "14:00",
+      "matchs": [
+        {
+          "id": "M3",
+          "dom": "Hapoel Acre FC",
+          "ext": "Hapoel Rishon Lezion FC",
+          "cotes": {
+            "1": 6.0,
+            "X": 4.4,
+            "2": 1.4,
+            "u2.5": 2.22,
+            "o2.5": 1.56,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte",
+            "o2.5",
+            "u2.5"
+          ],
+          "warnings": []
+        },
+        {
+          "id": "M4",
+          "dom": "Hapoel Afula FC",
+          "ext": "Maccabi Ironi Kiryat Gat",
+          "cotes": {
+            "1": 1.98,
+            "X": 3.45,
+            "2": 3.2,
+            "u2.5": 1.93,
+            "o2.5": 1.75,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte",
+            "o2.5",
+            "u2.5"
+          ],
+          "warnings": []
+        },
+        {
+          "id": "M5",
+          "dom": "Maccabi Achi Nazareth ...",
+          "ext": "FC Kafr Qasim",
+          "cotes": {
+            "1": 2.72,
+            "X": 3.3,
+            "2": 2.27,
+            "u2.5": 1.94,
+            "o2.5": 1.74,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte",
+            "o2.5",
+            "u2.5"
+          ],
+          "warnings": []
         }
       ],
       "warnings": []
     }
   ],
   "warnings": [],
-  "statut": "VALIDE",
-  "n_matchs": 3
+  "statut": "A_VALIDER",
+  "n_matchs": 5,
+  "source_format": "text+markdown_table"
 }

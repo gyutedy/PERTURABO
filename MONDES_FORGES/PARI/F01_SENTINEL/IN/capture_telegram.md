@@ -1,4 +1,4 @@
-. | Compétition & Match | Horaire | 1 | X | 2 | Ligne (Total) | Moins | Plus | 1st | Égal | 2nd |
+| Compétition & Match | Horaire | 1 | X | 2 | Ligne (Total) | Moins | Plus | 1st | Égal | 2nd |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Inde - IFL<br>Real Kashmir vs Nagaland United SC | Aujourd'hui 14:00 | 1.41 | 4.60 | 5.50 | 2.5 | 2.37 | 1.50 | 3.10 | 3.00 | 2.10 |
 | Iran - Pro League<br>Nassaji Mazandaran FC vs Persepolis FC | Aujourd'hui 14:00 | 8.00 | 3.70 | 1.41 | 2.5 | 1.45 | 2.50 | 3.10 | 3.00 | 2.10 |
