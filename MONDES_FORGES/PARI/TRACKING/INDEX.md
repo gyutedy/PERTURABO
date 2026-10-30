@@ -13,6 +13,8 @@ Cartographie des journaux du monde.
 | `ORCHESTRATOR/LISTEN/` | Relais webhook Telegram (Worker + parse.py) | Cloudflare / e2e_listen |
 | `F01_SENTINEL/IN/capture_telegram.md` | Inbox capture texte colle depuis Telegram | pari_listen.yml |
 | `CONTRACTS/schema_listen.json` | Contrat update Telegram → {cmd, capture_text, chat_id} | Worker + parse.py |
+| Repo vivant | `gyutedy/PERTURABO` branche `pari-forge-perturabo-xs4c` | Worker GH_OWNER |
+| Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | wrangler deploy |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |
 | `F01_SENTINEL/F01_LOG.md` | Collectes + nettoyages de donnees | F01 |
 | `F01_SENTINEL/OUT/capture_parsed.json` | JSON reconstitue de la capture (txt/md/png/pdf/docx) | F01 input_capture |

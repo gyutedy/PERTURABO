@@ -9,11 +9,13 @@ Tout ce qu'il faut savoir pour opérer le monde, pas à pas. (Warsmith = toi.)
 Le flux de campagne officiel. Tout est opérable **depuis Telegram** (PC et tel),
 avec une commande à chaque étape et les deux previews servies sur GitHub Pages.
 
-**Ecoute Telegram (Phase 8)** : Cloudflare Worker (`ORCHESTRATOR/LISTEN`) recoit
-le webhook, filtre `chat_id`, ACK, puis `workflow_dispatch` `pari_listen.yml`.
-GitHub execute `workflow.py` et `notifier.py` repond. Sans Worker deploye +
-`setWebhook`, `/start` dans le chat n'atteint pas le siege (le bot savait
-envoyer, pas ecouter). Runbook : `ORCHESTRATOR/LISTEN/README.md`.
+**Ecoute Telegram (Phase 8) LIVE depuis 2026-10-30** : Cloudflare Worker
+(`ORCHESTRATOR/LISTEN`, URL `https://pari-listen.pari-listen.workers.dev`) recoit
+le webhook, filtre `chat_id`, ACK, puis `workflow_dispatch` `pari_listen.yml`
+sur **`gyutedy/PERTURABO`** (branche `pari-forge-perturabo-xs4c`). GitHub execute
+`workflow.py` et `notifier.py` repond via `env_pari` (secrets GitHub vides
+ignores). Runbook : `ORCHESTRATOR/LISTEN/README.md`. `/start` Telegram a deja
+ouvert `PARI-20261030`.
 
 ```
 Telegram /start → Worker → pari_listen.yml → workflow.py → notifier

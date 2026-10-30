@@ -12,7 +12,7 @@ npx wrangler login
 npx wrangler deploy
 ```
 
-Note l'URL : `https://pari-listen.<compte>.workers.dev`
+URL LIVE : `https://pari-listen.pari-listen.workers.dev`
 
 ## 2. Secrets Worker (jamais dans git)
 
@@ -27,21 +27,19 @@ npx wrangler secret put GITHUB_DISPATCH_TOKEN
 `TELEGRAM_WEBHOOK_SECRET` = chaine aleatoire (header `X-Telegram-Bot-Api-Secret-Token`).
 Repo cible : `gyutedy/PERTURABO` (`GH_OWNER` dans wrangler.toml).
 
-## 3. Secrets GitHub (repo)
+## 3. Secrets GitHub (repo) — optionnels
 
-Settings → Secrets and variables → Actions :
-
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
-
-(deja prevus par `pari_daily.yml`)
+`notifier.py` charge `MONDES_FORGES/PARI/env_pari` si `TELEGRAM_*` sont vides.
+Ne PAS creer de secrets GitHub vides (ils masquaient `env_pari` avant le fix
+2026-10-30). Secrets Worker restent obligatoires (TELEGRAM_BOT_TOKEN,
+TELEGRAM_CHAT_ID, TELEGRAM_WEBHOOK_SECRET, GITHUB_DISPATCH_TOKEN = PAT gyutedy).
 
 ## 4. Brancher le webhook Telegram
 
 ```bash
 # TOKEN = TELEGRAM_BOT_TOKEN, SECRET = TELEGRAM_WEBHOOK_SECRET
 curl -s "https://api.telegram.org/bot${TOKEN}/setWebhook" \
-  -d "url=https://pari-listen.<compte>.workers.dev" \
+  -d "url=https://pari-listen.pari-listen.workers.dev" \
   -d "secret_token=${SECRET}"
 ```
 

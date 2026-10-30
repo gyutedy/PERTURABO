@@ -112,7 +112,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 - **Moteur** : Python pur (stdlib), tournant partout — GitHub Actions, Replit, terminal
 - **Dashboard** : HTML statique + Chart.js CDN, charte Iron Warriors (bleu/or/acier), mode discret
-- **Canal** : Telegram privé bidirectionnel (Cloudflare Worker webhook → `pari_listen.yml` → `workflow.py` → `notifier.py`) + GitHub Pages (dashboard). Capture v1 = texte colle. Sans Worker + `setWebhook`, le bot envoie mais n'ecoute pas.
+- **Canal** : Telegram privé bidirectionnel LIVE (Worker `https://pari-listen.pari-listen.workers.dev` → `pari_listen.yml` sur `gyutedy/PERTURABO` → `workflow.py` → `notifier.py` via `env_pari`). Capture v1 = texte colle. Pages pas encore active (non bloquant).
 - **Sources** : whitelist — Football-Data.co.uk, ClubElo, API-Football, football-data.org, Understat. FBref xG = MORT (donnée retirée 01/2026) — donc non utilisée.
 
 *Fer au-dedans, Fer au-dehors. Aucune hérésie ne survivra au siège.*

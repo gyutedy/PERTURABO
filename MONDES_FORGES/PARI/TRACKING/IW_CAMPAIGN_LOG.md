@@ -1102,3 +1102,5 @@
 ## [2026-10-29T08:26:36Z] F05 — check-in — /workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:80552a2bc74a5923a376bd0ee9c8108b — status:done
 
 ## [2026-10-29T13:00:00Z] Phase 8 — ECOUTE TELEGRAM posee (Worker + pari_listen.yml + inbox capture texte). e2e_listen 23/23. Webhook PAS encore set — Warsmith doit wrangler deploy + setWebhook avant /start.
+
+## [2026-10-30T12:20:01Z] /start LIVE OK — Campagne PARI-20261030 ouverte via Worker + pari_listen.yml sur gyutedy/PERTURABO. notifier.py corrige (env_pari si secret vide). Pages 404 non bloquant. e2e_listen 25/25. Prochaine etape : /capture markdown meme message.

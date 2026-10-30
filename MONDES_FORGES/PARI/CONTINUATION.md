@@ -57,12 +57,19 @@
 - [x] **Phase C** : workflow Telegram + GitHub Actions `pari-daily` deja en place (Pages + notifier). `/capture` accepte tous les formats.
 - [x] **Phase D** : docs (GUIDE, README, CONTINUATION, contrat schema_input_capture) + e2e_multiformat 9/9 + regression groupe 1 9/9.
 
-## ETAT v2.2 — ECOUTE TELEGRAM (2026-10-29)
+## ETAT v2.2 — ECOUTE TELEGRAM LIVE (2026-10-30)
 
-- [x] **Phase 8** : relais Cloudflare Worker (`ORCHESTRATOR/LISTEN`) + Action `pari_listen.yml` + inbox `F01_SENTINEL/IN/capture_telegram.md` + contrat `schema_listen.json`. `/capture` Telegram = tableau markdown **dans le meme message**. e2e_listen 23/23 (zero reseau). png/pdf + KV hors v1.
-- [ ] **A LA MAIN (Warsmith)** : `wrangler deploy` + 4 secrets Worker + `setWebhook`. Tant que ce n'est pas fait, `/start` dans Telegram n'atteint pas le siege.
+- [x] **Phase 8** : relais Cloudflare Worker (`ORCHESTRATOR/LISTEN`) + Action `pari_listen.yml` + inbox `F01_SENTINEL/IN/capture_telegram.md` + contrat `schema_listen.json`. `/capture` Telegram = tableau markdown **dans le meme message**. e2e_listen 25/25 (zero reseau). png/pdf + KV hors v1.
+- [x] **Worker deploye** : `https://pari-listen.pari-listen.workers.dev` — webhook Telegram pose avec `secret_token`.
+- [x] **Repo vivant** : `gyutedy/PERTURABO` branche `pari-forge-perturabo-xs4c` (`GH_OWNER=gyutedy`). Ancien compte `jfbjfojfonf` = Actions desactive (`Actions has been disabled for this user`) — ne plus dispatcher la.
+- [x] **`pari_listen.yml` aussi sur default branch** `v2-live-vox-c` (GitHub n'indexe workflow_dispatch que depuis la default). Le job checkout `GH_REF=pari-forge-perturabo-xs4c`.
+- [x] **Fix notifier** : GitHub injectait `TELEGRAM_*` vides → `setdefault` ignorait `env_pari`. `notifier.py` ecrase maintenant les secrets vides. Telegram recoit la reponse.
+- [x] **Pages** : `deploy-pages` en `continue-on-error` (Pages pas active sur gyutedy → 404, ne doit plus faire echouer le run).
+- [x] **Premier /start LIVE OK** (2026-10-30) : ACK Worker + message `Campagne **PARI-20261030** ouverte.` Campagne ouverte, en attente capture.
 
-Pret pour le **premier test reel** une fois le webhook pose : `/start` puis coller le markdown Winner Bet sous `/capture`, puis `/budget` `/combos` `/valider-1`. Sans stats historiques le siege sort NO BET — c'est la doctrine, pas un bug. CLI fichier (`/capture F01_SENTINEL/OUT/capture_winnerbet.md`) reste valide.
+**Prochaine etape operateur (PAS de code)** : coller le tableau Winner Bet dans le **meme** message Telegram que `/capture`, puis `/budget 6000` `/combos 3` `/valider-1`. Sans stats historiques → NO BET (doctrine). CLI fichier reste valide.
+
+**Handoff prochain agent** : ne pas relancer wrangler/setWebhook. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
