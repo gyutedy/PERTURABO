@@ -9,7 +9,7 @@ Cartographie des journaux du monde.
 | `TYRANT/TYRANT_LOG.md` | Verdicts de carte GO/NO-GO | TYRANT |
 | `TYRANT/QUALITATIVE_LOG.md` | Verdicts du filtre non-binaire borné (exclusions, seuils, NO BET rec.) | TYRANT qualitative |
 | `F05_TICKETS/F05_TICKETS_LOG.md` | Compositions de tickets + backroll par campagne (v2) | F05 combinator |
-| `SHARED/STATE/campagne.json` | État du cycle de campagne Telegram (/start → /valider-2). v2.2.2 AUTO_GATES ; v2.2.3 e2e_final aligne carte stats | workflow.py |
+| `SHARED/STATE/campagne.json` | État du cycle de campagne Telegram (/start → /valider-2). v2.2.2 AUTO_GATES ; v2.2.3 e2e_final aligne carte stats ; v2.2.4 siege ignore filtered stale | workflow.py |
 | `ORCHESTRATOR/LISTEN/` | Relais webhook Telegram (Worker + parse.py) | Cloudflare / e2e_listen |
 | `F01_SENTINEL/IN/capture_telegram.md` | Inbox capture texte colle depuis Telegram | pari_listen.yml |
 | `CONTRACTS/schema_listen.json` | Contrat update Telegram → {cmd, capture_text, chat_id} | Worker + parse.py |

@@ -184,6 +184,8 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
 
     # — Phase 2 (v2) : filtre qualitatif borné SI des notes non binaires existent —
     notes_path = P("ARCHIVUM", "fixtures", "notes_qualitatives.json")
+    filtered_path = P("F03_FORGEWARD", "OUT", "predictions_filtered.json")
+    used_filter = False
     if os.path.exists(notes_path):
         custos("check-out", "--frigate", "TYRANT")
         qualitative_out = P("TYRANT", "OUT", "qualitative_verdict.json")
@@ -192,15 +194,14 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
                     "--notes", notes_path,
                     "--analysis", analysis_out)
         custos("check-in", "--frigate", "TYRANT", "--output", qualitative_out)
+        used_filter = os.path.exists(filtered_path)
 
-    # — Phase 3 (v2) : Top 3 marchés + score commun + Preview 1 (données brutes) —
-    pred_source = (P("F03_FORGEWARD", "OUT", "predictions_filtered.json")
-                   if os.path.exists(P("F03_FORGEWARD", "OUT", "predictions_filtered.json"))
-                   else pred_out)
-    run_frigate(P("F03_FORGEWARD", "CODEBASE", "top3.py"),
-                "--predictions", pred_source,
-                "--analysis", analysis_out,
-                "--notes-filter", P("TYRANT", "OUT", "qualitative_verdict.json"))
+    # — Phase 3 (v2) : Top 3 — jamais un filtered.json d'une campagne precedente —
+    pred_source = filtered_path if used_filter else pred_out
+    top3_args = ["--predictions", pred_source, "--analysis", analysis_out]
+    if used_filter:
+        top3_args += ["--notes-filter", P("TYRANT", "OUT", "qualitative_verdict.json")]
+    run_frigate(P("F03_FORGEWARD", "CODEBASE", "top3.py"), *top3_args)
     run_frigate(P("F05_PACKAGER", "CODEBASE", "preview1.py"),
                 "--predictions", pred_source,
                 "--carte", fixtures)

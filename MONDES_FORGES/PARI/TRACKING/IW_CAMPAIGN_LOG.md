@@ -1172,3 +1172,5 @@
 ## [2026-10-30T19:12:53Z] F05 — check-out — status: processing
 
 ## [2026-10-30T19:12:53Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:1a76b41c26826ccd00cefc9249395a93 — status:done
+
+## [2026-10-30T20:05:00Z] v2.2.4 — siege ignore predictions_filtered.json stale (Cyclops 29/10). Top 3 = predictions.json de la capture sauf si notes qualitatives cette campagne. /valider-1 --fixtures matches.json. Operateur : /stop /start /capture /budget 3000 /combos 4 /valider-1 /data. Ne pas /valider-2 si Cyclops.

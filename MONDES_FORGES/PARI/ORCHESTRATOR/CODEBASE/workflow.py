@@ -228,7 +228,8 @@ def cmd_valider1(st, arg):
     if not stats_ok:
         tell("⚠️ Stats historiques absentes (ligue hors whitelist E0/SP1/I1/D1/F1 ou réseau) — "
              "Zero Data, Zero Calc : le siège sort NO BET. Pas de ticket.")
-    ok2, _ = run_orch("--mode", "siege", extra_env={"PARI_AUTO_GATES": "1"})
+    ok2, _ = run_orch("--mode", "siege", "--fixtures", carte_path,
+                      extra_env={"PARI_AUTO_GATES": "1"})
     if not ok2:
         tell("⛔ Siège en échec — corrige la carte, puis `/valider-1`."); return
     st["previews"]["preview1"] = "SHARED/OUT/preview1.html"

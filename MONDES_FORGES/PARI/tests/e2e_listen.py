@@ -146,8 +146,12 @@ def main():
         and 'run_orch("--mode", "input-capture", "--capture", fichier)' not in wf_src,
     )
     check("L10.valider1_auto_gates", 'extra_env={"PARI_AUTO_GATES": "1"}' in wf_src)
+    check("L10.valider1_fixtures_capture", '"--fixtures", carte_path' in wf_src)
     check("L10.valider2_refuse_nobet", "VALIDATION 2 refusee" in wf_src)
     check("L10.data_refuse_demo", "TOP3 desynchronise" in wf_src)
+    orch_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "orchestrator.py"), encoding="utf-8").read()
+    check("L10.siege_filtre_campagne",
+          "used_filter" in orch_src and "filtered_path if used_filter" in orch_src)
 
     import notifier  # noqa: E402
     old_tok = os.environ.get("TELEGRAM_BOT_TOKEN")

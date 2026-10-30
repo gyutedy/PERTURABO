@@ -54,9 +54,11 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
 2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
    E0/SP1/I1/D1/F1 seulement). Puis siège complet (F02→F03→top3) même sur GitHub Actions.
-    Ligue hors whitelist (IFL, Iran, Israël…) → TOP3 **NO BET** pour CES matchs, jamais
-    la demo Cyclops/Lions. `/valider-2` est alors refuse. e2e_final (v2.2.3) aligne
-    la carte stats dans `matches.json` apres le siege de test ; la garde prod reste.
+     Ligue hors whitelist (IFL, Iran, Israël…) → TOP3 **NO BET** pour CES matchs, jamais
+     la demo Cyclops/Lions. `/valider-2` est alors refuse. v2.2.4 : le siege n'utilise
+     `predictions_filtered.json` que si des notes qualitatives ont tourne **cette** campagne
+     (plus de Top 3 Cyclops stale). e2e_final (v2.2.3) aligne la carte stats dans
+     `matches.json` apres le siege de test ; la garde prod reste.
    Puis F02 (Poisson/Dixon-Coles) → F03 (de-marging, EV, Kelly) → filtre qualitatif
    (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html).
 3. **/valider-2** : tickets depuis la classe de fiabilité (ticket sûr = scores les plus

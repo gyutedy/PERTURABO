@@ -65,8 +65,15 @@ def main():
             os.remove(f)
     if p("TYRANT", "OUT", "qualitative_verdict.json") and os.path.exists(p("TYRANT", "OUT", "qualitative_verdict.json")):
         os.remove(p("TYRANT", "OUT", "qualitative_verdict.json"))
-    if p("F03_FORGEWARD", "OUT", "predictions_filtered.json") and os.path.exists(p("F03_FORGEWARD", "OUT", "predictions_filtered.json")):
-        os.remove(p("F03_FORGEWARD", "OUT", "predictions_filtered.json"))
+    stale_f = p("F03_FORGEWARD", "OUT", "predictions_filtered.json")
+    os.makedirs(os.path.dirname(stale_f), exist_ok=True)
+    with open(stale_f, "w", encoding="utf-8") as f:
+        json.dump({
+            "generated_at": "2026-10-29T08:26:33Z",
+            "seuil_ev_applique": 0.08,
+            "ligue_tier": "exotique",
+            "predictions": [{"id": "M1", "match": "Cyclops vs Trench", "selections": []}],
+        }, f, indent=2)
 
     cap = p("F01_SENTINEL", "OUT", "e2e_capture.txt")
 
