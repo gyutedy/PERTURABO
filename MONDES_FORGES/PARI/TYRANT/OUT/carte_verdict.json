@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-30T19:12:53Z",
+  "generated_at": "2026-10-30T22:06:06Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 1,
-  "no_bet": 18,
-  "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 1 GO / 18 NO BET. Gate 1 à valider par le Warsmith.",
+  "go": 0,
+  "no_bet": 9,
+  "recommandation": "NO GO — aucune proie utilisable",
+  "justification": "Tier: exotique. 0 GO / 9 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Konyaspor vs Galatasaray Istanbul",
+      "match": "Criciúma EC SC vs AA Ponte Preta SP",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -20,7 +20,7 @@
     },
     {
       "id": "M2",
-      "match": "Arminia Bielefeld vs Eintracht Braunschweig",
+      "match": "Nacional AC Muriaé MG vs Venda Nova FC MG",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -30,7 +30,7 @@
     },
     {
       "id": "M3",
-      "match": "Energie Cottbus vs VfL Bochum",
+      "match": "Club Guaraní Asunción vs CS 2 de Mayo",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -40,34 +40,7 @@
     },
     {
       "id": "M4",
-      "match": "Le Havre AC vs Paris Saint-Germain",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M5",
-      "match": "OGC Nice vs Stade Rennais FC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M6",
-      "match": "SV 07 Elversberg vs FSV Mainz",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (3 matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M7",
-      "match": "Villarreal CF vs Espanyol Barcelona",
+      "match": "Sportivo Trinidense vs Rubio Ñu",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -76,8 +49,18 @@
       ]
     },
     {
-      "id": "M8",
-      "match": "Sheffield United vs Wrexham AFC",
+      "id": "M5",
+      "match": "Louisville City FC vs Pittsburgh Riverhounds",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M7",
+      "match": "Charleston Battery vs Rhode Island FC",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -87,15 +70,7 @@
     },
     {
       "id": "M9",
-      "match": "Lille OSC vs Racing Club De Lens",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M10",
-      "match": "Casa Pia Lisbon vs Sporting CP",
+      "match": "Tampa Bay Rowdies vs Miami FC",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -104,8 +79,8 @@
       ]
     },
     {
-      "id": "M11",
-      "match": "Erbil SC vs Ghaz Al-Shamal SC",
+      "id": "M6",
+      "match": "SC Corinthians SP vs Mirassol FC SP",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -114,78 +89,8 @@
       ]
     },
     {
-      "id": "M12",
-      "match": "Al Wehdat vs AL Arabi",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M13",
-      "match": "Al Gharafa SC vs Qatar SC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M14",
-      "match": "Al Sadd SC vs Al-Shamal",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M15",
-      "match": "ASO Chlef vs ES Setif",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M16",
-      "match": "JS Kabylie vs Js El Biar",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M17",
-      "match": "NK Slaven Belupo vs NK Istra 1961",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M18",
-      "match": "KS Cracovia Krakow vs LKP Motor Lublin",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M19",
-      "match": "SK Rapid Wien vs FC Sudburgenland",
+      "id": "M8",
+      "match": "Union Omaha SC vs Chattanooga Red Wolves SC",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",

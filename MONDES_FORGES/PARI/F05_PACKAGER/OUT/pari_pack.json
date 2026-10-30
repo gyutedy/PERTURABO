@@ -1,185 +1,68 @@
 {
-  "generated_at": "2026-10-30T19:12:53Z",
+  "generated_at": "2026-10-30T22:06:06Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 10",
-  "top_picks": [
-    {
-      "match_id": "M9",
-      "match": "Orbital vs Rampart",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 2.1,
-      "p_modele": 0.8448,
-      "ev": 0.7741,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 1
-    },
-    {
-      "match_id": "M15",
-      "match": "Forge FC vs Vigil",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 3.96,
-      "p_modele": 0.429,
-      "ev": 0.6988,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 2
-    },
-    {
-      "match_id": "M4",
-      "match": "Legion vs Utd Iron",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 1.93,
-      "p_modele": 0.8569,
-      "ev": 0.6538,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 3
-    },
-    {
-      "match_id": "M4",
-      "match": "Legion vs Utd Iron",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 3.94,
-      "p_modele": 0.4173,
-      "ev": 0.6442,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 4
-    },
-    {
-      "match_id": "M16",
-      "match": "City Steel vs Rampart",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 2.24,
-      "p_modele": 0.7278,
-      "ev": 0.6303,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 5
-    },
-    {
-      "match_id": "M15",
-      "match": "Forge FC vs Vigil",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 1.88,
-      "p_modele": 0.8571,
-      "ev": 0.6113,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 6
-    },
-    {
-      "match_id": "M8",
-      "match": "Utd Iron vs Sapper",
-      "marche": "1X2",
-      "selection": "2",
-      "selection_label": "Victoire Extérieur",
-      "cote": 6.28,
-      "p_modele": 0.2561,
-      "ev": 0.6083,
-      "mise_units": 2.88,
-      "note_risque": "qualité data: haute",
-      "rang": 7
-    },
+  "titre": "DIRECTION DES SIÈGES — TOP 0",
+  "top_picks": [],
+  "no_bet": [
     {
       "match_id": "M1",
-      "match": "Cyclops vs Trench",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 2.14,
-      "p_modele": 0.7481,
-      "ev": 0.6009,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 8
+      "match": "Criciúma EC SC vs AA Ponte Preta SP",
+      "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M10",
-      "match": "Orbital vs Athletic",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 3.55,
-      "p_modele": 0.4505,
-      "ev": 0.5993,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 9
+      "match_id": "M2",
+      "match": "Nacional AC Muriaé MG vs Venda Nova FC MG",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M3",
+      "match": "Club Guaraní Asunción vs CS 2 de Mayo",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M4",
+      "match": "Sportivo Trinidense vs Rubio Ñu",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M5",
+      "match": "Louisville City FC vs Pittsburgh Riverhounds",
+      "raison": "aucune cote fournie"
     },
     {
       "match_id": "M7",
-      "match": "Utd Iron vs Athletic",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 2.06,
-      "p_modele": 0.7752,
-      "ev": 0.5969,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 10
-    }
-  ],
-  "no_bet": [
+      "match": "Charleston Battery vs Rhode Island FC",
+      "raison": "aucune cote fournie"
+    },
     {
-      "match_id": "M2",
-      "match": "Lions vs Garrison",
-      "raison": "EV < seuil sur tous les marchés"
-    }
-  ],
-  "combines": [
+      "match_id": "M9",
+      "match": "Tampa Bay Rowdies vs Miami FC",
+      "raison": "aucune cote fournie"
+    },
     {
-      "jambes": [
-        {
-          "match_id": "M2",
-          "selection": "u2.5",
-          "cote": 2.34,
-          "p_modele": 0.8657
-        },
-        {
-          "match_id": "M9",
-          "selection": "u2.5",
-          "cote": 2.1,
-          "p_modele": 0.8448
-        },
-        {
-          "match_id": "M15",
-          "selection": "X",
-          "cote": 3.96,
-          "p_modele": 0.429
-        }
-      ],
-      "cote_totale": 19.46,
-      "ev_combine": 5.1051,
-      "mise_units": 1.0
+      "match_id": "M6",
+      "match": "SC Corinthians SP vs Mirassol FC SP",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M8",
+      "match": "Union Omaha SC vs Chattanooga Red Wolves SC",
+      "raison": "aucune cote fournie"
     }
   ],
+  "combines": [],
   "loterie": {
     "budget_pct_bankroll": 0.02,
     "note": "Zone DIVERTISSEMENT séparée. Combinés 10+ jambes cote 100+ : jamais dans le capital de chasse.",
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 30.88,
-    "ev_moyenne_pct": 0.6418,
-    "nb_matchs_analyses": 18,
-    "nb_no_bet": 1,
-    "nb_matchs_go": 17
+    "mise_totale_units": 0,
+    "ev_moyenne_pct": null,
+    "nb_matchs_analyses": 9,
+    "nb_no_bet": 9,
+    "nb_matchs_go": 0
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
   "carte_tyran": {

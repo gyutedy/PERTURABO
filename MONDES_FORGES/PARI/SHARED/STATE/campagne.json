@@ -2,7 +2,8 @@
   "campagne": "PARI-20261030",
   "steps": {
     "start": "2026-10-30T21:24:23Z",
-    "capture": "2026-10-30T22:05:04Z"
+    "capture": "2026-10-30T22:05:04Z",
+    "valider1": "2026-10-30T22:06:05Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 3000.0,
@@ -10,6 +11,8 @@
   "jambes": "3:2:2",
   "marches": null,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "A_VALIDER",
-  "previews": {}
+  "capturer_statut": "VALIDE",
+  "previews": {
+    "preview1": "SHARED/OUT/preview1.html"
+  }
 }
