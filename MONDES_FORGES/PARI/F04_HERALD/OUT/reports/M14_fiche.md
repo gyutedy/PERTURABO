@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Al Sadd SC vs Al-Shamal
-*Générée le 2026-10-30 17:16 UTC — siege_id courant*
+*Générée le 2026-10-30 19:12 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 38.6%
 

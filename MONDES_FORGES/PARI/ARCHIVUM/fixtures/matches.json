@@ -1,6 +1,6 @@
 {
   "source": "input_capture",
-  "generated_at": "2026-10-30T17:16:12Z",
+  "generated_at": "2026-10-30T19:12:38Z",
   "ligue": "Capture — ligue à confirmer",
   "horizon": "capture 2026-10-30",
   "matchs": [
@@ -539,10 +539,10 @@
     }
   ],
   "warnings": [
-    "inject CAPTEURS 2026-10-30T17:16:15Z: 2 auto / 36 manquants",
-    "inject CAPTEURS 2026-10-30T17:16:17Z: 4 auto / 34 manquants",
-    "inject CAPTEURS 2026-10-30T17:16:19Z: 2 auto / 36 manquants",
-    "inject CAPTEURS 2026-10-30T17:16:21Z: 4 auto / 34 manquants",
-    "inject CAPTEURS 2026-10-30T17:16:23Z: 2 auto / 36 manquants"
+    "inject CAPTEURS 2026-10-30T19:12:42Z: 2 auto / 36 manquants",
+    "inject CAPTEURS 2026-10-30T19:12:44Z: 4 auto / 34 manquants",
+    "inject CAPTEURS 2026-10-30T19:12:47Z: 2 auto / 36 manquants",
+    "inject CAPTEURS 2026-10-30T19:12:50Z: 4 auto / 34 manquants",
+    "inject CAPTEURS 2026-10-30T19:12:53Z: 2 auto / 36 manquants"
   ]
 }

@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — KS Cracovia Krakow vs LKP Motor Lublin
-*Générée le 2026-10-30 17:16 UTC — siege_id courant*
+*Générée le 2026-10-30 19:12 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 29.4%
 
