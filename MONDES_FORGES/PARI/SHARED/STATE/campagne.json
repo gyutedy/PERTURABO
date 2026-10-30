@@ -3,11 +3,12 @@
   "steps": {
     "start": "2026-10-30T16:43:51Z",
     "capture": "2026-10-30T17:14:04Z",
-    "budget": "2026-10-30T17:14:59Z"
+    "budget": "2026-10-30T17:14:59Z",
+    "combos": "2026-10-30T17:15:46Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 3000.0,
-  "combos": 3,
+  "combos": 4,
   "jambes": "3:2:2",
   "marches": null,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
