@@ -23,8 +23,9 @@ npx wrangler secret put TELEGRAM_WEBHOOK_SECRET
 npx wrangler secret put GITHUB_DISPATCH_TOKEN
 ```
 
-`GITHUB_DISPATCH_TOKEN` = PAT GitHub scopes `repo` + `workflow`.
+`GITHUB_DISPATCH_TOKEN` = PAT du compte **gyutedy** (scopes `repo` + `workflow`).
 `TELEGRAM_WEBHOOK_SECRET` = chaine aleatoire (header `X-Telegram-Bot-Api-Secret-Token`).
+Repo cible : `gyutedy/PERTURABO` (`GH_OWNER` dans wrangler.toml).
 
 ## 3. Secrets GitHub (repo)
 

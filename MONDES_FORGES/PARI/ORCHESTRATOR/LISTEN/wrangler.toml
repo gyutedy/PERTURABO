@@ -3,7 +3,7 @@ main = "src/index.js"
 compatibility_date = "2026-10-29"
 
 [vars]
-GH_OWNER = "jfbjfojfonf"
+GH_OWNER = "gyutedy"
 GH_REPO = "PERTURABO"
 GH_WORKFLOW = "pari_listen.yml"
 GH_REF = "pari-forge-perturabo-xs4c"
