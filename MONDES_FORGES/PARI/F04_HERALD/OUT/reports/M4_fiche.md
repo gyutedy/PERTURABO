@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Legion vs Utd Iron
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Le Havre AC vs Paris Saint-Germain
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 65.4%
+**Verdict match : 🔥 GO** — meilleure EV: 137.9%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.4 | 18.2% | -56.4% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.94 | 41.7% | 64.4% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 2.6 | 40.1% | 4.2% | 🟡 THIN | 0.33u |
-| OU_2.5 | Over 2.5 | 1.81 | 14.3% | -74.1% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.93 | 85.7% | 65.4% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 2.93 | 39.8% | 16.6% |  VALUE | 2.16u |
+| 1X2 | Victoire Domicile | 8.0 | 18.2% | 45.4% |  VALUE | 1.62u |
+| 1X2 | Nul | 5.7 | 41.7% | 137.9% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 1.32 | 40.1% | -47.1% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 39.8% | 19.4% |  VALUE | 2.43u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.94 (¼ Kelly plafonné).
+- Miser **1.62u** sur **Victoire Domicile** @ 8.0 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

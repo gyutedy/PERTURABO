@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — City Steel vs Rampart
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — JS Kabylie vs Js El Biar
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 63.0%
+**Verdict match : 🔥 GO** — meilleure EV: 15.1%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.72 | 54.9% | -5.6% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.93 | 32.0% | 25.7% |  VALUE | 2.19u |
-| 1X2 | Victoire Extérieur | 4.56 | 13.2% | -39.9% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.02 | 27.2% | -45.0% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.24 | 72.8% | 63.0% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.86 | 32.4% | 25.0% |  VALUE | 2.19u |
+| 1X2 | Victoire Domicile | 1.55 | 54.9% | -15.0% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.6 | 32.0% | 15.1% |  VALUE | 1.45u |
+| 1X2 | Victoire Extérieur | 5.2 | 13.2% | -31.5% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 32.4% | -2.8% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **2.19u** sur **Nul** @ 3.93 (¼ Kelly plafonné).
+- Miser **1.45u** sur **Nul** @ 3.6 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

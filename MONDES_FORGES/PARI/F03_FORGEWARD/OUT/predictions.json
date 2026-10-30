@@ -1,94 +1,72 @@
 {
-  "generated_at": "2026-10-29T08:26:36Z",
+  "generated_at": "2026-10-30T17:16:24Z",
   "seuil_ev_applique": 0.08,
-  "ligue_tier": "exotique",
+  "ligue_tier": null,
   "predictions": [
     {
       "id": "M1",
-      "match": "Cyclops vs Trench",
+      "match": "Konyaspor vs Galatasaray Istanbul",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.83,
-          "cote_juste_marche": 1.932,
+          "cote": 4.9,
+          "cote_juste_marche": 5.433,
           "p_modele": 0.4728,
-          "ev": -0.1348,
-          "verdict": "NO_BET",
-          "mise_units": null
+          "ev": 1.3167,
+          "verdict": "VALUE",
+          "mise_units": 3.0
         },
         {
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.79,
-          "cote_juste_marche": 4.002,
+          "cote": 4.2,
+          "cote_juste_marche": 4.657,
           "p_modele": 0.3495,
-          "ev": 0.3246,
+          "ev": 0.4679,
           "verdict": "VALUE",
-          "mise_units": 2.91
+          "mise_units": 3.0
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 4.07,
-          "cote_juste_marche": 4.298,
+          "cote": 1.5,
+          "cote_juste_marche": 1.663,
           "p_modele": 0.1777,
-          "ev": -0.2768,
+          "ev": -0.7334,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.86,
-          "cote_juste_marche": 1.869,
-          "p_modele": 0.2519,
-          "ev": -0.5315,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.14,
-          "cote_juste_marche": 2.151,
-          "p_modele": 0.7481,
-          "ev": 0.6009,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.47,
-          "cote_juste_marche": 3.578,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.3311,
-          "ev": 0.1489,
-          "verdict": "VALUE",
-          "mise_units": 1.51
+          "ev": -0.0067,
+          "verdict": "NO_BET",
+          "mise_units": null
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.6009
+      "meilleure_ev": 1.3167
     },
     {
       "id": "M2",
-      "match": "Lions vs Garrison",
+      "match": "Arminia Bielefeld vs Eintracht Braunschweig",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.71,
-          "cote_juste_marche": 1.803,
+          "cote": 1.91,
+          "cote_juste_marche": 2.116,
           "p_modele": 0.4051,
-          "ev": -0.3073,
+          "ev": -0.2263,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -96,10 +74,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.54,
-          "cote_juste_marche": 3.733,
+          "cote": 3.5,
+          "cote_juste_marche": 3.877,
           "p_modele": 0.4222,
-          "ev": 0.4946,
+          "ev": 0.4777,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -107,580 +85,40 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 5.34,
-          "cote_juste_marche": 5.631,
+          "cote": 3.35,
+          "cote_juste_marche": 3.711,
           "p_modele": 0.1728,
-          "ev": -0.0772,
+          "ev": -0.4211,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 2.0,
-          "cote_juste_marche": 1.855,
-          "p_modele": 0.1343,
-          "ev": -0.7314,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.34,
-          "cote_juste_marche": 2.17,
-          "p_modele": 0.8657,
-          "ev": 1.0257,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.74,
-          "cote_juste_marche": 3.643,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.4056,
-          "ev": 0.5169,
+          "ev": 0.2168,
           "verdict": "VALUE",
-          "mise_units": 3.0
+          "mise_units": 2.71
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 1.0257
+      "meilleure_ev": 0.4777
     },
     {
       "id": "M3",
-      "match": "Bastion vs Lions",
+      "match": "Energie Cottbus vs VfL Bochum",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.65,
-          "cote_juste_marche": 2.795,
+          "cote": 2.8,
+          "cote_juste_marche": 3.128,
           "p_modele": 0.3486,
-          "ev": -0.0762,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.76,
-          "cote_juste_marche": 3.966,
-          "p_modele": 0.3657,
-          "ev": 0.375,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 2.43,
-          "cote_juste_marche": 2.563,
-          "p_modele": 0.2858,
-          "ev": -0.3055,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.85,
-          "cote_juste_marche": 1.93,
-          "p_modele": 0.2621,
-          "ev": -0.5151,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.99,
-          "cote_juste_marche": 2.076,
-          "p_modele": 0.7379,
-          "ev": 0.4684,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.84,
-          "cote_juste_marche": 4.017,
-          "p_modele": 0.3233,
-          "ev": 0.2415,
-          "verdict": "VALUE",
-          "mise_units": 2.13
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.4684
-    },
-    {
-      "id": "M4",
-      "match": "Legion vs Utd Iron",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.4,
-          "cote_juste_marche": 2.532,
-          "p_modele": 0.1818,
-          "ev": -0.5637,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.94,
-          "cote_juste_marche": 4.157,
-          "p_modele": 0.4173,
-          "ev": 0.6442,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 2.6,
-          "cote_juste_marche": 2.743,
-          "p_modele": 0.4009,
-          "ev": 0.0423,
-          "verdict": "THIN",
-          "mise_units": 0.33
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.81,
-          "cote_juste_marche": 1.938,
-          "p_modele": 0.1431,
-          "ev": -0.741,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.93,
-          "cote_juste_marche": 2.066,
-          "p_modele": 0.8569,
-          "ev": 0.6538,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 2.93,
-          "cote_juste_marche": 3.382,
-          "p_modele": 0.3981,
-          "ev": 0.1664,
-          "verdict": "VALUE",
-          "mise_units": 2.16
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.6538
-    },
-    {
-      "id": "M5",
-      "match": "Orbital vs Rovers",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.42,
-          "cote_juste_marche": 2.554,
-          "p_modele": 0.3327,
-          "ev": -0.1949,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 4.0,
-          "cote_juste_marche": 4.222,
-          "p_modele": 0.3322,
-          "ev": 0.3288,
-          "verdict": "VALUE",
-          "mise_units": 2.74
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 2.55,
-          "cote_juste_marche": 2.691,
-          "p_modele": 0.3351,
-          "ev": -0.1455,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 2.13,
-          "cote_juste_marche": 2.034,
-          "p_modele": 0.3579,
-          "ev": -0.2377,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.06,
-          "cote_juste_marche": 1.967,
-          "p_modele": 0.6421,
-          "ev": 0.3227,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.07,
-          "cote_juste_marche": 3.421,
-          "p_modele": 0.2881,
-          "ev": -0.1155,
-          "verdict": "NO_BET",
-          "mise_units": null
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.3288
-    },
-    {
-      "id": "M6",
-      "match": "Utd Iron vs Rovers",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.85,
-          "cote_juste_marche": 1.952,
-          "p_modele": 0.5076,
-          "ev": -0.0609,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.38,
-          "cote_juste_marche": 3.567,
-          "p_modele": 0.3217,
-          "ev": 0.0873,
-          "verdict": "VALUE",
-          "mise_units": 0.92
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 4.57,
-          "cote_juste_marche": 4.822,
-          "p_modele": 0.1707,
-          "ev": -0.2199,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.66,
-          "cote_juste_marche": 1.912,
-          "p_modele": 0.3097,
-          "ev": -0.4859,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.82,
-          "cote_juste_marche": 2.096,
-          "p_modele": 0.6903,
-          "ev": 0.2563,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.76,
-          "cote_juste_marche": 3.626,
-          "p_modele": 0.3065,
-          "ev": 0.1524,
-          "verdict": "VALUE",
-          "mise_units": 1.38
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.2563
-    },
-    {
-      "id": "M7",
-      "match": "Utd Iron vs Athletic",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.94,
-          "cote_juste_marche": 2.046,
-          "p_modele": 0.4665,
-          "ev": -0.095,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.77,
-          "cote_juste_marche": 3.976,
-          "p_modele": 0.3613,
-          "ev": 0.3621,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 3.65,
-          "cote_juste_marche": 3.85,
-          "p_modele": 0.1723,
-          "ev": -0.3711,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 2.06,
-          "cote_juste_marche": 2.0,
-          "p_modele": 0.2248,
-          "ev": -0.5369,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.06,
-          "cote_juste_marche": 2.0,
-          "p_modele": 0.7752,
-          "ev": 0.5969,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.46,
-          "cote_juste_marche": 3.757,
-          "p_modele": 0.3392,
-          "ev": 0.1736,
-          "verdict": "VALUE",
-          "mise_units": 1.76
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.5969
-    },
-    {
-      "id": "M8",
-      "match": "Utd Iron vs Sapper",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.67,
-          "cote_juste_marche": 1.76,
-          "p_modele": 0.3919,
-          "ev": -0.3455,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.38,
-          "cote_juste_marche": 3.562,
-          "p_modele": 0.352,
-          "ev": 0.1898,
-          "verdict": "VALUE",
-          "mise_units": 1.99
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 6.28,
-          "cote_juste_marche": 6.618,
-          "p_modele": 0.2561,
-          "ev": 0.6083,
-          "verdict": "VALUE",
-          "mise_units": 2.88
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.94,
-          "cote_juste_marche": 1.87,
-          "p_modele": 0.2882,
-          "ev": -0.4409,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.23,
-          "cote_juste_marche": 2.149,
-          "p_modele": 0.7118,
-          "ev": 0.5873,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.51,
-          "cote_juste_marche": 3.773,
-          "p_modele": 0.3136,
-          "ev": 0.1007,
-          "verdict": "VALUE",
-          "mise_units": 1.0
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.6083
-    },
-    {
-      "id": "M9",
-      "match": "Orbital vs Rampart",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.05,
-          "cote_juste_marche": 2.163,
-          "p_modele": 0.2516,
-          "ev": -0.4842,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.32,
-          "cote_juste_marche": 3.502,
-          "p_modele": 0.4203,
-          "ev": 0.3954,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 3.76,
-          "cote_juste_marche": 3.967,
-          "p_modele": 0.3282,
-          "ev": 0.234,
-          "verdict": "VALUE",
-          "mise_units": 2.12
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.61,
-          "cote_juste_marche": 1.767,
-          "p_modele": 0.1552,
-          "ev": -0.7501,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.1,
-          "cote_juste_marche": 2.304,
-          "p_modele": 0.8448,
-          "ev": 0.7741,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.56,
-          "cote_juste_marche": 3.612,
-          "p_modele": 0.3849,
-          "ev": 0.3702,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.7741
-    },
-    {
-      "id": "M10",
-      "match": "Orbital vs Athletic",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.6,
-          "cote_juste_marche": 2.744,
-          "p_modele": 0.3137,
-          "ev": -0.1844,
+          "ev": -0.0239,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -689,9 +127,61 @@
           "selection": "X",
           "selection_label": "Nul",
           "cote": 3.55,
-          "cote_juste_marche": 3.747,
-          "p_modele": 0.4505,
-          "ev": 0.5993,
+          "cote_juste_marche": 3.966,
+          "p_modele": 0.3657,
+          "ev": 0.2982,
+          "verdict": "VALUE",
+          "mise_units": 2.92
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.09,
+          "cote_juste_marche": 2.335,
+          "p_modele": 0.2858,
+          "ev": -0.4027,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.3233,
+          "ev": -0.0301,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.2982
+    },
+    {
+      "id": "M4",
+      "match": "Le Havre AC vs Paris Saint-Germain",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 8.0,
+          "cote_juste_marche": 8.464,
+          "p_modele": 0.1818,
+          "ev": 0.4544,
+          "verdict": "VALUE",
+          "mise_units": 1.62
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 5.7,
+          "cote_juste_marche": 6.031,
+          "p_modele": 0.4173,
+          "ev": 1.3786,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -699,62 +189,352 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.57,
-          "cote_juste_marche": 2.712,
-          "p_modele": 0.2359,
-          "ev": -0.3937,
+          "cote": 1.32,
+          "cote_juste_marche": 1.397,
+          "p_modele": 0.4009,
+          "ev": -0.4708,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.67,
-          "cote_juste_marche": 2.0,
-          "p_modele": 0.1158,
-          "ev": -0.8066,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.67,
-          "cote_juste_marche": 2.0,
-          "p_modele": 0.8842,
-          "ev": 0.4766,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.22,
-          "cote_juste_marche": 3.399,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.3981,
+          "ev": 0.1943,
+          "verdict": "VALUE",
+          "mise_units": 2.43
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 1.3786
+    },
+    {
+      "id": "M5",
+      "match": "OGC Nice vs Stade Rennais FC",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.52,
+          "cote_juste_marche": 2.672,
+          "p_modele": 0.3327,
+          "ev": -0.1616,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.55,
+          "cote_juste_marche": 3.764,
+          "p_modele": 0.3322,
+          "ev": 0.1793,
+          "verdict": "VALUE",
+          "mise_units": 1.76
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.62,
+          "cote_juste_marche": 2.778,
+          "p_modele": 0.3351,
+          "ev": -0.122,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.2881,
+          "ev": -0.1357,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.1793
+    },
+    {
+      "id": "M6",
+      "match": "SV 07 Elversberg vs FSV Mainz",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 3.25,
+          "cote_juste_marche": 3.437,
+          "p_modele": 0.5076,
+          "ev": 0.6497,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.75,
+          "cote_juste_marche": 3.965,
+          "p_modele": 0.3217,
+          "ev": 0.2064,
+          "verdict": "VALUE",
+          "mise_units": 1.88
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.07,
+          "cote_juste_marche": 2.189,
+          "p_modele": 0.1707,
+          "ev": -0.6467,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.3065,
+          "ev": -0.0805,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.6497
+    },
+    {
+      "id": "M7",
+      "match": "Villarreal CF vs Espanyol Barcelona",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.4,
+          "cote_juste_marche": 1.478,
+          "p_modele": 0.4665,
+          "ev": -0.3469,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 5.2,
+          "cote_juste_marche": 5.49,
+          "p_modele": 0.3613,
+          "ev": 0.8788,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 6.7,
+          "cote_juste_marche": 7.074,
+          "p_modele": 0.1723,
+          "ev": 0.1544,
+          "verdict": "VALUE",
+          "mise_units": 0.68
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.3392,
+          "ev": 0.0176,
+          "verdict": "THIN",
+          "mise_units": 0.11
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.8788
+    },
+    {
+      "id": "M8",
+      "match": "Sheffield United vs Wrexham AFC",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.32,
+          "cote_juste_marche": 2.466,
+          "p_modele": 0.3919,
+          "ev": -0.0908,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.35,
+          "cote_juste_marche": 3.561,
+          "p_modele": 0.352,
+          "ev": 0.1792,
+          "verdict": "VALUE",
+          "mise_units": 1.91
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 3.0,
+          "cote_juste_marche": 3.189,
+          "p_modele": 0.2561,
+          "ev": -0.2317,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.3136,
+          "ev": -0.0592,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.1792
+    },
+    {
+      "id": "M9",
+      "match": "Lille OSC vs Racing Club De Lens",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.65,
+          "cote_juste_marche": 2.797,
+          "p_modele": 0.2516,
+          "ev": -0.3333,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.25,
+          "cote_juste_marche": 3.43,
+          "p_modele": 0.4203,
+          "ev": 0.366,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.7,
+          "cote_juste_marche": 2.85,
+          "p_modele": 0.3282,
+          "ev": -0.1139,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.3849,
+          "ev": 0.1547,
+          "verdict": "VALUE",
+          "mise_units": 1.93
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.366
+    },
+    {
+      "id": "M10",
+      "match": "Casa Pia Lisbon vs Sporting CP",
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 9.0,
+          "cote_juste_marche": 10.013,
+          "p_modele": 0.3137,
+          "ev": 1.8233,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 5.5,
+          "cote_juste_marche": 6.119,
+          "p_modele": 0.4505,
+          "ev": 1.4777,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 1.22,
+          "cote_juste_marche": 1.357,
+          "p_modele": 0.2359,
+          "ev": -0.7122,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.4224,
-          "ev": 0.3601,
+          "ev": 0.2672,
           "verdict": "VALUE",
           "mise_units": 3.0
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.5993
+      "meilleure_ev": 1.8233
     },
     {
       "id": "M11",
-      "match": "Vigil vs Legion",
+      "match": "Erbil SC vs Ghaz Al-Shamal SC",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.65,
-          "cote_juste_marche": 2.796,
+          "cote": 1.53,
+          "cote_juste_marche": 1.703,
           "p_modele": 0.3165,
-          "ev": -0.1613,
+          "ev": -0.5158,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -762,10 +542,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.88,
-          "cote_juste_marche": 4.094,
+          "cote": 3.6,
+          "cote_juste_marche": 4.007,
           "p_modele": 0.367,
-          "ev": 0.424,
+          "ev": 0.3212,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -773,32 +553,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.38,
-          "cote_juste_marche": 2.512,
+          "cote": 5.5,
+          "cote_juste_marche": 6.123,
           "p_modele": 0.3165,
-          "ev": -0.2467,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.97,
-          "cote_juste_marche": 1.975,
-          "p_modele": 0.2612,
-          "ev": -0.4854,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.02,
-          "cote_juste_marche": 2.025,
-          "p_modele": 0.7388,
-          "ev": 0.4924,
+          "ev": 0.7408,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -806,29 +564,29 @@
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.7,
-          "cote_juste_marche": 3.765,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.3236,
-          "ev": 0.1973,
-          "verdict": "VALUE",
-          "mise_units": 1.83
+          "ev": -0.0292,
+          "verdict": "NO_BET",
+          "mise_units": null
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.4924
+      "meilleure_ev": 0.7408
     },
     {
       "id": "M12",
-      "match": "Ironside vs Perturabo SC",
+      "match": "Al Wehdat vs AL Arabi",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.96,
-          "cote_juste_marche": 3.122,
+          "cote": 1.27,
+          "cote_juste_marche": 1.414,
           "p_modele": 0.2409,
-          "ev": -0.2869,
+          "ev": -0.6941,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -836,10 +594,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.57,
-          "cote_juste_marche": 3.765,
+          "cote": 4.8,
+          "cote_juste_marche": 5.344,
           "p_modele": 0.3842,
-          "ev": 0.3716,
+          "ev": 0.8442,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -847,32 +605,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.29,
-          "cote_juste_marche": 2.415,
+          "cote": 8.5,
+          "cote_juste_marche": 9.464,
           "p_modele": 0.3749,
-          "ev": -0.1415,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.7,
-          "cote_juste_marche": 1.846,
-          "p_modele": 0.213,
-          "ev": -0.6379,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.01,
-          "cote_juste_marche": 2.182,
-          "p_modele": 0.787,
-          "ev": 0.5819,
+          "ev": 2.1867,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -880,29 +616,29 @@
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.42,
-          "cote_juste_marche": 3.769,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.3509,
-          "ev": 0.2001,
-          "verdict": "VALUE",
-          "mise_units": 2.07
+          "ev": 0.0527,
+          "verdict": "THIN",
+          "mise_units": 0.33
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.5819
+      "meilleure_ev": 2.1867
     },
     {
       "id": "M13",
-      "match": "Perturabo SC vs Rovers",
+      "match": "Al Gharafa SC vs Qatar SC",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.73,
-          "cote_juste_marche": 1.826,
+          "cote": 1.67,
+          "cote_juste_marche": 1.851,
           "p_modele": 0.4589,
-          "ev": -0.2061,
+          "ev": -0.2336,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -910,117 +646,73 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.64,
-          "cote_juste_marche": 3.842,
+          "cote": 3.95,
+          "cote_juste_marche": 4.378,
           "p_modele": 0.3549,
-          "ev": 0.2918,
+          "ev": 0.4019,
           "verdict": "VALUE",
-          "mise_units": 2.76
+          "mise_units": 3.0
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 4.93,
-          "cote_juste_marche": 5.204,
+          "cote": 3.9,
+          "cote_juste_marche": 4.323,
           "p_modele": 0.1862,
-          "ev": -0.082,
+          "ev": -0.2738,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.88,
-          "cote_juste_marche": 1.964,
-          "p_modele": 0.2465,
-          "ev": -0.5366,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.95,
-          "cote_juste_marche": 2.037,
-          "p_modele": 0.7535,
-          "ev": 0.4693,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.77,
-          "cote_juste_marche": 4.086,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.334,
-          "ev": 0.2592,
-          "verdict": "VALUE",
-          "mise_units": 2.34
+          "ev": 0.002,
+          "verdict": "THIN",
+          "mise_units": 0.01
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.4693
+      "meilleure_ev": 0.4019
     },
     {
       "id": "M14",
-      "match": "Bastion vs Forge FC",
+      "match": "Al Sadd SC vs Al-Shamal",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.51,
-          "cote_juste_marche": 2.648,
+          "cote": 1.43,
+          "cote_juste_marche": 1.584,
           "p_modele": 0.5175,
-          "ev": 0.2989,
-          "verdict": "VALUE",
-          "mise_units": 3.0
+          "ev": -0.26,
+          "verdict": "NO_BET",
+          "mise_units": null
         },
         {
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.37,
-          "cote_juste_marche": 3.555,
+          "cote": 4.9,
+          "cote_juste_marche": 5.427,
           "p_modele": 0.2829,
-          "ev": -0.0466,
-          "verdict": "NO_BET",
-          "mise_units": null
+          "ev": 0.3862,
+          "verdict": "VALUE",
+          "mise_units": 2.48
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.78,
-          "cote_juste_marche": 2.932,
+          "cote": 4.9,
+          "cote_juste_marche": 5.427,
           "p_modele": 0.1996,
-          "ev": -0.4451,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.96,
-          "cote_juste_marche": 2.188,
-          "p_modele": 0.4536,
-          "ev": -0.1109,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.65,
-          "cote_juste_marche": 1.842,
-          "p_modele": 0.5464,
-          "ev": -0.0984,
+          "ev": -0.022,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -1028,29 +720,29 @@
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.84,
-          "cote_juste_marche": 3.996,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.2565,
-          "ev": -0.015,
+          "ev": -0.2305,
           "verdict": "NO_BET",
           "mise_units": null
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.2989
+      "meilleure_ev": 0.3862
     },
     {
       "id": "M15",
-      "match": "Forge FC vs Vigil",
+      "match": "ASO Chlef vs ES Setif",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.03,
-          "cote_juste_marche": 2.143,
+          "cote": 2.22,
+          "cote_juste_marche": 2.47,
           "p_modele": 0.3211,
-          "ev": -0.3482,
+          "ev": -0.2872,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -1058,10 +750,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.96,
-          "cote_juste_marche": 4.181,
+          "cote": 2.9,
+          "cote_juste_marche": 3.227,
           "p_modele": 0.429,
-          "ev": 0.6988,
+          "ev": 0.2441,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -1069,62 +761,40 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.22,
-          "cote_juste_marche": 3.399,
+          "cote": 3.15,
+          "cote_juste_marche": 3.505,
           "p_modele": 0.2499,
-          "ev": -0.1953,
+          "ev": -0.2128,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.63,
-          "cote_juste_marche": 1.867,
-          "p_modele": 0.1429,
-          "ev": -0.7671,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.88,
-          "cote_juste_marche": 2.153,
-          "p_modele": 0.8571,
-          "ev": 0.6113,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.72,
-          "cote_juste_marche": 3.956,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.3964,
-          "ev": 0.4746,
+          "ev": 0.1892,
           "verdict": "VALUE",
-          "mise_units": 3.0
+          "mise_units": 2.37
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.6988
+      "meilleure_ev": 0.2441
     },
     {
       "id": "M16",
-      "match": "City Steel vs Rampart",
+      "match": "JS Kabylie vs Js El Biar",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.72,
-          "cote_juste_marche": 1.815,
+          "cote": 1.55,
+          "cote_juste_marche": 1.729,
           "p_modele": 0.5486,
-          "ev": -0.0564,
+          "ev": -0.1497,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -1132,73 +802,51 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.93,
-          "cote_juste_marche": 4.147,
+          "cote": 3.6,
+          "cote_juste_marche": 4.015,
           "p_modele": 0.3198,
-          "ev": 0.2568,
+          "ev": 0.1513,
           "verdict": "VALUE",
-          "mise_units": 2.19
+          "mise_units": 1.45
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 4.56,
-          "cote_juste_marche": 4.811,
+          "cote": 5.2,
+          "cote_juste_marche": 5.799,
           "p_modele": 0.1317,
-          "ev": -0.3994,
+          "ev": -0.3152,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 2.02,
-          "cote_juste_marche": 1.902,
-          "p_modele": 0.2722,
-          "ev": -0.4502,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.24,
-          "cote_juste_marche": 2.109,
-          "p_modele": 0.7278,
-          "ev": 0.6303,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.86,
-          "cote_juste_marche": 3.987,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.3239,
-          "ev": 0.2503,
-          "verdict": "VALUE",
-          "mise_units": 2.19
+          "ev": -0.0283,
+          "verdict": "NO_BET",
+          "mise_units": null
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.6303
+      "meilleure_ev": 0.1513
     },
     {
       "id": "M17",
-      "match": "Custodia vs Ironside",
+      "match": "NK Slaven Belupo vs NK Istra 1961",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.58,
-          "cote_juste_marche": 2.724,
+          "cote": 2.45,
+          "cote_juste_marche": 2.711,
           "p_modele": 0.3705,
-          "ev": -0.0441,
+          "ev": -0.0923,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -1206,10 +854,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.44,
-          "cote_juste_marche": 3.631,
+          "cote": 3.35,
+          "cote_juste_marche": 3.707,
           "p_modele": 0.3827,
-          "ev": 0.3165,
+          "ev": 0.282,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -1217,62 +865,40 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.65,
-          "cote_juste_marche": 2.797,
+          "cote": 2.5,
+          "cote_juste_marche": 2.767,
           "p_modele": 0.2468,
-          "ev": -0.346,
+          "ev": -0.383,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.86,
-          "cote_juste_marche": 1.939,
-          "p_modele": 0.2174,
-          "ev": -0.5956,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.98,
-          "cote_juste_marche": 2.065,
-          "p_modele": 0.7826,
-          "ev": 0.5495,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.25,
-          "cote_juste_marche": 3.392,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.351,
-          "ev": 0.1407,
-          "verdict": "VALUE",
-          "mise_units": 1.56
+          "ev": 0.053,
+          "verdict": "THIN",
+          "mise_units": 0.33
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.5495
+      "meilleure_ev": 0.282
     },
     {
       "id": "M18",
-      "match": "Orbital vs Utd Iron",
+      "match": "KS Cracovia Krakow vs LKP Motor Lublin",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.07,
-          "cote_juste_marche": 3.238,
+          "cote": 2.17,
+          "cote_juste_marche": 2.424,
           "p_modele": 0.2775,
-          "ev": -0.1481,
+          "ev": -0.3978,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -1280,10 +906,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.54,
-          "cote_juste_marche": 3.733,
+          "cote": 3.15,
+          "cote_juste_marche": 3.519,
           "p_modele": 0.4109,
-          "ev": 0.4546,
+          "ev": 0.2943,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -1291,76 +917,61 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.24,
-          "cote_juste_marche": 2.362,
+          "cote": 2.95,
+          "cote_juste_marche": 3.296,
           "p_modele": 0.3115,
-          "ev": -0.3022,
+          "ev": -0.0811,
           "verdict": "NO_BET",
           "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 2.06,
-          "cote_juste_marche": 2.234,
-          "p_modele": 0.1718,
-          "ev": -0.6461,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 1.67,
-          "cote_juste_marche": 1.811,
-          "p_modele": 0.8282,
-          "ev": 0.3831,
-          "verdict": "VALUE",
-          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
-          "cote": 3.47,
-          "cote_juste_marche": 3.779,
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
           "p_modele": 0.3761,
-          "ev": 0.3051,
+          "ev": 0.1283,
           "verdict": "VALUE",
-          "mise_units": 3.0
+          "mise_units": 1.6
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.4546
+      "meilleure_ev": 0.2943
+    },
+    {
+      "id": "M19",
+      "match": "SK Rapid Wien vs FC Sudburgenland",
+      "selections": [],
+      "verdict": "NO_BET",
+      "meilleure_ev": null
     }
   ],
   "combines": [
     {
       "jambes": [
         {
-          "match_id": "M2",
-          "selection": "u2.5",
-          "cote": 2.34,
-          "p_modele": 0.8657
+          "match_id": "M12",
+          "selection": "2",
+          "cote": 8.5,
+          "p_modele": 0.3749
         },
         {
-          "match_id": "M9",
-          "selection": "u2.5",
-          "cote": 2.1,
-          "p_modele": 0.8448
+          "match_id": "M10",
+          "selection": "1",
+          "cote": 9.0,
+          "p_modele": 0.3137
         },
         {
-          "match_id": "M15",
+          "match_id": "M10",
           "selection": "X",
-          "cote": 3.96,
-          "p_modele": 0.429
+          "cote": 5.5,
+          "p_modele": 0.4505
         }
       ],
-      "cote_totale": 19.46,
-      "ev_combine": 5.1051,
-      "mise_units": 1.0
+      "cote_totale": 420.75,
+      "ev_combine": 21.2919,
+      "mise_units": 0.63
     }
   ]
 }

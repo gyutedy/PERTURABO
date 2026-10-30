@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Lions vs Garrison
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Arminia Bielefeld vs Eintracht Braunschweig
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 102.6%
+**Verdict match : 🔥 GO** — meilleure EV: 47.8%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.71 | 40.5% | -30.7% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.54 | 42.2% | 49.5% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 5.34 | 17.3% | -7.7% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.0 | 13.4% | -73.1% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.34 | 86.6% | 102.6% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.74 | 40.6% | 51.7% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 1.91 | 40.5% | -22.6% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.5 | 42.2% | 47.8% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 3.35 | 17.3% | -42.1% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 40.6% | 21.7% |  VALUE | 2.71u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.54 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 3.5 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

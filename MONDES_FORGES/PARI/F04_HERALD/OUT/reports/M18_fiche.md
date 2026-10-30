@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Orbital vs Utd Iron
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — KS Cracovia Krakow vs LKP Motor Lublin
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 45.5%
+**Verdict match : 🔥 GO** — meilleure EV: 29.4%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.07 | 27.8% | -14.8% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.54 | 41.1% | 45.5% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 2.24 | 31.1% | -30.2% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.06 | 17.2% | -64.6% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.67 | 82.8% | 38.3% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.47 | 37.6% | 30.5% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 2.17 | 27.8% | -39.8% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.15 | 41.1% | 29.4% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 2.95 | 31.1% | -8.1% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 37.6% | 12.8% |  VALUE | 1.6u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.54 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 3.15 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

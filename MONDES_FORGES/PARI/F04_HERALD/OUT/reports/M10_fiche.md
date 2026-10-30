@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Orbital vs Athletic
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Casa Pia Lisbon vs Sporting CP
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 59.9%
+**Verdict match : 🔥 GO** — meilleure EV: 182.3%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.6 | 31.4% | -18.4% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.55 | 45.1% | 59.9% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 2.57 | 23.6% | -39.4% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 1.67 | 11.6% | -80.7% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.67 | 88.4% | 47.7% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.22 | 42.2% | 36.0% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 9.0 | 31.4% | 182.3% |  VALUE | 3.0u |
+| 1X2 | Nul | 5.5 | 45.1% | 147.8% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 1.22 | 23.6% | -71.2% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 42.2% | 26.7% |  VALUE | 3.0u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.55 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Domicile** @ 9.0 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

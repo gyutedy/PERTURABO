@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Bastion vs Lions
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Energie Cottbus vs VfL Bochum
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 46.8%
+**Verdict match : 🔥 GO** — meilleure EV: 29.8%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.65 | 34.9% | -7.6% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.76 | 36.6% | 37.5% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 2.43 | 28.6% | -30.6% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 1.85 | 26.2% | -51.5% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.99 | 73.8% | 46.8% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.84 | 32.3% | 24.1% |  VALUE | 2.13u |
+| 1X2 | Victoire Domicile | 2.8 | 34.9% | -2.4% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.55 | 36.6% | 29.8% |  VALUE | 2.92u |
+| 1X2 | Victoire Extérieur | 2.09 | 28.6% | -40.3% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 32.3% | -3.0% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.76 (¼ Kelly plafonné).
+- Miser **2.92u** sur **Nul** @ 3.55 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

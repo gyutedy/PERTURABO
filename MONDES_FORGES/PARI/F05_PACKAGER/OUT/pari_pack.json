@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T08:26:36Z",
+  "generated_at": "2026-10-30T17:16:24Z",
   "siege_id": null,
   "devise": "USD",
   "titre": "DIRECTION DES SIÈGES — TOP 10",
@@ -183,7 +183,7 @@
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
   "carte_tyran": {
-    "ligue": "Ligue de Simulation",
+    "ligue": "Capture — ligue à confirmer",
     "ligue_tier": "exotique",
     "seuil_ev": 0.08
   }

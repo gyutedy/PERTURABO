@@ -1114,3 +1114,31 @@
 ## [2026-10-30T15:01:19Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:f09827dd647de4e4df4c0ca7d73ee951 — status:done
 
 ## [2026-10-30T16:10:00Z] v2.2.2 — /valider-1 force AUTO_GATES, TOP3 ecrase la demo, /data refuse Cyclops, /valider-2 refuse 0 eligible. Aujourd'hui→date UTC. Pas de scrape. Operateur : relancer /valider-1, attendre NO BET IFL/Iran/Israel.
+
+## [2026-10-30T17:16:23Z] TYRANT — check-out — status: processing
+
+## [2026-10-30T17:16:23Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:9a0c83a82465d5a9d204666a31278af2 — status:done
+
+## [2026-10-30T17:16:24Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:4095e615a7d895668be1d56d6b065b7f — status:done
+
+## [2026-10-30T17:16:24Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-30T17:16:24Z] F02 — check-out — status: processing
+
+## [2026-10-30T17:16:24Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:f22be42481d5a8413a1db65830ad9672 — status:done
+
+## [2026-10-30T17:16:24Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-30T17:16:24Z] F03 — check-out — status: processing
+
+## [2026-10-30T17:16:24Z] F03 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:b0c30dac912a0279a4e3791a75cd398f — status:done
+
+## [2026-10-30T17:16:24Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-30T17:16:24Z] F04 — check-out — status: processing
+
+## [2026-10-30T17:16:24Z] F04 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:8d212077581918ee47e61a6b99e3af9d — status:done
+
+## [2026-10-30T17:16:24Z] F05 — check-out — status: processing
+
+## [2026-10-30T17:16:24Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:ee72adf2ca7515596b2544d8da045748 — status:done

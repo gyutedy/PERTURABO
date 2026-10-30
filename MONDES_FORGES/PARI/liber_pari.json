@@ -1,5 +1,5 @@
 {
-  "fleet_status": "intel_captured",
+  "fleet_status": "pack_ready",
   "siege_id": "PARI-DEMO-20261029-0826",
   "monde": "pari",
   "warsmith_brief": {
@@ -27,13 +27,13 @@
   },
   "f02_breacher": {
     "status": "done",
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json",
+    "output_path": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json",
     "analysis_hash": null,
     "matchs_analyses": 0
   },
   "f03_forgeward": {
     "status": "done",
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json",
+    "output_path": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json",
     "values_count": 0,
     "no_bet_count": 0,
     "ev_max": null,
@@ -41,14 +41,14 @@
   },
   "f04_herald": {
     "status": "done",
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json",
+    "output_path": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json",
     "reports_count": 0,
     "oracle_utilise": null,
     "reports_hash": null
   },
   "f05_packager": {
     "status": "done",
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json",
+    "output_path": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json",
     "pack_top": 0,
     "mise_totale_units": null,
     "dashboard_path": null,
@@ -62,26 +62,26 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-10-30T15:01:19Z",
+    "last_validation": "2026-10-30T17:16:24Z",
     "errors": []
   },
   "gate_decisions": {
     "gate_1": {
       "label": "Validation carte TYRANT (GO/NO-GO siège)",
       "validated": true,
-      "timestamp": "2026-10-29T08:26:35Z",
+      "timestamp": "2026-10-30T17:16:24Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_2": {
       "label": "Validation analyses BREACHER (probas, matrice)",
       "validated": true,
-      "timestamp": "2026-10-29T08:26:35Z",
+      "timestamp": "2026-10-30T17:16:24Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_3": {
       "label": "Validation verdicts FORGEWARD (EV, Kelly, combinés)",
       "validated": true,
-      "timestamp": "2026-10-29T08:26:36Z",
+      "timestamp": "2026-10-30T17:16:24Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_4": {
@@ -93,12 +93,12 @@
   },
   "siege_timestamps": {
     "start": "2026-10-29T08:26:34Z",
-    "tyrant_done": "2026-10-30T15:01:19Z",
-    "intel_done": "2026-10-30T15:01:19Z",
-    "breach_done": "2026-10-29T08:26:35Z",
-    "value_done": "2026-10-29T08:26:36Z",
-    "herald_done": "2026-10-29T08:26:36Z",
-    "pack_done": "2026-10-29T08:26:36Z",
+    "tyrant_done": "2026-10-30T17:16:23Z",
+    "intel_done": "2026-10-30T17:16:24Z",
+    "breach_done": "2026-10-30T17:16:24Z",
+    "value_done": "2026-10-30T17:16:24Z",
+    "herald_done": "2026-10-30T17:16:24Z",
+    "pack_done": "2026-10-30T17:16:24Z",
     "end": null
   }
 }

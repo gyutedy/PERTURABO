@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Utd Iron vs Sapper
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Sheffield United vs Wrexham AFC
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 60.8%
+**Verdict match : 🔥 GO** — meilleure EV: 17.9%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.67 | 39.2% | -34.5% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.38 | 35.2% | 19.0% |  VALUE | 1.99u |
-| 1X2 | Victoire Extérieur | 6.28 | 25.6% | 60.8% |  VALUE | 2.88u |
-| OU_2.5 | Over 2.5 | 1.94 | 28.8% | -44.1% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.23 | 71.2% | 58.7% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.51 | 31.4% | 10.1% |  VALUE | 1.0u |
+| 1X2 | Victoire Domicile | 2.32 | 39.2% | -9.1% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.35 | 35.2% | 17.9% |  VALUE | 1.91u |
+| 1X2 | Victoire Extérieur | 3.0 | 25.6% | -23.2% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 31.4% | -5.9% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **1.99u** sur **Nul** @ 3.38 (¼ Kelly plafonné).
+- Miser **1.91u** sur **Nul** @ 3.35 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

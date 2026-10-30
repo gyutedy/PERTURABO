@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Utd Iron vs Rovers
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — SV 07 Elversberg vs FSV Mainz
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 25.6%
+**Verdict match : 🔥 GO** — meilleure EV: 65.0%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.85 | 50.8% | -6.1% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.38 | 32.2% | 8.7% |  VALUE | 0.92u |
-| 1X2 | Victoire Extérieur | 4.57 | 17.1% | -22.0% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 1.66 | 31.0% | -48.6% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.82 | 69.0% | 25.6% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.76 | 30.6% | 15.2% |  VALUE | 1.38u |
+| 1X2 | Victoire Domicile | 3.25 | 50.8% | 65.0% |  VALUE | 3.0u |
+| 1X2 | Nul | 3.75 | 32.2% | 20.6% |  VALUE | 1.88u |
+| 1X2 | Victoire Extérieur | 2.07 | 17.1% | -64.7% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 30.6% | -8.1% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **0.92u** sur **Nul** @ 3.38 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Domicile** @ 3.25 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

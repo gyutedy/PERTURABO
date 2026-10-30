@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Orbital vs Rampart
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Lille OSC vs Racing Club De Lens
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 77.4%
+**Verdict match : 🔥 GO** — meilleure EV: 36.6%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.05 | 25.2% | -48.4% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.32 | 42.0% | 39.5% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 3.76 | 32.8% | 23.4% |  VALUE | 2.12u |
-| OU_2.5 | Over 2.5 | 1.61 | 15.5% | -75.0% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.1 | 84.5% | 77.4% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.56 | 38.5% | 37.0% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 2.65 | 25.2% | -33.3% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.25 | 42.0% | 36.6% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 2.7 | 32.8% | -11.4% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 38.5% | 15.5% |  VALUE | 1.93u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.32 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 3.25 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

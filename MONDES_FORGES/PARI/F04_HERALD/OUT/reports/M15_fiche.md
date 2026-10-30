@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Forge FC vs Vigil
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — ASO Chlef vs ES Setif
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 69.9%
+**Verdict match : 🔥 GO** — meilleure EV: 24.4%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.03 | 32.1% | -34.8% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.96 | 42.9% | 69.9% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 3.22 | 25.0% | -19.5% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 1.63 | 14.3% | -76.7% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.88 | 85.7% | 61.1% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.72 | 39.6% | 47.5% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 2.22 | 32.1% | -28.7% | ⛔ NO_BET | — |
+| 1X2 | Nul | 2.9 | 42.9% | 24.4% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 3.15 | 25.0% | -21.3% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 39.6% | 18.9% |  VALUE | 2.37u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.96 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 2.9 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

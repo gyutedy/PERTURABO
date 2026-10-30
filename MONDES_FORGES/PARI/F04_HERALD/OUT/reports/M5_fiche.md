@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Orbital vs Rovers
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — OGC Nice vs Stade Rennais FC
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 32.9%
+**Verdict match : 🔥 GO** — meilleure EV: 17.9%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.42 | 33.3% | -19.5% | ⛔ NO_BET | — |
-| 1X2 | Nul | 4.0 | 33.2% | 32.9% |  VALUE | 2.74u |
-| 1X2 | Victoire Extérieur | 2.55 | 33.5% | -14.5% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.13 | 35.8% | -23.8% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.06 | 64.2% | 32.3% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.07 | 28.8% | -11.6% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.52 | 33.3% | -16.2% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.55 | 33.2% | 17.9% |  VALUE | 1.76u |
+| 1X2 | Victoire Extérieur | 2.62 | 33.5% | -12.2% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 28.8% | -13.6% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **2.74u** sur **Nul** @ 4.0 (¼ Kelly plafonné).
+- Miser **1.76u** sur **Nul** @ 3.55 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

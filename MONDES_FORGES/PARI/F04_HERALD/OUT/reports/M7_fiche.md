@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Utd Iron vs Athletic
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Villarreal CF vs Espanyol Barcelona
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 59.7%
+**Verdict match : 🔥 GO** — meilleure EV: 87.9%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.94 | 46.7% | -9.5% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.77 | 36.1% | 36.2% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 3.65 | 17.2% | -37.1% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.06 | 22.5% | -53.7% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.06 | 77.5% | 59.7% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.46 | 33.9% | 17.4% |  VALUE | 1.76u |
+| 1X2 | Victoire Domicile | 1.4 | 46.7% | -34.7% | ⛔ NO_BET | — |
+| 1X2 | Nul | 5.2 | 36.1% | 87.9% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 6.7 | 17.2% | 15.4% |  VALUE | 0.68u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 33.9% | 1.8% | 🟡 THIN | 0.11u |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.77 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 5.2 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

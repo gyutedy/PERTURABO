@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Vigil vs Legion
-*Générée le 2026-10-29 08:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Erbil SC vs Ghaz Al-Shamal SC
+*Générée le 2026-10-30 17:16 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 49.2%
+**Verdict match : 🔥 GO** — meilleure EV: 74.1%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,16 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.65 | 31.6% | -16.1% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.88 | 36.7% | 42.4% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 2.38 | 31.6% | -24.7% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 1.97 | 26.1% | -48.5% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.02 | 73.9% | 49.2% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.7 | 32.4% | 19.7% |  VALUE | 1.83u |
+| 1X2 | Victoire Domicile | 1.53 | 31.6% | -51.6% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.6 | 36.7% | 32.1% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 5.5 | 31.6% | 74.1% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 32.4% | -2.9% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.88 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 3.6 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
