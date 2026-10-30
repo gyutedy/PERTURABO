@@ -48,9 +48,10 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
 
 1. **/capture** : extracteur multi-format (txt/md direct, PDF/DOCX texte, image OCR si
    tesseract est installe) puis parseur (tableau markdown Winner Bet ou lignes OCR).
-   Capte ligue/coupe, date, heure, matchs, tous les marches affiches (1X2, O/U toutes
-   lignes, MT1/MTE/MT2, BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning,
-   jamais devine (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
+   Telegram qui casse `<br>` en saut de ligne est reassembled (v2.2.1). Capte ligue/coupe,
+   date, heure, matchs, tous les marches affiches (1X2, O/U toutes lignes, MT1/MTE/MT2,
+   BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning, jamais devine
+   (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
 2. **/valider-1** : carte validée → tentative d'injection des **stats historiques**
    (football-data.co.uk + ClubElo, sans clé) ; si la ligue n'est pas couverte → avertissement
    explicite, le siège sortira NO BET tant que les mj/marques/encaisses manquent.
@@ -190,7 +191,8 @@ curl -s "https://api.telegram.org/bot${TOKEN}/setWebhook" \
 ```
 
 Puis dans Telegram : `/start`. ACK Worker (~1 s) puis reponse campagne (~1 min).
-`/capture` = tableau markdown dans le **meme** message (plafond 4096). png/pdf plus tard.
+`/capture` = tableau markdown dans le **meme** message (plafond 4096). Si Telegram
+casse les `<br>` en retours a la ligne, le parseur recoud les rangs. png/pdf plus tard.
 
 Test envoi seul (sans webhook) :
 

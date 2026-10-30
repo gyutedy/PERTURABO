@@ -1104,3 +1104,5 @@
 ## [2026-10-29T13:00:00Z] Phase 8 — ECOUTE TELEGRAM posee (Worker + pari_listen.yml + inbox capture texte). e2e_listen 23/23. Webhook PAS encore set — Warsmith doit wrangler deploy + setWebhook avant /start.
 
 ## [2026-10-30T12:20:01Z] /start LIVE OK — Campagne PARI-20261030 ouverte via Worker + pari_listen.yml sur gyutedy/PERTURABO. notifier.py corrige (env_pari si secret vide). Pages 404 non bloquant. e2e_listen 25/25. Prochaine etape : /capture markdown meme message.
+
+## [2026-10-30T14:30:00Z] v2.2.1 — parseur markdown Telegram : recoud rangs casses (<br>→newline), junk prefix, split competition/vs. workflow.py passe le path inbox. Pas de scrape. Prochaine etape operateur : /capture tableau meme message.

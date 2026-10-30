@@ -102,13 +102,89 @@ HEADER_MAP = {
 }
 
 
+def _md_row_start(stripped: str) -> str:
+    """Retourne la ligne tableau si c'est un debut de rang, sinon ''."""
+    s = (stripped or "").strip()
+    if not s:
+        return ""
+    if s.startswith("|"):
+        return s
+    m = re.match(r"^[\s.\d#\-*>]+(\|.*)$", s)
+    return m.group(1) if m else ""
+
+
+def _looks_complete_md_row(row: str, header_pipes=None) -> bool:
+    r = (row or "").strip()
+    if not r.startswith("|"):
+        return False
+    n = r.count("|")
+    if header_pipes and header_pipes >= 4:
+        return n >= header_pipes - 1 and r.endswith("|")
+    return n >= 4 and r.endswith("|")
+
+
+def _normalize_md_table(text: str) -> str:
+    """Reassemble les rangs markdown casses par Telegram (<br> → newline)."""
+    out = []
+    buf = ""
+    header_pipes = None
+
+    def flush():
+        nonlocal buf
+        if not buf:
+            return
+        row = buf.strip()
+        if row.startswith("|") and not row.endswith("|"):
+            row = row + " |"
+        out.append(row)
+        buf = ""
+
+    def take_new(start):
+        nonlocal buf, header_pipes
+        buf = start
+        if _looks_complete_md_row(buf, header_pipes) or "---" in buf or ":-" in buf:
+            header_pipes = buf.count("|")
+            flush()
+
+    for ln in (text or "").splitlines():
+        stripped = ln.strip()
+        if not stripped:
+            flush()
+            out.append("")
+            continue
+        start = _md_row_start(stripped)
+        if buf and not _looks_complete_md_row(buf, header_pipes):
+            few_pipes = buf.count("|") <= 2
+            if start and _looks_complete_md_row(start, header_pipes) and not few_pipes:
+                flush()
+                take_new(start)
+            else:
+                piece = start[1:].strip() if start else stripped
+                buf = buf.rstrip() + "<br>" + piece
+                if _looks_complete_md_row(buf, header_pipes):
+                    flush()
+            continue
+        if start:
+            flush()
+            take_new(start)
+            continue
+        out.append(ln)
+    flush()
+    return "\n".join(out)
+
+
 def _is_md_table(text: str) -> bool:
-    lines = [ln for ln in text.splitlines() if ln.strip().startswith("|")]
-    return len(lines) >= 2 and any("---" in ln or ":-" in ln for ln in lines[:4])
+    text = _normalize_md_table(text)
+    lines = []
+    for ln in text.splitlines():
+        start = _md_row_start(ln)
+        if start:
+            lines.append(start)
+    return len(lines) >= 2 and any("---" in ln or ":-" in ln for ln in lines[:6])
 
 
 def _split_md_row(line: str):
-    raw = line.strip()
+    raw = _md_row_start(line) or line.strip()
     if raw.startswith("|"):
         raw = raw[1:]
     if raw.endswith("|"):
@@ -138,6 +214,7 @@ def _cote_or_none(cell: str):
 
 def parse_markdown_table(capture_text: str):
     """Parse un tableau markdown Winner Bet (competition+match, horaire, 1/X/2, MT, O/U)."""
+    capture_text = _normalize_md_table(capture_text)
     warnings = []
     blocs_by_comp = {}
     header = None
@@ -192,6 +269,21 @@ def parse_markdown_table(capture_text: str):
                 if any(k in maybe_comp.lower() for k in COMPETITION_KEYWORDS):
                     competition = maybe_comp.strip()
                     match_line = rest.strip()
+            elif " - " in match_line:
+                vs_m = re.search(r"\s+vs\.?\s+", match_line, re.IGNORECASE)
+                if vs_m:
+                    left = match_line[:vs_m.start()].strip()
+                    dash = left.find(" - ")
+                    if dash != -1:
+                        tail = left[dash + 3:].strip()
+                        tokens = tail.split()
+                        league_n = 1
+                        for i, tok in enumerate(tokens):
+                            if any(k in tok.lower() for k in COMPETITION_KEYWORDS):
+                                league_n = i + 1
+                        if league_n < len(tokens):
+                            competition = (left[:dash] + " - " + " ".join(tokens[:league_n])).strip()
+                            match_line = (" ".join(tokens[league_n:]) + match_line[vs_m.start():]).strip()
 
         teams = TEAMSEP_RE.split(match_line, maxsplit=1)
         if len(teams) != 2:
@@ -279,6 +371,7 @@ def parse_capture(capture_text: str):
     """Parse le texte OCR d'une capture de bookmaker (multi-blocs).
     Sortie : {"captures": [bloc…], "warnings": […], "statut": "A_VALIDER"}
     """
+    capture_text = _normalize_md_table(capture_text or "")
     if _is_md_table(capture_text):
         return parse_markdown_table(capture_text)
 

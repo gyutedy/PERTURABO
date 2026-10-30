@@ -117,7 +117,7 @@ def cmd_capture(st, fichier):
         return
     st["capture"] = path
     st["steps"]["capture"] = _now()
-    ok, _ = run_orch("--mode", "input-capture", "--capture", fichier)
+    ok, _ = run_orch("--mode", "input-capture", "--capture", path)
     if not ok:
         tell("⛔ Echec du parsing de la capture — corrige le texte OCR / capture."); return
     jf = load_json(P("F01_SENTINEL", "OUT", "capture_parsed.json"))

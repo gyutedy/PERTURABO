@@ -152,6 +152,43 @@ def main():
     ok = any(c and "AFC" in c for c in comps) and any(c and "Copa del Rey" in c for c in comps)
     check("A.md_competitions", ok, f"{len(comps)} blocs")
 
+    sys.path.insert(0, os.path.join(WORLD, "F01_SENTINEL", "CODEBASE"))
+    from input_capture import parse_capture  # noqa: E402
+
+    live_table = (
+        "| Compétition & Match | Horaire | 1 | X | 2 | Ligne (Total) | Moins | Plus | 1st | Égal | 2nd |\n"
+        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n"
+        "| **Inde - IFL**<br>Real Kashmir vs Nagaland United SC | Aujourd'hui 14:00 | 1.41 | 4.60 | 5.50 | 2.5 | 2.37 | 1.50 | 3.10 | 3.00 | **2.10** |\n"
+        "| **Iran - Pro League**<br>Nassaji Mazandaran FC vs Persepolis FC | Aujourd'hui 14:00 | 8.00 | 3.70 | 1.41 | 2.5 | 1.45 | 2.50 | 3.10 | 3.00 | **2.10** |\n"
+        "| **Israël - National League**<br>Hapoel Acre FC vs Hapoel Rishon Lezion FC | Aujourd'hui 14:00 | 6.00 | 4.40 | 1.40 | 2.5 | 2.22 | 1.56 | 3.10 | 3.00 | **2.10** |\n"
+        "| **Israël - National League**<br>Hapoel Afula FC vs Maccabi Ironi Kiryat Gat | Aujourd'hui 14:00 | 1.98 | 3.45 | 3.20 | 2.5 | 1.93 | 1.75 | 3.10 | 3.00 | **2.10** |\n"
+        "| **Israël - National League**<br>Maccabi Achi Nazareth ... vs FC Kafr Qasim | Aujourd'hui 14:00 | 2.72 | 3.30 | 2.27 | 2.5 | 1.94 | 1.74 | 3.10 | 3.00 | **2.10** |\n"
+    )
+    p_br = parse_capture(live_table)
+    m1 = (p_br.get("captures") or [{}])[0].get("matchs") or [{}]
+    m1 = m1[0] if m1 else {}
+    ok = p_br.get("n_matchs") == 5 and m1.get("dom") == "Real Kashmir" and m1.get("cotes", {}).get("mt2") == 2.10
+    check("A.md_live_br", ok, f"n={p_br.get('n_matchs')} dom={m1.get('dom')} cotes={m1.get('cotes')}")
+
+    p_nl = parse_capture(live_table.replace("<br>", "\n"))
+    teams_nl = []
+    for b in p_nl.get("captures") or []:
+        for m in b.get("matchs") or []:
+            teams_nl.append((m.get("dom"), m.get("ext"), b.get("competition")))
+    ok = p_nl.get("n_matchs") == 5 and teams_nl[0][0] == "Real Kashmir" and "Inde" in (teams_nl[0][2] or "")
+    check("A.md_telegram_newline", ok, f"n={p_nl.get('n_matchs')} teams={teams_nl[:2]}")
+
+    p_sp = parse_capture(live_table.replace("<br>", " "))
+    m_sp = []
+    for b in p_sp.get("captures") or []:
+        m_sp.extend(b.get("matchs") or [])
+    ok = p_sp.get("n_matchs") == 5 and m_sp[0].get("dom") == "Real Kashmir" and "IFL" in (p_sp["captures"][0].get("competition") or "")
+    check("A.md_br_as_space", ok, f"n={p_sp.get('n_matchs')} dom={m_sp[0].get('dom') if m_sp else None}")
+
+    junk = ". " + live_table.lstrip()
+    p_junk = parse_capture(junk)
+    check("A.md_junk_prefix", p_junk.get("n_matchs") == 5, f"n={p_junk.get('n_matchs')}")
+
     cap_txt = os.path.join(OUT, "e2e_plain.txt")
     with open(cap_txt, "w", encoding="utf-8") as f:
         f.write(PLAIN)

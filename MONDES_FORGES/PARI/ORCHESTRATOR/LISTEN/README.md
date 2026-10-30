@@ -60,4 +60,4 @@ Si 1 sans 2 : Actions → `pari-listen` (workflow_dispatch). Si rien : webhook /
 
 ## Hors v1
 
-png/pdf, KV multi-messages, `/radar` `/pack` `/match`, polling.
+png/pdf, KV multi-messages, `/radar` `/pack` `/match`, polling. Pas de scrape bookmaker.

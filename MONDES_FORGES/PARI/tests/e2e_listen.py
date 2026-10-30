@@ -138,6 +138,13 @@ def main():
     check("L8.inbox_write", "capture_telegram.md" in raw)
     check("L8.pages_non_bloquant", "continue-on-error: true" in raw)
 
+    wf_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "workflow.py"), encoding="utf-8").read()
+    check(
+        "L10.capture_passe_path",
+        'run_orch("--mode", "input-capture", "--capture", path)' in wf_src
+        and 'run_orch("--mode", "input-capture", "--capture", fichier)' not in wf_src,
+    )
+
     import notifier  # noqa: E402
     old_tok = os.environ.get("TELEGRAM_BOT_TOKEN")
     old_chat = os.environ.get("TELEGRAM_CHAT_ID")
