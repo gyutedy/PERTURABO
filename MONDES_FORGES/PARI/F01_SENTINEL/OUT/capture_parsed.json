@@ -2,20 +2,18 @@
   "captures": [
     {
       "id": "BLOC_001",
-      "competition": "Inde - IFL",
-      "date": null,
-      "heure": "14:00",
+      "competition": "Turkiye - Super Lig",
+      "date": "2026-10-30",
+      "heure": "18:00",
       "matchs": [
         {
           "id": "M1",
-          "dom": "Real Kashmir",
-          "ext": "Nagaland United SC",
+          "dom": "Konyaspor",
+          "ext": "Galatasaray Istanbul",
           "cotes": {
-            "1": 1.41,
-            "X": 4.6,
-            "2": 5.5,
-            "u2.5": 2.37,
-            "o2.5": 1.5,
+            "1": 4.9,
+            "X": 4.2,
+            "2": 1.5,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -26,31 +24,30 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
+            "mte"
           ],
-          "warnings": []
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
         }
       ],
       "warnings": []
     },
     {
       "id": "BLOC_002",
-      "competition": "Iran - Pro League",
-      "date": null,
-      "heure": "14:00",
+      "competition": "Allemagne - 2. Bundesliga",
+      "date": "2026-10-30",
+      "heure": "18:30",
       "matchs": [
         {
           "id": "M2",
-          "dom": "Nassaji Mazandaran FC",
-          "ext": "Persepolis FC",
+          "dom": "Arminia Bielefeld",
+          "ext": "Eintracht Braunschweig",
           "cotes": {
-            "1": 8.0,
-            "X": 3.7,
-            "2": 1.41,
-            "u2.5": 1.45,
-            "o2.5": 2.5,
+            "1": 1.91,
+            "X": 3.5,
+            "2": 3.35,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -61,9 +58,295 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        },
+        {
+          "id": "M3",
+          "dom": "Energie Cottbus",
+          "ext": "VfL Bochum",
+          "cotes": {
+            "1": 2.8,
+            "X": 3.55,
+            "2": 2.09,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_003",
+      "competition": "France - Ligue 1",
+      "date": "2026-10-30",
+      "heure": "19:00",
+      "matchs": [
+        {
+          "id": "M4",
+          "dom": "Le Havre AC",
+          "ext": "Paris Saint-Germain",
+          "cotes": {
+            "1": 8.0,
+            "X": 5.7,
+            "2": 1.32,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        },
+        {
+          "id": "M5",
+          "dom": "OGC Nice",
+          "ext": "Stade Rennais FC",
+          "cotes": {
+            "1": 2.52,
+            "X": 3.55,
+            "2": 2.62,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_004",
+      "competition": "Allemagne - Bundesliga",
+      "date": "2026-10-30",
+      "heure": "20:30",
+      "matchs": [
+        {
+          "id": "M6",
+          "dom": "SV 07 Elversberg",
+          "ext": "FSV Mainz",
+          "cotes": {
+            "1": 3.25,
+            "X": 3.75,
+            "2": 2.07,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_005",
+      "competition": "Espagne - LaLiga",
+      "date": "2026-10-30",
+      "heure": "21:00",
+      "matchs": [
+        {
+          "id": "M7",
+          "dom": "Villarreal CF",
+          "ext": "Espanyol Barcelona",
+          "cotes": {
+            "1": 1.4,
+            "X": 5.2,
+            "2": 6.7,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_006",
+      "competition": "Angleterre - Championship",
+      "date": "2026-10-30",
+      "heure": "21:00",
+      "matchs": [
+        {
+          "id": "M8",
+          "dom": "Sheffield United",
+          "ext": "Wrexham AFC",
+          "cotes": {
+            "1": 2.32,
+            "X": 3.35,
+            "2": 3.0,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_007",
+      "competition": "France - Ligue 1",
+      "date": "2026-10-30",
+      "heure": "21:05",
+      "matchs": [
+        {
+          "id": "M9",
+          "dom": "Lille OSC",
+          "ext": "Racing Club De Lens",
+          "cotes": {
+            "1": 2.65,
+            "X": 3.25,
+            "2": 2.7,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_008",
+      "competition": "Portugal - Liga Portugal",
+      "date": "2026-10-30",
+      "heure": "21:15",
+      "matchs": [
+        {
+          "id": "M10",
+          "dom": "Casa Pia Lisbon",
+          "ext": "Sporting CP",
+          "cotes": {
+            "1": 9.0,
+            "X": 5.5,
+            "2": 1.22,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_009",
+      "competition": "Irak - Stars League",
+      "date": "2026-10-30",
+      "heure": "17:30",
+      "matchs": [
+        {
+          "id": "M11",
+          "dom": "Erbil SC",
+          "ext": "Ghaz Al-Shamal SC",
+          "cotes": {
+            "1": 1.53,
+            "X": 3.6,
+            "2": 5.5,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
           ],
           "warnings": []
         }
@@ -71,21 +354,19 @@
       "warnings": []
     },
     {
-      "id": "BLOC_003",
-      "competition": "Israël - National League",
-      "date": null,
-      "heure": "14:00",
+      "id": "BLOC_010",
+      "competition": "Jordanie - Jordan League",
+      "date": "2026-10-30",
+      "heure": "17:30",
       "matchs": [
         {
-          "id": "M3",
-          "dom": "Hapoel Acre FC",
-          "ext": "Hapoel Rishon Lezion FC",
+          "id": "M12",
+          "dom": "Al Wehdat",
+          "ext": "AL Arabi",
           "cotes": {
-            "1": 6.0,
-            "X": 4.4,
-            "2": 1.4,
-            "u2.5": 2.22,
-            "o2.5": 1.56,
+            "1": 1.27,
+            "X": 4.8,
+            "2": 8.5,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -96,22 +377,52 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_011",
+      "competition": "Qatar - Stars League",
+      "date": "2026-10-30",
+      "heure": "17:30",
+      "matchs": [
+        {
+          "id": "M13",
+          "dom": "Al Gharafa SC",
+          "ext": "Qatar SC",
+          "cotes": {
+            "1": 1.67,
+            "X": 3.95,
+            "2": 3.9,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
           ],
           "warnings": []
         },
         {
-          "id": "M4",
-          "dom": "Hapoel Afula FC",
-          "ext": "Maccabi Ironi Kiryat Gat",
+          "id": "M14",
+          "dom": "Al Sadd SC",
+          "ext": "Al-Shamal",
           "cotes": {
-            "1": 1.98,
-            "X": 3.45,
-            "2": 3.2,
-            "u2.5": 1.93,
-            "o2.5": 1.75,
+            "1": 1.43,
+            "X": 4.9,
+            "2": 4.9,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -122,22 +433,52 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
+            "mte"
           ],
           "warnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_012",
+      "competition": "Algérie - Ligue 1",
+      "date": "2026-10-30",
+      "heure": "17:45",
+      "matchs": [
+        {
+          "id": "M15",
+          "dom": "ASO Chlef",
+          "ext": "ES Setif",
+          "cotes": {
+            "1": 2.22,
+            "X": 2.9,
+            "2": 3.15,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
         },
         {
-          "id": "M5",
-          "dom": "Maccabi Achi Nazareth ...",
-          "ext": "FC Kafr Qasim",
+          "id": "M16",
+          "dom": "JS Kabylie",
+          "ext": "Js El Biar",
           "cotes": {
-            "1": 2.72,
-            "X": 3.3,
-            "2": 2.27,
-            "u2.5": 1.94,
-            "o2.5": 1.74,
+            "1": 1.55,
+            "X": 3.6,
+            "2": 5.2,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -148,18 +489,121 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
+            "mte"
           ],
-          "warnings": []
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_013",
+      "competition": "Croatie - HNL",
+      "date": "2026-10-30",
+      "heure": "18:00",
+      "matchs": [
+        {
+          "id": "M17",
+          "dom": "NK Slaven Belupo",
+          "ext": "NK Istra 1961",
+          "cotes": {
+            "1": 2.45,
+            "X": 3.35,
+            "2": 2.5,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_014",
+      "competition": "Pologne - Ekstraklasa",
+      "date": "2026-10-30",
+      "heure": "18:00",
+      "matchs": [
+        {
+          "id": "M18",
+          "dom": "KS Cracovia Krakow",
+          "ext": "LKP Motor Lublin",
+          "cotes": {
+            "1": 2.17,
+            "X": 3.15,
+            "2": 2.95,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "BLOC_015",
+      "competition": "Autriche amateur - Bundesliga, Women",
+      "date": "2026-10-30",
+      "heure": "18:00",
+      "matchs": [
+        {
+          "id": "M19",
+          "dom": "SK Rapid Wien",
+          "ext": "FC Sudburgenland",
+          "cotes": {
+            "1": 1.35,
+            "X": 4.9,
+            "2": 6.2,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.1
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte"
+          ],
+          "warnings": [
+            "under sans ligne totale — cote non rattachee",
+            "over sans ligne totale — cote non rattachee"
+          ]
         }
       ],
       "warnings": []
     }
   ],
   "warnings": [],
-  "statut": "VALIDE",
-  "n_matchs": 5,
+  "statut": "A_VALIDER",
+  "n_matchs": 19,
   "source_format": "text+markdown_table"
 }
