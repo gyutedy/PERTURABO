@@ -115,6 +115,8 @@ def main():
         excl = f" · marchés exclus: {', '.join(r_['marches_exclus_qualitatifs'])}" if r_["marches_exclus_qualitatifs"] else ""
         lines.append(f"- **#{r_['rang_global']} {r_['match']}** — score **{r_['score_commun']}/10** "
                      f"— bucket {badge} (données {r_['quality_data']}){excl}")
+        if not r_["top3"]:
+            lines.append("    NO BET — Zero Data, Zero Calc (stats absentes, aucune proba).")
         for s in r_["top3"]:
             lines.append(f"    {s['rang']}. {s['selection_label']} — cote {s['cote']} — "
                          f"proba {s['p_modele']:.0%} — EV {s['ev']:+.1%}" if s.get("p_modele") is not None else

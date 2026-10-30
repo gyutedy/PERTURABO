@@ -131,7 +131,18 @@ def build_predications(intel, analyses, profile):
     }
     tier = intel.get("ligue_tier", "exotique")
     by_id = {a["id"]: a for a in analyses}
-    predictions = [predict_match(m, by_id[m["id"]], pool, tier) for m in intel["matchs"] if m["id"] in by_id]
+    predictions = []
+    for m in intel.get("matchs") or []:
+        if m["id"] in by_id:
+            predictions.append(predict_match(m, by_id[m["id"]], pool, tier))
+        else:
+            predictions.append({
+                "id": m["id"],
+                "match": f"{m.get('dom', '?')} vs {m.get('ext', '?')}",
+                "selections": [],
+                "verdict": "NO_BET",
+                "meilleure_ev": None,
+            })
 
     # Combinés : jambes VALUE indépendants (match différents), max 3 jambes
     jambes = sorted(

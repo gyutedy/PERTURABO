@@ -33,9 +33,9 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 | `/capture` | Telegram v1 : colle le tableau markdown Winner Bet **dans le meme message**. CLI : `/capture <fichier>` (txt/md/png/pdf/docx). JSON reconstitue = Porte 1 |
 | `/budget 6000 / 3000` | Budget du jour (FC) + mise du ticket sûr (optionnel) |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
-| `/valider-1` | Valide le JSON → carte → injection stats (si ligue couverte) → siège → **Top 3 + PREVIEW 1** |
-| `/data` | Les rangs du **Top 3 + score commun** en message spécial (hors ticket final) |
-| `/valider-2` | Compose les tickets + backroll → **PREVIEW 2 (ticket final)** |
+| `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
+| `/data` | Les rangs du **Top 3 + score commun**. Refuse si TOP3 est encore la demo. |
+| `/valider-2` | Compose les tickets. **Refuse** si NO BET / Zero Data (aucun match eligible). |
 | `/status`, `/roi`, `/stop` | État de campagne, ROI F06, clôture |
 
 Équivalent terminal (si tu bosses depuis un PC sans bot) :
@@ -52,9 +52,10 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    date, heure, matchs, tous les marches affiches (1X2, O/U toutes lignes, MT1/MTE/MT2,
    BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning, jamais devine
    (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
-2. **/valider-1** : carte validée → tentative d'injection des **stats historiques**
-   (football-data.co.uk + ClubElo, sans clé) ; si la ligue n'est pas couverte → avertissement
-   explicite, le siège sortira NO BET tant que les mj/marques/encaisses manquent.
+2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
+   E0/SP1/I1/D1/F1 seulement). Puis siège complet (F02→F03→top3) même sur GitHub Actions.
+   Ligue hors whitelist (IFL, Iran, Israël…) → TOP3 **NO BET** pour CES matchs, jamais
+   la demo Cyclops/Lions. `/valider-2` est alors refuse.
    Puis F02 (Poisson/Dixon-Coles) → F03 (de-marging, EV, Kelly) → filtre qualitatif
    (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html).
 3. **/valider-2** : tickets depuis la classe de fiabilité (ticket sûr = scores les plus

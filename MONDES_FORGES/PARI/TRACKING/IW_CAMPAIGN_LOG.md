@@ -1112,3 +1112,5 @@
 ## [2026-10-30T15:01:19Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:1bd0aac68e8f61a956555f771e4e3d97 — status:done
 
 ## [2026-10-30T15:01:19Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:f09827dd647de4e4df4c0ca7d73ee951 — status:done
+
+## [2026-10-30T16:10:00Z] v2.2.2 — /valider-1 force AUTO_GATES, TOP3 ecrase la demo, /data refuse Cyclops, /valider-2 refuse 0 eligible. Aujourd'hui→date UTC. Pas de scrape. Operateur : relancer /valider-1, attendre NO BET IFL/Iran/Israel.

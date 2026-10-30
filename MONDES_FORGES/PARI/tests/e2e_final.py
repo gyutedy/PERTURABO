@@ -22,7 +22,7 @@ import json
 WORLD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "PARI"))
 WROOT = os.path.normpath(os.path.join(WORLD, "..", ".."))
 PY = sys.executable
-ENV = {**os.environ, "PARI_AUTO_GATES": "1", "PYTHONIOENCODING": "utf-8"}
+ENV = {**os.environ, "PARI_AUTO_GATES": "1", "PARI_SKIP_INJECT": "1", "PYTHONIOENCODING": "utf-8"}
 CHECKS = []
 
 
@@ -79,9 +79,16 @@ def main():
 
     # 2. /valider-1 — la carte capture (sans stats) reste Zero Data, doctrine-safe,
     #    puis on repeuple le top3 par un siège sur la carte des stats (comme CI)
+    demo_top3 = p("SHARED", "OUT", "TOP3.md")
+    os.makedirs(os.path.dirname(demo_top3), exist_ok=True)
+    with open(demo_top3, "w", encoding="utf-8") as f:
+        f.write("### PERTURABO · PARI — TOP 3\n*generated 2026-10-29T08:26:36Z — 18 matchs classés*\n- **#1 Cyclops vs Trench**\n")
     r, out = wf("/valider-1")
     ok = '"statut": "VALIDE"' in (rd(p("F01_SENTINEL", "OUT", "capture_parsed.json")) or "")
     check("FINAL.valider1_capture_valide", ok)
+    t3md_live = rd(p("SHARED", "OUT", "TOP3.md")) or ""
+    ok = "Cyclops vs Trench" not in t3md_live and ("Arsenal" in t3md_live or "NO BET" in t3md_live)
+    check("FINAL.valider1_ecrase_demo", ok, t3md_live[:120].replace("\n", " "))
     ok = os.path.exists(p("SHARED", "OUT", "preview1.html"))
     check("FINAL.preview1", ok)
     subprocess.run([PY, "ORCHESTRATOR/CODEBASE/orchestrator.py", "--mode", "siege",

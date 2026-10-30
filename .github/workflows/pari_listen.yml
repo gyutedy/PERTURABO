@@ -62,6 +62,7 @@ jobs:
           FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
           ORACLE_API_KEY: ${{ secrets.ORACLE_API_KEY }}
           CMD: ${{ github.event.inputs.cmd }}
+          PARI_AUTO_GATES: "1"
         run: |
           cd MONDES_FORGES/PARI
           echo "[listen] cmd=$CMD"

@@ -69,9 +69,10 @@ def tell(text):
     subprocess.run([sys.executable, NOTIFIER, "--text", text], capture_output=True)
 
 
-def run_orch(*args):
+def run_orch(*args, extra_env=None):
     cmd = [sys.executable, os.path.join(HERE, "orchestrator.py")] + list(args)
-    r = subprocess.run(cmd, capture_output=True, text=True, cwd=WORLD)
+    env = {**os.environ, **(extra_env or {})}
+    r = subprocess.run(cmd, capture_output=True, text=True, cwd=WORLD, env=env)
     out = (r.stdout or "") + (r.stderr or "")
     sys.stdout.write(out)
     return r.returncode == 0, out
@@ -175,25 +176,39 @@ def inject_stats(carte_path):
     """Capteurs football-data.co.uk + ClubElo (sans clé) sur la carte validée.
     Gracieux : si le réseau ou la ligue ne matchent pas, on prévient et le
     siège reste possible avec les stats déjà présentes — Zero Data, Zero Calc sinon."""
+    if os.environ.get("PARI_SKIP_INJECT") == "1":
+        return False
     try:
         carte = load_json(carte_path) or {}
-        ligue = (carte.get("matchs") or [{}])[0].get("ligue", "").lower()
-        code = next((c for k, c in LIGUE_CODE.items() if k in ligue), None)
+        ligues = []
+        for m in carte.get("matchs") or []:
+            lg = (m.get("ligue") or carte.get("ligue") or "").lower().strip()
+            if lg and lg not in ligues:
+                ligues.append(lg)
+        if not ligues:
+            root = (carte.get("ligue") or "").lower().strip()
+            if root:
+                ligues.append(root)
         tmp_stats = P("ARCHIVUM", "teams", "stats_inject.json")
-        if code:
-            run_orch_r = subprocess.run(
+        any_ok = False
+        for ligue in ligues:
+            code = next((c for k, c in LIGUE_CODE.items() if k in ligue), None)
+            if not code:
+                continue
+            r1 = subprocess.run(
                 [sys.executable, P("F00_RADAR", "CODEBASE", "capteurs.py"), "build-stats",
                  "--league", code, "--season", "2627", "--include-seasons", "2526",
                  "--last", "12", "--out", tmp_stats],
                 capture_output=True, text=True, cwd=WORLD)
-            run_orch_r = subprocess.run(
+            if r1.returncode != 0:
+                continue
+            r2 = subprocess.run(
                 [sys.executable, P("F00_RADAR", "CODEBASE", "capteurs.py"), "inject",
-                 "--stats", tmp_stats,
-                 "--carte", carte_path],
+                 "--stats", tmp_stats, "--carte", carte_path],
                 capture_output=True, text=True, cwd=WORLD)
-            if run_orch_r.returncode == 0:
-                return True
-        return False
+            if r2.returncode == 0:
+                any_ok = True
+        return any_ok
     except Exception as e:
         print(f"[WF] inject_stats gracieux: {e}")
         return False
@@ -209,24 +224,42 @@ def cmd_valider1(st, arg):
     st["capturer_statut"] = "VALIDE"
     st["steps"]["valider1"] = _now()
     carte_path = P("ARCHIVUM", "fixtures", "matches.json")
-    if not inject_stats(carte_path):
-        tell("⚠️ Stats historiques absentes (ligue non couverte ou réseau) — "
-             "Zero Data, Zero Calc : le siège sortira NO BET tant que la carte "
-             "n'a pas ses mj/marques/encaisses (capteurs build-stats + inject, ou stats manuelles).")
-    ok2, _ = run_orch("--mode", "siege")
+    stats_ok = inject_stats(carte_path)
+    if not stats_ok:
+        tell("⚠️ Stats historiques absentes (ligue hors whitelist E0/SP1/I1/D1/F1 ou réseau) — "
+             "Zero Data, Zero Calc : le siège sort NO BET. Pas de ticket.")
+    ok2, _ = run_orch("--mode", "siege", extra_env={"PARI_AUTO_GATES": "1"})
     if not ok2:
         tell("⛔ Siège en échec — corrige la carte, puis `/valider-1`."); return
+    st["previews"]["preview1"] = "SHARED/OUT/preview1.html"
     save(st)
-    tell("✅ VALIDATION 1 : JSON VALIDÉ → carte → siège → Top 3 marchés.\n"
-         "📊 PREVIEW 1 : SHARED/OUT/preview1.html (données BRUTES : probas, EV, "
-         "Top 3 + score commun, notes non binaires).\n"
-         "→ relis-la ; si ok : `/combos <n>` `/budget <fc>` puis `/valider-2` "
-         "pour le ticket final.\n💬 `/data` pour les rangs en message texte.")
+    t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
+    rows = t3.get("matchs") or []
+    n_go = sum(1 for r in rows if r.get("top3") and not r.get("no_bet_recommande") and r.get("bucket") != "FAIBLE")
+    names = ", ".join((r.get("match") or "?") for r in rows[:8]) or "aucun"
+    if n_go == 0:
+        tell("VALIDATION 1 : JSON OK, siege **NO BET** (stats absentes ou data insuffisante).\n"
+             f"{len(rows)} match(s) : {names}\n"
+             "📊 PREVIEW 1 ecrasee (plus de demo). `/data` pour la liste.\n"
+             "Ne pas `/valider-2` — aucun ticket a composer.")
+        return
+    tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
+         f"{len(rows)} match(s), {n_go} exploitables : {names}\n"
+         "📊 PREVIEW 1 : SHARED/OUT/preview1.html\n"
+         "→ relis ; si ok : `/combos <n>` `/budget <fc>` puis `/valider-2`.\n"
+         "💬 `/data` pour les rangs.")
 
 
 def cmd_valider2(st, arg):
     if not st.get("steps", {}).get("valider1"):
         tell("⛔ Valider la Preview 1 d'abord (`/valider-1` puis relecture)."); return
+    t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
+    rows = t3.get("matchs") or []
+    n_go = sum(1 for r in rows if r.get("top3") and not r.get("no_bet_recommande") and r.get("bucket") != "FAIBLE")
+    if n_go == 0:
+        tell("⛔ VALIDATION 2 refusee : aucun match eligible (NO BET / Zero Data). "
+             "Pas de ticket. Recapture une ligue couverte (E0/SP1/I1/D1/F1) ou injecte les stats.")
+        return
     cmd = ["--mode", "tickets", "--combos", str(st.get("combos") or 3),
            "--budget-fc", str(st.get("budget_fc") or 0),
            "--surticket-fc", str(st.get("surticket_fc") or 0)]
@@ -235,21 +268,31 @@ def cmd_valider2(st, arg):
     ok, _ = run_orch(*cmd)
     if not ok:
         tell("⛔ Echec de la composition des tickets."); return
+    tj = load_json(P("F05_PACKAGER", "OUT", "tickets.json")) or {}
+    n_tix = len(tj.get("tickets") or [])
+    if n_tix == 0:
+        tell("⛔ Aucun ticket compose (buckets FAIBLE / NO BET). Budget non engage.")
+        return
     st["steps"]["valider2"] = _now()
     st["previews"]["preview2"] = "SHARED/OUT/preview2.html"
     st["previews"]["preview1"] = "SHARED/OUT/preview1.html"
     save(st)
     tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
-    tell("✅ VALIDATION 2 : TICKETS + BACKROLL posés.\n" + (tmd or "") +
-         "\n🎯 PREVIEW 2 : SHARED/OUT/preview2.html — le ticket final. "
-         "Place les tickets chez Winner Bet, puis log-ge chaque ticket (F06) : "
-         "tracker.py add --file ticket.json")
+    tell("VALIDATION 2 : TICKETS + BACKROLL poses.\n" + (tmd or "") +
+         "\nPREVIEW 2 : SHARED/OUT/preview2.html — ticket final. "
+         "Place chez Winner Bet, puis F06 tracker.py add --file ticket.json")
 
 
 def cmd_data(st, arg):
     t3 = read_text(P("SHARED", "OUT", "TOP3.md"))
     if not t3:
         tell("⛔ Rien encore — /valider-1 pour générer le Top 3."); return
+    carte = load_json(P("ARCHIVUM", "fixtures", "matches.json")) or {}
+    names = [m.get("dom") or "" for m in carte.get("matchs") or []]
+    demo = ("Cyclops vs Trench", "Lions vs Garrison", "Perturabo SC vs Rovers")
+    if any(d in t3 for d in demo) and names and not any(n and n in t3 for n in names):
+        tell("⛔ TOP3 desynchronise (demo). Relance `/valider-1`.")
+        return
     tell(t3)
 
 

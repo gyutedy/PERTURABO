@@ -306,6 +306,8 @@ def parse_markdown_table(capture_text: str):
         d = DATE_RE.search(horaire) or DATE_RE.search(capture_text)
         if d:
             cur_date = d.group(1)
+        elif re.search(r"aujourd.?hui", horaire, re.I):
+            cur_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
         cotes = {}
         m_warn = []

@@ -189,6 +189,11 @@ def main():
     p_junk = parse_capture(junk)
     check("A.md_junk_prefix", p_junk.get("n_matchs") == 5, f"n={p_junk.get('n_matchs')}")
 
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    dates = {b.get("date") for b in p_br.get("captures") or []}
+    check("A.md_aujourdhui_date", today in dates, f"dates={dates} today={today}")
+
     cap_txt = os.path.join(OUT, "e2e_plain.txt")
     with open(cap_txt, "w", encoding="utf-8") as f:
         f.write(PLAIN)

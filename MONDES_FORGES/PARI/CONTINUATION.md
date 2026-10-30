@@ -67,8 +67,9 @@
 - [x] **Pages** : `deploy-pages` en `continue-on-error` (Pages pas active sur gyutedy → 404, ne doit plus faire echouer le run).
 - [x] **Premier /start LIVE OK** (2026-10-30) : ACK Worker + message `Campagne **PARI-20261030** ouverte.` Campagne ouverte, en attente capture.
 - [x] **v2.2.1 parseur markdown Telegram** (2026-10-30) : `_normalize_md_table` reassembles les rangs casses (`<br>` → newline). Prefix junk (`. |`) ignore. `Inde - IFL Equipe vs Equipe` separe competition/match. `workflow.py` passe le chemin inbox (plus `fichier` vide). Pas de scrape Winner.bet.
+- [x] **v2.2.2 siege LIVE** (2026-10-30) : `/valider-1` force `PARI_AUTO_GATES=1` (workflow.py + `pari_listen.yml`) → F02/F03/top3 ecrasent la demo. `/data` refuse un TOP3 Cyclops. `/valider-2` refuse si 0 match eligible. `Aujourd'hui` → date UTC. `inject_stats` scanne toutes les ligues de la carte (whitelist E0/SP1/I1/D1/F1). forgeward emet NO_BET si analyse absente. Pas de scrape.
 
-**Prochaine etape operateur (PAS de code)** : `/capture` + tableau Winner Bet **dans le meme message** (meme si Telegram casse les `<br>`). Puis `/budget 6000` `/combos 3` `/valider-1`. Sans stats historiques → NO BET (doctrine). CLI fichier reste valide.
+**Prochaine etape operateur** : `/valider-1` de nouveau (ecrase TOP3 demo). Attendre NO BET sur IFL/Iran/Israel. Ne pas `/valider-2`. Pour un siege chiffré : recapture une ligue whitelist (PL/LaLiga/Serie A/Bundesliga/Ligue 1).
 
 **Handoff prochain agent** : ne pas relancer wrangler/setWebhook. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
 

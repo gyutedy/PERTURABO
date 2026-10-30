@@ -137,6 +137,7 @@ def main():
     check("L8.concurrency", "group: pari-campagne" in raw and "cancel-in-progress: false" in raw)
     check("L8.inbox_write", "capture_telegram.md" in raw)
     check("L8.pages_non_bloquant", "continue-on-error: true" in raw)
+    check("L8.auto_gates", "PARI_AUTO_GATES" in raw)
 
     wf_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "workflow.py"), encoding="utf-8").read()
     check(
@@ -144,6 +145,9 @@ def main():
         'run_orch("--mode", "input-capture", "--capture", path)' in wf_src
         and 'run_orch("--mode", "input-capture", "--capture", fichier)' not in wf_src,
     )
+    check("L10.valider1_auto_gates", 'extra_env={"PARI_AUTO_GATES": "1"}' in wf_src)
+    check("L10.valider2_refuse_nobet", "VALIDATION 2 refusee" in wf_src)
+    check("L10.data_refuse_demo", "TOP3 desynchronise" in wf_src)
 
     import notifier  # noqa: E402
     old_tok = os.environ.get("TELEGRAM_BOT_TOKEN")
