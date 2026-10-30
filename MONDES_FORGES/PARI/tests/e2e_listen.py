@@ -136,6 +136,25 @@ def main():
     check("L8.workflow_exists", "name: pari-listen" in raw and "workflow.py" in raw)
     check("L8.concurrency", "group: pari-campagne" in raw and "cancel-in-progress: false" in raw)
     check("L8.inbox_write", "capture_telegram.md" in raw)
+    check("L8.pages_non_bloquant", "continue-on-error: true" in raw)
+
+    import notifier  # noqa: E402
+    old_tok = os.environ.get("TELEGRAM_BOT_TOKEN")
+    old_chat = os.environ.get("TELEGRAM_CHAT_ID")
+    os.environ["TELEGRAM_BOT_TOKEN"] = ""
+    os.environ["TELEGRAM_CHAT_ID"] = ""
+    try:
+        notifier._load_env_file()
+        check("L9.env_pari_si_secret_vide", bool(os.environ.get("TELEGRAM_BOT_TOKEN")) and bool(os.environ.get("TELEGRAM_CHAT_ID")))
+    finally:
+        if old_tok is None:
+            os.environ.pop("TELEGRAM_BOT_TOKEN", None)
+        else:
+            os.environ["TELEGRAM_BOT_TOKEN"] = old_tok
+        if old_chat is None:
+            os.environ.pop("TELEGRAM_CHAT_ID", None)
+        else:
+            os.environ["TELEGRAM_CHAT_ID"] = old_chat
 
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]

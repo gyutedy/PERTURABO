@@ -37,8 +37,9 @@ def _load_env_file():
                     if not line or line.startswith("#") or "=" not in line:
                         continue
                     k, v = line.split("=", 1)
-                    if k.strip() and v.strip():
-                        os.environ.setdefault(k.strip(), v.strip())
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
         except OSError as e:
             print(f"[TELEGRAM] ⚠️ env illisible ({os.path.basename(path)}): {e}")
 

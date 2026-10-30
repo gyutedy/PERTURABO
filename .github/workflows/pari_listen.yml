@@ -95,3 +95,4 @@ jobs:
 
       - uses: actions/deploy-pages@v4
         id: pages
+        continue-on-error: true
