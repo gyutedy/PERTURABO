@@ -1,5 +1,5 @@
 {
-  "fleet_status": "pack_ready",
+  "fleet_status": "intel_captured",
   "siege_id": "PARI-DEMO-20261029-0826",
   "monde": "pari",
   "warsmith_brief": {
@@ -16,11 +16,11 @@
     "seuil_ev_applique": null,
     "recommandation": null,
     "justification": null,
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json"
+    "output_path": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json"
   },
   "f01_sentinel": {
     "status": "done",
-    "output_path": "/workspace/chats/434cb912808fa98a06555082/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json",
+    "output_path": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json",
     "intel_hash": null,
     "matchs_count": 0,
     "mode_source": null
@@ -62,7 +62,7 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-10-29T08:26:36Z",
+    "last_validation": "2026-10-30T15:01:19Z",
     "errors": []
   },
   "gate_decisions": {
@@ -93,8 +93,8 @@
   },
   "siege_timestamps": {
     "start": "2026-10-29T08:26:34Z",
-    "tyrant_done": "2026-10-29T08:26:35Z",
-    "intel_done": "2026-10-29T08:26:35Z",
+    "tyrant_done": "2026-10-30T15:01:19Z",
+    "intel_done": "2026-10-30T15:01:19Z",
     "breach_done": "2026-10-29T08:26:35Z",
     "value_done": "2026-10-29T08:26:36Z",
     "herald_done": "2026-10-29T08:26:36Z",

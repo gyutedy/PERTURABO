@@ -1106,3 +1106,9 @@
 ## [2026-10-30T12:20:01Z] /start LIVE OK — Campagne PARI-20261030 ouverte via Worker + pari_listen.yml sur gyutedy/PERTURABO. notifier.py corrige (env_pari si secret vide). Pages 404 non bloquant. e2e_listen 25/25. Prochaine etape : /capture markdown meme message.
 
 ## [2026-10-30T14:30:00Z] v2.2.1 — parseur markdown Telegram : recoud rangs casses (<br>→newline), junk prefix, split competition/vs. workflow.py passe le path inbox. Pas de scrape. Prochaine etape operateur : /capture tableau meme message.
+
+## [2026-10-30T15:01:19Z] TYRANT — check-out — status: processing
+
+## [2026-10-30T15:01:19Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:1bd0aac68e8f61a956555f771e4e3d97 — status:done
+
+## [2026-10-30T15:01:19Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:f09827dd647de4e4df4c0ca7d73ee951 — status:done

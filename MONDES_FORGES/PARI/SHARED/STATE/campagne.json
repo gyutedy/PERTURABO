@@ -4,7 +4,8 @@
     "start": "2026-10-30T14:47:53Z",
     "capture": "2026-10-30T14:55:27Z",
     "budget": "2026-10-30T14:58:33Z",
-    "combos": "2026-10-30T14:59:35Z"
+    "combos": "2026-10-30T14:59:35Z",
+    "valider1": "2026-10-30T15:01:18Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 3000.0,
@@ -12,6 +13,6 @@
   "jambes": "3:2:2",
   "marches": null,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "A_VALIDER",
+  "capturer_statut": "VALIDE",
   "previews": {}
 }
