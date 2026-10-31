@@ -22,13 +22,16 @@ import argparse
 import os
 from datetime import datetime, timezone
 
-LIGUES_TOP5 = ["premier league", "la liga", "liga santander", "serie a", "bundesliga", "ligue 1"]
+LIGUES_TOP5 = ["premier league", "la liga", "laliga", "liga santander", "serie a", "bundesliga", "ligue 1"]
 
 
 def detect_tier(ligue: str) -> str:
-    lw = (ligue or "").lower()
+    lw = (ligue or "").lower().replace("-", " ")
+    compact = lw.replace(" ", "")
+    if "laliga2" in compact or "la liga 2" in lw:
+        return "exotique"
     for k in LIGUES_TOP5:
-        if k in lw:
+        if k in lw or k.replace(" ", "") in compact:
             return "top5"
     return "exotique"
 

@@ -33,7 +33,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | Mode | Commande | Ce que ça fait |
 |---|---|---|
 | `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue** (ligue, date, heure, marches, cotes). v2.2.1 recoud les rangs markdown casses par Telegram. → validation Porte 1 → carte |
-| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (siege complet, ignore filtered stale v2.2.4), /valider-2 (refuse si NO BET ou sur-ticket absent), /data, /status, /stop |
+| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7, siege complet, ignore filtered stale v2.2.4), /valider-2 (refuse si 0 GO ou sur-ticket absent), /data, /status, /stop |
 | `radar` | `orchestrator.py --mode radar` | Scan de **toute la ligue** : classement de tous les matchs du jour (buts attendus, P(O2.5), P(MT2 > MT1)) → TOP 20 |
 | `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET (+ filtre qualitatif + Top 3 + Preview 1) |
 | `tickets` | `orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 6000 --surticket-fc 3000` | **Combinés + backroll** (ticket sûr + reste divisé) → tickets.json + PREVIEW 2 |

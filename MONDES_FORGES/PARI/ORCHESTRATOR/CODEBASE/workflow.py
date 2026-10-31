@@ -242,47 +242,68 @@ def cmd_combos(st, text):
          + (f" · jambes par ticket : {st['jambes']}" if st.get("jambes") else ""))
 
 
-LIGUE_CODE = {"premier league": "E0", "la liga": "SP1", "liga santander": "SP1",
-              "serie a": "I1", "bundesliga": "D1", "ligue 1": "F1"}
+def _capteurs():
+    cap_dir = P("F00_RADAR", "CODEBASE")
+    if cap_dir not in sys.path:
+        sys.path.insert(0, cap_dir)
+    import capteurs as _cap
+    return _cap
 
 
 def inject_stats(carte_path):
     """Capteurs football-data.co.uk + ClubElo (sans clé) sur la carte validée.
-    Gracieux : si le réseau ou la ligue ne matchent pas, on prévient et le
-    siège reste possible avec les stats déjà présentes — Zero Data, Zero Calc sinon."""
+    Merge multi-ligues (un JSON par code, jamais ecrase). Alias LaLiga/clubs.
+    Club hors CSV = skip CE match, pas NO BET global. True si >=1 match avec stats."""
     if os.environ.get("PARI_SKIP_INJECT") == "1":
         return False
     try:
+        cap = _capteurs()
         carte = load_json(carte_path) or {}
-        ligues = []
+        codes = []
+        skipped_ligues = []
         for m in carte.get("matchs") or []:
-            lg = (m.get("ligue") or carte.get("ligue") or "").lower().strip()
-            if lg and lg not in ligues:
-                ligues.append(lg)
-        if not ligues:
-            root = (carte.get("ligue") or "").lower().strip()
-            if root:
-                ligues.append(root)
-        tmp_stats = P("ARCHIVUM", "teams", "stats_inject.json")
+            lg = m.get("ligue") or carte.get("ligue") or ""
+            code = cap.ligue_code(lg)
+            if code:
+                if code not in codes:
+                    codes.append(code)
+            elif lg and lg not in skipped_ligues:
+                skipped_ligues.append(lg)
+        if not codes:
+            root = carte.get("ligue") or ""
+            code = cap.ligue_code(root)
+            if code:
+                codes.append(code)
         any_ok = False
-        for ligue in ligues:
-            code = next((c for k, c in LIGUE_CODE.items() if k in ligue), None)
-            if not code:
-                continue
+        teams_dir = P("ARCHIVUM", "teams")
+        os.makedirs(teams_dir, exist_ok=True)
+        for code in codes:
+            tmp_stats = os.path.join(teams_dir, f"stats_inject_{code}.json")
             r1 = subprocess.run(
                 [sys.executable, P("F00_RADAR", "CODEBASE", "capteurs.py"), "build-stats",
                  "--league", code, "--season", "2627", "--include-seasons", "2526",
                  "--last", "12", "--out", tmp_stats],
                 capture_output=True, text=True, cwd=WORLD)
+            sys.stdout.write(r1.stdout or "")
+            sys.stdout.write(r1.stderr or "")
             if r1.returncode != 0:
                 continue
             r2 = subprocess.run(
                 [sys.executable, P("F00_RADAR", "CODEBASE", "capteurs.py"), "inject",
                  "--stats", tmp_stats, "--carte", carte_path],
                 capture_output=True, text=True, cwd=WORLD)
+            sys.stdout.write(r2.stdout or "")
+            sys.stdout.write(r2.stderr or "")
             if r2.returncode == 0:
                 any_ok = True
-        return any_ok
+        after = load_json(carte_path) or {}
+        n_filled = sum(
+            1 for m in (after.get("matchs") or [])
+            if (m.get("stats") or {}).get("dom") and (m.get("stats") or {}).get("ext")
+        )
+        if skipped_ligues:
+            print(f"[WF] ligues hors whitelist skip: {skipped_ligues}")
+        return any_ok and n_filled > 0
     except Exception as e:
         print(f"[WF] inject_stats gracieux: {e}")
         return False
@@ -311,16 +332,25 @@ def cmd_valider1(st, arg):
     t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
     rows = t3.get("matchs") or []
     n_go = sum(1 for r in rows if r.get("top3") and not r.get("no_bet_recommande") and r.get("bucket") != "FAIBLE")
+    n_skip = sum(1 for r in rows if not r.get("top3"))
+    n_faible = sum(1 for r in rows if r.get("top3") and (r.get("no_bet_recommande") or r.get("bucket") == "FAIBLE"))
     names = ", ".join((r.get("match") or "?") for r in rows[:8]) or "aucun"
+    counts = f"{len(rows)} match(s) : {n_go} GO / {n_faible} FAIBLE-qual / {n_skip} skip-stats"
     if n_go == 0:
-        tell("VALIDATION 1 : JSON OK, siege **NO BET** (stats absentes ou data insuffisante).\n"
-             f"{len(rows)} match(s) : {names}\n"
-             "📊 PREVIEW 1 ecrasee (plus de demo). `/data` pour la liste.\n"
+        if not stats_ok:
+            why = "stats absentes (ligue hors whitelist, alias club, ou reseau)"
+        elif n_skip == len(rows):
+            why = "data insuffisante (clubs hors CSV ligue / mj < 6)"
+        else:
+            why = "tous FAIBLE ou NO BET qualitatif"
+        tell(f"VALIDATION 1 : JSON OK, siege **NO BET** ({why}).\n"
+             f"{counts} — {names}\n"
+             "PREVIEW 1 ecrasee (plus de demo). `/data` pour la liste.\n"
              "Ne pas `/valider-2` — aucun ticket a composer.")
         return
     tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
-         f"{len(rows)} match(s), {n_go} exploitables : {names}\n"
-         "📊 PREVIEW 1 : SHARED/OUT/preview1.html\n"
+         f"{counts} — {names}\n"
+         "PREVIEW 1 : SHARED/OUT/preview1.html\n"
          "→ relis ; si ok : `/combos <n>` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
          "`/data` pour les rangs.")
 

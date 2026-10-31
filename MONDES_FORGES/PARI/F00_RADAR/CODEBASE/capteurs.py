@@ -19,25 +19,177 @@ Usage:
 import argparse
 import json
 import os
+import re
 import sys
+import unicodedata
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONNECTORS = os.path.join(HERE, "..", "..", "F01_SENTINEL", "CODEBASE", "connectors")
 sys.path.insert(0, CONNECTORS)
 
+LIGUE_CODE = {
+    "premier league": "E0",
+    "epl": "E0",
+    "la liga": "SP1",
+    "laliga": "SP1",
+    "liga santander": "SP1",
+    "liga bbva": "SP1",
+    "serie a": "I1",
+    "seria a": "I1",
+    "bundesliga": "D1",
+    "ligue 1": "F1",
+    "ligue1": "F1",
+}
+
+LIGUE_REJECT = (
+    "laliga 2", "la liga 2", "liga 2", "segunda", "championship",
+    "serie b", "ligue 2", "ligue2", "2 bundesliga", "bundesliga 2",
+    "2. bundesliga", "premier league 2",
+)
+
+TEAM_ALIASES = {
+    "athmadrid": "atleticomadrid",
+    "atleticomadrid": "atleticomadrid",
+    "atlmadrid": "atleticomadrid",
+    "atleticomadridcf": "atleticomadrid",
+    "mgladbach": "monchengladbach",
+    "borussiamonchengladbach": "monchengladbach",
+    "monchengladbach": "monchengladbach",
+    "gladbach": "monchengladbach",
+    "nottmforest": "nottinghamforest",
+    "nottinghamforest": "nottinghamforest",
+    "nottsforest": "nottinghamforest",
+    "leverkusen": "bayerleverkusen",
+    "bayerleverkusen": "bayerleverkusen",
+    "bayer04leverkusen": "bayerleverkusen",
+    "afcbournemouth": "bournemouth",
+    "bournemouth": "bournemouth",
+    "leedsunited": "leeds",
+    "leeds": "leeds",
+    "brentfordfc": "brentford",
+    "brentford": "brentford",
+    "sunderlandafc": "sunderland",
+    "sunderland": "sunderland",
+    "acmonza": "monza",
+    "monza": "monza",
+    "bolognafc": "bologna",
+    "bolognasc": "bologna",
+    "bologna": "bologna",
+    "levanteud": "levante",
+    "levante": "levante",
+    "vfbstuttgart": "stuttgart",
+    "stuttgart": "stuttgart",
+    "tsghoffenheim": "hoffenheim",
+    "hoffenheim": "hoffenheim",
+    "fcaugsburg": "augsburg",
+    "augsburg": "augsburg",
+    "scfreiburg": "freiburg",
+    "freiburg": "freiburg",
+    "werderbremen": "werderbremen",
+    "svwerderbremen": "werderbremen",
+    "rbleipzig": "leipzig",
+    "leipzig": "leipzig",
+    "schalke04": "schalke",
+    "fcschalke04": "schalke",
+    "schalke": "schalke",
+    "scpaderborn07": "paderborn",
+    "paderborn07": "paderborn",
+    "paderborn": "paderborn",
+    "coventrycity": "coventry",
+    "coventry": "coventry",
+    "manunited": "manunited",
+    "manchesterunited": "manunited",
+    "mancity": "mancity",
+    "manchestercity": "mancity",
+    "spurs": "tottenham",
+    "tottenham": "tottenham",
+    "tottenhamhotspur": "tottenham",
+    "wolves": "wolves",
+    "wolverhampton": "wolves",
+    "wolverhamptonwanderers": "wolves",
+    "einfrankfurt": "eintrachtfrankfurt",
+    "eintrachtfrankfurt": "eintrachtfrankfurt",
+    "frankfurt": "eintrachtfrankfurt",
+    "athbilbao": "athleticbilbao",
+    "athleticbilbao": "athleticbilbao",
+    "athleticclub": "athleticbilbao",
+    "realbetis": "betis",
+    "betis": "betis",
+    "realsociedad": "sociedad",
+    "sociedad": "sociedad",
+    "espanyol": "espanol",
+    "espanol": "espanol",
+}
+
+_STRIP_PREFIX = ("borussia", "bayer", "tsg", "vfb", "svw", "afc", "acf", "asroma", "rcd", "ud", "ac", "as", "sc", "fc", "cf", "rb")
+_STRIP_SUFFIX = ("hotspur", "wanderers", "united", "city", "afc", "cfc", "ud", "fc", "cf", "ac", "sc", "04", "07")
+
+
+def _alnum(name: str) -> str:
+    raw = unicodedata.normalize("NFKD", name or "")
+    raw = raw.encode("ascii", "ignore").decode("ascii")
+    return "".join(c for c in raw.lower() if c.isalnum())
+
+
+def ligue_code(name: str):
+    lg = re.sub(r"\s+", " ", (name or "").lower().replace("-", " ").strip())
+    compact = lg.replace(" ", "")
+    for bad in LIGUE_REJECT:
+        if bad.replace(" ", "") in compact or bad in lg:
+            return None
+    if "laliga" in compact:
+        return "SP1"
+    for key, code in LIGUE_CODE.items():
+        if key in lg or key.replace(" ", "") in compact:
+            return code
+    return None
+
+
+def team_key(name: str) -> str:
+    n = _alnum(name)
+    if not n:
+        return ""
+    if n in TEAM_ALIASES:
+        return TEAM_ALIASES[n]
+    changed = True
+    while changed and len(n) >= 6:
+        changed = False
+        for p in _STRIP_PREFIX:
+            if n.startswith(p) and len(n) - len(p) >= 4:
+                n = n[len(p):]
+                changed = True
+                break
+        if changed:
+            continue
+        for s in _STRIP_SUFFIX:
+            if n.endswith(s) and len(n) - len(s) >= 4:
+                n = n[:-len(s)]
+                changed = True
+                break
+    return TEAM_ALIASES.get(n, n)
+
+
 def _fuzzy_stats_lookup(stats: dict, name: str):
-    n = "".join(c for c in name.lower() if c.isalnum())
+    n = team_key(name)
+    if not n:
+        return None, None
     best = None
     for key, val in stats.items():
-        k = "".join(c for c in key.lower() if c.isalnum())
+        k = team_key(key)
+        if not k:
+            continue
         if k == n:
             return key, val
-        if len(k) >= 4 and (n in k or k in n):
+        if len(k) >= 5 and len(n) >= 5 and (n in k or k in n):
             diff = abs(len(k) - len(n))
             if best is None or diff < best[0]:
                 best = (diff, key, val)
     return (best[1], best[2]) if best else (None, None)
+
+
+def fuzzy_stats_lookup(stats: dict, name: str):
+    return _fuzzy_stats_lookup(stats, name)
 
 
 def cmd_build_stats(args):
@@ -90,7 +242,9 @@ def cmd_inject(args):
     with open(args.carte, "r", encoding="utf-8") as f:
         carte = json.load(f)
     with open(args.stats, "r", encoding="utf-8") as f:
-        stats = json.load(f).get("teams", {})
+        blob = json.load(f)
+    stats = blob.get("teams", {})
+    stats_code = (blob.get("league_code") or "").upper()
 
     elos = {}
     if args.elo and os.path.exists(args.elo):
@@ -99,25 +253,31 @@ def cmd_inject(args):
 
     filled, manquants = 0, []
     for m in carte.get("matchs", []):
+        lg = m.get("ligue") or carte.get("ligue") or ""
+        code = ligue_code(lg)
+        if stats_code and code and code != stats_code:
+            continue
+        if stats_code and not code:
+            continue
         k_d, s_d = _fuzzy_stats_lookup(stats, m.get("dom", ""))
         k_e, s_e = _fuzzy_stats_lookup(stats, m.get("ext", ""))
         if m.get("stats") is None:
             m["stats"] = {}
         s_d_venue = (s_d or {}).get("dom")
-        if s_d_venue:
+        if s_d_venue and not m["stats"].get("dom"):
             m["stats"]["dom"] = {k: s_d_venue.get(k) for k in ("mj", "marques", "encaisses",
                                  "marques_mt1", "encaisses_mt1", "marques_mt2", "encaisses_mt2")}
             m["stats"]["dom"] = {k: v for k, v in m["stats"]["dom"].items() if v is not None}
             filled += 1
-        else:
+        elif not s_d_venue and not m["stats"].get("dom"):
             manquants.append(f"stats dom: {m.get('dom')}")
         s_e_venue = (s_e or {}).get("ext")
-        if s_e_venue:
+        if s_e_venue and not m["stats"].get("ext"):
             m["stats"]["ext"] = {k: s_e_venue.get(k) for k in ("mj", "marques", "encaisses",
                                  "marques_mt1", "encaisses_mt1", "marques_mt2", "encaisses_mt2")}
             m["stats"]["ext"] = {k: v for k, v in m["stats"]["ext"].items() if v is not None}
             filled += 1
-        else:
+        elif not s_e_venue and not m["stats"].get("ext"):
             manquants.append(f"stats ext: {m.get('ext')}")
         el = {}
         if elos:
@@ -130,12 +290,12 @@ def cmd_inject(args):
             m["elo"] = {**(m.get("elo") or {}), **el}
 
     carte.setdefault("warnings", []).append(
-        f"inject CAPTEURS {now_str()}: {filled} auto / {len(manquants)} manquants")
+        f"inject CAPTEURS {now_str()} [{stats_code or '?'}]: {filled} auto / {len(manquants)} manquants")
     with open(args.carte, "w", encoding="utf-8") as f:
         json.dump(carte, f, indent=2, ensure_ascii=False)
-    print(f"[CAPTEURS] 💉 inject: {filled} stats remplies, {len(elos)} clubs Elo dispo → {args.carte}")
+    print(f"[CAPTEURS] inject: {filled} stats remplies, {len(elos)} clubs Elo dispo → {args.carte}")
     for miss in manquants:
-        print(f"   ⚠️ {miss} — corrigé à la main ou renomme l'équipe (Zero Data, Zero Calc)")
+        print(f"   SKIP {miss} — hors CSV ligue ou alias manquant (Zero Data, Zero Calc sur CE match)")
 
 
 def cmd_telegram_test(args):

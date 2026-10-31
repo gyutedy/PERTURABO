@@ -1207,6 +1207,10 @@
 
 ## [2026-10-31T07:55:00Z] v2.2.6 — Worker live refuse /bankroll (KNOWN stale). Alias /budget bankroll N sans wrangler. /start guide vers /budget bankroll.
 
+## [2026-10-31T08:55:00Z] LIVE NO BET 10 matchs whitelist — /budget 3000 800 + /combos 4 OK. Capture filtree E0/SP1/I1/D1 (LaLiga 2 + Super Lig enleves). /valider-1 : JSON OK, siege NO BET (stats absentes ou data insuffisante). Cause : LIGUE_CODE cherche "la liga" (LaLiga sans espace rate SP1) ; stats_inject.json ecrase ligue par ligue ; fuzzy unidirectionnel rate Ath Madrid / M'Gladbach / Nott'm Forest ; Paderborn/Schalke/Coventry hors CSV D1/E0 polluent. Ne pas /valider-2.
+
+## [2026-10-31T09:20:00Z] v2.2.7 — inject_stats alias LaLiga/clubs, merge stats_inject_{code}.json, skip club hors CSV (pas NO BET global), /valider-1 compte GO/FAIBLE/skip. e2e_listen L12. Operateur : nouveau /capture puis /valider-1. Pas de wrangler.
+
 ## [2026-10-31T07:50:11Z] TYRANT — check-out — status: processing
 
 ## [2026-10-31T07:50:11Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:22721f8b6230d23e32bd73be6c4dcf22 — status:done

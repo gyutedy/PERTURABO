@@ -228,6 +228,84 @@ def main():
         workflow.STATE_DIR = old_dir
         workflow.tell = old_tell
 
+    cap_dir = os.path.join(WORLD, "F00_RADAR", "CODEBASE")
+    sys.path.insert(0, cap_dir)
+    import capteurs  # noqa: E402
+
+    check("L12.laliga_sans_espace", capteurs.ligue_code("Espagne - LaLiga") == "SP1")
+    check("L12.la_liga_espace", capteurs.ligue_code("Espagne - La Liga") == "SP1")
+    check("L12.laliga2_rejet", capteurs.ligue_code("Espagne - LaLiga 2") is None)
+    check("L12.superlig_rejet", capteurs.ligue_code("Turkiye - Super Lig") is None)
+    check("L12.serie_a", capteurs.ligue_code("Italie - Serie A") == "I1")
+    check("L12.bundesliga", capteurs.ligue_code("Allemagne - Bundesliga") == "D1")
+    check("L12.premier", capteurs.ligue_code("Angleterre - Premier League") == "E0")
+    check("L12.ligue1", capteurs.ligue_code("France - Ligue 1") == "F1")
+
+    check("L12.alias_ath_madrid", capteurs.team_key("Atletico Madrid") == capteurs.team_key("Ath Madrid"))
+    check("L12.alias_gladbach", capteurs.team_key("Borussia Monchengladbach") == capteurs.team_key("M'Gladbach"))
+    check("L12.alias_forest", capteurs.team_key("Nottingham Forest") == capteurs.team_key("Nott'm Forest"))
+    check("L12.alias_leverkusen", capteurs.team_key("Bayer Leverkusen") == capteurs.team_key("Leverkusen"))
+    check("L12.alias_monza", capteurs.team_key("AC Monza") == capteurs.team_key("Monza"))
+    check("L12.alias_bournemouth", capteurs.team_key("AFC Bournemouth") == capteurs.team_key("Bournemouth"))
+
+    stub = {
+        "mj": 12, "marques": 18, "encaisses": 10,
+        "marques_mt1": 8, "encaisses_mt1": 4, "marques_mt2": 10, "encaisses_mt2": 6,
+    }
+    stats_sp1 = {"Ath Madrid": {"dom": stub, "ext": stub}, "Levante": {"dom": stub, "ext": stub}}
+    stats_e0 = {"Bournemouth": {"dom": stub, "ext": stub}, "Nott'm Forest": {"dom": stub, "ext": stub}}
+    k, v = capteurs.fuzzy_stats_lookup(stats_sp1, "Atletico Madrid")
+    check("L12.fuzzy_madrid", k == "Ath Madrid" and v is not None, str(k))
+    k, v = capteurs.fuzzy_stats_lookup(stats_e0, "Nottingham Forest")
+    check("L12.fuzzy_forest", k == "Nott'm Forest" and v is not None, str(k))
+    k, v = capteurs.fuzzy_stats_lookup(stats_e0, "Coventry City")
+    check("L12.fuzzy_hors_csv", k is None, str(k))
+
+    inj_dir = tempfile.mkdtemp(prefix="pari-inj-")
+    carte_path = os.path.join(inj_dir, "carte.json")
+    carte = {
+        "ligue": "Capture",
+        "matchs": [
+            {"id": "M1", "dom": "Levante UD", "ext": "Atletico Madrid", "ligue": "Espagne - LaLiga", "stats": {}},
+            {"id": "M2", "dom": "AFC Bournemouth", "ext": "Leeds United", "ligue": "Angleterre - Premier League", "stats": {}},
+            {"id": "M3", "dom": "Coventry City", "ext": "Sunderland AFC", "ligue": "Angleterre - Premier League", "stats": {}},
+        ],
+        "warnings": [],
+    }
+    json.dump(carte, open(carte_path, "w", encoding="utf-8"))
+    sp1_path = os.path.join(inj_dir, "stats_inject_SP1.json")
+    e0_path = os.path.join(inj_dir, "stats_inject_E0.json")
+    json.dump({"league_code": "SP1", "teams": {
+        "Levante": {"dom": stub, "ext": stub},
+        "Ath Madrid": {"dom": stub, "ext": stub},
+    }}, open(sp1_path, "w", encoding="utf-8"))
+    json.dump({"league_code": "E0", "teams": {
+        "Bournemouth": {"dom": stub, "ext": stub},
+        "Leeds": {"dom": stub, "ext": stub},
+        "Sunderland": {"dom": stub, "ext": stub},
+    }}, open(e0_path, "w", encoding="utf-8"))
+
+    class _Args:
+        def __init__(self, stats, carte, elo=None):
+            self.stats = stats
+            self.carte = carte
+            self.elo = elo
+
+    capteurs.cmd_inject(_Args(sp1_path, carte_path))
+    capteurs.cmd_inject(_Args(e0_path, carte_path))
+    after = json.load(open(carte_path, encoding="utf-8"))
+    m1 = next(m for m in after["matchs"] if m["id"] == "M1")
+    m2 = next(m for m in after["matchs"] if m["id"] == "M2")
+    m3 = next(m for m in after["matchs"] if m["id"] == "M3")
+    check("L12.merge_sp1", bool((m1.get("stats") or {}).get("dom") and (m1.get("stats") or {}).get("ext")))
+    check("L12.merge_e0_pas_ecrase", bool((m2.get("stats") or {}).get("dom") and (m2.get("stats") or {}).get("ext"))
+          and bool((m1.get("stats") or {}).get("dom")))
+    check("L12.skip_coventry", not (m3.get("stats") or {}).get("dom"), str(m3.get("stats")))
+
+    check("L12.valider1_compte_go", "n_go == 0" in wf_src and "n_skip" in wf_src and "n_faible" in wf_src)
+    check("L12.inject_merge_fichier", "stats_inject_" in wf_src and "n_filled" in wf_src)
+    check("L12.ligue_code_capteurs", "ligue_code" in wf_src)
+
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]
     print(f"LISTEN {len(CHECKS) - len(fails)}/{len(CHECKS)}")

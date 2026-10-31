@@ -51,10 +51,13 @@ curl -s "https://api.telegram.org/bot${TOKEN}/getWebhookInfo"
 
 ## 5. Test
 
-Commandes v2.2.6 : Telegram live tape `/budget bankroll 50000` (pot global)
+Commandes v2.2.7 : Telegram live tape `/budget bankroll 50000` (pot global)
 puis `/budget 3000 800` (plafond jour + mise FORCEE ticket sur).
 `/bankroll` seul = refuse par le Worker deploye (KNOWN stale, pas de
 wrangler). `/budget 3000` seul est refuse par `workflow.py`.
+`/valider-1` injecte stats E0/SP1/I1/D1/F1 avec alias `LaLiga` + clubs
+football-data ; un club hors CSV skip CE match (pas NO BET global).
+`/valider-2` seulement si le message compte ≥1 GO.
 
 Dans Telegram, envoie `/start`. Tu dois voir :
 

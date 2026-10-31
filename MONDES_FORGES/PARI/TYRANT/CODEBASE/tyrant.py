@@ -20,12 +20,15 @@ import argparse
 import os
 from datetime import datetime, timezone
 
-LIGUES_TOP5 = ["premier league", "la liga", "liga santander", "serie a", "bundesliga", "ligue 1"]
+LIGUES_TOP5 = ["premier league", "la liga", "laliga", "liga santander", "serie a", "bundesliga", "ligue 1"]
 
 
 def detect_tier(ligue: str) -> str:
-    lw = (ligue or "").lower()
-    return "top5" if any(k in lw for k in LIGUES_TOP5) else "exotique"
+    lw = (ligue or "").lower().replace("-", " ")
+    compact = lw.replace(" ", "")
+    if "laliga2" in compact or "la liga 2" in lw:
+        return "exotique"
+    return "top5" if any(k in lw or k.replace(" ", "") in compact for k in LIGUES_TOP5) else "exotique"
 
 
 def oracle_comment(notes: str, match_label: str):
