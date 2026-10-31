@@ -34,7 +34,9 @@ Toute donnée manquante est **déclarée** (flag `estimate` + qualité data bais
 
 Rappel de freshness_sources Art. 4 : le moteur n'écoute pas les contenus. Audit des 26 transcriptions, précision de scope :
 
-**Moteur (données autorisées)** : stats froides (FBref, football-data.co.uk, ClubElo…), cotes Winner Bet, Elo. Rien d'autre.
+**Moteur (données autorisées)** : stats froides (football-data.co.uk, ClubElo), cotes Winner Bet. Elo / xG Understat / H2H = **métadonnées** (jamais dans Poisson / Dixon-Coles). FBref retiré.
+
+**F00 notes (non binaires)** : SofaScore + Sportradar + WhoScored. Vote OUT si 3 sources indépendantes / 48h. DOUTE / IGNORE = trou, ne touche pas λ. Oracle jamais un OUT.
 
 **Doctrine / données testables — JAMAIS moteur :**
 - **Exchanges & trading Betfair** (lay, home lay, lay away, scalping over/under) : le monde parie chez un bookmaker, pas sur un exchange. Ces transcriptions = doctrine de discipline (variance, gestion du risque), pas des marchés ouverts au siège.

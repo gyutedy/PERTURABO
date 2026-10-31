@@ -66,7 +66,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 | Code | Nom | Rôle | Output |
 |---|---|---|---|
-| F00 | RADAR/CAPTEURS | Scan ligue complète + veille (marge Winner Bet, pronostiqueurs) | `radar.json` + `RADAR.md` |
+| F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H, vote notes 3 voix) | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
 | F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps | `analysis.json` |
 | F03 | FORGEWARD | De-marging (overround/Shin), EV, Kelly 1/4, scanner combinés | `predictions.json` |
@@ -104,6 +104,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 - ❌ Chasse externe sources non-whitelistées (hérésie)
 - ❌ Pronostics YouTube dans le moteur de calcul (biais de survie) — le tracker les note, period
 - ❌ Donnée manquante comblée par une estimation silencieuse → **Zero Data, Zero Calc → NO BET**
+- ❌ Note OUT sans 3 sources independantes / LLM qui invente un OUT / FBref / scrape Winner
 - ❌ Collecter seulement les tickets gagnants (survivorship bias) — le ledger prend tout
 
 ---

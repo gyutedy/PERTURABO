@@ -32,8 +32,9 @@ L'utilisateur fournit :
 Si incomplet → demande avant de continuer.
 
 ─── COMPARTIMENT 2 : DONNÉES + GARDE-FOUS ─────────────────────────────
-Sources autorisées SEULEMENT : FBref, Understat, FootyStats, SoccerSTATS,
-Flashscore, Transfermarkt, ClubElo, Football-Data.co.uk.
+Sources autorisées SEULEMENT : Football-Data.co.uk, ClubElo, Understat,
+football-data.org. FBref = MORT. FootyStats / SoccerSTATS / Flashscore /
+Transfermarkt = hors siege F00.
 Collecte sur 10 derniers matchs de chaque équipe (Domicile pour A, Extérieur
 pour B) :
 - Buts marqués/encaissés TOI 1re MT et 2e MT (moyenne)
