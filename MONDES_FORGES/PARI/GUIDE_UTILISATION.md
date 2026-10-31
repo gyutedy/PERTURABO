@@ -19,8 +19,10 @@ ouvert `PARI-20261030`.
 
 ```
 Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
-/start → /capture (tableau markdown DANS le meme message)
-     → /budget 6000 → /combos 3:3:2:2
+/start → /bankroll 50000 (une fois, pot global)
+     → /capture (tableau markdown DANS le meme message)
+     → /budget 3000 800 (plafond jour + mise FORCEE ticket sur)
+     → /combos 3:3:2:2
      → /valider-1 → PREVIEW 1 (données brutes) → relecture
      → /valider-2 → PREVIEW 2 (ticket final) → /data → tickets posés → F06
 ```
@@ -29,19 +31,21 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 
 | Commande | Ce que ça fait |
 |---|---|
-| `/start` | Ouvre la campagne du jour (reset propre) |
+| `/start` | Ouvre la campagne du jour (reset propre, **garde la bankroll**) |
 | `/capture` | Telegram v1 : colle le tableau markdown Winner Bet **dans le meme message**. CLI : `/capture <fichier>` (txt/md/png/pdf/docx). JSON reconstitue = Porte 1 |
-| `/budget 6000 / 3000` | Budget du jour (FC) + mise du ticket sûr (optionnel) |
+| `/bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. Sans arg : affiche. |
+| `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
+| `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
 | `/data` | Les rangs du **Top 3 + score commun**. Refuse si TOP3 est encore la demo. |
-| `/valider-2` | Compose les tickets. **Refuse** si NO BET / Zero Data (aucun match eligible). |
-| `/status`, `/roi`, `/stop` | État de campagne, ROI F06, clôture |
+| `/valider-2` | Compose les tickets. **Refuse** si NO BET / Zero Data, ou si `/budget JOUR SURTICKET` absent. |
+| `/status`, `/roi`, `/stop` | État de campagne (bankroll + budget + sur), ROI F06, clôture (bankroll survit) |
 
 Équivalent terminal (si tu bosses depuis un PC sans bot) :
 ```bash
-python ORCHESTRATOR/CODEBASE/orchestrator.py --mode workflow --cmd "/start /capture c.txt /budget 6000 /combos 3"
-python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 6000 --surticket-fc 3000
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode workflow --cmd "/start /capture c.txt /bankroll 50000 /budget 3000 800 /combos 3"
+python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 3000 --surticket-fc 800
 ```
 
 ### Ce que le monde fait exactement à chaque étape
@@ -63,7 +67,9 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html).
 3. **/valider-2** : tickets depuis la classe de fiabilité (ticket sûr = scores les plus
    hauts, reste réparti ; match FAIBLE et NO BET/qualitatif exclus) + **backroll**
-   (budget jour, sur-ticket, division si > 4 jambes) → PREVIEW 2 (SHARED/OUT/preview2.html).
+   (`/bankroll` pot global ; `/budget JOUR SURTICKET` force la mise du ticket sur ;
+   reste divise ; division si > 4 jambes) → PREVIEW 2 (SHARED/OUT/preview2.html).
+   Refuse si le sur-ticket n est pas pose.
 4. **Placement** : tu poses les tickets chez Winner Bet, puis loggens F06
    (`tracker.py add --file ticket.json`) — TOUS les tickets, gagnants comme perdants.
 

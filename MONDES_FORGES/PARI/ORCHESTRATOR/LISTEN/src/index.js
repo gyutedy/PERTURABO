@@ -10,7 +10,7 @@
  */
 
 const KNOWN = new Set([
-  "start", "capture", "budget", "combos",
+  "start", "capture", "bankroll", "budget", "surticket", "combos",
   "valider-1", "valider-2", "valider1", "valider2",
   "data", "status", "roi", "stop",
 ]);
@@ -21,7 +21,8 @@ const HELP =
   "Campagne PARI — commandes :\n" +
   "/start\n" +
   "/capture  (colle le tableau markdown DANS le meme message)\n" +
-  "/budget 6000\n" +
+  "/bankroll 50000  (pot global, une fois)\n" +
+  "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +
   "/valider-1\n" +
   "/valider-2\n" +
@@ -106,7 +107,7 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {

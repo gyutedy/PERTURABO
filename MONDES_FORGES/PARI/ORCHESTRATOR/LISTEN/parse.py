@@ -19,7 +19,9 @@ import sys
 KNOWN = (
     "start",
     "capture",
+    "bankroll",
     "budget",
+    "surticket",
     "combos",
     "valider-1",
     "valider-2",
@@ -89,7 +91,8 @@ def parse_update(update, allowed_chat_id):
                 "Campagne PARI — commandes :\n"
                 "/start\n"
                 "/capture  (colle le tableau markdown DANS le meme message)\n"
-                "/budget 6000\n"
+                "/bankroll 50000  (pot global, une fois)\n"
+                "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n"
                 "/combos 3  ou  /combos 3:3:2:2\n"
                 "/valider-1\n"
                 "/valider-2\n"
@@ -135,7 +138,7 @@ def parse_update(update, allowed_chat_id):
             "message_id": msg.get("message_id"),
         }
     cmd = "/" + canon
-    if extra.strip() and canon in ("budget", "combos"):
+    if extra.strip() and canon in ("budget", "combos", "bankroll", "surticket"):
         cmd = cmd + " " + extra.split("\n", 1)[0].strip()
     return {
         "ok": True,

@@ -11,7 +11,7 @@
 - [x] **Phase 3** : **Top 3 marchés + score commun 01-10** — `F03_FORGEWARD/CODEBASE/top3.py` (tri EV puis p_modele ; score = 30% qualité data + 40% proba max + 30% edge EV ; buckets HAUTE ≥7 / MOYENNE ≥5 / FAIBLE) + **PREVIEW 1** `SHARED/OUT/preview1.html` (données brutes, menu déroulant, charte PERTURABO, responsive). TOP3.md = base du message /data.
 - [x] **Phase 4** : combinaisons + **backroll** — `F05_PACKAGER/CODEBASE/combinator.py` (ticket sûr = classe A score le plus haut, reste réparti ; FAIBLE/NO BET exclus ; > 4 jambes → division en deux classes ; budget FC + sur-ticket + unités si taux fourni).
 - [x] **Phase 5** : **PREVIEW 2** `SHARED/OUT/preview2.html` (ticket final hommage PERTURABO, cartes, budget, responsive).
-- [x] **Phase 6** : workflow Telegram — `ORCHESTRATOR/CODEBASE/workflow.py` (/start, /capture, /budget, /combos, /valider-1, /valider-2, /data, /status, /roi, /stop) + injection stats gracieuse à /valider-1.
+- [x] **Phase 6** : workflow Telegram — `ORCHESTRATOR/CODEBASE/workflow.py` (/start, /capture, /bankroll, /budget JOUR SURTICKET, /surticket, /combos, /valider-1, /valider-2, /data, /status, /roi, /stop) + injection stats gracieuse à /valider-1.
 - [x] **Phase 7** : contrat `schema_ticket_final.json`, docs à jour (GUIDE/README/TRACKING/CONTINUATION), workflow GH (previews + Pages), tests e2e par groupe (g1 9/9, g2 11/11, g3 11/11, final).
 
 ## DECISIONS VERROUILLÉES v2 (campagne)
@@ -24,7 +24,7 @@
 | Top 3 marchés | forgé par le monde (EV puis p_modele), opérateur choisit la cible après relecture | la chaîne propose, l'opérateur dispose |
 | Score commun | 01-10 (30% qualité data + 40% proba + 30% edge), buckets HAUTE/MOYENNE/FAIBLE, comparable entre campagnes | scoring « à la clipping », sert à composer les tickets |
 | Tickets | SÛR = classe A (score le plus haut) ; reste réparti ; FAIBLE/NO BET exclus ; > 4 jambes → division | complexité mathématique des combinés longs |
-| Backroll | budget jour + sur-ticket + reste divisé ; mise min 100 FC ; unités si taux FC fourni | gestion du bankroll sans martingale |
+| Backroll | 3 couches : `/bankroll` pot global (persiste) ; `/budget JOUR SURTICKET` plafond jour + mise FORCEE ticket sur ; reste divise ; mise min 100 FC | gestion du pot sans martingale, ticket sur force |
 | Previews | 2 : Preview 1 (brutes, début de campagne) + Preview 2 (ticket final, charte PERTURABO) ; GH Pages ; responsive | relecture opérateur aux 2 portes de campagne |
 | Message /data | rangs Top 3 + score en message dédié, HORS ticket final | séparation lecture d'analyse / ticket final (analyses dans data, rangs dans le ticket final) |
 | Oracle | clé premeum optionnelle (Secret), exécution HORS du job du monde forger, qualitatif seulement | jamais au centre, jamais dans les chiffres |
@@ -70,12 +70,13 @@
 - [x] **v2.2.2 siege LIVE** (2026-10-30) : `/valider-1` force `PARI_AUTO_GATES=1` (workflow.py + `pari_listen.yml`) → F02/F03/top3 ecrasent la demo. `/data` refuse un TOP3 Cyclops. `/valider-2` refuse si 0 match eligible. `Aujourd'hui` → date UTC. `inject_stats` scanne toutes les ligues de la carte (whitelist E0/SP1/I1/D1/F1). forgeward emet NO_BET si analyse absente. Pas de scrape.
 - [x] **v2.2.3 e2e_final aligne** (2026-10-30) : apres `/valider-1` le test copie la carte stats (`e2e_final_carte.json`) dans `matches.json` puis siege → `/valider-2` compose 3 tickets. Garde prod inchangee (carte live vs TOP3 demo = refuse). e2e_final 13/13, e2e_listen 30/30. Autre sandbox a plante sur credits au `git checkout` artefacts — termine ici.
 - [x] **v2.2.4 siege ignore filtered stale** (2026-10-30) : `suite_siege` ne lit `predictions_filtered.json` / `qualitative_verdict.json` que si le filtre a tourne **sur cette carte** (notes presentes). Sinon Top 3 = `predictions.json` de la capture. Cause live : filtered demo Cyclops (29/10) relu apres siege Konyaspor (30/10) → Telegram 18 matchs demo. `/valider-1` passe `--fixtures matches.json`. e2e_listen plante un stale Cyclops cote source ; e2e_final plante un filtered stale avant `/valider-1`.
+- [x] **v2.2.5 bankroll + budget JOUR SURTICKET force** (2026-10-30) : `/bankroll 50000` = pot global (persiste `/start` `/stop`). `/budget 3000 800` obligatoire = 3000 FC plafond jour + **800 FC FORCES sur le ticket sur** (reste 2200 divise). Alias `/budget 3000 / 800`. `/surticket 800` corrige la mise du sur sans retaper le jour. `/valider-2` refuse si sur-ticket absent. `/budget 3000` seul refuse. Sur > jour refuse. Jour > bankroll refuse. Worker + parse.py relaient `/bankroll` `/surticket`. e2e_listen + e2e_final couvrent persist + force.
 
-**Campagne LIVE 2026-10-30** : `/start` → `/capture` (Konyaspor, Ligue 1, Bundesliga, LaLiga, Championship…) → `/budget 3000` → `/combos 4` → `/valider-1` a renvoye 18 matchs **demo** (bug v2.2.4). `/valider-2` interdit tant que Cyclops.
+**Campagne LIVE 2026-10-30** : capture Bresil/Paraguay/USL → NO BET (hors whitelist). `/stop` deja lance. v2.2.4 a corrige le stale Cyclops.
 
-**Prochaine etape operateur** : `/stop` puis `/start` `/capture` (markdown meme message) `/budget 3000` `/combos 4` `/valider-1` `/data`. `/valider-2` seulement si pas NO BET et pas Cyclops.
+**Prochaine etape operateur** : apres push, `/start` → `/bankroll 50000` (une fois) → `/capture` (markdown, ligues E0/SP1/I1/D1/F1) → `/budget 3000 800` → `/combos 4` → `/valider-1` → `/data`. `/valider-2` seulement si pas NO BET. `/budget 3000 800` marche sans redeploy Worker (ancien Worker forward deja l extra budget). `/bankroll` et `/surticket` exigent **un** `npx wrangler deploy` (pas setWebhook).
 
-**Handoff prochain agent** : ne pas relancer wrangler/setWebhook. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Ne pas committer les artefacts e2e (OUT/STATE). Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
+**Handoff prochain agent** : ne pas setWebhook. Redeploy Worker seulement si `/bankroll` Telegram = commande inconnue. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Ne pas committer les artefacts e2e (OUT/STATE). Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

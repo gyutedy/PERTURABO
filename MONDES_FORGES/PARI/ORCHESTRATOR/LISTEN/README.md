@@ -51,6 +51,12 @@ curl -s "https://api.telegram.org/bot${TOKEN}/getWebhookInfo"
 
 ## 5. Test
 
+Commandes v2.2.5 : `/bankroll 50000` (pot global) et `/budget 3000 800`
+(plafond jour + mise FORCEE ticket sur). `/budget 3000` seul est refuse
+par `workflow.py`. `/bankroll` / `/surticket` exigent un redeploy Worker
+(`npx wrangler deploy`, pas setWebhook). `/budget 3000 800` marche sans
+redeploy (l extra budget etait deja forward).
+
 Dans Telegram, envoie `/start`. Tu dois voir :
 
 1. ACK Worker : `Recu /start — siege en cours (~1 min).`

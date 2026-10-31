@@ -77,13 +77,14 @@ def main():
 
     cap = p("F01_SENTINEL", "OUT", "e2e_capture.txt")
 
-    # 1. /start + /capture + /budget + /combos
-    r, out = wf("/start", "/capture", cap, "/budget", "6000 / 3000", "/combos", "3:3:2:2")
+    # 1. /start + /capture + /bankroll + /budget JOUR SURTICKET + /combos
+    r, out = wf("/start", "/capture", cap, "/bankroll", "50000", "/budget", "6000 / 3000", "/combos", "3:3:2:2")
     st = json.loads(rd(p("SHARED", "STATE", "campagne.json")) or "{}")
     ok = r == 0 and bool(st.get("campagne")) and st.get("capturer_statut") == "A_VALIDER" \
+        and st.get("bankroll_fc") == 50000 \
         and st.get("budget_fc") == 6000 and st.get("surticket_fc") == 3000 and st.get("combos") == 3
     check("FINAL.start_capture_budget_combos", ok,
-          f"campagne={st.get('campagne')}, budget={st.get('budget_fc')}/{st.get('surticket_fc')}")
+          f"campagne={st.get('campagne')}, bankroll={st.get('bankroll_fc')}, budget={st.get('budget_fc')}/{st.get('surticket_fc')}")
 
     # 2. /valider-1 — la carte capture (sans stats) reste Zero Data, doctrine-safe,
     #    puis on repeuple le top3 par un siège sur la carte des stats (comme CI)
@@ -126,8 +127,8 @@ def main():
     # 4. /data + /status + /stop
     r, out = wf("/data", "/status", "/stop")
     st = json.loads(rd(p("SHARED", "STATE", "campagne.json")) or "{}")
-    ok = st.get("campagne") is None
-    check("FINAL.stop", ok)
+    ok = st.get("campagne") is None and st.get("bankroll_fc") == 50000
+    check("FINAL.stop", ok, f"bankroll persistante={st.get('bankroll_fc')}")
     t3md = rd(p("SHARED", "OUT", "TOP3.md")) or ""
     ok = ("TOP 3" in t3md.upper()) and "score" in t3md.lower()
     check("FINAL.data_message", ok, "/data fournit les rangs hors ticket")

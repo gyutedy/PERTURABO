@@ -4,15 +4,16 @@ ORCHESTRATOR — WORKFLOW TELEGRAM (v2, Phase 6)
 Le cycle de campagne opérable **depuis Telegram** (PC et téléphone), avec une
 commande à chaque étape et les deux previews servies sur GitHub Pages.
 
-  /start           ouvre la campagne du jour (reset propre, garde le budget)
+  /start           ouvre la campagne du jour (reset propre, garde bankroll + budget)
   /capture [file]  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
                    sans chemin : lit F01_SENTINEL/IN/capture_telegram.md (inbox Telegram)
-  /budget 6000     budget du jour en FC (+reads optionnels /tau 2900 ...)
+  /bankroll 50000  pot global FC (persiste /start /stop). Sans arg : affiche le pot.
+  /budget 3000 800 budget du jour + mise FORCEE du ticket sur (reste divise)
+  /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
   valider-1        épingle le JSON capture → carte → siège → Top3 → PREVIEW 1
   /corriger-1      (rejoue /capture après correction de la capture OCR)
   /marches O/U2.5,MT2   choisit les marchés visés pour la carte (=livrer infos)
   /combos 3        nombre de tickets (option ^^ : 3:3:2:2 = jambes par ticket)
-  /surticket 3000  mise du ticket sûr en FC
   valider-2        tickets + backroll → PREVIEW 2 (ticket final) + message /data
   /roi             tracker F06 : ROI cumulé
   /status          état de la campagne (gates, budgets, previews)
@@ -25,7 +26,7 @@ commande = un run workflow_dispatch ou une ligne de terminal).
 Usage:
   python workflow.py /start
   python workflow.py /capture capture.txt
-  python workflow.py /budget 6000 /combos 3 /valider-1
+  python workflow.py /bankroll 50000 /budget 3000 800 /combos 3 /valider-1
   python workflow.py --mode status
 """
 
@@ -52,9 +53,9 @@ def state():
     if os.path.exists(STATE_PATH):
         with open(STATE_PATH, encoding="utf-8") as f:
             return json.load(f)
-    return {"campagne": None, "steps": {}, "budget_fc": 0, "surticket_fc": 0,
-            "combos": 3, "jambes": None, "marches": None, "capture": None,
-            "capturer_statut": None, "previews": {}}
+    return {"campagne": None, "steps": {}, "bankroll_fc": 0, "budget_fc": 0,
+            "surticket_fc": 0, "combos": 3, "jambes": None, "marches": None,
+            "capture": None, "capturer_statut": None, "previews": {}}
 
 
 def save(st):
@@ -87,9 +88,12 @@ def cmd_start(st, arg):
     st["capturer_statut"] = None
     st["previews"] = {}
     save(st)
+    br = st.get("bankroll_fc") or 0
     tell(f"Campagne **{st['campagne']}** ouverte.\n"
-         "1. Capture Winner Bet (txt, md, png/jpg, pdf, docx) → `/capture <fichier>`\n"
-         "2. `/budget 6000` et `/combos 3`\n"
+         + (f"Bankroll : **{br:.0f} FC** (persiste).\n" if br else
+            "Bankroll absente — `/bankroll 50000` une fois (pot global, persiste).\n")
+         + "1. Capture Winner Bet (txt, md, png/jpg, pdf, docx) → `/capture <fichier>`\n"
+         "2. `/budget 3000 800` (plafond jour + mise FORCEE ticket sur) et `/combos 3`\n"
          "3. `/valider-1` → PREVIEW 1 (donnees brutes) → tu relis → `/valider-2`"
          " apres verif → PREVIEW 2 (ticket final)")
 
@@ -132,21 +136,83 @@ def cmd_capture(st, fichier):
          "(F01_SENTINEL/OUT/capture_parsed.json) → si ok : `/valider-1`")
 
 
+def _parse_fc(text):
+    """Extrait des montants FC : '3000 800', '3000 / 800', '3000/800'."""
+    cleaned = (text or "").replace("/", " ").replace(",", ".")
+    vals = []
+    for tok in cleaned.split():
+        try:
+            vals.append(float(tok))
+        except ValueError:
+            continue
+    return vals
+
+
+def cmd_bankroll(st, text):
+    """Pot global FC. Persiste /start et /stop. Sans arg : affiche."""
+    vals = _parse_fc(text)
+    if not vals:
+        br = st.get("bankroll_fc") or 0
+        if br <= 0:
+            tell("Bankroll absente. Format : `/bankroll 50000` (pot global FC, persiste).")
+            return
+        tell(f"Bankroll : **{br:.0f} FC** (pot global, hors budget jour).")
+        return
+    br = vals[0]
+    if br <= 0:
+        tell("⛔ Bankroll doit etre > 0 FC."); return
+    st["bankroll_fc"] = br
+    st["steps"]["bankroll"] = _now()
+    save(st)
+    tell(f"Bankroll posee : **{br:.0f} FC** (pot global). "
+         "Ne change pas a `/start` / `/stop`. "
+         "Ensuite `/budget 3000 800` = plafond jour + mise FORCEE du ticket sur.")
+
+
 def cmd_budget(st, text):
     if not st.get("campagne"):
         tell("⛔ Pas de campagne — `/start` d'abord."); return
-    try:
-        budget = float(text.split()[0])
-    except (ValueError, IndexError):
-        tell("Format : `/budget 6000` (FC)."); return
-    sur = st.get("surticket_fc") or 0
-    if "/" in text:
-        sur = float(text.split("/")[1].strip().split()[0])
+    vals = _parse_fc(text)
+    if len(vals) < 2:
+        tell("Format : `/budget 3000 800` — 3000 FC plafond du jour, "
+             "**800 FC FORCES sur le ticket sur**. Le reste (2200) est divise "
+             "entre les autres tickets. Alias : `/budget 3000 / 800`."); return
+    budget, sur = vals[0], vals[1]
+    if budget <= 0 or sur <= 0:
+        tell("⛔ Budget jour et ticket sur doivent etre > 0 FC."); return
+    if sur > budget:
+        tell(f"⛔ Ticket sur ({sur:.0f} FC) > budget jour ({budget:.0f} FC)."); return
+    br = st.get("bankroll_fc") or 0
+    if br and budget > br:
+        tell(f"⛔ Budget jour ({budget:.0f} FC) > bankroll ({br:.0f} FC)."); return
     st["budget_fc"], st["surticket_fc"] = budget, sur
     st["steps"]["budget"] = _now()
     save(st)
-    tell(f"💰 Budget du jour : **{budget:.0f} FC**"
-         + (f" — dont **{sur:.0f} FC** sur le ticket sûr" if sur else ""))
+    reste = budget - sur
+    tell(f"Budget jour : **{budget:.0f} FC** — ticket sur FORCE a **{sur:.0f} FC**. "
+         f"Reste **{reste:.0f} FC** a diviser. "
+         + (f"Bankroll {br:.0f} FC." if br else "Bankroll non posee (`/bankroll`)."))
+
+
+def cmd_surticket(st, text):
+    if not st.get("campagne"):
+        tell("⛔ Pas de campagne — `/start` d'abord."); return
+    vals = _parse_fc(text)
+    if not vals:
+        tell("Format : `/surticket 800` (mise FORCEE du ticket sur, FC)."); return
+    sur = vals[0]
+    budget = st.get("budget_fc") or 0
+    if sur <= 0:
+        tell("⛔ Ticket sur doit etre > 0 FC."); return
+    if budget and sur > budget:
+        tell(f"⛔ Ticket sur ({sur:.0f} FC) > budget jour ({budget:.0f} FC). "
+             "Retape `/budget JOUR SURTICKET`."); return
+    st["surticket_fc"] = sur
+    st["steps"]["surticket"] = _now()
+    save(st)
+    tell(f"Ticket sur FORCE a **{sur:.0f} FC**"
+         + (f" (budget jour {budget:.0f} FC, reste {budget - sur:.0f} FC)." if budget else
+            ". Pose aussi `/budget JOUR SURTICKET`."))
 
 
 def cmd_combos(st, text):
@@ -247,8 +313,8 @@ def cmd_valider1(st, arg):
     tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
          f"{len(rows)} match(s), {n_go} exploitables : {names}\n"
          "📊 PREVIEW 1 : SHARED/OUT/preview1.html\n"
-         "→ relis ; si ok : `/combos <n>` `/budget <fc>` puis `/valider-2`.\n"
-         "💬 `/data` pour les rangs.")
+         "→ relis ; si ok : `/combos <n>` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
+         "`/data` pour les rangs.")
 
 
 def cmd_valider2(st, arg):
@@ -261,9 +327,15 @@ def cmd_valider2(st, arg):
         tell("⛔ VALIDATION 2 refusee : aucun match eligible (NO BET / Zero Data). "
              "Pas de ticket. Recapture une ligue couverte (E0/SP1/I1/D1/F1) ou injecte les stats.")
         return
+    budget = st.get("budget_fc") or 0
+    sur = st.get("surticket_fc") or 0
+    if budget <= 0 or sur <= 0:
+        tell("⛔ VALIDATION 2 refusee : `/budget JOUR SURTICKET` obligatoire "
+             "(ex. `/budget 3000 800` = 3000 FC aujourd hui, 800 FORCES sur le ticket sur).")
+        return
     cmd = ["--mode", "tickets", "--combos", str(st.get("combos") or 3),
-           "--budget-fc", str(st.get("budget_fc") or 0),
-           "--surticket-fc", str(st.get("surticket_fc") or 0)]
+           "--budget-fc", str(budget),
+           "--surticket-fc", str(sur)]
     if st.get("jambes"):
         cmd += ["--jambes", st["jambes"]]
     ok, _ = run_orch(*cmd)
@@ -300,7 +372,8 @@ def cmd_data(st, arg):
 def cmd_status(st, arg):
     lines = [f"📋 Campagne : {st.get('campagne') or '— aucune —'}"]
     lines += [f"  • {k}: {v}" for k, v in (st.get("steps") or {}).items()]
-    lines.append(f"  • budget: {st.get('budget_fc')} FC · sur-ticket: {st.get('surticket_fc')} FC"
+    lines.append(f"  • bankroll: {st.get('bankroll_fc') or 0} FC (pot global)")
+    lines.append(f"  • budget jour: {st.get('budget_fc')} FC · ticket sur FORCE: {st.get('surticket_fc')} FC"
                  f" · combos: {st.get('combos')} · jambes: {st.get('jambes')}")
     tell("\n".join(lines))
 
@@ -311,16 +384,19 @@ def cmd_roi(st, arg):
 
 
 def cmd_stop(st, arg):
-    tell(f"🏁 Campagne {st.get('campagne')} fermée. Ledgers et previews restent en"
-         " SHARED/OUT — settles F06 quand les matchs sont joués.")
+    br = st.get("bankroll_fc") or 0
+    tell(f"Campagne {st.get('campagne')} fermee. Bankroll **{br:.0f} FC** persiste. "
+         "Ledgers et previews restent en SHARED/OUT — settles F06 quand les matchs sont joues.")
     st["campagne"] = None
     save(st)
 
 
 CMDS = {
     "start": (cmd_start, "ouvre la campagne"),
-        "capture": (cmd_capture, "capture txt/md/png/pdf/docx"),
-    "budget": (cmd_budget, "budget du jour en FC"),
+    "capture": (cmd_capture, "capture txt/md/png/pdf/docx"),
+    "bankroll": (cmd_bankroll, "pot global FC (persiste)"),
+    "budget": (cmd_budget, "plafond jour + mise FORCEE ticket sur"),
+    "surticket": (cmd_surticket, "force la mise du ticket sur"),
     "combos": (cmd_combos, "nb tickets (+jambes)"),
     "valider-1": (cmd_valider1, "valide preview 1 → siège"),
     "valider1": None,

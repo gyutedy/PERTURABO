@@ -1202,3 +1202,5 @@
 ## [2026-10-30T22:06:06Z] F05 — check-out — status: processing
 
 ## [2026-10-30T22:06:06Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:ec918f83629eb91e08bd17c21e4f72c4 — status:done
+
+## [2026-10-30T23:30:00Z] v2.2.5 — /bankroll pot global persistant + /budget JOUR SURTICKET obligatoire (mise FORCEE ticket sur). /budget 3000 seul refuse. /valider-2 refuse si sur absent. Worker + parse.py relaient /bankroll /surticket.

@@ -88,6 +88,15 @@ def main():
     r = parse.parse_update(upd("/budget 6000"), CHAT)
     check("L4.budget", r.get("ok") and r.get("cmd") == "/budget 6000", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/budget 3000 800"), CHAT)
+    check("L4.budget_surticket", r.get("ok") and r.get("cmd") == "/budget 3000 800", str(r.get("cmd")))
+
+    r = parse.parse_update(upd("/bankroll 50000"), CHAT)
+    check("L4.bankroll", r.get("ok") and r.get("cmd") == "/bankroll 50000", str(r.get("cmd")))
+
+    r = parse.parse_update(upd("/surticket 800"), CHAT)
+    check("L4.surticket", r.get("ok") and r.get("cmd") == "/surticket 800", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/combos 3:3:2:2"), CHAT)
     check("L4.combos", r.get("ok") and r.get("cmd") == "/combos 3:3:2:2", str(r.get("cmd")))
 
@@ -98,7 +107,9 @@ def main():
     check("L4.valider1_alias", r.get("ok") and r.get("cmd") == "/valider-1", str(r.get("cmd")))
 
     r = parse.parse_update(upd("/help"), CHAT)
-    check("L5.help_local", r.get("ok") and r.get("action") == "local" and "/start" in (r.get("reply") or ""))
+    help_txt = r.get("reply") or ""
+    check("L5.help_local", r.get("ok") and r.get("action") == "local"
+          and "/start" in help_txt and "/bankroll" in help_txt and "/budget 3000 800" in help_txt)
 
     r = parse.parse_update(upd("/radar"), CHAT)
     check("L5.unknown_reply", (not r.get("ok")) and r.get("action") == "reply" and r.get("reason") == "unknown")
@@ -149,6 +160,8 @@ def main():
     check("L10.valider1_fixtures_capture", '"--fixtures", carte_path' in wf_src)
     check("L10.valider2_refuse_nobet", "VALIDATION 2 refusee" in wf_src)
     check("L10.data_refuse_demo", "TOP3 desynchronise" in wf_src)
+    check("L10.budget_exige_surticket", "JOUR SURTICKET" in wf_src and "cmd_bankroll" in wf_src)
+    check("L10.bankroll_persiste", "bankroll_fc" in wf_src and "pot global" in wf_src)
     orch_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "orchestrator.py"), encoding="utf-8").read()
     check("L10.siege_filtre_campagne",
           "used_filter" in orch_src and "filtered_path if used_filter" in orch_src)
@@ -170,6 +183,45 @@ def main():
             os.environ.pop("TELEGRAM_CHAT_ID", None)
         else:
             os.environ["TELEGRAM_CHAT_ID"] = old_chat
+
+    tmp_state = tempfile.mkdtemp(prefix="pari-br-")
+    old_state = workflow.STATE_PATH
+    old_dir = workflow.STATE_DIR
+    old_tell = workflow.tell
+    workflow.STATE_DIR = tmp_state
+    workflow.STATE_PATH = os.path.join(tmp_state, "campagne.json")
+    workflow.tell = lambda t: print(t)
+    try:
+        st = workflow.state()
+        workflow.cmd_bankroll(st, "50000")
+        st = workflow.state()
+        check("L11.bankroll_pose", st.get("bankroll_fc") == 50000, str(st.get("bankroll_fc")))
+        st["campagne"] = "PARI-TEST"
+        workflow.save(st)
+        workflow.cmd_budget(st, "3000")
+        st = workflow.state()
+        check("L11.budget_sans_sur_refuse", (st.get("budget_fc") or 0) == 0 and (st.get("surticket_fc") or 0) == 0)
+        workflow.cmd_budget(st, "3000 800")
+        st = workflow.state()
+        check("L11.budget_force_sur", st.get("budget_fc") == 3000 and st.get("surticket_fc") == 800,
+              f"{st.get('budget_fc')}/{st.get('surticket_fc')}")
+        workflow.cmd_budget(st, "3000 / 900")
+        st = workflow.state()
+        check("L11.budget_slash", st.get("budget_fc") == 3000 and st.get("surticket_fc") == 900)
+        workflow.cmd_budget(st, "4000 9000")
+        st = workflow.state()
+        check("L11.sur_gt_jour_refuse", st.get("surticket_fc") == 900, str(st.get("surticket_fc")))
+        workflow.cmd_stop(st, "")
+        st = workflow.state()
+        check("L11.bankroll_survit_stop", st.get("campagne") is None and st.get("bankroll_fc") == 50000)
+        workflow.cmd_start(st, "")
+        st = workflow.state()
+        check("L11.bankroll_survit_start", bool(st.get("campagne")) and st.get("bankroll_fc") == 50000,
+              str(st.get("campagne")))
+    finally:
+        workflow.STATE_PATH = old_state
+        workflow.STATE_DIR = old_dir
+        workflow.tell = old_tell
 
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]
