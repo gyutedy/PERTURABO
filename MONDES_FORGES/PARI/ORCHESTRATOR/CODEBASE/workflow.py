@@ -91,7 +91,7 @@ def cmd_start(st, arg):
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne **{st['campagne']}** ouverte.\n"
          + (f"Bankroll : **{br:.0f} FC** (persiste).\n" if br else
-            "Bankroll absente — `/bankroll 50000` une fois (pot global, persiste).\n")
+            "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
          + "1. Capture Winner Bet (txt, md, png/jpg, pdf, docx) → `/capture <fichier>`\n"
          "2. `/budget 3000 800` (plafond jour + mise FORCEE ticket sur) et `/combos 3`\n"
          "3. `/valider-1` → PREVIEW 1 (donnees brutes) → tu relis → `/valider-2`"
@@ -166,17 +166,25 @@ def cmd_bankroll(st, text):
     save(st)
     tell(f"Bankroll posee : **{br:.0f} FC** (pot global). "
          "Ne change pas a `/start` / `/stop`. "
+         f"Telegram : `/budget bankroll {br:.0f}` (le Worker live ne connait pas encore /bankroll). "
          "Ensuite `/budget 3000 800` = plafond jour + mise FORCEE du ticket sur.")
 
 
 def cmd_budget(st, text):
     if not st.get("campagne"):
         tell("⛔ Pas de campagne — `/start` d'abord."); return
+    raw = (text or "").strip()
+    head = raw.split()[0].lower() if raw.split() else ""
+    if head in ("bankroll", "pot", "br"):
+        rest = raw.split(None, 1)[1] if len(raw.split()) > 1 else ""
+        return cmd_bankroll(st, rest)
     vals = _parse_fc(text)
     if len(vals) < 2:
         tell("Format : `/budget 3000 800` — 3000 FC plafond du jour, "
              "**800 FC FORCES sur le ticket sur**. Le reste (2200) est divise "
-             "entre les autres tickets. Alias : `/budget 3000 / 800`."); return
+             "entre les autres tickets. Alias : `/budget 3000 / 800`.\n"
+             "Bankroll (pot global) : `/budget bankroll 50000` "
+             "(pas `/bankroll` — le Worker live la refuse)."); return
     budget, sur = vals[0], vals[1]
     if budget <= 0 or sur <= 0:
         tell("⛔ Budget jour et ticket sur doivent etre > 0 FC."); return

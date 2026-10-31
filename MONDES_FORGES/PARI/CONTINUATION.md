@@ -74,9 +74,9 @@
 
 **Campagne LIVE 2026-10-30** : capture Bresil/Paraguay/USL → NO BET (hors whitelist). `/stop` deja lance. v2.2.4 a corrige le stale Cyclops.
 
-**Prochaine etape operateur** : apres push, `/start` → `/bankroll 50000` (une fois) → `/capture` (markdown, ligues E0/SP1/I1/D1/F1) → `/budget 3000 800` → `/combos 4` → `/valider-1` → `/data`. `/valider-2` seulement si pas NO BET. `/budget 3000 800` marche sans redeploy Worker (ancien Worker forward deja l extra budget). `/bankroll` et `/surticket` exigent **un** `npx wrangler deploy` (pas setWebhook).
+**Prochaine etape operateur** : `/start` → `/budget bankroll 50000` (une fois, Worker live refuse `/bankroll`) → `/capture` (markdown, ligues E0/SP1/I1/D1/F1) → `/budget 3000 800` → `/combos 4` → `/valider-1` → `/data`. `/valider-2` seulement si pas NO BET. Pas de wrangler/setWebhook.
 
-**Handoff prochain agent** : ne pas setWebhook. Redeploy Worker seulement si `/bankroll` Telegram = commande inconnue. Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Ne pas committer les artefacts e2e (OUT/STATE). Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
+**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler. `/bankroll` Telegram = refuse par Worker live (KNOWN stale) — alias `/budget bankroll N` (v2.2.6). Canal bidirectionnel LIVE. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets. Ne pas scraper winner.bet. Ne pas committer les artefacts e2e (OUT/STATE). Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

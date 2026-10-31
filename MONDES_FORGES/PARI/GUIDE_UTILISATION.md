@@ -19,7 +19,7 @@ ouvert `PARI-20261030`.
 
 ```
 Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
-/start → /bankroll 50000 (une fois, pot global)
+/start → /budget bankroll 50000 (une fois, pot global — PAS /bankroll tant que Worker stale)
      → /capture (tableau markdown DANS le meme message)
      → /budget 3000 800 (plafond jour + mise FORCEE ticket sur)
      → /combos 3:3:2:2
@@ -33,7 +33,7 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre, **garde la bankroll**) |
 | `/capture` | Telegram v1 : colle le tableau markdown Winner Bet **dans le meme message**. CLI : `/capture <fichier>` (txt/md/png/pdf/docx). JSON reconstitue = Porte 1 |
-| `/bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. Sans arg : affiche. |
+| `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |

@@ -211,12 +211,17 @@ def main():
         workflow.cmd_budget(st, "4000 9000")
         st = workflow.state()
         check("L11.sur_gt_jour_refuse", st.get("surticket_fc") == 900, str(st.get("surticket_fc")))
+        workflow.cmd_budget(st, "bankroll 42000")
+        st = workflow.state()
+        check("L11.budget_bankroll_alias", st.get("bankroll_fc") == 42000
+              and st.get("budget_fc") == 3000 and st.get("surticket_fc") == 900,
+              str(st.get("bankroll_fc")))
         workflow.cmd_stop(st, "")
         st = workflow.state()
-        check("L11.bankroll_survit_stop", st.get("campagne") is None and st.get("bankroll_fc") == 50000)
+        check("L11.bankroll_survit_stop", st.get("campagne") is None and st.get("bankroll_fc") == 42000)
         workflow.cmd_start(st, "")
         st = workflow.state()
-        check("L11.bankroll_survit_start", bool(st.get("campagne")) and st.get("bankroll_fc") == 50000,
+        check("L11.bankroll_survit_start", bool(st.get("campagne")) and st.get("bankroll_fc") == 42000,
               str(st.get("campagne")))
     finally:
         workflow.STATE_PATH = old_state
