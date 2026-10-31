@@ -1,8 +1,9 @@
-# CONTRACTS — schema_notes_qualitatives.json (v2)
+# CONTRACTS — schema_notes_qualitatives.json (v3 F00)
 
-Infos **non binaires** fournies par l'opérateur (blessures, suspensions, fatigue,
-enjeux, météo, motivation…) ou par l'Oracle (HERALD, clé optionnelle). Producteur :
-opérateur / Oracle. Consommateur : `TYRANT/CODEBASE/qualitative.py`.
+Infos **non binaires**. Producteur : **F00 vote** (SofaScore + Sportradar + WhoScored)
+au `/capture`, ou opérateur / Oracle. Consommateur : `TYRANT/CODEBASE/qualitative.py`.
+
+Matching **par nom d'équipe uniquement** (jamais par cote Winner).
 
 ## Règle sacrée (v2, décision verrouillée)
 
@@ -13,27 +14,59 @@ Son effet est **borné** à trois choses :
 3. **recommander** le NO BET (≥ 2 impacts élèvés, ou 1 élèvé + data basse).
 Elle ne crée jamais de probabilité, n'ajoute jamais de +EV.
 
+## Vote F00 (v3)
+
+| Verdict | Condition | Effet TYRANT |
+|---|---|---|
+| **OUT** | 3 sources **indépendantes** (SofaScore ≠ Sportradar ≠ WhoScored/Opta) dans une fenêtre 48h | écrit `themes` → filtre borné |
+| **DOUTE** | 1 ou 2 sources, ou fenêtre dépassée | archivé, **ne touche pas λ**, n'écrit pas `themes` |
+| **IGNORE** | 0 source / timeout / ban / ligue hors 3 voix | **trou** : `notes_count` ne compte pas |
+
+3 wrappers RapidAPI du **même** upstream (ex. API-Sports) = **1** source.
+
+Ligues 3 voix : PL, Liga, Serie A, Bundes, L1, Eredivisie. Turquie / Japon = trou si < 3.
+
+Fatigue = **binaire dérivé** (jours de repos calendrier football-data.org), pas un vote 3 voix.
+Repos ≤ 2j → OUT fatigue. Météo / motivation : hors v1.
+
+Oracle / HERALD : commentaire **après coup** si clé ; **jamais** un OUT.
+
 ## Schéma
 
 ```json
 {
   "generated_at": "ISO8601",
-  "source": "operateurbil | oracle",
+  "source": "f00_vote | operateur | oracle",
+  "notes_count": 0,
+  "window_h": 48,
   "notes": [
     {
-      "match_id": "M1",           // doit correspondre à un id de la carte
+      "match_id": "M1",
+      "dom": "Equipe A",
+      "ext": "Equipe B",
+      "items": [
+        {
+          "theme": "blessures|suspensions|fatigue|enjeux|meteo|motivation",
+          "verdict": "OUT|DOUTE|IGNORE",
+          "detail": "texte libre (fait sourcé, jamais inventé)",
+          "sources": ["sofascore", "sportradar", "whoscored"],
+          "window_h": 48
+        }
+      ],
       "themes": {
-        "blessures":   {"impact": "eleve|moyen|faible", "detail": "texte libre"},
+        "blessures":   {"impact": "eleve|moyen|faible", "detail": "uniquement si verdict OUT"},
         "suspensions": {"impact": "eleve|moyen|faible", "detail": "..."},
-        "fatigue":     {"impact": "eleve|moyen|faible", "detail": "3e match en 7 jours"},
-        "enjeux":      {"impact": ..., "detail": "finale de coupe"},
-        "meteo":       {"impact": ..., "detail": "pluie forte annoncée"},
-        "motivation":  {"impact": ..., "detail": "..."}
+        "fatigue":     {"impact": "eleve|moyen|faible", "detail": "repos Nj"}
       }
     }
   ]
 }
 ```
+
+`notes_count` = nombre d'items **OUT** (0 = trou visible, jamais un LLM qui comble).
+
+`themes` = projection OUT uniquement (rétrocompat qualitative.py v2 / e2e groupe 2).
+Si `items` est présent, TYRANT ignore tout thème qui n'a pas d'item OUT.
 
 ## Table bornée (implémentée dans TYRANT/qualitative.py)
 
@@ -51,7 +84,7 @@ Elle ne crée jamais de probabilité, n'ajoute jamais de +EV.
 **NO BET recommandé** : ≥ 2 thèmes élèvés · OU 1 élèvé + data_quality `basse` ·
 OU bonus seuil ≥ 6 pts et data non « haute ».
 
-## Emplacement de la file d'attente par campagne
+## Emplacement
 
 `ARCHIVUM/fixtures/notes_qualitatives.json` (une campagne à la fois).
-Absent → le monde tourne 100 % binaire, aucun effet.
+Écrit au `/capture` par F00. Absent ou `notes_count: 0` → le monde tourne 100 % binaire, aucun effet.
