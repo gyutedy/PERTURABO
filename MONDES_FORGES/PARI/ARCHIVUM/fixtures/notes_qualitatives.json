@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-10-31T19:27:14Z",
+  "source": "f00_vote",
+  "notes_count": 0,
+  "window_h": 48,
+  "notes": [
+    {
+      "match_id": "M1",
+      "dom": "Karlsruher SC",
+      "ext": "FC Heidenheim",
+      "items": []
+    },
+    {
+      "match_id": "M2",
+      "dom": "ESTAC Troyes",
+      "ext": "Le Mans FC",
+      "items": []
+    },
+    {
+      "match_id": "M3",
+      "dom": "AC Milan",
+      "ext": "Inter Milano",
+      "items": []
+    },
+    {
+      "match_id": "M4",
+      "dom": "Aston Villa",
+      "ext": "Fulham FC",
+      "items": []
+    },
+    {
+      "match_id": "M5",
+      "dom": "FC Barcelona",
+      "ext": "Deportivo Alaves",
+      "items": []
+    },
+    {
+      "match_id": "M6",
+      "dom": "Ajax Amsterdam",
+      "ext": "AZ Alkmaar",
+      "items": []
+    },
+    {
+      "match_id": "M7",
+      "dom": "SC Cambuur",
+      "ext": "Go Ahead Eagles",
+      "items": []
+    },
+    {
+      "match_id": "M8",
+      "dom": "Albacete Balompie",
+      "ext": "CE Sabadell FC",
+      "items": []
+    },
+    {
+      "match_id": "M9",
+      "dom": "FC Porto",
+      "ext": "Estoril Praia",
+      "items": []
+    }
+  ]
+}

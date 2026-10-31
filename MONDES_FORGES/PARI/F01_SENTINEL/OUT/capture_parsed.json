@@ -9,11 +9,11 @@
         {
           "id": "M1",
           "dom": "Karlsruher SC",
-          "ext": "1. FC Heidenheim",
+          "ext": "FC Heidenheim",
           "cotes": {
-            "1": 3.05,
-            "X": 3.6,
-            "2": 1.99,
+            "1": 3.15,
+            "X": 3.65,
+            "2": 1.93,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -45,9 +45,9 @@
           "dom": "ESTAC Troyes",
           "ext": "Le Mans FC",
           "cotes": {
-            "1": 2.17,
+            "1": 2.25,
             "X": 3.35,
-            "2": 3.3,
+            "2": 3.2,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -79,9 +79,9 @@
           "dom": "AC Milan",
           "ext": "Inter Milano",
           "cotes": {
-            "1": 3.45,
-            "X": 3.5,
-            "2": 2.05,
+            "1": 3.7,
+            "X": 3.45,
+            "2": 2.0,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -113,9 +113,9 @@
           "dom": "Aston Villa",
           "ext": "Fulham FC",
           "cotes": {
-            "1": 2.1,
-            "X": 3.45,
-            "2": 3.4,
+            "1": 2.0,
+            "X": 3.65,
+            "2": 3.5,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -147,9 +147,9 @@
           "dom": "FC Barcelona",
           "ext": "Deportivo Alaves",
           "cotes": {
-            "1": 1.11,
-            "X": 9.5,
-            "2": 17.5,
+            "1": 1.1,
+            "X": 10.0,
+            "2": 18.0,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -181,9 +181,9 @@
           "dom": "Ajax Amsterdam",
           "ext": "AZ Alkmaar",
           "cotes": {
-            "1": 1.76,
-            "X": 4.3,
-            "2": 3.85,
+            "1": 1.8,
+            "X": 4.2,
+            "2": 3.75,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -206,9 +206,9 @@
           "dom": "SC Cambuur",
           "ext": "Go Ahead Eagles",
           "cotes": {
-            "1": 2.62,
+            "1": 2.5,
             "X": 3.85,
-            "2": 2.4,
+            "2": 2.52,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -240,9 +240,9 @@
           "dom": "Albacete Balompie",
           "ext": "CE Sabadell FC",
           "cotes": {
-            "1": 2.22,
+            "1": 2.42,
             "X": 2.92,
-            "2": 3.15,
+            "2": 2.82,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -274,142 +274,9 @@
           "dom": "FC Porto",
           "ext": "Estoril Praia",
           "cotes": {
-            "1": 1.16,
-            "X": 6.5,
-            "2": 11.5,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.1
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte"
-          ],
-          "warnings": [
-            "under sans ligne totale — cote non rattachee",
-            "over sans ligne totale — cote non rattachee"
-          ]
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_009",
-      "competition": "Pologne - Ekstraklasa",
-      "date": "2026-10-31",
-      "heure": "17:30",
-      "matchs": [
-        {
-          "id": "M10",
-          "dom": "KKS Lech Poznan",
-          "ext": "Wisla Krakow",
-          "cotes": {
-            "1": 1.87,
-            "X": 3.6,
-            "2": 3.4,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.1
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte"
-          ],
-          "warnings": [
-            "under sans ligne totale — cote non rattachee",
-            "over sans ligne totale — cote non rattachee"
-          ]
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_010",
-      "competition": "Équateur - LigaPro Primera A",
-      "date": "2026-10-31",
-      "heure": "17:30",
-      "matchs": [
-        {
-          "id": "M11",
-          "dom": "Delfin SC",
-          "ext": "CD Cuenca",
-          "cotes": {
-            "1": 1.99,
-            "X": 3.1,
-            "2": 3.55,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.1
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte"
-          ],
-          "warnings": [
-            "under sans ligne totale — cote non rattachee",
-            "over sans ligne totale — cote non rattachee"
-          ]
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_011",
-      "competition": "Irak - Stars League",
-      "date": "2026-10-31",
-      "heure": "17:30",
-      "matchs": [
-        {
-          "id": "M12",
-          "dom": "Al Shorta SC",
-          "ext": "Newroz SC",
-          "cotes": {
-            "1": 1.62,
-            "X": 3.65,
-            "2": 4.5,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.1
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte"
-          ],
-          "warnings": []
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_012",
-      "competition": "Italie - Serie C, Group A",
-      "date": "2026-10-31",
-      "heure": "17:30",
-      "matchs": [
-        {
-          "id": "M13",
-          "dom": "AS Giana Erminio",
-          "ext": "Alcione Milano",
-          "cotes": {
-            "1": 2.28,
-            "X": 3.0,
-            "2": 2.9,
+            "1": 1.14,
+            "X": 6.4,
+            "2": 12.0,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.1
@@ -432,7 +299,7 @@
     }
   ],
   "warnings": [],
-  "statut": "VALIDE",
-  "n_matchs": 13,
+  "statut": "A_VALIDER",
+  "n_matchs": 9,
   "source_format": "text+markdown_table"
 }
