@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Coventry City vs Sunderland AFC
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — KKS Lech Poznan vs Wisla Krakow
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 45.7%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 15.9%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.1 | 47.0% | 45.7% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.25 | 32.2% | 4.7% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.35 | 20.8% | -51.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.87 | 47.0% | -12.1% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.6 | 32.2% | 15.9% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.4 | 20.8% | -29.2% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 28.0% | -15.9% | ⛔ NO_BET | — |
 
 ## Ordre de marche

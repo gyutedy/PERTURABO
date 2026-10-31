@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Levante UD vs Atletico Madrid
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Karlsruher SC vs 1. FC Heidenheim
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 35.5%
+**Verdict match : 🟡 THIN** — meilleure EV: 6.0%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,14 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 5.5 | 21.3% | 17.2% |  VALUE | 0.95u |
-| 1X2 | Nul | 4.6 | 29.4% | 35.5% |  VALUE | 2.46u |
-| 1X2 | Victoire Extérieur | 1.52 | 49.3% | -25.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 3.05 | 21.3% | -35.0% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.6 | 29.4% | 6.0% | 🟡 THIN | 0.29u |
+| 1X2 | Victoire Extérieur | 1.99 | 49.3% | -2.0% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 27.2% | -18.4% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **0.95u** sur **Victoire Domicile** @ 5.5 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

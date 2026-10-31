@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Bayer Leverkusen vs VfB Stuttgart
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — AC Milan vs Inter Milano
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 15.4%
+**Verdict match : 🔥 GO** — meilleure EV: 134.1%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,14 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.7 | 67.9% | 15.4% |  VALUE | 3.0u |
-| 1X2 | Nul | 4.4 | 16.1% | -29.3% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 4.1 | 16.1% | -34.2% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 3.45 | 67.9% | 134.1% |  VALUE | 3.0u |
+| 1X2 | Nul | 3.5 | 16.1% | -43.8% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 2.05 | 16.1% | -67.1% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 18.7% | -43.9% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Domicile** @ 1.7 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Domicile** @ 3.45 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

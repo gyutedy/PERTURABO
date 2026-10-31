@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Brentford FC vs Nottingham Forest
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — FC Porto vs Estoril Praia
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 59.0%
+**Verdict match : 🔥 GO** — meilleure EV: 12.1%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,14 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.12 | 75.0% | 59.0% |  VALUE | 3.0u |
-| 1X2 | Nul | 3.55 | 17.2% | -38.8% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 3.25 | 7.8% | -74.8% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.16 | 75.0% | -13.0% | ⛔ NO_BET | — |
+| 1X2 | Nul | 6.5 | 17.2% | 12.1% |  VALUE | 0.55u |
+| 1X2 | Victoire Extérieur | 11.5 | 7.8% | -10.9% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 22.9% | -31.2% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Domicile** @ 2.12 (¼ Kelly plafonné).
+- Miser **0.55u** sur **Nul** @ 6.5 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

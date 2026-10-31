@@ -1,0 +1,414 @@
+{
+  "generated_at": "2026-10-31T17:00:08Z",
+  "source": "football-data.co.uk (usage privé, whitelist)",
+  "league_code": "F1",
+  "season": "2627",
+  "merged_seasons": [
+    "2627",
+    "2526"
+  ],
+  "tier": "top5",
+  "last_n_considered": 12,
+  "teams": {
+    "Rennes": {
+      "dom": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 12.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 15.0,
+        "encaisses_mt2": 6.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 23.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 17.0
+      }
+    },
+    "Marseille": {
+      "dom": {
+        "mj": 12,
+        "marques": 32.0,
+        "encaisses": 15.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 20.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 18.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Lens": {
+      "dom": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 8.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 13.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Lyon": {
+      "dom": {
+        "mj": 12,
+        "marques": 20.0,
+        "encaisses": 8.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 5.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 16.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Monaco": {
+      "dom": {
+        "mj": 12,
+        "marques": 25.0,
+        "encaisses": 19.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 18.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Le Havre": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 11.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 5.0,
+        "encaisses": 20.0,
+        "marques_mt1": 1.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Nice": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 17.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 27.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 15.0
+      }
+    },
+    "Toulouse": {
+      "dom": {
+        "mj": 12,
+        "marques": 20.0,
+        "encaisses": 16.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 12.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Brest": {
+      "dom": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 13.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 21.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Lille": {
+      "dom": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 13.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 18.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Angers": {
+      "dom": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 13.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 6.0,
+        "encaisses": 17.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Paris FC": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 22.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 18.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Auxerre": {
+      "dom": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 15.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 20.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Lorient": {
+      "dom": {
+        "mj": 12,
+        "marques": 24.0,
+        "encaisses": 18.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 12.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 20.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Metz": {
+      "dom": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 19.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 34.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 16.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 18.0
+      }
+    },
+    "Strasbourg": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 9.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 22.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 14.0
+      }
+    },
+    "Nantes": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 22.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 19.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Paris SG": {
+      "dom": {
+        "mj": 12,
+        "marques": 31.0,
+        "encaisses": 7.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 19.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 15.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Le Mans": {
+      "dom": {
+        "mj": 4,
+        "marques": 6.0,
+        "encaisses": 8.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 6.0
+      },
+      "ext": {
+        "mj": 4,
+        "marques": 5.0,
+        "encaisses": 8.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 4.0
+      }
+    },
+    "Troyes": {
+      "dom": {
+        "mj": 4,
+        "marques": 3.0,
+        "encaisses": 11.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 1.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 4,
+        "marques": 2.0,
+        "encaisses": 5.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 0.0,
+        "encaisses_mt2": 3.0
+      }
+    }
+  }
+}

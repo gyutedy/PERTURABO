@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Borussia Monchengladbach vs SC Paderborn 07
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Aston Villa vs Fulham FC
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 23.9%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 18.3%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.2 | 56.3% | 23.9% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.7 | 26.1% | -3.5% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.95 | 17.6% | -48.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.1 | 56.3% | 18.3% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.45 | 26.1% | -10.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.4 | 17.6% | -40.2% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 25.5% | -23.5% | ⛔ NO_BET | — |
 
 ## Ordre de marche

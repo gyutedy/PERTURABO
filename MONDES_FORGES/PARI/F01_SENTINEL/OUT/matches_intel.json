@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-31T08:34:48Z",
+  "generated_at": "2026-10-31T17:00:17Z",
   "source": "siege_file",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": null,
   "matchs": [
     {
       "id": "M1",
-      "dom": "Levante UD",
-      "ext": "Atletico Madrid",
-      "ligue": "Espagne - LaLiga",
+      "dom": "Karlsruher SC",
+      "ext": "1. FC Heidenheim",
+      "ligue": "Allemagne - 2. Bundesliga",
       "date": "2026-10-31",
-      "heure": "14:00",
+      "heure": "20:30",
       "cotes": {
-        "1": 5.5,
-        "X": 4.6,
-        "2": 1.52,
+        "1": 3.05,
+        "X": 3.6,
+        "2": 1.99,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -26,39 +26,19 @@
         "mt1",
         "mt2",
         "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 11.0,
-          "encaisses": 23.0,
-          "marques_mt1": 4.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 7.0,
-          "encaisses_mt2": 13.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 12.0,
-          "encaisses": 13.0,
-          "marques_mt1": 8.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 4.0,
-          "encaisses_mt2": 9.0
-        }
-      }
+      ]
     },
     {
       "id": "M2",
-      "dom": "Bologna FC",
-      "ext": "AC Monza",
-      "ligue": "Italie - Serie A",
+      "dom": "ESTAC Troyes",
+      "ext": "Le Mans FC",
+      "ligue": "France - Ligue 1",
       "date": "2026-10-31",
-      "heure": "15:00",
+      "heure": "20:45",
       "cotes": {
-        "1": 1.67,
-        "X": 3.8,
-        "2": 5.0,
+        "1": 2.17,
+        "X": 3.35,
+        "2": 3.3,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -73,124 +53,36 @@
       ],
       "stats": {
         "dom": {
-          "mj": 12,
-          "marques": 12.0,
-          "encaisses": 14.0,
-          "marques_mt1": 4.0,
-          "encaisses_mt1": 7.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 7.0
-        },
-        "ext": {
-          "mj": 5,
-          "marques": 7.0,
-          "encaisses": 14.0,
-          "marques_mt1": 3.0,
-          "encaisses_mt1": 7.0,
-          "marques_mt2": 4.0,
-          "encaisses_mt2": 7.0
-        }
-      }
-    },
-    {
-      "id": "M3",
-      "dom": "Bayer Leverkusen",
-      "ext": "VfB Stuttgart",
-      "ligue": "Allemagne - Bundesliga",
-      "date": "2026-10-31",
-      "heure": "15:30",
-      "cotes": {
-        "1": 1.7,
-        "X": 4.4,
-        "2": 4.1,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 25.0,
+          "mj": 4,
+          "marques": 3.0,
           "encaisses": 11.0,
-          "marques_mt1": 13.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 12.0,
-          "encaisses_mt2": 5.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 27.0,
-          "encaisses": 20.0,
-          "marques_mt1": 12.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 15.0,
-          "encaisses_mt2": 10.0
-        }
-      }
-    },
-    {
-      "id": "M4",
-      "dom": "Borussia Monchengladbach",
-      "ext": "SC Paderborn 07",
-      "ligue": "Allemagne - Bundesliga",
-      "date": "2026-10-31",
-      "heure": "15:30",
-      "cotes": {
-        "1": 2.2,
-        "X": 3.7,
-        "2": 2.95,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 14.0,
-          "encaisses": 21.0,
-          "marques_mt1": 6.0,
-          "encaisses_mt1": 12.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 9.0
-        },
-        "ext": {
-          "mj": 3,
-          "marques": 2.0,
-          "encaisses": 5.0,
           "marques_mt1": 2.0,
-          "encaisses_mt1": 1.0,
-          "marques_mt2": 0.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 1.0,
+          "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 4,
+          "marques": 5.0,
+          "encaisses": 8.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 3.0,
           "encaisses_mt2": 4.0
         }
       }
     },
     {
-      "id": "M5",
-      "dom": "FC Augsburg",
-      "ext": "SC Freiburg",
-      "ligue": "Allemagne - Bundesliga",
+      "id": "M3",
+      "dom": "AC Milan",
+      "ext": "Inter Milano",
+      "ligue": "Italie - Serie A",
       "date": "2026-10-31",
-      "heure": "15:30",
+      "heure": "20:45",
       "cotes": {
-        "1": 2.85,
-        "X": 3.75,
-        "2": 2.27,
+        "1": 3.45,
+        "X": 3.5,
+        "2": 2.05,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -206,122 +98,34 @@
       "stats": {
         "dom": {
           "mj": 12,
-          "marques": 15.0,
-          "encaisses": 19.0,
-          "marques_mt1": 5.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 10.0,
-          "encaisses_mt2": 9.0
+          "marques": 18.0,
+          "encaisses": 10.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 11.0,
+          "encaisses_mt2": 6.0
         },
         "ext": {
           "mj": 12,
-          "marques": 13.0,
-          "encaisses": 25.0,
-          "marques_mt1": 5.0,
+          "marques": 21.0,
+          "encaisses": 8.0,
+          "marques_mt1": 8.0,
           "encaisses_mt1": 5.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 20.0
-        }
-      }
-    },
-    {
-      "id": "M6",
-      "dom": "Schalke 04",
-      "ext": "RB Leipzig",
-      "ligue": "Allemagne - Bundesliga",
-      "date": "2026-10-31",
-      "heure": "15:30",
-      "cotes": {
-        "1": 3.9,
-        "X": 3.95,
-        "2": 1.81,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 3,
-          "marques": 0.0,
-          "encaisses": 1.0,
-          "marques_mt1": 0.0,
-          "encaisses_mt1": 1.0,
-          "marques_mt2": 0.0,
-          "encaisses_mt2": 0.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 19.0,
-          "encaisses": 16.0,
-          "marques_mt1": 10.0,
-          "encaisses_mt1": 7.0,
-          "marques_mt2": 9.0,
-          "encaisses_mt2": 9.0
-        }
-      }
-    },
-    {
-      "id": "M7",
-      "dom": "Werder Bremen",
-      "ext": "TSG Hoffenheim",
-      "ligue": "Allemagne - Bundesliga",
-      "date": "2026-10-31",
-      "heure": "15:30",
-      "cotes": {
-        "1": 2.52,
-        "X": 3.85,
-        "2": 2.47,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 14.0,
-          "encaisses": 21.0,
-          "marques_mt1": 4.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 10.0,
-          "encaisses_mt2": 11.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 22.0,
-          "encaisses": 17.0,
-          "marques_mt1": 9.0,
-          "encaisses_mt1": 9.0,
           "marques_mt2": 13.0,
-          "encaisses_mt2": 8.0
+          "encaisses_mt2": 3.0
         }
       }
     },
     {
-      "id": "M8",
-      "dom": "AFC Bournemouth",
-      "ext": "Leeds United",
+      "id": "M4",
+      "dom": "Aston Villa",
+      "ext": "Fulham FC",
       "ligue": "Angleterre - Premier League",
       "date": "2026-10-31",
-      "heure": "16:00",
+      "heure": "21:00",
       "cotes": {
-        "1": 2.15,
-        "X": 3.35,
+        "1": 2.1,
+        "X": 3.45,
         "2": 3.4,
         "mt1": 3.1,
         "mte": 3.0,
@@ -338,35 +142,151 @@
       "stats": {
         "dom": {
           "mj": 12,
-          "marques": 19.0,
-          "encaisses": 13.0,
-          "marques_mt1": 9.0,
-          "encaisses_mt1": 5.0,
+          "marques": 18.0,
+          "encaisses": 10.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 4.0,
           "marques_mt2": 10.0,
-          "encaisses_mt2": 8.0
+          "encaisses_mt2": 6.0
         },
         "ext": {
           "mj": 12,
-          "marques": 12.0,
-          "encaisses": 25.0,
-          "marques_mt1": 7.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 5.0,
-          "encaisses_mt2": 15.0
+          "marques": 13.0,
+          "encaisses": 21.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 14.0
         }
       }
+    },
+    {
+      "id": "M5",
+      "dom": "FC Barcelona",
+      "ext": "Deportivo Alaves",
+      "ligue": "Espagne - LaLiga",
+      "date": "2026-10-31",
+      "heure": "21:00",
+      "cotes": {
+        "1": 1.11,
+        "X": 9.5,
+        "2": 17.5,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 37.0,
+          "encaisses": 5.0,
+          "marques_mt1": 15.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 22.0,
+          "encaisses_mt2": 0.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 7.0,
+          "encaisses": 17.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 5.0,
+          "encaisses_mt2": 10.0
+        }
+      }
+    },
+    {
+      "id": "M6",
+      "dom": "Ajax Amsterdam",
+      "ext": "AZ Alkmaar",
+      "ligue": "Pays-Bas - Eredivisie",
+      "date": "2026-10-31",
+      "heure": "21:00",
+      "cotes": {
+        "1": 1.76,
+        "X": 4.3,
+        "2": 3.85,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ]
+    },
+    {
+      "id": "M7",
+      "dom": "SC Cambuur",
+      "ext": "Go Ahead Eagles",
+      "ligue": "Pays-Bas - Eredivisie",
+      "date": "2026-10-31",
+      "heure": "21:00",
+      "cotes": {
+        "1": 2.62,
+        "X": 3.85,
+        "2": 2.4,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ]
+    },
+    {
+      "id": "M8",
+      "dom": "Albacete Balompie",
+      "ext": "CE Sabadell FC",
+      "ligue": "Espagne - LaLiga 2",
+      "date": "2026-10-31",
+      "heure": "21:00",
+      "cotes": {
+        "1": 2.22,
+        "X": 2.92,
+        "2": 3.15,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ]
     },
     {
       "id": "M9",
-      "dom": "Brentford FC",
-      "ext": "Nottingham Forest",
-      "ligue": "Angleterre - Premier League",
+      "dom": "FC Porto",
+      "ext": "Estoril Praia",
+      "ligue": "Portugal - Liga Portugal",
       "date": "2026-10-31",
-      "heure": "16:00",
+      "heure": "21:30",
       "cotes": {
-        "1": 2.12,
-        "X": 3.55,
-        "2": 3.25,
+        "1": 1.16,
+        "X": 6.5,
+        "2": 11.5,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -378,39 +298,19 @@
         "mt1",
         "mt2",
         "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 23.0,
-          "encaisses": 12.0,
-          "marques_mt1": 9.0,
-          "encaisses_mt1": 5.0,
-          "marques_mt2": 14.0,
-          "encaisses_mt2": 7.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 11.0,
-          "encaisses": 17.0,
-          "marques_mt1": 3.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 7.0
-        }
-      }
+      ]
     },
     {
       "id": "M10",
-      "dom": "Coventry City",
-      "ext": "Sunderland AFC",
-      "ligue": "Angleterre - Premier League",
+      "dom": "KKS Lech Poznan",
+      "ext": "Wisla Krakow",
+      "ligue": "Pologne - Ekstraklasa",
       "date": "2026-10-31",
-      "heure": "16:00",
+      "heure": "17:30",
       "cotes": {
-        "1": 3.1,
-        "X": 3.25,
-        "2": 2.35,
+        "1": 1.87,
+        "X": 3.6,
+        "2": 3.4,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -422,27 +322,79 @@
         "mt1",
         "mt2",
         "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 4,
-          "marques": 4.0,
-          "encaisses": 8.0,
-          "marques_mt1": 1.0,
-          "encaisses_mt1": 1.0,
-          "marques_mt2": 3.0,
-          "encaisses_mt2": 7.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 6.0,
-          "encaisses": 17.0,
-          "marques_mt1": 2.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 4.0,
-          "encaisses_mt2": 7.0
-        }
-      }
+      ]
+    },
+    {
+      "id": "M11",
+      "dom": "Delfin SC",
+      "ext": "CD Cuenca",
+      "ligue": "Équateur - LigaPro Primera A",
+      "date": "2026-10-31",
+      "heure": "17:30",
+      "cotes": {
+        "1": 1.99,
+        "X": 3.1,
+        "2": 3.55,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ]
+    },
+    {
+      "id": "M12",
+      "dom": "Al Shorta SC",
+      "ext": "Newroz SC",
+      "ligue": "Irak - Stars League",
+      "date": "2026-10-31",
+      "heure": "17:30",
+      "cotes": {
+        "1": 1.62,
+        "X": 3.65,
+        "2": 4.5,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ]
+    },
+    {
+      "id": "M13",
+      "dom": "AS Giana Erminio",
+      "ext": "Alcione Milano",
+      "ligue": "Italie - Serie C, Group A",
+      "date": "2026-10-31",
+      "heure": "17:30",
+      "cotes": {
+        "1": 2.28,
+        "X": 3.0,
+        "2": 2.9,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ]
     }
   ]
 }

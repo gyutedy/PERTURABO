@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Schalke 04 vs RB Leipzig
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Ajax Amsterdam vs AZ Alkmaar
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 152.9%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 175.3%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.9 | 4.5% | -82.4% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.95 | 64.0% | 152.9% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 1.81 | 31.4% | -43.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.76 | 4.5% | -92.0% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.3 | 64.0% | 175.3% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.85 | 31.4% | 21.1% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 64.7% | 94.2% | ⛔ NO_BET | — |
 
 ## Ordre de marche

@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Werder Bremen vs TSG Hoffenheim
-*Générée le 2026-10-31 08:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — SC Cambuur vs Go Ahead Eagles
+*Générée le 2026-10-31 17:00 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 43.9%
+**Verdict match : 🔥 GO** — meilleure EV: 39.8%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,14 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.52 | 21.3% | -46.2% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.62 | 21.3% | -44.1% | ⛔ NO_BET | — |
 | 1X2 | Nul | 3.85 | 20.4% | -21.4% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.47 | 58.2% | 43.9% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 2.4 | 58.2% | 39.8% |  VALUE | 3.0u |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 19.7% | -40.8% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Extérieur** @ 2.47 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Extérieur** @ 2.4 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

@@ -1303,3 +1303,31 @@
 - Aliases Worker deja live : `/data ledger`, `/status ledger`, `/roi settle L-XXX` (CSV football-data, G/P/EN_ATTENTE, jamais invente).
 - F06 n apprend pas. Snapshot T0 fige. Hors scope : ML, wrangler, scrape Winner, baisser les seuils.
 
+
+## [2026-10-31T17:00:17Z] TYRANT — check-out — status: processing
+
+## [2026-10-31T17:00:17Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:9ce771baff33db2057f7f672218dbf51 — status:done
+
+## [2026-10-31T17:00:17Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:45aaf4490e6bbe1b354ee32cc37f5fe3 — status:done
+
+## [2026-10-31T17:00:17Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-31T17:00:17Z] F02 — check-out — status: processing
+
+## [2026-10-31T17:00:17Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:fc01e5b5204ac51e995eaacd496bb50a — status:done
+
+## [2026-10-31T17:00:17Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-31T17:00:17Z] F03 — check-out — status: processing
+
+## [2026-10-31T17:00:17Z] F03 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:12e7bae12289e4ae481f96a0568b7a95 — status:done
+
+## [2026-10-31T17:00:17Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-10-31T17:00:17Z] F04 — check-out — status: processing
+
+## [2026-10-31T17:00:17Z] F04 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:f66fd63dc9463e543051d5bf923ff14a — status:done
+
+## [2026-10-31T17:00:17Z] F05 — check-out — status: processing
+
+## [2026-10-31T17:00:17Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:cbe475d5611e1a8a9979971f5aff74d5 — status:done

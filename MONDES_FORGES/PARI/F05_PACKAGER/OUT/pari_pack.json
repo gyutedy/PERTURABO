@@ -1,148 +1,150 @@
 {
-  "generated_at": "2026-10-31T08:34:48Z",
+  "generated_at": "2026-10-31T17:00:17Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 7",
+  "titre": "DIRECTION DES SIÈGES — TOP 6",
   "top_picks": [
     {
-      "match_id": "M8",
-      "match": "AFC Bournemouth vs Leeds United",
+      "match_id": "M5",
+      "match": "FC Barcelona vs Deportivo Alaves",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 2.15,
-      "p_modele": 0.7983,
-      "ev": 0.7163,
+      "selection": "2",
+      "selection_label": "Victoire Extérieur",
+      "cote": 17.5,
+      "p_modele": 0.1945,
+      "ev": 2.4038,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 1
     },
     {
-      "match_id": "M5",
-      "match": "FC Augsburg vs SC Freiburg",
+      "match_id": "M3",
+      "match": "AC Milan vs Inter Milano",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 2.85,
-      "p_modele": 0.5949,
-      "ev": 0.6955,
+      "cote": 3.45,
+      "p_modele": 0.6787,
+      "ev": 1.3415,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 2
     },
     {
-      "match_id": "M9",
-      "match": "Brentford FC vs Nottingham Forest",
+      "match_id": "M5",
+      "match": "FC Barcelona vs Deportivo Alaves",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 2.12,
-      "p_modele": 0.7501,
-      "ev": 0.5902,
-      "mise_units": 3.0,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 9.5,
+      "p_modele": 0.2106,
+      "ev": 1.0007,
+      "mise_units": 2.94,
       "note_risque": "qualité data: haute",
       "rang": 3
     },
     {
-      "match_id": "M7",
-      "match": "Werder Bremen vs TSG Hoffenheim",
+      "match_id": "M8",
+      "match": "Albacete Balompie vs CE Sabadell FC",
       "marche": "1X2",
-      "selection": "2",
-      "selection_label": "Victoire Extérieur",
-      "cote": 2.47,
-      "p_modele": 0.5825,
-      "ev": 0.4388,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.22,
+      "p_modele": 0.7983,
+      "ev": 0.7722,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 4
     },
     {
-      "match_id": "M1",
-      "match": "Levante UD vs Atletico Madrid",
+      "match_id": "M7",
+      "match": "SC Cambuur vs Go Ahead Eagles",
       "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 4.6,
-      "p_modele": 0.2945,
-      "ev": 0.3547,
-      "mise_units": 2.46,
+      "selection": "2",
+      "selection_label": "Victoire Extérieur",
+      "cote": 2.4,
+      "p_modele": 0.5825,
+      "ev": 0.398,
+      "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 5
     },
     {
-      "match_id": "M1",
-      "match": "Levante UD vs Atletico Madrid",
+      "match_id": "M9",
+      "match": "FC Porto vs Estoril Praia",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 5.5,
-      "p_modele": 0.213,
-      "ev": 0.1715,
-      "mise_units": 0.95,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 6.5,
+      "p_modele": 0.1724,
+      "ev": 0.1206,
+      "mise_units": 0.55,
       "note_risque": "qualité data: haute",
       "rang": 6
-    },
-    {
-      "match_id": "M3",
-      "match": "Bayer Leverkusen vs VfB Stuttgart",
-      "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 1.7,
-      "p_modele": 0.6787,
-      "ev": 0.1538,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 7
     }
   ],
   "no_bet": [
     {
       "match_id": "M2",
-      "match": "Bologna FC vs AC Monza",
+      "match": "ESTAC Troyes vs Le Mans FC",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M4",
-      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "match": "Aston Villa vs Fulham FC",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M6",
-      "match": "Schalke 04 vs RB Leipzig",
+      "match": "Ajax Amsterdam vs AZ Alkmaar",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M10",
-      "match": "Coventry City vs Sunderland AFC",
+      "match": "KKS Lech Poznan vs Wisla Krakow",
       "raison": "EV < seuil sur tous les marchés"
+    },
+    {
+      "match_id": "M11",
+      "match": "Delfin SC vs CD Cuenca",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M12",
+      "match": "Al Shorta SC vs Newroz SC",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M13",
+      "match": "AS Giana Erminio vs Alcione Milano",
+      "raison": "aucune cote fournie"
     }
   ],
   "combines": [
     {
       "jambes": [
         {
-          "match_id": "M8",
+          "match_id": "M5",
+          "selection": "2",
+          "cote": 17.5,
+          "p_modele": 0.1945
+        },
+        {
+          "match_id": "M3",
           "selection": "1",
-          "cote": 2.15,
-          "p_modele": 0.7983
+          "cote": 3.45,
+          "p_modele": 0.6787
         },
         {
           "match_id": "M5",
-          "selection": "1",
-          "cote": 2.85,
-          "p_modele": 0.5949
-        },
-        {
-          "match_id": "M9",
-          "selection": "1",
-          "cote": 2.12,
-          "p_modele": 0.7501
+          "selection": "X",
+          "cote": 9.5,
+          "p_modele": 0.2106
         }
       ],
-      "cote_totale": 12.99,
-      "ev_combine": 3.6275,
-      "mise_units": 1.0
+      "cote_totale": 573.56,
+      "ev_combine": 14.9456,
+      "mise_units": 0.33
     }
   ],
   "loterie": {
@@ -151,10 +153,10 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 19.41,
-    "ev_moyenne_pct": 0.4458,
-    "nb_matchs_analyses": 10,
-    "nb_no_bet": 4,
+    "mise_totale_units": 15.82,
+    "ev_moyenne_pct": 1.0061,
+    "nb_matchs_analyses": 13,
+    "nb_no_bet": 7,
     "nb_matchs_go": 6
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",

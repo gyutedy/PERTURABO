@@ -1,63 +1,63 @@
 {
-  "generated_at": "2026-10-31T08:34:48Z",
+  "generated_at": "2026-10-31T17:00:17Z",
   "reports": [
     {
       "id": "M1",
-      "match": "Levante UD vs Atletico Madrid",
-      "verdict": "GO",
+      "match": "Karlsruher SC vs 1. FC Heidenheim",
+      "verdict": "THIN",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
     },
     {
       "id": "M2",
-      "match": "Bologna FC vs AC Monza",
+      "match": "ESTAC Troyes vs Le Mans FC",
       "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
     },
     {
       "id": "M3",
-      "match": "Bayer Leverkusen vs VfB Stuttgart",
+      "match": "AC Milan vs Inter Milano",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {
       "id": "M4",
-      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "match": "Aston Villa vs Fulham FC",
       "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
     },
     {
       "id": "M5",
-      "match": "FC Augsburg vs SC Freiburg",
+      "match": "FC Barcelona vs Deportivo Alaves",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
     },
     {
       "id": "M6",
-      "match": "Schalke 04 vs RB Leipzig",
+      "match": "Ajax Amsterdam vs AZ Alkmaar",
       "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
     },
     {
       "id": "M7",
-      "match": "Werder Bremen vs TSG Hoffenheim",
+      "match": "SC Cambuur vs Go Ahead Eagles",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
     },
     {
       "id": "M8",
-      "match": "AFC Bournemouth vs Leeds United",
+      "match": "Albacete Balompie vs CE Sabadell FC",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
     },
     {
       "id": "M9",
-      "match": "Brentford FC vs Nottingham Forest",
+      "match": "FC Porto vs Estoril Praia",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
     },
     {
       "id": "M10",
-      "match": "Coventry City vs Sunderland AFC",
+      "match": "KKS Lech Poznan vs Wisla Krakow",
       "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
     }
