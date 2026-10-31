@@ -36,80 +36,12 @@
     },
     {
       "id": "BLOC_002",
-      "competition": "Espagne - LaLiga 2",
-      "date": "2026-10-31",
-      "heure": "14:00",
-      "matchs": [
-        {
-          "id": "M2",
-          "dom": "Real Sociedad B",
-          "ext": "Girona FC",
-          "cotes": {
-            "1": 3.25,
-            "X": 3.45,
-            "2": 1.96,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.1
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte"
-          ],
-          "warnings": [
-            "under sans ligne totale — cote non rattachee",
-            "over sans ligne totale — cote non rattachee"
-          ]
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_003",
-      "competition": "Turkiye - Super Lig",
-      "date": "2026-10-31",
-      "heure": "14:00",
-      "matchs": [
-        {
-          "id": "M3",
-          "dom": "Kocaelispor",
-          "ext": "Caykur Rizespor",
-          "cotes": {
-            "1": 2.47,
-            "X": 3.2,
-            "2": 2.5,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.1
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte"
-          ],
-          "warnings": [
-            "under sans ligne totale — cote non rattachee",
-            "over sans ligne totale — cote non rattachee"
-          ]
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_004",
       "competition": "Italie - Serie A",
       "date": "2026-10-31",
       "heure": "15:00",
       "matchs": [
         {
-          "id": "M4",
+          "id": "M2",
           "dom": "Bologna FC",
           "ext": "AC Monza",
           "cotes": {
@@ -137,13 +69,13 @@
       "warnings": []
     },
     {
-      "id": "BLOC_005",
+      "id": "BLOC_003",
       "competition": "Allemagne - Bundesliga",
       "date": "2026-10-31",
       "heure": "15:30",
       "matchs": [
         {
-          "id": "M5",
+          "id": "M3",
           "dom": "Bayer Leverkusen",
           "ext": "VfB Stuttgart",
           "cotes": {
@@ -168,7 +100,7 @@
           ]
         },
         {
-          "id": "M6",
+          "id": "M4",
           "dom": "Borussia Monchengladbach",
           "ext": "SC Paderborn 07",
           "cotes": {
@@ -193,7 +125,7 @@
           ]
         },
         {
-          "id": "M7",
+          "id": "M5",
           "dom": "FC Augsburg",
           "ext": "SC Freiburg",
           "cotes": {
@@ -218,7 +150,7 @@
           ]
         },
         {
-          "id": "M8",
+          "id": "M6",
           "dom": "Schalke 04",
           "ext": "RB Leipzig",
           "cotes": {
@@ -243,7 +175,7 @@
           ]
         },
         {
-          "id": "M9",
+          "id": "M7",
           "dom": "Werder Bremen",
           "ext": "TSG Hoffenheim",
           "cotes": {
@@ -271,13 +203,13 @@
       "warnings": []
     },
     {
-      "id": "BLOC_006",
+      "id": "BLOC_004",
       "competition": "Angleterre - Premier League",
       "date": "2026-10-31",
       "heure": "16:00",
       "matchs": [
         {
-          "id": "M10",
+          "id": "M8",
           "dom": "AFC Bournemouth",
           "ext": "Leeds United",
           "cotes": {
@@ -302,7 +234,7 @@
           ]
         },
         {
-          "id": "M11",
+          "id": "M9",
           "dom": "Brentford FC",
           "ext": "Nottingham Forest",
           "cotes": {
@@ -327,7 +259,7 @@
           ]
         },
         {
-          "id": "M12",
+          "id": "M10",
           "dom": "Coventry City",
           "ext": "Sunderland AFC",
           "cotes": {
@@ -356,7 +288,7 @@
     }
   ],
   "warnings": [],
-  "statut": "VALIDE",
-  "n_matchs": 12,
+  "statut": "A_VALIDER",
+  "n_matchs": 10,
   "source_format": "text+markdown_table"
 }
