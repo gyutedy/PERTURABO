@@ -50,13 +50,35 @@
               "dom_wins": {"type": "integer"},
               "draws": {"type": "integer"},
               "ext_wins": {"type": "integer"},
-              "source": {"type": "string"}
+              "source": {"type": "string"},
+              "matches": {
+                "type": "array",
+                "description": "confrontations individuelles FT/HT — jamais inventees",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {"type": "string"},
+                    "home": {"type": "string"},
+                    "away": {"type": "string"},
+                    "ft": {"type": "string", "description": "score FT '1-2'"},
+                    "ht": {"type": ["string", "null"], "description": "score HT '0-1' ou null"}
+                  }
+                }
+              }
+            }
+          },
+          "form": {
+            "type": "object",
+            "description": "10 derniers matchs par equipe (CSV football-data.co.uk), affichage seul",
+            "properties": {
+              "dom": {"type": "array", "items": {"$ref": "#/definitions/form_line"}},
+              "ext": {"type": "array", "items": {"$ref": "#/definitions/form_line"}}
             }
           },
           "holes": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "champs binaires absents (xg, elo, rest_days, h2h) — trou déclaré"
+            "description": "champs absents (xg, elo, rest_days, h2h, form, h2h_scores, timing) — trou declare, jamais invente"
           },
           "stats": {
             "type": "object",
@@ -84,6 +106,18 @@
     }
   },
   "definitions": {
+    "form_line": {
+      "type": "object",
+      "properties": {
+        "date": {"type": "string"},
+        "opp": {"type": "string"},
+        "venue": {"type": "string", "enum": ["H", "A"]},
+        "ft": {"type": "string"},
+        "ht": {"type": ["string", "null"]},
+        "hs": {"type": "number", "description": "tirs equipe, omis si absent du CSV"},
+        "hst": {"type": "number", "description": "tirs cadres equipe, omis si absent du CSV"}
+      }
+    },
     "team_stats": {
       "type": "object",
       "required": ["mj", "marques", "encaisses"],

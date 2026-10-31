@@ -89,6 +89,48 @@ def _fd_blob(dom, ext, date, code):
     return payload
 
 
+def _uk_rows(code):
+    if not code:
+        return []
+    import football_data_uk as uk
+    return uk.rows_from_cache(code, "2627", extra_seasons=["2526"])
+
+
+def _attach_form_h2h(m, holes, code, key_fn=None):
+    """Forme 10 + H2H scores depuis le CSV deja telecharge (zero reseau)."""
+    import football_data_uk as uk
+    rows = _uk_rows(code)
+    dom, ext = m.get("dom") or "", m.get("ext") or ""
+    form_d = uk.last_matches(rows, dom, n=10, key_fn=key_fn) if rows else []
+    form_e = uk.last_matches(rows, ext, n=10, key_fn=key_fn) if rows else []
+    if form_d or form_e:
+        m["form"] = {"dom": form_d, "ext": form_e}
+    if not form_d or not form_e:
+        if "form" not in holes:
+            holes.append("form")
+    csv_h2h = uk.h2h_matches(rows, dom, ext, key_fn=key_fn) if rows else []
+    h2h = dict(m.get("h2h") or {})
+    if csv_h2h:
+        h2h["matches"] = csv_h2h
+        agg = uk.h2h_aggregate(csv_h2h, dom, key_fn=key_fn)
+        if agg.get("played"):
+            h2h["played"] = agg["played"]
+            h2h["dom_wins"] = agg["dom_wins"]
+            h2h["draws"] = agg["draws"]
+            h2h["ext_wins"] = agg["ext_wins"]
+            h2h["source"] = h2h.get("source") or "football-data.co.uk"
+        m["h2h"] = h2h
+        if "h2h" in holes:
+            holes.remove("h2h")
+        if "h2h_scores" in holes:
+            holes.remove("h2h_scores")
+    else:
+        if not h2h.get("matches") and "h2h_scores" not in holes:
+            holes.append("h2h_scores")
+        if not h2h.get("played") and "h2h" not in holes:
+            holes.append("h2h")
+
+
 def _voice(mod_name, team):
     try:
         mod = __import__(mod_name)
@@ -203,6 +245,10 @@ def enrich_carte(carte, skip_notes=None, skip_binary=None):
                 for k in ("rest_days", "h2h"):
                     if k not in holes:
                         holes.append(k)
+
+            _attach_form_h2h(m, holes, code, key_fn=capteurs.team_key)
+            if "timing" not in holes:
+                holes.append("timing")
 
         m["holes"] = holes
 

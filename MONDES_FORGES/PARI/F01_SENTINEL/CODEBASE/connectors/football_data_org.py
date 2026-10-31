@@ -74,10 +74,13 @@ def rest_days_and_h2h(dom, ext, date, competition=None, timeout=8):
         return None
     nd, ne = _norm(dom), _norm(ext)
     last_d = last_e = None
-    h2h = {"played": 0, "dom_wins": 0, "draws": 0, "ext_wins": 0, "source": "football-data.org"}
+    h2h = {"played": 0, "dom_wins": 0, "draws": 0, "ext_wins": 0,
+           "source": "football-data.org", "matches": []}
     for m in data.get("matches") or []:
-        ht = _norm((m.get("homeTeam") or {}).get("name"))
-        at = _norm((m.get("awayTeam") or {}).get("name"))
+        ht_name = (m.get("homeTeam") or {}).get("name") or ""
+        at_name = (m.get("awayTeam") or {}).get("name") or ""
+        ht = _norm(ht_name)
+        at = _norm(at_name)
         utc = (m.get("utcDate") or "")[:10]
         if not utc:
             continue
@@ -89,17 +92,26 @@ def rest_days_and_h2h(dom, ext, date, competition=None, timeout=8):
                 last_e = utc
         pair = {ht, at} == {nd, ne} and nd and ne
         if pair and (m.get("status") or "") in ("FINISHED", "AWARDED"):
-            h2h["played"] += 1
             sc = (m.get("score") or {}).get("fullTime") or {}
+            ht_sc = (m.get("score") or {}).get("halfTime") or {}
             hg, ag = sc.get("home"), sc.get("away")
             if hg is None or ag is None:
                 continue
+            h2h["played"] += 1
             if hg == ag:
                 h2h["draws"] += 1
             elif (hg > ag and ht == nd) or (ag > hg and at == nd):
                 h2h["dom_wins"] += 1
             else:
                 h2h["ext_wins"] += 1
+            hh, ha = ht_sc.get("home"), ht_sc.get("away")
+            h2h["matches"].append({
+                "date": utc,
+                "home": ht_name,
+                "away": at_name,
+                "ft": f"{int(hg)}-{int(ag)}",
+                "ht": f"{int(hh)}-{int(ha)}" if hh is not None and ha is not None else None,
+            })
 
     def _rest(last):
         if not last:
