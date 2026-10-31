@@ -180,6 +180,95 @@ def main():
         else:
             os.environ["PARI_SKIP_F00"] = old_skip
 
+    sys.path.insert(0, os.path.join(WORLD, "F01_SENTINEL", "CODEBASE", "connectors"))
+    import football_data_uk as uk  # noqa: E402
+    fx = os.path.join(WORLD, "tests", "fixtures", "uk_SP1_2627.csv")
+    rows = uk.parse_csv_text(open(fx, encoding="utf-8").read())
+    form = uk.last_matches(rows, "Ath Madrid", n=10)
+    check("F00.uk_form_10", len(form) == 4 and form[0]["ft"] == "2-0" and form[0]["venue"] == "H", str(form[:1]))
+    h2h = uk.h2h_matches(rows, "Levante", "Ath Madrid")
+    check("F00.uk_h2h_scores", len(h2h) == 2 and h2h[0]["ft"] == "2-0" and h2h[0].get("ht") == "1-0", str(h2h[:1]))
+    agg = uk.h2h_aggregate(h2h, "Levante")
+    check("F00.uk_h2h_agg", agg["played"] == 2 and agg["ext_wins"] == 2, str(agg))
+    check("F00.uk_form_hors_csv", uk.last_matches(rows, "Ghost FC", n=10) == [])
+
+    schema_m = open(os.path.join(WORLD, "CONTRACTS", "schema_match_intel.json"), encoding="utf-8").read()
+    check("F00.contrat_h2h_matches", '"matches"' in schema_m and '"form"' in schema_m and "h2h_scores" in schema_m)
+
+    told = []
+    old_tell = workflow.tell
+    old_p = workflow.P
+    workflow.tell = lambda m: told.append(m)
+    dv_dir = tempfile.mkdtemp(prefix="pari-data-")
+    top3_p = os.path.join(dv_dir, "top3.json")
+    md_p = os.path.join(dv_dir, "TOP3.md")
+    carte_p = os.path.join(dv_dir, "matches.json")
+    notes_p = os.path.join(dv_dir, "notes.json")
+    top3 = {"matchs": [
+        {"id": "M1", "match": "Levante UD vs Atletico Madrid", "bucket": "HAUTE",
+         "score_commun": 10.0, "rang_global": 1, "no_bet_recommande": False,
+         "top3": [{"selection": "1", "cote": 3.45, "selection_label": "Victoire Domicile"}]},
+        {"id": "M2", "match": "Delfin vs Cuenca", "bucket": "FAIBLE",
+         "score_commun": 2.9, "rang_global": 2, "no_bet_recommande": True, "top3": []},
+    ]}
+    carte = {"matchs": [
+        {"id": "M1", "dom": "Levante UD", "ext": "Atletico Madrid",
+         "elo": {"dom": 1600, "ext": 1588},
+         "xg": {"dom": 1.8, "ext": 1.4},
+         "rest_days": {"dom": 6, "ext": 4},
+         "h2h": {"played": 12, "dom_wins": 4, "draws": 3, "ext_wins": 5, "source": "csv",
+                 "matches": [{"date": "2026-10-06", "home": "Ath Madrid", "away": "Levante",
+                              "ft": "2-0", "ht": "1-0"}]},
+         "form": {"dom": [{"date": "2026-09-29", "opp": "Sevilla", "venue": "H",
+                           "ft": "2-1", "ht": "1-0", "hs": 11, "hst": 6}],
+                  "ext": [{"date": "2026-10-06", "opp": "Levante", "venue": "H",
+                           "ft": "2-0", "ht": "1-0"}]},
+         "holes": ["timing"]},
+        {"id": "M2", "dom": "Delfin", "ext": "Cuenca",
+         "holes": ["elo", "xg", "rest_days", "h2h", "form", "h2h_scores", "timing"]},
+    ]}
+    notes = {"notes_count": 0, "notes": [
+        {"match_id": "M1", "dom": "Levante UD", "ext": "Atletico Madrid", "items": []}]}
+    json.dump(top3, open(top3_p, "w"))
+    json.dump(carte, open(carte_p, "w"))
+    json.dump(notes, open(notes_p, "w"))
+    open(md_p, "w").write("- **#1 Levante UD vs Atletico Madrid** — score **10.0/10** — bucket HAUTE\n")
+    def fake_p2(*a):
+        last = a[-1]
+        if last == "TOP3.md":
+            return md_p
+        if last == "matches.json":
+            return carte_p
+        if last == "notes_qualitatives.json":
+            return notes_p
+        if last == "top3.json":
+            return top3_p
+        return old_p(*a)
+    workflow.P = fake_p2
+    try:
+        told.clear()
+        workflow.cmd_data({"notes_count": 0}, "")
+        compact = told[-1] if told else ""
+        check("F00.data_compact_notes", compact.startswith("notes: 0"), compact[:40])
+        check("F00.data_compact_cols", "Q" in compact and "H2H" in compact and "TROU" in compact, compact[:80])
+        check("F00.data_compact_h2h", "4-3-5" in compact, compact)
+        check("F00.data_compact_trou_dash", "—" in compact and "0.0/0.0" not in compact, compact)
+        check("F00.data_compact_haute_first", compact.find("Levante") < compact.find("Delfin") if "Delfin" in compact else True)
+        told.clear()
+        workflow.cmd_data({"notes_count": 0}, "1")
+        fiche = told[-1] if told else ""
+        check("F00.data_fiche_h2h", "2-0" in fiche and "HT 1-0" in fiche, fiche)
+        check("F00.data_fiche_forme", "FORME D 10" in fiche and "Sevilla" in fiche, fiche)
+        check("F00.data_fiche_timing", "TROU timing" in fiche, fiche)
+        told.clear()
+        workflow.cmd_data({"notes_count": 0}, "99")
+        check("F00.data_fiche_hors_liste", told and "hors liste" in told[-1], told[-1] if told else "")
+        dv_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "data_view.py"), encoding="utf-8").read()
+        check("F00.data_view_existe", "render_compact" in dv_src and "render_fiche" in dv_src)
+    finally:
+        workflow.tell = old_tell
+        workflow.P = old_p
+
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]
     print(f"F00 {len(CHECKS) - len(fails)}/{len(CHECKS)}")
