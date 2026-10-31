@@ -1,30 +1,30 @@
-# 🏟️ FICHE DE SIÈGE — Le Havre AC vs Paris Saint-Germain
-*Générée le 2026-10-30 19:12 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Borussia Monchengladbach vs SC Paderborn 07
+*Générée le 2026-10-31 08:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 137.9%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 23.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.47 — ext 0.83 (MT1: 0.20+0.37 · MT2: 0.27+0.46)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 18.2% / 41.7% / 40.1%
-- Over 2.5 : **14.3%** · Under 2.5 : 85.7%
-- Les deux marquent : 22.6%
-- Mi-temps : MT1 25.4% · Égalité 39.8% · **MT2 34.8%**
-- Qualité data : haute
+- λ attendus : dom 1.77 — ext 0.91 (MT1: 0.56+0.71 · MT2: 1.21+0.19)
+- Score le plus probable : **1-1**
+- 1 / X / 2 : 56.3% / 26.1% / 17.6%
+- Over 2.5 : **50.0%** · Under 2.5 : 50.0%
+- Les deux marquent : 50.9%
+- Mi-temps : MT1 34.0% · Égalité 25.5% · **MT2 40.5%**
+- Qualité data : basse (mj_insuffisant)
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 8.0 | 18.2% | 45.4% |  VALUE | 1.62u |
-| 1X2 | Nul | 5.7 | 41.7% | 137.9% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 1.32 | 40.1% | -47.1% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 39.8% | 19.4% |  VALUE | 2.43u |
+| 1X2 | Victoire Domicile | 2.2 | 56.3% | 23.9% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.7 | 26.1% | -3.5% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 2.95 | 17.6% | -48.1% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 25.5% | -23.5% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **1.62u** sur **Victoire Domicile** @ 8.0 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

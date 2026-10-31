@@ -1,7 +1,300 @@
 {
-  "generated_at": "2026-10-30T22:06:06Z",
-  "ligue": "Brasil - Brasileiro Série B",
-  "ligue_moyennes": null,
-  "analyses": [],
-  "message": "Zero Data, Zero Calc — aucune stat d'équipe dans la carte. Ajoute les stats via capteurs.py build-stats + inject, ou une carte manuelle."
+  "generated_at": "2026-10-31T08:34:48Z",
+  "ligue": "Espagne - LaLiga",
+  "ligue_moyennes": {
+    "buts_dom_moy": 1.2083,
+    "buts_ext_moy": 1.2233,
+    "part_mt1_ligue": 0.44
+  },
+  "analyses": [
+    {
+      "id": "M1",
+      "match": "Levante UD vs Atletico Madrid",
+      "lambdas": {
+        "dom_total": 0.904,
+        "ext_total": 1.488,
+        "dom_mt1": 0.303,
+        "dom_mt2": 0.601,
+        "ext_mt1": 0.82,
+        "ext_mt2": 0.669
+      },
+      "probas": {
+        "1": 0.213,
+        "X": 0.2945,
+        "2": 0.4926,
+        "o2.5": 0.4283,
+        "u2.5": 0.5717,
+        "btts": 0.4767,
+        "score_le_plus_probable": "1-1",
+        "mt1_plus": 0.3291,
+        "mte": 0.272,
+        "mt2_plus": 0.3988
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      }
+    },
+    {
+      "id": "M2",
+      "match": "Bologna FC vs AC Monza",
+      "lambdas": {
+        "dom_total": 2.549,
+        "ext_total": 1.268,
+        "dom_mt1": 1.062,
+        "dom_mt2": 1.487,
+        "ext_mt1": 0.589,
+        "ext_mt2": 0.679
+      },
+      "probas": {
+        "1": 0.642,
+        "X": 0.1944,
+        "2": 0.1636,
+        "o2.5": 0.7339,
+        "u2.5": 0.2661,
+        "btts": 0.6718,
+        "score_le_plus_probable": "2-1",
+        "mt1_plus": 0.2985,
+        "mte": 0.203,
+        "mt2_plus": 0.4985
+      },
+      "data_quality": {
+        "niveau": "basse",
+        "flags": [
+          "mj_insuffisant"
+        ]
+      }
+    },
+    {
+      "id": "M3",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
+      "lambdas": {
+        "dom_total": 3.161,
+        "ext_total": 1.602,
+        "dom_mt1": 1.612,
+        "dom_mt2": 1.549,
+        "ext_mt1": 0.793,
+        "ext_mt2": 0.809
+      },
+      "probas": {
+        "1": 0.6787,
+        "X": 0.1607,
+        "2": 0.1606,
+        "o2.5": 0.8538,
+        "u2.5": 0.1462,
+        "btts": 0.7702,
+        "score_le_plus_probable": "3-1",
+        "mt1_plus": 0.4148,
+        "mte": 0.1871,
+        "mt2_plus": 0.3981
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      }
+    },
+    {
+      "id": "M4",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "lambdas": {
+        "dom_total": 1.77,
+        "ext_total": 0.906,
+        "dom_mt1": 0.556,
+        "dom_mt2": 1.214,
+        "ext_mt1": 0.712,
+        "ext_mt2": 0.194
+      },
+      "probas": {
+        "1": 0.5633,
+        "X": 0.2609,
+        "2": 0.1758,
+        "o2.5": 0.5005,
+        "u2.5": 0.4995,
+        "btts": 0.5087,
+        "score_le_plus_probable": "1-1",
+        "mt1_plus": 0.3404,
+        "mte": 0.255,
+        "mt2_plus": 0.4046
+      },
+      "data_quality": {
+        "niveau": "basse",
+        "flags": [
+          "mj_insuffisant"
+        ]
+      }
+    },
+    {
+      "id": "M5",
+      "match": "FC Augsburg vs SC Freiburg",
+      "lambdas": {
+        "dom_total": 2.371,
+        "ext_total": 1.332,
+        "dom_mt1": 0.632,
+        "dom_mt2": 1.739,
+        "ext_mt1": 0.607,
+        "ext_mt2": 0.725
+      },
+      "probas": {
+        "1": 0.5949,
+        "X": 0.2106,
+        "2": 0.1945,
+        "o2.5": 0.715,
+        "u2.5": 0.285,
+        "btts": 0.6774,
+        "score_le_plus_probable": "2-1",
+        "mt1_plus": 0.1797,
+        "mte": 0.1783,
+        "mt2_plus": 0.642
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      }
+    },
+    {
+      "id": "M6",
+      "match": "Schalke 04 vs RB Leipzig",
+      "lambdas": {
+        "dom_total": 0.073,
+        "ext_total": 0.41,
+        "dom_mt1": 0.032,
+        "dom_mt2": 0.041,
+        "ext_mt1": 0.313,
+        "ext_mt2": 0.097
+      },
+      "probas": {
+        "1": 0.0452,
+        "X": 0.6403,
+        "2": 0.3145,
+        "o2.5": 0.0131,
+        "u2.5": 0.9869,
+        "btts": 0.0262,
+        "score_le_plus_probable": "0-0",
+        "mt1_plus": 0.2592,
+        "mte": 0.6473,
+        "mt2_plus": 0.0935
+      },
+      "data_quality": {
+        "niveau": "basse",
+        "flags": [
+          "mj_insuffisant",
+          "mt_split_estimate"
+        ]
+      }
+    },
+    {
+      "id": "M7",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "lambdas": {
+        "dom_total": 1.505,
+        "ext_total": 2.491,
+        "dom_mt1": 0.613,
+        "dom_mt2": 0.891,
+        "ext_mt1": 1.103,
+        "ext_mt2": 1.389
+      },
+      "probas": {
+        "1": 0.2133,
+        "X": 0.2041,
+        "2": 0.5825,
+        "o2.5": 0.7613,
+        "u2.5": 0.2387,
+        "btts": 0.7225,
+        "score_le_plus_probable": "1-2",
+        "mt1_plus": 0.2942,
+        "mte": 0.1973,
+        "mt2_plus": 0.5085
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      }
+    },
+    {
+      "id": "M8",
+      "match": "AFC Bournemouth vs Leeds United",
+      "lambdas": {
+        "dom_total": 3.003,
+        "ext_total": 0.841,
+        "dom_mt1": 1.312,
+        "dom_mt2": 1.691,
+        "ext_mt1": 0.407,
+        "ext_mt2": 0.434
+      },
+      "probas": {
+        "1": 0.7983,
+        "X": 0.135,
+        "2": 0.0667,
+        "o2.5": 0.7381,
+        "u2.5": 0.2619,
+        "btts": 0.5476,
+        "score_le_plus_probable": "3-0",
+        "mt1_plus": 0.3185,
+        "mte": 0.2051,
+        "mt2_plus": 0.4764
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      }
+    },
+    {
+      "id": "M9",
+      "match": "Brentford FC vs Nottingham Forest",
+      "lambdas": {
+        "dom_total": 2.472,
+        "ext_total": 0.712,
+        "dom_mt1": 1.211,
+        "dom_mt2": 1.261,
+        "ext_mt1": 0.245,
+        "ext_mt2": 0.466
+      },
+      "probas": {
+        "1": 0.7501,
+        "X": 0.1724,
+        "2": 0.0775,
+        "o2.5": 0.6167,
+        "u2.5": 0.3833,
+        "btts": 0.4757,
+        "score_le_plus_probable": "2-0",
+        "mt1_plus": 0.3277,
+        "mte": 0.2292,
+        "mt2_plus": 0.4431
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      }
+    },
+    {
+      "id": "M10",
+      "match": "Coventry City vs Sunderland AFC",
+      "lambdas": {
+        "dom_total": 1.29,
+        "ext_total": 0.777,
+        "dom_mt1": 0.541,
+        "dom_mt2": 0.749,
+        "ext_mt1": 0.178,
+        "ext_mt2": 0.599
+      },
+      "probas": {
+        "1": 0.4699,
+        "X": 0.322,
+        "2": 0.2081,
+        "o2.5": 0.3412,
+        "u2.5": 0.6588,
+        "btts": 0.4078,
+        "score_le_plus_probable": "1-0",
+        "mt1_plus": 0.203,
+        "mte": 0.2804,
+        "mt2_plus": 0.5167
+      },
+      "data_quality": {
+        "niveau": "basse",
+        "flags": [
+          "mj_insuffisant"
+        ]
+      }
+    }
+  ]
 }

@@ -1,78 +1,554 @@
 {
-  "generated_at": "2026-10-31T07:55:27Z",
+  "generated_at": "2026-10-31T08:34:48Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "predictions": [
     {
       "id": "M1",
       "match": "Levante UD vs Atletico Madrid",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 5.5,
+          "cote_juste_marche": 5.814,
+          "p_modele": 0.213,
+          "ev": 0.1715,
+          "verdict": "VALUE",
+          "mise_units": 0.95
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.6,
+          "cote_juste_marche": 4.863,
+          "p_modele": 0.2945,
+          "ev": 0.3547,
+          "verdict": "VALUE",
+          "mise_units": 2.46
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 1.52,
+          "cote_juste_marche": 1.607,
+          "p_modele": 0.4926,
+          "ev": -0.2512,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.272,
+          "ev": -0.184,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.3547
     },
     {
       "id": "M2",
       "match": "Bologna FC vs AC Monza",
-      "selections": [],
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.67,
+          "cote_juste_marche": 1.773,
+          "p_modele": 0.642,
+          "ev": 0.0721,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.8,
+          "cote_juste_marche": 4.035,
+          "p_modele": 0.1944,
+          "ev": -0.2613,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 5.0,
+          "cote_juste_marche": 5.31,
+          "p_modele": 0.1636,
+          "ev": -0.182,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.203,
+          "ev": -0.391,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
       "verdict": "NO_BET",
-      "meilleure_ev": null
+      "meilleure_ev": 0.0721
     },
     {
       "id": "M3",
       "match": "Bayer Leverkusen vs VfB Stuttgart",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.7,
+          "cote_juste_marche": 1.801,
+          "p_modele": 0.6787,
+          "ev": 0.1538,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.4,
+          "cote_juste_marche": 4.661,
+          "p_modele": 0.1607,
+          "ev": -0.2929,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 4.1,
+          "cote_juste_marche": 4.344,
+          "p_modele": 0.1606,
+          "ev": -0.3415,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.1871,
+          "ev": -0.4387,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.1538
     },
     {
       "id": "M4",
       "match": "Borussia Monchengladbach vs SC Paderborn 07",
-      "selections": [],
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.2,
+          "cote_juste_marche": 2.34,
+          "p_modele": 0.5633,
+          "ev": 0.2393,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.7,
+          "cote_juste_marche": 3.936,
+          "p_modele": 0.2609,
+          "ev": -0.0347,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.95,
+          "cote_juste_marche": 3.138,
+          "p_modele": 0.1758,
+          "ev": -0.4814,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.255,
+          "ev": -0.235,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
       "verdict": "NO_BET",
-      "meilleure_ev": null
+      "meilleure_ev": 0.2393
     },
     {
       "id": "M5",
       "match": "FC Augsburg vs SC Freiburg",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.85,
+          "cote_juste_marche": 3.016,
+          "p_modele": 0.5949,
+          "ev": 0.6955,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.75,
+          "cote_juste_marche": 3.968,
+          "p_modele": 0.2106,
+          "ev": -0.2102,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.27,
+          "cote_juste_marche": 2.402,
+          "p_modele": 0.1945,
+          "ev": -0.5585,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.1783,
+          "ev": -0.4651,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.6955
     },
     {
       "id": "M6",
       "match": "Schalke 04 vs RB Leipzig",
-      "selections": [],
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 3.9,
+          "cote_juste_marche": 4.142,
+          "p_modele": 0.0452,
+          "ev": -0.8237,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.95,
+          "cote_juste_marche": 4.195,
+          "p_modele": 0.6403,
+          "ev": 1.5292,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 1.81,
+          "cote_juste_marche": 1.922,
+          "p_modele": 0.3145,
+          "ev": -0.4308,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.6473,
+          "ev": 0.9419,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
       "verdict": "NO_BET",
-      "meilleure_ev": null
+      "meilleure_ev": 1.5292
     },
     {
       "id": "M7",
       "match": "Werder Bremen vs TSG Hoffenheim",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.52,
+          "cote_juste_marche": 2.675,
+          "p_modele": 0.2133,
+          "ev": -0.4625,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.85,
+          "cote_juste_marche": 4.086,
+          "p_modele": 0.2041,
+          "ev": -0.2142,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.47,
+          "cote_juste_marche": 2.622,
+          "p_modele": 0.5825,
+          "ev": 0.4388,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.1973,
+          "ev": -0.4081,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.4388
     },
     {
       "id": "M8",
       "match": "AFC Bournemouth vs Leeds United",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.15,
+          "cote_juste_marche": 2.274,
+          "p_modele": 0.7983,
+          "ev": 0.7163,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.35,
+          "cote_juste_marche": 3.543,
+          "p_modele": 0.135,
+          "ev": -0.5477,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 3.4,
+          "cote_juste_marche": 3.596,
+          "p_modele": 0.0667,
+          "ev": -0.7732,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.2051,
+          "ev": -0.3847,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.7163
     },
     {
       "id": "M9",
       "match": "Brentford FC vs Nottingham Forest",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.12,
+          "cote_juste_marche": 2.249,
+          "p_modele": 0.7501,
+          "ev": 0.5902,
+          "verdict": "VALUE",
+          "mise_units": 3.0
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.55,
+          "cote_juste_marche": 3.767,
+          "p_modele": 0.1724,
+          "ev": -0.388,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 3.25,
+          "cote_juste_marche": 3.449,
+          "p_modele": 0.0775,
+          "ev": -0.7481,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.2292,
+          "ev": -0.3124,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
+      "verdict": "GO",
+      "meilleure_ev": 0.5902
     },
     {
       "id": "M10",
       "match": "Coventry City vs Sunderland AFC",
-      "selections": [],
+      "selections": [
+        {
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 3.1,
+          "cote_juste_marche": 3.273,
+          "p_modele": 0.4699,
+          "ev": 0.4567,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.25,
+          "cote_juste_marche": 3.431,
+          "p_modele": 0.322,
+          "ev": 0.0465,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.35,
+          "cote_juste_marche": 2.481,
+          "p_modele": 0.2081,
+          "ev": -0.511,
+          "verdict": "NO_BET",
+          "mise_units": null
+        },
+        {
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "cote_juste_marche": 3.396,
+          "p_modele": 0.2804,
+          "ev": -0.1588,
+          "verdict": "NO_BET",
+          "mise_units": null
+        }
+      ],
       "verdict": "NO_BET",
-      "meilleure_ev": null
+      "meilleure_ev": 0.4567
     }
   ],
-  "combines": []
+  "combines": [
+    {
+      "jambes": [
+        {
+          "match_id": "M8",
+          "selection": "1",
+          "cote": 2.15,
+          "p_modele": 0.7983
+        },
+        {
+          "match_id": "M5",
+          "selection": "1",
+          "cote": 2.85,
+          "p_modele": 0.5949
+        },
+        {
+          "match_id": "M9",
+          "selection": "1",
+          "cote": 2.12,
+          "p_modele": 0.7501
+        }
+      ],
+      "cote_totale": 12.99,
+      "ev_combine": 3.6275,
+      "mise_units": 1.0
+    }
+  ]
 }

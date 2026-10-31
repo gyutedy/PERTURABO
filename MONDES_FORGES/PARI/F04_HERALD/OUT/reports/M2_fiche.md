@@ -1,30 +1,30 @@
-# 🏟️ FICHE DE SIÈGE — Arminia Bielefeld vs Eintracht Braunschweig
-*Générée le 2026-10-30 19:12 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Bologna FC vs AC Monza
+*Générée le 2026-10-31 08:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 47.8%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 7.2%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.82 — ext 0.44 (MT1: 0.35+0.21 · MT2: 0.47+0.23)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 40.5% / 42.2% / 17.3%
-- Over 2.5 : **13.4%** · Under 2.5 : 86.6%
-- Les deux marquent : 21.4%
-- Mi-temps : MT1 25.3% · Égalité 40.6% · **MT2 34.2%**
-- Qualité data : haute
+- λ attendus : dom 2.55 — ext 1.27 (MT1: 1.06+0.59 · MT2: 1.49+0.68)
+- Score le plus probable : **2-1**
+- 1 / X / 2 : 64.2% / 19.4% / 16.4%
+- Over 2.5 : **73.4%** · Under 2.5 : 26.6%
+- Les deux marquent : 67.2%
+- Mi-temps : MT1 29.8% · Égalité 20.3% · **MT2 49.9%**
+- Qualité data : basse (mj_insuffisant)
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.91 | 40.5% | -22.6% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.5 | 42.2% | 47.8% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 3.35 | 17.3% | -42.1% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 40.6% | 21.7% |  VALUE | 2.71u |
+| 1X2 | Victoire Domicile | 1.67 | 64.2% | 7.2% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.8 | 19.4% | -26.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 5.0 | 16.4% | -18.2% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.3% | -39.1% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.5 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

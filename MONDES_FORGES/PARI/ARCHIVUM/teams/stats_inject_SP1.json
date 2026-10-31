@@ -1,0 +1,474 @@
+{
+  "generated_at": "2026-10-31T08:34:39Z",
+  "source": "football-data.co.uk (usage privé, whitelist)",
+  "league_code": "SP1",
+  "season": "2627",
+  "merged_seasons": [
+    "2627",
+    "2526"
+  ],
+  "tier": "top5",
+  "last_n_considered": 12,
+  "teams": {
+    "Girona": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 19.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 19.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Vallecano": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 10.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 21.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 14.0
+      }
+    },
+    "Villarreal": {
+      "dom": {
+        "mj": 12,
+        "marques": 27.0,
+        "encaisses": 10.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 15.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 16.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Oviedo": {
+      "dom": {
+        "mj": 12,
+        "marques": 5.0,
+        "encaisses": 13.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 26.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 14.0
+      }
+    },
+    "Mallorca": {
+      "dom": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 16.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 5.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 23.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 14.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Barcelona": {
+      "dom": {
+        "mj": 12,
+        "marques": 37.0,
+        "encaisses": 5.0,
+        "marques_mt1": 15.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 22.0,
+        "encaisses_mt2": 0.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 29.0,
+        "encaisses": 18.0,
+        "marques_mt1": 15.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Alaves": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 13.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 7.0,
+        "encaisses": 17.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Levante": {
+      "dom": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 23.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 13.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 18.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Valencia": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 13.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 24.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 14.0
+      }
+    },
+    "Sociedad": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 17.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 18.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Celta": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 15.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 12.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Getafe": {
+      "dom": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 10.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 18.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Ath Bilbao": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 14.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 20.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Sevilla": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 18.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 12.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 20.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Espanol": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 16.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 19.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Ath Madrid": {
+      "dom": {
+        "mj": 12,
+        "marques": 26.0,
+        "encaisses": 8.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 16.0,
+        "encaisses_mt2": 2.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 13.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Elche": {
+      "dom": {
+        "mj": 12,
+        "marques": 20.0,
+        "encaisses": 13.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 24.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 16.0
+      }
+    },
+    "Betis": {
+      "dom": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 13.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 16.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Real Madrid": {
+      "dom": {
+        "mj": 12,
+        "marques": 29.0,
+        "encaisses": 8.0,
+        "marques_mt1": 14.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 15.0,
+        "encaisses_mt2": 5.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 24.0,
+        "encaisses": 11.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Osasuna": {
+      "dom": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 14.0,
+        "marques_mt1": 14.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 8.0,
+        "encaisses": 15.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Santander": {
+      "dom": {
+        "mj": 5,
+        "marques": 11.0,
+        "encaisses": 8.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 4.0,
+        "encaisses": 18.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 1.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "La Coruna": {
+      "dom": {
+        "mj": 5,
+        "marques": 6.0,
+        "encaisses": 5.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 7.0,
+        "encaisses": 8.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 4.0
+      }
+    },
+    "Malaga": {
+      "dom": {
+        "mj": 5,
+        "marques": 5.0,
+        "encaisses": 10.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 2.0,
+        "encaisses": 9.0,
+        "marques_mt1": 1.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 1.0,
+        "encaisses_mt2": 5.0
+      }
+    }
+  }
+}

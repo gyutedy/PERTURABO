@@ -1,113 +1,266 @@
 {
-  "generated_at": "2026-10-31T07:55:27Z",
+  "generated_at": "2026-10-31T08:34:48Z",
   "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
   "source_predictions": "predictions.json",
   "matchs": [
     {
-      "id": "M1",
-      "match": "Levante UD vs Atletico Madrid",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "id": "M3",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.7,
+          "p_modele": 0.6787,
+          "ev": 0.1538
+        }
+      ],
+      "quality_data": "haute",
       "rang_global": 1
     },
     {
-      "id": "M2",
-      "match": "Bologna FC vs AC Monza",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "id": "M8",
+      "match": "AFC Bournemouth vs Leeds United",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.15,
+          "p_modele": 0.7983,
+          "ev": 0.7163
+        }
+      ],
+      "quality_data": "haute",
       "rang_global": 2
     },
     {
-      "id": "M3",
-      "match": "Bayer Leverkusen vs VfB Stuttgart",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "id": "M9",
+      "match": "Brentford FC vs Nottingham Forest",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.12,
+          "p_modele": 0.7501,
+          "ev": 0.5902
+        }
+      ],
+      "quality_data": "haute",
       "rang_global": 3
-    },
-    {
-      "id": "M4",
-      "match": "Borussia Monchengladbach vs SC Paderborn 07",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
-      "rang_global": 4
     },
     {
       "id": "M5",
       "match": "FC Augsburg vs SC Freiburg",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 9.7,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.85,
+          "p_modele": 0.5949,
+          "ev": 0.6955
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 4
+    },
+    {
+      "id": "M7",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 9.6,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.47,
+          "p_modele": 0.5825,
+          "ev": 0.4388
+        }
+      ],
+      "quality_data": "haute",
       "rang_global": 5
     },
     {
       "id": "M6",
       "match": "Schalke 04 vs RB Leipzig",
       "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "bucket": "HAUTE",
+      "score_commun": 8.3,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.95,
+          "p_modele": 0.6403,
+          "ev": 1.5292
+        },
+        {
+          "rang": 2,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "p_modele": 0.6473,
+          "ev": 0.9419
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 1.81,
+          "p_modele": 0.3145,
+          "ev": -0.4308
+        }
+      ],
       "quality_data": "basse",
       "rang_global": 6
     },
     {
-      "id": "M7",
-      "match": "Werder Bremen vs TSG Hoffenheim",
+      "id": "M2",
+      "match": "Bologna FC vs AC Monza",
       "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "bucket": "HAUTE",
+      "score_commun": 7.9,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.67,
+          "p_modele": 0.642,
+          "ev": 0.0721
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 5.0,
+          "p_modele": 0.1636,
+          "ev": -0.182
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.8,
+          "p_modele": 0.1944,
+          "ev": -0.2613
+        }
+      ],
       "quality_data": "basse",
       "rang_global": 7
     },
     {
-      "id": "M8",
-      "match": "AFC Bournemouth vs Leeds United",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "id": "M1",
+      "match": "Levante UD vs Atletico Madrid",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.8,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.6,
+          "p_modele": 0.2945,
+          "ev": 0.3547
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 5.5,
+          "p_modele": 0.213,
+          "ev": 0.1715
+        }
+      ],
+      "quality_data": "haute",
       "rang_global": 8
     },
     {
-      "id": "M9",
-      "match": "Brentford FC vs Nottingham Forest",
+      "id": "M4",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "bucket": "HAUTE",
+      "score_commun": 7.8,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.2,
+          "p_modele": 0.5633,
+          "ev": 0.2393
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.7,
+          "p_modele": 0.2609,
+          "ev": -0.0347
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "p_modele": 0.255,
+          "ev": -0.235
+        }
+      ],
       "quality_data": "basse",
       "rang_global": 9
     },
@@ -115,11 +268,39 @@
       "id": "M10",
       "match": "Coventry City vs Sunderland AFC",
       "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "bucket": "HAUTE",
+      "score_commun": 7.2,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 3.1,
+          "p_modele": 0.4699,
+          "ev": 0.4567
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.25,
+          "p_modele": 0.322,
+          "ev": 0.0465
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "p_modele": 0.2804,
+          "ev": -0.1588
+        }
+      ],
       "quality_data": "basse",
       "rang_global": 10
     }

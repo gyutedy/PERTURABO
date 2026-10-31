@@ -1,5 +1,66 @@
 {
-  "generated_at": "2026-10-31T07:55:27Z",
-  "reports": [],
+  "generated_at": "2026-10-31T08:34:48Z",
+  "reports": [
+    {
+      "id": "M1",
+      "match": "Levante UD vs Atletico Madrid",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
+    },
+    {
+      "id": "M2",
+      "match": "Bologna FC vs AC Monza",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
+    },
+    {
+      "id": "M3",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
+    },
+    {
+      "id": "M4",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
+    },
+    {
+      "id": "M5",
+      "match": "FC Augsburg vs SC Freiburg",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
+    },
+    {
+      "id": "M6",
+      "match": "Schalke 04 vs RB Leipzig",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
+    },
+    {
+      "id": "M7",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
+    },
+    {
+      "id": "M8",
+      "match": "AFC Bournemouth vs Leeds United",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
+    },
+    {
+      "id": "M9",
+      "match": "Brentford FC vs Nottingham Forest",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
+    },
+    {
+      "id": "M10",
+      "match": "Coventry City vs Sunderland AFC",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
+    }
+  ],
   "oracle_utilise": false
 }

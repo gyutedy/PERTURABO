@@ -1,73 +1,161 @@
 {
-  "generated_at": "2026-10-31T07:55:28Z",
+  "generated_at": "2026-10-31T08:34:48Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 0",
-  "top_picks": [],
-  "no_bet": [
+  "titre": "DIRECTION DES SIÈGES — TOP 7",
+  "top_picks": [
     {
-      "match_id": "M1",
-      "match": "Levante UD vs Atletico Madrid",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M2",
-      "match": "Bologna FC vs AC Monza",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M3",
-      "match": "Bayer Leverkusen vs VfB Stuttgart",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M4",
-      "match": "Borussia Monchengladbach vs SC Paderborn 07",
-      "raison": "aucune cote fournie"
+      "match_id": "M8",
+      "match": "AFC Bournemouth vs Leeds United",
+      "marche": "1X2",
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.15,
+      "p_modele": 0.7983,
+      "ev": 0.7163,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 1
     },
     {
       "match_id": "M5",
       "match": "FC Augsburg vs SC Freiburg",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M6",
-      "match": "Schalke 04 vs RB Leipzig",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M7",
-      "match": "Werder Bremen vs TSG Hoffenheim",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M8",
-      "match": "AFC Bournemouth vs Leeds United",
-      "raison": "aucune cote fournie"
+      "marche": "1X2",
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.85,
+      "p_modele": 0.5949,
+      "ev": 0.6955,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 2
     },
     {
       "match_id": "M9",
       "match": "Brentford FC vs Nottingham Forest",
-      "raison": "aucune cote fournie"
+      "marche": "1X2",
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.12,
+      "p_modele": 0.7501,
+      "ev": 0.5902,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 3
+    },
+    {
+      "match_id": "M7",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "marche": "1X2",
+      "selection": "2",
+      "selection_label": "Victoire Extérieur",
+      "cote": 2.47,
+      "p_modele": 0.5825,
+      "ev": 0.4388,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 4
+    },
+    {
+      "match_id": "M1",
+      "match": "Levante UD vs Atletico Madrid",
+      "marche": "1X2",
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 4.6,
+      "p_modele": 0.2945,
+      "ev": 0.3547,
+      "mise_units": 2.46,
+      "note_risque": "qualité data: haute",
+      "rang": 5
+    },
+    {
+      "match_id": "M1",
+      "match": "Levante UD vs Atletico Madrid",
+      "marche": "1X2",
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 5.5,
+      "p_modele": 0.213,
+      "ev": 0.1715,
+      "mise_units": 0.95,
+      "note_risque": "qualité data: haute",
+      "rang": 6
+    },
+    {
+      "match_id": "M3",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
+      "marche": "1X2",
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 1.7,
+      "p_modele": 0.6787,
+      "ev": 0.1538,
+      "mise_units": 3.0,
+      "note_risque": "qualité data: haute",
+      "rang": 7
+    }
+  ],
+  "no_bet": [
+    {
+      "match_id": "M2",
+      "match": "Bologna FC vs AC Monza",
+      "raison": "EV < seuil sur tous les marchés"
+    },
+    {
+      "match_id": "M4",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "raison": "EV < seuil sur tous les marchés"
+    },
+    {
+      "match_id": "M6",
+      "match": "Schalke 04 vs RB Leipzig",
+      "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M10",
       "match": "Coventry City vs Sunderland AFC",
-      "raison": "aucune cote fournie"
+      "raison": "EV < seuil sur tous les marchés"
     }
   ],
-  "combines": [],
+  "combines": [
+    {
+      "jambes": [
+        {
+          "match_id": "M8",
+          "selection": "1",
+          "cote": 2.15,
+          "p_modele": 0.7983
+        },
+        {
+          "match_id": "M5",
+          "selection": "1",
+          "cote": 2.85,
+          "p_modele": 0.5949
+        },
+        {
+          "match_id": "M9",
+          "selection": "1",
+          "cote": 2.12,
+          "p_modele": 0.7501
+        }
+      ],
+      "cote_totale": 12.99,
+      "ev_combine": 3.6275,
+      "mise_units": 1.0
+    }
+  ],
   "loterie": {
     "budget_pct_bankroll": 0.02,
     "note": "Zone DIVERTISSEMENT séparée. Combinés 10+ jambes cote 100+ : jamais dans le capital de chasse.",
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 0,
-    "ev_moyenne_pct": null,
+    "mise_totale_units": 19.41,
+    "ev_moyenne_pct": 0.4458,
     "nb_matchs_analyses": 10,
-    "nb_no_bet": 10,
-    "nb_matchs_go": 0
+    "nb_no_bet": 4,
+    "nb_matchs_go": 6
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
   "carte_tyran": {

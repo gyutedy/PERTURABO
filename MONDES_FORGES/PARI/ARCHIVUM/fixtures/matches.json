@@ -1,6 +1,6 @@
 {
   "source": "input_capture",
-  "generated_at": "2026-10-31T07:55:18Z",
+  "generated_at": "2026-10-31T08:34:35Z",
   "ligue": "Capture — ligue à confirmer",
   "horizon": "capture 2026-10-31",
   "matchs": [
@@ -27,7 +27,26 @@
         "mt2",
         "mte"
       ],
-      "stats": {}
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 23.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt2": 13.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 12.0,
+          "encaisses": 13.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 9.0
+        }
+      }
     },
     {
       "id": "M2",
@@ -141,6 +160,15 @@
         "mte"
       ],
       "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 14.0,
+          "encaisses": 21.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 12.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 9.0
+        },
         "ext": {
           "mj": 3,
           "marques": 2.0,
@@ -360,6 +388,15 @@
           "encaisses_mt1": 5.0,
           "marques_mt2": 14.0,
           "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 17.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 7.0
         }
       }
     },
@@ -409,8 +446,9 @@
     }
   ],
   "warnings": [
-    "inject CAPTEURS 2026-10-31T07:55:21Z: 2 auto / 18 manquants",
-    "inject CAPTEURS 2026-10-31T07:55:24Z: 9 auto / 11 manquants",
-    "inject CAPTEURS 2026-10-31T07:55:27Z: 5 auto / 15 manquants"
+    "inject CAPTEURS 2026-10-31T08:34:39Z [SP1]: 2 auto / 0 manquants",
+    "inject CAPTEURS 2026-10-31T08:34:42Z [I1]: 2 auto / 0 manquants",
+    "inject CAPTEURS 2026-10-31T08:34:45Z [D1]: 10 auto / 0 manquants",
+    "inject CAPTEURS 2026-10-31T08:34:48Z [E0]: 6 auto / 0 manquants"
   ]
 }

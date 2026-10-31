@@ -1,20 +1,18 @@
 {
-  "generated_at": "2026-10-31T07:55:27Z",
+  "generated_at": "2026-10-31T08:34:48Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 4,
-  "no_bet": 6,
+  "go": 6,
+  "no_bet": 4,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 4 GO / 6 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 6 GO / 4 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
       "match": "Levante UD vs Atletico Madrid",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
@@ -40,7 +38,6 @@
       "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "verdict": "NO_BET",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
         "échantillon ext insuffisant (3 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
@@ -81,9 +78,8 @@
     {
       "id": "M9",
       "match": "Brentford FC vs Nottingham Forest",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "raisons": [
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },

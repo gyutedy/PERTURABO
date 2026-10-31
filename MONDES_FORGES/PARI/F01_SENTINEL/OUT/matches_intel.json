@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T07:55:27Z",
+  "generated_at": "2026-10-31T08:34:48Z",
   "source": "siege_file",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": null,
@@ -27,7 +27,26 @@
         "mt2",
         "mte"
       ],
-      "stats": {}
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 23.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt2": 13.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 12.0,
+          "encaisses": 13.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 9.0
+        }
+      }
     },
     {
       "id": "M2",
@@ -141,6 +160,15 @@
         "mte"
       ],
       "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 14.0,
+          "encaisses": 21.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 12.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 9.0
+        },
         "ext": {
           "mj": 3,
           "marques": 2.0,
@@ -359,6 +387,15 @@
           "marques_mt1": 9.0,
           "encaisses_mt1": 5.0,
           "marques_mt2": 14.0,
+          "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 17.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 8.0,
           "encaisses_mt2": 7.0
         }
       }
