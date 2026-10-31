@@ -59,7 +59,8 @@ wrangler). `/budget 3000` seul est refuse par `workflow.py`.
 football-data ; un club hors CSV skip CE match (pas NO BET global).
 `/valider-2` = tickets + anti-cannibal + token `L-XXX` (retaper `/budget`
 avant chaque lot Mode A). Aliases deja live : `/data ledger`,
-`/status ledger`, `/roi settle L-XXX`. Worker inchangé (relais args).
+`/status ledger`, `/roi settle L-XXX`. `/data` = table compacte, `/data N` = fiche
+(parse.py d'abord ; Worker help stale jusqu'au merge). Worker inchangé (relais args).
 
 Dans Telegram, envoie `/start`. Tu dois voir :
 

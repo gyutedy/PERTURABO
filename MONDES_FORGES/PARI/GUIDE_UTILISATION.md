@@ -41,8 +41,21 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
 | `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide. |
-| `/data` | Prefixe `notes: N` puis rangs Top 3. Refuse si TOP3 demo. `/data ledger` = token + lots du jour. |
+| `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
+| `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
+| `/data ledger` | Token + lots du jour (inchange). |
 | `/status` | État campagne. `/status ledger` = lots ouverts + jambes consommees. |
+
+Exemple compact (`/data`) :
+
+```
+notes: 0
+#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP
+1  Milan-Inter      H 10.0  +12  1.8/1.4  6/4    4-3-5  —         0   1 @3.45
+11 Delfin-Cuenca    F  2.9   —    —/—     —/—    —      elo,xg    0   NO BET
+```
+
+Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes.
 | `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). |
 | `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 

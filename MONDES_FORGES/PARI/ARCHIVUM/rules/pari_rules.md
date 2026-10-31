@@ -34,7 +34,7 @@ Toute donnée manquante est **déclarée** (flag `estimate` + qualité data bais
 
 Rappel de freshness_sources Art. 4 : le moteur n'écoute pas les contenus. Audit des 26 transcriptions, précision de scope :
 
-**Moteur (données autorisées)** : stats froides (football-data.co.uk, ClubElo), cotes Winner Bet. Elo / xG Understat / H2H = **métadonnées** (jamais dans Poisson / Dixon-Coles). FBref retiré.
+**Moteur (données autorisées)** : stats froides (football-data.co.uk, ClubElo), cotes Winner Bet. Elo / xG Understat / H2H / forme 10 / scores H2H = **métadonnées d'affichage** (`/data`, jamais dans Poisson / Dixon-Coles). FBref retiré.
 
 **F00 notes (non binaires)** : SofaScore + Sportradar + WhoScored. Vote OUT si 3 sources indépendantes / 48h. DOUTE / IGNORE = trou, ne touche pas λ. Oracle jamais un OUT.
 
