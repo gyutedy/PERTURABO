@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T22:06:06Z",
+  "generated_at": "2026-10-31T07:50:11Z",
   "siege_id": null,
   "devise": "USD",
   "titre": "DIRECTION DES SIÈGES — TOP 0",
@@ -7,47 +7,62 @@
   "no_bet": [
     {
       "match_id": "M1",
-      "match": "Criciúma EC SC vs AA Ponte Preta SP",
+      "match": "Levante UD vs Atletico Madrid",
       "raison": "aucune cote fournie"
     },
     {
       "match_id": "M2",
-      "match": "Nacional AC Muriaé MG vs Venda Nova FC MG",
+      "match": "Real Sociedad B vs Girona FC",
       "raison": "aucune cote fournie"
     },
     {
       "match_id": "M3",
-      "match": "Club Guaraní Asunción vs CS 2 de Mayo",
+      "match": "Kocaelispor vs Caykur Rizespor",
       "raison": "aucune cote fournie"
     },
     {
       "match_id": "M4",
-      "match": "Sportivo Trinidense vs Rubio Ñu",
+      "match": "Bologna FC vs AC Monza",
       "raison": "aucune cote fournie"
     },
     {
       "match_id": "M5",
-      "match": "Louisville City FC vs Pittsburgh Riverhounds",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M7",
-      "match": "Charleston Battery vs Rhode Island FC",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M9",
-      "match": "Tampa Bay Rowdies vs Miami FC",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
       "raison": "aucune cote fournie"
     },
     {
       "match_id": "M6",
-      "match": "SC Corinthians SP vs Mirassol FC SP",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M7",
+      "match": "FC Augsburg vs SC Freiburg",
       "raison": "aucune cote fournie"
     },
     {
       "match_id": "M8",
-      "match": "Union Omaha SC vs Chattanooga Red Wolves SC",
+      "match": "Schalke 04 vs RB Leipzig",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M9",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M10",
+      "match": "AFC Bournemouth vs Leeds United",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M11",
+      "match": "Brentford FC vs Nottingham Forest",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M12",
+      "match": "Coventry City vs Sunderland AFC",
       "raison": "aucune cote fournie"
     }
   ],
@@ -60,8 +75,8 @@
   "metriques": {
     "mise_totale_units": 0,
     "ev_moyenne_pct": null,
-    "nb_matchs_analyses": 9,
-    "nb_no_bet": 9,
+    "nb_matchs_analyses": 12,
+    "nb_no_bet": 12,
     "nb_matchs_go": 0
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",

@@ -1,21 +1,22 @@
 {
   "source": "input_capture",
-  "generated_at": "2026-10-30T22:06:05Z",
+  "generated_at": "2026-10-31T07:50:03Z",
   "ligue": "Capture — ligue à confirmer",
-  "horizon": "capture capture",
+  "horizon": "capture 2026-10-31",
   "matchs": [
     {
       "id": "M1",
-      "dom": "Criciúma EC SC",
-      "ext": "AA Ponte Preta SP",
-      "ligue": "Brasil - Brasileiro Série B",
-      "date": null,
-      "heure": null,
+      "dom": "Levante UD",
+      "ext": "Atletico Madrid",
+      "ligue": "Espagne - LaLiga",
+      "date": "2026-10-31",
+      "heure": "14:00",
       "cotes": {
-        "1": 1.06,
-        "X": 8.7,
-        "2": 20.0,
+        "1": 5.5,
+        "X": 4.6,
+        "2": 1.52,
         "mt1": 3.1,
+        "mte": 3.0,
         "mt2": 2.1
       },
       "marches_disponibles": [
@@ -23,39 +24,49 @@
         "2",
         "X",
         "mt1",
-        "mt2"
-      ]
+        "mt2",
+        "mte"
+      ],
+      "stats": {}
     },
     {
       "id": "M2",
-      "dom": "Nacional AC Muriaé MG",
-      "ext": "Venda Nova FC MG",
-      "ligue": "Brasil - Mineiro, Segunda Divisão",
-      "date": null,
-      "heure": null,
+      "dom": "Real Sociedad B",
+      "ext": "Girona FC",
+      "ligue": "Espagne - LaLiga 2",
+      "date": "2026-10-31",
+      "heure": "14:00",
       "cotes": {
-        "1": 2.1,
-        "X": 3.2,
-        "2": 3.1
+        "1": 3.25,
+        "X": 3.45,
+        "2": 1.96,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
       },
       "marches_disponibles": [
         "1",
         "2",
-        "X"
-      ]
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {}
     },
     {
       "id": "M3",
-      "dom": "Club Guaraní Asunción",
-      "ext": "CS 2 de Mayo",
-      "ligue": "Paraguai - División de Honor",
-      "date": null,
-      "heure": null,
+      "dom": "Kocaelispor",
+      "ext": "Caykur Rizespor",
+      "ligue": "Turkiye - Super Lig",
+      "date": "2026-10-31",
+      "heure": "14:00",
       "cotes": {
-        "1": 1.89,
-        "X": 3.1,
-        "2": 3.85,
+        "1": 2.47,
+        "X": 3.2,
+        "2": 2.5,
         "mt1": 3.1,
+        "mte": 3.0,
         "mt2": 2.1
       },
       "marches_disponibles": [
@@ -63,21 +74,24 @@
         "2",
         "X",
         "mt1",
-        "mt2"
-      ]
+        "mt2",
+        "mte"
+      ],
+      "stats": {}
     },
     {
       "id": "M4",
-      "dom": "Sportivo Trinidense",
-      "ext": "Rubio Ñu",
-      "ligue": "Paraguai - División de Honor",
-      "date": null,
-      "heure": null,
+      "dom": "Bologna FC",
+      "ext": "AC Monza",
+      "ligue": "Italie - Serie A",
+      "date": "2026-10-31",
+      "heure": "15:00",
       "cotes": {
-        "1": 1.81,
-        "X": 3.35,
-        "2": 3.85,
+        "1": 1.67,
+        "X": 3.8,
+        "2": 5.0,
         "mt1": 3.1,
+        "mte": 3.0,
         "mt2": 2.1
       },
       "marches_disponibles": [
@@ -85,21 +99,43 @@
         "2",
         "X",
         "mt1",
-        "mt2"
-      ]
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 12.0,
+          "encaisses": 14.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 5,
+          "marques": 7.0,
+          "encaisses": 14.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 7.0
+        }
+      }
     },
     {
       "id": "M5",
-      "dom": "Louisville City FC",
-      "ext": "Pittsburgh Riverhounds",
-      "ligue": "EUA - USL Championship",
-      "date": null,
-      "heure": null,
+      "dom": "Bayer Leverkusen",
+      "ext": "VfB Stuttgart",
+      "ligue": "Allemagne - Bundesliga",
+      "date": "2026-10-31",
+      "heure": "15:30",
       "cotes": {
-        "1": 1.68,
-        "X": 3.25,
-        "2": 4.7,
+        "1": 1.7,
+        "X": 4.4,
+        "2": 4.1,
         "mt1": 3.1,
+        "mte": 3.0,
         "mt2": 2.1
       },
       "marches_disponibles": [
@@ -107,65 +143,43 @@
         "2",
         "X",
         "mt1",
-        "mt2"
-      ]
-    },
-    {
-      "id": "M7",
-      "dom": "Charleston Battery",
-      "ext": "Rhode Island FC",
-      "ligue": "EUA - USL Championship",
-      "date": null,
-      "heure": null,
-      "cotes": {
-        "1": 2.17,
-        "X": 3.3,
-        "2": 2.92,
-        "mt1": 3.1,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2"
-      ]
-    },
-    {
-      "id": "M9",
-      "dom": "Tampa Bay Rowdies",
-      "ext": "Miami FC",
-      "ligue": "EUA - USL Championship",
-      "date": null,
-      "heure": null,
-      "cotes": {
-        "1": 1.37,
-        "X": 4.6,
-        "2": 6.2,
-        "mt1": 3.1,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2"
-      ]
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 25.0,
+          "encaisses": 11.0,
+          "marques_mt1": 13.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 12.0,
+          "encaisses_mt2": 5.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 27.0,
+          "encaisses": 20.0,
+          "marques_mt1": 12.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 15.0,
+          "encaisses_mt2": 10.0
+        }
+      }
     },
     {
       "id": "M6",
-      "dom": "SC Corinthians SP",
-      "ext": "Mirassol FC SP",
-      "ligue": "Brasil - Brasileiro Série A",
-      "date": null,
-      "heure": null,
+      "dom": "Borussia Monchengladbach",
+      "ext": "SC Paderborn 07",
+      "ligue": "Allemagne - Bundesliga",
+      "date": "2026-10-31",
+      "heure": "15:30",
       "cotes": {
-        "1": 1.78,
-        "X": 3.35,
-        "2": 4.0,
+        "1": 2.2,
+        "X": 3.7,
+        "2": 2.95,
         "mt1": 3.1,
+        "mte": 3.0,
         "mt2": 2.1
       },
       "marches_disponibles": [
@@ -173,21 +187,78 @@
         "2",
         "X",
         "mt1",
-        "mt2"
-      ]
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "ext": {
+          "mj": 3,
+          "marques": 2.0,
+          "encaisses": 5.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 1.0,
+          "marques_mt2": 0.0,
+          "encaisses_mt2": 4.0
+        }
+      }
+    },
+    {
+      "id": "M7",
+      "dom": "FC Augsburg",
+      "ext": "SC Freiburg",
+      "ligue": "Allemagne - Bundesliga",
+      "date": "2026-10-31",
+      "heure": "15:30",
+      "cotes": {
+        "1": 2.85,
+        "X": 3.75,
+        "2": 2.27,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 19.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 9.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 13.0,
+          "encaisses": 25.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 20.0
+        }
+      }
     },
     {
       "id": "M8",
-      "dom": "Union Omaha SC",
-      "ext": "Chattanooga Red Wolves SC",
-      "ligue": "EUA - USL League One",
-      "date": null,
-      "heure": null,
+      "dom": "Schalke 04",
+      "ext": "RB Leipzig",
+      "ligue": "Allemagne - Bundesliga",
+      "date": "2026-10-31",
+      "heure": "15:30",
       "cotes": {
-        "1": 1.6,
-        "X": 3.8,
-        "2": 4.5,
+        "1": 3.9,
+        "X": 3.95,
+        "2": 1.81,
         "mt1": 3.1,
+        "mte": 3.0,
         "mt2": 2.1
       },
       "marches_disponibles": [
@@ -195,8 +266,201 @@
         "2",
         "X",
         "mt1",
-        "mt2"
-      ]
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 3,
+          "marques": 0.0,
+          "encaisses": 1.0,
+          "marques_mt1": 0.0,
+          "encaisses_mt1": 1.0,
+          "marques_mt2": 0.0,
+          "encaisses_mt2": 0.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 19.0,
+          "encaisses": 16.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 9.0
+        }
+      }
+    },
+    {
+      "id": "M9",
+      "dom": "Werder Bremen",
+      "ext": "TSG Hoffenheim",
+      "ligue": "Allemagne - Bundesliga",
+      "date": "2026-10-31",
+      "heure": "15:30",
+      "cotes": {
+        "1": 2.52,
+        "X": 3.85,
+        "2": 2.47,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 14.0,
+          "encaisses": 21.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 11.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 22.0,
+          "encaisses": 17.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 13.0,
+          "encaisses_mt2": 8.0
+        }
+      }
+    },
+    {
+      "id": "M10",
+      "dom": "AFC Bournemouth",
+      "ext": "Leeds United",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-10-31",
+      "heure": "16:00",
+      "cotes": {
+        "1": 2.15,
+        "X": 3.35,
+        "2": 3.4,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 19.0,
+          "encaisses": 13.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 8.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 12.0,
+          "encaisses": 25.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 5.0,
+          "encaisses_mt2": 15.0
+        }
+      }
+    },
+    {
+      "id": "M11",
+      "dom": "Brentford FC",
+      "ext": "Nottingham Forest",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-10-31",
+      "heure": "16:00",
+      "cotes": {
+        "1": 2.12,
+        "X": 3.55,
+        "2": 3.25,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 23.0,
+          "encaisses": 12.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 7.0
+        }
+      }
+    },
+    {
+      "id": "M12",
+      "dom": "Coventry City",
+      "ext": "Sunderland AFC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-10-31",
+      "heure": "16:00",
+      "cotes": {
+        "1": 3.1,
+        "X": 3.25,
+        "2": 2.35,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 4,
+          "marques": 4.0,
+          "encaisses": 8.0,
+          "marques_mt1": 1.0,
+          "encaisses_mt1": 1.0,
+          "marques_mt2": 3.0,
+          "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 6.0,
+          "encaisses": 17.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 7.0
+        }
+      }
     }
+  ],
+  "warnings": [
+    "inject CAPTEURS 2026-10-31T07:50:06Z: 2 auto / 22 manquants",
+    "inject CAPTEURS 2026-10-31T07:50:08Z: 9 auto / 15 manquants",
+    "inject CAPTEURS 2026-10-31T07:50:11Z: 5 auto / 19 manquants"
   ]
 }

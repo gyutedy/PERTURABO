@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-30T22:06:06Z",
+  "generated_at": "2026-10-31T07:50:11Z",
   "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
   "source_predictions": "predictions.json",
   "matchs": [
     {
       "id": "M1",
-      "match": "Criciúma EC SC vs AA Ponte Preta SP",
+      "match": "Levante UD vs Atletico Madrid",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -17,7 +17,7 @@
     },
     {
       "id": "M2",
-      "match": "Nacional AC Muriaé MG vs Venda Nova FC MG",
+      "match": "Real Sociedad B vs Girona FC",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -29,7 +29,7 @@
     },
     {
       "id": "M3",
-      "match": "Club Guaraní Asunción vs CS 2 de Mayo",
+      "match": "Kocaelispor vs Caykur Rizespor",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -41,7 +41,7 @@
     },
     {
       "id": "M4",
-      "match": "Sportivo Trinidense vs Rubio Ñu",
+      "match": "Bologna FC vs AC Monza",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -53,7 +53,7 @@
     },
     {
       "id": "M5",
-      "match": "Louisville City FC vs Pittsburgh Riverhounds",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -64,8 +64,8 @@
       "rang_global": 5
     },
     {
-      "id": "M7",
-      "match": "Charleston Battery vs Rhode Island FC",
+      "id": "M6",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -76,8 +76,8 @@
       "rang_global": 6
     },
     {
-      "id": "M9",
-      "match": "Tampa Bay Rowdies vs Miami FC",
+      "id": "M7",
+      "match": "FC Augsburg vs SC Freiburg",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -88,8 +88,8 @@
       "rang_global": 7
     },
     {
-      "id": "M6",
-      "match": "SC Corinthians SP vs Mirassol FC SP",
+      "id": "M8",
+      "match": "Schalke 04 vs RB Leipzig",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -100,8 +100,8 @@
       "rang_global": 8
     },
     {
-      "id": "M8",
-      "match": "Union Omaha SC vs Chattanooga Red Wolves SC",
+      "id": "M9",
+      "match": "Werder Bremen vs TSG Hoffenheim",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 2.9,
@@ -110,6 +110,42 @@
       "top3": [],
       "quality_data": "basse",
       "rang_global": 9
+    },
+    {
+      "id": "M10",
+      "match": "AFC Bournemouth vs Leeds United",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 2.9,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 10
+    },
+    {
+      "id": "M11",
+      "match": "Brentford FC vs Nottingham Forest",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 2.9,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 11
+    },
+    {
+      "id": "M12",
+      "match": "Coventry City vs Sunderland AFC",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 2.9,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 12
     }
   ]
 }

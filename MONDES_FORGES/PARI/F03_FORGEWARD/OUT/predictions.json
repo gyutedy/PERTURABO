@@ -1,67 +1,88 @@
 {
-  "generated_at": "2026-10-30T22:06:06Z",
+  "generated_at": "2026-10-31T07:50:11Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "predictions": [
     {
       "id": "M1",
-      "match": "Criciúma EC SC vs AA Ponte Preta SP",
+      "match": "Levante UD vs Atletico Madrid",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
       "id": "M2",
-      "match": "Nacional AC Muriaé MG vs Venda Nova FC MG",
+      "match": "Real Sociedad B vs Girona FC",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
       "id": "M3",
-      "match": "Club Guaraní Asunción vs CS 2 de Mayo",
+      "match": "Kocaelispor vs Caykur Rizespor",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
       "id": "M4",
-      "match": "Sportivo Trinidense vs Rubio Ñu",
+      "match": "Bologna FC vs AC Monza",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
       "id": "M5",
-      "match": "Louisville City FC vs Pittsburgh Riverhounds",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
-    },
-    {
-      "id": "M7",
-      "match": "Charleston Battery vs Rhode Island FC",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
-    },
-    {
-      "id": "M9",
-      "match": "Tampa Bay Rowdies vs Miami FC",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
       "id": "M6",
-      "match": "SC Corinthians SP vs Mirassol FC SP",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
+      "selections": [],
+      "verdict": "NO_BET",
+      "meilleure_ev": null
+    },
+    {
+      "id": "M7",
+      "match": "FC Augsburg vs SC Freiburg",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
       "id": "M8",
-      "match": "Union Omaha SC vs Chattanooga Red Wolves SC",
+      "match": "Schalke 04 vs RB Leipzig",
+      "selections": [],
+      "verdict": "NO_BET",
+      "meilleure_ev": null
+    },
+    {
+      "id": "M9",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "selections": [],
+      "verdict": "NO_BET",
+      "meilleure_ev": null
+    },
+    {
+      "id": "M10",
+      "match": "AFC Bournemouth vs Leeds United",
+      "selections": [],
+      "verdict": "NO_BET",
+      "meilleure_ev": null
+    },
+    {
+      "id": "M11",
+      "match": "Brentford FC vs Nottingham Forest",
+      "selections": [],
+      "verdict": "NO_BET",
+      "meilleure_ev": null
+    },
+    {
+      "id": "M12",
+      "match": "Coventry City vs Sunderland AFC",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null

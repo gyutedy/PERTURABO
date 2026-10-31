@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-30T22:06:06Z",
+  "generated_at": "2026-10-31T07:50:11Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 0,
-  "no_bet": 9,
-  "recommandation": "NO GO — aucune proie utilisable",
-  "justification": "Tier: exotique. 0 GO / 9 NO BET. Gate 1 à valider par le Warsmith.",
+  "go": 4,
+  "no_bet": 8,
+  "recommandation": "GO — carte analysable",
+  "justification": "Tier: exotique. 4 GO / 8 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Criciúma EC SC vs AA Ponte Preta SP",
+      "match": "Levante UD vs Atletico Madrid",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -20,7 +20,7 @@
     },
     {
       "id": "M2",
-      "match": "Nacional AC Muriaé MG vs Venda Nova FC MG",
+      "match": "Real Sociedad B vs Girona FC",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -30,7 +30,7 @@
     },
     {
       "id": "M3",
-      "match": "Club Guaraní Asunción vs CS 2 de Mayo",
+      "match": "Kocaelispor vs Caykur Rizespor",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -40,61 +40,79 @@
     },
     {
       "id": "M4",
-      "match": "Sportivo Trinidense vs Rubio Ñu",
+      "match": "Bologna FC vs AC Monza",
       "verdict": "NO_BET",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (5 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M5",
-      "match": "Louisville City FC vs Pittsburgh Riverhounds",
-      "verdict": "NO_BET",
+      "match": "Bayer Leverkusen vs VfB Stuttgart",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M7",
-      "match": "Charleston Battery vs Rhode Island FC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M9",
-      "match": "Tampa Bay Rowdies vs Miami FC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M6",
-      "match": "SC Corinthians SP vs Mirassol FC SP",
+      "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (3 matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M7",
+      "match": "FC Augsburg vs SC Freiburg",
+      "verdict": "GO",
+      "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M8",
-      "match": "Union Omaha SC vs Chattanooga Red Wolves SC",
+      "match": "Schalke 04 vs RB Leipzig",
       "verdict": "NO_BET",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon dom insuffisant (3 matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M9",
+      "match": "Werder Bremen vs TSG Hoffenheim",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M10",
+      "match": "AFC Bournemouth vs Leeds United",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M11",
+      "match": "Brentford FC vs Nottingham Forest",
+      "verdict": "NO_BET",
+      "raisons": [
         "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M12",
+      "match": "Coventry City vs Sunderland AFC",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (4 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     }
