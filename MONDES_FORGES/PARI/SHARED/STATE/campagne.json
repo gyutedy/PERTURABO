@@ -3,10 +3,11 @@
   "steps": {
     "start": "2026-10-31T06:53:01Z",
     "bankroll": "2026-10-31T07:12:08Z",
-    "capture": "2026-10-31T07:44:07Z"
+    "capture": "2026-10-31T07:44:07Z",
+    "budget": "2026-10-31T07:48:31Z"
   },
   "budget_fc": 3000.0,
-  "surticket_fc": 3000.0,
+  "surticket_fc": 800.0,
   "combos": 4,
   "jambes": "3:2:2",
   "marches": null,
