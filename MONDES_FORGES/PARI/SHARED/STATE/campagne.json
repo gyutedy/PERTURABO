@@ -4,7 +4,7 @@
     "start": "2026-10-31T06:53:01Z",
     "bankroll": "2026-10-31T07:12:08Z",
     "capture": "2026-10-31T08:32:50Z",
-    "budget": "2026-10-31T07:54:16Z",
+    "budget": "2026-10-31T10:28:26Z",
     "combos": "2026-10-31T07:54:48Z",
     "valider1": "2026-10-31T08:34:35Z",
     "valider2": "2026-10-31T08:36:41Z"
@@ -20,5 +20,6 @@
     "preview1": "SHARED/OUT/preview1.html",
     "preview2": "SHARED/OUT/preview2.html"
   },
-  "bankroll_fc": 3000.0
+  "bankroll_fc": 3000.0,
+  "budget_seq": 1
 }
