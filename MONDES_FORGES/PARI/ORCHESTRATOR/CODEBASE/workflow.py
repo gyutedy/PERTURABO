@@ -15,7 +15,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /marches O/U2.5,MT2   choisit les marchés visés pour la carte (=livrer infos)
   /combos 3        nombre de tickets (option ^^ : 3:3:2:2 = jambes par ticket)
   valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
-  /data            rangs Top 3.  /data ledger = token + lots du jour
+  /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots
   /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
   /status          état de la campagne.  /status ledger = lots + jambes consommees
   /stop            ferme la campagne (lots F06 intacts, consumed reset)
@@ -505,7 +505,15 @@ def cmd_data(st, arg):
     notes = load_json(P("ARCHIVUM", "fixtures", "notes_qualitatives.json")) or {}
     n_notes = int(st.get("notes_count") if st.get("notes_count") is not None
                   else (notes.get("notes_count") or carte.get("notes_count") or 0))
-    tell(f"notes: {n_notes}\n" + t3)
+    from data_view import render_compact, render_fiche  # noqa: E402
+    top3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
+    if head and head[0].isdigit():
+        n = int(head[0])
+        body = render_fiche(n, top3, t3, carte, notes, n_notes=n_notes)
+        tell(f"notes: {n_notes}\n" + body)
+        return
+    body = render_compact(top3, t3, carte, notes)
+    tell(f"notes: {n_notes}\n" + body)
 
 
 def cmd_status(st, arg):
@@ -579,7 +587,7 @@ CMDS = {
     "valider1": None,
     "valider-2": (cmd_valider2, "tickets + anti-cannibal + token L-XXX"),
     "valider2": None,
-    "data": (cmd_data, "rangs Top 3 ; /data ledger = lots"),
+    "data": (cmd_data, "table compacte ; /data N fiche ; /data ledger = lots"),
     "status": (cmd_status, "état ; /status ledger = lots + consumed"),
     "roi": (cmd_roi, "ROI ; /roi settle L-XXX"),
     "stop": (cmd_stop, "ferme la campagne (lots F06 intacts)"),
