@@ -99,7 +99,7 @@
 - [x] **Cablage** : `workflow.cmd_data` ledger | digit → fiche | vide → compact. `parse.py` relais `/data 4` + help `/data N`. Worker JS stale jusqu'au merge.
 - [x] **E2E** : compact Q/H2H/TROU, trou = `—`, fiche H2H+forme, timing TROU, `/data 99` refuse, `/data 4` parse, ledger inchange, final ne casse pas.
 
-**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets ni artefacts OUT/STATE. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Tokens operateur dans `env_pari` (versionne volontairement, periode de test). FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. `/data` live Telegram seulement apres merge vers `pari-forge-perturabo-xs4c`.
+**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets ni artefacts OUT/STATE. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Tokens operateur dans `env_pari` (versionne volontairement, periode de test). FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` = `/data` compact+fiche live (Actions checkout cette branche). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
