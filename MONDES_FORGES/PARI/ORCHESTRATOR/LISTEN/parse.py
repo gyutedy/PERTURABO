@@ -94,11 +94,14 @@ def parse_update(update, allowed_chat_id):
                 "/bankroll 50000  (pot global, une fois)\n"
                 "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n"
                 "/combos 3  ou  /combos 3:3:2:2\n"
-                "/valider-1\n"
-                "/valider-2\n"
-                "/data  /status  /roi  /stop"
-            ),
-        }
+                 "/valider-1\n"
+                 "/valider-2  (lot + token L-XXX, anti-cannibal)\n"
+                 "/data  /data ledger\n"
+                 "/status  /status ledger\n"
+                 "/roi  /roi settle L-XXX\n"
+                 "/stop"
+             ),
+         }
     canon = CANON.get(name, name)
     if canon not in KNOWN:
         return {
@@ -138,7 +141,9 @@ def parse_update(update, allowed_chat_id):
             "message_id": msg.get("message_id"),
         }
     cmd = "/" + canon
-    if extra.strip() and canon in ("budget", "combos", "bankroll", "surticket"):
+    if extra.strip() and canon in (
+        "budget", "combos", "bankroll", "surticket", "data", "status", "roi",
+    ):
         cmd = cmd + " " + extra.split("\n", 1)[0].strip()
     return {
         "ok": True,

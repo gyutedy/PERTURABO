@@ -25,8 +25,11 @@ const HELP =
   "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +
   "/valider-1\n" +
-  "/valider-2\n" +
-  "/data  /status  /roi  /stop";
+  "/valider-2  (lot + token L-XXX, anti-cannibal)\n" +
+  "/data  /data ledger\n" +
+  "/status  /status ledger\n" +
+  "/roi  /roi settle L-XXX\n" +
+  "/stop";
 
 export default {
   async fetch(request, env) {
@@ -107,7 +110,7 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {

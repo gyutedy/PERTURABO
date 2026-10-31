@@ -33,7 +33,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | Mode | Commande | Ce que ça fait |
 |---|---|---|
 | `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue** (ligue, date, heure, marches, cotes). v2.2.1 recoud les rangs markdown casses par Telegram. → validation Porte 1 → carte |
-| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7, siege complet, ignore filtered stale v2.2.4), /valider-2 (refuse si 0 GO ou sur-ticket absent), /data, /status, /stop |
+| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7), /valider-2 v2.2.8 (lots token L-XXX + anti-cannibal + snapshot T0 ; refuse si 0 GO, budget non retape, pool vide), /data ledger, /status ledger, /roi settle L-XXX, /stop |
 | `radar` | `orchestrator.py --mode radar` | Scan de **toute la ligue** : classement de tous les matchs du jour (buts attendus, P(O2.5), P(MT2 > MT1)) → TOP 20 |
 | `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET (+ filtre qualitatif + Top 3 + Preview 1) |
 | `tickets` | `orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 6000 --surticket-fc 3000` | **Combinés + backroll** (ticket sûr + reste divisé) → tickets.json + PREVIEW 2 |
@@ -72,7 +72,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | F03 | FORGEWARD | De-marging (overround/Shin), EV, Kelly 1/4, scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
 | F05 | PACKAGER | Pari pack final (TOP N=10-20) + dashboard HTML (charte IW) | `pari_pack.json` + `dashboard.html` |
-| F06 | TRACKER | Ledger des tickets, ROI, calibration, scoring des pronostiqueurs | `learnings/*` |
+| F06 | TRACKER | Ledger des lots tokenises (`lots.json`, v2.2.8) + tickets, ROI. Settle CSV football-data. **N'apprend pas.** | `learnings/*` |
 | TYRANT | Le Tyrant | Vision stratégique : GO/NO-GO carte, seuils EV, filtre ligues exotiques | `carte_verdict.json` |
 | ORCHESTRATOR | Le Nerf | Modes radar/siège/pack/tracker/demo, enchaîne les frégates | — |
 | IW_CUSTOS | Le Gardien | check-out/check-in/gate/validate — seul accès à `liber_pari.json` | — |
@@ -92,7 +92,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | `odds/` | Historique des cotes collées |
 | `knowledge_base/` | Transcriptions YouTube, trading — savoir, séparé des faits |
 | `pronostics/` | Tracker des pronostiqueurs YouTube (données testables, pas des oracles) |
-| `learnings/` | `tickets.json` (TOUS les tickets gagnants ET perdants), `calibration.json` |
+| `learnings/` | `lots.json` (token = cle, snapshot T0), `tickets.json` (TOUS gagnants ET perdants), `calibration.json` |
 
 ---
 

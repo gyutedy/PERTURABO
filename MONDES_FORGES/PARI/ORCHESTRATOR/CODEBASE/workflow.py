@@ -4,20 +4,21 @@ ORCHESTRATOR — WORKFLOW TELEGRAM (v2, Phase 6)
 Le cycle de campagne opérable **depuis Telegram** (PC et téléphone), avec une
 commande à chaque étape et les deux previews servies sur GitHub Pages.
 
-  /start           ouvre la campagne du jour (reset propre, garde bankroll + budget)
+  /start           ouvre la campagne du jour (reset propre, garde bankroll)
   /capture [file]  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
                    sans chemin : lit F01_SENTINEL/IN/capture_telegram.md (inbox Telegram)
   /bankroll 50000  pot global FC (persiste /start /stop). Sans arg : affiche le pot.
-  /budget 3000 800 budget du jour + mise FORCEE du ticket sur (reste divise)
+  /budget 3000 800 budget du lot + mise FORCEE du ticket sur (reste divise). Retaper avant chaque lot.
   /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
   valider-1        épingle le JSON capture → carte → siège → Top3 → PREVIEW 1
   /corriger-1      (rejoue /capture après correction de la capture OCR)
   /marches O/U2.5,MT2   choisit les marchés visés pour la carte (=livrer infos)
   /combos 3        nombre de tickets (option ^^ : 3:3:2:2 = jambes par ticket)
-  valider-2        tickets + backroll → PREVIEW 2 (ticket final) + message /data
-  /roi             tracker F06 : ROI cumulé
-  /status          état de la campagne (gates, budgets, previews)
-  /stop            ferme la campagne du jour
+  valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
+  /data            rangs Top 3.  /data ledger = token + lots du jour
+  /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
+  /status          état de la campagne.  /status ledger = lots + jambes consommees
+  /stop            ferme la campagne (lots F06 intacts, consumed reset)
 
 L'état vit dans SHARED/STATE/campagne.json — la conversation elle-même reste la
 source de vérité côté Telegram ; GitHub Actions sont le chauffeur (chaque
@@ -55,7 +56,9 @@ def state():
             return json.load(f)
     return {"campagne": None, "steps": {}, "bankroll_fc": 0, "budget_fc": 0,
             "surticket_fc": 0, "combos": 3, "jambes": None, "marches": None,
-            "capture": None, "capturer_statut": None, "previews": {}}
+            "capture": None, "capturer_statut": None, "previews": {},
+            "capture_id": None, "consumed_legs": [], "budget_seq": 0,
+            "last_lot_budget_seq": 0, "lots_alloue_jour": 0, "current_token": None}
 
 
 def save(st):
@@ -81,21 +84,36 @@ def run_orch(*args, extra_env=None):
 
 # — Commandes — —
 
+def _ledger():
+    d = P("F06_TRACKER", "CODEBASE")
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import ledger as _led
+    return _led
+
+
 def cmd_start(st, arg):
     st["campagne"] = f"PARI-{datetime.now(timezone.utc).strftime('%Y%m%d')}"
     st["steps"] = {"start": _now()}
     st["capture"] = None
     st["capturer_statut"] = None
     st["previews"] = {}
+    st["capture_id"] = None
+    st["consumed_legs"] = []
+    st["current_token"] = None
+    st["lots_alloue_jour"] = 0
+    st["last_lot_budget_seq"] = 0
     save(st)
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne **{st['campagne']}** ouverte.\n"
          + (f"Bankroll : **{br:.0f} FC** (persiste).\n" if br else
             "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
          + "1. Capture Winner Bet (txt, md, png/jpg, pdf, docx) → `/capture <fichier>`\n"
-         "2. `/budget 3000 800` (plafond jour + mise FORCEE ticket sur) et `/combos 3`\n"
+         "2. `/budget 3000 800` (plafond lot + mise FORCEE ticket sur) et `/combos 3`\n"
          "3. `/valider-1` → PREVIEW 1 (donnees brutes) → tu relis → `/valider-2`"
-         " apres verif → PREVIEW 2 (ticket final)")
+         " apres verif → PREVIEW 2 + token L-XXX\n"
+         "Mode A : meme capture, retape `/budget` puis `/valider-2` (lot 2).\n"
+         "Mode B : `/stop` → `/start` → nouvelle capture.")
 
 
 INBOX_CAPTURE = P("F01_SENTINEL", "IN", "capture_telegram.md")
@@ -120,7 +138,11 @@ def cmd_capture(st, fichier):
              "ou colle le tableau markdown dans le meme message Telegram "
              "(inbox F01_SENTINEL/IN/capture_telegram.md).")
         return
+    led = _ledger()
+    taken = {st.get("capture_id") or ""}
     st["capture"] = path
+    st["capture_id"] = led.new_capture_id(taken)
+    st["consumed_legs"] = []
     st["steps"]["capture"] = _now()
     ok, _ = run_orch("--mode", "input-capture", "--capture", path)
     if not ok:
@@ -194,6 +216,7 @@ def cmd_budget(st, text):
     if br and budget > br:
         tell(f"⛔ Budget jour ({budget:.0f} FC) > bankroll ({br:.0f} FC)."); return
     st["budget_fc"], st["surticket_fc"] = budget, sur
+    st["budget_seq"] = int(st.get("budget_seq") or 0) + 1
     st["steps"]["budget"] = _now()
     save(st)
     reste = budget - sur
@@ -371,30 +394,70 @@ def cmd_valider2(st, arg):
         tell("⛔ VALIDATION 2 refusee : `/budget JOUR SURTICKET` obligatoire "
              "(ex. `/budget 3000 800` = 3000 FC aujourd hui, 800 FORCES sur le ticket sur).")
         return
+    if st.get("current_token") and int(st.get("budget_seq") or 0) == int(st.get("last_lot_budget_seq") or 0):
+        tell("⛔ VALIDATION 2 refusee : retape `/budget JOUR SURTICKET` avant le lot suivant "
+             "(Mode A — evite de re-depenser le budget du lot precedent).")
+        return
+    deja = float(st.get("lots_alloue_jour") or 0)
+    br = float(st.get("bankroll_fc") or 0)
+    if br and (deja + budget) > br + 1e-9:
+        tell(f"⛔ VALIDATION 2 refusee : somme des lots ({deja:.0f} + {budget:.0f} FC) "
+             f"> bankroll ({br:.0f} FC).")
+        return
+    consumed = list(st.get("consumed_legs") or [])
     cmd = ["--mode", "tickets", "--combos", str(st.get("combos") or 3),
            "--budget-fc", str(budget),
            "--surticket-fc", str(sur)]
     if st.get("jambes"):
         cmd += ["--jambes", st["jambes"]]
+    if consumed:
+        os.makedirs(STATE_DIR, exist_ok=True)
+        ex_path = os.path.join(STATE_DIR, "exclude_legs.json")
+        with open(ex_path, "w", encoding="utf-8") as f:
+            json.dump(consumed, f, ensure_ascii=False)
+        cmd += ["--exclude-legs", ex_path]
     ok, _ = run_orch(*cmd)
     if not ok:
         tell("⛔ Echec de la composition des tickets."); return
     tj = load_json(P("F05_PACKAGER", "OUT", "tickets.json")) or {}
     n_tix = len(tj.get("tickets") or [])
     if n_tix == 0:
-        tell("⛔ Aucun ticket compose (buckets FAIBLE / NO BET). Budget non engage.")
+        tell("⛔ plus de combinaison HAUTE, /capture ou /stop. Budget non engage.")
         return
+    led = _ledger()
+    token = led.new_token()
+    new_legs = led.legs_from_tickets(tj.get("tickets") or [])
+    if not st.get("capture_id"):
+        st["capture_id"] = led.new_capture_id()
+    lot = led.freeze_lot(
+        token, st.get("campagne"), st.get("capture_id"),
+        tj, new_legs, budget, sur)
+    led.append_lot(lot)
+    st["consumed_legs"] = consumed + new_legs
+    st["current_token"] = token
+    st["last_lot_budget_seq"] = int(st.get("budget_seq") or 0)
+    st["lots_alloue_jour"] = deja + float((tj.get("budget") or {}).get("alloue_fc") or budget)
     st["steps"]["valider2"] = _now()
     st["previews"]["preview2"] = "SHARED/OUT/preview2.html"
     st["previews"]["preview1"] = "SHARED/OUT/preview1.html"
     save(st)
     tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
-    tell("VALIDATION 2 : TICKETS + BACKROLL poses.\n" + (tmd or "") +
+    tell("VALIDATION 2 : TICKETS + BACKROLL poses.\n"
+         f"TOKEN **{token}** — snapshot T0 fige. `/roi settle {token}` apres les matchs.\n"
+         + (tmd or "") +
          "\nPREVIEW 2 : SHARED/OUT/preview2.html — ticket final. "
-         "Place chez Winner Bet, puis F06 tracker.py add --file ticket.json")
+         "Place chez Winner Bet. F06 a fige le lot (n'apprend pas).")
 
 
 def cmd_data(st, arg):
+    head = (arg or "").strip().split()
+    if head and head[0].lower() == "ledger":
+        led = _ledger()
+        box = led.load_lots()
+        tok = st.get("current_token") or "—"
+        body = led.format_lots(box, campagne=st.get("campagne"))
+        tell(f"TOKEN courant : **{tok}**\n" + body)
+        return
     t3 = read_text(P("SHARED", "OUT", "TOP3.md"))
     if not t3:
         tell("⛔ Rien encore — /valider-1 pour générer le Top 3."); return
@@ -408,15 +471,42 @@ def cmd_data(st, arg):
 
 
 def cmd_status(st, arg):
+    head = (arg or "").strip().split()
+    if head and head[0].lower() == "ledger":
+        led = _ledger()
+        box = led.load_lots()
+        body = led.format_lots(box, campagne=st.get("campagne"),
+                               consumed=st.get("consumed_legs") or [])
+        tell(body)
+        return
     lines = [f"📋 Campagne : {st.get('campagne') or '— aucune —'}"]
     lines += [f"  • {k}: {v}" for k, v in (st.get("steps") or {}).items()]
     lines.append(f"  • bankroll: {st.get('bankroll_fc') or 0} FC (pot global)")
     lines.append(f"  • budget jour: {st.get('budget_fc')} FC · ticket sur FORCE: {st.get('surticket_fc')} FC"
                  f" · combos: {st.get('combos')} · jambes: {st.get('jambes')}")
+    tok = st.get("current_token")
+    if tok:
+        lines.append(f"  • lot courant: {tok} · capture {st.get('capture_id')} · "
+                     f"jambes consommees: {len(st.get('consumed_legs') or [])}")
     tell("\n".join(lines))
 
 
 def cmd_roi(st, arg):
+    raw = (arg or "").strip()
+    parts = raw.split()
+    if parts and parts[0].lower() == "settle":
+        token = parts[1] if len(parts) > 1 else ""
+        if not token:
+            tell("Format : `/roi settle L-K7M` (token du lot)."); return
+        csv_path = parts[2] if len(parts) > 2 else (
+            os.environ.get("PARI_SETTLE_CSV") or P("ARCHIVUM", "fixtures", "settle.csv")
+        )
+        led = _ledger()
+        lot, err = led.settle_lot(token, csv_path)
+        if err:
+            tell("⛔ " + err); return
+        tell(led.format_settle(lot))
+        return
     ok, out = run_orch("--mode", "imprime")
     tell(out.strip() or "ROI : tracker F06 — python F06_TRACKER/CODEBASE/tracker.py roi")
 
@@ -424,8 +514,19 @@ def cmd_roi(st, arg):
 def cmd_stop(st, arg):
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne {st.get('campagne')} fermee. Bankroll **{br:.0f} FC** persiste. "
-         "Ledgers et previews restent en SHARED/OUT — settles F06 quand les matchs sont joues.")
+         "Lots F06 intacts (tokens). consumed_legs reset. "
+         "Mode B : `/start` → `/capture` → `/budget` → `/valider-1` → `/valider-2`.")
     st["campagne"] = None
+    st["capture"] = None
+    st["capturer_statut"] = None
+    st["capture_id"] = None
+    st["consumed_legs"] = []
+    st["current_token"] = None
+    st["lots_alloue_jour"] = 0
+    st["last_lot_budget_seq"] = 0
+    st["budget_fc"] = 0
+    st["surticket_fc"] = 0
+    st["budget_seq"] = 0
     save(st)
 
 
@@ -438,12 +539,12 @@ CMDS = {
     "combos": (cmd_combos, "nb tickets (+jambes)"),
     "valider-1": (cmd_valider1, "valide preview 1 → siège"),
     "valider1": None,
-    "valider-2": (cmd_valider2, "valide preview 2 → tickets"),
+    "valider-2": (cmd_valider2, "tickets + anti-cannibal + token L-XXX"),
     "valider2": None,
-    "data": (cmd_data, "rangs Top 3 en message"),
-    "status": (cmd_status, "état de la campagne"),
-    "roi": (cmd_roi, "ROI tracker F06"),
-    "stop": (cmd_stop, "ferme la campagne"),
+    "data": (cmd_data, "rangs Top 3 ; /data ledger = lots"),
+    "status": (cmd_status, "état ; /status ledger = lots + consumed"),
+    "roi": (cmd_roi, "ROI ; /roi settle L-XXX"),
+    "stop": (cmd_stop, "ferme la campagne (lots F06 intacts)"),
 }
 
 

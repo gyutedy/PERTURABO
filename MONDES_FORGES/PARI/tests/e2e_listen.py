@@ -106,6 +106,15 @@ def main():
     r = parse.parse_update(upd("/valider1"), CHAT)
     check("L4.valider1_alias", r.get("ok") and r.get("cmd") == "/valider-1", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/data ledger"), CHAT)
+    check("L4.data_ledger", r.get("ok") and r.get("cmd") == "/data ledger", str(r.get("cmd")))
+
+    r = parse.parse_update(upd("/status ledger"), CHAT)
+    check("L4.status_ledger", r.get("ok") and r.get("cmd") == "/status ledger", str(r.get("cmd")))
+
+    r = parse.parse_update(upd("/roi settle L-K7M"), CHAT)
+    check("L4.roi_settle", r.get("ok") and r.get("cmd") == "/roi settle L-K7M", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/help"), CHAT)
     help_txt = r.get("reply") or ""
     check("L5.help_local", r.get("ok") and r.get("action") == "local"
@@ -305,6 +314,231 @@ def main():
     check("L12.valider1_compte_go", "n_go == 0" in wf_src and "n_skip" in wf_src and "n_faible" in wf_src)
     check("L12.inject_merge_fichier", "stats_inject_" in wf_src and "n_filled" in wf_src)
     check("L12.ligue_code_capteurs", "ligue_code" in wf_src)
+
+    sys.path.insert(0, os.path.join(WORLD, "F05_PACKAGER", "CODEBASE"))
+    sys.path.insert(0, os.path.join(WORLD, "F06_TRACKER", "CODEBASE"))
+    import combinator  # noqa: E402
+    import ledger  # noqa: E402
+
+    def _ev(mid, match, score, tops, bucket="HAUTE"):
+        return {
+            "id": mid, "match": match, "score_commun": score, "rang_global": int(mid[1:]),
+            "bucket": bucket, "no_bet_recommande": False,
+            "top3": [
+                {"rang": i + 1, "marche": t[0], "selection": t[1], "selection_label": t[2],
+                 "cote": t[3], "p_modele": t[4], "ev": t[5]}
+                for i, t in enumerate(tops)
+            ],
+        }
+
+    events = [
+        _ev("M1", "Arsenal vs Chelsea", 10.0, [
+            ("1X2", "1", "Victoire Domicile", 1.7, 0.70, 0.19),
+            ("MT_PROLIFIQUE", "mt2", "MT2", 2.10, 0.55, 0.15),
+        ]),
+        _ev("M2", "Liverpool vs Everton", 9.5, [
+            ("1X2", "1", "Victoire Domicile", 1.8, 0.65, 0.17),
+            ("OU_2.5", "u2.5", "Under 2.5", 2.0, 0.58, 0.16),
+        ]),
+        _ev("M3", "Leeds vs Wolves", 9.0, [
+            ("1X2", "1", "Victoire Domicile", 2.2, 0.55, 0.21),
+        ]),
+        _ev("M4", "Ghost vs Void", 8.5, [
+            ("1X2", "2", "Victoire Extérieur", 3.0, 0.20, -0.40),
+        ]),
+    ]
+    res1, _ = combinator.allocate(events, tickets=2, jambes_by_ticket=[2, 2],
+                                  surticket_fc=800, budget_fc=3000, mises_free=None)
+    legs1 = ledger.legs_from_tickets(res1["tickets"])
+    res2, wrn2 = combinator.allocate(events, tickets=2, jambes_by_ticket=[2, 2],
+                                     surticket_fc=800, budget_fc=3000, mises_free=None,
+                                     exclude_legs=legs1)
+    keys1 = {(j["match_id"], j["marche"], j["selection"]) for t in res1["tickets"] for j in t["jambes"]}
+    keys2 = {(j["match_id"], j["marche"], j["selection"]) for t in res2["tickets"] for j in t["jambes"]}
+    check("L13.deux_lots_zero_commun", bool(res1["tickets"]) and bool(res2["tickets"]) and not (keys1 & keys2),
+          f"k1={keys1} k2={keys2}")
+    check("L13.lot2_prochain_marche",
+          any(j.get("marche") == "MT_PROLIFIQUE" for t in res2["tickets"] for j in t["jambes"])
+          or any(j.get("marche") == "OU_2.5" for t in res2["tickets"] for j in t["jambes"]))
+    res_empty, wrn_e = combinator.allocate(events, tickets=2, jambes_by_ticket=[2, 2],
+                                           surticket_fc=800, budget_fc=3000, mises_free=None,
+                                           exclude_legs=legs1 + ledger.legs_from_tickets(res2["tickets"]))
+    check("L13.pool_vide_zero_ticket", len(res_empty["tickets"]) == 0, str(len(res_empty["tickets"])))
+
+    tmp_led = tempfile.mkdtemp(prefix="pari-led-")
+    old_lots = ledger.LOTS_PATH
+    old_tix = ledger.TICKETS_PATH
+    ledger.LOTS_PATH = os.path.join(tmp_led, "lots.json")
+    ledger.TICKETS_PATH = os.path.join(tmp_led, "tickets.json")
+    told = []
+    old_state = workflow.STATE_PATH
+    old_dir = workflow.STATE_DIR
+    old_tell = workflow.tell
+    old_orch = workflow.run_orch
+    old_world = workflow.WORLD
+    tmpw = tempfile.mkdtemp(prefix="pari-wf-")
+    for sub in ("F03_FORGEWARD/OUT", "F05_PACKAGER/OUT", "SHARED/OUT", "SHARED/STATE",
+                "ARCHIVUM/learnings", "ARCHIVUM/fixtures"):
+        os.makedirs(os.path.join(tmpw, sub), exist_ok=True)
+    json.dump({"matchs": events}, open(os.path.join(tmpw, "F03_FORGEWARD", "OUT", "top3.json"), "w"))
+    workflow.WORLD = tmpw
+    workflow.STATE_DIR = os.path.join(tmpw, "SHARED", "STATE")
+    workflow.STATE_PATH = os.path.join(workflow.STATE_DIR, "campagne.json")
+    workflow.tell = lambda t: told.append(t)
+    try:
+        st = workflow.state()
+        st["campagne"] = "PARI-TEST"
+        st["steps"] = {"valider1": "2026-10-31T00:00:00Z"}
+        st["budget_fc"] = 3000
+        st["surticket_fc"] = 800
+        st["budget_seq"] = 1
+        st["last_lot_budget_seq"] = 1
+        st["current_token"] = "L-AAA"
+        st["bankroll_fc"] = 50000
+        workflow.save(st)
+        workflow.cmd_valider2(st, "")
+        check("L13.budget_non_retape_refuse",
+              told and "retape" in (told[-1] or "").lower(),
+              (told[-1] if told else "")[:80])
+
+        st["current_token"] = None
+        st["last_lot_budget_seq"] = 0
+        workflow.save(st)
+
+        def _orch_empty(*a, extra_env=None):
+            p = os.path.join(tmpw, "F05_PACKAGER", "OUT", "tickets.json")
+            json.dump({"tickets": [], "budget": {"budget_fc": 3000, "alloue_fc": 0, "reste_fc": 3000}},
+                      open(p, "w"))
+            return True, ""
+
+        workflow.run_orch = _orch_empty
+        told.clear()
+        workflow.cmd_valider2(st, "")
+        check("L13.pool_vide_refuse",
+              told and "plus de combinaison HAUTE" in (told[-1] or ""),
+              (told[-1] if told else "")[:80])
+
+        def _orch_ok(*a, extra_env=None):
+            p = os.path.join(tmpw, "F05_PACKAGER", "OUT", "tickets.json")
+            doc = {
+                "generated_at": "2026-10-31T09:00:00Z",
+                "tickets": res1["tickets"],
+                "budget": res1["budget"],
+            }
+            json.dump(doc, open(p, "w"))
+            open(os.path.join(tmpw, "SHARED", "OUT", "TICKETS.md"), "w").write("T$1")
+            return True, ""
+
+        workflow.run_orch = _orch_ok
+        ledger.LOTS_PATH = os.path.join(tmpw, "ARCHIVUM", "learnings", "lots.json")
+        ledger.TICKETS_PATH = os.path.join(tmpw, "ARCHIVUM", "learnings", "tickets.json")
+        st = workflow.state()
+        st["current_token"] = None
+        st["consumed_legs"] = []
+        st["budget_seq"] = 2
+        st["last_lot_budget_seq"] = 0
+        workflow.save(st)
+        told.clear()
+        workflow.cmd_valider2(st, "")
+        st = workflow.state()
+        tok1 = st.get("current_token")
+        check("L13.lot1_token", bool(tok1) and str(tok1).startswith("L-"), str(tok1))
+        snap = json.loads(json.dumps((ledger.find_lot(tok1)[0] or {}).get("snapshot_t0")))
+        cote0 = snap["tickets"][0]["jambes"][0]["cote"]
+        snap["tickets"][0]["jambes"][0]["cote"] = 99.9
+        lot_again, _ = ledger.find_lot(tok1)
+        check("L13.snapshot_t0_fige",
+              lot_again["snapshot_t0"]["tickets"][0]["jambes"][0]["cote"] == cote0)
+
+        st["budget_seq"] = 3
+        workflow.save(st)
+
+        def _orch_ok2(*a, extra_env=None):
+            p = os.path.join(tmpw, "F05_PACKAGER", "OUT", "tickets.json")
+            doc = {
+                "generated_at": "2026-10-31T09:05:00Z",
+                "tickets": res2["tickets"],
+                "budget": res2["budget"],
+            }
+            json.dump(doc, open(p, "w"))
+            open(os.path.join(tmpw, "SHARED", "OUT", "TICKETS.md"), "w").write("T$2")
+            return True, ""
+
+        workflow.run_orch = _orch_ok2
+        told.clear()
+        workflow.cmd_valider2(st, "")
+        st = workflow.state()
+        tok2 = st.get("current_token")
+        check("L13.lot2_autre_token", bool(tok2) and tok2 != tok1, f"{tok1}/{tok2}")
+        box = ledger.load_lots()
+        check("L13.deux_lots_append", len(box.get("lots") or []) == 2, str(len(box.get("lots") or [])))
+
+        consumed_before_stop = list(st.get("consumed_legs") or [])
+        check("L13.consumed_non_vide", len(consumed_before_stop) > 0)
+        told.clear()
+        workflow.cmd_data(st, "ledger")
+        check("L13.data_ledger_msg", told and "LEDGER" in told[-1] and tok1 in told[-1],
+              (told[-1] if told else "")[:80])
+        told.clear()
+        workflow.cmd_status(st, "ledger")
+        check("L13.status_ledger_msg", told and "LEDGER" in told[-1] and "consommees" in told[-1].lower(),
+              (told[-1] if told else "")[:80])
+        workflow.cmd_stop(st, "")
+        st = workflow.state()
+        check("L13.stop_reset_consumed", st.get("campagne") is None and st.get("consumed_legs") == [])
+        box2 = ledger.load_lots()
+        check("L13.stop_lots_intacts", len(box2.get("lots") or []) == 2)
+        workflow.cmd_start(st, "")
+        st = workflow.state()
+        check("L13.start_consumed_vide", st.get("consumed_legs") == [] and bool(st.get("campagne")))
+
+        csv_path = os.path.join(tmpw, "ARCHIVUM", "fixtures", "settle.csv")
+        with open(csv_path, "w", encoding="utf-8") as f:
+            f.write("HomeTeam,AwayTeam,FTR,FTHG,FTAG\n")
+            f.write("Arsenal,Chelsea,H,2,0\n")
+            f.write("Liverpool,Everton,A,0,1\n")
+        mix = {
+            "generated_at": "2026-10-31T10:00:00Z",
+            "tickets": [
+                {"rang_ticket": 1, "classe": "SUR_TICKET", "nb_jambes": 1, "cote_totale": 1.7,
+                 "mise_fc": 100, "jambes": [
+                     {"match_id": "M1", "match": "Arsenal vs Chelsea", "marche": "1X2",
+                      "selection": "1", "selection_label": "Victoire Domicile", "cote": 1.7}]},
+                {"rang_ticket": 2, "classe": "AUTRE", "nb_jambes": 1, "cote_totale": 1.8,
+                 "mise_fc": 100, "jambes": [
+                     {"match_id": "M2", "match": "Liverpool vs Everton", "marche": "1X2",
+                      "selection": "1", "selection_label": "Victoire Domicile", "cote": 1.8}]},
+                {"rang_ticket": 3, "classe": "AUTRE", "nb_jambes": 1, "cote_totale": 2.2,
+                 "mise_fc": 100, "jambes": [
+                     {"match_id": "M9", "match": "Ghost vs Void", "marche": "1X2",
+                      "selection": "1", "selection_label": "Victoire Domicile", "cote": 2.2}]},
+            ],
+            "budget": {"budget_fc": 300, "alloue_fc": 300, "reste_fc": 0},
+        }
+        tok_s = ledger.new_token()
+        lot_s = ledger.freeze_lot(tok_s, "PARI-TEST", "C-ZZZ", mix, ledger.legs_from_tickets(mix["tickets"]), 300, 100)
+        ledger.append_lot(lot_s)
+        got, err = ledger.settle_lot(tok_s, csv_path)
+        check("L13.settle_no_err", err is None, str(err))
+        ress = [t["resultat"] for t in (got.get("settle") or {}).get("tickets") or []]
+        check("L13.settle_G_P_ATTENTE", ress == ["G", "P", "EN_ATTENTE"], str(ress))
+
+        told.clear()
+        workflow.cmd_roi(st, "settle " + tok_s + " " + csv_path)
+        check("L13.roi_settle_msg", told and tok_s in told[-1] and "SETTLE" in told[-1],
+              (told[-1] if told else "")[:80])
+    finally:
+        workflow.STATE_PATH = old_state
+        workflow.STATE_DIR = old_dir
+        workflow.tell = old_tell
+        workflow.run_orch = old_orch
+        workflow.WORLD = old_world
+        ledger.LOTS_PATH = old_lots
+        ledger.TICKETS_PATH = old_tix
+
+    parse_src = open(os.path.join(WORLD, "ORCHESTRATOR", "LISTEN", "parse.py"), encoding="utf-8").read()
+    check("L13.parse_forward_roi", '"data", "status", "roi"' in parse_src)
+    check("L13.schema_ledger", os.path.exists(os.path.join(WORLD, "CONTRACTS", "schema_ledger.json")))
 
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]

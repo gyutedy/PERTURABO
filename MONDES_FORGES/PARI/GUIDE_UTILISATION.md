@@ -21,10 +21,12 @@ ouvert `PARI-20261030`.
 Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 /start → /budget bankroll 50000 (une fois, pot global — PAS /bankroll tant que Worker stale)
      → /capture (tableau markdown DANS le meme message)
-     → /budget 3000 800 (plafond jour + mise FORCEE ticket sur)
+     → /budget 3000 800 (plafond lot + mise FORCEE ticket sur)  ← retaper avant CHAQUE lot
      → /combos 3:3:2:2
      → /valider-1 → PREVIEW 1 (données brutes) → relecture
-     → /valider-2 → PREVIEW 2 (ticket final) → /data → tickets posés → F06
+     → /valider-2 → PREVIEW 2 + token L-XXX (lot F06, anti-cannibal)
+Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 (autre token, autres marches)
+Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
 ```
 
 ### Les commandes de campagne
@@ -39,8 +41,11 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
 | `/data` | Les rangs du **Top 3 + score commun**. Refuse si TOP3 est encore la demo. |
-| `/valider-2` | Compose les tickets. **Refuse** si NO BET / Zero Data, ou si `/budget JOUR SURTICKET` absent. |
-| `/status`, `/roi`, `/stop` | État de campagne (bankroll + budget + sur), ROI F06, clôture (bankroll survit) |
+| `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide. |
+| `/data` | Rangs Top 3. `/data ledger` = token courant + lots du jour. |
+| `/status` | État campagne. `/status ledger` = lots ouverts + jambes consommees. |
+| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). |
+| `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 
 Équivalent terminal (si tu bosses depuis un PC sans bot) :
 ```bash
@@ -70,13 +75,15 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
       carte stats dans `matches.json` apres le siege de test ; la garde prod reste.
    Puis F02 (Poisson/Dixon-Coles) → F03 (de-marging, EV, Kelly) → filtre qualitatif
    (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html).
-3. **/valider-2** : tickets depuis la classe de fiabilité (ticket sûr = scores les plus
-   hauts, reste réparti ; match FAIBLE et NO BET/qualitatif exclus) + **backroll**
-   (`/bankroll` pot global ; `/budget JOUR SURTICKET` force la mise du ticket sur ;
-   reste divise ; division si > 4 jambes) → PREVIEW 2 (SHARED/OUT/preview2.html).
-   Refuse si le sur-ticket n est pas pose.
-4. **Placement** : tu poses les tickets chez Winner Bet, puis loggens F06
-   (`tracker.py add --file ticket.json`) — TOUS les tickets, gagnants comme perdants.
+3. **/valider-2** (v2.2.8) : tickets depuis la classe de fiabilité (ticket sûr = scores
+   les plus hauts, reste réparti ; FAIBLE / NO BET exclus) + **anti-cannibal**
+   (exclusion `(match_id, marche, selection)` deja sortis sur cette capture ; prochain
+   marche Top 3 libre ; plancher qualite fixe) + **backroll** (`/budget` retape avant
+   chaque lot Mode A) → PREVIEW 2 + token `L-XXX` + snapshot T0 dans `ARCHIVUM/learnings/lots.json`.
+   Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE.
+   `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
+4. **Placement** : tu poses les tickets chez Winner Bet. F06 a deja fige le lot
+   (token). Apres les matchs : `/roi settle L-XXX`. F06 n'apprend pas.
 
 ### Les infos non binaires (blessures, fatigue, enjeux…)
 

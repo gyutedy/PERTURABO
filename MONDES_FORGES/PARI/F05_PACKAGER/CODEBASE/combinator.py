@@ -40,18 +40,68 @@ def _parse_mises(free_spec):
     return vals
 
 
+EV_FLOOR = 0.03
+
+
+def leg_key(match_id, marche, selection):
+    return (str(match_id or ""), str(marche or ""), str(selection or ""))
+
+
+def consumed_set(exclude_legs):
+    s = set()
+    for x in exclude_legs or []:
+        if isinstance(x, dict):
+            s.add(leg_key(x.get("match_id"), x.get("marche"), x.get("selection")))
+        elif isinstance(x, (list, tuple)) and len(x) >= 3:
+            s.add(leg_key(x[0], x[1], x[2]))
+        elif isinstance(x, str) and "|" in x:
+            a, b, c = (x.split("|", 2) + ["", ""])[:3]
+            s.add(leg_key(a, b, c))
+    return s
+
+
+def apply_exclusion(events, exclude_legs, ev_floor=EV_FLOOR):
+    """Retire (match, marche, selection) deja sortis. Prochain marche Top 3 libre.
+    Plancher qualite fixe : pas FAIBLE, pas NO BET, EV >= floor. Jamais descendre."""
+    consumed = consumed_set(exclude_legs)
+    out = []
+    for e in events:
+        if e.get("no_bet_recommande") or e.get("bucket") == "FAIBLE":
+            continue
+        tops = []
+        for top in e.get("top3") or []:
+            key = leg_key(e.get("id"), top.get("marche"), top.get("selection"))
+            if key in consumed:
+                continue
+            ev = top.get("ev")
+            if ev is not None and float(ev) < ev_floor:
+                continue
+            tops.append(top)
+        if not tops:
+            continue
+        e2 = dict(e)
+        e2["top3"] = tops
+        out.append(e2)
+    return out
+
+
 def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
-            mises_free, jambes_max=JAMBES_MAX_DEF, mise_min=100.0, taux=None):
+            mises_free, jambes_max=JAMBES_MAX_DEF, mise_min=100.0, taux=None,
+            exclude_legs=None):
     """Compose les tickets + allocation de backroll. Renvoie (tickets sort, warnings)."""
     warnings = []
-    eligible = [w for w in top3_events if not w.get("no_bet_recommande")
+    if exclude_legs:
+        pool_src = apply_exclusion(top3_events, exclude_legs)
+    else:
+        pool_src = top3_events
+    eligible = [w for w in pool_src if not w.get("no_bet_recommande")
                 and w.get("bucket") != "FAIBLE"
                 and any((w.get("top3") or []))]
     eligible.sort(key=lambda e: (-e["score_commun"], e["rang_global"]))
 
     if not eligible:
         return {"tickets": [], "budget": {"budget_fc": budget_fc, "alloue_fc": 0,
-                "reste_fc": budget_fc}, "warnings": ["Aucun match éligible (buckets FAIBLE / NO BET) — budget non engagé"]}
+                "reste_fc": budget_fc}}, ["Aucun match éligible (buckets FAIBLE / NO BET) — budget non engagé"]
 
     # Compositions : classe A (les meilleurs) puis B (les autres) si trop long
     jambes_max = max(1, jambes_max)
@@ -100,8 +150,10 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
         for e in jambes:
             top = (e["top3"] or [])[0]
             sel_list.append({"match_id": e["id"], "match": e["match"],
+                             "marche": top.get("marche") or "",
                              "selection": top["selection"], "selection_label": top["selection_label"],
                              "cote": top["cote"], "p_modele": top.get("p_modele"),
+                             "ev": top.get("ev"), "bucket": e.get("bucket"),
                              "score_commun": e["score_commun"]})
             cote_totale *= float(top["cote"] or 1)
         if i == 0:
@@ -153,17 +205,29 @@ def main():
     arg.add_argument("--taux-fc-usd", type=float, default=None, help="taux FC → USD (pour les unités 1u=1% bankroll)")
     arg.add_argument("--out-json", default=os.path.join(here, "..", "OUT", "tickets.json"))
     arg.add_argument("--out-md", default=os.path.join(here, "..", "..", "SHARED", "OUT", "TICKETS.md"))
+    arg.add_argument("--exclude-legs", default=None,
+                     help="JSON file or inline list of {match_id,marche,selection} deja sortis")
     args = arg.parse_args()
 
     with open(args.top3, encoding="utf-8") as f:
         top3 = json.load(f)
+
+    exclude_legs = None
+    if args.exclude_legs:
+        raw = args.exclude_legs
+        if os.path.exists(raw):
+            with open(raw, encoding="utf-8") as f:
+                exclude_legs = json.load(f)
+        else:
+            exclude_legs = json.loads(raw)
 
     jbt = [int(x) for x in (args.jambes or "").split(":") if x.strip()] or []
     res, wrn = allocate(
         top3.get("matchs", []), tickets=max(1, args.tickets), jambes_by_ticket=jbt,
         surticket_fc=args.surticket_fc, budget_fc=args.budget_fc,
         mises_free=args.mises_fc, jambes_max=args.jambes_max,
-        mise_min=args.mise_min_fc, taux=args.taux_fc_usd)
+        mise_min=args.mise_min_fc, taux=args.taux_fc_usd,
+        exclude_legs=exclude_legs)
 
     out = {"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            **res, "warnings": [*wrn, *top3_wrn_from_warnings(top3)]}

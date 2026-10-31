@@ -1,0 +1,66 @@
+# CONTRACTS — schema_ledger.json (v2.2.8)
+
+Ledger F06 des **lots**. Cle = token `L-XXX` (pas la date, pas PARI-YYYYMMDD).
+Producteur : `/valider-2` (snapshot T0). Consommateurs : `/data ledger`,
+`/status ledger`, `/roi settle L-XXX`. **F06 n'apprend pas** : settle ecrit
+G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
+
+## Unites
+
+- Jour = `/start` → `PARI-YYYYMMDD` (bankroll, plafond eventuel)
+- Lot = chaque `/valider-2` → token `L-K7M` (tickets + snapshot T0)
+- Exclusion (par capture, jusqu'au `/stop`) : `(match_id, marche, selection)`
+
+## Schema
+
+```json
+{
+  "lots": [
+    {
+      "token": "L-K7M",
+      "campagne": "PARI-20261031",
+      "capture_id": "C-AB3",
+      "created_at": "ISO8601",
+      "status": "OUVERT|SETTLE_PARTIEL|SETTLE",
+      "budget_fc": 3000,
+      "surticket_fc": 800,
+      "alloue_fc": 3000,
+      "consumed_legs": [
+        {"match_id": "M3", "marche": "1X2", "selection": "1"}
+      ],
+      "snapshot_t0": {
+        "generated_at": "ISO8601",
+        "tickets": [],
+        "budget": {"budget_fc": 3000, "alloue_fc": 3000, "reste_fc": 0}
+      },
+      "settle": {
+        "settled_at": "ISO8601|null",
+        "source": "football-data.co.uk",
+        "tickets": [
+          {
+            "rang_ticket": 1,
+            "resultat": "G|P|EN_ATTENTE",
+            "pnl_fc": 0,
+            "jambes": [
+              {
+                "match_id": "M3",
+                "match": "Arsenal vs Chelsea",
+                "marche": "1X2",
+                "selection": "1",
+                "resultat": "G|P|EN_ATTENTE"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+## Regles
+
+1. 1 `/valider-2` = 1 token. Append, n'ecrase pas les lots precedents.
+2. Snapshot T0 fige cotes, p, EV, score, qualite, budget. Modifier top3 apres coup ne change pas le lot.
+3. Settle : CSV ligue/date football-data.co.uk. Match absent → `EN_ATTENTE`, jamais invente.
+4. `/stop` ne touche pas les lots deja figes.

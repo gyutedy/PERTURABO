@@ -1294,3 +1294,12 @@
 ## [2026-10-31T08:34:48Z] F05 — check-out — status: processing
 
 ## [2026-10-31T08:34:48Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:eece28b88baed11302261804a725b99e — status:done
+
+## [2026-10-31T10:00:00Z] DECISION v2.2.8 — F06 lots token + anti-cannibal + Mode A/B
+
+- Token `L-XXX` = cle du lot (1 `/valider-2` = 1 token). PARI-YYYYMMDD = metadonnee jour.
+- Mode A : meme capture, plusieurs lots. Retaper `/budget` avant chaque lot. Somme des lots <= bankroll. Anti-cannibal `(match_id, marche, selection)` par capture. Plancher HAUTE/MOYENNE fixe, refus si pool vide.
+- Mode B : `/stop` -> `/start` -> nouvelle capture + budget. Lots F06 intacts. `consumed_legs` reset.
+- Aliases Worker deja live : `/data ledger`, `/status ledger`, `/roi settle L-XXX` (CSV football-data, G/P/EN_ATTENTE, jamais invente).
+- F06 n apprend pas. Snapshot T0 fige. Hors scope : ML, wrangler, scrape Winner, baisser les seuils.
+

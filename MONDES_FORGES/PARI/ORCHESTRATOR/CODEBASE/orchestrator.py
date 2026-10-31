@@ -296,6 +296,7 @@ def main():
     parser.add_argument("--surticket-fc", type=float, default=0.0, help="mise du ticket sûr en FC")
     parser.add_argument("--mises-fc", default=None, help="mises explicites 3000:1000:1000")
     parser.add_argument("--taux-fc-usd", type=float, default=None, help="taux FC→USD pour les unités")
+    parser.add_argument("--exclude-legs", default=None, help="JSON anti-cannibal (mode tickets)")
     args = parser.parse_args()
 
     if args.mode == "imprime":
@@ -336,6 +337,8 @@ def main():
             cmd += ["--mises-fc", args.mises_fc]
         if args.taux_fc_usd:
             cmd += ["--taux-fc-usd", str(args.taux_fc_usd)]
+        if getattr(args, "exclude_legs", None):
+            cmd += ["--exclude-legs", args.exclude_legs]
         r = subprocess.run(cmd)
         if r.returncode == 0:
             run_frigate(P("F05_PACKAGER", "CODEBASE", "preview2.py"))

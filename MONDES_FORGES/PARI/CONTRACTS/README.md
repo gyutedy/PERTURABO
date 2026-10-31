@@ -11,6 +11,7 @@ chaque frégate lit l'OUT de la précédente et écrit son propre OUT selon son 
 | `schema_pari_pack.json` | F05 PACKAGER | Warsmith, dashboard, bot Telegram |
 | `schema_input_capture.json` | F01 SENTINEL | workflow.py Porte 1 |
 | `schema_listen.json` | ORCHESTRATOR LISTEN (Worker) | pari_listen.yml, workflow.py |
+| `schema_ledger.json` | F06 TRACKER (lots tokenises v2.2.8) | workflow.py `/valider-2`, `/data ledger`, `/roi settle` |
 
 ## Règles communes
 
