@@ -1,10 +1,7 @@
 {
-  "campagne": null,
+  "campagne": "PARI-20261031",
   "steps": {
-    "start": "2026-10-31T16:20:38Z",
-    "capture": "2026-10-31T16:27:26Z",
-    "budget": "2026-10-31T16:37:51Z",
-    "valider1": "2026-10-31T17:00:05Z"
+    "start": "2026-10-31T19:24:17Z"
   },
   "budget_fc": 0,
   "surticket_fc": 0,
@@ -13,9 +10,7 @@
   "marches": null,
   "capture": null,
   "capturer_statut": null,
-  "previews": {
-    "preview1": "SHARED/OUT/preview1.html"
-  },
+  "previews": {},
   "bankroll_fc": 3000.0,
   "budget_seq": 0,
   "capture_id": null,
