@@ -1,7 +1,7 @@
 # 🏟️ FICHE DE SIÈGE — FC Barcelona vs Deportivo Alaves
-*Générée le 2026-10-31 17:00 UTC — siege_id courant*
+*Générée le 2026-10-31 19:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 240.4%
+**Verdict match : 🔥 GO** — meilleure EV: 250.1%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,14 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.11 | 59.5% | -34.0% | ⛔ NO_BET | — |
-| 1X2 | Nul | 9.5 | 21.1% | 100.1% |  VALUE | 2.94u |
-| 1X2 | Victoire Extérieur | 17.5 | 19.4% | 240.4% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 1.1 | 59.5% | -34.6% | ⛔ NO_BET | — |
+| 1X2 | Nul | 10.0 | 21.1% | 110.6% |  VALUE | 3.0u |
+| 1X2 | Victoire Extérieur | 18.0 | 19.4% | 250.1% |  VALUE | 3.0u |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 17.8% | -46.5% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **2.94u** sur **Nul** @ 9.5 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Nul** @ 10.0 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-31T17:00:17Z",
+  "generated_at": "2026-10-31T19:34:15Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "predictions": [
     {
       "id": "M1",
-      "match": "Karlsruher SC vs 1. FC Heidenheim",
+      "match": "Karlsruher SC vs FC Heidenheim",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.05,
-          "cote_juste_marche": 3.38,
+          "cote": 3.15,
+          "cote_juste_marche": 3.495,
           "p_modele": 0.213,
-          "ev": -0.3504,
+          "ev": -0.3291,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -22,21 +22,21 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.6,
-          "cote_juste_marche": 3.989,
+          "cote": 3.65,
+          "cote_juste_marche": 4.05,
           "p_modele": 0.2945,
-          "ev": 0.0602,
+          "ev": 0.0749,
           "verdict": "THIN",
-          "mise_units": 0.29
+          "mise_units": 0.35
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 1.99,
-          "cote_juste_marche": 2.205,
+          "cote": 1.93,
+          "cote_juste_marche": 2.141,
           "p_modele": 0.4926,
-          "ev": -0.0197,
+          "ev": -0.0493,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -53,7 +53,7 @@
         }
       ],
       "verdict": "THIN",
-      "meilleure_ev": 0.0602
+      "meilleure_ev": 0.0749
     },
     {
       "id": "M2",
@@ -63,10 +63,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.17,
-          "cote_juste_marche": 2.305,
+          "cote": 2.25,
+          "cote_juste_marche": 2.375,
           "p_modele": 0.642,
-          "ev": 0.3931,
+          "ev": 0.4445,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -75,7 +75,7 @@
           "selection": "X",
           "selection_label": "Nul",
           "cote": 3.35,
-          "cote_juste_marche": 3.559,
+          "cote_juste_marche": 3.536,
           "p_modele": 0.1944,
           "ev": -0.3488,
           "verdict": "NO_BET",
@@ -85,10 +85,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.3,
-          "cote_juste_marche": 3.506,
+          "cote": 3.2,
+          "cote_juste_marche": 3.377,
           "p_modele": 0.1636,
-          "ev": -0.4601,
+          "ev": -0.4765,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -105,7 +105,7 @@
         }
       ],
       "verdict": "NO_BET",
-      "meilleure_ev": 0.3931
+      "meilleure_ev": 0.4445
     },
     {
       "id": "M3",
@@ -115,10 +115,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.45,
-          "cote_juste_marche": 3.669,
+          "cote": 3.7,
+          "cote_juste_marche": 3.922,
           "p_modele": 0.6787,
-          "ev": 1.3415,
+          "ev": 1.5112,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -126,10 +126,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.5,
-          "cote_juste_marche": 3.722,
+          "cote": 3.45,
+          "cote_juste_marche": 3.657,
           "p_modele": 0.1607,
-          "ev": -0.4375,
+          "ev": -0.4456,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -137,10 +137,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.05,
-          "cote_juste_marche": 2.18,
+          "cote": 2.0,
+          "cote_juste_marche": 2.12,
           "p_modele": 0.1606,
-          "ev": -0.6708,
+          "ev": -0.6788,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -157,7 +157,7 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 1.3415
+      "meilleure_ev": 1.5112
     },
     {
       "id": "M4",
@@ -167,10 +167,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.1,
-          "cote_juste_marche": 2.226,
+          "cote": 2.0,
+          "cote_juste_marche": 2.119,
           "p_modele": 0.5633,
-          "ev": 0.1829,
+          "ev": 0.1266,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -178,10 +178,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.45,
-          "cote_juste_marche": 3.658,
+          "cote": 3.65,
+          "cote_juste_marche": 3.868,
           "p_modele": 0.2609,
-          "ev": -0.0999,
+          "ev": -0.0477,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -189,10 +189,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.4,
-          "cote_juste_marche": 3.605,
+          "cote": 3.5,
+          "cote_juste_marche": 3.709,
           "p_modele": 0.1758,
-          "ev": -0.4023,
+          "ev": -0.3847,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -209,7 +209,7 @@
         }
       ],
       "verdict": "NO_BET",
-      "meilleure_ev": 0.1829
+      "meilleure_ev": 0.1266
     },
     {
       "id": "M5",
@@ -219,10 +219,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.11,
-          "cote_juste_marche": 1.18,
+          "cote": 1.1,
+          "cote_juste_marche": 1.171,
           "p_modele": 0.5949,
-          "ev": -0.3397,
+          "ev": -0.3456,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -230,21 +230,21 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 9.5,
-          "cote_juste_marche": 10.101,
+          "cote": 10.0,
+          "cote_juste_marche": 10.646,
           "p_modele": 0.2106,
-          "ev": 1.0007,
+          "ev": 1.106,
           "verdict": "VALUE",
-          "mise_units": 2.94
+          "mise_units": 3.0
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 17.5,
-          "cote_juste_marche": 18.608,
+          "cote": 18.0,
+          "cote_juste_marche": 19.164,
           "p_modele": 0.1945,
-          "ev": 2.4038,
+          "ev": 2.501,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -261,7 +261,7 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 2.4038
+      "meilleure_ev": 2.501
     },
     {
       "id": "M6",
@@ -271,10 +271,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.76,
-          "cote_juste_marche": 1.866,
+          "cote": 1.8,
+          "cote_juste_marche": 1.909,
           "p_modele": 0.0452,
-          "ev": -0.9204,
+          "ev": -0.9186,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -282,10 +282,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 4.3,
-          "cote_juste_marche": 4.56,
+          "cote": 4.2,
+          "cote_juste_marche": 4.453,
           "p_modele": 0.6403,
-          "ev": 1.7533,
+          "ev": 1.6893,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -293,10 +293,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.85,
-          "cote_juste_marche": 4.083,
+          "cote": 3.75,
+          "cote_juste_marche": 3.976,
           "p_modele": 0.3145,
-          "ev": 0.2108,
+          "ev": 0.1794,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -313,7 +313,7 @@
         }
       ],
       "verdict": "NO_BET",
-      "meilleure_ev": 1.7533
+      "meilleure_ev": 1.6893
     },
     {
       "id": "M7",
@@ -323,10 +323,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.62,
-          "cote_juste_marche": 2.772,
+          "cote": 2.5,
+          "cote_juste_marche": 2.641,
           "p_modele": 0.2133,
-          "ev": -0.4412,
+          "ev": -0.4667,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -335,7 +335,7 @@
           "selection": "X",
           "selection_label": "Nul",
           "cote": 3.85,
-          "cote_juste_marche": 4.074,
+          "cote_juste_marche": 4.068,
           "p_modele": 0.2041,
           "ev": -0.2142,
           "verdict": "NO_BET",
@@ -345,10 +345,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.4,
-          "cote_juste_marche": 2.539,
+          "cote": 2.52,
+          "cote_juste_marche": 2.663,
           "p_modele": 0.5825,
-          "ev": 0.398,
+          "ev": 0.4679,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -365,7 +365,7 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.398
+      "meilleure_ev": 0.4679
     },
     {
       "id": "M8",
@@ -375,10 +375,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.22,
-          "cote_juste_marche": 2.465,
+          "cote": 2.42,
+          "cote_juste_marche": 2.687,
           "p_modele": 0.7983,
-          "ev": 0.7722,
+          "ev": 0.9319,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -397,10 +397,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.15,
-          "cote_juste_marche": 3.498,
+          "cote": 2.82,
+          "cote_juste_marche": 3.131,
           "p_modele": 0.0667,
-          "ev": -0.7899,
+          "ev": -0.8119,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -417,7 +417,7 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.7722
+      "meilleure_ev": 0.9319
     },
     {
       "id": "M9",
@@ -427,10 +427,10 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.16,
-          "cote_juste_marche": 1.279,
+          "cote": 1.14,
+          "cote_juste_marche": 1.273,
           "p_modele": 0.7501,
-          "ev": -0.1299,
+          "ev": -0.1449,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -438,21 +438,21 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 6.5,
-          "cote_juste_marche": 7.169,
+          "cote": 6.4,
+          "cote_juste_marche": 7.147,
           "p_modele": 0.1724,
-          "ev": 0.1206,
+          "ev": 0.1034,
           "verdict": "VALUE",
-          "mise_units": 0.55
+          "mise_units": 0.48
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 11.5,
-          "cote_juste_marche": 12.683,
+          "cote": 12.0,
+          "cote_juste_marche": 13.401,
           "p_modele": 0.0775,
-          "ev": -0.1088,
+          "ev": -0.07,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -469,80 +469,7 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.1206
-    },
-    {
-      "id": "M10",
-      "match": "KKS Lech Poznan vs Wisla Krakow",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.87,
-          "cote_juste_marche": 2.069,
-          "p_modele": 0.4699,
-          "ev": -0.1213,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.6,
-          "cote_juste_marche": 3.984,
-          "p_modele": 0.322,
-          "ev": 0.1592,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 3.4,
-          "cote_juste_marche": 3.763,
-          "p_modele": 0.2081,
-          "ev": -0.2925,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.396,
-          "p_modele": 0.2804,
-          "ev": -0.1588,
-          "verdict": "NO_BET",
-          "mise_units": null
-        }
-      ],
-      "verdict": "NO_BET",
-      "meilleure_ev": 0.1592
-    },
-    {
-      "id": "M11",
-      "match": "Delfin SC vs CD Cuenca",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
-    },
-    {
-      "id": "M12",
-      "match": "Al Shorta SC vs Newroz SC",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
-    },
-    {
-      "id": "M13",
-      "match": "AS Giana Erminio vs Alcione Milano",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
+      "meilleure_ev": 0.1034
     }
   ],
   "combines": [
@@ -551,24 +478,24 @@
         {
           "match_id": "M5",
           "selection": "2",
-          "cote": 17.5,
+          "cote": 18.0,
           "p_modele": 0.1945
         },
         {
           "match_id": "M3",
           "selection": "1",
-          "cote": 3.45,
+          "cote": 3.7,
           "p_modele": 0.6787
         },
         {
           "match_id": "M5",
           "selection": "X",
-          "cote": 9.5,
+          "cote": 10.0,
           "p_modele": 0.2106
         }
       ],
-      "cote_totale": 573.56,
-      "ev_combine": 14.9456,
+      "cote_totale": 666.0,
+      "ev_combine": 17.5153,
       "mise_units": 0.33
     }
   ]

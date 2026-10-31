@@ -1,0 +1,434 @@
+{
+  "generated_at": "2026-10-31T19:33:07Z",
+  "source": "football-data.co.uk (usage privé, whitelist)",
+  "league_code": "N1",
+  "season": "2627",
+  "merged_seasons": [
+    "2627",
+    "2526"
+  ],
+  "tier": "secondaire",
+  "last_n_considered": 12,
+  "teams": {
+    "For Sittard": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 18.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 25.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 17.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Go Ahead Eagles": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 16.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 23.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Nijmegen": {
+      "dom": {
+        "mj": 12,
+        "marques": 32.0,
+        "encaisses": 20.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 20.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 28.0,
+        "encaisses": 22.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 18.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Excelsior": {
+      "dom": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 16.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 25.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 14.0
+      }
+    },
+    "Feyenoord": {
+      "dom": {
+        "mj": 12,
+        "marques": 30.0,
+        "encaisses": 18.0,
+        "marques_mt1": 13.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 17.0,
+        "encaisses_mt2": 13.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 16.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "NAC Breda": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 18.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 21.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Heerenveen": {
+      "dom": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 21.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 12.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 21.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Volendam": {
+      "dom": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 15.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 7.0,
+        "encaisses": 24.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 16.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "PSV Eindhoven": {
+      "dom": {
+        "mj": 12,
+        "marques": 39.0,
+        "encaisses": 17.0,
+        "marques_mt1": 22.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 17.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 31.0,
+        "encaisses": 12.0,
+        "marques_mt1": 15.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 16.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Sparta Rotterdam": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 19.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 15.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 21.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Zwolle": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 15.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 34.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 19.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 15.0
+      }
+    },
+    "Twente": {
+      "dom": {
+        "mj": 12,
+        "marques": 20.0,
+        "encaisses": 12.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 14.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Ajax": {
+      "dom": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 10.0,
+        "marques_mt1": 15.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 5.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 20.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Telstar": {
+      "dom": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 24.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 14.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 17.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "AZ Alkmaar": {
+      "dom": {
+        "mj": 12,
+        "marques": 25.0,
+        "encaisses": 21.0,
+        "marques_mt1": 15.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 12.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 17.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Groningen": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 13.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 19.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Utrecht": {
+      "dom": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 12.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 19.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Heracles": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 28.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 14.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 14.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 33.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 15.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 18.0
+      }
+    },
+    "Cambuur": {
+      "dom": {
+        "mj": 5,
+        "marques": 8.0,
+        "encaisses": 15.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 5.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 11.0,
+        "encaisses": 7.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 5.0
+      }
+    },
+    "Willem II": {
+      "dom": {
+        "mj": 5,
+        "marques": 4.0,
+        "encaisses": 16.0,
+        "marques_mt1": 0.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 6.0,
+        "encaisses": 16.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Den Haag": {
+      "dom": {
+        "mj": 5,
+        "marques": 8.0,
+        "encaisses": 12.0,
+        "marques_mt1": 0.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 5.0,
+        "encaisses": 11.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 8.0
+      }
+    }
+  }
+}

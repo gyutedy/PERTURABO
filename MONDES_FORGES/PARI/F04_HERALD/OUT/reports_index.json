@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-31T17:00:17Z",
+  "generated_at": "2026-10-31T19:34:15Z",
   "reports": [
     {
       "id": "M1",
-      "match": "Karlsruher SC vs 1. FC Heidenheim",
+      "match": "Karlsruher SC vs FC Heidenheim",
       "verdict": "THIN",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
     },
@@ -54,12 +54,6 @@
       "match": "FC Porto vs Estoril Praia",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
-    },
-    {
-      "id": "M10",
-      "match": "KKS Lech Poznan vs Wisla Krakow",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
     }
   ],
   "oracle_utilise": false

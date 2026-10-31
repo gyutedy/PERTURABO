@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T17:00:17Z",
+  "generated_at": "2026-10-31T19:34:15Z",
   "siege_id": null,
   "devise": "USD",
   "titre": "DIRECTION DES SIÈGES — TOP 6",
@@ -10,9 +10,9 @@
       "marche": "1X2",
       "selection": "2",
       "selection_label": "Victoire Extérieur",
-      "cote": 17.5,
+      "cote": 18.0,
       "p_modele": 0.1945,
-      "ev": 2.4038,
+      "ev": 2.501,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 1
@@ -23,9 +23,9 @@
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 3.45,
+      "cote": 3.7,
       "p_modele": 0.6787,
-      "ev": 1.3415,
+      "ev": 1.5112,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 2
@@ -36,10 +36,10 @@
       "marche": "1X2",
       "selection": "X",
       "selection_label": "Nul",
-      "cote": 9.5,
+      "cote": 10.0,
       "p_modele": 0.2106,
-      "ev": 1.0007,
-      "mise_units": 2.94,
+      "ev": 1.106,
+      "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 3
     },
@@ -49,9 +49,9 @@
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 2.22,
+      "cote": 2.42,
       "p_modele": 0.7983,
-      "ev": 0.7722,
+      "ev": 0.9319,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 4
@@ -62,9 +62,9 @@
       "marche": "1X2",
       "selection": "2",
       "selection_label": "Victoire Extérieur",
-      "cote": 2.4,
+      "cote": 2.52,
       "p_modele": 0.5825,
-      "ev": 0.398,
+      "ev": 0.4679,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 5
@@ -75,10 +75,10 @@
       "marche": "1X2",
       "selection": "X",
       "selection_label": "Nul",
-      "cote": 6.5,
+      "cote": 6.4,
       "p_modele": 0.1724,
-      "ev": 0.1206,
-      "mise_units": 0.55,
+      "ev": 0.1034,
+      "mise_units": 0.48,
       "note_risque": "qualité data: haute",
       "rang": 6
     }
@@ -98,26 +98,6 @@
       "match_id": "M6",
       "match": "Ajax Amsterdam vs AZ Alkmaar",
       "raison": "EV < seuil sur tous les marchés"
-    },
-    {
-      "match_id": "M10",
-      "match": "KKS Lech Poznan vs Wisla Krakow",
-      "raison": "EV < seuil sur tous les marchés"
-    },
-    {
-      "match_id": "M11",
-      "match": "Delfin SC vs CD Cuenca",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M12",
-      "match": "Al Shorta SC vs Newroz SC",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M13",
-      "match": "AS Giana Erminio vs Alcione Milano",
-      "raison": "aucune cote fournie"
     }
   ],
   "combines": [
@@ -126,24 +106,24 @@
         {
           "match_id": "M5",
           "selection": "2",
-          "cote": 17.5,
+          "cote": 18.0,
           "p_modele": 0.1945
         },
         {
           "match_id": "M3",
           "selection": "1",
-          "cote": 3.45,
+          "cote": 3.7,
           "p_modele": 0.6787
         },
         {
           "match_id": "M5",
           "selection": "X",
-          "cote": 9.5,
+          "cote": 10.0,
           "p_modele": 0.2106
         }
       ],
-      "cote_totale": 573.56,
-      "ev_combine": 14.9456,
+      "cote_totale": 666.0,
+      "ev_combine": 17.5153,
       "mise_units": 0.33
     }
   ],
@@ -153,10 +133,10 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 15.82,
-    "ev_moyenne_pct": 1.0061,
-    "nb_matchs_analyses": 13,
-    "nb_no_bet": 7,
+    "mise_totale_units": 15.81,
+    "ev_moyenne_pct": 1.1036,
+    "nb_matchs_analyses": 9,
+    "nb_no_bet": 3,
     "nb_matchs_go": 6
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",

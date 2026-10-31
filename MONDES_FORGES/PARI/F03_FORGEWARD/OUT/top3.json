@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T17:00:17Z",
+  "generated_at": "2026-10-31T19:34:15Z",
   "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
   "source_predictions": "predictions.json",
   "matchs": [
@@ -17,9 +17,9 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.45,
+          "cote": 3.7,
           "p_modele": 0.6787,
-          "ev": 1.3415
+          "ev": 1.5112
         }
       ],
       "quality_data": "haute",
@@ -39,9 +39,9 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.22,
+          "cote": 2.42,
           "p_modele": 0.7983,
-          "ev": 0.7722
+          "ev": 0.9319
         }
       ],
       "quality_data": "haute",
@@ -61,9 +61,9 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.4,
+          "cote": 2.52,
           "p_modele": 0.5825,
-          "ev": 0.398
+          "ev": 0.4679
         }
       ],
       "quality_data": "haute",
@@ -71,10 +71,10 @@
     },
     {
       "id": "M1",
-      "match": "Karlsruher SC vs 1. FC Heidenheim",
+      "match": "Karlsruher SC vs FC Heidenheim",
       "verdict_modele": "THIN",
       "bucket": "HAUTE",
-      "score_commun": 8.4,
+      "score_commun": 8.7,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -83,18 +83,18 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.6,
+          "cote": 3.65,
           "p_modele": 0.2945,
-          "ev": 0.0602
+          "ev": 0.0749
         },
         {
           "rang": 2,
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 1.99,
+          "cote": 1.93,
           "p_modele": 0.4926,
-          "ev": -0.0197
+          "ev": -0.0493
         },
         {
           "rang": 3,
@@ -123,9 +123,9 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.17,
+          "cote": 2.25,
           "p_modele": 0.642,
-          "ev": 0.3931
+          "ev": 0.4445
         },
         {
           "rang": 2,
@@ -163,9 +163,9 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 4.3,
+          "cote": 4.2,
           "p_modele": 0.6403,
-          "ev": 1.7533
+          "ev": 1.6893
         },
         {
           "rang": 2,
@@ -181,9 +181,9 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.85,
+          "cote": 3.75,
           "p_modele": 0.3145,
-          "ev": 0.2108
+          "ev": 0.1794
         }
       ],
       "quality_data": "basse",
@@ -203,18 +203,18 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.1,
+          "cote": 2.0,
           "p_modele": 0.5633,
-          "ev": 0.1829
+          "ev": 0.1266
         },
         {
           "rang": 2,
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.45,
+          "cote": 3.65,
           "p_modele": 0.2609,
-          "ev": -0.0999
+          "ev": -0.0477
         },
         {
           "rang": 3,
@@ -243,62 +243,22 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 17.5,
+          "cote": 18.0,
           "p_modele": 0.1945,
-          "ev": 2.4038
+          "ev": 2.501
         },
         {
           "rang": 2,
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 9.5,
+          "cote": 10.0,
           "p_modele": 0.2106,
-          "ev": 1.0007
+          "ev": 1.106
         }
       ],
       "quality_data": "haute",
       "rang_global": 8
-    },
-    {
-      "id": "M10",
-      "match": "KKS Lech Poznan vs Wisla Krakow",
-      "verdict_modele": "NO_BET",
-      "bucket": "HAUTE",
-      "score_commun": 7.2,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.6,
-          "p_modele": 0.322,
-          "ev": 0.1592
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.87,
-          "p_modele": 0.4699,
-          "ev": -0.1213
-        },
-        {
-          "rang": 3,
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "p_modele": 0.2804,
-          "ev": -0.1588
-        }
-      ],
-      "quality_data": "basse",
-      "rang_global": 9
     },
     {
       "id": "M9",
@@ -314,49 +274,13 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 6.5,
+          "cote": 6.4,
           "p_modele": 0.1724,
-          "ev": 0.1206
+          "ev": 0.1034
         }
       ],
       "quality_data": "haute",
-      "rang_global": 10
-    },
-    {
-      "id": "M11",
-      "match": "Delfin SC vs CD Cuenca",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
-      "rang_global": 11
-    },
-    {
-      "id": "M12",
-      "match": "Al Shorta SC vs Newroz SC",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
-      "rang_global": 12
-    },
-    {
-      "id": "M13",
-      "match": "AS Giana Erminio vs Alcione Milano",
-      "verdict_modele": "NO_BET",
-      "bucket": "FAIBLE",
-      "score_commun": 2.9,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "basse",
-      "rang_global": 13
+      "rang_global": 9
     }
   ]
 }

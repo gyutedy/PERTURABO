@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Karlsruher SC vs 1. FC Heidenheim
-*Générée le 2026-10-31 17:00 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Karlsruher SC vs FC Heidenheim
+*Générée le 2026-10-31 19:34 UTC — siege_id courant*
 
-**Verdict match : 🟡 THIN** — meilleure EV: 6.0%
+**Verdict match : 🟡 THIN** — meilleure EV: 7.5%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.05 | 21.3% | -35.0% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.6 | 29.4% | 6.0% | 🟡 THIN | 0.29u |
-| 1X2 | Victoire Extérieur | 1.99 | 49.3% | -2.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 3.15 | 21.3% | -32.9% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.65 | 29.4% | 7.5% | 🟡 THIN | 0.35u |
+| 1X2 | Victoire Extérieur | 1.93 | 49.3% | -4.9% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 27.2% | -18.4% | ⛔ NO_BET | — |
 
 ## Ordre de marche

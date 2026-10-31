@@ -1,7 +1,7 @@
 # 🏟️ FICHE DE SIÈGE — ESTAC Troyes vs Le Mans FC
-*Générée le 2026-10-31 17:00 UTC — siege_id courant*
+*Générée le 2026-10-31 19:34 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 39.3%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 44.5%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.17 | 64.2% | 39.3% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.25 | 64.2% | 44.5% | ⛔ NO_BET | — |
 | 1X2 | Nul | 3.35 | 19.4% | -34.9% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 3.3 | 16.4% | -46.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.2 | 16.4% | -47.6% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.3% | -39.1% | ⛔ NO_BET | — |
 
 ## Ordre de marche

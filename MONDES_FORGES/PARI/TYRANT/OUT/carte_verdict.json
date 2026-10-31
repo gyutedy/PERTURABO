@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-31T17:00:17Z",
+  "generated_at": "2026-10-31T19:34:14Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
   "go": 3,
-  "no_bet": 10,
+  "no_bet": 6,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 3 GO / 10 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 3 GO / 6 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Karlsruher SC vs 1. FC Heidenheim",
+      "match": "Karlsruher SC vs FC Heidenheim",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -58,7 +58,6 @@
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
@@ -67,8 +66,7 @@
       "match": "SC Cambuur vs Go Ahead Eagles",
       "verdict": "NO_BET",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
+        "échantillon dom insuffisant (5 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
@@ -85,46 +83,6 @@
     {
       "id": "M9",
       "match": "FC Porto vs Estoril Praia",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M10",
-      "match": "KKS Lech Poznan vs Wisla Krakow",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M11",
-      "match": "Delfin SC vs CD Cuenca",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M12",
-      "match": "Al Shorta SC vs Newroz SC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M13",
-      "match": "AS Giana Erminio vs Alcione Milano",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",

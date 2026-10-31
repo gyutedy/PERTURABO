@@ -1,7 +1,7 @@
 # 🏟️ FICHE DE SIÈGE — Albacete Balompie vs CE Sabadell FC
-*Générée le 2026-10-31 17:00 UTC — siege_id courant*
+*Générée le 2026-10-31 19:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 77.2%
+**Verdict match : 🔥 GO** — meilleure EV: 93.2%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,14 +17,14 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.22 | 79.8% | 77.2% |  VALUE | 3.0u |
+| 1X2 | Victoire Domicile | 2.42 | 79.8% | 93.2% |  VALUE | 3.0u |
 | 1X2 | Nul | 2.92 | 13.5% | -60.6% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 3.15 | 6.7% | -79.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 2.82 | 6.7% | -81.2% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.5% | -38.5% | ⛔ NO_BET | — |
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Domicile** @ 2.22 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Domicile** @ 2.42 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
