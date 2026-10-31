@@ -62,26 +62,26 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-10-31T07:50:11Z",
+    "last_validation": "2026-10-31T07:55:28Z",
     "errors": []
   },
   "gate_decisions": {
     "gate_1": {
       "label": "Validation carte TYRANT (GO/NO-GO siège)",
       "validated": true,
-      "timestamp": "2026-10-31T07:50:11Z",
+      "timestamp": "2026-10-31T07:55:27Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_2": {
       "label": "Validation analyses BREACHER (probas, matrice)",
       "validated": true,
-      "timestamp": "2026-10-31T07:50:11Z",
+      "timestamp": "2026-10-31T07:55:27Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_3": {
       "label": "Validation verdicts FORGEWARD (EV, Kelly, combinés)",
       "validated": true,
-      "timestamp": "2026-10-31T07:50:11Z",
+      "timestamp": "2026-10-31T07:55:27Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_4": {
@@ -93,12 +93,12 @@
   },
   "siege_timestamps": {
     "start": "2026-10-29T08:26:34Z",
-    "tyrant_done": "2026-10-31T07:50:11Z",
-    "intel_done": "2026-10-31T07:50:11Z",
-    "breach_done": "2026-10-31T07:50:11Z",
-    "value_done": "2026-10-31T07:50:11Z",
-    "herald_done": "2026-10-31T07:50:11Z",
-    "pack_done": "2026-10-31T07:50:11Z",
+    "tyrant_done": "2026-10-31T07:55:27Z",
+    "intel_done": "2026-10-31T07:55:27Z",
+    "breach_done": "2026-10-31T07:55:27Z",
+    "value_done": "2026-10-31T07:55:27Z",
+    "herald_done": "2026-10-31T07:55:28Z",
+    "pack_done": "2026-10-31T07:55:28Z",
     "end": null
   }
 }

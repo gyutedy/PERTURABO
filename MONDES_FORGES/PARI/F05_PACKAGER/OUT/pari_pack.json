@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T07:50:11Z",
+  "generated_at": "2026-10-31T07:55:28Z",
   "siege_id": null,
   "devise": "USD",
   "titre": "DIRECTION DES SIÈGES — TOP 0",
@@ -12,56 +12,46 @@
     },
     {
       "match_id": "M2",
-      "match": "Real Sociedad B vs Girona FC",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M3",
-      "match": "Kocaelispor vs Caykur Rizespor",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M4",
       "match": "Bologna FC vs AC Monza",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M5",
+      "match_id": "M3",
       "match": "Bayer Leverkusen vs VfB Stuttgart",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M6",
+      "match_id": "M4",
       "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M7",
+      "match_id": "M5",
       "match": "FC Augsburg vs SC Freiburg",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M8",
+      "match_id": "M6",
       "match": "Schalke 04 vs RB Leipzig",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M9",
+      "match_id": "M7",
       "match": "Werder Bremen vs TSG Hoffenheim",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M10",
+      "match_id": "M8",
       "match": "AFC Bournemouth vs Leeds United",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M11",
+      "match_id": "M9",
       "match": "Brentford FC vs Nottingham Forest",
       "raison": "aucune cote fournie"
     },
     {
-      "match_id": "M12",
+      "match_id": "M10",
       "match": "Coventry City vs Sunderland AFC",
       "raison": "aucune cote fournie"
     }
@@ -75,8 +65,8 @@
   "metriques": {
     "mise_totale_units": 0,
     "ev_moyenne_pct": null,
-    "nb_matchs_analyses": 12,
-    "nb_no_bet": 12,
+    "nb_matchs_analyses": 10,
+    "nb_no_bet": 10,
     "nb_matchs_go": 0
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",

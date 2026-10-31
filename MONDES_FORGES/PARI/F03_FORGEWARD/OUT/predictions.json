@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T07:50:11Z",
+  "generated_at": "2026-10-31T07:55:27Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "predictions": [
@@ -12,76 +12,62 @@
     },
     {
       "id": "M2",
-      "match": "Real Sociedad B vs Girona FC",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
-    },
-    {
-      "id": "M3",
-      "match": "Kocaelispor vs Caykur Rizespor",
-      "selections": [],
-      "verdict": "NO_BET",
-      "meilleure_ev": null
-    },
-    {
-      "id": "M4",
       "match": "Bologna FC vs AC Monza",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M5",
+      "id": "M3",
       "match": "Bayer Leverkusen vs VfB Stuttgart",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M6",
+      "id": "M4",
       "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M7",
+      "id": "M5",
       "match": "FC Augsburg vs SC Freiburg",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M8",
+      "id": "M6",
       "match": "Schalke 04 vs RB Leipzig",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M9",
+      "id": "M7",
       "match": "Werder Bremen vs TSG Hoffenheim",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M10",
+      "id": "M8",
       "match": "AFC Bournemouth vs Leeds United",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M11",
+      "id": "M9",
       "match": "Brentford FC vs Nottingham Forest",
       "selections": [],
       "verdict": "NO_BET",
       "meilleure_ev": null
     },
     {
-      "id": "M12",
+      "id": "M10",
       "match": "Coventry City vs Sunderland AFC",
       "selections": [],
       "verdict": "NO_BET",

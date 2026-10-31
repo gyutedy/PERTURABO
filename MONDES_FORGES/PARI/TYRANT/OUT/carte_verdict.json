@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-31T07:50:11Z",
+  "generated_at": "2026-10-31T07:55:27Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
   "go": 4,
-  "no_bet": 8,
+  "no_bet": 6,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 4 GO / 8 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 4 GO / 6 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
@@ -20,26 +20,6 @@
     },
     {
       "id": "M2",
-      "match": "Real Sociedad B vs Girona FC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M3",
-      "match": "Kocaelispor vs Caykur Rizespor",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M4",
       "match": "Bologna FC vs AC Monza",
       "verdict": "NO_BET",
       "raisons": [
@@ -48,7 +28,7 @@
       ]
     },
     {
-      "id": "M5",
+      "id": "M3",
       "match": "Bayer Leverkusen vs VfB Stuttgart",
       "verdict": "GO",
       "raisons": [
@@ -56,7 +36,7 @@
       ]
     },
     {
-      "id": "M6",
+      "id": "M4",
       "match": "Borussia Monchengladbach vs SC Paderborn 07",
       "verdict": "NO_BET",
       "raisons": [
@@ -66,7 +46,7 @@
       ]
     },
     {
-      "id": "M7",
+      "id": "M5",
       "match": "FC Augsburg vs SC Freiburg",
       "verdict": "GO",
       "raisons": [
@@ -74,7 +54,7 @@
       ]
     },
     {
-      "id": "M8",
+      "id": "M6",
       "match": "Schalke 04 vs RB Leipzig",
       "verdict": "NO_BET",
       "raisons": [
@@ -83,7 +63,7 @@
       ]
     },
     {
-      "id": "M9",
+      "id": "M7",
       "match": "Werder Bremen vs TSG Hoffenheim",
       "verdict": "GO",
       "raisons": [
@@ -91,7 +71,7 @@
       ]
     },
     {
-      "id": "M10",
+      "id": "M8",
       "match": "AFC Bournemouth vs Leeds United",
       "verdict": "GO",
       "raisons": [
@@ -99,7 +79,7 @@
       ]
     },
     {
-      "id": "M11",
+      "id": "M9",
       "match": "Brentford FC vs Nottingham Forest",
       "verdict": "NO_BET",
       "raisons": [
@@ -108,7 +88,7 @@
       ]
     },
     {
-      "id": "M12",
+      "id": "M10",
       "match": "Coventry City vs Sunderland AFC",
       "verdict": "NO_BET",
       "raisons": [
