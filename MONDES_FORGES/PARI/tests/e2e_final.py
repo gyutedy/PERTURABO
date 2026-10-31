@@ -132,6 +132,8 @@ def main():
     t3md = rd(p("SHARED", "OUT", "TOP3.md")) or ""
     ok = ("TOP 3" in t3md.upper()) and "score" in t3md.lower()
     check("FINAL.data_message", ok, "/data fournit les rangs hors ticket")
+    ok = "notes:" in out and "Traceback" not in out
+    check("FINAL.data_pas_casse", ok, "/data compact ne casse pas le flux")
 
     # 5. Docs + contrats + workflows
     docs_ok = all([

@@ -40,6 +40,9 @@ LIGUE_CODE = {
     "bundesliga": "D1",
     "ligue 1": "F1",
     "ligue1": "F1",
+    "eredivisie": "N1",
+    "pays bas": "N1",
+    "netherlands": "N1",
 }
 
 LIGUE_REJECT = (
@@ -298,6 +301,24 @@ def cmd_inject(args):
         print(f"   SKIP {miss} — hors CSV ligue ou alias manquant (Zero Data, Zero Calc sur CE match)")
 
 
+def cmd_enrich(args):
+    """Gâchette /capture : Elo + xG + repos/H2H + vote notes 3 voix. Trou = 0."""
+    import enrich
+    if args.capture_parsed:
+        parsed = json.load(open(args.capture_parsed, encoding="utf-8"))
+        carte, notes = enrich.enrich_from_capture(parsed, notes_path=args.notes)
+        if args.carte:
+            enrich._dump(args.carte, carte)
+    elif args.carte:
+        carte, notes = enrich.enrich_paths(args.carte, notes_path=args.notes)
+    else:
+        print("[CAPTEURS] enrich: --carte ou --capture-parsed requis")
+        return False
+    n = (notes or {}).get("notes_count", 0)
+    print(f"[CAPTEURS] enrich notes: {n} OUT — {(args.notes or enrich.NOTES_PATH)}")
+    return True
+
+
 def cmd_telegram_test(args):
     sys.path.insert(0, os.path.join(HERE, "..", "..", "ORCHESTRATOR", "CODEBASE"))
     import notifier
@@ -341,9 +362,15 @@ def main():
 
     sub.add_parser("telegram-test")
 
+    en = sub.add_parser("enrich")
+    en.add_argument("--carte", default=None)
+    en.add_argument("--capture-parsed", default=None)
+    en.add_argument("--notes", default=None)
+
     args = parser.parse_args()
     {"build-stats": cmd_build_stats, "build-elo": cmd_build_elo,
      "fixtures-list": cmd_fixtures_list, "inject": cmd_inject,
+     "enrich": cmd_enrich,
      "telegram-test": cmd_telegram_test}[args.cmd](args)
 
 

@@ -40,10 +40,22 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
-| `/data` | Les rangs du **Top 3 + score commun**. Refuse si TOP3 est encore la demo. |
 | `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide. |
-| `/data` | Rangs Top 3. `/data ledger` = token courant + lots du jour. |
+| `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
+| `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
+| `/data ledger` | Token + lots du jour (inchange). |
 | `/status` | État campagne. `/status ledger` = lots ouverts + jambes consommees. |
+
+Exemple compact (`/data`) :
+
+```
+notes: 0
+#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP
+1  Milan-Inter      H 10.0  +12  1.8/1.4  6/4    4-3-5  —         0   1 @3.45
+11 Delfin-Cuenca    F  2.9   —    —/—     —/—    —      elo,xg    0   NO BET
+```
+
+Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes.
 | `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). |
 | `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 
@@ -60,7 +72,10 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    Telegram qui casse `<br>` en saut de ligne est reassembled (v2.2.1). Capte ligue/coupe,
    date, heure, matchs, tous les marches affiches (1X2, O/U toutes lignes, MT1/MTE/MT2,
    BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning, jamais devine
-   (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
+    (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
+    **F00** enchaine : Elo ClubElo + xG Understat + repos/H2H football-data.org + vote
+    notes (Sofa / Sportradar / WhoScored). Message : `notes: N` (0 = trou, jamais invente).
+    `PARI_SKIP_F00=1` coupe l enrichissement (CI). Sans cles notes = 0.
 2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
     E0/SP1/I1/D1/F1). Alias ligues v2.2.7 : `LaLiga` (sans espace) = SP1 ; `LaLiga 2`
     / Championship / Serie B rejetes. Alias clubs (`Ath Madrid`, `M'Gladbach`,
@@ -252,9 +267,10 @@ Champs **requis** par équipe : `mj`, `marques`, `encaisses` (saisons/10 dernier
 Optionnels (fortement conseillés pour le marché mi-temps) : `marques_mt1/mt2`,
 `encaisses_mt1/mt2`. Absents → part ligue par défaut + flag `estimate`.
 
-Sources pour remplir la carte (whitelist) : FBref, FootyStats, SoccerSTATS,
-Flashscore, Transfermarkt, ClubElo. **Zero Data, Zero Calc** : si tu ne
-trouves pas, ne devine pas — marque `"cotes": null` et attends.
+Sources pour remplir la carte (whitelist) : football-data.co.uk, ClubElo,
+Understat xG (metadonnee, jamais Poisson), football-data.org (repos/H2H).
+FBref = mort. **Zero Data, Zero Calc** : si tu ne trouves pas, ne devine pas
+— marque `"cotes": null` et attends.
 
 ### Puis — Lancer
 ```bash

@@ -107,8 +107,17 @@ def main():
         json.dump(out, f, indent=2, ensure_ascii=False)
 
     # -------- ../TOP3.md / message /data ------------------------------------
+    n_notes = 0
+    notes_p = os.path.join(here, "..", "..", "ARCHIVUM", "fixtures", "notes_qualitatives.json")
+    if os.path.exists(notes_p):
+        try:
+            with open(notes_p, encoding="utf-8") as f:
+                n_notes = int((json.load(f) or {}).get("notes_count") or 0)
+        except (OSError, json.JSONDecodeError, TypeError, ValueError):
+            n_notes = 0
+    out["notes_count"] = n_notes
     lines = [f"### 🛡️ {FEEDER_TITRE}", "",
-             f"*generated {out['generated_at']} — {len(out_rows)} matchs classés*", ""]
+             f"*generated {out['generated_at']} — {len(out_rows)} matchs classés — notes: {n_notes}*", ""]
     for r_ in out_rows:
         badge = ("🔴 NO BET (qual.)" if r_["no_bet_recommande"] else
                  "🟢 " + r_["bucket"])

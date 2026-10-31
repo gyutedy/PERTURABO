@@ -5,10 +5,12 @@
   "required": ["generated_at", "source", "ligue", "matchs"],
   "properties": {
     "generated_at": {"type": "string"},
-    "source": {"type": "string", "description": "fixtures file | cotes_txt | capture_oracle | api-football"},
+    "source": {"type": "string", "description": "fixtures file | cotes_txt | capture_oracle | api-football | f00_enrich"},
     "ligue": {"type": "string"},
     "ligue_tier": {"type": "string", "enum": ["top5", "secondaire", "exotique"],
       "description": "conditionne le seuil EV (3% / 8%)"},
+    "notes_count": {"type": "integer", "minimum": 0,
+      "description": "nombre de notes OUT votées F00 (0 = trou visible, jamais inventé)"},
     "matchs": {
       "type": "array",
       "items": {
@@ -22,6 +24,61 @@
           "elo": {
             "type": "object",
             "properties": {"dom": {"type": "number"}, "ext": {"type": "number"}}
+          },
+          "xg": {
+            "type": "object",
+            "description": "xG Understat — métadonnée, JAMAIS entrée dans Poisson/Dixon-Coles",
+            "properties": {
+              "dom": {"type": ["number", "null"]},
+              "ext": {"type": ["number", "null"]},
+              "source": {"type": "string"}
+            }
+          },
+          "rest_days": {
+            "type": "object",
+            "description": "jours de repos calendrier (football-data.org), binaire dérivé",
+            "properties": {
+              "dom": {"type": ["integer", "null"]},
+              "ext": {"type": ["integer", "null"]},
+              "source": {"type": "string"}
+            }
+          },
+          "h2h": {
+            "type": "object",
+            "properties": {
+              "played": {"type": "integer"},
+              "dom_wins": {"type": "integer"},
+              "draws": {"type": "integer"},
+              "ext_wins": {"type": "integer"},
+              "source": {"type": "string"},
+              "matches": {
+                "type": "array",
+                "description": "confrontations individuelles FT/HT — jamais inventees",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {"type": "string"},
+                    "home": {"type": "string"},
+                    "away": {"type": "string"},
+                    "ft": {"type": "string", "description": "score FT '1-2'"},
+                    "ht": {"type": ["string", "null"], "description": "score HT '0-1' ou null"}
+                  }
+                }
+              }
+            }
+          },
+          "form": {
+            "type": "object",
+            "description": "10 derniers matchs par equipe (CSV football-data.co.uk), affichage seul",
+            "properties": {
+              "dom": {"type": "array", "items": {"$ref": "#/definitions/form_line"}},
+              "ext": {"type": "array", "items": {"$ref": "#/definitions/form_line"}}
+            }
+          },
+          "holes": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "champs absents (xg, elo, rest_days, h2h, form, h2h_scores, timing) — trou declare, jamais invente"
           },
           "stats": {
             "type": "object",
@@ -40,12 +97,27 @@
               "mt1": {"type": "number"}, "mte": {"type": "number"}, "mt2": {"type": "number"}
             }
           },
-          "notes": {"type": "string", "description": "contexte qualitatif : enjeu, fatigue, absences"}
+          "notes": {
+            "description": "digest F00 (string) — matching par nom d'équipe, jamais par cote Winner",
+            "type": ["string", "null"]
+          }
         }
       }
     }
   },
   "definitions": {
+    "form_line": {
+      "type": "object",
+      "properties": {
+        "date": {"type": "string"},
+        "opp": {"type": "string"},
+        "venue": {"type": "string", "enum": ["H", "A"]},
+        "ft": {"type": "string"},
+        "ht": {"type": ["string", "null"]},
+        "hs": {"type": "number", "description": "tirs equipe, omis si absent du CSV"},
+        "hst": {"type": "number", "description": "tirs cadres equipe, omis si absent du CSV"}
+      }
+    },
     "team_stats": {
       "type": "object",
       "required": ["mj", "marques", "encaisses"],

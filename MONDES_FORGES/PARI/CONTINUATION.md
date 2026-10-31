@@ -26,7 +26,7 @@
 | Tickets | SÛR = classe A (score le plus haut) ; reste réparti ; FAIBLE/NO BET exclus ; > 4 jambes → division | complexité mathématique des combinés longs |
 | Backroll | 3 couches : `/bankroll` pot global (persiste) ; `/budget JOUR SURTICKET` plafond jour + mise FORCEE ticket sur ; reste divise ; mise min 100 FC | gestion du pot sans martingale, ticket sur force |
 | Previews | 2 : Preview 1 (brutes, début de campagne) + Preview 2 (ticket final, charte PERTURABO) ; GH Pages ; responsive | relecture opérateur aux 2 portes de campagne |
-| Message /data | rangs Top 3 + score en message dédié, HORS ticket final | séparation lecture d'analyse / ticket final (analyses dans data, rangs dans le ticket final) |
+| Message /data | 2 vues : table compacte + `/data N` fiche. Affichage ≠ maths. HORS ticket final | séparation lecture d'analyse / ticket final |
 | Oracle | clé premeum optionnelle (Secret), exécution HORS du job du monde forger, qualitatif seulement | jamais au centre, jamais dans les chiffres |
 
 ## ÉTAT AU DÉPÔT INITIAL (forge v1)
@@ -79,7 +79,27 @@
 
 **Prochaine etape operateur** : attendre que `pari_listen.yml` checkout ce commit. Sans re-`/start` si la campagne 10 GO est encore ouverte : `/data ledger` puis éventuellement `/budget` retapé + `/valider-2` (lot 2). `/roi settle L-XXX` apres les matchs (CSV ligue). Pas de wrangler/setWebhook.
 
-**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets ni artefacts OUT/STATE. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Tokens operateur dans `env_pari` (versionne volontairement, periode de test).
+## ETAT v2.3 — F00 CAPTEURS AU `/capture` (2026-10-31)
+
+- [x] **Contrats** : `schema_match_intel.json` (+ `xg`, `rest_days`, `h2h`, `holes`, `notes_count`). `schema_notes_qualitatives.json` v3 : vote `OUT|DOUTE|IGNORE`, `sources[]`, `notes_count`. Matching **par nom**.
+- [x] **Binaire au `/capture`** : ClubElo (sans clé) + Understat xG (jamais dans Poisson) + football-data.org repos/H2H (clé optionnelle). Trou déclaré, jamais inventé.
+- [x] **Notes 3 voix** : SofaScore + Sportradar + WhoScored/Opta. Vote OUT si 3 upstreams indépendants / 48h. DOUTE ne touche pas λ. 3 wrappers RapidAPI du même upstream = 1 source. Ligues : E0/SP1/I1/D1/F1/N1. Turquie/Japon = trou si <3.
+- [x] **Fatigue** = jours de repos calendrier (binaire dérivé). Météo / motivation hors v1.
+- [x] **Gâchette** : `capteurs.py enrich` après parse `/capture` et après inject `/valider-1`. Cache 1 hit/équipe/jour. Timeout / 3 fails = voix morte.
+- [x] **TYRANT** : items F00, OUT seulement → `themes`. `notes_count: 0` → pas de filtre. Oracle / HERALD : commentaire après coup si clé, **jamais** un OUT.
+- [x] **`/data`** : préfixe `notes: N`. 0 = trou visible.
+- [x] **E2E** : `tests/e2e_f00.py` (vote, cache, trou, TYRANT DOUTE, Oracle silence). `PARI_SKIP_INJECT=1` / `PARI_SKIP_F00=1` = offline.
+- [ ] Clés live (`FOOTBALL_DATA_ORG_KEY`, Sportradar, WhoScored) : optionnelles. Sans clé = notes: 0.
+
+## ETAT v2.3.1 — `/data` DEUX VUES (2026-10-31)
+
+- [x] **Contrat** : `h2h.matches[]` (date, home, away, ft, ht) + `form.dom/ext` 10 lignes. `holes` peut contenir `form`, `h2h_scores`, `timing`. Notes qualitatives inchangees.
+- [x] **Capteurs** : `football_data_uk.last_matches` / `h2h_matches` depuis le CSV deja telecharge (cache disque, zero reseau si `PARI_SKIP_*`). Club hors CSV = skip CE equipe, `holes += form`. Timing buts = TROU (pas de Sofa ici). Jamais injecte dans Poisson.
+- [x] **Affichage** : `ORCHESTRATOR/CODEBASE/data_view.py`. `/data` table compacte HAUTE puis FAIBLE, 1 ligne / match, prefixe `notes: N`. `/data N` fiche (rang 1-based). `/data ledger` inchange.
+- [x] **Cablage** : `workflow.cmd_data` ledger | digit → fiche | vide → compact. `parse.py` relais `/data 4` + help `/data N`. Worker JS stale jusqu'au merge.
+- [x] **E2E** : compact Q/H2H/TROU, trou = `—`, fiche H2H+forme, timing TROU, `/data 99` refuse, `/data 4` parse, ledger inchange, final ne casse pas.
+
+**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets ni artefacts OUT/STATE. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Tokens operateur dans `env_pari` (versionne volontairement, periode de test). FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` = `/data` compact+fiche live (Actions checkout cette branche). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

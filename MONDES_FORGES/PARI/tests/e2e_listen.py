@@ -109,6 +109,9 @@ def main():
     r = parse.parse_update(upd("/data ledger"), CHAT)
     check("L4.data_ledger", r.get("ok") and r.get("cmd") == "/data ledger", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/data 4"), CHAT)
+    check("L4.data_n", r.get("ok") and r.get("cmd") == "/data 4", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/status ledger"), CHAT)
     check("L4.status_ledger", r.get("ok") and r.get("cmd") == "/status ledger", str(r.get("cmd")))
 
@@ -119,6 +122,7 @@ def main():
     help_txt = r.get("reply") or ""
     check("L5.help_local", r.get("ok") and r.get("action") == "local"
           and "/start" in help_txt and "/bankroll" in help_txt and "/budget 3000 800" in help_txt)
+    check("L5.help_data_n", "/data N" in help_txt, help_txt)
 
     r = parse.parse_update(upd("/radar"), CHAT)
     check("L5.unknown_reply", (not r.get("ok")) and r.get("action") == "reply" and r.get("reason") == "unknown")
@@ -165,6 +169,8 @@ def main():
         'run_orch("--mode", "input-capture", "--capture", path)' in wf_src
         and 'run_orch("--mode", "input-capture", "--capture", fichier)' not in wf_src,
     )
+    check("L10.capture_enrich_f00", "enrich_f00_capture" in wf_src and "notes: {notes_n}" in wf_src)
+    check("L10.data_notes_n", "notes: {n_notes}" in wf_src)
     check("L10.valider1_auto_gates", 'extra_env={"PARI_AUTO_GATES": "1"}' in wf_src)
     check("L10.valider1_fixtures_capture", '"--fixtures", carte_path' in wf_src)
     check("L10.valider2_refuse_nobet", "VALIDATION 2 refusee" in wf_src)

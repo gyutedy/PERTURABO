@@ -14,3 +14,4 @@ CONTRACTS/youtube_secrets.local.json
 docs/data/transcripts/_subs/
 # Cookies navigateur (compte de service) — secret, jamais versionné
 war_room/cookies.txt
+MONDES_FORGES/PARI/ARCHIVUM/cache/

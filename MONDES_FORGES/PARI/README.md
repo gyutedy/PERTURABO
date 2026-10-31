@@ -33,7 +33,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | Mode | Commande | Ce que ça fait |
 |---|---|---|
 | `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue** (ligue, date, heure, marches, cotes). v2.2.1 recoud les rangs markdown casses par Telegram. → validation Porte 1 → carte |
-| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7), /valider-2 v2.2.8 (lots token L-XXX + anti-cannibal + snapshot T0 ; refuse si 0 GO, budget non retape, pool vide), /data ledger, /status ledger, /roi settle L-XXX, /stop |
+| `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7), /valider-2 v2.2.8 (lots token L-XXX + anti-cannibal + snapshot T0 ; refuse si 0 GO, budget non retape, pool vide), /data (table compacte), /data N (fiche), /data ledger, /status ledger, /roi settle L-XXX, /stop |
 | `radar` | `orchestrator.py --mode radar` | Scan de **toute la ligue** : classement de tous les matchs du jour (buts attendus, P(O2.5), P(MT2 > MT1)) → TOP 20 |
 | `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET (+ filtre qualitatif + Top 3 + Preview 1) |
 | `tickets` | `orchestrator.py --mode tickets --combos 3 --jambes 3:2:2 --budget-fc 6000 --surticket-fc 3000` | **Combinés + backroll** (ticket sûr + reste divisé) → tickets.json + PREVIEW 2 |
@@ -66,7 +66,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 | Code | Nom | Rôle | Output |
 |---|---|---|---|
-| F00 | RADAR/CAPTEURS | Scan ligue complète + veille (marge Winner Bet, pronostiqueurs) | `radar.json` + `RADAR.md` |
+| F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H, vote notes 3 voix) | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
 | F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps | `analysis.json` |
 | F03 | FORGEWARD | De-marging (overround/Shin), EV, Kelly 1/4, scanner combinés | `predictions.json` |
@@ -104,6 +104,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 - ❌ Chasse externe sources non-whitelistées (hérésie)
 - ❌ Pronostics YouTube dans le moteur de calcul (biais de survie) — le tracker les note, period
 - ❌ Donnée manquante comblée par une estimation silencieuse → **Zero Data, Zero Calc → NO BET**
+- ❌ Note OUT sans 3 sources independantes / LLM qui invente un OUT / FBref / scrape Winner
 - ❌ Collecter seulement les tickets gagnants (survivorship bias) — le ledger prend tout
 
 ---
