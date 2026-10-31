@@ -2,15 +2,16 @@
   "campagne": "PARI-20261031",
   "steps": {
     "start": "2026-10-31T06:53:01Z",
-    "bankroll": "2026-10-31T07:12:08Z"
+    "bankroll": "2026-10-31T07:12:08Z",
+    "capture": "2026-10-31T07:44:07Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 3000.0,
   "combos": 4,
   "jambes": "3:2:2",
   "marches": null,
-  "capture": null,
-  "capturer_statut": null,
+  "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
+  "capturer_statut": "A_VALIDER",
   "previews": {},
   "bankroll_fc": 3000.0
 }

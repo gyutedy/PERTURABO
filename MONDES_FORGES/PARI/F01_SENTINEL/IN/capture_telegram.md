@@ -1,11 +1,14 @@
-| Competição & Jogo | Horário | 1 | X | 2 | Menos | Mais | 1st | Empate | 2nd |
+| Compétition & Match | Horaire | 1 | X | 2 | Moins | Plus | 1st | Égal | 2nd |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Brasil - Brasileiro Série B<br>Criciúma EC SC vs AA Ponte Preta SP | Hoje 23:30 (#5452) | 1.06 | 8.70 | 20.00 | 2.90 | 1.34 | 3.10 | 3.00 | 2.10 |
-| Brasil - Mineiro, Segunda Divisão<br>Nacional AC Muriaé MG vs Venda Nova FC MG | Hoje 23:30 (#5243) | 2.10 | 3.20 | 3.10 | 1.74 | 1.94 | — | — | — |
-| Paraguai - División de Honor<br>Club Guaraní Asunción vs CS 2 de Mayo | Hoje 23:30 (#5026) | 1.89 | 3.10 | 3.85 | 1.65 | 2.05 | 3.10 | 3.00 | 2.10 |
-| Paraguai - División de Honor<br>Sportivo Trinidense vs Rubio Ñu | Hoje 23:30 (#5025) | 1.81 | 3.35 | 3.85 | 1.76 | 1.92 | 3.10 | 3.00 | 2.10 |
-| EUA - USL Championship<br>Louisville City FC vs Pittsburgh Riverhounds | Hoje 23:30 (#5067) | 1.68 | 3.25 | 4.70 | 1.58 | 2.17 | 3.10 | 3.00 | 2.10 |
-| Brasil - Brasileiro Série A<br>SC Corinthians SP vs Mirassol FC SP | Amanhã 00:00 (#5055) | 1.78 | 3.35 | 4.00 | 1.78 | 1.89 | 3.10 | 3.00 | 2.10 |
-| EUA - USL Championship<br>Charleston Battery vs Rhode Island FC | Amanhã 00:00 (#5068) | 2.17 | 3.30 | 2.92 | 1.80 | 1.87 | 3.10 | 3.00 | 2.10 |
-| EUA - USL League One<br>Union Omaha SC vs Chattanooga Red Wolves SC | Amanhã 00:00 (#5263) | 1.60 | 3.80 | 4.50 | 2.12 | 1.61 | 3.10 | 3.00 | 2.10 |
-| EUA - USL Championship<br>Tampa Bay Rowdies vs Miami FC | Amanhã 00:00 | 1.37 | 4.60 | 6.20 | 2.27 | 1.54 | 3.10 | 3.00 | 2.10 |
+| Espagne - LaLiga<br>Levante UD vs Atletico Madrid | Aujourd'hui 14:00 (#137) | 5.50 | 4.60 | 1.52 | 2.40 | 1.49 | 3.10 | 3.00 | 2.10 |
+| Espagne - LaLiga 2<br>Real Sociedad B vs Girona FC | Aujourd'hui 14:00 (#395) | 3.25 | 3.45 | 1.96 | 2.05 | 1.65 | 3.10 | 3.00 | 2.10 |
+| Turkiye - Super Lig<br>Kocaelispor vs Caykur Rizespor | Aujourd'hui 14:00 (#394) | 2.47 | 3.20 | 2.50 | 1.82 | 1.85 | 3.10 | 3.00 | 2.10 |
+| Italie - Serie A<br>Bologna FC vs AC Monza | Aujourd'hui 15:00 (#229) | 1.67 | 3.80 | 5.00 | 1.91 | 1.86 | 3.10 | 3.00 | 2.10 |
+| Allemagne - Bundesliga<br>Bayer Leverkusen vs VfB Stuttgart | Aujourd'hui 15:30 (#286) | 1.70 | 4.40 | 4.10 | 3.40 | 1.31 | 3.10 | 3.00 | 2.10 |
+| Allemagne - Bundesliga<br>Borussia Monchengladbach vs SC Paderborn 07 | Aujourd'hui 15:30 (#288) | 2.20 | 3.70 | 2.95 | 2.47 | 1.52 | 3.10 | 3.00 | 2.10 |
+| Allemagne - Bundesliga<br>FC Augsburg vs SC Freiburg | Aujourd'hui 15:30 (#289) | 2.85 | 3.75 | 2.27 | 2.60 | 1.48 | 3.10 | 3.00 | 2.10 |
+| Allemagne - Bundesliga<br>Schalke 04 vs RB Leipzig | Aujourd'hui 15:30 (#285) | 3.90 | 3.95 | 1.81 | 2.65 | 1.47 | 3.10 | 3.00 | 2.10 |
+| Allemagne - Bundesliga<br>Werder Bremen vs TSG Hoffenheim | Aujourd'hui 15:30 (#290) | 2.52 | 3.85 | 2.47 | 2.87 | 1.41 | 3.10 | 3.00 | 2.10 |
+| Angleterre - Premier League<br>AFC Bournemouth vs Leeds United | Aujourd'hui 16:00 (#260) | 2.15 | 3.35 | 3.40 | 1.89 | 1.89 | 3.10 | 3.00 | 2.10 |
+| Angleterre - Premier League<br>Brentford FC vs Nottingham Forest | Aujourd'hui 16:00 (#258) | 2.12 | 3.55 | 3.25 | 2.15 | 1.68 | 3.10 | 3.00 | 2.10 |
+| Angleterre - Premier League<br>Coventry City vs Sunderland AFC | Aujourd'hui 16:00 (#262) | 3.10 | 3.25 | 2.35 | 1.81 | 1.97 | 3.10 | 3.00 | 2.10 |
