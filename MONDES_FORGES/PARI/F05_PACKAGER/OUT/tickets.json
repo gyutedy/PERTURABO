@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T08:36:41Z",
+  "generated_at": "2026-10-31T10:29:08Z",
   "tickets": [
     {
       "rang_ticket": 1,
@@ -9,28 +9,37 @@
         {
           "match_id": "M3",
           "match": "Bayer Leverkusen vs VfB Stuttgart",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 1.7,
           "p_modele": 0.6787,
+          "ev": 0.1538,
+          "bucket": "HAUTE",
           "score_commun": 10.0
         },
         {
           "match_id": "M8",
           "match": "AFC Bournemouth vs Leeds United",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 2.15,
           "p_modele": 0.7983,
+          "ev": 0.7163,
+          "bucket": "HAUTE",
           "score_commun": 10.0
         },
         {
           "match_id": "M9",
           "match": "Brentford FC vs Nottingham Forest",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 2.12,
           "p_modele": 0.7501,
+          "ev": 0.5902,
+          "bucket": "HAUTE",
           "score_commun": 10.0
         }
       ],
@@ -49,19 +58,25 @@
         {
           "match_id": "M5",
           "match": "FC Augsburg vs SC Freiburg",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 2.85,
           "p_modele": 0.5949,
+          "ev": 0.6955,
+          "bucket": "HAUTE",
           "score_commun": 9.7
         },
         {
           "match_id": "M7",
           "match": "Werder Bremen vs TSG Hoffenheim",
+          "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
           "cote": 2.47,
           "p_modele": 0.5825,
+          "ev": 0.4388,
+          "bucket": "HAUTE",
           "score_commun": 9.6
         }
       ],
@@ -80,19 +95,25 @@
         {
           "match_id": "M2",
           "match": "Bologna FC vs AC Monza",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 1.67,
           "p_modele": 0.642,
+          "ev": 0.0721,
+          "bucket": "HAUTE",
           "score_commun": 7.9
         },
         {
           "match_id": "M1",
           "match": "Levante UD vs Atletico Madrid",
+          "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
           "cote": 4.6,
           "p_modele": 0.2945,
+          "ev": 0.3547,
+          "bucket": "HAUTE",
           "score_commun": 7.8
         }
       ],
@@ -111,19 +132,25 @@
         {
           "match_id": "M4",
           "match": "Borussia Monchengladbach vs SC Paderborn 07",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 2.2,
           "p_modele": 0.5633,
+          "ev": 0.2393,
+          "bucket": "HAUTE",
           "score_commun": 7.8
         },
         {
           "match_id": "M10",
           "match": "Coventry City vs Sunderland AFC",
+          "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 3.1,
           "p_modele": 0.4699,
+          "ev": 0.4567,
+          "bucket": "HAUTE",
           "score_commun": 7.2
         }
       ],

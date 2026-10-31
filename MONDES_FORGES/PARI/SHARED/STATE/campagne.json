@@ -7,7 +7,7 @@
     "budget": "2026-10-31T10:28:26Z",
     "combos": "2026-10-31T07:54:48Z",
     "valider1": "2026-10-31T08:34:35Z",
-    "valider2": "2026-10-31T08:36:41Z"
+    "valider2": "2026-10-31T10:29:08Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 800.0,
@@ -21,5 +21,56 @@
     "preview2": "SHARED/OUT/preview2.html"
   },
   "bankroll_fc": 3000.0,
-  "budget_seq": 1
+  "budget_seq": 1,
+  "capture_id": "C-7VW",
+  "consumed_legs": [
+    {
+      "match_id": "M3",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M8",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M9",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M5",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M7",
+      "marche": "1X2",
+      "selection": "2"
+    },
+    {
+      "match_id": "M2",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M1",
+      "marche": "1X2",
+      "selection": "X"
+    },
+    {
+      "match_id": "M4",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M10",
+      "marche": "1X2",
+      "selection": "1"
+    }
+  ],
+  "current_token": "L-CEB",
+  "last_lot_budget_seq": 1,
+  "lots_alloue_jour": 2999.99
 }
