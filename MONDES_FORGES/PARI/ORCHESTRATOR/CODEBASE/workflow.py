@@ -150,10 +150,12 @@ def cmd_capture(st, fichier):
     jf = load_json(P("F01_SENTINEL", "OUT", "capture_parsed.json"))
     n = jf.get("n_matchs", 0) if jf else 0
     warn = len(jf.get("warnings", [])) if jf else 0
+    notes_n = enrich_f00_capture()
+    st["notes_count"] = notes_n
     st["capturer_statut"] = "A_VALIDER"
     save(st)
     fmt = (jf or {}).get("source_format") or "texte"
-    tell(f"Capture parsee ({fmt}) : **{n} match(s)**, {warn} warning(s) — "
+    tell(f"Capture parsee ({fmt}) : **{n} match(s)**, {warn} warning(s), notes: {notes_n} — "
          "regle Zero Data, Zero Calc : **relis le JSON reconstitue** "
          "(F01_SENTINEL/OUT/capture_parsed.json) → si ok : `/valider-1`")
 
@@ -273,6 +275,26 @@ def _capteurs():
     return _cap
 
 
+def enrich_f00_capture():
+    """Gachette /capture : Elo + xG + repos/H2H + vote notes. Trou = notes: 0."""
+    if os.environ.get("PARI_SKIP_F00") == "1" or os.environ.get("PARI_SKIP_INJECT") == "1":
+        return 0
+    parsed = P("F01_SENTINEL", "OUT", "capture_parsed.json")
+    notes = P("ARCHIVUM", "fixtures", "notes_qualitatives.json")
+    try:
+        r = subprocess.run(
+            [sys.executable, P("F00_RADAR", "CODEBASE", "capteurs.py"), "enrich",
+             "--capture-parsed", parsed, "--notes", notes],
+            capture_output=True, text=True, cwd=WORLD)
+        sys.stdout.write(r.stdout or "")
+        sys.stdout.write(r.stderr or "")
+        blob = load_json(notes) or {}
+        return int(blob.get("notes_count") or 0)
+    except Exception as e:
+        print(f"[WF] enrich F00 gracieux: {e}")
+        return 0
+
+
 def inject_stats(carte_path):
     """Capteurs football-data.co.uk + ClubElo (sans clé) sur la carte validée.
     Merge multi-ligues (un JSON par code, jamais ecrase). Alias LaLiga/clubs.
@@ -343,6 +365,19 @@ def cmd_valider1(st, arg):
     st["steps"]["valider1"] = _now()
     carte_path = P("ARCHIVUM", "fixtures", "matches.json")
     stats_ok = inject_stats(carte_path)
+    if os.environ.get("PARI_SKIP_F00") != "1" and os.environ.get("PARI_SKIP_INJECT") != "1":
+        try:
+            r_en = subprocess.run(
+                [sys.executable, P("F00_RADAR", "CODEBASE", "capteurs.py"), "enrich",
+                 "--carte", carte_path,
+                 "--notes", P("ARCHIVUM", "fixtures", "notes_qualitatives.json")],
+                capture_output=True, text=True, cwd=WORLD)
+            sys.stdout.write(r_en.stdout or "")
+            sys.stdout.write(r_en.stderr or "")
+            nb = load_json(P("ARCHIVUM", "fixtures", "notes_qualitatives.json")) or {}
+            st["notes_count"] = int(nb.get("notes_count") or 0)
+        except Exception as e:
+            print(f"[WF] enrich F00 valider-1 gracieux: {e}")
     if not stats_ok:
         tell("⚠️ Stats historiques absentes (ligue hors whitelist E0/SP1/I1/D1/F1 ou réseau) — "
              "Zero Data, Zero Calc : le siège sort NO BET. Pas de ticket.")
@@ -467,7 +502,10 @@ def cmd_data(st, arg):
     if any(d in t3 for d in demo) and names and not any(n and n in t3 for n in names):
         tell("⛔ TOP3 desynchronise (demo). Relance `/valider-1`.")
         return
-    tell(t3)
+    notes = load_json(P("ARCHIVUM", "fixtures", "notes_qualitatives.json")) or {}
+    n_notes = int(st.get("notes_count") if st.get("notes_count") is not None
+                  else (notes.get("notes_count") or carte.get("notes_count") or 0))
+    tell(f"notes: {n_notes}\n" + t3)
 
 
 def cmd_status(st, arg):

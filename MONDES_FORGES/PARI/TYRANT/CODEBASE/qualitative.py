@@ -85,17 +85,49 @@ def normalize_impacts(note: dict):
     return themes
 
 
+def note_themes_for_tyrant(note: dict):
+    """Projection OUT seulement. items F00 priment ; themes v2 opérateur inchangés."""
+    items = note.get("items") or []
+    if items:
+        projected = {}
+        for it in items:
+            if (it.get("verdict") or "").upper() != "OUT":
+                continue
+            th = (it.get("theme") or "autre").lower()
+            projected[th] = {"impact": it.get("impact") or "eleve", "detail": it.get("detail") or ""}
+        if projected:
+            return projected
+        return {}
+    return note.get("themes") or {}
+
+
 def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
     """Applique le filtre borné. Retourne (verdict_qualitatif, predictions_filtrées)."""
+    if int(notes.get("notes_count") or 0) == 0 and not any(
+            (n.get("themes") or n.get("items")) for n in notes.get("notes") or []):
+        empty_v = {
+            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "methode": "filtre qualitatif BORNÉ — notes_count 0, aucun effet.",
+            "source_notes": notes.get("source") or "f00_vote",
+            "verdicts": [],
+        }
+        return empty_v, json.loads(json.dumps(predictions))
     qual_by_id = {a["id"]: a.get("data_quality", {}).get("niveau", "basse") for a in analysis.get("analyses", [])}
-    note_by_id = {n["match_id"]: n for n in notes.get("notes", [])}
+    note_by_id = {n["match_id"]: n for n in notes.get("notes", []) if n.get("match_id")}
 
     verdicts = []
     filtered_cp = json.loads(json.dumps(predictions))  # copie profonde indépendante
 
     for p in filtered_cp["predictions"]:
         note = note_by_id.get(p["id"])
-        themes = normalize_impacts(note) if note else {}
+        if note is None:
+            plabel = (p.get("match") or "").lower()
+            for n in notes.get("notes") or []:
+                if n.get("dom") and n.get("ext") and n.get("dom").lower() in plabel and n.get("ext").lower() in plabel:
+                    note = n
+                    break
+        raw = note_themes_for_tyrant(note) if note else {}
+        themes = normalize_impacts({"themes": raw}) if raw else {}
         excluded, bonus_total, elevates = set(), 0.0, 0
         for th, info in themes.items():
             rule = RULES.get(th, RULES["default"])
@@ -153,7 +185,7 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "methode": "filtre qualitatif BORNÉ (exclusion de marches / hausse du seuil d'EV / NO BET recommandé). "
                    "Jamais de probabilité ajoutée.",
-        "source_notes": "opérateur (notes non binaires)",
+        "source_notes": notes.get("source") or "operateur (notes non binaires)",
         "verdicts": verdicts,
     }
     return verdict_out, filtered_cp

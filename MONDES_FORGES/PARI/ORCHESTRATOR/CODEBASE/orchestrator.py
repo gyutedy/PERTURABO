@@ -186,7 +186,18 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
     notes_path = P("ARCHIVUM", "fixtures", "notes_qualitatives.json")
     filtered_path = P("F03_FORGEWARD", "OUT", "predictions_filtered.json")
     used_filter = False
+    notes_blob = {}
     if os.path.exists(notes_path):
+        try:
+            with open(notes_path, encoding="utf-8") as f:
+                notes_blob = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            notes_blob = {}
+    has_notes = (
+        int(notes_blob.get("notes_count") or 0) > 0
+        or any((n.get("themes") and not n.get("items")) for n in notes_blob.get("notes") or [])
+    )
+    if has_notes:
         custos("check-out", "--frigate", "TYRANT")
         qualitative_out = P("TYRANT", "OUT", "qualitative_verdict.json")
         run_frigate(P("TYRANT", "CODEBASE", "qualitative.py"),
