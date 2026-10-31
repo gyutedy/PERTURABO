@@ -6,7 +6,8 @@
     "capture": "2026-10-31T08:32:50Z",
     "budget": "2026-10-31T07:54:16Z",
     "combos": "2026-10-31T07:54:48Z",
-    "valider1": "2026-10-31T08:34:35Z"
+    "valider1": "2026-10-31T08:34:35Z",
+    "valider2": "2026-10-31T08:36:41Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 800.0,
@@ -16,7 +17,8 @@
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
   "capturer_statut": "VALIDE",
   "previews": {
-    "preview1": "SHARED/OUT/preview1.html"
+    "preview1": "SHARED/OUT/preview1.html",
+    "preview2": "SHARED/OUT/preview2.html"
   },
   "bankroll_fc": 3000.0
 }
