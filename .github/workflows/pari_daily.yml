@@ -9,8 +9,8 @@
 #
 # Secrets optionnels :
 #   API_FOOTBALL_KEY    (fixtures live plus tard)
-#   FOOTBALL_DATA_ORG_KEY
-#   ORACLE_API_KEY      (TYRANT/HERALD LLM)
+#   FOOTBALL_DATA_ORG_KEY  (F00 rest_days — aussi env_pari, PAS Oracle)
+#   ORACLE_API_KEY         (TYRANT/HERALD LLM seulement ; siege 100% sans)
 
 name: pari-daily
 on:

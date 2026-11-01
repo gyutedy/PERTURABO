@@ -75,7 +75,9 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
     (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
     **F00** enchaine : Elo ClubElo + xG Understat + repos/H2H football-data.org + vote
     notes (Sofa / Sportradar / WhoScored). Message : `notes: N` (0 = trou, jamais invente).
-    `PARI_SKIP_F00=1` coupe l enrichissement (CI). Sans cles notes = 0.
+    `PARI_SKIP_F00=1` coupe l enrichissement (CI).
+    `FOOTBALL_DATA_ORG_KEY` (env_pari) = repos F00, **pas Oracle, pas modele premium**.
+    Sportradar / WhoScored absents = notes: 0.
 2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
     E0/SP1/I1/D1/F1). Alias ligues v2.2.7 : `LaLiga` (sans espace) = SP1 ; `LaLiga 2`
     / Championship / Serie B rejetes. Alias clubs (`Ath Madrid`, `M'Gladbach`,
@@ -196,7 +198,8 @@ ou remplit à la main, jamais d'invention.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \
     --league-id 39 --date 2026-10-25 --out ARCHIVUM/fixtures/calendrier.json
 
-# ou football-data.org (12 compétitions gratis — FOOTBALL_DATA_ORG_KEY) :
+# football-data.org (F00 rest_days, 12 comps gratis — FOOTBALL_DATA_ORG_KEY dans env_pari).
+# Pas Oracle / pas modele premium. Header X-Auth-Token. Quota : lire X-Requests-Available-Minute.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source football-data-org \
     --competition PL --date-from 2026-10-24 --date-to 2026-10-27 \
     --out ARCHIVUM/fixtures/calendrier.json
@@ -363,10 +366,11 @@ sont la matière première de la calibration.
 2. Envoie un message à ton bot, puis récupère ton `chat_id` via
    `https://api.telegram.org/bot<TOKEN>/getUpdates`.
 3. Sur GitHub (repo) : **Settings → Secrets and variables → Actions** → ajoute :
-   - `TELEGRAM_BOT_TOKEN` = le token du bot
-   - `TELEGRAM_CHAT_ID` = ton chat_id
-   - `API_FOOTBALL_KEY` = (option) ta clé API-Football (100 req/jour)
-   - `ORACLE_API_KEY` = (option) ta clé LLM (TYRANT/HERALD)
+    - `TELEGRAM_BOT_TOKEN` = le token du bot
+    - `TELEGRAM_CHAT_ID` = ton chat_id
+    - `FOOTBALL_DATA_ORG_KEY` = (F00 rest_days) aussi dans `env_pari` — **pas Oracle**
+    - `API_FOOTBALL_KEY` = (option) calendrier API-Football (100 req/jour)
+    - `ORACLE_API_KEY` = (option) LLM TYRANT/HERALD seulement. Sans elle le siege tourne 100 %.
 4. Le workflow `.github/workflows/pari_daily.yml` tourne au cron quotidien :
    scan radar → pack → dashboard → **push Telegram** + commit des artefacts.
 5. Test manuel : onglet **Actions** → run manual `pari_daily`.

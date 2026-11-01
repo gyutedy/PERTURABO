@@ -89,7 +89,7 @@
 - [x] **TYRANT** : items F00, OUT seulement → `themes`. `notes_count: 0` → pas de filtre. Oracle / HERALD : commentaire après coup si clé, **jamais** un OUT.
 - [x] **`/data`** : préfixe `notes: N`. 0 = trou visible.
 - [x] **E2E** : `tests/e2e_f00.py` (vote, cache, trou, TYRANT DOUTE, Oracle silence). `PARI_SKIP_INJECT=1` / `PARI_SKIP_F00=1` = offline.
-- [ ] Clés live (`FOOTBALL_DATA_ORG_KEY`, Sportradar, WhoScored) : optionnelles. Sans clé = notes: 0.
+- [x] **`FOOTBALL_DATA_ORG_KEY` LIVE** (2026-11-01) : jeton football-data.org pose dans `env_pari`. Header `X-Auth-Token`. Ping `/v4/competitions` HTTP 200 (13 comps). F00 `rest_days` au `/capture` et `/valider-1`. **Indépendant d'Oracle / modèle premium** : `workflow.py` charge `env_pari` à chaque commande Telegram, secret GitHub vide n'écrase pas. Sportradar / WhoScored / API-Football / Oracle : encore vides = notes: 0.
 
 ## ETAT v2.3.1 — `/data` DEUX VUES (2026-10-31)
 
@@ -99,7 +99,7 @@
 - [x] **Cablage** : `workflow.cmd_data` ledger | digit → fiche | vide → compact. `parse.py` relais `/data 4` + help `/data N`. Worker JS stale jusqu'au merge.
 - [x] **E2E** : compact Q/H2H/TROU, trou = `—`, fiche H2H+forme, timing TROU, `/data 99` refuse, `/data 4` parse, ledger inchange, final ne casse pas.
 
-**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Ne pas committer de nouveaux secrets ni artefacts OUT/STATE. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Tokens operateur dans `env_pari` (versionne volontairement, periode de test). FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` = `/data` compact+fiche live (Actions checkout cette branche). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
+**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. `FOOTBALL_DATA_ORG_KEY` dans `env_pari` (periode de test, versionne volontairement) — F00 rest_days, PAS Oracle. FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` (Worker checkout). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

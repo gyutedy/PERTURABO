@@ -17,6 +17,29 @@ import urllib.request
 from datetime import datetime, timezone
 
 BASE = "https://api.football-data.org/v4"
+_WORLD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
+
+
+def _load_env_pari():
+    for name in (".env", "env_pari"):
+        path = os.path.join(_WORLD, name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
+_load_env_pari()
 
 
 def _key():
@@ -42,6 +65,10 @@ def _get(path, timeout=8):
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
+            left = r.headers.get("X-Requests-Available-Minute")
+            reset = r.headers.get("X-RequestCounter-Reset")
+            if left is not None:
+                print(f"[FOOTBALL-DATA.ORG] quota minute restant={left} reset={reset}s")
             return json.loads(r.read().decode())
     except Exception:
         return None
