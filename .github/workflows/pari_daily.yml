@@ -10,6 +10,7 @@
 # Secrets optionnels :
 #   API_FOOTBALL_KEY       (F00 calendrier — aussi env_pari, PAS Oracle)
 #   FOOTBALL_DATA_ORG_KEY  (F00 rest_days — aussi env_pari, PAS Oracle)
+#   SPORTRADAR_API_KEY     (F00 notes voix 2 — aussi env_pari, PAS Oracle)
 #   ORACLE_API_KEY         (TYRANT/HERALD LLM seulement ; siege 100% sans)
 
 name: pari-daily
@@ -63,6 +64,7 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+          SPORTRADAR_API_KEY: ${{ secrets.SPORTRADAR_API_KEY }}
         run: |
           cd MONDES_FORGES/PARI
           if [ -f ARCHIVUM/fixtures/matches.json ]; then

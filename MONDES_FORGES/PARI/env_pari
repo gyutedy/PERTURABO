@@ -5,7 +5,12 @@
 TELEGRAM_BOT_TOKEN=8791243287:AAEThmWUhVHHaJ2ZONDWgRoCKJDNYdNh2CY
 TELEGRAM_CHAT_ID=7710898895
 
-# Cles optionnelles. F00 calendrier / rest_days — pas Oracle, pas premium.
+# Cles optionnelles F00 — pas Oracle, pas premium.
+# API_FOOTBALL_KEY    : calendrier api-sports (100 req/jour Free)
+# FOOTBALL_DATA_ORG_KEY : rest_days / H2H football-data.org
+# SPORTRADAR_API_KEY  : notes voix 2 (trial v4, missing_players par saison)
+# ORACLE_API_KEY      : TYRANT/HERALD LLM uniquement (siege tourne sans)
 API_FOOTBALL_KEY=0889cdb2ceb58973ac277255b0854693
 FOOTBALL_DATA_ORG_KEY=ce779cd85dae41b698a4c100b1c11880
+SPORTRADAR_API_KEY=YO9IaVQ9sZnAUVd1p3my5hzlWy8Zynh2FjNIHY8e
 ORACLE_API_KEY=

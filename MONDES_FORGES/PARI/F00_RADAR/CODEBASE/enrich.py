@@ -131,9 +131,12 @@ def _attach_form_h2h(m, holes, code, key_fn=None):
             holes.append("h2h")
 
 
-def _voice(mod_name, team):
+def _voice(mod_name, team, code=None):
+    """code n'est utilise que par sportradar (index par competition)."""
     try:
         mod = __import__(mod_name)
+        if mod_name == "sportradar" and code:
+            return list(mod.missing_players(team, code) or [])
         return list(mod.missing_players(team) or [])
     except Exception:
         return []
@@ -148,12 +151,12 @@ def _notes_wanted():
                 or os.environ.get("RAPIDAPI_WHOSCORED_KEY"))
 
 
-def _collect_hits(team):
+def _collect_hits(team, code=None):
     if not _notes_wanted():
         return []
     hits = []
     hits.extend(_voice("sofascore", team))
-    hits.extend(_voice("sportradar", team))
+    hits.extend(_voice("sportradar", team, code))
     hits.extend(_voice("whoscored", team))
     return hits
 
@@ -257,7 +260,7 @@ def enrich_carte(carte, skip_notes=None, skip_binary=None):
         if not skip_notes and code in NOTES_3_VOIX:
             by_theme = {}
             for team in (dom, ext):
-                for h in _collect_hits(team):
+                for h in _collect_hits(team, code):
                     th = h.get("theme") or "blessures"
                     by_theme.setdefault(th, []).append(h)
             for th, hits in by_theme.items():

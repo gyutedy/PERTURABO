@@ -90,7 +90,8 @@
 - [x] **`/data`** : préfixe `notes: N`. 0 = trou visible.
 - [x] **E2E** : `tests/e2e_f00.py` (vote, cache, trou, TYRANT DOUTE, Oracle silence). `PARI_SKIP_INJECT=1` / `PARI_SKIP_F00=1` = offline.
 - [x] **`FOOTBALL_DATA_ORG_KEY` LIVE** (2026-11-01) : jeton football-data.org pose dans `env_pari`. Header `X-Auth-Token`. Ping `/v4/competitions` HTTP 200 (13 comps). F00 `rest_days` au `/capture` et `/valider-1`. **Indépendant d'Oracle / modèle premium** : `workflow.py` charge `env_pari` à chaque commande Telegram, secret GitHub vide n'écrase pas.
-- [x] **`API_FOOTBALL_KEY` LIVE** (2026-11-01) : jeton api-sports Free (100 req/jour) pose dans `env_pari`. Header `x-apisports-key`. Ping `/status` HTTP 200, plan active. Calendrier F00 (`fixtures-list`), **pas Oracle**. Sportradar / WhoScored / Oracle : encore vides = notes: 0.
+- [x] **`API_FOOTBALL_KEY` LIVE** (2026-11-01) : jeton api-sports Free (100 req/jour) pose dans `env_pari`. Header `x-apisports-key`. Ping `/status` HTTP 200, plan active. Calendrier F00 (`fixtures-list`), **pas Oracle**. WhoScored / Oracle : encore vides.
+- [x] **`SPORTRADAR_API_KEY` LIVE** (2026-11-01) : jeton trial v4 pose dans `env_pari`. Ping `/competitions` + `/seasons/{id}/missing_players` HTTP 200. **Route trial differenciee** : pas de search equipe, `missing_players` est publie PAR SAISON -> connecteur reecrit (saison courante des 6 championnats, cache 1 hit/jour/competition, matching nom normalise + difflib 0.9). Voix 2 notes = DOUTE seule ; OUT exige 3 voix. **Pas Oracle.**
 
 ## ETAT v2.3.1 — `/data` DEUX VUES (2026-10-31)
 
@@ -100,7 +101,7 @@
 - [x] **Cablage** : `workflow.cmd_data` ledger | digit → fiche | vide → compact. `parse.py` relais `/data 4` + help `/data N`. Worker JS stale jusqu'au merge.
 - [x] **E2E** : compact Q/H2H/TROU, trou = `—`, fiche H2H+forme, timing TROU, `/data 99` refuse, `/data 4` parse, ledger inchange, final ne casse pas.
 
-**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. `FOOTBALL_DATA_ORG_KEY` + `API_FOOTBALL_KEY` dans `env_pari` (periode de test) — F00, PAS Oracle. FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` (Worker checkout). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
+**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. `FOOTBALL_DATA_ORG_KEY` + `API_FOOTBALL_KEY` + `SPORTRADAR_API_KEY` dans `env_pari` (periode de test) — F00, PAS Oracle. FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` (Worker checkout). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
