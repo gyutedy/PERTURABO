@@ -1400,3 +1400,14 @@
 - Jeton api-sports Free pose dans `env_pari`. Header `x-apisports-key`. Ping `/status` HTTP 200, plan active, 100 req/jour.
 - Independante d Oracle / modele premium. `workflow.py` + `api_football.py` chargent `env_pari`.
 - Usage : `capteurs.py fixtures-list --source api-football`. Ne remplit pas notes / Elo / xG.
+
+## [2026-11-01T20:55:00Z] DECISION v2.3.2c — SPORTRADAR_API_KEY live (F00 notes voix 2)
+
+- Jeton Sportradar trial v4 pose dans `env_pari` (`SPORTRADAR_API_KEY`, alias `SR_API_KEY`).
+- Ping `/soccer/trial/v4/en/competitions.json` HTTP 200 (13 comps), `/seasons/{id}/missing_players.json` HTTP 200.
+- **Route trial differente** : `competitors/sr:competitor:search.json` et `competitors/{id}/missing_players.json` renvoient 404 Invalid route. `missing_players` est publie PAR SAISON.
+- `sportradar.py` reecrit : saison courante des 6 championnats (E0/SP1/I1/D1/F1/N1), index par competition + index global, cache 1 hit/jour (cles `sportradar_v4_*`), matching nom normalise + difflib cutoff 0.9, theme blessures/suspensions.
+- `enrich._voice` passe le code ligue a sportradar pour ne charger qu'une competition (cout index ~2 s parallelise, cache jour).
+- Voix 2 notes : seul il produit DOUTE ; OUT exige 3 voix independantes (sofascore + sportradar + opta).
+- Independante d Oracle / modele premium. `sportradar.py` charge `env_pari` a l'import.
+- E2E : F00 40/40, LISTEN 95/95, FINAL 14/14. Artefacts restaures.

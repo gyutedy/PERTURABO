@@ -194,6 +194,11 @@ ou remplit à la main, jamais d'invention.
 ### 🗓️ Le calendrier automatique (clés optionnelles)
 
 ```bash
+# Sportradar (trial v4 — SPORTRADAR_API_KEY dans env_pari).
+# missing_players est PAR SAISON : le connecteur resout la saison courante
+# des 6 championnats (E0/SP1/I1/D1/F1/N1), cache 1 hit/jour/competition.
+# Voix 2 des notes : seul, il ne peut produire que DOUTE (OUT = 3 voix).
+
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \
@@ -371,6 +376,7 @@ sont la matière première de la calibration.
     - `TELEGRAM_CHAT_ID` = ton chat_id
     - `FOOTBALL_DATA_ORG_KEY` = (F00 rest_days) aussi dans `env_pari` — **pas Oracle**
     - `API_FOOTBALL_KEY` = (F00 calendrier) aussi dans `env_pari` — **pas Oracle**
+    - `SPORTRADAR_API_KEY` = (F00 notes voix 2) aussi dans `env_pari` — **pas Oracle**
     - `ORACLE_API_KEY` = (option) LLM TYRANT/HERALD seulement. Sans elle le siege tourne 100 %.
 4. Le workflow `.github/workflows/pari_daily.yml` tourne au cron quotidien :
    scan radar → pack → dashboard → **push Telegram** + commit des artefacts.
