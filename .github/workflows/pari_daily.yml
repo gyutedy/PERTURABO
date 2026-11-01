@@ -8,7 +8,7 @@
 #   4. Sinon : le pipeline tourne et commit ses artefacts quand même — pas de push Telegram
 #
 # Secrets optionnels :
-#   API_FOOTBALL_KEY    (fixtures live plus tard)
+#   API_FOOTBALL_KEY       (F00 calendrier — aussi env_pari, PAS Oracle)
 #   FOOTBALL_DATA_ORG_KEY  (F00 rest_days — aussi env_pari, PAS Oracle)
 #   ORACLE_API_KEY         (TYRANT/HERALD LLM seulement ; siege 100% sans)
 

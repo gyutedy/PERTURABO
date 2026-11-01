@@ -1365,4 +1365,10 @@
 - Jeton football-data.org pose dans `env_pari`. Header `X-Auth-Token`. Ping `/v4/competitions` HTTP 200 (13 comps). Quota `X-Requests-Available-Minute`.
 - Independante d Oracle / modele premium. `workflow.py` charge `env_pari` a chaque commande Telegram (secret GitHub vide n ecrase pas).
 - F00 rest_days au `/capture` et `/valider-1` pour E0/SP1/I1/D1/F1. LaLiga 2 / Liga Portugal restent TROU.
-- Sportradar / WhoScored / API-Football / Oracle : encore absents = notes: 0.
+- Sportradar / WhoScored / Oracle : encore absents = notes: 0.
+
+## [2026-11-01T16:25:00Z] DECISION v2.3.2b — API_FOOTBALL_KEY live (F00 calendrier)
+
+- Jeton api-sports Free pose dans `env_pari`. Header `x-apisports-key`. Ping `/status` HTTP 200, plan active, 100 req/jour.
+- Independante d Oracle / modele premium. `workflow.py` + `api_football.py` chargent `env_pari`.
+- Usage : `capteurs.py fixtures-list --source api-football`. Ne remplit pas notes / Elo / xG.

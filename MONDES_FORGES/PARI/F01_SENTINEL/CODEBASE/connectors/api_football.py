@@ -17,6 +17,29 @@ import urllib.request
 from datetime import datetime, timezone
 
 BASE = "https://v3.football.api-sports.io"
+_WORLD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
+
+
+def _load_env_pari():
+    for name in (".env", "env_pari"):
+        path = os.path.join(_WORLD, name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
+_load_env_pari()
 
 
 def _season_for(date: str) -> int:
@@ -30,6 +53,10 @@ def _key():
         raise SystemExit("[API-FOOTBALL] Clé absente — ajoute API_FOOTBALL_KEY "
                          "(Settings → Keys, puis GitHub Secrets). 100 req/jour gratuites.")
     return key
+
+
+def _key_or_none():
+    return os.environ.get("API_FOOTBALL_KEY") or None
 
 
 def fixtures(date: str, league_id: int, timeout: int = 60) -> dict:

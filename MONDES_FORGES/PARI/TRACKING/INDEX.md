@@ -19,7 +19,7 @@ Cartographie des journaux du monde.
 | Repo vivant | `gyutedy/PERTURABO` branche `pari-forge-perturabo-xs4c` | Worker GH_OWNER |
 | Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | wrangler deploy |
 | `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE | workflow.py `/capture` `/valider-1` |
-| `env_pari` | Cles operateur (periode de test, versionne). `FOOTBALL_DATA_ORG_KEY` = F00 rest_days, independant d'Oracle. Charge par `workflow.load_env_pari` a chaque commande Telegram. | workflow.py, football_data_org.py, notifier.py |
+| `env_pari` | Cles operateur (periode de test, versionne). `FOOTBALL_DATA_ORG_KEY` = F00 rest_days. `API_FOOTBALL_KEY` = F00 calendrier. Independantes d'Oracle. Charge par `workflow.load_env_pari` a chaque commande Telegram. | workflow.py, football_data_org.py, api_football.py, notifier.py |
 | `ARCHIVUM/cache/f00/` | Cache 1 hit / equipe / jour (gitignore) | F00 enrich |
 | `ARCHIVUM/fixtures/notes_qualitatives.json` | Notes votees F00 (OUT → TYRANT) | enrich.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |
