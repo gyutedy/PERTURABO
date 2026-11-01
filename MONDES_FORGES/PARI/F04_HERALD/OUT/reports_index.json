@@ -1,59 +1,35 @@
 {
-  "generated_at": "2026-10-31T19:34:15Z",
+  "generated_at": "2026-11-01T14:44:32Z",
   "reports": [
     {
       "id": "M1",
-      "match": "Karlsruher SC vs FC Heidenheim",
-      "verdict": "THIN",
+      "match": "US Lecce vs Genoa CFC",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
     },
     {
       "id": "M2",
-      "match": "ESTAC Troyes vs Le Mans FC",
+      "match": "Elche CF vs Valencia CF",
       "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
     },
     {
       "id": "M3",
-      "match": "AC Milan vs Inter Milano",
+      "match": "Burgos CF vs CD Castellon",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {
       "id": "M4",
-      "match": "Aston Villa vs Fulham FC",
+      "match": "Academico de Viseu FC vs Rio Ave FC",
       "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
     },
     {
       "id": "M5",
-      "match": "FC Barcelona vs Deportivo Alaves",
+      "match": "Maritimo Madeira vs Santa Clara Azores",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
-    },
-    {
-      "id": "M6",
-      "match": "Ajax Amsterdam vs AZ Alkmaar",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
-    },
-    {
-      "id": "M7",
-      "match": "SC Cambuur vs Go Ahead Eagles",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
-    },
-    {
-      "id": "M8",
-      "match": "Albacete Balompie vs CE Sabadell FC",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
-    },
-    {
-      "id": "M9",
-      "match": "FC Porto vs Estoril Praia",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
     }
   ],
   "oracle_utilise": false

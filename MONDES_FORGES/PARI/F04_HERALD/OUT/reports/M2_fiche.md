@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — ESTAC Troyes vs Le Mans FC
-*Générée le 2026-10-31 19:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Elche CF vs Valencia CF
+*Générée le 2026-11-01 14:44 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 44.5%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 48.9%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.25 | 64.2% | 44.5% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.35 | 19.4% | -34.9% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 3.2 | 16.4% | -47.6% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.32 | 64.2% | 48.9% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.3 | 19.4% | -35.9% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.05 | 16.4% | -50.1% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.3% | -39.1% | ⛔ NO_BET | — |
 
 ## Ordre de marche

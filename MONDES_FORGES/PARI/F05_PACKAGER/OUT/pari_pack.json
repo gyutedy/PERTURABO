@@ -1,102 +1,58 @@
 {
-  "generated_at": "2026-10-31T19:34:15Z",
+  "generated_at": "2026-11-01T14:44:32Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 6",
+  "titre": "DIRECTION DES SIÈGES — TOP 3",
   "top_picks": [
     {
-      "match_id": "M5",
-      "match": "FC Barcelona vs Deportivo Alaves",
+      "match_id": "M3",
+      "match": "Burgos CF vs CD Castellon",
       "marche": "1X2",
-      "selection": "2",
-      "selection_label": "Victoire Extérieur",
-      "cote": 18.0,
-      "p_modele": 0.1945,
-      "ev": 2.501,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 3.3,
+      "p_modele": 0.6787,
+      "ev": 1.2397,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 1
     },
     {
-      "match_id": "M3",
-      "match": "AC Milan vs Inter Milano",
+      "match_id": "M5",
+      "match": "Maritimo Madeira vs Santa Clara Azores",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 3.7,
-      "p_modele": 0.6787,
-      "ev": 1.5112,
+      "cote": 3.25,
+      "p_modele": 0.5949,
+      "ev": 0.9334,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 2
     },
     {
-      "match_id": "M5",
-      "match": "FC Barcelona vs Deportivo Alaves",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 10.0,
-      "p_modele": 0.2106,
-      "ev": 1.106,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 3
-    },
-    {
-      "match_id": "M8",
-      "match": "Albacete Balompie vs CE Sabadell FC",
-      "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 2.42,
-      "p_modele": 0.7983,
-      "ev": 0.9319,
-      "mise_units": 3.0,
-      "note_risque": "qualité data: haute",
-      "rang": 4
-    },
-    {
-      "match_id": "M7",
-      "match": "SC Cambuur vs Go Ahead Eagles",
+      "match_id": "M1",
+      "match": "US Lecce vs Genoa CFC",
       "marche": "1X2",
       "selection": "2",
       "selection_label": "Victoire Extérieur",
-      "cote": 2.52,
-      "p_modele": 0.5825,
-      "ev": 0.4679,
+      "cote": 2.47,
+      "p_modele": 0.4926,
+      "ev": 0.2167,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
-      "rang": 5
-    },
-    {
-      "match_id": "M9",
-      "match": "FC Porto vs Estoril Praia",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 6.4,
-      "p_modele": 0.1724,
-      "ev": 0.1034,
-      "mise_units": 0.48,
-      "note_risque": "qualité data: haute",
-      "rang": 6
+      "rang": 3
     }
   ],
   "no_bet": [
     {
       "match_id": "M2",
-      "match": "ESTAC Troyes vs Le Mans FC",
+      "match": "Elche CF vs Valencia CF",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M4",
-      "match": "Aston Villa vs Fulham FC",
-      "raison": "EV < seuil sur tous les marchés"
-    },
-    {
-      "match_id": "M6",
-      "match": "Ajax Amsterdam vs AZ Alkmaar",
+      "match": "Academico de Viseu FC vs Rio Ave FC",
       "raison": "EV < seuil sur tous les marchés"
     }
   ],
@@ -104,27 +60,27 @@
     {
       "jambes": [
         {
-          "match_id": "M5",
-          "selection": "2",
-          "cote": 18.0,
-          "p_modele": 0.1945
-        },
-        {
           "match_id": "M3",
           "selection": "1",
-          "cote": 3.7,
+          "cote": 3.3,
           "p_modele": 0.6787
         },
         {
           "match_id": "M5",
-          "selection": "X",
-          "cote": 10.0,
-          "p_modele": 0.2106
+          "selection": "1",
+          "cote": 3.25,
+          "p_modele": 0.5949
+        },
+        {
+          "match_id": "M1",
+          "selection": "2",
+          "cote": 2.47,
+          "p_modele": 0.4926
         }
       ],
-      "cote_totale": 666.0,
-      "ev_combine": 17.5153,
-      "mise_units": 0.33
+      "cote_totale": 26.49,
+      "ev_combine": 4.2686,
+      "mise_units": 1.0
     }
   ],
   "loterie": {
@@ -133,11 +89,11 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 15.81,
-    "ev_moyenne_pct": 1.1036,
-    "nb_matchs_analyses": 9,
-    "nb_no_bet": 3,
-    "nb_matchs_go": 6
+    "mise_totale_units": 10.0,
+    "ev_moyenne_pct": 0.7966,
+    "nb_matchs_analyses": 5,
+    "nb_no_bet": 2,
+    "nb_matchs_go": 3
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
   "carte_tyran": {

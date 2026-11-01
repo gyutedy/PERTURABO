@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-10-31T19:34:15Z",
+  "generated_at": "2026-11-01T14:44:31Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "predictions": [
     {
       "id": "M1",
-      "match": "Karlsruher SC vs FC Heidenheim",
+      "match": "US Lecce vs Genoa CFC",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 3.15,
-          "cote_juste_marche": 3.495,
+          "cote_juste_marche": 3.336,
           "p_modele": 0.213,
           "ev": -0.3291,
           "verdict": "NO_BET",
@@ -22,23 +22,23 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.65,
-          "cote_juste_marche": 4.05,
+          "cote": 2.97,
+          "cote_juste_marche": 3.145,
           "p_modele": 0.2945,
-          "ev": 0.0749,
-          "verdict": "THIN",
-          "mise_units": 0.35
+          "ev": -0.1253,
+          "verdict": "NO_BET",
+          "mise_units": null
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 1.93,
-          "cote_juste_marche": 2.141,
+          "cote": 2.47,
+          "cote_juste_marche": 2.616,
           "p_modele": 0.4926,
-          "ev": -0.0493,
-          "verdict": "NO_BET",
-          "mise_units": null
+          "ev": 0.2167,
+          "verdict": "VALUE",
+          "mise_units": 3.0
         },
         {
           "marche": "MT_PROLIFIQUE",
@@ -52,21 +52,21 @@
           "mise_units": null
         }
       ],
-      "verdict": "THIN",
-      "meilleure_ev": 0.0749
+      "verdict": "GO",
+      "meilleure_ev": 0.2167
     },
     {
       "id": "M2",
-      "match": "ESTAC Troyes vs Le Mans FC",
+      "match": "Elche CF vs Valencia CF",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.25,
-          "cote_juste_marche": 2.375,
+          "cote": 2.32,
+          "cote_juste_marche": 2.464,
           "p_modele": 0.642,
-          "ev": 0.4445,
+          "ev": 0.4894,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -74,10 +74,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.35,
-          "cote_juste_marche": 3.536,
+          "cote": 3.3,
+          "cote_juste_marche": 3.504,
           "p_modele": 0.1944,
-          "ev": -0.3488,
+          "ev": -0.3585,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -85,10 +85,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.2,
-          "cote_juste_marche": 3.377,
+          "cote": 3.05,
+          "cote_juste_marche": 3.239,
           "p_modele": 0.1636,
-          "ev": -0.4765,
+          "ev": -0.501,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -105,20 +105,20 @@
         }
       ],
       "verdict": "NO_BET",
-      "meilleure_ev": 0.4445
+      "meilleure_ev": 0.4894
     },
     {
       "id": "M3",
-      "match": "AC Milan vs Inter Milano",
+      "match": "Burgos CF vs CD Castellon",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.7,
-          "cote_juste_marche": 3.922,
+          "cote": 3.3,
+          "cote_juste_marche": 3.641,
           "p_modele": 0.6787,
-          "ev": 1.5112,
+          "ev": 1.2397,
           "verdict": "VALUE",
           "mise_units": 3.0
         },
@@ -126,10 +126,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.45,
-          "cote_juste_marche": 3.657,
+          "cote": 3.2,
+          "cote_juste_marche": 3.531,
           "p_modele": 0.1607,
-          "ev": -0.4456,
+          "ev": -0.4858,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -137,10 +137,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.0,
-          "cote_juste_marche": 2.12,
+          "cote": 2.05,
+          "cote_juste_marche": 2.262,
           "p_modele": 0.1606,
-          "ev": -0.6788,
+          "ev": -0.6708,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -157,20 +157,20 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 1.5112
+      "meilleure_ev": 1.2397
     },
     {
       "id": "M4",
-      "match": "Aston Villa vs Fulham FC",
+      "match": "Academico de Viseu FC vs Rio Ave FC",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.0,
-          "cote_juste_marche": 2.119,
+          "cote": 1.79,
+          "cote_juste_marche": 1.985,
           "p_modele": 0.5633,
-          "ev": 0.1266,
+          "ev": 0.0083,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -178,10 +178,10 @@
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.65,
-          "cote_juste_marche": 3.868,
+          "cote": 3.4,
+          "cote_juste_marche": 3.771,
           "p_modele": 0.2609,
-          "ev": -0.0477,
+          "ev": -0.1129,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -189,10 +189,10 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 3.5,
-          "cote_juste_marche": 3.709,
+          "cote": 3.9,
+          "cote_juste_marche": 4.326,
           "p_modele": 0.1758,
-          "ev": -0.3847,
+          "ev": -0.3144,
           "verdict": "NO_BET",
           "mise_units": null
         },
@@ -209,44 +209,44 @@
         }
       ],
       "verdict": "NO_BET",
-      "meilleure_ev": 0.1266
+      "meilleure_ev": 0.0083
     },
     {
       "id": "M5",
-      "match": "FC Barcelona vs Deportivo Alaves",
+      "match": "Maritimo Madeira vs Santa Clara Azores",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.1,
-          "cote_juste_marche": 1.171,
+          "cote": 3.25,
+          "cote_juste_marche": 3.606,
           "p_modele": 0.5949,
-          "ev": -0.3456,
-          "verdict": "NO_BET",
-          "mise_units": null
+          "ev": 0.9334,
+          "verdict": "VALUE",
+          "mise_units": 3.0
         },
         {
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 10.0,
-          "cote_juste_marche": 10.646,
+          "cote": 2.97,
+          "cote_juste_marche": 3.295,
           "p_modele": 0.2106,
-          "ev": 1.106,
-          "verdict": "VALUE",
-          "mise_units": 3.0
+          "ev": -0.3745,
+          "verdict": "NO_BET",
+          "mise_units": null
         },
         {
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 18.0,
-          "cote_juste_marche": 19.164,
+          "cote": 2.15,
+          "cote_juste_marche": 2.385,
           "p_modele": 0.1945,
-          "ev": 2.501,
-          "verdict": "VALUE",
-          "mise_units": 3.0
+          "ev": -0.5818,
+          "verdict": "NO_BET",
+          "mise_units": null
         },
         {
           "marche": "MT_PROLIFIQUE",
@@ -261,242 +261,34 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 2.501
-    },
-    {
-      "id": "M6",
-      "match": "Ajax Amsterdam vs AZ Alkmaar",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.8,
-          "cote_juste_marche": 1.909,
-          "p_modele": 0.0452,
-          "ev": -0.9186,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 4.2,
-          "cote_juste_marche": 4.453,
-          "p_modele": 0.6403,
-          "ev": 1.6893,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 3.75,
-          "cote_juste_marche": 3.976,
-          "p_modele": 0.3145,
-          "ev": 0.1794,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.396,
-          "p_modele": 0.6473,
-          "ev": 0.9419,
-          "verdict": "NO_BET",
-          "mise_units": null
-        }
-      ],
-      "verdict": "NO_BET",
-      "meilleure_ev": 1.6893
-    },
-    {
-      "id": "M7",
-      "match": "SC Cambuur vs Go Ahead Eagles",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.5,
-          "cote_juste_marche": 2.641,
-          "p_modele": 0.2133,
-          "ev": -0.4667,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.85,
-          "cote_juste_marche": 4.068,
-          "p_modele": 0.2041,
-          "ev": -0.2142,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 2.52,
-          "cote_juste_marche": 2.663,
-          "p_modele": 0.5825,
-          "ev": 0.4679,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.396,
-          "p_modele": 0.1973,
-          "ev": -0.4081,
-          "verdict": "NO_BET",
-          "mise_units": null
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.4679
-    },
-    {
-      "id": "M8",
-      "match": "Albacete Balompie vs CE Sabadell FC",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.42,
-          "cote_juste_marche": 2.687,
-          "p_modele": 0.7983,
-          "ev": 0.9319,
-          "verdict": "VALUE",
-          "mise_units": 3.0
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 2.92,
-          "cote_juste_marche": 3.242,
-          "p_modele": 0.135,
-          "ev": -0.6058,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 2.82,
-          "cote_juste_marche": 3.131,
-          "p_modele": 0.0667,
-          "ev": -0.8119,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.396,
-          "p_modele": 0.2051,
-          "ev": -0.3847,
-          "verdict": "NO_BET",
-          "mise_units": null
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.9319
-    },
-    {
-      "id": "M9",
-      "match": "FC Porto vs Estoril Praia",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.14,
-          "cote_juste_marche": 1.273,
-          "p_modele": 0.7501,
-          "ev": -0.1449,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 6.4,
-          "cote_juste_marche": 7.147,
-          "p_modele": 0.1724,
-          "ev": 0.1034,
-          "verdict": "VALUE",
-          "mise_units": 0.48
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 12.0,
-          "cote_juste_marche": 13.401,
-          "p_modele": 0.0775,
-          "ev": -0.07,
-          "verdict": "NO_BET",
-          "mise_units": null
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.396,
-          "p_modele": 0.2292,
-          "ev": -0.3124,
-          "verdict": "NO_BET",
-          "mise_units": null
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.1034
+      "meilleure_ev": 0.9334
     }
   ],
   "combines": [
     {
       "jambes": [
         {
-          "match_id": "M5",
-          "selection": "2",
-          "cote": 18.0,
-          "p_modele": 0.1945
-        },
-        {
           "match_id": "M3",
           "selection": "1",
-          "cote": 3.7,
+          "cote": 3.3,
           "p_modele": 0.6787
         },
         {
           "match_id": "M5",
-          "selection": "X",
-          "cote": 10.0,
-          "p_modele": 0.2106
+          "selection": "1",
+          "cote": 3.25,
+          "p_modele": 0.5949
+        },
+        {
+          "match_id": "M1",
+          "selection": "2",
+          "cote": 2.47,
+          "p_modele": 0.4926
         }
       ],
-      "cote_totale": 666.0,
-      "ev_combine": 17.5153,
-      "mise_units": 0.33
+      "cote_totale": 26.49,
+      "ev_combine": 4.2686,
+      "mise_units": 1.0
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-31T19:34:15Z",
+  "generated_at": "2026-11-01T14:44:32Z",
   "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
   "source_predictions": "predictions.json",
   "matchs": [
     {
       "id": "M3",
-      "match": "AC Milan vs Inter Milano",
+      "match": "Burgos CF vs CD Castellon",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
       "score_commun": 10.0,
@@ -17,20 +17,20 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.7,
+          "cote": 3.3,
           "p_modele": 0.6787,
-          "ev": 1.5112
+          "ev": 1.2397
         }
       ],
       "quality_data": "haute",
       "rang_global": 1
     },
     {
-      "id": "M8",
-      "match": "Albacete Balompie vs CE Sabadell FC",
+      "id": "M5",
+      "match": "Maritimo Madeira vs Santa Clara Azores",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
-      "score_commun": 10.0,
+      "score_commun": 9.7,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -39,20 +39,20 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.42,
-          "p_modele": 0.7983,
-          "ev": 0.9319
+          "cote": 3.25,
+          "p_modele": 0.5949,
+          "ev": 0.9334
         }
       ],
       "quality_data": "haute",
       "rang_global": 2
     },
     {
-      "id": "M7",
-      "match": "SC Cambuur vs Go Ahead Eagles",
+      "id": "M1",
+      "match": "US Lecce vs Genoa CFC",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
-      "score_commun": 9.6,
+      "score_commun": 9.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -61,57 +61,17 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.52,
-          "p_modele": 0.5825,
-          "ev": 0.4679
+          "cote": 2.47,
+          "p_modele": 0.4926,
+          "ev": 0.2167
         }
       ],
       "quality_data": "haute",
       "rang_global": 3
     },
     {
-      "id": "M1",
-      "match": "Karlsruher SC vs FC Heidenheim",
-      "verdict_modele": "THIN",
-      "bucket": "HAUTE",
-      "score_commun": 8.7,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.65,
-          "p_modele": 0.2945,
-          "ev": 0.0749
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 1.93,
-          "p_modele": 0.4926,
-          "ev": -0.0493
-        },
-        {
-          "rang": 3,
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "p_modele": 0.272,
-          "ev": -0.184
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 4
-    },
-    {
       "id": "M2",
-      "match": "ESTAC Troyes vs Le Mans FC",
+      "match": "Elche CF vs Valencia CF",
       "verdict_modele": "NO_BET",
       "bucket": "HAUTE",
       "score_commun": 8.3,
@@ -123,18 +83,18 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.25,
+          "cote": 2.32,
           "p_modele": 0.642,
-          "ev": 0.4445
+          "ev": 0.4894
         },
         {
           "rang": 2,
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.35,
+          "cote": 3.3,
           "p_modele": 0.1944,
-          "ev": -0.3488
+          "ev": -0.3585
         },
         {
           "rang": 3,
@@ -147,54 +107,14 @@
         }
       ],
       "quality_data": "basse",
-      "rang_global": 5
-    },
-    {
-      "id": "M6",
-      "match": "Ajax Amsterdam vs AZ Alkmaar",
-      "verdict_modele": "NO_BET",
-      "bucket": "HAUTE",
-      "score_commun": 8.3,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 4.2,
-          "p_modele": 0.6403,
-          "ev": 1.6893
-        },
-        {
-          "rang": 2,
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "p_modele": 0.6473,
-          "ev": 0.9419
-        },
-        {
-          "rang": 3,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 3.75,
-          "p_modele": 0.3145,
-          "ev": 0.1794
-        }
-      ],
-      "quality_data": "basse",
-      "rang_global": 6
+      "rang_global": 4
     },
     {
       "id": "M4",
-      "match": "Aston Villa vs Fulham FC",
+      "match": "Academico de Viseu FC vs Rio Ave FC",
       "verdict_modele": "NO_BET",
-      "bucket": "HAUTE",
-      "score_commun": 7.8,
+      "bucket": "MOYENNE",
+      "score_commun": 6.4,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -203,18 +123,18 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.0,
+          "cote": 1.79,
           "p_modele": 0.5633,
-          "ev": 0.1266
+          "ev": 0.0083
         },
         {
           "rang": 2,
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.65,
+          "cote": 3.4,
           "p_modele": 0.2609,
-          "ev": -0.0477
+          "ev": -0.1129
         },
         {
           "rang": 3,
@@ -227,60 +147,7 @@
         }
       ],
       "quality_data": "basse",
-      "rang_global": 7
-    },
-    {
-      "id": "M5",
-      "match": "FC Barcelona vs Deportivo Alaves",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 7.3,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 18.0,
-          "p_modele": 0.1945,
-          "ev": 2.501
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 10.0,
-          "p_modele": 0.2106,
-          "ev": 1.106
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 8
-    },
-    {
-      "id": "M9",
-      "match": "FC Porto vs Estoril Praia",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 7.1,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 6.4,
-          "p_modele": 0.1724,
-          "ev": 0.1034
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 9
+      "rang_global": 5
     }
   ]
 }

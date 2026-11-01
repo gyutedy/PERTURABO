@@ -1,78 +1,32 @@
 {
-  "generated_at": "2026-10-31T19:34:14Z",
+  "generated_at": "2026-11-01T14:44:31Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 3,
-  "no_bet": 6,
+  "go": 2,
+  "no_bet": 3,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 3 GO / 6 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 2 GO / 3 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Karlsruher SC vs FC Heidenheim",
-      "verdict": "NO_BET",
+      "match": "US Lecce vs Genoa CFC",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M2",
-      "match": "ESTAC Troyes vs Le Mans FC",
-      "verdict": "NO_BET",
+      "match": "Elche CF vs Valencia CF",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (4 matchs < 6)",
-        "échantillon ext insuffisant (4 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M3",
-      "match": "AC Milan vs Inter Milano",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M4",
-      "match": "Aston Villa vs Fulham FC",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M5",
-      "match": "FC Barcelona vs Deportivo Alaves",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M6",
-      "match": "Ajax Amsterdam vs AZ Alkmaar",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M7",
-      "match": "SC Cambuur vs Go Ahead Eagles",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (5 matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ]
-    },
-    {
-      "id": "M8",
-      "match": "Albacete Balompie vs CE Sabadell FC",
+      "match": "Burgos CF vs CD Castellon",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",
@@ -81,8 +35,18 @@
       ]
     },
     {
-      "id": "M9",
-      "match": "FC Porto vs Estoril Praia",
+      "id": "M4",
+      "match": "Academico de Viseu FC vs Rio Ave FC",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M5",
+      "match": "Maritimo Madeira vs Santa Clara Azores",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon dom insuffisant (None matchs < 6)",

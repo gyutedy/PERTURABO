@@ -1,20 +1,20 @@
 {
   "source": "input_capture",
-  "generated_at": "2026-10-31T19:32:51Z",
+  "generated_at": "2026-11-01T14:43:25Z",
   "ligue": "Capture — ligue à confirmer",
-  "horizon": "capture 2026-10-31",
+  "horizon": "capture 2026-11-01",
   "matchs": [
     {
       "id": "M1",
-      "dom": "Karlsruher SC",
-      "ext": "FC Heidenheim",
-      "ligue": "Allemagne - 2. Bundesliga",
-      "date": "2026-10-31",
-      "heure": "20:30",
+      "dom": "US Lecce",
+      "ext": "Genoa CFC",
+      "ligue": "Italie - Serie A",
+      "date": "2026-11-01",
+      "heure": "18:00",
       "cotes": {
         "1": 3.15,
-        "X": 3.65,
-        "2": 1.93,
+        "X": 2.97,
+        "2": 2.47,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -27,6 +27,121 @@
         "mt2",
         "mte"
       ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 7.0,
+          "encaisses": 15.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 2.0,
+          "encaisses_mt2": 11.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 19.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 13.0
+        }
+      },
+      "form": {
+        "dom": [],
+        "ext": [
+          {
+            "date": "2026-10-28",
+            "opp": "Juventus",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 14.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Venezia",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 7.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Roma",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Fiorentina",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "2-0",
+            "hs": 10.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Parma",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Frosinone",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-04",
+            "opp": "Como",
+            "venue": "H",
+            "ft": "1-4",
+            "ht": "1-3",
+            "hs": 11.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Lazio",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Napoli",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Lecce",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 1.0
+          }
+        ]
+      },
       "holes": [
         "elo",
         "xg",
@@ -39,15 +154,15 @@
     },
     {
       "id": "M2",
-      "dom": "ESTAC Troyes",
-      "ext": "Le Mans FC",
-      "ligue": "France - Ligue 1",
-      "date": "2026-10-31",
-      "heure": "20:45",
+      "dom": "Elche CF",
+      "ext": "Valencia CF",
+      "ligue": "Espagne - LaLiga",
+      "date": "2026-11-01",
+      "heure": "18:30",
       "cotes": {
-        "1": 2.25,
-        "X": 3.35,
-        "2": 3.2,
+        "1": 2.32,
+        "X": 3.3,
+        "2": 3.05,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -62,213 +177,74 @@
       ],
       "stats": {
         "dom": {
-          "mj": 4,
-          "marques": 3.0,
-          "encaisses": 11.0,
-          "marques_mt1": 2.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 1.0,
+          "mj": 12,
+          "marques": 20.0,
+          "encaisses": 13.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 13.0,
           "encaisses_mt2": 7.0
         },
         "ext": {
-          "mj": 4,
-          "marques": 5.0,
-          "encaisses": 8.0,
+          "mj": 12,
+          "marques": 10.0,
+          "encaisses": 24.0,
           "marques_mt1": 2.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 3.0,
-          "encaisses_mt2": 4.0
-        }
-      },
-      "form": {
-        "dom": [],
-        "ext": [
-          {
-            "date": "2026-10-25",
-            "opp": "Auxerre",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-10-16",
-            "opp": "Toulouse",
-            "venue": "H",
-            "ft": "0-3",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Paris SG",
-            "venue": "A",
-            "ft": "1-3",
-            "ht": "0-1",
-            "hs": 11.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Lorient",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "1-0",
-            "hs": 11.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-13",
-            "opp": "Lens",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "2-1",
-            "hs": 13.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Nice",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "1-1",
-            "hs": 8.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-08-30",
-            "opp": "Rennes",
-            "venue": "A",
-            "ft": "2-3",
-            "ht": "1-2",
-            "hs": 12.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-08-22",
-            "opp": "Brest",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "1-1",
-            "hs": 8.0,
-            "hst": 5.0
-          }
-        ]
-      },
-      "holes": [
-        "elo",
-        "xg",
-        "rest_days",
-        "h2h",
-        "form",
-        "h2h_scores",
-        "timing"
-      ]
-    },
-    {
-      "id": "M3",
-      "dom": "AC Milan",
-      "ext": "Inter Milano",
-      "ligue": "Italie - Serie A",
-      "date": "2026-10-31",
-      "heure": "20:45",
-      "cotes": {
-        "1": 3.7,
-        "X": 3.45,
-        "2": 2.0,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 18.0,
-          "encaisses": 10.0,
-          "marques_mt1": 7.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 11.0,
-          "encaisses_mt2": 6.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 21.0,
-          "encaisses": 8.0,
-          "marques_mt1": 8.0,
-          "encaisses_mt1": 5.0,
-          "marques_mt2": 13.0,
-          "encaisses_mt2": 3.0
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 14.0
         }
       },
       "form": {
         "dom": [
           {
-            "date": "2026-10-28",
-            "opp": "Bologna",
-            "venue": "H",
-            "ft": "2-4",
-            "ht": "2-1",
-            "hs": 8.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-25",
-            "opp": "Udinese",
+            "date": "2026-10-24",
+            "opp": "Vallecano",
             "venue": "A",
-            "ft": "2-0",
-            "ht": "1-0",
-            "hs": 19.0,
-            "hst": 7.0
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 16.0,
+            "hst": 9.0
           },
           {
-            "date": "2026-10-18",
-            "opp": "Atalanta",
-            "venue": "H",
-            "ft": "3-2",
-            "ht": "2-0",
-            "hs": 11.0,
-            "hst": 6.0
+            "date": "2026-10-17",
+            "opp": "Villarreal",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 1.0
           },
           {
             "date": "2026-10-11",
-            "opp": "Sassuolo",
-            "venue": "A",
-            "ft": "1-1",
+            "opp": "Celta",
+            "venue": "H",
+            "ft": "0-0",
             "ht": "0-0",
-            "hs": 11.0,
+            "hs": 13.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-18",
+            "opp": "Espanol",
+            "venue": "A",
+            "ft": "3-1",
+            "ht": "2-0",
+            "hs": 9.0,
             "hst": 6.0
           },
           {
-            "date": "2026-09-20",
-            "opp": "Lecce",
+            "date": "2026-09-15",
+            "opp": "Real Madrid",
             "venue": "H",
-            "ft": "3-0",
-            "ht": "1-0",
-            "hs": 10.0,
-            "hst": 4.0
+            "ft": "2-3",
+            "ht": "0-2",
+            "hs": 11.0,
+            "hst": 3.0
           },
           {
             "date": "2026-09-12",
-            "opp": "Lazio",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "0-2",
-            "hs": 16.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Juventus",
+            "opp": "Ath Bilbao",
             "venue": "A",
             "ft": "1-1",
             "ht": "0-0",
@@ -276,35 +252,188 @@
             "hst": 1.0
           },
           {
-            "date": "2026-08-28",
-            "opp": "Venezia",
+            "date": "2026-09-07",
+            "opp": "Sociedad",
             "venue": "H",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 16.0,
-            "hst": 5.0
+            "ft": "2-3",
+            "ht": "0-2",
+            "hs": 20.0,
+            "hst": 10.0
+          },
+          {
+            "date": "2026-08-28",
+            "opp": "Santander",
+            "venue": "A",
+            "ft": "2-3",
+            "ht": "0-3",
+            "hs": 18.0,
+            "hst": 7.0
           },
           {
             "date": "2026-08-23",
-            "opp": "Torino",
+            "opp": "Barcelona",
+            "venue": "H",
+            "ft": "0-5",
+            "ht": "0-2",
+            "hs": 7.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-17",
+            "opp": "La Coruna",
             "venue": "A",
-            "ft": "2-1",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 11.0,
+            "hst": 6.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-24",
+            "opp": "Villarreal",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 9.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Ath Bilbao",
+            "venue": "H",
+            "ft": "0-0",
             "ht": "0-0",
-            "hs": 19.0,
+            "hs": 16.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Santander",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 10.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Sociedad",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "0-1",
+            "hs": 22.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-15",
+            "opp": "Alaves",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-11",
+            "opp": "Sevilla",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 3.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Barcelona",
+            "venue": "H",
+            "ft": "0-5",
+            "ht": "0-2",
+            "hs": 3.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "La Coruna",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "1-2",
+            "hs": 12.0,
             "hst": 4.0
           },
           {
-            "date": "2026-05-24",
-            "opp": "Cagliari",
+            "date": "2026-08-25",
+            "opp": "Betis",
             "venue": "H",
-            "ft": "1-2",
-            "ht": "1-1",
+            "ft": "0-1",
+            "ht": "0-0",
             "hs": 16.0,
             "hst": 3.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Celta",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 8.0,
+            "hst": 2.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-04-11",
+            "home": "Elche",
+            "away": "Valencia",
+            "ft": "1-0",
+            "ht": "0-0"
+          },
+          {
+            "date": "2026-01-10",
+            "home": "Valencia",
+            "away": "Elche",
+            "ft": "1-1",
+            "ht": "0-0"
           }
         ],
-        "ext": []
+        "played": 2,
+        "dom_wins": 1,
+        "draws": 1,
+        "ext_wins": 0,
+        "source": "football-data.co.uk"
       },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M3",
+      "dom": "Burgos CF",
+      "ext": "CD Castellon",
+      "ligue": "Espagne - LaLiga 2",
+      "date": "2026-11-01",
+      "heure": "18:30",
+      "cotes": {
+        "1": 3.3,
+        "X": 3.2,
+        "2": 2.05,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
       "holes": [
         "elo",
         "xg",
@@ -317,15 +446,15 @@
     },
     {
       "id": "M4",
-      "dom": "Aston Villa",
-      "ext": "Fulham FC",
-      "ligue": "Angleterre - Premier League",
-      "date": "2026-10-31",
-      "heure": "21:00",
+      "dom": "Academico de Viseu FC",
+      "ext": "Rio Ave FC",
+      "ligue": "Portugal - Liga Portugal",
+      "date": "2026-11-01",
+      "heure": "19:00",
       "cotes": {
-        "1": 2.0,
-        "X": 3.65,
-        "2": 3.5,
+        "1": 1.79,
+        "X": 3.4,
+        "2": 3.9,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -338,811 +467,27 @@
         "mt2",
         "mte"
       ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 18.0,
-          "encaisses": 10.0,
-          "marques_mt1": 8.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 10.0,
-          "encaisses_mt2": 6.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 13.0,
-          "encaisses": 21.0,
-          "marques_mt1": 5.0,
-          "encaisses_mt1": 7.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 14.0
-        }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-10-24",
-            "opp": "Man City",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "1-0",
-            "hs": 8.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Newcastle",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 15.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Brentford",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "1-1",
-            "hs": 20.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Tottenham",
-            "venue": "A",
-            "ft": "3-2",
-            "ht": "1-0",
-            "hs": 15.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Nott'm Forest",
-            "venue": "H",
-            "ft": "1-2",
-            "ht": "0-0",
-            "hs": 7.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Hull",
-            "venue": "A",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-08-31",
-            "opp": "Arsenal",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 7.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-08-23",
-            "opp": "Brighton",
-            "venue": "A",
-            "ft": "0-4",
-            "ht": "0-4",
-            "hs": 6.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Man City",
-            "venue": "A",
-            "ft": "2-1",
-            "ht": "0-1",
-            "hs": 12.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-05-15",
-            "opp": "Liverpool",
-            "venue": "H",
-            "ft": "4-2",
-            "ht": "1-0",
-            "hs": 14.0,
-            "hst": 9.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-10-24",
-            "opp": "Coventry",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Hull",
-            "venue": "H",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 18.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Ipswich",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Man United",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Liverpool",
-            "venue": "A",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 10.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Crystal Palace",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "2-1",
-            "hs": 25.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-08-30",
-            "opp": "Sunderland",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-08-24",
-            "opp": "Chelsea",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "1-2",
-            "hs": 14.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Newcastle",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "1-0",
-            "hs": 21.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-05-17",
-            "opp": "Wolves",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "1-1",
-            "hs": 13.0,
-            "hst": 5.0
-          }
-        ]
-      },
-      "h2h": {
-        "matches": [
-          {
-            "date": "2026-04-25",
-            "home": "Fulham",
-            "away": "Aston Villa",
-            "ft": "1-0",
-            "ht": "1-0"
-          },
-          {
-            "date": "2025-09-28",
-            "home": "Aston Villa",
-            "away": "Fulham",
-            "ft": "3-1",
-            "ht": "1-1"
-          }
-        ],
-        "played": 2,
-        "dom_wins": 1,
-        "draws": 0,
-        "ext_wins": 1,
-        "source": "football-data.co.uk"
-      },
       "holes": [
         "elo",
         "xg",
         "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
         "timing"
       ]
     },
     {
       "id": "M5",
-      "dom": "FC Barcelona",
-      "ext": "Deportivo Alaves",
-      "ligue": "Espagne - LaLiga",
-      "date": "2026-10-31",
-      "heure": "21:00",
-      "cotes": {
-        "1": 1.1,
-        "X": 10.0,
-        "2": 18.0,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 37.0,
-          "encaisses": 5.0,
-          "marques_mt1": 15.0,
-          "encaisses_mt1": 5.0,
-          "marques_mt2": 22.0,
-          "encaisses_mt2": 0.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 7.0,
-          "encaisses": 17.0,
-          "marques_mt1": 2.0,
-          "encaisses_mt1": 7.0,
-          "marques_mt2": 5.0,
-          "encaisses_mt2": 10.0
-        }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-10-25",
-            "opp": "Real Madrid",
-            "venue": "H",
-            "ft": "1-2",
-            "ht": "0-1",
-            "hs": 18.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Betis",
-            "venue": "A",
-            "ft": "5-2",
-            "ht": "2-1",
-            "hs": 18.0,
-            "hst": 10.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Getafe",
-            "venue": "H",
-            "ft": "3-0",
-            "ht": "2-0",
-            "hs": 23.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Sevilla",
-            "venue": "A",
-            "ft": "3-1",
-            "ht": "1-1",
-            "hs": 24.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-16",
-            "opp": "Santander",
-            "venue": "H",
-            "ft": "7-2",
-            "ht": "4-1",
-            "hs": 30.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-09-13",
-            "opp": "Levante",
-            "venue": "A",
-            "ft": "4-2",
-            "ht": "2-0",
-            "hs": 12.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Valencia",
-            "venue": "A",
-            "ft": "5-0",
-            "ht": "2-0",
-            "hs": 25.0,
-            "hst": 10.0
-          },
-          {
-            "date": "2026-08-31",
-            "opp": "Vallecano",
-            "venue": "H",
-            "ft": "5-2",
-            "ht": "2-1",
-            "hs": 26.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-08-27",
-            "opp": "Ath Bilbao",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "1-0",
-            "hs": 22.0,
-            "hst": 10.0
-          },
-          {
-            "date": "2026-08-23",
-            "opp": "Elche",
-            "venue": "A",
-            "ft": "5-0",
-            "ht": "2-0",
-            "hs": 11.0,
-            "hst": 7.0
-          }
-        ],
-        "ext": []
-      },
-      "holes": [
-        "elo",
-        "xg",
-        "rest_days",
-        "h2h",
-        "form",
-        "h2h_scores",
-        "timing"
-      ]
-    },
-    {
-      "id": "M6",
-      "dom": "Ajax Amsterdam",
-      "ext": "AZ Alkmaar",
-      "ligue": "Pays-Bas - Eredivisie",
-      "date": "2026-10-31",
-      "heure": "21:00",
-      "cotes": {
-        "1": 1.8,
-        "X": 4.2,
-        "2": 3.75,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "ext": {
-          "mj": 12,
-          "marques": 17.0,
-          "encaisses": 17.0,
-          "marques_mt1": 6.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 11.0,
-          "encaisses_mt2": 7.0
-        }
-      },
-      "form": {
-        "dom": [],
-        "ext": [
-          {
-            "date": "2026-10-25",
-            "opp": "Twente",
-            "venue": "H",
-            "ft": "0-2",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-18",
-            "opp": "Cambuur",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "1-2",
-            "hs": 7.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Feyenoord",
-            "venue": "A",
-            "ft": "0-2",
-            "ht": "0-1",
-            "hs": 12.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Telstar",
-            "venue": "H",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 17.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-09-11",
-            "opp": "Willem II",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "1-0",
-            "hs": 22.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Heerenveen",
-            "venue": "A",
-            "ft": "3-2",
-            "ht": "1-2",
-            "hs": 15.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-08-29",
-            "opp": "Go Ahead Eagles",
-            "venue": "H",
-            "ft": "5-2",
-            "ht": "2-1",
-            "hs": 20.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-08-22",
-            "opp": "For Sittard",
-            "venue": "A",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 26.0,
-            "hst": 11.0
-          },
-          {
-            "date": "2026-08-15",
-            "opp": "Utrecht",
-            "venue": "A",
-            "ft": "4-1",
-            "ht": "1-0",
-            "hs": 24.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-08-08",
-            "opp": "Den Haag",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 4.0
-          }
-        ]
-      },
-      "holes": [
-        "elo",
-        "xg",
-        "rest_days",
-        "h2h",
-        "form",
-        "h2h_scores",
-        "timing"
-      ]
-    },
-    {
-      "id": "M7",
-      "dom": "SC Cambuur",
-      "ext": "Go Ahead Eagles",
-      "ligue": "Pays-Bas - Eredivisie",
-      "date": "2026-10-31",
-      "heure": "21:00",
-      "cotes": {
-        "1": 2.5,
-        "X": 3.85,
-        "2": 2.52,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 5,
-          "marques": 8.0,
-          "encaisses": 15.0,
-          "marques_mt1": 3.0,
-          "encaisses_mt1": 10.0,
-          "marques_mt2": 5.0,
-          "encaisses_mt2": 5.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 16.0,
-          "encaisses": 23.0,
-          "marques_mt1": 7.0,
-          "encaisses_mt1": 12.0,
-          "marques_mt2": 9.0,
-          "encaisses_mt2": 11.0
-        }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-10-24",
-            "opp": "Willem II",
-            "venue": "A",
-            "ft": "6-1",
-            "ht": "3-0",
-            "hs": 19.0,
-            "hst": 11.0
-          },
-          {
-            "date": "2026-10-18",
-            "opp": "AZ Alkmaar",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "2-1",
-            "hs": 11.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Zwolle",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Den Haag",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "1-0",
-            "hs": 8.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Nijmegen",
-            "venue": "H",
-            "ft": "3-0",
-            "ht": "1-0",
-            "hs": 16.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Telstar",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "0-0",
-            "hs": 8.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-08-30",
-            "opp": "Twente",
-            "venue": "H",
-            "ft": "1-4",
-            "ht": "0-2",
-            "hs": 10.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-08-23",
-            "opp": "Feyenoord",
-            "venue": "H",
-            "ft": "2-5",
-            "ht": "0-4",
-            "hs": 11.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-08-15",
-            "opp": "For Sittard",
-            "venue": "A",
-            "ft": "1-3",
-            "ht": "1-2",
-            "hs": 19.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-08-07",
-            "opp": "Excelsior",
-            "venue": "H",
-            "ft": "0-4",
-            "ht": "0-3",
-            "hs": 11.0,
-            "hst": 2.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-10-23",
-            "opp": "Telstar",
-            "venue": "H",
-            "ft": "3-2",
-            "ht": "2-0",
-            "hs": 16.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-10-18",
-            "opp": "Zwolle",
-            "venue": "A",
-            "ft": "1-4",
-            "ht": "1-0",
-            "hs": 18.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Sparta Rotterdam",
-            "venue": "H",
-            "ft": "3-3",
-            "ht": "0-1",
-            "hs": 17.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Nijmegen",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "1-1",
-            "hs": 14.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Groningen",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "0-1",
-            "hs": 24.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-08",
-            "opp": "Utrecht",
-            "venue": "A",
-            "ft": "3-3",
-            "ht": "1-0",
-            "hs": 13.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-08-29",
-            "opp": "AZ Alkmaar",
-            "venue": "A",
-            "ft": "2-5",
-            "ht": "1-2",
-            "hs": 10.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-08-23",
-            "opp": "Den Haag",
-            "venue": "H",
-            "ft": "3-1",
-            "ht": "1-0",
-            "hs": 11.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-08-16",
-            "opp": "Feyenoord",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "0-2",
-            "hs": 14.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-08-08",
-            "opp": "Willem II",
-            "venue": "H",
-            "ft": "4-1",
-            "ht": "1-1",
-            "hs": 20.0,
-            "hst": 10.0
-          }
-        ]
-      },
-      "holes": [
-        "elo",
-        "xg",
-        "rest_days",
-        "h2h",
-        "h2h_scores",
-        "timing"
-      ]
-    },
-    {
-      "id": "M8",
-      "dom": "Albacete Balompie",
-      "ext": "CE Sabadell FC",
-      "ligue": "Espagne - LaLiga 2",
-      "date": "2026-10-31",
-      "heure": "21:00",
-      "cotes": {
-        "1": 2.42,
-        "X": 2.92,
-        "2": 2.82,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte"
-      ],
-      "holes": [
-        "elo",
-        "xg",
-        "rest_days",
-        "h2h",
-        "form",
-        "h2h_scores",
-        "timing"
-      ]
-    },
-    {
-      "id": "M9",
-      "dom": "FC Porto",
-      "ext": "Estoril Praia",
+      "dom": "Maritimo Madeira",
+      "ext": "Santa Clara Azores",
       "ligue": "Portugal - Liga Portugal",
-      "date": "2026-10-31",
-      "heure": "21:30",
+      "date": "2026-11-01",
+      "heure": "19:00",
       "cotes": {
-        "1": 1.14,
-        "X": 6.4,
-        "2": 12.0,
+        "1": 3.25,
+        "X": 2.97,
+        "2": 2.15,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -1167,11 +512,8 @@
     }
   ],
   "warnings": [
-    "inject CAPTEURS 2026-10-31T19:32:54Z [F1]: 2 auto / 0 manquants",
-    "inject CAPTEURS 2026-10-31T19:32:58Z [I1]: 2 auto / 0 manquants",
-    "inject CAPTEURS 2026-10-31T19:33:01Z [E0]: 2 auto / 0 manquants",
-    "inject CAPTEURS 2026-10-31T19:33:04Z [SP1]: 2 auto / 0 manquants",
-    "inject CAPTEURS 2026-10-31T19:33:07Z [N1]: 3 auto / 1 manquants"
+    "inject CAPTEURS 2026-11-01T14:43:27Z [I1]: 2 auto / 0 manquants",
+    "inject CAPTEURS 2026-11-01T14:43:29Z [SP1]: 2 auto / 0 manquants"
   ],
   "notes_count": 0
 }

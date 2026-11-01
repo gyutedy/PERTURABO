@@ -1,7 +1,7 @@
-# 🏟️ FICHE DE SIÈGE — Aston Villa vs Fulham FC
-*Générée le 2026-10-31 19:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Academico de Viseu FC vs Rio Ave FC
+*Générée le 2026-11-01 14:44 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 12.7%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 0.8%
 
 ## Modèle (Dixon-Coles)
 
@@ -17,9 +17,9 @@
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.0 | 56.3% | 12.7% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.65 | 26.1% | -4.8% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 3.5 | 17.6% | -38.5% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.79 | 56.3% | 0.8% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.4 | 26.1% | -11.3% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.9 | 17.6% | -31.4% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 25.5% | -23.5% | ⛔ NO_BET | — |
 
 ## Ordre de marche
