@@ -77,7 +77,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | ORCHESTRATOR | Le Nerf | Modes radar/siège/pack/tracker/demo, enchaîne les frégates | — |
 | IW_CUSTOS | Le Gardien | check-out/check-in/gate/validate — seul accès à `liber_pari.json` | — |
 
-**Partage Oracle** : `TYRANT` + `HERALD` utilisent la clé `ORACLE_API_KEY` (OpenAI-compatible, GitHub Secret). Sans clé → fiches en template, TYRANT se limite au filtre froid. Le monde tourne à 100% sans clé. `FOOTBALL_DATA_ORG_KEY` n'est **pas** Oracle : F00 rest_days seulement, chargee depuis `env_pari` a chaque commande Telegram.
+**Partage Oracle** : `TYRANT` + `HERALD` utilisent la clé `ORACLE_API_KEY` (OpenAI-compatible, GitHub Secret). Sans clé → fiches en template, TYRANT se limite au filtre froid. Le monde tourne à 100% sans clé. `FOOTBALL_DATA_ORG_KEY` (rest_days) et `API_FOOTBALL_KEY` (calendrier) ne sont **pas** Oracle : F00 seulement, chargees depuis `env_pari` a chaque commande Telegram.
 
 ---
 

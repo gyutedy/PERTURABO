@@ -194,7 +194,8 @@ ou remplit à la main, jamais d'invention.
 ### 🗓️ Le calendrier automatique (clés optionnelles)
 
 ```bash
-# API-Football (100 req/jour gratis — API_FOOTBALL_KEY en Secret) :
+# API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
+# Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \
     --league-id 39 --date 2026-10-25 --out ARCHIVUM/fixtures/calendrier.json
 
@@ -369,7 +370,7 @@ sont la matière première de la calibration.
     - `TELEGRAM_BOT_TOKEN` = le token du bot
     - `TELEGRAM_CHAT_ID` = ton chat_id
     - `FOOTBALL_DATA_ORG_KEY` = (F00 rest_days) aussi dans `env_pari` — **pas Oracle**
-    - `API_FOOTBALL_KEY` = (option) calendrier API-Football (100 req/jour)
+    - `API_FOOTBALL_KEY` = (F00 calendrier) aussi dans `env_pari` — **pas Oracle**
     - `ORACLE_API_KEY` = (option) LLM TYRANT/HERALD seulement. Sans elle le siege tourne 100 %.
 4. Le workflow `.github/workflows/pari_daily.yml` tourne au cron quotidien :
    scan radar → pack → dashboard → **push Telegram** + commit des artefacts.
