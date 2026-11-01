@@ -1359,3 +1359,10 @@
 ## [2026-10-31T19:34:15Z] F05 — check-out — status: processing
 
 ## [2026-10-31T19:34:15Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:62123e8129c4e3a5de7206af885a8039 — status:done
+
+## [2026-11-01T16:10:00Z] DECISION v2.3.2 — FOOTBALL_DATA_ORG_KEY live (F00 rest_days)
+
+- Jeton football-data.org pose dans `env_pari`. Header `X-Auth-Token`. Ping `/v4/competitions` HTTP 200 (13 comps). Quota `X-Requests-Available-Minute`.
+- Independante d Oracle / modele premium. `workflow.py` charge `env_pari` a chaque commande Telegram (secret GitHub vide n ecrase pas).
+- F00 rest_days au `/capture` et `/valider-1` pour E0/SP1/I1/D1/F1. LaLiga 2 / Liga Portugal restent TROU.
+- Sportradar / WhoScored / API-Football / Oracle : encore absents = notes: 0.

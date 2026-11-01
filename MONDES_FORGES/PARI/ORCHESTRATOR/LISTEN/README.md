@@ -61,6 +61,8 @@ football-data ; un club hors CSV skip CE match (pas NO BET global).
 avant chaque lot Mode A). Aliases deja live : `/data ledger`,
 `/status ledger`, `/roi settle L-XXX`. `/data` = table compacte, `/data N` = fiche
 (parse.py + HELP Worker alignes dans git ; Worker deploye stale jusqu'au wrangler — ne pas wrangler ici). Relais `/data N` deja live.
+`FOOTBALL_DATA_ORG_KEY` vit dans `env_pari` (F00 rest_days). `workflow.py` la charge
+a chaque commande. **Pas Oracle, pas modele premium.** Secret GitHub vide n ecrase pas.
 
 Dans Telegram, envoie `/start`. Tu dois voir :
 

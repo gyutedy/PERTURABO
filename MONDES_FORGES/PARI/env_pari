@@ -5,7 +5,7 @@
 TELEGRAM_BOT_TOKEN=8791243287:AAEThmWUhVHHaJ2ZONDWgRoCKJDNYdNh2CY
 TELEGRAM_CHAT_ID=7710898895
 
-# Cles optionnelles (fixtures live / LLM) — laisser vides si pas fournies :
+# Cles optionnelles. FOOTBALL_DATA_ORG_KEY = F00 rest_days (pas Oracle, pas premium).
 API_FOOTBALL_KEY=
-FOOTBALL_DATA_ORG_KEY=
+FOOTBALL_DATA_ORG_KEY=ce779cd85dae41b698a4c100b1c11880
 ORACLE_API_KEY=

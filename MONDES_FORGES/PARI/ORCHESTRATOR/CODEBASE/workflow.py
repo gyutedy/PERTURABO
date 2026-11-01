@@ -46,6 +46,26 @@ NOTIFIER = os.path.join(HERE, "notifier.py")
 P = lambda *a: os.path.join(WORLD, *a)
 
 
+def load_env_pari():
+    """Charge env_pari / .env si la var est vide. Indépendant d'Oracle."""
+    for name in (".env", "env_pari"):
+        path = P(name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
 def _now():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -628,6 +648,7 @@ def main():
     if not args:
         print(__doc__)
         return 0
+    load_env_pari()
     st = state()
     for arg in args:
         name = arg.lstrip("/").split()[0].lower()
