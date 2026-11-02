@@ -94,6 +94,7 @@
 - [x] **`SPORTRADAR_API_KEY` LIVE** (2026-11-01) : jeton trial v4 pose dans `env_pari`. Ping `/competitions` + `/seasons/{id}/missing_players` HTTP 200. **Route trial differenciee** : pas de search equipe, `missing_players` est publie PAR SAISON -> connecteur reecrit (saison courante des 6 championnats, cache 1 hit/jour/competition, matching nom normalise + difflib 0.9). Voix 2 notes = DOUTE seule ; OUT exige 3 voix. **Pas Oracle.**
 - [x] **`SOFASCORE_RAPIDAPI_KEY` LIVE** (2026-11-02) : meme X-RapidAPI-Key que WhoScored. Host `sofascore-sport-api.p.rapidapi.com`. Search + `/api/team/{id}/events/next/0` + `/api/event/{id}/lineups` → `missingPlayers`. Teste Arsenal (Saka, Saliba) + Chelsea (6). Direct `api.sofascore.com` = 403 ici. **Pas Oracle.**
 - [x] **`WHOSCORED_KEY` POSEE** (2026-11-02) : host `whoscored.p.rapidapi.com` existe (429/500). Listing elis-lab `whoscored-football-data-api` = live scores/fixtures, **pas d'endpoint injuries**. Voix 3 = trou jusqu'a un vrai /injuries. **Pas Oracle.**
+- [x] **`ORACLE_API_KEY` LIVE** (2026-11-02) : Zro `https://zro.moonmath.ai/v1`, modele `glm-5.3-flash` (HTTP 200). `deepseek-v4.1-flash` aussi 200. `glm-5.3` = 403. Lire `content`, jamais `reasoning_content`. TYRANT/HERALD seulement. Siege tourne sans.
 
 ## ETAT v2.3.1 — `/data` DEUX VUES (2026-10-31)
 

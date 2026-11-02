@@ -21,6 +21,29 @@ import os
 from datetime import datetime, timezone
 
 LIGUES_TOP5 = ["premier league", "la liga", "laliga", "liga santander", "serie a", "bundesliga", "ligue 1"]
+_WORLD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+
+
+def _load_env_pari():
+    for name in (".env", "env_pari"):
+        path = os.path.join(_WORLD, name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
+_load_env_pari()
 
 
 def detect_tier(ligue: str) -> str:
@@ -33,13 +56,13 @@ def detect_tier(ligue: str) -> str:
 
 def oracle_comment(notes: str, match_label: str):
     """Oracle (clé OpenAI-compatible, GitHub Secret). Fallback silencieux → None."""
-    key = os.environ.get("ORACLE_API_KEY")
+    key = os.environ.get("ORACLE_API_KEY") or os.environ.get("ZRO_API_KEY")
     if not key or not (notes or "").strip():
         return None
     try:
         import urllib.request
-        base = os.environ.get("ORACLE_BASE_URL", "https://api.openai.com/v1")
-        model = os.environ.get("ORACLE_MODEL", "gpt-4o-mini")
+        base = os.environ.get("ORACLE_BASE_URL") or os.environ.get("ZRO_BASE_URL") or "https://api.openai.com/v1"
+        model = os.environ.get("ORACLE_MODEL") or os.environ.get("ZRO_MODEL") or "gpt-4o-mini"
         payload = json.dumps({
             "model": model,
             "messages": [
@@ -51,15 +74,16 @@ def oracle_comment(notes: str, match_label: str):
                              "Termine toujours par au maximum une nuance de prudence.")},
                 {"role": "user", "content": f"Match: {match_label}\nContexte Warsmith: {notes}"},
             ],
-            "max_tokens": 300,
+            "max_tokens": 400,
         }).encode()
         req = urllib.request.Request(
             f"{base.rstrip('/')}/chat/completions", data=payload,
             headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
         )
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=60) as r:
             data = json.loads(r.read().decode())
-        return data["choices"][0]["message"]["content"]
+        msg = data["choices"][0]["message"]
+        return (msg.get("content") or "").strip() or None
     except Exception as e:  # hérésie interdite : l'Oracle ne bloque jamais le siège
         return f"(Oracle indisponible: {e})"
 

@@ -1418,3 +1418,10 @@
 - SofaScore host `sofascore-sport-api.p.rapidapi.com` HTTP 200. `sofascore.py` : search + next event + lineups.missingPlayers. Arsenal 2, Chelsea 6.
 - WhoScored : `whoscored-api.p.rapidapi.com` n existe pas (404). `whoscored-football-data-api` subscribe OK mais aucun path injuries. `whoscored.p.rapidapi.com` 429/500. Voix 3 = [].
 - OUT exige encore 3 voix. Sofa + Sportradar = DOUTE. Independante d Oracle.
+
+## [2026-11-02T04:50:00Z] DECISION v2.3.2e — ORACLE_API_KEY Zro glm-5.3-flash
+
+- Endpoint `https://zro.moonmath.ai/v1` POST `/chat/completions`. Auth Bearer.
+- Ping glm-5.3-flash HTTP 200 (content PONG, max_tokens 256). deepseek-v4.1-flash HTTP 200. glm-5.3 HTTP 403.
+- `ORACLE_*` + alias `ZRO_*` dans `env_pari`. TYRANT/HERALD lisent content, jamais reasoning_content.
+- Oracle ne bloque jamais le siege. Pas de chiffre invente.

@@ -11,6 +11,7 @@ TELEGRAM_CHAT_ID=7710898895
 # SPORTRADAR_API_KEY  : notes voix 2 (trial v4, missing_players par saison)
 # WHOSCORED_KEY / SOFASCORE_RAPIDAPI_KEY : une seule X-RapidAPI-Key (app RapidAPI)
 # ORACLE_API_KEY      : TYRANT/HERALD LLM uniquement (siege tourne sans)
+# Zro moonmath : ORACLE_* = ZRO_* (glm-5.3-flash). glm-5.3 = 403. Lire content, pas reasoning.
 API_FOOTBALL_KEY=0889cdb2ceb58973ac277255b0854693
 FOOTBALL_DATA_ORG_KEY=ce779cd85dae41b698a4c100b1c11880
 SPORTRADAR_API_KEY=YO9IaVQ9sZnAUVd1p3my5hzlWy8Zynh2FjNIHY8e
@@ -19,4 +20,9 @@ RAPIDAPI_WHOSCORED_KEY=1dcacbd773msh1362d9d0b3d166cp12f6f7jsna686bd8ca8de
 WHOSCORED_HOST=whoscored.p.rapidapi.com
 SOFASCORE_RAPIDAPI_KEY=1dcacbd773msh1362d9d0b3d166cp12f6f7jsna686bd8ca8de
 SOFASCORE_HOST=sofascore-sport-api.p.rapidapi.com
-ORACLE_API_KEY=
+ORACLE_API_KEY=sk-1Me_YKsRN13xOdlYj6b9yA
+ORACLE_BASE_URL=https://zro.moonmath.ai/v1
+ORACLE_MODEL=glm-5.3-flash
+ZRO_API_KEY=sk-1Me_YKsRN13xOdlYj6b9yA
+ZRO_BASE_URL=https://zro.moonmath.ai/v1
+ZRO_MODEL=glm-5.3-flash
