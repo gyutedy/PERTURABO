@@ -26,3 +26,6 @@ ORACLE_MODEL=glm-5.3-flash
 ZRO_API_KEY=sk-1Me_YKsRN13xOdlYj6b9yA
 ZRO_BASE_URL=https://zro.moonmath.ai/v1
 ZRO_MODEL=glm-5.3-flash
+
+# The Odds API T-2h (optionnelle). Absente = skip. Jamais Poisson, jamais scrape Winner.
+ODDS_API_KEY=6a3adabbc1065e784a5458aac2bc9d81
