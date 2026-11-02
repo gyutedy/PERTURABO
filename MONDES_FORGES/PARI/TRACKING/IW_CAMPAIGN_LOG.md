@@ -1411,3 +1411,10 @@
 - Voix 2 notes : seul il produit DOUTE ; OUT exige 3 voix independantes (sofascore + sportradar + opta).
 - Independante d Oracle / modele premium. `sportradar.py` charge `env_pari` a l'import.
 - E2E : F00 40/40, LISTEN 95/95, FINAL 14/14. Artefacts restaures.
+
+## [2026-11-02T04:30:00Z] DECISION v2.3.2d — RapidAPI SofaScore live + WhoScored pose (F00 notes)
+
+- Une seule `X-RapidAPI-Key` dans `env_pari` : `WHOSCORED_KEY` + `SOFASCORE_RAPIDAPI_KEY`.
+- SofaScore host `sofascore-sport-api.p.rapidapi.com` HTTP 200. `sofascore.py` : search + next event + lineups.missingPlayers. Arsenal 2, Chelsea 6.
+- WhoScored : `whoscored-api.p.rapidapi.com` n existe pas (404). `whoscored-football-data-api` subscribe OK mais aucun path injuries. `whoscored.p.rapidapi.com` 429/500. Voix 3 = [].
+- OUT exige encore 3 voix. Sofa + Sportradar = DOUTE. Independante d Oracle.
