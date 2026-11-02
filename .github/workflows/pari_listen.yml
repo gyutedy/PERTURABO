@@ -4,8 +4,9 @@
 # via notifier.py (tell() dans workflow.py).
 #
 # Inputs:
-#   cmd           /start | /capture | /budget 6000 | /combos 3 | /valider-1 | ...
-#   capture_text  corps markdown Winner Bet (uniquement pour /capture)
+#   cmd              /start | /capture | /budget 6000 | /combos 3 | /valider-1 | ...
+#   capture_text     corps markdown Winner Bet (uniquement pour /capture)
+#   capture_file_id  file_id Telegram (photo / document image) — getFile puis OCR
 
 name: pari-listen
 on:
@@ -17,6 +18,11 @@ on:
         type: string
       capture_text:
         description: "Markdown Winner Bet (meme message que /capture)"
+        required: false
+        default: ""
+        type: string
+      capture_file_id:
+        description: "Telegram file_id (photo ou document image, caption /capture)"
         required: false
         default: ""
         type: string
@@ -46,19 +52,74 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tesseract-ocr tesseract-ocr-fra
           tesseract --version | head -1
 
-      - name: Inbox capture Telegram (si fournie)
+      - name: Inbox capture Telegram (texte ou photo)
         env:
           CAPTURE_TEXT: ${{ github.event.inputs.capture_text }}
+          CAPTURE_FILE_ID: ${{ github.event.inputs.capture_file_id }}
           CMD: ${{ github.event.inputs.cmd }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
           cd MONDES_FORGES/PARI
-          mkdir -p F01_SENTINEL/IN
-          if [ -n "$CAPTURE_TEXT" ]; then
-            printf '%s\n' "$CAPTURE_TEXT" > F01_SENTINEL/IN/capture_telegram.md
-            echo "[listen] inbox ecrite ($(wc -c < F01_SENTINEL/IN/capture_telegram.md) octets)"
-          else
-            echo "[listen] pas de capture_text (cmd=$CMD)"
-          fi
+          python3 << 'PY'
+          import json, os, urllib.request
+          from pathlib import Path
+
+          def load_token():
+              t = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+              if t:
+                  return t
+              p = Path("env_pari")
+              if not p.exists():
+                  return ""
+              for line in p.read_text(encoding="utf-8", errors="replace").splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#") or "=" not in line:
+                      continue
+                  k, v = line.split("=", 1)
+                  if k.strip() == "TELEGRAM_BOT_TOKEN":
+                      return v.strip().strip('"').strip("'")
+              return ""
+
+          inbox = Path("F01_SENTINEL/IN")
+          inbox.mkdir(parents=True, exist_ok=True)
+          file_id = (os.environ.get("CAPTURE_FILE_ID") or "").strip()
+          text = os.environ.get("CAPTURE_TEXT") or ""
+          cmd = os.environ.get("CMD") or ""
+          if file_id:
+              token = load_token()
+              if not token:
+                  print("[listen] capture_file_id sans TELEGRAM_BOT_TOKEN — skip download")
+              else:
+                  api = "https://api.telegram.org"
+                  url = api + "/bot" + token + "/getFile?file_id=" + urllib.request.quote(file_id)
+                  try:
+                      with urllib.request.urlopen(url, timeout=30) as r:
+                          blob = json.loads(r.read().decode("utf-8", errors="replace"))
+                  except Exception as e:
+                      print("[listen] getFile echec:", type(e).__name__)
+                      blob = {}
+                  fpath = ((blob.get("result") or {}).get("file_path") or "") if blob.get("ok") else ""
+                  if not fpath:
+                      print("[listen] getFile sans file_path — trou, pas d invention")
+                  else:
+                      ext = Path(fpath).suffix.lower() or ".jpg"
+                      if ext not in (".png", ".jpg", ".jpeg", ".webp"):
+                          ext = ".jpg"
+                      dest = inbox / ("capture_telegram" + ext)
+                      file_url = api + "/file/bot" + token + "/" + fpath
+                      try:
+                          with urllib.request.urlopen(file_url, timeout=60) as r:
+                              dest.write_bytes(r.read())
+                          print("[listen] photo inbox", dest.name, dest.stat().st_size, "octets")
+                      except Exception as e:
+                          print("[listen] download photo echec:", type(e).__name__)
+          elif text.strip():
+              dest = inbox / "capture_telegram.md"
+              dest.write_text(text if text.endswith("\n") else text + "\n", encoding="utf-8")
+              print("[listen] inbox md", dest.stat().st_size, "octets")
+          else:
+              print("[listen] pas de capture (cmd=%s)" % cmd)
+          PY
 
       - name: Executer workflow.py
         env:

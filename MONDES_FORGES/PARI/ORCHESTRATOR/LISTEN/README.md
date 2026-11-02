@@ -86,4 +86,4 @@ Si 1 sans 2 : Actions → `pari-listen` (workflow_dispatch). Si rien : webhook /
 
 ## Hors v1
 
-png/pdf, KV multi-messages, polling. `/radar` `/pack` `/match` relays (parse.py + Worker). Pas de scrape bookmaker.
+pdf / KV multi-messages / polling. Photo `/capture` = v2.9 (file_id → getFile → OCR). `/radar` `/pack` `/match` relays. Pas de scrape bookmaker.

@@ -34,7 +34,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | Commande | Ce que ça fait |
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre, **garde la bankroll**) |
-| `/capture` | Telegram v1 : colle le tableau markdown Winner Bet **dans le meme message**. CLI : `/capture <fichier>` (txt/md/png/pdf/docx). JSON reconstitue = Porte 1 |
+| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). OCR vide = Zero Data. |
 | `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |

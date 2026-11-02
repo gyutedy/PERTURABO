@@ -6,7 +6,8 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
 
   /start           ouvre la campagne du jour (reset propre, garde bankroll)
   /capture [file]  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
-                   sans chemin : lit F01_SENTINEL/IN/capture_telegram.md (inbox Telegram)
+                   Telegram : markdown DANS le meme message, OU photo + caption /capture
+                   sans chemin : inbox F01_SENTINEL/IN/capture_telegram.(png|jpg|md)
   /bankroll 50000  pot global FC (persiste /start /stop). Sans arg : affiche le pot.
   /budget 3000 800 budget du lot + mise FORCEE du ticket sur (reste divise). Retaper avant chaque lot.
   /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
@@ -131,7 +132,7 @@ def cmd_start(st, arg):
     tell(f"Campagne **{st['campagne']}** ouverte.\n"
          + (f"Bankroll : **{br:.0f} FC** (persiste).\n" if br else
             "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
-         + "1. Capture Winner Bet (txt, md, png/jpg, pdf, docx) → `/capture <fichier>`\n"
+          + "1. Capture Winner Bet : `/capture` + tableau markdown DANS le meme message, ou photo avec caption `/capture`\n"
          "2. `/budget 3000 800` (plafond lot + mise FORCEE ticket sur) et `/combos 3`\n"
          "3. `/valider-1` → PREVIEW 1 (donnees brutes) → tu relis → `/valider-2`"
          " apres verif → PREVIEW 2 + token L-XXX\n"
@@ -143,10 +144,15 @@ INBOX_CAPTURE = P("F01_SENTINEL", "IN", "capture_telegram.md")
 
 
 def resolve_capture(fichier):
-    """Chemin local si fourni et present, sinon inbox Telegram (texte colle)."""
+    """Chemin local si fourni et present, sinon inbox Telegram (photo puis markdown)."""
     path = (fichier or "").strip()
     if path and os.path.exists(path):
         return path
+    d = os.path.dirname(INBOX_CAPTURE) or P("F01_SENTINEL", "IN")
+    for ext in (".png", ".jpg", ".jpeg", ".webp"):
+        p = os.path.join(d, "capture_telegram" + ext)
+        if os.path.exists(p):
+            return p
     if os.path.exists(INBOX_CAPTURE):
         return INBOX_CAPTURE
     return None
@@ -158,8 +164,8 @@ def cmd_capture(st, fichier):
     path = resolve_capture(fichier)
     if not path:
         tell("Fichier capture introuvable — /capture <txt|md|png|pdf|docx> "
-             "ou colle le tableau markdown dans le meme message Telegram "
-             "(inbox F01_SENTINEL/IN/capture_telegram.md).")
+             "ou colle le markdown / envoie une photo avec caption /capture "
+             "(inbox F01_SENTINEL/IN/capture_telegram.*).")
         return
     led = _ledger()
     taken = {st.get("capture_id") or ""}

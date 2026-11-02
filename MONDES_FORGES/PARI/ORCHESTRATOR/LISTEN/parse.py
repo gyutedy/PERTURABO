@@ -50,6 +50,24 @@ def _text_of(update):
     return msg, chat, text
 
 
+def _photo_file_id(msg):
+    """Plus grande photo, ou document image. Sinon None. Zero reseau."""
+    photos = msg.get("photo") or []
+    if photos:
+        best = max(photos, key=lambda p: (p.get("file_size") or 0, p.get("width") or 0))
+        fid = (best or {}).get("file_id")
+        if fid:
+            return fid
+    doc = msg.get("document") or {}
+    mime = (doc.get("mime_type") or "").lower()
+    name = (doc.get("file_name") or "").lower()
+    if doc.get("file_id") and (
+        mime.startswith("image/") or name.endswith((".png", ".jpg", ".jpeg", ".webp"))
+    ):
+        return doc["file_id"]
+    return None
+
+
 def _head_cmd(text):
     raw = (text or "").strip()
     if not raw.startswith("/"):
@@ -71,7 +89,17 @@ def parse_update(update, allowed_chat_id):
     msg, chat, text = _text_of(update or {})
     chat_id = str(chat.get("id") or "")
     allowed = str(allowed_chat_id or "")
-    if not chat_id or not text.strip():
+    if not chat_id:
+        return {"ok": False, "action": "ignore", "reason": "empty"}
+    if not text.strip():
+        if _photo_file_id(msg):
+            return {
+                "ok": False,
+                "action": "reply",
+                "reason": "capture_empty",
+                "chat_id": chat_id,
+                "reply": "Photo recu sans commande. Envoie la photo AVEC caption /capture.",
+            }
         return {"ok": False, "action": "ignore", "reason": "empty"}
     if not allowed or chat_id != allowed:
         return {"ok": False, "action": "ignore", "reason": "foreign_chat"}
@@ -93,7 +121,7 @@ def parse_update(update, allowed_chat_id):
             "reply": (
                 "Campagne PARI — commandes :\n"
                 "/start\n"
-                "/capture  (colle le tableau markdown DANS le meme message)\n"
+                "/capture  (markdown DANS le meme message, OU photo + caption /capture)\n"
                 "/bankroll 50000  (pot global, une fois)\n"
                 "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n"
                 "/combos 3  ou  /combos 3:3:2:2\n"
@@ -116,7 +144,8 @@ def parse_update(update, allowed_chat_id):
             "reply": "Commande inconnue : /" + name + ". /help pour la liste.",
         }
     if canon == "capture":
-        if not extra.strip():
+        file_id = _photo_file_id(msg)
+        if not extra.strip() and not file_id:
             return {
                 "ok": False,
                 "action": "reply",
@@ -124,22 +153,24 @@ def parse_update(update, allowed_chat_id):
                 "chat_id": chat_id,
                 "reply": (
                     "Colle le tableau markdown Winner Bet DANS le meme message, "
-                    "sous /capture. png/pdf plus tard. Plafond 4096 caracteres."
+                    "sous /capture — ou envoie une PHOTO avec caption /capture. "
+                    "Plafond markdown 4096 caracteres."
                 ),
             }
-        if len(extra.encode("utf-8")) > MAX_CAPTURE:
+        if not file_id and len(extra.encode("utf-8")) > MAX_CAPTURE:
             return {
                 "ok": False,
                 "action": "reply",
                 "reason": "capture_too_long",
                 "chat_id": chat_id,
-                "reply": "Capture trop longue (limite Telegram 4096). Decoupe, png plus tard.",
+                "reply": "Capture trop longue (limite Telegram 4096). Envoie une photo avec caption /capture.",
             }
         return {
             "ok": True,
             "action": "dispatch",
             "cmd": "/capture",
-            "capture_text": extra,
+            "capture_text": None if file_id else extra,
+            "capture_file_id": file_id,
             "chat_id": chat_id,
             "update_id": update.get("update_id"),
             "message_id": msg.get("message_id"),

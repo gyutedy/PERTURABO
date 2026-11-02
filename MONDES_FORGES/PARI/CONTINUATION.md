@@ -157,6 +157,15 @@
 
 **Handoff** : ClubElo live reste trou tant que `api.clubelo.com` timeout ici. Coller `elo.json` (Actions / reseau ouvert) puis `capteurs.py backtest-shares --elo` pour peupler `elo_slope` prod. 50+ tickets reels toujours requis pour learnings live. Pas de wrangler, pas scrape Winner, pas Dixon-Coles, cles = `env_pari`.
 
+## ETAT v2.9 — /capture PHOTO TELEGRAM (2026-11-02)
+
+- [x] **Worker + parse.py** : photo (plus grande taille) ou document image + caption `/capture` → `capture_file_id`. Markdown inchange. Photo sans caption = refuse (pas ignore).
+- [x] **`pari_listen.yml`** : input `capture_file_id` → `getFile` Telegram → `F01_SENTINEL/IN/capture_telegram.jpg|png` → OCR tesseract deja pose. Token : secret GitHub ou `env_pari`. Echec download = trou, pas d'invention.
+- [x] **`resolve_capture`** : inbox photo prioritaire sur `.md`.
+- [x] **Tests** : e2e_listen 104/104 (photo, document, sans caption, inbox png). e2e_ocr 12/12. Zero reseau. Deploy Worker auto au push `LISTEN/**`.
+
+**Telegram** : `/capture` + tableau markdown **ou** photo avec caption `/capture`. Relis le JSON reconstitue avant `/valider-1`. OCR illisible = Zero Data, Zero Calc.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

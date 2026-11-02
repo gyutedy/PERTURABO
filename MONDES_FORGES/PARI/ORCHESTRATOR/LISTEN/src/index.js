@@ -20,7 +20,7 @@ const MAX_CAPTURE = 4096;
 const HELP =
   "Campagne PARI — commandes :\n" +
   "/start\n" +
-  "/capture  (colle le tableau markdown DANS le meme message)\n" +
+  "/capture  (markdown DANS le meme message, OU photo + caption /capture)\n" +
   "/bankroll 50000  (pot global, une fois)\n" +
   "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +
@@ -69,7 +69,16 @@ export function parseUpdate(update, allowedChatId) {
   const text = msg.text || msg.caption || "";
   const chatId = String(chat.id || "");
   const allowed = String(allowedChatId || "");
-  if (!chatId || !String(text).trim()) {
+  if (!chatId) {
+    return { ok: false, action: "ignore", reason: "empty" };
+  }
+  if (!String(text).trim()) {
+    if (photoFileId(msg)) {
+      return {
+        ok: false, action: "reply", reason: "capture_empty", chat_id: chatId,
+        reply: "Photo recu sans commande. Envoie la photo AVEC caption /capture.",
+      };
+    }
     return { ok: false, action: "ignore", reason: "empty" };
   }
   if (!allowed || chatId !== allowed) {
@@ -93,20 +102,23 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   if (canon === "capture") {
-    if (!String(extra).trim()) {
+    const fileId = photoFileId(msg);
+    if (!String(extra).trim() && !fileId) {
       return {
         ok: false, action: "reply", reason: "capture_empty", chat_id: chatId,
-        reply: "Colle le tableau markdown Winner Bet DANS le meme message, sous /capture. png/pdf plus tard. Plafond 4096 caracteres.",
+        reply: "Colle le tableau markdown Winner Bet DANS le meme message, sous /capture — ou envoie une PHOTO avec caption /capture. Plafond markdown 4096 caracteres.",
       };
     }
-    if (byteLen(extra) > MAX_CAPTURE) {
+    if (!fileId && byteLen(extra) > MAX_CAPTURE) {
       return {
         ok: false, action: "reply", reason: "capture_too_long", chat_id: chatId,
-        reply: "Capture trop longue (limite Telegram 4096). Decoupe, png plus tard.",
+        reply: "Capture trop longue (limite Telegram 4096). Envoie une photo avec caption /capture.",
       };
     }
     return {
-      ok: true, action: "dispatch", cmd: "/capture", capture_text: extra,
+      ok: true, action: "dispatch", cmd: "/capture",
+      capture_text: fileId ? null : extra,
+      capture_file_id: fileId,
       chat_id: chatId, update_id: update.update_id, message_id: msg.message_id,
     };
   }
@@ -118,6 +130,26 @@ export function parseUpdate(update, allowedChatId) {
     ok: true, action: "dispatch", cmd, capture_text: null,
     chat_id: chatId, update_id: update.update_id, message_id: msg.message_id,
   };
+}
+
+function photoFileId(msg) {
+  const photos = msg.photo || [];
+  if (photos.length) {
+    let best = photos[0];
+    for (const p of photos) {
+      const a = p.file_size || 0;
+      const b = best.file_size || 0;
+      if (a >= b) best = p;
+    }
+    if (best && best.file_id) return best.file_id;
+  }
+  const doc = msg.document || {};
+  const mime = String(doc.mime_type || "").toLowerCase();
+  const name = String(doc.file_name || "").toLowerCase();
+  if (doc.file_id && (mime.indexOf("image/") === 0 || /\.(png|jpe?g|webp)$/.test(name))) {
+    return doc.file_id;
+  }
+  return null;
 }
 
 function headCmd(text) {
@@ -173,6 +205,7 @@ async function ghDispatch(env, parsed) {
     inputs: {
       cmd: parsed.cmd,
       capture_text: parsed.capture_text || "",
+      capture_file_id: parsed.capture_file_id || "",
     },
   };
   const res = await fetch(url, {

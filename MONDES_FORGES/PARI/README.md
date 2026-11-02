@@ -32,7 +32,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 | Mode | Commande | Ce que ça fait |
 |---|---|---|
-| `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue** (ligue, date, heure, marches, cotes). v2.2.1 recoud les rangs markdown casses par Telegram. → validation Porte 1 → carte |
+| `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue**. Telegram : markdown dans le meme message **ou** photo + caption `/capture` (OCR). v2.2.1 recoud les rangs markdown. → Porte 1 → carte |
 | `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), /combos, /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7), /valider-2 v2.2.8 (lots token L-XXX + anti-cannibal + snapshot T0 ; refuse si 0 GO, budget non retape, pool vide), /data (table compacte), /data N (fiche), /data ledger, **/radar [N]** (trous declares), **/pack [N]** (TOP N, refuse sans predictions), **/match ID** (fiche M1 ou rang), /status ledger, /roi settle L-XXX, /stop |
 | `radar` | `orchestrator.py --mode radar` | Scan de **toute la ligue** : classement de tous les matchs du jour (buts attendus, P(O2.5), P(MT2 > MT1)) → TOP 20 |
 | `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET (+ filtre qualitatif + Top 3 + Preview 1) |

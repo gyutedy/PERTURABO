@@ -12,7 +12,11 @@
     },
     "capture_text": {
       "type": ["string", "null"],
-      "description": "Corps markdown Winner Bet colle dans le meme message que /capture. Null si commande autre que /capture. Plafond 4096 octets (limite Telegram). png/pdf hors v1."
+      "description": "Corps markdown Winner Bet colle dans le meme message que /capture. Null si photo (file_id) ou commande autre. Plafond 4096 octets."
+    },
+    "capture_file_id": {
+      "type": ["string", "null"],
+      "description": "Telegram file_id de la photo (ou document image) envoyee avec caption /capture. Null sinon. Actions fait getFile + OCR. Jamais les octets dans le dispatch."
     },
     "chat_id": {
       "type": "string",

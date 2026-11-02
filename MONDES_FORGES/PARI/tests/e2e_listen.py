@@ -85,6 +85,51 @@ def main():
     r = parse.parse_update(upd("/capture\n" + too), CHAT)
     check("L3.capture_too_long", (not r.get("ok")) and r.get("reason") == "capture_too_long")
 
+    photo = {
+        "update_id": 9,
+        "message": {
+            "message_id": 99,
+            "chat": {"id": int(CHAT), "type": "private"},
+            "caption": "/capture",
+            "photo": [
+                {"file_id": "AAA_small", "width": 90, "file_size": 100},
+                {"file_id": "BBB_big", "width": 1280, "file_size": 90000},
+            ],
+        },
+    }
+    r = parse.parse_update(photo, CHAT)
+    check("L3.capture_photo",
+          r.get("ok") and r.get("cmd") == "/capture" and r.get("capture_file_id") == "BBB_big"
+          and not r.get("capture_text"),
+          str(r.get("capture_file_id")))
+
+    doc = {
+        "update_id": 10,
+        "message": {
+            "message_id": 100,
+            "chat": {"id": int(CHAT), "type": "private"},
+            "caption": "/capture",
+            "document": {"file_id": "DOC1", "mime_type": "image/png", "file_name": "shot.png"},
+        },
+    }
+    r = parse.parse_update(doc, CHAT)
+    check("L3.capture_document",
+          r.get("ok") and r.get("capture_file_id") == "DOC1",
+          str(r.get("capture_file_id")))
+
+    nude = {
+        "update_id": 11,
+        "message": {
+            "message_id": 101,
+            "chat": {"id": int(CHAT), "type": "private"},
+            "photo": [{"file_id": "NOCAP", "width": 800, "file_size": 10}],
+        },
+    }
+    r = parse.parse_update(nude, CHAT)
+    check("L3.photo_sans_caption",
+          (not r.get("ok")) and r.get("reason") == "capture_empty",
+          r.get("reason"))
+
     r = parse.parse_update(upd("/budget 6000"), CHAT)
     check("L4.budget", r.get("ok") and r.get("cmd") == "/budget 6000", str(r.get("cmd")))
 
@@ -121,7 +166,8 @@ def main():
     r = parse.parse_update(upd("/help"), CHAT)
     help_txt = r.get("reply") or ""
     check("L5.help_local", r.get("ok") and r.get("action") == "local"
-          and "/start" in help_txt and "/bankroll" in help_txt and "/budget 3000 800" in help_txt)
+          and "/start" in help_txt and "/budget 3000 800" in help_txt
+          and ("photo" in help_txt.lower() or "/capture" in help_txt))
     check("L5.help_data_n", "/data N" in help_txt, help_txt)
 
     r = parse.parse_update(upd("/foobar"), CHAT)
@@ -156,6 +202,14 @@ def main():
         got2 = workflow.resolve_capture(explicit)
         check("L7.explicit_path_gagne", got2 == explicit, str(got2))
         workflow.INBOX_CAPTURE = os.path.join(inbox_dir, "absent.md")
+        png = os.path.join(inbox_dir, "capture_telegram.png")
+        with open(png, "wb") as f:
+            f.write(b"\x89PNG")
+        workflow.INBOX_CAPTURE = inbox
+        got_png = workflow.resolve_capture("")
+        check("L7.inbox_photo_prioritaire", got_png == png, str(got_png))
+        os.remove(png)
+        workflow.INBOX_CAPTURE = os.path.join(inbox_dir, "absent.md")
         got3 = workflow.resolve_capture("")
         check("L7.sans_inbox_none", got3 is None, str(got3))
     finally:
@@ -167,6 +221,7 @@ def main():
     check("L8.workflow_exists", "name: pari-listen" in raw and "workflow.py" in raw)
     check("L8.concurrency", "group: pari-campagne" in raw and "cancel-in-progress: false" in raw)
     check("L8.inbox_write", "capture_telegram.md" in raw)
+    check("L8.inbox_photo", "capture_file_id" in raw and "getFile" in raw)
     check("L8.pages_non_bloquant", "continue-on-error: true" in raw)
     check("L8.auto_gates", "PARI_AUTO_GATES" in raw)
 

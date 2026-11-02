@@ -43,6 +43,7 @@ def main():
     listen = open(os.path.join(REPO, ".github", "workflows", "pari_listen.yml"), encoding="utf-8").read()
     daily = open(os.path.join(REPO, ".github", "workflows", "pari_daily.yml"), encoding="utf-8").read()
     check("OCR.listen_tesseract", "tesseract-ocr" in listen and "tesseract-ocr-fra" in listen)
+    check("OCR.listen_file_id", "capture_file_id" in listen and "getFile" in listen)
     check("OCR.daily_tesseract", "tesseract-ocr" in daily and "tesseract-ocr-fra" in daily)
     run_listen = listen.find("python ORCHESTRATOR/CODEBASE/workflow.py")
     apt_listen = listen.find("apt-get install -y tesseract-ocr")
