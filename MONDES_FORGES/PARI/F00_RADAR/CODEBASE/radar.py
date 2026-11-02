@@ -26,6 +26,8 @@ import breacher  # noqa: E402
 from capteurs import ligue_code as resolve_ligue_code  # noqa: E402
 
 _STAT_KEYS = ("mj", "marques", "encaisses")
+LEARNINGS_MIN = 50
+_CLIP_LO, _CLIP_HI = 0.85, 1.15
 
 
 def stats_complete(m):
@@ -66,6 +68,51 @@ def split_complete(matchs):
     return complete, holes
 
 
+def _tickets_path():
+    return os.environ.get("PARI_TICKETS_PATH") or os.path.join(
+        HERE, "..", "..", "ARCHIVUM", "learnings", "tickets.json"
+    )
+
+
+def load_learnings(path=None):
+    """Poids F06 : identity si < 50 tickets settle. Jamais invente. F06 n'apprend pas."""
+    path = path or _tickets_path()
+    n = 0
+    tickets = []
+    if path and os.path.exists(path):
+        try:
+            blob = json.load(open(path, encoding="utf-8"))
+            tickets = blob.get("tickets") or []
+        except (OSError, json.JSONDecodeError):
+            tickets = []
+    settled = [t for t in tickets if t.get("resultat") in ("gagné", "gagne", "perdu")]
+    n = len(settled)
+    out = {"active": False, "n": n, "min": LEARNINGS_MIN, "factor": 1.0,
+           "reason": "sous 50 tickets"}
+    if n < LEARNINGS_MIN:
+        return out
+    mises = sum(t.get("mise_units") or 0 for t in settled)
+    pnl = sum(t.get("pnl_units") or 0 for t in settled)
+    roi = (pnl / mises) if mises else 0.0
+    factor = max(_CLIP_LO, min(_CLIP_HI, 1.0 + roi))
+    out.update({"active": True, "factor": round(factor, 4), "roi": round(roi, 4),
+                "reason": f"{n} tickets settle"})
+    return out
+
+
+def apply_learnings(analyse, learnings=None):
+    learnings = learnings if learnings is not None else load_learnings()
+    factor = learnings.get("factor") or 1.0
+    for a in analyse.get("analyses") or []:
+        base = a.get("radar_score_raw")
+        if base is None:
+            base = a.get("radar_score") or 0
+            a["radar_score_raw"] = base
+        a["radar_score"] = round(base * factor, 4)
+    analyse["learnings"] = learnings
+    return analyse
+
+
 def run_radar(matchs, top=20, ligue=None, league_code=None):
     stamp_ligue(matchs, ligue=ligue, league_code=league_code)
     complete, holes = split_complete(matchs)
@@ -74,9 +121,11 @@ def run_radar(matchs, top=20, ligue=None, league_code=None):
         if m.get("ligue"):
             analyse["ligue"] = m["ligue"]
         lam_total = a["lambdas"]["dom_total"] + a["lambdas"]["ext_total"]
-        a["radar_score"] = round(
+        a["radar_score_raw"] = round(
             0.55 * a["probas"]["o2.5"] + 0.30 * a["probas"]["mt2_plus"] + 0.15 * min(1.0, lam_total / 4.0), 4
         )
+        a["radar_score"] = a["radar_score_raw"]
+    apply_learnings(analyse)
     ranked = sorted(analyse.get("analyses") or [], key=lambda a: a.get("radar_score") or 0, reverse=True)
     analyse["analyses"] = ranked
     analyse["top_ids"] = [a["id"] for a in ranked[:top]]
@@ -103,6 +152,11 @@ def render_radar_md(analyse, top=20, max_rows=200):
     holes = analyse.get("holes") or []
     if holes:
         lines += ["", f"Trous declares ({len(holes)}) : " + ", ".join(str(h) for h in holes) + " — Zero Data, Zero Calc."]
+    learn = analyse.get("learnings") or {}
+    if learn.get("active"):
+        lines += ["", f"Learnings F06 actifs (n={learn.get('n')}, facteur {learn.get('factor')})."]
+    else:
+        lines += ["", "Learnings F06 : identity (sous 50 tickets settle) — F06 n'apprend pas."]
     lines += ["", f"**Top {top}** passe la coupe noire ; le reste est archivé.",
               "", "*Le radar sert à trouver où creuser — la Value sort après la "
               "comparaison aux cotes du book (Compartiment 3).*"]

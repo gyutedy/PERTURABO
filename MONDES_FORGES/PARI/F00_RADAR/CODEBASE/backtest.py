@@ -88,17 +88,73 @@ def elo_slope(rows, elo_map):
     return slope, n
 
 
+def _season_of(name):
+    stem = os.path.splitext(os.path.basename(name))[0]
+    parts = stem.split("_")
+    if len(parts) >= 3 and parts[-1].isdigit() and len(parts[-1]) in (4, 6):
+        return parts[-1]
+    return None
+
+
 def measure_file(path, elo_map=None):
     rows = load_csv(path)
     if not rows:
         return None
-    code = (rows[0].get("Div") or os.path.basename(path).split("_")[1] if "_" in os.path.basename(path) else "").upper()
+    base = os.path.basename(path)
+    code = (rows[0].get("Div") or (base.split("_")[1] if "_" in base else "")).upper()
     part, n_mt = part_mt1(rows)
     slope, n_elo = elo_slope(rows, elo_map or {})
-    rec = {"league_code": code, "n_mt": n_mt, "n_elo": n_elo, "source": os.path.basename(path)}
+    rec = {"league_code": code, "n_mt": n_mt, "n_elo": n_elo, "source": base, "n_files": 1}
+    season = _season_of(base)
+    if season:
+        rec["seasons"] = [season]
     if part is not None:
         rec["part_mt1"] = round(part, 4)
     if slope is not None:
+        rec["elo_slope"] = round(slope, 6)
+    return rec
+
+
+def merge_recs(a, b):
+    """Fusion ponderee par n. Dernier fichier n'ecrase plus. Zero Data si n=0."""
+    if not a:
+        return b
+    if not b:
+        return a
+    n_mt = (a.get("n_mt") or 0) + (b.get("n_mt") or 0)
+    wa = (a.get("n_mt") or 0) if a.get("part_mt1") is not None else 0
+    wb = (b.get("n_mt") or 0) if b.get("part_mt1") is not None else 0
+    part = None
+    if wa + wb:
+        part = ((a.get("part_mt1") or 0) * wa + (b.get("part_mt1") or 0) * wb) / (wa + wb)
+    n_elo = (a.get("n_elo") or 0) + (b.get("n_elo") or 0)
+    wea = (a.get("n_elo") or 0) if a.get("elo_slope") is not None else 0
+    web = (b.get("n_elo") or 0) if b.get("elo_slope") is not None else 0
+    slope = None
+    if wea + web:
+        slope = ((a.get("elo_slope") or 0) * wea + (b.get("elo_slope") or 0) * web) / (wea + web)
+    sources = []
+    for rec in (a, b):
+        src = rec.get("sources") or rec.get("source")
+        if isinstance(src, list):
+            sources.extend(src)
+        elif src:
+            sources.append(src)
+    seasons = []
+    for rec in (a, b):
+        seasons.extend(rec.get("seasons") or [])
+    rec = {
+        "league_code": a.get("league_code") or b.get("league_code"),
+        "n_mt": n_mt,
+        "n_elo": n_elo,
+        "source": sources[-1] if sources else None,
+        "sources": sources,
+        "n_files": (a.get("n_files") or 1) + (b.get("n_files") or 1),
+        "seasons": sorted(set(seasons)),
+    }
+    if part is not None:
+        rec["part_mt1"] = round(part, 4)
+    if slope is not None and math.isfinite(slope):
         rec["elo_slope"] = round(slope, 6)
     return rec
 
@@ -112,7 +168,8 @@ def scan_dir(csv_dir, elo_map=None):
             continue
         rec = measure_file(os.path.join(csv_dir, name), elo_map=elo_map)
         if rec and rec.get("league_code"):
-            out[rec["league_code"]] = rec
+            code = rec["league_code"]
+            out[code] = merge_recs(out.get(code), rec)
     return out
 
 

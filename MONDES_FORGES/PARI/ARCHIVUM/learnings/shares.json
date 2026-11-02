@@ -1,0 +1,314 @@
+{
+  "generated_at": "2026-11-02T15:13:20Z",
+  "offline": true,
+  "leagues": {
+    "D1": {
+      "league_code": "D1",
+      "n_mt": 1451,
+      "n_elo": 0,
+      "source": "uk_D1_2526.csv",
+      "sources": [
+        "uk_D1_2122.csv",
+        "uk_D1_2223.csv",
+        "uk_D1_2324.csv",
+        "uk_D1_2425.csv",
+        "uk_D1_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4542
+    },
+    "E0": {
+      "league_code": "E0",
+      "n_mt": 1801,
+      "n_elo": 0,
+      "source": "uk_E0_2526.csv",
+      "sources": [
+        "uk_E0_2122.csv",
+        "uk_E0_2223.csv",
+        "uk_E0_2324.csv",
+        "uk_E0_2425.csv",
+        "uk_E0_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4428
+    },
+    "F1": {
+      "league_code": "F1",
+      "n_mt": 1563,
+      "n_elo": 0,
+      "source": "uk_F1_2526.csv",
+      "sources": [
+        "uk_F1_2122.csv",
+        "uk_F1_2223.csv",
+        "uk_F1_2324.csv",
+        "uk_F1_2425.csv",
+        "uk_F1_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4426
+    },
+    "I1": {
+      "league_code": "I1",
+      "n_mt": 1764,
+      "n_elo": 0,
+      "source": "uk_I1_2526.csv",
+      "sources": [
+        "uk_I1_2122.csv",
+        "uk_I1_2223.csv",
+        "uk_I1_2324.csv",
+        "uk_I1_2425.csv",
+        "uk_I1_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4362
+    },
+    "N1": {
+      "league_code": "N1",
+      "n_mt": 1453,
+      "n_elo": 0,
+      "source": "uk_N1_2526.csv",
+      "sources": [
+        "uk_N1_2122.csv",
+        "uk_N1_2223.csv",
+        "uk_N1_2324.csv",
+        "uk_N1_2425.csv",
+        "uk_N1_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4392
+    },
+    "SP1": {
+      "league_code": "SP1",
+      "n_mt": 1764,
+      "n_elo": 0,
+      "source": "uk_SP1_2526.csv",
+      "sources": [
+        "uk_SP1_2122.csv",
+        "uk_SP1_2223.csv",
+        "uk_SP1_2324.csv",
+        "uk_SP1_2425.csv",
+        "uk_SP1_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4322
+    },
+    "T1": {
+      "league_code": "T1",
+      "n_mt": 1599,
+      "n_elo": 0,
+      "source": "uk_T1_2526.csv",
+      "sources": [
+        "uk_T1_2122.csv",
+        "uk_T1_2223.csv",
+        "uk_T1_2324.csv",
+        "uk_T1_2425.csv",
+        "uk_T1_2526.csv"
+      ],
+      "n_files": 5,
+      "seasons": [
+        "2122",
+        "2223",
+        "2324",
+        "2425",
+        "2526"
+      ],
+      "part_mt1": 0.4461
+    }
+  },
+  "D1": {
+    "league_code": "D1",
+    "n_mt": 1451,
+    "n_elo": 0,
+    "source": "uk_D1_2526.csv",
+    "sources": [
+      "uk_D1_2122.csv",
+      "uk_D1_2223.csv",
+      "uk_D1_2324.csv",
+      "uk_D1_2425.csv",
+      "uk_D1_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4542
+  },
+  "E0": {
+    "league_code": "E0",
+    "n_mt": 1801,
+    "n_elo": 0,
+    "source": "uk_E0_2526.csv",
+    "sources": [
+      "uk_E0_2122.csv",
+      "uk_E0_2223.csv",
+      "uk_E0_2324.csv",
+      "uk_E0_2425.csv",
+      "uk_E0_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4428
+  },
+  "F1": {
+    "league_code": "F1",
+    "n_mt": 1563,
+    "n_elo": 0,
+    "source": "uk_F1_2526.csv",
+    "sources": [
+      "uk_F1_2122.csv",
+      "uk_F1_2223.csv",
+      "uk_F1_2324.csv",
+      "uk_F1_2425.csv",
+      "uk_F1_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4426
+  },
+  "I1": {
+    "league_code": "I1",
+    "n_mt": 1764,
+    "n_elo": 0,
+    "source": "uk_I1_2526.csv",
+    "sources": [
+      "uk_I1_2122.csv",
+      "uk_I1_2223.csv",
+      "uk_I1_2324.csv",
+      "uk_I1_2425.csv",
+      "uk_I1_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4362
+  },
+  "N1": {
+    "league_code": "N1",
+    "n_mt": 1453,
+    "n_elo": 0,
+    "source": "uk_N1_2526.csv",
+    "sources": [
+      "uk_N1_2122.csv",
+      "uk_N1_2223.csv",
+      "uk_N1_2324.csv",
+      "uk_N1_2425.csv",
+      "uk_N1_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4392
+  },
+  "SP1": {
+    "league_code": "SP1",
+    "n_mt": 1764,
+    "n_elo": 0,
+    "source": "uk_SP1_2526.csv",
+    "sources": [
+      "uk_SP1_2122.csv",
+      "uk_SP1_2223.csv",
+      "uk_SP1_2324.csv",
+      "uk_SP1_2425.csv",
+      "uk_SP1_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4322
+  },
+  "T1": {
+    "league_code": "T1",
+    "n_mt": 1599,
+    "n_elo": 0,
+    "source": "uk_T1_2526.csv",
+    "sources": [
+      "uk_T1_2122.csv",
+      "uk_T1_2223.csv",
+      "uk_T1_2324.csv",
+      "uk_T1_2425.csv",
+      "uk_T1_2526.csv"
+    ],
+    "n_files": 5,
+    "seasons": [
+      "2122",
+      "2223",
+      "2324",
+      "2425",
+      "2526"
+    ],
+    "part_mt1": 0.4461
+  }
+}

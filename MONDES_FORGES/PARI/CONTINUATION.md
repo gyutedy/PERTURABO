@@ -123,18 +123,26 @@
 - [x] **Part MT1 ligue** : `league_averages` priorise `PARI_SHARES_PATH` → part mesuree sur l'echantillon → `DEFAULT_PART_MT1` (0.44). `half_split_lambda(..., part_ligue)` utilise cette part pour les flags `mt_split_estimate`.
 - [x] **Backtest offline** : `F00_RADAR/CODEBASE/backtest.py` lit les CSV football-data caches, mesure `part_mt1` (HT/FT) + pente Elo, ecrit `ARCHIVUM/learnings/shares.json`. Zero reseau, zero scrape.
 - [x] **Commandes Telegram** : `/radar [N]`, `/pack [N]`, `/match ID` (id `M1` ou rang 1-based) cablees dans `workflow.py` (`cmd_radar`/`cmd_pack`/`cmd_match`), `parse.py` + Worker `index.js` + `schema_listen.json` alignes (`/help` mis a jour).
-- [x] **Tests** : `tests/e2e_backtest.py` 17/17 (shares, part_mt1 range, elo finite, offline, tampon, holes, cmds). `e2e_listen` 98/99 (`L12.superlig_rejet` preexistant, T1 mappe Super Lig — inchange).
+- [x] **Tests** : `tests/e2e_backtest.py` 25/25 (shares, merge 2 saisons, learnings identity/clip, tampon, holes, cmds). `e2e_listen` 99/99 (`L12.superlig_t1` : Turkiye Super Lig → T1).
 
-**Reste a faire** : (1) lancer un vrai backtest multi-saisons (`backtest.py --csv-dir` sur 5 saisons) pour peupler `ARCHIVUM/learnings/shares.json` en prod, (2) ponderer le Top N radar par les resultats F06 (item 6), (3) `L12.superlig_rejet` a arbitrer avec la doctrine (T1 mappe ou pas).
+## ETAT v2.6 — SHARES 5 SAISONS + LEARNINGS RADAR + SUPER LIG (2026-11-02)
+
+- [x] **Super Lig T1** : alias `turkiye` dans `capteurs.LIGUE_CODE`. Doctrine : T1 whitelist (ESPN `tur.1`, Odds `soccer_turkey_super_league`, enrich NOTES_3_VOIX). `L12.superlig_t1` PASS. LaLiga 2 reste rejetee.
+- [x] **Backtest multi-saisons** : `backtest.merge_recs` pondere `part_mt1` / `elo_slope` par `n` (plus d'ecrasement du dernier CSV). `scan_dir` fusionne par `league_code`. Fixture `uk_SP1_2526.csv` pour e2e.
+- [x] **`shares.json` prod** : 7 ligues × 5 saisons (2122–2526) E0/SP1/I1/D1/F1/N1/T1. Cache gitignore. Parts : D1 0.4542, E0 0.4428, F1 0.4426, I1 0.4362, N1 0.4392, SP1 0.4322, T1 0.4461. Elo slope = trou (pas de carte Elo cachee).
+- [x] **Learnings radar (item 6)** : `radar.load_learnings` / `apply_learnings`. Sous 50 tickets settle = identity (facteur 1.0, declare dans RADAR.md). 50+ = facteur `clip(1+ROI, 0.85, 1.15)` sur `radar_score` (`radar_score_raw` intact). F06 n'apprend pas. Poisson inchange.
+- [x] **Tests** : e2e_backtest 25/25, e2e_listen 99/99.
+
+**Reste a faire** : (1) pente Elo quand `ARCHIVUM/teams/elo.json` existe (`backtest.py --elo`), (2) pondération **par marché** si 50+ tickets reels (aujourd'hui facteur global ROI), (3) item 3 CONTINUATION encore marque "pas relayees" — FAUX depuis v2.5 (`/radar` `/pack` `/match` cablees).
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
 2. ~~Alerte cotes/valeur en direct~~ ✅ **P3** : cron `pari_odds_t2h.yml` (30 min) + `odds_watch.py`. Recast EV T-2h. Cle absente = skip.
-3. Commandes bot avancées : `/radar`, `/pack`, `/match <id>` (webhook de base **posé** Phase 8 — Worker + `pari_listen.yml` ; ces 3 commandes ne sont pas encore relayees). `/roi` deja dans le cycle.
-4. Backtest Football-Data.co.uk : charger 5 saisons CSV → calibrer les shares arrière-pensée réelle par ligue + poids Elo.
+3. ~~Commandes bot avancées `/radar` `/pack` `/match`~~ ✅ **v2.5** cablees (Worker + parse.py + workflow). `/roi` deja dans le cycle.
+4. ~~Backtest Football-Data.co.uk 5 saisons~~ ✅ **v2.6** `shares.json` 7 ligues. Pente Elo encore trou (pas de carte Elo).
 5. ~~OCR winner bet~~ ✅ **P4** tesseract dans Actions. Image sans binaire = Zero Data. Oracle vision hors siege.
-6. Learnings actifs : pondération du Top N du radar par les résultats du tracker (50+ tickets).
+6. ~~Learnings actifs Top N radar~~ ✅ **v2.6** identity < 50 tickets ; clip ROI 50+. Pondération par marché = plus tard (50+ tickets reels).
 
 ## DÉCISIONS VERROUILLÉES
 

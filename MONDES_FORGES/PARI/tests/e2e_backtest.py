@@ -84,6 +84,33 @@ def main():
     check("B.radar_holes", holes == ["M3"] and len(complete) == 2, str(holes))
     scan = radar.run_radar(ms2, top=5, ligue="Angleterre - Premier League", league_code="E0")
     check("B.radar_skip_hole", scan.get("holes") == ["M3"] and len(scan.get("analyses") or []) == 2)
+    learn = scan.get("learnings") or {}
+    check("B.learnings_identity", learn.get("active") is False and learn.get("factor") == 1.0, str(learn))
+    a0 = (scan.get("analyses") or [{}])[0]
+    check("B.score_raw", a0.get("radar_score") == a0.get("radar_score_raw"),
+          str((a0.get("radar_score"), a0.get("radar_score_raw"))))
+
+    merged = backtest.scan_dir(csv_dir)
+    rec_m = merged.get("SP1") or {}
+    check("B.merge_n_files", rec_m.get("n_files") == 2, str(rec_m.get("n_files")))
+    check("B.merge_n_mt", rec_m.get("n_mt") == 12, str(rec_m.get("n_mt")))
+    check("B.merge_seasons", set(rec_m.get("seasons") or []) == {"2526", "2627"}, str(rec_m.get("seasons")))
+
+    fake = tempfile.mkdtemp(prefix="pari-tk-")
+    tk_path = os.path.join(fake, "tickets.json")
+    tickets = [{"id": f"T{i}", "resultat": "gagné" if i % 2 == 0 else "perdu",
+                "mise_units": 1.0, "pnl_units": 0.5 if i % 2 == 0 else -1.0}
+               for i in range(50)]
+    json.dump({"tickets": tickets}, open(tk_path, "w"))
+    os.environ["PARI_TICKETS_PATH"] = tk_path
+    L = radar.load_learnings()
+    check("B.learnings_active", L.get("active") is True and L.get("n") == 50, str(L))
+    check("B.learnings_clip", 0.85 <= L.get("factor", 0) <= 1.15, str(L.get("factor")))
+    dummy = {"analyses": [{"radar_score_raw": 0.50, "radar_score": 0.50}]}
+    radar.apply_learnings(dummy, L)
+    check("B.learnings_scale", abs(dummy["analyses"][0]["radar_score"] - 0.50 * L["factor"]) < 1e-6,
+          str(dummy["analyses"][0]["radar_score"]))
+    os.environ.pop("PARI_TICKETS_PATH", None)
 
     wf_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "workflow.py"), encoding="utf-8").read()
     check("B.cmd_radar", "def cmd_radar" in wf_src and '"radar":' in wf_src)

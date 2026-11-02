@@ -47,6 +47,7 @@ LIGUE_CODE = {
     "superlig": "T1",
     "turquie": "T1",
     "turkey": "T1",
+    "turkiye": "T1",
     "j1 league": "J1",
     "jleague": "J1",
     "japon": "J1",

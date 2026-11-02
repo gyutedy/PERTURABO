@@ -259,7 +259,7 @@ def main():
     check("L12.laliga_sans_espace", capteurs.ligue_code("Espagne - LaLiga") == "SP1")
     check("L12.la_liga_espace", capteurs.ligue_code("Espagne - La Liga") == "SP1")
     check("L12.laliga2_rejet", capteurs.ligue_code("Espagne - LaLiga 2") is None)
-    check("L12.superlig_rejet", capteurs.ligue_code("Turkiye - Super Lig") is None)
+    check("L12.superlig_t1", capteurs.ligue_code("Turkiye - Super Lig") == "T1")
     check("L12.serie_a", capteurs.ligue_code("Italie - Serie A") == "I1")
     check("L12.bundesliga", capteurs.ligue_code("Allemagne - Bundesliga") == "D1")
     check("L12.premier", capteurs.ligue_code("Angleterre - Premier League") == "E0")
