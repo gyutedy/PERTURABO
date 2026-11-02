@@ -1449,3 +1449,9 @@
 - `odds_watch.py` : fenetre 3h, recast EV avec p_modele F03, alertes ESTOMPE/AMINCI. Jamais Poisson.
 - Cle `ODDS_API_KEY` dans env_pari (pas GitHub Secrets). Absente = skip. `PARI_SKIP_ODDS=1`.
 - Cron `.github/workflows/pari_odds_t2h.yml` toutes les 30 min. Pas scrape Winner.
+
+## [2026-11-02T13:00:00Z] DECISION v2.4 P4 — tesseract OCR dans Actions
+
+- `pari_listen.yml` + `pari_daily.yml` installent `tesseract-ocr` + `tesseract-ocr-fra` avant workflow.py / capteurs.
+- `extract_input.py` inchange : sans binaire = Zero Data, Zero Calc, pas de crash.
+- e2e_ocr : workflows poses, fake tesseract, image vide = trou. Jamais d invention.

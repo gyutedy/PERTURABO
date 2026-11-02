@@ -111,9 +111,9 @@
 - [x] **Freshness** : ESPN soccer injuries peut etre vide / latence heures = trou declare, pas invente.
 - [x] **Phase 2** Worker auto-deploy : `.github/workflows/worker_deploy.yml` (push LISTEN/** → wrangler). `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` lus depuis `env_pari` (pas GitHub Secrets). Absents = skip. Git `index.js` deja parite parse.py (`/data N` `/bankroll` `/surticket`).
 - [x] **Phase 3** The Odds API T-2h : `connectors/odds_api.py` + `odds_watch.py` + cron `pari_odds_t2h.yml`. Cle `ODDS_API_KEY` (alias `THE_ODDS_API_KEY`) dans `env_pari` (pas GitHub Secrets). Absente = skip. Fenetre 3h. Recast EV avec `p_modele` deja calcule. ESTOMPE / AMINCI Telegram. Jamais Poisson, jamais scrape Winner. `PARI_SKIP_ODDS=1`.
-- [ ] **Phase 4** tesseract dans `pari_listen.yml` + `pari_daily.yml`.
+- [x] **Phase 4** tesseract dans `pari_listen.yml` + `pari_daily.yml` (`tesseract-ocr` + `tesseract-ocr-fra`). Image sans binaire = Zero Data, Zero Calc (pas de crash). e2e_ocr.
 
-**Handoff prochain agent** : branche `pari-forge-perturabo-xs4c` (`gyutedy/PERTURABO`). P1 ESPN + P2 worker_deploy + P3 Odds T-2h POSES. Continuer P4 OCR tesseract. 1 commit + tests + push par phase. Ne pas toucher au webhook Telegram, ne pas wrangler manuel, pas scrape Winner, pas Dixon-Coles, pas `v2-live-vox-c`. Cles = `env_pari` seulement (jamais GitHub Secrets). Operateur : coller `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` + `ODDS_API_KEY` dans `env_pari` sinon Worker stale / odds skip. F06 n'apprend pas. FBref hors siege.
+**Handoff prochain agent** : branche `pari-forge-perturabo-xs4c` (`gyutedy/PERTURABO`). P1 ESPN + P2 worker_deploy + P3 Odds T-2h + P4 OCR POSES. Plan v2.4 ferme. Ne pas toucher au webhook Telegram, ne pas wrangler manuel, pas scrape Winner, pas Dixon-Coles, pas `v2-live-vox-c`. Cles = `env_pari` seulement (jamais GitHub Secrets). Operateur : coller `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` + `ODDS_API_KEY` dans `env_pari` sinon Worker stale / odds skip. F06 n'apprend pas. FBref hors siege.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
@@ -121,7 +121,7 @@
 2. ~~Alerte cotes/valeur en direct~~ ✅ **P3** : cron `pari_odds_t2h.yml` (30 min) + `odds_watch.py`. Recast EV T-2h. Cle absente = skip.
 3. Commandes bot avancées : `/radar`, `/pack`, `/match <id>` (webhook de base **posé** Phase 8 — Worker + `pari_listen.yml` ; ces 3 commandes ne sont pas encore relayees). `/roi` deja dans le cycle.
 4. Backtest Football-Data.co.uk : charger 5 saisons CSV → calibrer les shares arrière-pensée réelle par ligue + poids Elo.
-5. OCR winner bet : si clé Oracle vision disponible, mode capture d'écran complète dans le bot.
+5. ~~OCR winner bet~~ ✅ **P4** tesseract dans Actions. Image sans binaire = Zero Data. Oracle vision hors siege.
 6. Learnings actifs : pondération du Top N du radar par les résultats du tracker (50+ tickets).
 
 ## DÉCISIONS VERROUILLÉES

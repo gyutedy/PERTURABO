@@ -60,6 +60,12 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: tesseract OCR (capture png/jpg)
+        run: |
+          sudo apt-get update -y
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tesseract-ocr tesseract-ocr-fra
+          tesseract --version | head -1
+
       - name: Capteurs + Radar (donnée réelle) ou Démo si pas de carte
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}

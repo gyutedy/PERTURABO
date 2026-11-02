@@ -68,7 +68,8 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
 ### Ce que le monde fait exactement à chaque étape
 
 1. **/capture** : extracteur multi-format (txt/md direct, PDF/DOCX texte, image OCR si
-   tesseract est installe) puis parseur (tableau markdown Winner Bet ou lignes OCR).
+    tesseract est installe — **P4** : `tesseract-ocr` + `tesseract-ocr-fra` dans
+    `pari_listen.yml` et `pari_daily.yml`) puis parseur (tableau markdown Winner Bet ou lignes OCR).
    Telegram qui casse `<br>` en saut de ligne est reassembled (v2.2.1). Capte ligue/coupe,
    date, heure, matchs, tous les marches affiches (1X2, O/U toutes lignes, MT1/MTE/MT2,
    BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning, jamais devine

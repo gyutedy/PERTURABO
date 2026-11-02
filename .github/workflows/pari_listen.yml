@@ -40,6 +40,12 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: tesseract OCR (capture png/jpg)
+        run: |
+          sudo apt-get update -y
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tesseract-ocr tesseract-ocr-fra
+          tesseract --version | head -1
+
       - name: Inbox capture Telegram (si fournie)
         env:
           CAPTURE_TEXT: ${{ github.event.inputs.capture_text }}
