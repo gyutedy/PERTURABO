@@ -29,3 +29,6 @@ ZRO_MODEL=glm-5.3-flash
 
 # The Odds API T-2h (optionnelle). Absente = skip. Jamais Poisson, jamais scrape Winner.
 ODDS_API_KEY=6a3adabbc1065e784a5458aac2bc9d81
+
+# Cloudflare Worker deploy (CLOUDFLARE_* dans env_pari, PAS GitHub Secrets). Absents = skip.
+CLOUDFLARE_ACCOUNT_ID=4fdd684eeb5ef46b4ecd53cec605d3b3
