@@ -89,7 +89,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | `fixtures/` | La carte de matchs du cours (**une campagne à la fois**) |
 | `teams/` | Profils d'équipes (Elo, forme Dom/Ext, xG par MT) |
 | `demons/` | **Les bookmakers** — `winner_bet.json` : marges par marché (le 2.10 MT2 !) |
-| `odds/` | Historique des cotes collées |
+| `odds/` | Snapshots T-2h The Odds API (`latest.json`) + historique cotes collées |
 | `knowledge_base/` | Transcriptions YouTube, trading — savoir, séparé des faits |
 | `pronostics/` | Tracker des pronostiqueurs YouTube (données testables, pas des oracles) |
 | `learnings/` | `lots.json` (token = cle, snapshot T0), `tickets.json` (TOUS gagnants ET perdants), `calibration.json` |
@@ -114,6 +114,6 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 - **Moteur** : Python pur (stdlib), tournant partout — GitHub Actions, Replit, terminal
 - **Dashboard** : HTML statique + Chart.js CDN, charte Iron Warriors (bleu/or/acier), mode discret
 - **Canal** : Telegram privé bidirectionnel LIVE (Worker `https://pari-listen.pari-listen.workers.dev` → `pari_listen.yml` sur `gyutedy/PERTURABO` branche principale `pari-forge-perturabo-xs4c` → `workflow.py` → `notifier.py` via `env_pari`). Capture v1 = texte colle. Pages pas encore active (non bloquant).
-- **Sources** : whitelist — Football-Data.co.uk, ClubElo, API-Football, football-data.org, Understat. FBref xG = MORT (donnée retirée 01/2026) — donc non utilisée.
+- **Sources** : whitelist — Football-Data.co.uk, ClubElo, API-Football, football-data.org, Understat, The Odds API (T-2h, `ODDS_API_KEY` optionnelle dans `env_pari`). FBref xG = MORT (donnée retirée 01/2026) — donc non utilisée.
 
 *Fer au-dedans, Fer au-dehors. Aucune hérésie ne survivra au siège.*

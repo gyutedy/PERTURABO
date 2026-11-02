@@ -18,8 +18,10 @@ Cartographie des journaux du monde.
 | `CONTRACTS/schema_listen.json` | Contrat update Telegram → {cmd, capture_text, chat_id} | Worker + parse.py |
 | Repo vivant | `gyutedy/PERTURABO` branche principale `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`) | Worker GH_REF |
 | Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | `.github/workflows/worker_deploy.yml` (CLOUDFLARE_* dans env_pari) |
-| `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE | workflow.py `/capture` `/valider-1` |
-| `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY`, `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. ESPN voix 3 = public sans cle. Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, sportradar.py, sofascore.py, espn.py, whoscored.py, tyrant.py, herald.py, notifier.py |
+| `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util,odds_watch}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE. T-2h = `odds_watch` | workflow.py `/capture` `/valider-1` ; `pari_odds_t2h.yml` |
+| `F01_SENTINEL/CODEBASE/connectors/odds_api.py` | The Odds API (h2h + totals 2.5). Matching nom + difflib 0.9. Cache 1 hit/ligue/jour | odds_watch.py |
+| `ARCHIVUM/odds/` | Snapshots T-2h (`latest.json`, `t2h_*.json`) | odds_watch.persist |
+| `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY`, `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. ESPN voix 3 = public sans cle. Odds T-2h : `ODDS_API_KEY` (optionnelle). Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, sportradar.py, sofascore.py, espn.py, whoscored.py, odds_api.py, tyrant.py, herald.py, notifier.py |
 | `ARCHIVUM/cache/f00/` | Cache 1 hit / equipe / jour (gitignore) | F00 enrich |
 | `ARCHIVUM/fixtures/notes_qualitatives.json` | Notes votees F00 (OUT → TYRANT) | enrich.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |

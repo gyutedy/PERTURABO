@@ -1442,3 +1442,10 @@
 
 - Push `LISTEN/**` sur xs4c → `pari-worker-deploy`. `CLOUDFLARE_*` lus depuis `env_pari` (pas GitHub Secrets). Absents = skip.
 - Git index.js deja parite parse.py. Ne pas wrangler manuel depuis sandbox.
+
+## [2026-11-02T12:30:00Z] DECISION v2.4 P3 — Odds T-2h The Odds API
+
+- Connecteur `odds_api.py` : GET /v4/sports/{league}/odds h2h+totals, matching nom + difflib 0.9, cache jour.
+- `odds_watch.py` : fenetre 3h, recast EV avec p_modele F03, alertes ESTOMPE/AMINCI. Jamais Poisson.
+- Cle `ODDS_API_KEY` dans env_pari (pas GitHub Secrets). Absente = skip. `PARI_SKIP_ODDS=1`.
+- Cron `.github/workflows/pari_odds_t2h.yml` toutes les 30 min. Pas scrape Winner.

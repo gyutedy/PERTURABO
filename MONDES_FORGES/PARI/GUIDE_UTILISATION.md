@@ -211,6 +211,12 @@ ou remplit à la main, jamais d'invention.
 # Cloudflare Worker deploy (CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
 # dans env_pari, PAS GitHub Secrets). Absents = skip, Worker live stale.
 
+# The Odds API T-2h (ODDS_API_KEY dans env_pari, PAS GitHub Secrets).
+# Absente = skip. Fenetre 3h avant kickoff. Recast EV (p_modele F03).
+# ESTOMPE si VALUE devient EV<=0. Jamais Poisson, jamais scrape Winner.
+# Kill switch PARI_SKIP_ODDS=1.
+# python F00_RADAR/CODEBASE/capteurs.py odds-watch [--force] [--notify]
+
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \

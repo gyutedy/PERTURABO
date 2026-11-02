@@ -327,6 +327,15 @@ def cmd_enrich(args):
     return True
 
 
+def cmd_odds_watch(args):
+    """Rescan T-2h The Odds API. Cle absente = skip. Jamais dans Poisson."""
+    import odds_watch
+    force = bool(args.force) or os.environ.get("PARI_ODDS_FORCE") == "1"
+    odds_watch.run(carte_path=args.carte, pred_path=args.predictions,
+                   force=force, notify=args.notify)
+    return True
+
+
 def cmd_telegram_test(args):
     sys.path.insert(0, os.path.join(HERE, "..", "..", "ORCHESTRATOR", "CODEBASE"))
     import notifier
@@ -375,10 +384,16 @@ def main():
     en.add_argument("--capture-parsed", default=None)
     en.add_argument("--notes", default=None)
 
+    ow = sub.add_parser("odds-watch")
+    ow.add_argument("--carte", default=None)
+    ow.add_argument("--predictions", default=None)
+    ow.add_argument("--force", action="store_true")
+    ow.add_argument("--notify", action="store_true")
+
     args = parser.parse_args()
     {"build-stats": cmd_build_stats, "build-elo": cmd_build_elo,
      "fixtures-list": cmd_fixtures_list, "inject": cmd_inject,
-     "enrich": cmd_enrich,
+     "enrich": cmd_enrich, "odds-watch": cmd_odds_watch,
      "telegram-test": cmd_telegram_test}[args.cmd](args)
 
 
