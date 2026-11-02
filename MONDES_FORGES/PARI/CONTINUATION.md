@@ -138,6 +138,16 @@
 
 **Reste a faire** : (1) coller `elo.json` (ClubElo) puis `backtest.py --elo` pour peupler `elo_slope` prod, (2) 50+ tickets **reels** pour activer learnings live.
 
+## ETAT v2.7 — /pack /match EXECUTES (2026-11-02)
+
+- [x] **`/pack` live** : `cmd_pack` execute `orchestrator --mode pack` (packager + dashboard). Refuse sans predictions/analysis. EV cassee = 0, pas de crash. Pack vide + orch fail = message d'echec.
+- [x] **`/match` live** : fiche Herald si presente, sinon analysis (λ / O2.5 / MT2, proba None = `—`), sinon refuse `introuvable`. Rang 1-based + id `M1`.
+- [x] **packager** : `analyses` / `predictions` absents ou partiels = pack vide, jamais `KeyError` sur `data_quality`.
+- [x] **e2e_backtest** : `B.pack_refuse_sans_pred` / `B.pack_run` / `B.pack_picks` / `B.match_sans_arg` / `B.match_inconnu` / `B.match_m1` / `B.match_rang` — execution reelle, plus un grep. Zero reseau.
+- [x] **Docs** : GUIDE + README listent `/radar` `/pack` `/match` dans le cycle Telegram.
+
+**Handoff** : branche `pari-forge-perturabo-xs4c`. Flux radar → pack → match **execute** (plus seulement cable). Suite : ClubElo `elo.json` (pente prod) + 50 tickets reels. Pas de wrangler, pas scrape Winner, pas Dixon-Coles, cles = `env_pari`.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

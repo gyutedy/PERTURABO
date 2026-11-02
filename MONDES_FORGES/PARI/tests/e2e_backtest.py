@@ -132,6 +132,55 @@ def main():
     check("B.cmd_match", "def cmd_match" in wf_src)
     check("B.offline_env", "PARI_SHARES_PATH" in os.environ)
 
+    told = []
+    orig_tell = workflow.tell
+    orig_load = workflow.load_json
+    orig_run = workflow.run_orch
+    workflow.tell = lambda t: told.append(t)
+    try:
+        workflow.load_json = lambda p: None
+        told.clear()
+        workflow.cmd_pack({}, "10")
+        check("B.pack_refuse_sans_pred",
+              told and "PACK refuse" in told[-1],
+              (told[-1][:80] if told else "vide"))
+
+        workflow.load_json = orig_load
+        workflow.run_orch = lambda *a, **k: (True, "pack-ok")
+        told.clear()
+        workflow.cmd_pack({}, "5")
+        msg = told[-1] if told else ""
+        check("B.pack_run", msg.startswith("PACK TOP"), msg[:80])
+        check("B.pack_picks", "EV" in msg and "#" in msg, msg[:120])
+
+        told.clear()
+        workflow.cmd_match({}, "")
+        check("B.match_sans_arg",
+              told and "Format" in told[-1],
+              (told[-1][:80] if told else "vide"))
+
+        told.clear()
+        workflow.cmd_match({}, "ZZZ")
+        check("B.match_inconnu",
+              told and "introuvable" in told[-1],
+              (told[-1][:80] if told else "vide"))
+
+        told.clear()
+        workflow.cmd_match({}, "M1")
+        msg = told[-1] if told else ""
+        check("B.match_m1",
+              ("Lecce" in msg or "λ" in msg or "FICHE" in msg or "pas d'analyse" in msg),
+              msg[:120])
+
+        told.clear()
+        workflow.cmd_match({}, "1")
+        msg = told[-1] if told else ""
+        check("B.match_rang", bool(msg) and "introuvable" not in msg, msg[:120])
+    finally:
+        workflow.tell = orig_tell
+        workflow.load_json = orig_load
+        workflow.run_orch = orig_run
+
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]
     print(f"BACKTEST {len(CHECKS) - len(fails)}/{len(CHECKS)}")

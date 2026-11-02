@@ -611,13 +611,17 @@ def cmd_pack(st, arg):
     picks = pack.get("top_picks") or []
     lines = [f"PACK TOP {len(picks)}"]
     for x in picks[:top]:
+        try:
+            ev = float(x.get("ev") or 0)
+        except (TypeError, ValueError):
+            ev = 0.0
         lines.append(
             f"#{x.get('rang')} {x.get('match')} {x.get('selection_label')} "
-            f"cote {x.get('cote')} EV {x.get('ev', 0):+.1%}"
+            f"cote {x.get('cote')} EV {ev:+.1%}"
         )
     if not picks:
         lines.append(out.strip()[-400:] if out else "aucun pick VALUE")
-    if not ok:
+    if not ok and not picks:
         tell("PACK en echec.\n" + "\n".join(lines)); return
     tell("\n".join(lines))
 
@@ -662,10 +666,15 @@ def cmd_match(st, arg):
     if a:
         p = a.get("probas") or {}
         lam = a.get("lambdas") or {}
+        def pct(v):
+            try:
+                return f"{float(v):.0%}"
+            except (TypeError, ValueError):
+                return "—"
         tell(
             f"{a.get('match')} ({mid})\n"
             f"λ {lam.get('dom_total')}–{lam.get('ext_total')}  "
-            f"O2.5 {p.get('o2.5', 0):.0%}  MT2> {p.get('mt2_plus', 0):.0%}\n"
+            f"O2.5 {pct(p.get('o2.5'))}  MT2> {pct(p.get('mt2_plus'))}\n"
             f"qualité { (a.get('data_quality') or {}).get('niveau') }"
         )
         return

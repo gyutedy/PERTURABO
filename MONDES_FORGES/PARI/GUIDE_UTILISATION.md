@@ -44,6 +44,9 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
 | `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
 | `/data ledger` | Token + lots du jour (inchange). |
+| `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. |
+| `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
+| `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. Inconnu = refuse, pas crash. |
 | `/status` | État campagne. `/status ledger` = lots ouverts + jambes consommees. |
 
 Exemple compact (`/data`) :

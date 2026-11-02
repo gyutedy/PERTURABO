@@ -31,12 +31,18 @@ DISCLAIMER = ("🪙 Jeu responsable : le pari est un divertissement à maîtrise
 def build_pack(predictions, analysis, carte, top=10, devise="USD"):
     picks = []
     no_bet = []
-    qualite_by_id = {a["id"]: a["data_quality"]["niveau"] for a in analysis["analyses"]}
+    analyses = (analysis or {}).get("analyses") or []
+    qualite_by_id = {}
+    for a in analyses:
+        dq = a.get("data_quality") if isinstance(a.get("data_quality"), dict) else {}
+        if a.get("id"):
+            qualite_by_id[a["id"]] = dq.get("niveau") or "basse"
 
-    for p in predictions["predictions"]:
-        if p["verdict"] == "GO":
-            for s in sorted(p["selections"], key=lambda s: s["ev"], reverse=True):
-                if s["verdict"] == "VALUE":
+    for p in (predictions or {}).get("predictions") or []:
+        if p.get("verdict") == "GO":
+            sels = p.get("selections") or []
+            for s in sorted(sels, key=lambda s: s.get("ev") or 0, reverse=True):
+                if s.get("verdict") == "VALUE":
                     picks.append({
                         "match_id": p["id"],
                         "match": p["match"],
@@ -58,8 +64,10 @@ def build_pack(predictions, analysis, carte, top=10, devise="USD"):
     for i, pk in enumerate(picks, 1):
         pk["rang"] = i
 
+    preds = (predictions or {}).get("predictions") or []
+    combines = (predictions or {}).get("combines") or []
     mise_totale = round(sum(x["mise_units"] for x in picks)
-                        + sum(c.get("mise_units") or 0 for c in predictions.get("combines", [])), 2)
+                        + sum(c.get("mise_units") or 0 for c in combines), 2)
     ev_moy = round(sum(x["ev"] for x in picks) / len(picks), 4) if picks else None
 
     pack = {
@@ -69,7 +77,7 @@ def build_pack(predictions, analysis, carte, top=10, devise="USD"):
         "titre": f"DIRECTION DES SIÈGES — TOP {len(picks)}",
         "top_picks": picks,
         "no_bet": no_bet,
-        "combines": predictions.get("combines", []),
+        "combines": combines,
         "loterie": {
             "budget_pct_bankroll": 0.02,
             "note": "Zone DIVERTISSEMENT séparée. Combinés 10+ jambes cote 100+ : jamais dans le capital de chasse.",
@@ -78,9 +86,9 @@ def build_pack(predictions, analysis, carte, top=10, devise="USD"):
         "metriques": {
             "mise_totale_units": mise_totale,
             "ev_moyenne_pct": ev_moy,
-            "nb_matchs_analyses": len(predictions["predictions"]),
+            "nb_matchs_analyses": len(preds),
             "nb_no_bet": len(no_bet),
-            "nb_matchs_go": sum(1 for p in predictions["predictions"] if p["verdict"] in ("GO", "THIN")),
+            "nb_matchs_go": sum(1 for p in preds if p.get("verdict") in ("GO", "THIN")),
         },
         "disclaimer": DISCLAIMER,
     }
