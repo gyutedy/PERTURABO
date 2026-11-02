@@ -92,6 +92,8 @@
 - [x] **`FOOTBALL_DATA_ORG_KEY` LIVE** (2026-11-01) : jeton football-data.org pose dans `env_pari`. Header `X-Auth-Token`. Ping `/v4/competitions` HTTP 200 (13 comps). F00 `rest_days` au `/capture` et `/valider-1`. **Indépendant d'Oracle / modèle premium** : `workflow.py` charge `env_pari` à chaque commande Telegram, secret GitHub vide n'écrase pas.
 - [x] **`API_FOOTBALL_KEY` LIVE** (2026-11-01) : jeton api-sports Free (100 req/jour) pose dans `env_pari`. Header `x-apisports-key`. Ping `/status` HTTP 200, plan active. Calendrier F00 (`fixtures-list`), **pas Oracle**. WhoScored / Oracle : encore vides.
 - [x] **`SPORTRADAR_API_KEY` LIVE** (2026-11-01) : jeton trial v4 pose dans `env_pari`. Ping `/competitions` + `/seasons/{id}/missing_players` HTTP 200. **Route trial differenciee** : pas de search equipe, `missing_players` est publie PAR SAISON -> connecteur reecrit (saison courante des 6 championnats, cache 1 hit/jour/competition, matching nom normalise + difflib 0.9). Voix 2 notes = DOUTE seule ; OUT exige 3 voix. **Pas Oracle.**
+- [x] **`SOFASCORE_RAPIDAPI_KEY` LIVE** (2026-11-02) : meme X-RapidAPI-Key que WhoScored. Host `sofascore-sport-api.p.rapidapi.com`. Search + `/api/team/{id}/events/next/0` + `/api/event/{id}/lineups` → `missingPlayers`. Teste Arsenal (Saka, Saliba) + Chelsea (6). Direct `api.sofascore.com` = 403 ici. **Pas Oracle.**
+- [x] **`WHOSCORED_KEY` POSEE** (2026-11-02) : host `whoscored.p.rapidapi.com` existe (429/500). Listing elis-lab `whoscored-football-data-api` = live scores/fixtures, **pas d'endpoint injuries**. Voix 3 = trou jusqu'a un vrai /injuries. **Pas Oracle.**
 
 ## ETAT v2.3.1 — `/data` DEUX VUES (2026-10-31)
 

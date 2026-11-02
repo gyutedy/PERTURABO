@@ -199,6 +199,13 @@ ou remplit à la main, jamais d'invention.
 # des 6 championnats (E0/SP1/I1/D1/F1/N1), cache 1 hit/jour/competition.
 # Voix 2 des notes : seul, il ne peut produire que DOUTE (OUT = 3 voix).
 
+# SofaScore RapidAPI (SOFASCORE_RAPIDAPI_KEY = meme X-RapidAPI-Key).
+# Host sofascore-sport-api.p.rapidapi.com. missingPlayers via lineups
+# du prochain event. Voix 1 notes. Pas Oracle.
+
+# WhoScored RapidAPI (WHOSCORED_KEY). Host whoscored.p.rapidapi.com.
+# Listing elis-lab n a pas /injuries → voix 3 = trou tant que l endpoint n existe pas.
+
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \

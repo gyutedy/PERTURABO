@@ -18,6 +18,28 @@ import cache
 import capteurs
 import vote
 
+
+def _load_env_pari():
+    for name in (".env", "env_pari"):
+        path = os.path.join(WORLD, name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
+_load_env_pari()
+
 NOTES_3_VOIX = {"E0", "SP1", "I1", "D1", "F1", "N1"}
 NOTES_PATH = os.path.join(WORLD, "ARCHIVUM", "fixtures", "notes_qualitatives.json")
 ELO_PATH = os.path.join(WORLD, "ARCHIVUM", "teams", "elo.json")
@@ -148,7 +170,8 @@ def _notes_wanted():
     if os.environ.get("PARI_F00_NOTES") == "1":
         return True
     return bool(os.environ.get("SPORTRADAR_API_KEY") or os.environ.get("WHOSCORED_KEY")
-                or os.environ.get("RAPIDAPI_WHOSCORED_KEY"))
+                or os.environ.get("RAPIDAPI_WHOSCORED_KEY")
+                or os.environ.get("SOFASCORE_RAPIDAPI_KEY"))
 
 
 def _collect_hits(team, code=None):

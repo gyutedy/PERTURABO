@@ -7,14 +7,38 @@ Jamais le même upstream que Sofa/API-Sports.
 import os
 import sys
 
-CAP = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    "..", "..", "..", "F00_RADAR", "CODEBASE"))
+_THIS = os.path.dirname(os.path.abspath(__file__))
+CAP = os.path.normpath(os.path.join(_THIS, "..", "..", "..", "F00_RADAR", "CODEBASE"))
 if CAP not in sys.path:
     sys.path.insert(0, CAP)
 import cache
 import http_util
 
-HOST = os.environ.get("WHOSCORED_HOST", "whoscored-api.p.rapidapi.com")
+_WORLD = os.path.normpath(os.path.join(_THIS, "..", "..", ".."))
+
+
+def _load_env_pari():
+    for name in (".env", "env_pari"):
+        path = os.path.join(_WORLD, name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
+_load_env_pari()
+
+HOST = os.environ.get("WHOSCORED_HOST", "whoscored.p.rapidapi.com")
 
 
 def _key():
