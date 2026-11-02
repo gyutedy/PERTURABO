@@ -1436,4 +1436,9 @@
 - Connecteur public `espn.py` : GET injuries PAR LIGUE, matching nom + difflib 0.9, cache jour.
 - Mapping E0/SP1/I1/D1/F1/N1/T1/J1. Timeout / 3 fails = voix morte. Jamais dans Poisson.
 - WhoScored injuries reste optionnel. OUT exige 3 independants : Sofa + Sportradar + ESPN.
-- Phases 2-4 (Worker deploy, Odds T-2h, OCR tesseract) encore a faire.
+- Phases 3-4 (Odds T-2h, OCR tesseract) encore a faire.
+
+## [2026-11-02T11:10:00Z] DECISION v2.4 P2 — worker_deploy.yml auto wrangler
+
+- Push `LISTEN/**` sur xs4c → `pari-worker-deploy`. Secrets CF absents = skip (pas rouge).
+- Git index.js deja parite parse.py. Ne pas wrangler / setWebhook depuis sandbox.

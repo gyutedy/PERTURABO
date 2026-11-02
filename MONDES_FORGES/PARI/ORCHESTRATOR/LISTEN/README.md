@@ -3,16 +3,27 @@
 Webhook Telegram → allowlist 1 operateur → ACK → `workflow_dispatch` `pari_listen.yml`.
 Zero calcul ici. Le siege tourne sur GitHub Actions (`workflow.py`).
 
-## 1. Deploy (une fois)
+## 1. Deploy auto (v2.4 P2)
 
-```bash
-# Compte Cloudflare + wrangler (npm i -g wrangler)
-cd MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN
-npx wrangler login
-npx wrangler deploy
-```
+Push sur `MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN/**` (branche `pari-forge-perturabo-xs4c`)
+declenche `.github/workflows/worker_deploy.yml` → `wrangler deploy`.
+
+Secrets GitHub (Settings → Secrets → Actions), gratuits Cloudflare :
+
+- `CLOUDFLARE_API_TOKEN` (permission Edit Cloudflare Workers)
+- `CLOUDFLARE_ACCOUNT_ID`
+
+Absents = skip, Worker live reste stale, job vert. Ne pas wrangler depuis un sandbox.
+Ne pas setWebhook ici.
 
 URL LIVE : `https://pari-listen.pari-listen.workers.dev`
+
+Deploy manuel (une fois, hors sandbox) seulement si les secrets Actions ne sont pas poses :
+
+```bash
+cd MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN
+npx wrangler deploy
+```
 
 ## 2. Secrets Worker (jamais dans git)
 
@@ -53,14 +64,15 @@ curl -s "https://api.telegram.org/bot${TOKEN}/getWebhookInfo"
 
 Commandes v2.2.8 : Telegram live tape `/budget bankroll 50000` (pot global)
 puis `/budget 3000 800` (plafond lot + mise FORCEE ticket sur).
-`/bankroll` seul = refuse par le Worker deploye (KNOWN stale, pas de
-wrangler). `/budget 3000` seul est refuse par `workflow.py`.
+`/bankroll` est dans git (`index.js` KNOWN). Worker Cloudflare stale jusqu'au
+premier run `pari-worker-deploy` (secrets CF poses). `/budget 3000` seul est
+refuse par `workflow.py`.
 `/valider-1` injecte stats E0/SP1/I1/D1/F1 avec alias `LaLiga` + clubs
 football-data ; un club hors CSV skip CE match (pas NO BET global).
 `/valider-2` = tickets + anti-cannibal + token `L-XXX` (retaper `/budget`
 avant chaque lot Mode A). Aliases deja live : `/data ledger`,
 `/status ledger`, `/roi settle L-XXX`. `/data` = table compacte, `/data N` = fiche
-(parse.py + HELP Worker alignes dans git ; Worker deploye stale jusqu'au wrangler — ne pas wrangler ici). Relais `/data N` deja live.
+(parse.py + index.js alignes ; deploy auto via `worker_deploy.yml`). Relais `/data N` dans git.
 `FOOTBALL_DATA_ORG_KEY` (F00 rest_days), `API_FOOTBALL_KEY` (F00 calendrier) et
 `SPORTRADAR_API_KEY` (F00 notes voix 2) vivent dans `env_pari`. `workflow.py` les charge a chaque commande.
 **Pas Oracle, pas modele premium.** Secret GitHub vide n ecrase pas.

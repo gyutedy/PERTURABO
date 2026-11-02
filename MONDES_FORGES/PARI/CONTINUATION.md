@@ -109,11 +109,11 @@
 - [x] **Phase 1 ESPN** : `connectors/espn.py` public (sans cle). Fetch PAR LIGUE `site.api.espn.com/.../soccer/{slug}/injuries`. Mapping E0→eng.1 SP1→esp.1 I1→ita.1 D1→ger.1 F1→fra.1 N1→ned.1 T1→tur.1 J1→jpn.1. Matching nom + difflib 0.9. Cache 1 hit/ligue/jour + 1 hit/equipe/jour. Timeout / 3 fails = voix morte, jamais de devine.
 - [x] **Vote** : Sofa + Sportradar + ESPN = 3 independants → OUT possible. WhoScored/Opta optionnel (4e). Jamais dans Poisson.
 - [x] **Freshness** : ESPN soccer injuries peut etre vide / latence heures = trou declare, pas invente.
-- [ ] **Phase 2** Worker auto-deploy (stale Cloudflare).
+- [x] **Phase 2** Worker auto-deploy : `.github/workflows/worker_deploy.yml` (push LISTEN/** → wrangler). Secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`. Absents = skip. Git `index.js` deja parite parse.py (`/data N` `/bankroll` `/surticket`).
 - [ ] **Phase 3** The Odds API T-2h (cle optionnelle, pas env_pari).
 - [ ] **Phase 4** tesseract dans `pari_listen.yml` + `pari_daily.yml`.
 
-**Handoff prochain agent** : branche `pari-forge-perturabo-xs4c` (`gyutedy/PERTURABO`). Phase 1 POSEE (`espn.py` + vote + enrich T1/J1). Continuer P2→P3→P4 du plan v2.4. 1 commit + tests + push par phase. Ne pas setWebhook, ne pas wrangler manuel, pas scrape Winner, pas Dixon-Coles, pas `env_pari`, pas `v2-live-vox-c`. Worker git deja aligne (`/data N` `/bankroll` `/surticket`) ; deploye Cloudflare stale jusqu'au workflow `worker_deploy.yml` + secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`. F06 n'apprend pas. FBref hors siege.
+**Handoff prochain agent** : branche `pari-forge-perturabo-xs4c` (`gyutedy/PERTURABO`). P1 ESPN + P2 worker_deploy POSES. Continuer P3 Odds T-2h puis P4 OCR tesseract. 1 commit + tests + push par phase. Ne pas setWebhook, ne pas wrangler manuel, pas scrape Winner, pas Dixon-Coles, pas `env_pari`, pas `v2-live-vox-c`. Operateur : poser secrets GitHub `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` sinon Worker live reste stale (job skip). F06 n'apprend pas. FBref hors siege.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

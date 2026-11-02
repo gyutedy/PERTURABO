@@ -1,0 +1,42 @@
+# PARI LISTEN — deploy Cloudflare Worker quand LISTEN/** change.
+# Secrets repo (Settings → Secrets → Actions), gratuits Cloudflare :
+#   CLOUDFLARE_API_TOKEN    (Edit Cloudflare Workers)
+#   CLOUDFLARE_ACCOUNT_ID
+# Absents = skip (pas d echec rouge). Pas de wrangler manuel. Pas de webhook Telegram ici.
+
+name: pari-worker-deploy
+on:
+  push:
+    branches:
+      - pari-forge-perturabo-xs4c
+    paths:
+      - "MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN/**"
+      - ".github/workflows/worker_deploy.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Secrets presents ?
+        id: creds
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then
+            echo "present=0" >> "$GITHUB_OUTPUT"
+            echo "[worker] CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID absents — skip deploy (Worker live reste stale)"
+          else
+            echo "present=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: cloudflare/wrangler-action@v3
+        if: steps.creds.outputs.present == '1'
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN
+          command: deploy
