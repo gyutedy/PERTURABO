@@ -133,7 +133,10 @@
 - [x] **Learnings radar (item 6)** : `radar.load_learnings` / `apply_learnings`. Sous 50 tickets settle = identity (facteur 1.0, declare dans RADAR.md). 50+ = facteur `clip(1+ROI, 0.85, 1.15)` sur `radar_score` (`radar_score_raw` intact). F06 n'apprend pas. Poisson inchange.
 - [x] **Tests** : e2e_backtest 25/25, e2e_listen 99/99.
 
-**Reste a faire** : (1) pente Elo quand `ARCHIVUM/teams/elo.json` existe (`backtest.py --elo`), (2) pondération **par marché** si 50+ tickets reels (aujourd'hui facteur global ROI), (3) item 3 CONTINUATION encore marque "pas relayees" — FAUX depuis v2.5 (`/radar` `/pack` `/match` cablees).
+- [x] **Pente Elo** : `load_elo` lit `elos` (schema ClubElo) + `teams`. Matching `team_key` / alnum. `scan_dir` concatene les lignes par ligue avant OLS (plus de moyenne de pentes). ClubElo live **trou** (api.clubelo.com timeout ici) — `shares.json` prod sans `elo_slope`. Fixture e2e = pente presente.
+- [x] **Learnings par marche** : `by_comp` o2.5 / mt2_plus (min 8 jambes). Recompose le score radar (poids 0.55/0.30) — un facteur global ne reordonne pas. Identity < 50.
+
+**Reste a faire** : (1) coller `elo.json` (ClubElo) puis `backtest.py --elo` pour peupler `elo_slope` prod, (2) 50+ tickets **reels** pour activer learnings live.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

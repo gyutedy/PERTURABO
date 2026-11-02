@@ -14,7 +14,13 @@ import io
 import json
 import math
 import os
+import sys
 from datetime import datetime, timezone
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
+sys.path.insert(0, HERE)
 
 
 def _num(row, key):
@@ -60,15 +66,59 @@ def part_mt1(rows):
     return parts / n, n
 
 
+def _alnum(name):
+    return "".join(c for c in (name or "").lower() if c.isalnum())
+
+
+def _team_key(name):
+    try:
+        from capteurs import team_key
+        return team_key(name) or _alnum(name)
+    except Exception:
+        return _alnum(name)
+
+
+def _index_elo(elo_map):
+    idx = {}
+    for k, v in (elo_map or {}).items():
+        if v is None:
+            continue
+        try:
+            val = float(v)
+        except (TypeError, ValueError):
+            continue
+        idx[_alnum(k)] = val
+        tk = _team_key(k)
+        if tk:
+            idx.setdefault(tk, val)
+    return idx
+
+
+def _elo_of(idx, name):
+    if not name:
+        return None
+    raw = (name or "").strip()
+    if raw in idx:
+        return idx[raw]
+    a = _alnum(raw)
+    if a in idx:
+        return idx[a]
+    tk = _team_key(raw)
+    if tk in idx:
+        return idx[tk]
+    return None
+
+
 def elo_slope(rows, elo_map):
     """Pente buts_dom - buts_ext vs (elo_dom - elo_ext)/400. Finite ou None."""
     if not elo_map:
         return None, 0
+    idx = _index_elo(elo_map)
     xs, ys = [], []
     for r in rows:
         home, away = (r.get("HomeTeam") or "").strip(), (r.get("AwayTeam") or "").strip()
         fthg, ftag = _num(r, "FTHG"), _num(r, "FTAG")
-        eh, ea = elo_map.get(home), elo_map.get(away)
+        eh, ea = _elo_of(idx, home), _elo_of(idx, away)
         if None in (fthg, ftag, eh, ea):
             continue
         xs.append((eh - ea) / 400.0)
@@ -160,16 +210,46 @@ def merge_recs(a, b):
 
 
 def scan_dir(csv_dir, elo_map=None):
+    """Groupe par ligue, concatene les lignes, mesure une fois (pente Elo juste)."""
     out = {}
     if not csv_dir or not os.path.isdir(csv_dir):
         return out
+    buckets = {}
+    files = {}
     for name in sorted(os.listdir(csv_dir)):
         if not name.lower().endswith(".csv"):
             continue
-        rec = measure_file(os.path.join(csv_dir, name), elo_map=elo_map)
-        if rec and rec.get("league_code"):
-            code = rec["league_code"]
-            out[code] = merge_recs(out.get(code), rec)
+        path = os.path.join(csv_dir, name)
+        rows = load_csv(path)
+        if not rows:
+            continue
+        code = (rows[0].get("Div") or (name.split("_")[1] if "_" in name else "")).upper()
+        if not code:
+            continue
+        buckets.setdefault(code, []).extend(rows)
+        files.setdefault(code, []).append(name)
+    for code, rows in buckets.items():
+        part, n_mt = part_mt1(rows)
+        slope, n_elo = elo_slope(rows, elo_map or {})
+        seasons = []
+        for name in files[code]:
+            s = _season_of(name)
+            if s:
+                seasons.append(s)
+        rec = {
+            "league_code": code,
+            "n_mt": n_mt,
+            "n_elo": n_elo,
+            "source": files[code][-1],
+            "sources": files[code],
+            "n_files": len(files[code]),
+            "seasons": sorted(set(seasons)),
+        }
+        if part is not None:
+            rec["part_mt1"] = round(part, 4)
+        if slope is not None:
+            rec["elo_slope"] = round(slope, 6)
+        out[code] = rec
     return out
 
 
@@ -178,8 +258,11 @@ def load_elo(path):
         return {}
     with open(path, encoding="utf-8") as f:
         blob = json.load(f)
-    if isinstance(blob, dict) and "teams" in blob:
-        blob = blob["teams"]
+    if isinstance(blob, dict):
+        if "elos" in blob and isinstance(blob["elos"], dict):
+            blob = blob["elos"]
+        elif "teams" in blob and isinstance(blob["teams"], dict):
+            blob = blob["teams"]
     out = {}
     if isinstance(blob, dict):
         for k, v in blob.items():
@@ -195,7 +278,7 @@ def main():
     world = os.path.normpath(os.path.join(here, "..", ".."))
     parser = argparse.ArgumentParser(description="F00 BACKTEST shares MT1 / Elo (offline)")
     parser.add_argument("--csv-dir", default=os.environ.get("PARI_UK_CACHE") or os.path.join(world, "ARCHIVUM", "cache", "f00"))
-    parser.add_argument("--elo", default=None)
+    parser.add_argument("--elo", default=os.path.join(world, "ARCHIVUM", "teams", "elo.json"))
     parser.add_argument("--out", default=os.path.join(world, "ARCHIVUM", "learnings", "shares.json"))
     args = parser.parse_args()
     elo_map = load_elo(args.elo)
@@ -204,6 +287,7 @@ def main():
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "offline": True,
         "leagues": shares,
+        "holes": [] if elo_map else ["elo"],
     }
     for code, rec in shares.items():
         blob[code] = rec

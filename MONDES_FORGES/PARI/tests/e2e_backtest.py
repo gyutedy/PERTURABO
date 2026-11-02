@@ -50,6 +50,7 @@ def main():
     check("B.part_mt1_range", part is not None and 0.30 <= part <= 0.60, str(part))
     slope = rec.get("elo_slope")
     check("B.elo_slope_finite", slope is None or math.isfinite(slope), str(slope))
+    check("B.elo_slope_present", rec.get("n_elo", 0) >= 8 and slope is not None, str((rec.get("n_elo"), slope)))
     blob = {"generated_at": "t", "offline": True, "leagues": shares, "SP1": rec, "E0": {"part_mt1": 0.43, "n_mt": 12}}
     json.dump(blob, open(out_shares, "w"))
     check("B.schema_shares", "part_mt1" in rec and "n_mt" in rec and "league_code" in rec)
@@ -98,18 +99,31 @@ def main():
 
     fake = tempfile.mkdtemp(prefix="pari-tk-")
     tk_path = os.path.join(fake, "tickets.json")
-    tickets = [{"id": f"T{i}", "resultat": "gagné" if i % 2 == 0 else "perdu",
-                "mise_units": 1.0, "pnl_units": 0.5 if i % 2 == 0 else -1.0}
-               for i in range(50)]
+    tickets = []
+    for i in range(50):
+        if i < 25:
+            tickets.append({"id": f"T{i}", "resultat": "gagné", "mise_units": 1.0, "pnl_units": 0.5,
+                            "marche": "OU_2.5"})
+        else:
+            tickets.append({"id": f"T{i}", "resultat": "perdu", "mise_units": 1.0, "pnl_units": -1.0,
+                            "marche": "MT_PROLIFIQUE"})
     json.dump({"tickets": tickets}, open(tk_path, "w"))
     os.environ["PARI_TICKETS_PATH"] = tk_path
     L = radar.load_learnings()
     check("B.learnings_active", L.get("active") is True and L.get("n") == 50, str(L))
     check("B.learnings_clip", 0.85 <= L.get("factor", 0) <= 1.15, str(L.get("factor")))
-    dummy = {"analyses": [{"radar_score_raw": 0.50, "radar_score": 0.50}]}
+    check("B.learnings_by_comp",
+          L.get("by_comp", {}).get("o2.5") == 1.15 and L.get("by_comp", {}).get("mt2_plus") == 0.85,
+          str(L.get("by_comp")))
+    dummy = {"analyses": [
+        {"id": "HI_O", "probas": {"o2.5": 0.80, "mt2_plus": 0.20},
+         "lambdas": {"dom_total": 1.0, "ext_total": 1.0}},
+        {"id": "HI_M", "probas": {"o2.5": 0.20, "mt2_plus": 0.80},
+         "lambdas": {"dom_total": 1.0, "ext_total": 1.0}},
+    ]}
     radar.apply_learnings(dummy, L)
-    check("B.learnings_scale", abs(dummy["analyses"][0]["radar_score"] - 0.50 * L["factor"]) < 1e-6,
-          str(dummy["analyses"][0]["radar_score"]))
+    ranked = sorted(dummy["analyses"], key=lambda a: a["radar_score"], reverse=True)
+    check("B.learnings_reorder", ranked[0]["id"] == "HI_O", str([(a["id"], a["radar_score"]) for a in ranked]))
     os.environ.pop("PARI_TICKETS_PATH", None)
 
     wf_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "workflow.py"), encoding="utf-8").read()

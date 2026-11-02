@@ -28,6 +28,12 @@ from capteurs import ligue_code as resolve_ligue_code  # noqa: E402
 _STAT_KEYS = ("mj", "marques", "encaisses")
 LEARNINGS_MIN = 50
 _CLIP_LO, _CLIP_HI = 0.85, 1.15
+_MARKET_TO_COMP = {
+    "ou_2.5": "o2.5", "ou25": "o2.5", "o2.5": "o2.5", "over25": "o2.5",
+    "u2.5": "o2.5", "under25": "o2.5",
+    "mt_prolifique": "mt2_plus", "mt2": "mt2_plus", "mt2_plus": "mt2_plus",
+    "mt2>": "mt2_plus", "mt2plus": "mt2_plus",
+}
 
 
 def stats_complete(m):
@@ -74,10 +80,24 @@ def _tickets_path():
     )
 
 
+def _comp_of(raw):
+    s = (raw or "").lower().replace(" ", "").replace("-", "").replace("_", "")
+    aliases = {
+        "ou25": "o2.5", "o25": "o2.5", "over25": "o2.5", "u25": "o2.5",
+        "under25": "o2.5", "ou2.5": "o2.5",
+        "mtprolifique": "mt2_plus", "mt2": "mt2_plus", "mt2plus": "mt2_plus",
+        "mt2>": "mt2_plus",
+    }
+    return _MARKET_TO_COMP.get((raw or "").lower().replace(" ", "")) or aliases.get(s)
+
+
+def _clip_factor(roi):
+    return max(_CLIP_LO, min(_CLIP_HI, 1.0 + (roi or 0.0)))
+
+
 def load_learnings(path=None):
-    """Poids F06 : identity si < 50 tickets settle. Jamais invente. F06 n'apprend pas."""
+    """Poids F06 : identity si < 50 tickets settle. Par marche si assez. F06 n'apprend pas."""
     path = path or _tickets_path()
-    n = 0
     tickets = []
     if path and os.path.exists(path):
         try:
@@ -88,27 +108,68 @@ def load_learnings(path=None):
     settled = [t for t in tickets if t.get("resultat") in ("gagné", "gagne", "perdu")]
     n = len(settled)
     out = {"active": False, "n": n, "min": LEARNINGS_MIN, "factor": 1.0,
-           "reason": "sous 50 tickets"}
+           "by_comp": {"o2.5": 1.0, "mt2_plus": 1.0}, "reason": "sous 50 tickets"}
     if n < LEARNINGS_MIN:
         return out
     mises = sum(t.get("mise_units") or 0 for t in settled)
     pnl = sum(t.get("pnl_units") or 0 for t in settled)
     roi = (pnl / mises) if mises else 0.0
-    factor = max(_CLIP_LO, min(_CLIP_HI, 1.0 + roi))
+    factor = _clip_factor(roi)
+    buckets = {}
+    for t in settled:
+        comps = set()
+        k = _comp_of(t.get("marche"))
+        if k:
+            comps.add(k)
+        for j in t.get("jambes") or []:
+            k = _comp_of(j.get("marche") or j.get("selection"))
+            if k:
+                comps.add(k)
+        for k in comps:
+            buckets.setdefault(k, []).append(t)
+    by_comp = {"o2.5": 1.0, "mt2_plus": 1.0}
+    by_n = {}
+    for k, ts in buckets.items():
+        if len(ts) < 8:
+            by_n[k] = len(ts)
+            continue
+        m = sum(x.get("mise_units") or 0 for x in ts)
+        p = sum(x.get("pnl_units") or 0 for x in ts)
+        r = (p / m) if m else 0.0
+        by_comp[k] = round(_clip_factor(r), 4)
+        by_n[k] = len(ts)
     out.update({"active": True, "factor": round(factor, 4), "roi": round(roi, 4),
-                "reason": f"{n} tickets settle"})
+                "by_comp": by_comp, "by_n": by_n, "reason": f"{n} tickets settle"})
     return out
 
 
 def apply_learnings(analyse, learnings=None):
+    """Recompose le score : poids O2.5 / MT2 par marche. Facteur global seul ne reordonne pas."""
     learnings = learnings if learnings is not None else load_learnings()
-    factor = learnings.get("factor") or 1.0
+    by_comp = learnings.get("by_comp") or {}
+    f_o = by_comp.get("o2.5") or 1.0
+    f_m = by_comp.get("mt2_plus") or 1.0
+    if not learnings.get("active"):
+        f_o = f_m = 1.0
     for a in analyse.get("analyses") or []:
-        base = a.get("radar_score_raw")
-        if base is None:
-            base = a.get("radar_score") or 0
-            a["radar_score_raw"] = base
-        a["radar_score"] = round(base * factor, 4)
+        p = a.get("probas") or {}
+        lam = a.get("lambdas") or {}
+        lam_total = (lam.get("dom_total") or 0) + (lam.get("ext_total") or 0)
+        raw = a.get("radar_score_raw")
+        if raw is None:
+            raw = round(
+                0.55 * (p.get("o2.5") or 0) + 0.30 * (p.get("mt2_plus") or 0)
+                + 0.15 * min(1.0, lam_total / 4.0), 4
+            )
+            a["radar_score_raw"] = raw
+        if learnings.get("active"):
+            a["radar_score"] = round(
+                0.55 * (p.get("o2.5") or 0) * f_o
+                + 0.30 * (p.get("mt2_plus") or 0) * f_m
+                + 0.15 * min(1.0, lam_total / 4.0), 4
+            )
+        else:
+            a["radar_score"] = raw
     analyse["learnings"] = learnings
     return analyse
 

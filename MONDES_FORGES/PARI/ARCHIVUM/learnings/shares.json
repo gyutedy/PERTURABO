@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T15:13:20Z",
+  "generated_at": "2026-11-02T15:38:38Z",
   "offline": true,
   "leagues": {
     "D1": {
@@ -157,6 +157,9 @@
       "part_mt1": 0.4461
     }
   },
+  "holes": [
+    "elo"
+  ],
   "D1": {
     "league_code": "D1",
     "n_mt": 1451,
