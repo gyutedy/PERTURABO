@@ -83,7 +83,7 @@
 
 - [x] **Contrats** : `schema_match_intel.json` (+ `xg`, `rest_days`, `h2h`, `holes`, `notes_count`). `schema_notes_qualitatives.json` v3 : vote `OUT|DOUTE|IGNORE`, `sources[]`, `notes_count`. Matching **par nom**.
 - [x] **Binaire au `/capture`** : ClubElo (sans clé) + Understat xG (jamais dans Poisson) + football-data.org repos/H2H (clé optionnelle). Trou déclaré, jamais inventé.
-- [x] **Notes 3 voix** : SofaScore + Sportradar + WhoScored/Opta. Vote OUT si 3 upstreams indépendants / 48h. DOUTE ne touche pas λ. 3 wrappers RapidAPI du même upstream = 1 source. Ligues : E0/SP1/I1/D1/F1/N1. Turquie/Japon = trou si <3.
+- [x] **Notes 3 voix** : SofaScore + Sportradar + ESPN (WhoScored/Opta optionnel). Vote OUT si 3 upstreams indépendants / 48h. DOUTE ne touche pas λ. Ligues : E0/SP1/I1/D1/F1/N1/T1/J1.
 - [x] **Fatigue** = jours de repos calendrier (binaire dérivé). Météo / motivation hors v1.
 - [x] **Gâchette** : `capteurs.py enrich` après parse `/capture` et après inject `/valider-1`. Cache 1 hit/équipe/jour. Timeout / 3 fails = voix morte.
 - [x] **TYRANT** : items F00, OUT seulement → `themes`. `notes_count: 0` → pas de filtre. Oracle / HERALD : commentaire après coup si clé, **jamais** un OUT.
@@ -93,7 +93,7 @@
 - [x] **`API_FOOTBALL_KEY` LIVE** (2026-11-01) : jeton api-sports Free (100 req/jour) pose dans `env_pari`. Header `x-apisports-key`. Ping `/status` HTTP 200, plan active. Calendrier F00 (`fixtures-list`), **pas Oracle**. WhoScored / Oracle : encore vides.
 - [x] **`SPORTRADAR_API_KEY` LIVE** (2026-11-01) : jeton trial v4 pose dans `env_pari`. Ping `/competitions` + `/seasons/{id}/missing_players` HTTP 200. **Route trial differenciee** : pas de search equipe, `missing_players` est publie PAR SAISON -> connecteur reecrit (saison courante des 6 championnats, cache 1 hit/jour/competition, matching nom normalise + difflib 0.9). Voix 2 notes = DOUTE seule ; OUT exige 3 voix. **Pas Oracle.**
 - [x] **`SOFASCORE_RAPIDAPI_KEY` LIVE** (2026-11-02) : meme X-RapidAPI-Key que WhoScored. Host `sofascore-sport-api.p.rapidapi.com`. Search + `/api/team/{id}/events/next/0` + `/api/event/{id}/lineups` → `missingPlayers`. Teste Arsenal (Saka, Saliba) + Chelsea (6). Direct `api.sofascore.com` = 403 ici. **Pas Oracle.**
-- [x] **`WHOSCORED_KEY` POSEE** (2026-11-02) : host `whoscored.p.rapidapi.com` existe (429/500). Listing elis-lab `whoscored-football-data-api` = live scores/fixtures, **pas d'endpoint injuries**. Voix 3 = trou jusqu'a un vrai /injuries. **Pas Oracle.**
+- [x] **`WHOSCORED_KEY` POSEE** (2026-11-02) : injuries souvent trou. Voix 3 = ESPN public (v2.4), plus WhoScored. **Pas Oracle.**
 - [x] **`ORACLE_API_KEY` LIVE** (2026-11-02) : Zro `https://zro.moonmath.ai/v1`, modele `glm-5.3-flash` (HTTP 200). `deepseek-v4.1-flash` aussi 200. `glm-5.3` = 403. Lire `content`, jamais `reasoning_content`. TYRANT/HERALD seulement. Siege tourne sans.
 
 ## ETAT v2.3.1 — `/data` DEUX VUES (2026-10-31)
@@ -104,7 +104,16 @@
 - [x] **Cablage** : `workflow.cmd_data` ledger | digit → fiche | vide → compact. `parse.py` relais `/data 4` + help `/data N`. Worker JS stale jusqu'au merge.
 - [x] **E2E** : compact Q/H2H/TROU, trou = `—`, fiche H2H+forme, timing TROU, `/data 99` refuse, `/data 4` parse, ledger inchange, final ne casse pas.
 
-**Handoff prochain agent** : branche principale = `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`). Ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Cles F00 + SofaScore RapidAPI + Oracle Zro dans `env_pari`. FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
+## ETAT v2.4 — ESPN VOIX 3 (2026-11-02)
+
+- [x] **Phase 1 ESPN** : `connectors/espn.py` public (sans cle). Fetch PAR LIGUE `site.api.espn.com/.../soccer/{slug}/injuries`. Mapping E0→eng.1 SP1→esp.1 I1→ita.1 D1→ger.1 F1→fra.1 N1→ned.1 T1→tur.1 J1→jpn.1. Matching nom + difflib 0.9. Cache 1 hit/ligue/jour + 1 hit/equipe/jour. Timeout / 3 fails = voix morte, jamais de devine.
+- [x] **Vote** : Sofa + Sportradar + ESPN = 3 independants → OUT possible. WhoScored/Opta optionnel (4e). Jamais dans Poisson.
+- [x] **Freshness** : ESPN soccer injuries peut etre vide / latence heures = trou declare, pas invente.
+- [ ] **Phase 2** Worker auto-deploy (stale Cloudflare).
+- [ ] **Phase 3** The Odds API T-2h (cle optionnelle, pas env_pari).
+- [ ] **Phase 4** tesseract dans `pari_listen.yml` + `pari_daily.yml`.
+
+**Handoff prochain agent** : branche `pari-forge-perturabo-xs4c` (`gyutedy/PERTURABO`). Phase 1 POSEE (`espn.py` + vote + enrich T1/J1). Continuer P2→P3→P4 du plan v2.4. 1 commit + tests + push par phase. Ne pas setWebhook, ne pas wrangler manuel, pas scrape Winner, pas Dixon-Coles, pas `env_pari`, pas `v2-live-vox-c`. Worker git deja aligne (`/data N` `/bankroll` `/surticket`) ; deploye Cloudflare stale jusqu'au workflow `worker_deploy.yml` + secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`. F06 n'apprend pas. FBref hors siege.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

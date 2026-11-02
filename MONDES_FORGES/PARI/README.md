@@ -104,7 +104,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 - ❌ Chasse externe sources non-whitelistées (hérésie)
 - ❌ Pronostics YouTube dans le moteur de calcul (biais de survie) — le tracker les note, period
 - ❌ Donnée manquante comblée par une estimation silencieuse → **Zero Data, Zero Calc → NO BET**
-- ❌ Note OUT sans 3 sources independantes / LLM qui invente un OUT / FBref / scrape Winner
+- ❌ Note OUT sans 3 sources independantes (Sofa ≠ Sportradar ≠ ESPN) / LLM qui invente un OUT / FBref / scrape Winner
 - ❌ Collecter seulement les tickets gagnants (survivorship bias) — le ledger prend tout
 
 ---

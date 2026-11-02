@@ -43,6 +43,14 @@ LIGUE_CODE = {
     "eredivisie": "N1",
     "pays bas": "N1",
     "netherlands": "N1",
+    "super lig": "T1",
+    "superlig": "T1",
+    "turquie": "T1",
+    "turkey": "T1",
+    "j1 league": "J1",
+    "jleague": "J1",
+    "japon": "J1",
+    "japan": "J1",
 }
 
 LIGUE_REJECT = (

@@ -19,7 +19,7 @@ Cartographie des journaux du monde.
 | Repo vivant | `gyutedy/PERTURABO` branche principale `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`) | Worker GH_REF |
 | Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | wrangler deploy |
 | `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE | workflow.py `/capture` `/valider-1` |
-| `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY`, `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, sportradar.py, sofascore.py, whoscored.py, tyrant.py, herald.py, notifier.py |
+| `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY`, `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. ESPN voix 3 = public sans cle. Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, sportradar.py, sofascore.py, espn.py, whoscored.py, tyrant.py, herald.py, notifier.py |
 | `ARCHIVUM/cache/f00/` | Cache 1 hit / equipe / jour (gitignore) | F00 enrich |
 | `ARCHIVUM/fixtures/notes_qualitatives.json` | Notes votees F00 (OUT → TYRANT) | enrich.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |

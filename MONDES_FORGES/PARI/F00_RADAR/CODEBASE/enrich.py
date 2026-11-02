@@ -40,7 +40,7 @@ def _load_env_pari():
 
 _load_env_pari()
 
-NOTES_3_VOIX = {"E0", "SP1", "I1", "D1", "F1", "N1"}
+NOTES_3_VOIX = {"E0", "SP1", "I1", "D1", "F1", "N1", "T1", "J1"}
 NOTES_PATH = os.path.join(WORLD, "ARCHIVUM", "fixtures", "notes_qualitatives.json")
 ELO_PATH = os.path.join(WORLD, "ARCHIVUM", "teams", "elo.json")
 
@@ -154,10 +154,10 @@ def _attach_form_h2h(m, holes, code, key_fn=None):
 
 
 def _voice(mod_name, team, code=None):
-    """code n'est utilise que par sportradar (index par competition)."""
+    """code utilise par sportradar et espn (index par competition)."""
     try:
         mod = __import__(mod_name)
-        if mod_name == "sportradar" and code:
+        if mod_name in ("sportradar", "espn") and code:
             return list(mod.missing_players(team, code) or [])
         return list(mod.missing_players(team) or [])
     except Exception:
@@ -171,7 +171,8 @@ def _notes_wanted():
         return True
     return bool(os.environ.get("SPORTRADAR_API_KEY") or os.environ.get("WHOSCORED_KEY")
                 or os.environ.get("RAPIDAPI_WHOSCORED_KEY")
-                or os.environ.get("SOFASCORE_RAPIDAPI_KEY"))
+                or os.environ.get("SOFASCORE_RAPIDAPI_KEY")
+                or os.environ.get("PARI_ESPN", "1") != "0")
 
 
 def _collect_hits(team, code=None):
@@ -180,6 +181,7 @@ def _collect_hits(team, code=None):
     hits = []
     hits.extend(_voice("sofascore", team))
     hits.extend(_voice("sportradar", team, code))
+    hits.extend(_voice("espn", team, code))
     hits.extend(_voice("whoscored", team))
     return hits
 

@@ -1,7 +1,7 @@
 # CONTRACTS — schema_notes_qualitatives.json (v3 F00)
 
-Infos **non binaires**. Producteur : **F00 vote** (SofaScore + Sportradar + WhoScored)
-au `/capture`, ou opérateur / Oracle. Consommateur : `TYRANT/CODEBASE/qualitative.py`.
+Infos **non binaires**. Producteur : **F00 vote** (SofaScore + Sportradar + ESPN)
+au `/capture`, ou opérateur / Oracle. WhoScored/Opta reste optionnel. Consommateur : `TYRANT/CODEBASE/qualitative.py`.
 
 Matching **par nom d'équipe uniquement** (jamais par cote Winner).
 
@@ -18,13 +18,13 @@ Elle ne crée jamais de probabilité, n'ajoute jamais de +EV.
 
 | Verdict | Condition | Effet TYRANT |
 |---|---|---|
-| **OUT** | 3 sources **indépendantes** (SofaScore ≠ Sportradar ≠ WhoScored/Opta) dans une fenêtre 48h | écrit `themes` → filtre borné |
+| **OUT** | 3 sources **indépendantes** (SofaScore ≠ Sportradar ≠ ESPN ; Opta optionnel) dans une fenêtre 48h | écrit `themes` → filtre borné |
 | **DOUTE** | 1 ou 2 sources, ou fenêtre dépassée | archivé, **ne touche pas λ**, n'écrit pas `themes` |
 | **IGNORE** | 0 source / timeout / ban / ligue hors 3 voix | **trou** : `notes_count` ne compte pas |
 
 3 wrappers RapidAPI du **même** upstream (ex. API-Sports) = **1** source.
 
-Ligues 3 voix : PL, Liga, Serie A, Bundes, L1, Eredivisie. Turquie / Japon = trou si < 3.
+Ligues 3 voix : PL, Liga, Serie A, Bundes, L1, Eredivisie, Super Lig, J1. ESPN latence heures = freshness.
 
 Fatigue = **binaire dérivé** (jours de repos calendrier football-data.org), pas un vote 3 voix.
 Repos ≤ 2j → OUT fatigue. Météo / motivation : hors v1.
@@ -49,7 +49,7 @@ Oracle / HERALD : commentaire **après coup** si clé ; **jamais** un OUT.
           "theme": "blessures|suspensions|fatigue|enjeux|meteo|motivation",
           "verdict": "OUT|DOUTE|IGNORE",
           "detail": "texte libre (fait sourcé, jamais inventé)",
-          "sources": ["sofascore", "sportradar", "whoscored"],
+          "sources": ["sofascore", "sportradar", "espn"],
           "window_h": 48
         }
       ],

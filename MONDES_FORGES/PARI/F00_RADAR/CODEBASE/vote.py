@@ -1,7 +1,7 @@
 """
 F00 — vote OUT | DOUTE | IGNORE (infos non binaires).
-3 sources indépendantes dans 48h → OUT. DOUTE ne touche pas λ.
-3 wrappers RapidAPI du même upstream = 1 source.
+3 sources independantes dans 48h → OUT. DOUTE ne touche pas λ.
+Sofa + Sportradar + ESPN (WhoScored/Opta optionnel). Wrappers meme upstream = 1 source.
 """
 
 from datetime import datetime, timezone, timedelta
@@ -17,9 +17,10 @@ UPSTREAM = {
     "whoscored": "opta",
     "opta": "opta",
     "who": "opta",
+    "espn": "espn",
 }
 
-INDEPENDENT = ("sofascore", "sportradar", "opta")
+INDEPENDENT = ("sofascore", "sportradar", "opta", "espn")
 
 
 def _up(name):

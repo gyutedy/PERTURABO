@@ -6,4 +6,5 @@
 # understat        : xG (sans clé, jamais dans Poisson)
 # sofascore        : notes voix 1
 # sportradar       : notes voix 2
-# whoscored        : notes voix 3 (Opta)
+# espn             : notes voix 3 (public, sans cle)
+# whoscored        : notes voix Opta (optionnelle, injuries souvent trou)

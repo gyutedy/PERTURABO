@@ -1430,3 +1430,10 @@
 
 - `v2-live-vox-c` n est plus la branche de travail PARI.
 - SofaScore + Oracle cherry-picks depuis v2. Worker GH_REF deja xs4c. Docs alignes.
+
+## [2026-11-02T10:45:00Z] DECISION v2.4 P1 — ESPN voix 3 (OUT Sofa+SR+ESPN)
+
+- Connecteur public `espn.py` : GET injuries PAR LIGUE, matching nom + difflib 0.9, cache jour.
+- Mapping E0/SP1/I1/D1/F1/N1/T1/J1. Timeout / 3 fails = voix morte. Jamais dans Poisson.
+- WhoScored injuries reste optionnel. OUT exige 3 independants : Sofa + Sportradar + ESPN.
+- Phases 2-4 (Worker deploy, Odds T-2h, OCR tesseract) encore a faire.

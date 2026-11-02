@@ -46,6 +46,9 @@ def main():
     v = vote.vote_theme([hit("sofascore"), hit("sportradar"), hit("whoscored")], now=NOW)
     check("F00.vote_out_3voix", v["verdict"] == "OUT" and set(v["sources"]) == {"sofascore", "sportradar", "opta"})
 
+    v = vote.vote_theme([hit("sofascore"), hit("sportradar"), hit("espn")], now=NOW)
+    check("F00.vote_out_espn", v["verdict"] == "OUT" and set(v["sources"]) == {"sofascore", "sportradar", "espn"})
+
     v = vote.vote_theme([hit("sofascore"), hit("sofa"), hit("whoscored")], now=NOW)
     check("F00.vote_doute_meme_upstream", v["verdict"] == "DOUTE", v["verdict"])
 
@@ -99,7 +102,30 @@ def main():
                     "date": "2026-10-31", "ligue": "Turquie - Super Lig", "stats": {}}],
     }
     _, notes2 = enrich.enrich_carte(carte2, skip_binary=True, skip_notes=False)
-    check("F00.turquie_pas_3voix", notes2["notes_count"] == 0)
+    check("F00.turquie_notes_zero_offline", notes2["notes_count"] == 0)
+
+    import espn as espn_mod  # noqa: E402
+    fx_espn = {
+        "injuries": [{
+            "id": "1", "displayName": "Arsenal",
+            "injuries": [{"status": "Out", "date": "2026-10-31T10:00Z",
+                          "athlete": {"displayName": "Saka"},
+                          "shortComment": "Hamstring"}],
+        }]
+    }
+    old_gj = espn_mod.http_util.get_json
+    espn_mod.http_util.get_json = lambda *a, **k: fx_espn
+    os.environ["PARI_F00_CACHE"] = tempfile.mkdtemp(prefix="pari-espn-")
+    hits_e = espn_mod.missing_players("Arsenal", "E0")
+    check("F00.espn_fixture_offline", hits_e and hits_e[0]["source"] == "espn" and "Saka" in hits_e[0]["fact"],
+          str(hits_e[:1]))
+    os.environ["PARI_F00_CACHE"] = tempfile.mkdtemp(prefix="pari-espn-dead-")
+    espn_mod.http_util.get_json = lambda *a, **k: None
+    try:
+        dead = espn_mod.missing_players("Arsenal", "E0")
+        check("F00.espn_403_trou", dead == [])
+    finally:
+        espn_mod.http_util.get_json = old_gj
 
     pred = {"seuil_ev_applique": 0.03, "predictions": [{
         "id": "M1", "match": "Levante UD vs Atletico Madrid", "verdict": "GO",

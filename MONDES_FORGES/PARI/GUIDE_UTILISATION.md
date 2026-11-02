@@ -74,10 +74,10 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning, jamais devine
     (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
     **F00** enchaine : Elo ClubElo + xG Understat + repos/H2H football-data.org + vote
-    notes (Sofa / Sportradar / WhoScored). Message : `notes: N` (0 = trou, jamais invente).
+    notes (Sofa / Sportradar / ESPN). Message : `notes: N` (0 = trou, jamais invente). OUT = 3 voix.
     `PARI_SKIP_F00=1` coupe l enrichissement (CI).
     `FOOTBALL_DATA_ORG_KEY` (env_pari) = repos F00, **pas Oracle, pas modele premium**.
-    Sportradar / WhoScored absents = notes: 0.
+    Sportradar absent = DOUTE max. ESPN public (sans cle, latence heures possible).
 2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
     E0/SP1/I1/D1/F1). Alias ligues v2.2.7 : `LaLiga` (sans espace) = SP1 ; `LaLiga 2`
     / Championship / Serie B rejetes. Alias clubs (`Ath Madrid`, `M'Gladbach`,
@@ -203,8 +203,10 @@ ou remplit à la main, jamais d'invention.
 # Host sofascore-sport-api.p.rapidapi.com. missingPlayers via lineups
 # du prochain event. Voix 1 notes. Pas Oracle.
 
-# WhoScored RapidAPI (WHOSCORED_KEY). Host whoscored.p.rapidapi.com.
-# Listing elis-lab n a pas /injuries → voix 3 = trou tant que l endpoint n existe pas.
+# ESPN public (sans cle) — voix 3 notes. Fetch PAR LIGUE injuries.
+# Mapping E0/SP1/I1/D1/F1/N1/T1/J1. Matching nom + difflib 0.9.
+# Cache 1 hit/ligue/jour. Timeout / 3 fails = voix morte. Pas Oracle.
+# WhoScored RapidAPI optionnel (injuries souvent trou).
 
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
