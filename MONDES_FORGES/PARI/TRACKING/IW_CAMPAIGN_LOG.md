@@ -1440,5 +1440,5 @@
 
 ## [2026-11-02T11:10:00Z] DECISION v2.4 P2 — worker_deploy.yml auto wrangler
 
-- Push `LISTEN/**` sur xs4c → `pari-worker-deploy`. Secrets CF absents = skip (pas rouge).
-- Git index.js deja parite parse.py. Ne pas wrangler / setWebhook depuis sandbox.
+- Push `LISTEN/**` sur xs4c → `pari-worker-deploy`. `CLOUDFLARE_*` lus depuis `env_pari` (pas GitHub Secrets). Absents = skip.
+- Git index.js deja parite parse.py. Ne pas wrangler manuel depuis sandbox.

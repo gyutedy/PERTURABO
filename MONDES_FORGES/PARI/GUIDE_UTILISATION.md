@@ -208,6 +208,9 @@ ou remplit à la main, jamais d'invention.
 # Cache 1 hit/ligue/jour. Timeout / 3 fails = voix morte. Pas Oracle.
 # WhoScored RapidAPI optionnel (injuries souvent trou).
 
+# Cloudflare Worker deploy (CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
+# dans env_pari, PAS GitHub Secrets). Absents = skip, Worker live stale.
+
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \

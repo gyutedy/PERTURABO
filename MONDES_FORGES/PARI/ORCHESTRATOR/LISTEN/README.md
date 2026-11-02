@@ -8,13 +8,13 @@ Zero calcul ici. Le siege tourne sur GitHub Actions (`workflow.py`).
 Push sur `MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN/**` (branche `pari-forge-perturabo-xs4c`)
 declenche `.github/workflows/worker_deploy.yml` → `wrangler deploy`.
 
-Secrets GitHub (Settings → Secrets → Actions), gratuits Cloudflare :
+Creds dans `MONDES_FORGES/PARI/env_pari` (pas GitHub Secrets) :
 
 - `CLOUDFLARE_API_TOKEN` (permission Edit Cloudflare Workers)
 - `CLOUDFLARE_ACCOUNT_ID`
 
 Absents = skip, Worker live reste stale, job vert. Ne pas wrangler depuis un sandbox.
-Ne pas setWebhook ici.
+Ne pas toucher au webhook Telegram ici.
 
 URL LIVE : `https://pari-listen.pari-listen.workers.dev`
 

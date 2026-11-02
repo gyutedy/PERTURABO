@@ -35,8 +35,9 @@ def main():
     check("W.help_data_n", "/data N" in js and "/data N" in py)
     check("W.help_budget_bankroll", "bankroll" in js and "bankroll" in py)
     check("W.gh_ref_xs4c", "pari-forge-perturabo-xs4c" in js and "pari-forge-perturabo-xs4c" in toml)
-    check("W.deploy_workflow", "wrangler" in wf and "CLOUDFLARE_API_TOKEN" in wf)
+    check("W.deploy_workflow", "wrangler" in wf and "CLOUDFLARE_API_TOKEN" in wf and "env_pari" in wf)
     check("W.deploy_skip_sans_secret", "skip" in wf.lower() and "present" in wf)
+    check("W.pas_github_secrets", "${{ secrets.CLOUDFLARE" not in wf)
     check("W.deploy_paths_listen", "ORCHESTRATOR/LISTEN" in wf)
     check("W.pas_webhook_telegram", "api.telegram.org" not in wf and "setWebhook" not in wf)
 

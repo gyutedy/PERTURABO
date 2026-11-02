@@ -1,6 +1,6 @@
 # PARI LISTEN — deploy Cloudflare Worker quand LISTEN/** change.
-# Secrets repo (Settings → Secrets → Actions), gratuits Cloudflare :
-#   CLOUDFLARE_API_TOKEN    (Edit Cloudflare Workers)
+# Creds depuis env_pari (pas GitHub Secrets) :
+#   CLOUDFLARE_API_TOKEN
 #   CLOUDFLARE_ACCOUNT_ID
 # Absents = skip (pas d echec rouge). Pas de wrangler manuel. Pas de webhook Telegram ici.
 
@@ -20,23 +20,42 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Secrets presents ?
+      - name: Charger CLOUDFLARE_* depuis env_pari
         id: creds
-        env:
-          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then
-            echo "present=0" >> "$GITHUB_OUTPUT"
-            echo "[worker] CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID absents — skip deploy (Worker live reste stale)"
-          else
-            echo "present=1" >> "$GITHUB_OUTPUT"
-          fi
+          python3 << 'PY'
+          import os
+          from pathlib import Path
+          p = Path("MONDES_FORGES/PARI/env_pari")
+          vals = {}
+          if p.exists():
+              for line in p.read_text(encoding="utf-8", errors="replace").splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#") or "=" not in line:
+                      continue
+                  k, v = line.split("=", 1)
+                  k, v = k.strip(), v.strip().strip('"').strip("'")
+                  if k in ("CLOUDFLARE_API_TOKEN", "CLOUDFLARE_ACCOUNT_ID") and v:
+                      vals[k] = v
+          gh_env = os.environ["GITHUB_ENV"]
+          gh_out = os.environ["GITHUB_OUTPUT"]
+          if vals.get("CLOUDFLARE_API_TOKEN") and vals.get("CLOUDFLARE_ACCOUNT_ID"):
+              with open(gh_env, "a", encoding="utf-8") as f:
+                  f.write(f"CLOUDFLARE_API_TOKEN={vals['CLOUDFLARE_API_TOKEN']}\n")
+                  f.write(f"CLOUDFLARE_ACCOUNT_ID={vals['CLOUDFLARE_ACCOUNT_ID']}\n")
+              with open(gh_out, "a", encoding="utf-8") as f:
+                  f.write("present=1\n")
+              print("[worker] env_pari CF keys present")
+          else:
+              with open(gh_out, "a", encoding="utf-8") as f:
+                  f.write("present=0\n")
+              print("[worker] CLOUDFLARE_* absents de env_pari — skip deploy")
+          PY
 
       - uses: cloudflare/wrangler-action@v3
         if: steps.creds.outputs.present == '1'
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN
           command: deploy
