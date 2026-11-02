@@ -32,4 +32,4 @@ ODDS_API_KEY=6a3adabbc1065e784a5458aac2bc9d81
 
 # Cloudflare Worker deploy (CLOUDFLARE_* dans env_pari, PAS GitHub Secrets). Absents = skip.
 CLOUDFLARE_ACCOUNT_ID=4fdd684eeb5ef46b4ecd53cec605d3b3
-CLOUDFLARE_API_TOKEN=cfut_f9OLki972Ae0yww17VOk8iOkGtqldUjCU07J72d3d8f61e07
+CLOUDFLARE_API_TOKEN=cfut_n49JqSWRLPZHFwB4m35Vrx9duTH8GkgdqohNUvou674a77c9
