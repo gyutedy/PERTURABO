@@ -17,7 +17,30 @@ import os
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+_WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
 PROFILE_HINT = os.path.join(HERE, "..", "..", "ARCHIVUM", "rules", "warsmith_profile.json")
+
+
+def _load_env_pari():
+    for name in (".env", "env_pari"):
+        path = os.path.join(_WORLD, name)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    key, val = k.strip(), v.strip()
+                    if key and val and not os.environ.get(key):
+                        os.environ[key] = val
+        except OSError:
+            pass
+
+
+_load_env_pari()
 
 
 def format_pct(x):
@@ -89,13 +112,13 @@ def report_md(m_pred, m_analysis, oracle_text=None):
 
 def oracle_reading(carte):
     """Une lecture Oracle globale de la carte si la clé est là (optionnel)."""
-    key = os.environ.get("ORACLE_API_KEY")
+    key = os.environ.get("ORACLE_API_KEY") or os.environ.get("ZRO_API_KEY")
     if not key or not carte:
         return None
     try:
         import urllib.request
-        base = os.environ.get("ORACLE_BASE_URL", "https://api.openai.com/v1")
-        model = os.environ.get("ORACLE_MODEL", "gpt-4o-mini")
+        base = os.environ.get("ORACLE_BASE_URL") or os.environ.get("ZRO_BASE_URL") or "https://api.openai.com/v1"
+        model = os.environ.get("ORACLE_MODEL") or os.environ.get("ZRO_MODEL") or "gpt-4o-mini"
         resume = "\n".join(
             f"- {v['match']}: {v['verdict']} ({'; '.join(v['raisons']) or '—'})" for v in carte.get("verdicts", [])[:20]
         )
@@ -108,14 +131,15 @@ def oracle_reading(carte):
                     "AUCUNE probabilité. Rappelle la prudence en dernière phrase.")},
                 {"role": "user", "content": resume},
             ],
-            "max_tokens": 350,
+            "max_tokens": 450,
         }).encode()
         req = urllib.request.Request(
             f"{base.rstrip('/')}/chat/completions", data=payload,
             headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
         )
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.loads(r.read().decode())["choices"][0]["message"]["content"]
+        with urllib.request.urlopen(req, timeout=60) as r:
+            msg = json.loads(r.read().decode())["choices"][0]["message"]
+            return (msg.get("content") or "").strip() or None
     except Exception as e:
         return f"(Oracle indisponible: {e})"
 
