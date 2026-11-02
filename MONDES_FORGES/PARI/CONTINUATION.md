@@ -62,7 +62,7 @@
 - [x] **Phase 8** : relais Cloudflare Worker (`ORCHESTRATOR/LISTEN`) + Action `pari_listen.yml` + inbox `F01_SENTINEL/IN/capture_telegram.md` + contrat `schema_listen.json`. `/capture` Telegram = tableau markdown **dans le meme message**. e2e_listen 30/30 (zero reseau). png/pdf + KV hors v1.
 - [x] **Worker deploye** : `https://pari-listen.pari-listen.workers.dev` — webhook Telegram pose avec `secret_token`.
 - [x] **Repo vivant** : `gyutedy/PERTURABO` branche `pari-forge-perturabo-xs4c` (`GH_OWNER=gyutedy`). Ancien compte `jfbjfojfonf` = Actions desactive (`Actions has been disabled for this user`) — ne plus dispatcher la.
-- [x] **`pari_listen.yml` aussi sur default branch** `v2-live-vox-c` (GitHub n'indexe workflow_dispatch que depuis la default). Le job checkout `GH_REF=pari-forge-perturabo-xs4c`.
+- [x] **Branche principale PARI** : `pari-forge-perturabo-xs4c` (Worker `GH_REF` + siege Telegram). `v2-live-vox-c` n'est plus la branche de travail PARI.
 - [x] **Fix notifier** : GitHub injectait `TELEGRAM_*` vides → `setdefault` ignorait `env_pari`. `notifier.py` ecrase maintenant les secrets vides. Telegram recoit la reponse.
 - [x] **Pages** : `deploy-pages` en `continue-on-error` (Pages pas active sur gyutedy → 404, ne doit plus faire echouer le run).
 - [x] **Premier /start LIVE OK** (2026-10-30) : ACK Worker + message `Campagne **PARI-20261030** ouverte.` Campagne ouverte, en attente capture.
@@ -104,7 +104,7 @@
 - [x] **Cablage** : `workflow.cmd_data` ledger | digit → fiche | vide → compact. `parse.py` relais `/data 4` + help `/data N`. Worker JS stale jusqu'au merge.
 - [x] **E2E** : compact Q/H2H/TROU, trou = `—`, fiche H2H+forme, timing TROU, `/data 99` refuse, `/data 4` parse, ledger inchange, final ne casse pas.
 
-**Handoff prochain agent** : ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. `FOOTBALL_DATA_ORG_KEY` + `API_FOOTBALL_KEY` + `SPORTRADAR_API_KEY` dans `env_pari` (periode de test) — F00, PAS Oracle. FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. Merge code vers `pari-forge-perturabo-xs4c` (Worker checkout). HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
+**Handoff prochain agent** : branche principale = `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`). Ne pas setWebhook, ne pas wrangler, pas scrape Winner. Ne pas toucher Dixon-Coles. Repo = `gyutedy/PERTURABO`, PAS `jfbjfojfonf`. `/bankroll` Telegram = refuse par Worker live — alias `/budget bankroll N`. F06 n'apprend pas. Cles F00 + SofaScore RapidAPI + Oracle Zro dans `env_pari`. FBref / Google / YouTube / RapidAPI search / 2e cerveau 1X2 : hors siege. HELP Worker git aligne ; Worker deploye stale jusqu'au wrangler.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

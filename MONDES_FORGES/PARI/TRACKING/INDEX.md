@@ -16,7 +16,7 @@ Cartographie des journaux du monde.
 | `ORCHESTRATOR/LISTEN/` | Relais webhook Telegram (Worker + parse.py) | Cloudflare / e2e_listen |
 | `F01_SENTINEL/IN/capture_telegram.md` | Inbox capture texte colle depuis Telegram | pari_listen.yml |
 | `CONTRACTS/schema_listen.json` | Contrat update Telegram → {cmd, capture_text, chat_id} | Worker + parse.py |
-| Repo vivant | `gyutedy/PERTURABO` branche `pari-forge-perturabo-xs4c` | Worker GH_OWNER |
+| Repo vivant | `gyutedy/PERTURABO` branche principale `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`) | Worker GH_REF |
 | Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | wrangler deploy |
 | `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE | workflow.py `/capture` `/valider-1` |
 | `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY`, `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, sportradar.py, sofascore.py, whoscored.py, tyrant.py, herald.py, notifier.py |

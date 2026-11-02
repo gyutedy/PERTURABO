@@ -1425,3 +1425,8 @@
 - Ping glm-5.3-flash HTTP 200 (content PONG, max_tokens 256). deepseek-v4.1-flash HTTP 200. glm-5.3 HTTP 403.
 - `ORACLE_*` + alias `ZRO_*` dans `env_pari`. TYRANT/HERALD lisent content, jamais reasoning_content.
 - Oracle ne bloque jamais le siege. Pas de chiffre invente.
+
+## [2026-11-02T05:40:00Z] DECISION — branche principale = pari-forge-perturabo-xs4c
+
+- `v2-live-vox-c` n est plus la branche de travail PARI.
+- SofaScore + Oracle cherry-picks depuis v2. Worker GH_REF deja xs4c. Docs alignes.
