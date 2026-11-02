@@ -113,8 +113,41 @@ def make_demo_fixtures(path, n=18):
 # ---------------------------------------------------------------------------
 # MODES
 # ---------------------------------------------------------------------------
+def _stats_ok_side(side):
+    return bool(side) and all(side.get(k) is not None for k in ("mj", "marques", "encaisses"))
+
+
+def filter_radar_carte(fixtures):
+    """Radar : skip matchs sans stats (trou declare). Sentinel siege reste strict."""
+    with open(fixtures, "r", encoding="utf-8") as f:
+        carte = json.load(f)
+    matchs = carte.get("matchs") or []
+    complete, holes = [], []
+    for m in matchs:
+        s = m.get("stats") or {}
+        if _stats_ok_side(s.get("dom")) and _stats_ok_side(s.get("ext")):
+            complete.append(m)
+        else:
+            holes.append(m.get("id") or "?")
+    if not holes:
+        return fixtures, holes, len(matchs)
+    filtered = dict(carte)
+    filtered["matchs"] = complete
+    filtered["holes"] = holes
+    out = P("F01_SENTINEL", "OUT", "radar_filtered.json")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump(filtered, f, indent=2, ensure_ascii=False)
+    print(f"[ORCH] RADAR skip {len(holes)} trou(s): {', '.join(str(h) for h in holes)}")
+    return out, holes, len(matchs)
+
+
 def mode_radar(fixtures=None, top=20):
     fixtures = fixtures or P("ARCHIVUM", "fixtures", "matches.json")
+    fixtures, holes, n_all = filter_radar_carte(fixtures)
+    if not (json.load(open(fixtures, encoding="utf-8")).get("matchs")):
+        print("[ORCH] RADAR : Zero Data, Zero Calc — aucun match avec stats completes.")
+        return False
     intel_out = P("F01_SENTINEL", "OUT", "matches_intel.json")
     custos("check-out", "--frigate", "F01")
     if not run_frigate(P("F01_SENTINEL", "CODEBASE", "sentinel.py"),

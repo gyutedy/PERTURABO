@@ -15,10 +15,13 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /marches O/U2.5,MT2   choisit les marchés visés pour la carte (=livrer infos)
   /combos 3        nombre de tickets (option ^^ : 3:3:2:2 = jambes par ticket)
   valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
-  /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots
-  /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
-  /status          état de la campagne.  /status ledger = lots + jambes consommees
-  /stop            ferme la campagne (lots F06 intacts, consumed reset)
+   /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots
+   /radar [N]       scan carte courante (skip matchs sans stats, trous declares)
+   /pack [N]        assemble le pari pack TOP N (defaut 10)
+   /match ID        fiche siege d'un match (id M1 ou rang 1-based)
+   /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
+   /status          état de la campagne.  /status ledger = lots + jambes consommees
+   /stop            ferme la campagne (lots F06 intacts, consumed reset)
 
 L'état vit dans SHARED/STATE/campagne.json — la conversation elle-même reste la
 source de vérité côté Telegram ; GitHub Actions sont le chauffeur (chaque
@@ -577,6 +580,98 @@ def cmd_roi(st, arg):
     tell(out.strip() or "ROI : tracker F06 — python F06_TRACKER/CODEBASE/tracker.py roi")
 
 
+def cmd_radar(st, arg):
+    carte = P("ARCHIVUM", "fixtures", "matches.json")
+    if not os.path.exists(carte):
+        tell("Aucune carte. `/capture` puis `/valider-1` d'abord."); return
+    top = 20
+    raw = (arg or "").strip().split()
+    if raw and raw[0].isdigit():
+        top = max(1, int(raw[0]))
+    ok, out = run_orch("--mode", "radar", "--fixtures", carte, "--top", str(top))
+    md = read_text(P("SHARED", "OUT", "RADAR.md")) or ""
+    head = "\n".join(md.splitlines()[:24]) if md else (out.strip()[-800:] if out else "")
+    if not ok:
+        tell("RADAR refuse (Zero Data ou sentinel). Trous declares, pas de crash.\n" + head)
+        return
+    tell("RADAR — scan carte (matchs incomplets = trous, pas crash).\n" + head)
+
+
+def cmd_pack(st, arg):
+    pred = load_json(P("F03_FORGEWARD", "OUT", "predictions.json"))
+    analysis = load_json(P("F02_BREACHER", "OUT", "analysis.json"))
+    if not pred or not analysis:
+        tell("PACK refuse — lance `/valider-1` (predictions + analysis requis)."); return
+    top = 10
+    raw = (arg or "").strip().split()
+    if raw and raw[0].isdigit():
+        top = max(1, int(raw[0]))
+    ok, out = run_orch("--mode", "pack", "--top", str(top))
+    pack = load_json(P("F05_PACKAGER", "OUT", "pari_pack.json")) or {}
+    picks = pack.get("top_picks") or []
+    lines = [f"PACK TOP {len(picks)}"]
+    for x in picks[:top]:
+        lines.append(
+            f"#{x.get('rang')} {x.get('match')} {x.get('selection_label')} "
+            f"cote {x.get('cote')} EV {x.get('ev', 0):+.1%}"
+        )
+    if not picks:
+        lines.append(out.strip()[-400:] if out else "aucun pick VALUE")
+    if not ok:
+        tell("PACK en echec.\n" + "\n".join(lines)); return
+    tell("\n".join(lines))
+
+
+def cmd_match(st, arg):
+    raw = (arg or "").strip().split()
+    if not raw:
+        tell("Format : `/match M1` ou `/match 1` (rang radar / carte)."); return
+    token = raw[0]
+    carte = load_json(P("ARCHIVUM", "fixtures", "matches.json")) or {}
+    matchs = carte.get("matchs") or []
+    target = None
+    if token.isdigit():
+        idx = int(token) - 1
+        if 0 <= idx < len(matchs):
+            target = matchs[idx]
+    if target is None:
+        for m in matchs:
+            if str(m.get("id") or "").upper() == token.upper():
+                target = m
+                break
+    if target is None:
+        radar = load_json(P("F00_RADAR", "OUT", "radar.json")) or {}
+        ranked = radar.get("analyses") or []
+        if token.isdigit():
+            idx = int(token) - 1
+            if 0 <= idx < len(ranked):
+                mid = ranked[idx].get("id")
+                target = next((m for m in matchs if m.get("id") == mid), None)
+                if target is None:
+                    tell(f"RADAR #{token} {ranked[idx].get('match')} ({mid}) — pas de carte.")
+                    return
+        if target is None:
+            tell(f"Match `{token}` introuvable dans la carte."); return
+    mid = target.get("id")
+    fiche = read_text(P("F04_HERALD", "OUT", "reports", f"{mid}_fiche.md"))
+    if fiche:
+        tell("\n".join(fiche.splitlines()[:40]))
+        return
+    analysis = load_json(P("F02_BREACHER", "OUT", "analysis.json")) or {}
+    a = next((x for x in (analysis.get("analyses") or []) if x.get("id") == mid), None)
+    if a:
+        p = a.get("probas") or {}
+        lam = a.get("lambdas") or {}
+        tell(
+            f"{a.get('match')} ({mid})\n"
+            f"λ {lam.get('dom_total')}–{lam.get('ext_total')}  "
+            f"O2.5 {p.get('o2.5', 0):.0%}  MT2> {p.get('mt2_plus', 0):.0%}\n"
+            f"qualité { (a.get('data_quality') or {}).get('niveau') }"
+        )
+        return
+    tell(f"{target.get('dom')} vs {target.get('ext')} ({mid}) — pas d'analyse. `/radar` ou `/valider-1`.")
+
+
 def cmd_stop(st, arg):
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne {st.get('campagne')} fermee. Bankroll **{br:.0f} FC** persiste. "
@@ -608,6 +703,9 @@ CMDS = {
     "valider-2": (cmd_valider2, "tickets + anti-cannibal + token L-XXX"),
     "valider2": None,
     "data": (cmd_data, "table compacte ; /data N fiche ; /data ledger = lots"),
+    "radar": (cmd_radar, "scan carte (skip stats incompletes)"),
+    "pack": (cmd_pack, "pari pack TOP N"),
+    "match": (cmd_match, "fiche match (id ou rang)"),
     "status": (cmd_status, "état ; /status ledger = lots + consumed"),
     "roi": (cmd_roi, "ROI ; /roi settle L-XXX"),
     "stop": (cmd_stop, "ferme la campagne (lots F06 intacts)"),

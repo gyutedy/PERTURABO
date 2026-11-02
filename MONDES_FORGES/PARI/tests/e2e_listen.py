@@ -124,8 +124,15 @@ def main():
           and "/start" in help_txt and "/bankroll" in help_txt and "/budget 3000 800" in help_txt)
     check("L5.help_data_n", "/data N" in help_txt, help_txt)
 
-    r = parse.parse_update(upd("/radar"), CHAT)
+    r = parse.parse_update(upd("/foobar"), CHAT)
     check("L5.unknown_reply", (not r.get("ok")) and r.get("action") == "reply" and r.get("reason") == "unknown")
+
+    r = parse.parse_update(upd("/radar"), CHAT)
+    check("L5.radar_dispatch", r.get("ok") and r.get("action") == "dispatch" and r.get("cmd") == "/radar", str(r.get("cmd")))
+    r = parse.parse_update(upd("/pack 10"), CHAT)
+    check("L5.pack_dispatch", r.get("ok") and r.get("cmd") == "/pack 10", str(r.get("cmd")))
+    r = parse.parse_update(upd("/match M1"), CHAT)
+    check("L5.match_dispatch", r.get("ok") and r.get("cmd") == "/match M1", str(r.get("cmd")))
 
     r = parse.parse_update(upd("bonjour"), CHAT)
     check("L5.not_a_command", (not r.get("ok")) and r.get("action") == "reply")
@@ -177,6 +184,8 @@ def main():
     check("L10.data_refuse_demo", "TOP3 desynchronise" in wf_src)
     check("L10.budget_exige_surticket", "JOUR SURTICKET" in wf_src and "cmd_bankroll" in wf_src)
     check("L10.bankroll_persiste", "bankroll_fc" in wf_src and "pot global" in wf_src)
+    check("L10.cmd_radar_pack_match",
+          "def cmd_radar" in wf_src and "def cmd_pack" in wf_src and "def cmd_match" in wf_src)
     orch_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "orchestrator.py"), encoding="utf-8").read()
     check("L10.siege_filtre_campagne",
           "used_filter" in orch_src and "filtered_path if used_filter" in orch_src)

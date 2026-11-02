@@ -115,6 +115,18 @@
 
 **Handoff prochain agent** : branche `pari-forge-perturabo-xs4c` (`gyutedy/PERTURABO`). P1 ESPN + P2 worker_deploy + P3 Odds T-2h + P4 OCR POSES. Plan v2.4 ferme. Ne pas toucher au webhook Telegram, ne pas wrangler manuel, pas scrape Winner, pas Dixon-Coles, pas `v2-live-vox-c`. Cles = `env_pari` seulement (jamais GitHub Secrets). Operateur : coller `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` + `ODDS_API_KEY` dans `env_pari` sinon Worker stale / odds skip. F06 n'apprend pas. FBref hors siege.
 
+## ETAT v2.5 — RADAR ROBUSTE + BACKTEST SHARES (2026-11-02)
+
+- [x] **`/radar` robuste** : `orchestrator.mode_radar` filtre les matchs sans stats completes (`filter_radar_carte`) et ecrit une carte temporaire `F01_SENTINEL/OUT/radar_filtered.json` ; les ids sautes sont declares en `holes` (trou declare, jamais devine). Sentinel reste strict pour le siege.
+- [x] **`radar.py`** : `stats_complete` / `split_complete` / `stamp_ligue` ; `run_radar` saute les trous, ne crashe plus sur `KeyError`. `RADAR.md` liste les trous.
+- [x] **Tampon ligue** : `breacher.stamp_league_code` pose `league_code` sur chaque match (map `capteurs.ligue_code`), `analyse_fixtures(..., ligue, league_code)` et `radar.stamp_ligue` alignes.
+- [x] **Part MT1 ligue** : `league_averages` priorise `PARI_SHARES_PATH` → part mesuree sur l'echantillon → `DEFAULT_PART_MT1` (0.44). `half_split_lambda(..., part_ligue)` utilise cette part pour les flags `mt_split_estimate`.
+- [x] **Backtest offline** : `F00_RADAR/CODEBASE/backtest.py` lit les CSV football-data caches, mesure `part_mt1` (HT/FT) + pente Elo, ecrit `ARCHIVUM/learnings/shares.json`. Zero reseau, zero scrape.
+- [x] **Commandes Telegram** : `/radar [N]`, `/pack [N]`, `/match ID` (id `M1` ou rang 1-based) cablees dans `workflow.py` (`cmd_radar`/`cmd_pack`/`cmd_match`), `parse.py` + Worker `index.js` + `schema_listen.json` alignes (`/help` mis a jour).
+- [x] **Tests** : `tests/e2e_backtest.py` 17/17 (shares, part_mt1 range, elo finite, offline, tampon, holes, cmds). `e2e_listen` 98/99 (`L12.superlig_rejet` preexistant, T1 mappe Super Lig — inchange).
+
+**Reste a faire** : (1) lancer un vrai backtest multi-saisons (`backtest.py --csv-dir` sur 5 saisons) pour peupler `ARCHIVUM/learnings/shares.json` en prod, (2) ponderer le Top N radar par les resultats F06 (item 6), (3) `L12.superlig_rejet` a arbitrer avec la doctrine (T1 mappe ou pas).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

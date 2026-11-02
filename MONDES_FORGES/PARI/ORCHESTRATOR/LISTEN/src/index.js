@@ -12,7 +12,7 @@
 const KNOWN = new Set([
   "start", "capture", "bankroll", "budget", "surticket", "combos",
   "valider-1", "valider-2", "valider1", "valider2",
-  "data", "status", "roi", "stop",
+  "data", "radar", "pack", "match", "status", "roi", "stop",
 ]);
 const LOCAL = new Set(["help", "aide"]);
 const CANON = { valider1: "valider-1", valider2: "valider-2" };
@@ -27,6 +27,7 @@ const HELP =
   "/valider-1\n" +
   "/valider-2  (lot + token L-XXX, anti-cannibal)\n" +
   "/data  /data N  /data ledger\n" +
+  "/radar  /pack  /match ID\n" +
   "/status  /status ledger\n" +
   "/roi  /roi settle L-XXX\n" +
   "/stop";
@@ -110,7 +111,7 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {

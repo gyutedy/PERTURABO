@@ -19,11 +19,14 @@ import json
 import math
 import argparse
 import os
+import sys
 from datetime import datetime, timezone
 
 RHO_DC = -0.13           # correction bas-scores Dixon-Coles (typique ~ -0.13)
 DEFAULT_PART_MT1 = 0.44  # part structurelle des buts en 1re MT (ligues pros)
 MAX_GOALS = 10           # grille de la matrice (buts 0..MAX par équipe)
+_SHARES_CACHE = None
+_STAT_KEYS = ("mj", "marques", "encaisses")
 
 
 def poisson_pmf(k: int, lam: float) -> float:
@@ -107,38 +110,130 @@ def mt_probas(m1, m2):
     return {"mt1_plus": mt1_plus, "mte": mte, "mt2_plus": mt2_plus}
 
 
-def league_averages(matchs):
-    """Moyennes de la ligue (baseline) : buts dominiciles/ext sur l'échantillon."""
+def _stats_ok(side):
+    return bool(side) and all(side.get(k) is not None for k in _STAT_KEYS)
+
+
+def _load_shares():
+    global _SHARES_CACHE
+    if _SHARES_CACHE is not None:
+        return _SHARES_CACHE
+    path = os.environ.get("PARI_SHARES_PATH")
+    if not path or not os.path.exists(path):
+        _SHARES_CACHE = {}
+        return _SHARES_CACHE
+    try:
+        with open(path, encoding="utf-8") as f:
+            blob = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        blob = {}
+    _SHARES_CACHE = blob if isinstance(blob, dict) else {}
+    return _SHARES_CACHE
+
+
+def _league_code_of(matchs, ligue=None, league_code=None):
+    if league_code:
+        return league_code
+    if matchs:
+        c = matchs[0].get("league_code")
+        if c:
+            return c
+        ligue = ligue or matchs[0].get("ligue")
+    if not ligue:
+        return None
+    try:
+        cap_dir = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "..", "..", "F00_RADAR", "CODEBASE"))
+        if cap_dir not in sys.path:
+            sys.path.insert(0, cap_dir)
+        from capteurs import ligue_code as resolve
+        return resolve(ligue)
+    except Exception:
+        return None
+
+
+def stamp_league_code(matchs, ligue=None, league_code=None):
+    code = _league_code_of(matchs, ligue=ligue, league_code=league_code)
+    if not code:
+        return code
+    for m in matchs:
+        if not m.get("league_code"):
+            m["league_code"] = code
+        if ligue and not m.get("ligue"):
+            m["ligue"] = ligue
+    return code
+
+
+def _part_mt1_from_shares(code):
+    if not code:
+        return None
+    shares = _load_shares()
+    rec = shares.get(code) or shares.get(str(code).upper()) or {}
+    if not isinstance(rec, dict):
+        return None
+    val = rec.get("part_mt1") or rec.get("part_mt1_ligue")
+    try:
+        f = float(val)
+    except (TypeError, ValueError):
+        return None
+    if 0.30 <= f <= 0.60:
+        return f
+    return None
+
+
+def _part_mt1_measured(matchs):
+    parts, n = 0.0, 0
+    for m in matchs:
+        s = m.get("stats") or {}
+        for side in (s.get("dom"), s.get("ext")):
+            if not _stats_ok(side):
+                continue
+            tot = side.get("marques") or 0
+            mt1 = side.get("marques_mt1")
+            if tot and mt1 is not None:
+                parts += mt1 / tot
+                n += 1
+    if n < 4:
+        return None
+    return parts / n
+
+
+def league_averages(matchs, ligue=None, league_code=None):
+    """Moyennes de la ligue (baseline) : buts domicile/ext sur l'échantillon."""
     dom_x, ext_x, n = 0.0, 0.0, 0
     for m in matchs:
         s = m.get("stats") or {}
         sd, se = s.get("dom"), s.get("ext")
-        if not sd or not se:
+        if not _stats_ok(sd) or not _stats_ok(se):
             continue
         dom_x += sd["marques"] / max(sd["mj"], 1)
         ext_x += se["marques"] / max(se["mj"], 1)
         n += 1
     if n == 0:
         raise ValueError("Aucune stat d'équipe valide — Zero Data, Zero Calc")
+    code = _league_code_of(matchs, ligue=ligue, league_code=league_code)
+    part = _part_mt1_from_shares(code) or _part_mt1_measured(matchs) or DEFAULT_PART_MT1
     return {
         "buts_dom_moy": dom_x / n,
         "buts_ext_moy": ext_x / n,
-        "part_mt1_ligue": DEFAULT_PART_MT1,
+        "part_mt1_ligue": part,
+        "league_code": code,
     }
 
 
-def half_split_lambda(lam_total, scored_mt1, conceded_mt1, flags):
+def half_split_lambda(lam_total, scored_mt1, conceded_mt1, flags, part_ligue=None):
     """λ de 1re MT : part équipe si fiable, part ligue sinon (flag estimate)."""
+    fallback = part_ligue if part_ligue is not None else DEFAULT_PART_MT1
     parts = []
     if scored_mt1 is not None:
         parts.append(scored_mt1)
     else:
-        parts.append(DEFAULT_PART_MT1)
+        parts.append(fallback)
         flags.append("mt_split_estimate")
     if conceded_mt1 is not None:
         parts.append(conceded_mt1)
     else:
-        parts.append(DEFAULT_PART_MT1)
+        parts.append(fallback)
         flags.append("mt_split_estimate_opp")
     return lam_total * (sum(parts) / len(parts))
 
@@ -167,8 +262,9 @@ def analyse_match(m, avg):
     conceded_mt1_ext = (se["encaisses_mt1"] / se["encaisses"]) if se.get("encaisses_mt1") else None
     conceded_mt1_dom = (sd["encaisses_mt1"] / sd["encaisses"]) if sd.get("encaisses_mt1") else None
 
-    lam_dom_mt1 = half_split_lambda(lambda_dom, scored_mt1_dom, conceded_mt1_ext, flags)
-    lam_ext_mt1 = half_split_lambda(lambda_ext, scored_mt1_ext, conceded_mt1_dom, flags)
+    part = avg.get("part_mt1_ligue", DEFAULT_PART_MT1)
+    lam_dom_mt1 = half_split_lambda(lambda_dom, scored_mt1_dom, conceded_mt1_ext, flags, part)
+    lam_ext_mt1 = half_split_lambda(lambda_ext, scored_mt1_ext, conceded_mt1_dom, flags, part)
     lam_dom_mt2 = lambda_dom - lam_dom_mt1
     lam_ext_mt2 = lambda_ext - lam_ext_mt1
 
@@ -193,26 +289,35 @@ def analyse_match(m, avg):
     }
 
 
-def analyse_fixtures(matchs):
+def analyse_fixtures(matchs, ligue=None, league_code=None):
+    stamp_league_code(matchs, ligue=ligue, league_code=league_code)
+    usable = [m for m in matchs if _stats_ok((m.get("stats") or {}).get("dom"))
+              and _stats_ok((m.get("stats") or {}).get("ext"))]
     try:
-        avg = league_averages(matchs)
+        avg = league_averages(usable, ligue=ligue, league_code=league_code)
     except ValueError:
         # Zero Data, Zero Calc : aucune stat d'équipe → analyses vides, pas de crash.
         # Le flux capture seul (cotes sans stats historiques) doit être complété
         # par la bibliothèque de stats (capteurs build-stats + inject) avant siège.
         return {
             "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "ligue": matchs[0].get("ligue", "?") if matchs else "?",
+            "ligue": ligue or (matchs[0].get("ligue", "?") if matchs else "?"),
             "ligue_moyennes": None,
             "analyses": [],
             "message": ("Zero Data, Zero Calc — aucune stat d'équipe dans la carte. "
                         "Ajoute les stats via capteurs.py build-stats + inject, ou une carte manuelle."),
         }
+    moy = {}
+    for k, v in avg.items():
+        if isinstance(v, float):
+            moy[k] = round(v, 4)
+        else:
+            moy[k] = v
     return {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "ligue": matchs[0].get("ligue", "?") if matchs else "?",
-        "ligue_moyennes": {k: round(v, 4) for k, v in avg.items()},
-        "analyses": [analyse_match(m, avg) for m in matchs],
+        "ligue": ligue or (matchs[0].get("ligue", "?") if matchs else "?"),
+        "ligue_moyennes": moy,
+        "analyses": [analyse_match(m, avg) for m in usable],
     }
 
 
@@ -226,7 +331,11 @@ def main():
 
     with open(args.input, "r", encoding="utf-8") as f:
         intel = json.load(f)
-    out = analyse_fixtures(intel["matchs"])
+    out = analyse_fixtures(
+        intel["matchs"],
+        ligue=intel.get("ligue"),
+        league_code=intel.get("league_code"),
+    )
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)
