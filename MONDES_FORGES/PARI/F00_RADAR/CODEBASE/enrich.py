@@ -273,7 +273,19 @@ def enrich_carte(carte, skip_notes=None, skip_binary=None):
                         holes.append(k)
 
             _attach_form_h2h(m, holes, code, key_fn=capteurs.team_key)
-            if "timing" not in holes:
+            # timing buts/cartons v2.8 : AFFICHAGE SEULEMENT (jamais Poisson)
+            # kill switch PARI_SKIP_TIMING=1 ; cache 1 hit/couple/jour ; trou sinon.
+            timing_ok = False
+            if not _env_skip("PARI_SKIP_TIMING"):
+                try:
+                    import match_timing
+                    tl = match_timing.match_timing(dom, ext)
+                    if tl and (tl.get("goals") or tl.get("cards") or tl.get("event_id")):
+                        m["goal_minutes"] = tl
+                        timing_ok = True
+                except Exception:
+                    timing_ok = False
+            if not timing_ok and "timing" not in holes:
                 holes.append("timing")
 
         m["holes"] = holes

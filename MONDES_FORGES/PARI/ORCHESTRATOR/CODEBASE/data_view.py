@@ -289,7 +289,16 @@ def render_fiche(n, top3, md, carte, notes, n_notes=0):
         _form_block("FORME D 10", form.get("dom") or []),
         _form_block("FORME E 10", form.get("ext") or []),
     ]
-    if "timing" in holes or not intel.get("goal_minutes"):
+    tm = intel.get("goal_minutes") or {}
+    if tm.get("goals"):
+        g8 = tm["goals"][:8]
+        buts = " ".join(f"{g.get('minute')}'{(g.get('side') or '?')[0]}" for g in g8)
+        cards = " ".join(f"{c.get('minute')}'" for c in (tm.get("cards") or [])[:4])
+        lines.append(f"TIMING {tm.get('home','?')} {tm.get('away','?')} ({tm.get('status','?')})")
+        lines.append(f"BUTS {buts}")
+        if cards:
+            lines.append(f"CARTONS {cards}")
+    elif "timing" in holes or not tm.get("event_id"):
         lines.append("TROU timing")
     lines.append(_notes_block(note))
     show = [h for h in holes if h != "timing"]
