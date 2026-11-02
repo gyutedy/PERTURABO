@@ -10,11 +10,14 @@ import tempfile
 
 WORLD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.insert(0, os.path.join(WORLD, "F00_RADAR", "CODEBASE"))
+sys.path.insert(0, os.path.join(WORLD, "F01_SENTINEL", "CODEBASE", "connectors"))
 sys.path.insert(0, os.path.join(WORLD, "F02_BREACHER", "CODEBASE"))
 sys.path.insert(0, os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE"))
 
 import backtest  # noqa: E402
 import breacher  # noqa: E402
+import capteurs  # noqa: E402
+import clubelo  # noqa: E402
 import radar  # noqa: E402
 import workflow  # noqa: E402
 
@@ -180,6 +183,68 @@ def main():
         workflow.tell = orig_tell
         workflow.load_json = orig_load
         workflow.run_orch = orig_run
+
+    orig_fetch = clubelo._fetch_csv
+    try:
+        def _boom(*a, **k):
+            raise TimeoutError("clubelo timeout")
+        clubelo._fetch_csv = _boom
+        hole = clubelo.elo_map("2026-11-02")
+        check("B.clubelo_timeout_trou",
+              hole.get("holes") == ["elo"] and hole.get("elos") == {},
+              str(hole.get("holes")))
+
+        clubelo._fetch_csv = lambda *a, **k: ""
+        empty = clubelo.elo_map("2026-11-02")
+        check("B.clubelo_csv_vide",
+              empty.get("holes") == ["elo"] and not empty.get("elos"),
+              str(empty.get("meta")))
+
+        csv_ok = "Club,Country,Level,Elo,Rank,From,To\nAth Madrid,ESP,1,1850.12,12,2026-11-01,2026-11-02\nBarcelona,ESP,1,1900.5,8,2026-11-01,2026-11-02\n"
+        clubelo._fetch_csv = lambda *a, **k: csv_ok
+        parsed = clubelo.elo_map("2026-11-02")
+        check("B.clubelo_parse_ok",
+              parsed.get("elos", {}).get("Ath Madrid") == 1850.12
+              and parsed.get("elos", {}).get("Barcelona") == 1900.5
+              and "holes" not in parsed,
+              str(parsed.get("elos")))
+        check("B.clubelo_best_match",
+              clubelo.best_match("Ath Madrid", parsed["elos"]) == ("Ath Madrid", 1850.12))
+    finally:
+        clubelo._fetch_csv = orig_fetch
+
+    no_slope = backtest.scan_dir(csv_dir)
+    rec_ns = no_slope.get("SP1") or {}
+    check("B.sans_elo_pas_pente",
+          "elo_slope" not in rec_ns,
+          str(rec_ns.get("elo_slope")))
+    check("B.holes_for_sans_elo",
+          backtest.holes_for(no_slope, {}) == ["elo"])
+    check("B.holes_for_elo_sans_pente",
+          backtest.holes_for(no_slope, {"Ath Madrid": 1850}) == ["elo"])
+    check("B.holes_for_ok",
+          backtest.holes_for(shares, {"Ath Madrid": 1850}) == [])
+
+    tmp_elo = os.path.join(tmp, "elo_hole.json")
+    tmp_shares = os.path.join(tmp, "shares_cmd.json")
+    clubelo._fetch_csv = lambda *a, **k: None
+    try:
+        args_elo = type("Args", (), {"date": "2026-11-02", "out": tmp_elo})()
+        ok_elo = capteurs.cmd_build_elo(args_elo)
+        blob_elo = json.load(open(tmp_elo, encoding="utf-8"))
+        check("B.build_elo_trou_fichier",
+              ok_elo is False and blob_elo.get("holes") == ["elo"] and blob_elo.get("elos") == {},
+              str(blob_elo.get("holes")))
+
+        args_sh = type("Args", (), {"csv_dir": csv_dir, "elo": tmp_elo, "out": tmp_shares})()
+        capteurs.cmd_backtest_shares(args_sh)
+        blob_sh = json.load(open(tmp_shares, encoding="utf-8"))
+        check("B.backtest_shares_cmd",
+              blob_sh.get("holes") == ["elo"]
+              and "elo_slope" not in (blob_sh.get("SP1") or {}),
+              str(blob_sh.get("holes")))
+    finally:
+        clubelo._fetch_csv = orig_fetch
 
     print("-" * 70)
     fails = [n for n, ok, _ in CHECKS if not ok]

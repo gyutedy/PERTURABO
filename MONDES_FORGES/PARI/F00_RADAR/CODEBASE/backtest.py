@@ -253,6 +253,15 @@ def scan_dir(csv_dir, elo_map=None):
     return out
 
 
+def holes_for(shares, elo_map):
+    """Trou elo si carte absente ou aucune pente mesurable. Jamais de pente inventee."""
+    if not elo_map:
+        return ["elo"]
+    if shares and not any((r or {}).get("elo_slope") is not None for r in shares.values()):
+        return ["elo"]
+    return []
+
+
 def load_elo(path):
     if not path or not os.path.exists(path):
         return {}
@@ -287,7 +296,7 @@ def main():
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "offline": True,
         "leagues": shares,
-        "holes": [] if elo_map else ["elo"],
+        "holes": holes_for(shares, elo_map),
     }
     for code, rec in shares.items():
         blob[code] = rec

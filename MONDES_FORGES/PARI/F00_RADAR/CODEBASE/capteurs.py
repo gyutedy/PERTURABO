@@ -3,8 +3,9 @@ F00 CAPTEURS — Le Fer qui Veille : orchestrateur des connecteurs (monde PARI)
 =============================================================================
 Bras opératoire des sources whitelist :
   - build-stats       : football-data.co.uk (SANS CLÉ) → stats Dom/Ext + split MT
-  - build-elo         : ClubElo (SANS CLÉ) → carte Elo du jour
-  - fixtures-list     : calendrier live (API-Football ou football-data.org, CLÉ)
+  - build-elo         : ClubElo (SANS CLE) → carte Elo du jour (timeout = trou)
+  - backtest-shares   : parts MT1 + pente Elo depuis CSV cache (offline)
+  - fixtures-list     : calendrier live (API-Football ou football-data.org, CLE)
   - inject            : peuple une carte de matchs (stats + Elo) depuis la bibliothèque
   - telegram-test     : vérifie le bot (TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID)
 
@@ -221,17 +222,47 @@ def cmd_build_stats(args):
 
 def cmd_build_elo(args):
     import clubelo
+    date = args.date or datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
-        data = clubelo.elo_map(args.date)
+        data = clubelo.elo_map(date)
     except Exception as e:
-        print(f"[CAPTEURS] ⚠️ ClubElo injoignable depuis cet environnement ({e}).")
-        print("   → le connecteur tournera depuis GitHub Actions (réseau ouvert) ;")
-        print("   → en attendant, le monde tourne sans Elo (data_quality 'moyenne').")
+        print(f"[CAPTEURS] ClubElo injoignable ({e}). Trou declare, pas de pente inventee.")
+        data = None
+    if not data or not (data.get("elos") or {}):
+        data = clubelo._hole(date) if hasattr(clubelo, "_hole") else {
+            "meta": {"generated_at": now_str(), "source": "api.clubelo.com",
+                     "date": date, "nb_clubs": 0, "holes": ["elo"]},
+            "elos": {},
+            "holes": ["elo"],
+        }
+        os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
+        with open(args.out, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        print(f"[CAPTEURS] ClubElo trou → {args.out}")
         return False
-    os.makedirs(os.path.dirname(args.out), exist_ok=True)
+    os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
-    print(f"[CAPTEURS] 📐 {data['meta']['nb_clubs']} clubs Elo du {data['meta']['date']} → {args.out}")
+    print(f"[CAPTEURS] {data['meta']['nb_clubs']} clubs Elo du {data['meta']['date']} → {args.out}")
+    return True
+
+
+def cmd_backtest_shares(args):
+    import backtest
+    elo_map = backtest.load_elo(args.elo)
+    shares = backtest.scan_dir(args.csv_dir, elo_map=elo_map)
+    blob = {
+        "generated_at": now_str(),
+        "offline": True,
+        "leagues": shares,
+        "holes": backtest.holes_for(shares, elo_map),
+    }
+    for code, rec in shares.items():
+        blob[code] = rec
+    os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
+    with open(args.out, "w", encoding="utf-8") as f:
+        json.dump(blob, f, indent=2, ensure_ascii=False)
+    print(f"[CAPTEURS] backtest-shares {len(shares)} ligue(s) holes={blob['holes']} → {args.out}")
     return True
 
 
@@ -391,11 +422,17 @@ def main():
     ow.add_argument("--force", action="store_true")
     ow.add_argument("--notify", action="store_true")
 
+    bs = sub.add_parser("backtest-shares")
+    bs.add_argument("--csv-dir", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "cache", "f00"))
+    bs.add_argument("--elo", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "teams", "elo.json"))
+    bs.add_argument("--out", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "learnings", "shares.json"))
+
     args = parser.parse_args()
     {"build-stats": cmd_build_stats, "build-elo": cmd_build_elo,
      "fixtures-list": cmd_fixtures_list, "inject": cmd_inject,
      "enrich": cmd_enrich, "odds-watch": cmd_odds_watch,
-     "telegram-test": cmd_telegram_test}[args.cmd](args)
+     "telegram-test": cmd_telegram_test,
+     "backtest-shares": cmd_backtest_shares}[args.cmd](args)
 
 
 if __name__ == "__main__":

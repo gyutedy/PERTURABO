@@ -136,7 +136,7 @@
 - [x] **Pente Elo** : `load_elo` lit `elos` (schema ClubElo) + `teams`. Matching `team_key` / alnum. `scan_dir` concatene les lignes par ligue avant OLS (plus de moyenne de pentes). ClubElo live **trou** (api.clubelo.com timeout ici) — `shares.json` prod sans `elo_slope`. Fixture e2e = pente presente.
 - [x] **Learnings par marche** : `by_comp` o2.5 / mt2_plus (min 8 jambes). Recompose le score radar (poids 0.55/0.30) — un facteur global ne reordonne pas. Identity < 50.
 
-**Reste a faire** : (1) coller `elo.json` (ClubElo) puis `backtest.py --elo` pour peupler `elo_slope` prod, (2) 50+ tickets **reels** pour activer learnings live.
+**Reste a faire** : (1) coller `elo.json` (ClubElo, reseau ouvert / Actions) puis `capteurs.py backtest-shares --elo` pour peupler `elo_slope` prod, (2) 50+ tickets **reels** pour activer learnings live. Trou `holes: ["elo"]` declare tant que la carte manque.
 
 ## ETAT v2.7 — /pack /match EXECUTES (2026-11-02)
 
@@ -147,6 +147,15 @@
 - [x] **Docs** : GUIDE + README listent `/radar` `/pack` `/match` dans le cycle Telegram.
 
 **Handoff** : branche `pari-forge-perturabo-xs4c`. Flux radar → pack → match **execute** (plus seulement cable). Suite : ClubElo `elo.json` (pente prod) + 50 tickets reels. Pas de wrangler, pas scrape Winner, pas Dixon-Coles, cles = `env_pari`.
+
+## ETAT v2.8 — CLUBELO TROU DECLARE (2026-11-02)
+
+- [x] **Connecteur** : `clubelo._fetch_csv` timeout / URLError / CSV vide = blob trou (`holes: ["elo"]`, `elos: {}`). Jamais de pente inventee.
+- [x] **`build-elo`** : ecrit le fichier trou (plus un return silencieux). `backtest-shares` cable dans `capteurs.py`.
+- [x] **`backtest.holes_for`** : trou si carte Elo absente **ou** aucune `elo_slope` mesurable. `shares.json` prod : `holes: ["elo"]`, parts MT1 intactes.
+- [x] **Tests** : e2e_backtest 44/44 (timeout, CSV vide, parse OK, pas de pente sans carte, `cmd_build_elo` / `cmd_backtest_shares` ecrivent le trou). e2e_listen 99/99. Zero reseau.
+
+**Handoff** : ClubElo live reste trou tant que `api.clubelo.com` timeout ici. Coller `elo.json` (Actions / reseau ouvert) puis `capteurs.py backtest-shares --elo` pour peupler `elo_slope` prod. 50+ tickets reels toujours requis pour learnings live. Pas de wrangler, pas scrape Winner, pas Dixon-Coles, cles = `env_pari`.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
