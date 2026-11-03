@@ -34,7 +34,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | Commande | Ce que ça fait |
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre, **garde la bankroll**) |
-| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). OCR vide = Zero Data. |
+| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). Inbox = fichier `capture_telegram.*` le **plus recent** (un markdown neuf ecrase une vieille photo). Dates `JJ/MM/AA` lues par rang. OCR vide = Zero Data. |
 | `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
@@ -259,8 +259,12 @@ curl -s "https://api.telegram.org/bot${TOKEN}/setWebhook" \
 ```
 
 Puis dans Telegram : `/start`. ACK Worker (~1 s) puis reponse campagne (~1 min).
-`/capture` = tableau markdown dans le **meme** message (plafond 4096). Si Telegram
-casse les `<br>` en retours a la ligne, le parseur recoud les rangs. png/pdf plus tard.
+`/capture` = tableau markdown dans le **meme** message (plafond 4096) **ou** photo
+avec caption `/capture`. Si Telegram casse les `<br>` en retours a la ligne, le
+parseur recoud les rangs. Dates `JJ/MM/AA` (ex. `21/11/26 16:00`) sont lues **par
+rang** — plusieurs jours dans un seul tableau = OK. La reponse doit dire
+`(markdown_table)` et pas `(image)` : `(image)` = leftover photo d'un essai
+precedent, recolle le markdown.
 
 Test envoi seul (sans webhook) :
 

@@ -86,4 +86,6 @@ Si 1 sans 2 : Actions → `pari-listen` (workflow_dispatch). Si rien : webhook /
 
 ## Hors v1
 
-pdf / KV multi-messages / polling. Photo `/capture` = v2.9 (file_id → getFile → OCR). `/radar` `/pack` `/match` relays. Pas de scrape bookmaker.
+pdf / KV multi-messages / polling. Photo `/capture` = v2.9 (file_id → getFile → OCR).
+v2.10 : inbox = fichier le plus recent ; leftover photo/md retire a chaque `/capture`.
+Dates markdown `JJ/MM/AA` lues par rang. `/radar` `/pack` `/match` relays. Pas de scrape bookmaker.

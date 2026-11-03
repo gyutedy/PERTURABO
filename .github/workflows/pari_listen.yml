@@ -108,15 +108,24 @@ jobs:
                       dest = inbox / ("capture_telegram" + ext)
                       file_url = api + "/file/bot" + token + "/" + fpath
                       try:
-                          with urllib.request.urlopen(file_url, timeout=60) as r:
-                              dest.write_bytes(r.read())
-                          print("[listen] photo inbox", dest.name, dest.stat().st_size, "octets")
-                      except Exception as e:
-                          print("[listen] download photo echec:", type(e).__name__)
+                           with urllib.request.urlopen(file_url, timeout=60) as r:
+                               dest.write_bytes(r.read())
+                           print("[listen] photo inbox", dest.name, dest.stat().st_size, "octets")
+                           md_old = inbox / "capture_telegram.md"
+                           if md_old.exists():
+                               md_old.unlink()
+                               print("[listen] retire leftover", md_old.name)
+                       except Exception as e:
+                           print("[listen] download photo echec:", type(e).__name__)
           elif text.strip():
               dest = inbox / "capture_telegram.md"
               dest.write_text(text if text.endswith("\n") else text + "\n", encoding="utf-8")
               print("[listen] inbox md", dest.stat().st_size, "octets")
+              for ext in (".png", ".jpg", ".jpeg", ".webp"):
+                  old = inbox / ("capture_telegram" + ext)
+                  if old.exists():
+                      old.unlink()
+                      print("[listen] retire leftover", old.name)
           else:
               print("[listen] pas de capture (cmd=%s)" % cmd)
           PY

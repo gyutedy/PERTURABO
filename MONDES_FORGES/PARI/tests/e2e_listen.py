@@ -205,11 +205,16 @@ def main():
         png = os.path.join(inbox_dir, "capture_telegram.png")
         with open(png, "wb") as f:
             f.write(b"\x89PNG")
+        md_mtime = os.path.getmtime(inbox)
+        os.utime(png, (md_mtime - 20, md_mtime - 20))
         workflow.INBOX_CAPTURE = inbox
+        got_md = workflow.resolve_capture("")
+        check("L7.inbox_md_plus_recent", got_md == inbox, str(got_md))
+        os.utime(png, (md_mtime + 20, md_mtime + 20))
         got_png = workflow.resolve_capture("")
-        check("L7.inbox_photo_prioritaire", got_png == png, str(got_png))
-        os.remove(png)
-        workflow.INBOX_CAPTURE = os.path.join(inbox_dir, "absent.md")
+        check("L7.inbox_photo_plus_recente", got_png == png, str(got_png))
+        empty_dir = tempfile.mkdtemp(prefix="pari-listen-empty-")
+        workflow.INBOX_CAPTURE = os.path.join(empty_dir, "capture_telegram.md")
         got3 = workflow.resolve_capture("")
         check("L7.sans_inbox_none", got3 is None, str(got3))
     finally:
@@ -222,6 +227,7 @@ def main():
     check("L8.concurrency", "group: pari-campagne" in raw and "cancel-in-progress: false" in raw)
     check("L8.inbox_write", "capture_telegram.md" in raw)
     check("L8.inbox_photo", "capture_file_id" in raw and "getFile" in raw)
+    check("L8.inbox_retire_leftover", "retire leftover" in raw)
     check("L8.pages_non_bloquant", "continue-on-error: true" in raw)
     check("L8.auto_gates", "PARI_AUTO_GATES" in raw)
 

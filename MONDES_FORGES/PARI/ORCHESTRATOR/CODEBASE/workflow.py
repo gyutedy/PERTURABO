@@ -7,7 +7,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /start           ouvre la campagne du jour (reset propre, garde bankroll)
   /capture [file]  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
                    Telegram : markdown DANS le meme message, OU photo + caption /capture
-                   sans chemin : inbox F01_SENTINEL/IN/capture_telegram.(png|jpg|md)
+                   sans chemin : inbox F01_SENTINEL/IN/capture_telegram.* le plus recent
   /bankroll 50000  pot global FC (persiste /start /stop). Sans arg : affiche le pot.
   /budget 3000 800 budget du lot + mise FORCEE du ticket sur (reste divise). Retaper avant chaque lot.
   /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
@@ -141,21 +141,24 @@ def cmd_start(st, arg):
 
 
 INBOX_CAPTURE = P("F01_SENTINEL", "IN", "capture_telegram.md")
+INBOX_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".md")
 
 
 def resolve_capture(fichier):
-    """Chemin local si fourni et present, sinon inbox Telegram (photo puis markdown)."""
+    """Chemin local si fourni et present, sinon inbox Telegram la plus recente (mtime)."""
     path = (fichier or "").strip()
     if path and os.path.exists(path):
         return path
     d = os.path.dirname(INBOX_CAPTURE) or P("F01_SENTINEL", "IN")
-    for ext in (".png", ".jpg", ".jpeg", ".webp"):
+    cands = []
+    for ext in INBOX_EXTS:
         p = os.path.join(d, "capture_telegram" + ext)
         if os.path.exists(p):
-            return p
-    if os.path.exists(INBOX_CAPTURE):
-        return INBOX_CAPTURE
-    return None
+            cands.append(p)
+    if not cands:
+        return None
+    cands.sort(key=os.path.getmtime, reverse=True)
+    return cands[0]
 
 
 def cmd_capture(st, fichier):

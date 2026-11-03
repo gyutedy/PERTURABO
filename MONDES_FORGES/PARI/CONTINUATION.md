@@ -161,10 +161,20 @@
 
 - [x] **Worker + parse.py** : photo (plus grande taille) ou document image + caption `/capture` → `capture_file_id`. Markdown inchange. Photo sans caption = refuse (pas ignore).
 - [x] **`pari_listen.yml`** : input `capture_file_id` → `getFile` Telegram → `F01_SENTINEL/IN/capture_telegram.jpg|png` → OCR tesseract deja pose. Token : secret GitHub ou `env_pari`. Echec download = trou, pas d'invention.
-- [x] **`resolve_capture`** : inbox photo prioritaire sur `.md`.
+- [x] **`resolve_capture`** : inbox photo prioritaire sur `.md` (corrige v2.10 : mtime, plus une priorite fixe).
 - [x] **Tests** : e2e_listen 104/104 (photo, document, sans caption, inbox png). e2e_ocr 12/12. Zero reseau. Deploy Worker auto au push `LISTEN/**`.
 
 **Telegram** : `/capture` + tableau markdown **ou** photo avec caption `/capture`. Relis le JSON reconstitue avant `/valider-1`. OCR illisible = Zero Data, Zero Calc.
+
+## ETAT v2.10 — INBOX LEFTOVER + DATES EU (2026-11-03)
+
+- [x] **Cause live 0 match** : `Capture parsee (image)` alors que l'operateur a colle un tableau markdown. `resolve_capture` prenait `capture_telegram.png|jpg` **avant** le `.md`. Un jpg d'un essai photo restait dans `F01_SENTINEL/IN/` → OCR de l'ancienne image → 0 match, 1 warning. Ce n'etait **pas** le multi-jours.
+- [x] **`resolve_capture`** : prend l'inbox `capture_telegram.*` la **plus recente** (mtime). Plus de priorite fixe photo > md.
+- [x] **`pari_listen.yml`** : un `/capture` markdown retire les leftover photo ; un `/capture` photo retire le leftover `.md`.
+- [x] **Dates EU** : `DD/MM/YY` et `DD/MM/YYYY` → ISO. Heure `HH.MM` seulement si une date est sur la **meme** cellule (un `1.16` n'est plus une heure). `Date non précisée` = warning, match garde, date None. Plus de date globale recopiee sur tous les rangs.
+- [x] **Tests** : e2e_listen inbox mtime (md recent gagne, photo recente gagne) + leftover yml. e2e_multiformat dates EU multi-jours + inbox 19 matchs. Zero reseau. Pas de scrape.
+
+**Telegram** : recolle le tableau markdown dans le meme message que `/capture`. Le siege doit repondre `Capture parsee (markdown_table)` (ou `texte+markdown_table`), **pas** `(image)`. Relis le JSON : dates `2026-11-06` … `2026-11-22` par match.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

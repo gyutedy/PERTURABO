@@ -194,6 +194,49 @@ def main():
     dates = {b.get("date") for b in p_br.get("captures") or []}
     check("A.md_aujourdhui_date", today in dates, f"dates={dates} today={today}")
 
+    live_eu = (
+        "| Compétition & Match | Horaire | 1 | X | 2 | Moins | Plus | 1st | Égal | 2nd |\n"
+        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n"
+        "| Angleterre - Premier League<br>Everton FC vs Coventry City | 06/11/26 21:00 (#411) | 1.73 | 3.90 | 4.40 | 1.44 | 2.25 | 3.10 | 3.00 | 2.10 |\n"
+        "| Angleterre - Premier League<br>Arsenal FC vs Hull City | 07/11/26 16.00 (#412) | 1.16 | 7.50 | 16.00 | 1.60 | 1.94 | 3.10 | 3.00 | 2.10 |\n"
+        "| Angleterre - Premier League<br>Manchester City vs Fulham FC | 21/11/26 13:30 (#392) | 1.45 | 4.80 | 6.20 | 1.58 | 1.97 | 3.10 | 3.00 | 2.10 |\n"
+        "| Angleterre - Premier League<br>Brentford FC vs Everton FC | Date non précisée | 1.82 | 3.80 | 4.00 | 1.46 | 2.20 | 3.10 | 3.00 | 2.10 |\n"
+    )
+    p_eu = parse_capture(live_eu)
+    eu_rows = []
+    for b in p_eu.get("captures") or []:
+        for m in b.get("matchs") or []:
+            eu_rows.append((m.get("dom"), b.get("date"), b.get("heure"), m.get("warnings") or []))
+    dates_eu = {b.get("date") for b in p_eu.get("captures") or []}
+    check("A.md_eu_n", p_eu.get("n_matchs") == 4, f"n={p_eu.get('n_matchs')}")
+    check("A.md_eu_dates",
+          dates_eu == {"2026-11-06", "2026-11-07", "2026-11-21", None},
+          f"dates={dates_eu}")
+    everton = next((r for r in eu_rows if r[0] == "Everton FC"), None)
+    check("A.md_eu_everton",
+          everton is not None and everton[1] == "2026-11-06" and everton[2] == "21:00",
+          str(everton))
+    arsenal = next((r for r in eu_rows if r[0] == "Arsenal FC"), None)
+    check("A.md_eu_dot_time",
+          arsenal is not None and arsenal[1] == "2026-11-07" and arsenal[2] == "16:00",
+          str(arsenal))
+    check("A.md_eu_cote_pas_heure",
+          arsenal is not None and arsenal[2] != "01:16",
+          str(arsenal))
+    brent = next((r for r in eu_rows if r[0] == "Brentford FC"), None)
+    check("A.md_eu_date_absente",
+          brent is not None and brent[1] is None
+          and any("date absente" in w for w in brent[3]),
+          str(brent))
+
+    inbox_md = os.path.join(WORLD, "F01_SENTINEL", "IN", "capture_telegram.md")
+    if os.path.exists(inbox_md):
+        p_in = parse_capture(open(inbox_md, encoding="utf-8").read())
+        check("A.md_inbox_n", p_in.get("n_matchs") == 19, f"n={p_in.get('n_matchs')}")
+        in_dates = {b.get("date") for b in p_in.get("captures") or []}
+        need = {"2026-11-06", "2026-11-07", "2026-11-08", "2026-11-21", "2026-11-22"}
+        check("A.md_inbox_multijour", need.issubset(in_dates), f"dates={in_dates}")
+
     cap_txt = os.path.join(OUT, "e2e_plain.txt")
     with open(cap_txt, "w", encoding="utf-8") as f:
         f.write(PLAIN)

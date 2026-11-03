@@ -15,7 +15,7 @@ Cartographie des journaux du monde.
 | `ORCHESTRATOR/CODEBASE/data_view.py` | Vues `/data` compact + `/data N` fiche (affichage, jamais Poisson) | workflow.py `cmd_data` |
 | `ORCHESTRATOR/LISTEN/` | Relais webhook Telegram (Worker + parse.py) | Cloudflare / e2e_listen |
 | `.github/workflows/pari_listen.yml` + `pari_daily.yml` | tesseract-ocr + fra (P4) avant siege | Actions |
-| `F01_SENTINEL/IN/capture_telegram.md` | Inbox capture texte colle depuis Telegram | pari_listen.yml |
+| `F01_SENTINEL/IN/capture_telegram.md` | Inbox capture texte colle depuis Telegram. Photo = capture_telegram.jpg / .png / .webp. `resolve_capture` prend le plus recent (v2.10). | pari_listen.yml |
 | `CONTRACTS/schema_listen.json` | Contrat update Telegram → {cmd, capture_text, chat_id} | Worker + parse.py |
 | Repo vivant | `gyutedy/PERTURABO` branche principale `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`) | Worker GH_REF |
 | Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | `.github/workflows/worker_deploy.yml` (CLOUDFLARE_* dans env_pari) |

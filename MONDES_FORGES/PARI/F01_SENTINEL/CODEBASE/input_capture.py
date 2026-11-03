@@ -61,7 +61,9 @@ COMPETITION_KEYWORDS = [
 ]
 
 DATE_RE = re.compile(r"\b(\d{4}-\d{1,2}-\d{1,2})\b")
+DATE_EU_RE = re.compile(r"\b(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})\b")
 TIME_RE = re.compile(r"\b(\d{1,2})[:hH](\d{2})\b")
+TIME_DOT_RE = re.compile(r"\b(\d{1,2})[.](\d{2})\b")
 COTE_RE = re.compile(r"(\d{1,3}[.,]\d{1,2})\b")
 TEAMSEP_RE = re.compile(r"\s+v[ss]+\.?\s+|\s+\bv/\.s\s+| — | – ", re.IGNORECASE)
 GAME_LINE_RE = re.compile(r"^\s*([^\d\-/|:+]{2,40}?)\s*(?:—|–|-|v[vs]+\.?|vs\.?)\s*([^\d\-/|:+]{2,40})\s*([|:/+.\d a-zA-Z]*)")
@@ -78,6 +80,43 @@ def canon_label(tok: str):
     for k in ("o2.5", "u2.5", "o1.5", "u1.5", "o3.5", "u3.5"):
         if low.startswith(k[:1]) and k in low:
             return k
+    return None
+
+
+def _parse_date_str(text: str):
+    """ISO YYYY-MM-DD ou EU DD/MM/YY. Jamais invente. None si absent / illisible."""
+    raw = text or ""
+    d = DATE_RE.search(raw)
+    if d:
+        bits = d.group(1).split("-")
+        y, m, day = int(bits[0]), int(bits[1]), int(bits[2])
+        if 2000 <= y <= 2099 and 1 <= m <= 12 and 1 <= day <= 31:
+            return f"{y:04d}-{m:02d}-{day:02d}"
+        return None
+    e = DATE_EU_RE.search(raw)
+    if e:
+        day, month, year = int(e.group(1)), int(e.group(2)), int(e.group(3))
+        if year < 100:
+            year += 2000
+        if 2000 <= year <= 2099 and 1 <= month <= 12 and 1 <= day <= 31:
+            return f"{year:04d}-{month:02d}-{day:02d}"
+    return None
+
+
+def _parse_time_str(text: str, allow_dot=False):
+    """HH:MM / HHhMM. Point HH.MM seulement si une date est deja sur la meme chaine."""
+    raw = text or ""
+    t = TIME_RE.search(raw)
+    if t:
+        hh, mm = int(t.group(1)), int(t.group(2))
+        if 0 <= hh <= 23 and mm < 60:
+            return f"{hh:02d}:{mm:02d}"
+    if allow_dot and _parse_date_str(raw):
+        t2 = TIME_DOT_RE.search(raw)
+        if t2:
+            hh, mm = int(t2.group(1)), int(t2.group(2))
+            if 0 <= hh <= 23 and mm < 60:
+                return f"{hh:02d}:{mm:02d}"
     return None
 
 
@@ -298,19 +337,19 @@ def parse_markdown_table(capture_text: str):
 
         col = {header[i]: cells[i] if i < len(cells) else "" for i in range(len(header))}
         horaire = _clean_cell(col.get("horaire") or col.get("heure") or "")
-        cur_heure = None
-        t = TIME_RE.search(horaire)
-        if t:
-            cur_heure = f"{int(t.group(1)):02d}:{int(t.group(2)):02d}"
-        cur_date = None
-        d = DATE_RE.search(horaire) or DATE_RE.search(capture_text)
-        if d:
-            cur_date = d.group(1)
-        elif re.search(r"aujourd.?hui", horaire, re.I):
+        cur_heure = _parse_time_str(horaire, allow_dot=True)
+        cur_date = _parse_date_str(horaire)
+        if not cur_date and re.search(r"aujourd.?hui", horaire, re.I):
             cur_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        if not cur_date and re.search(r"date\s+non\s+pr[eé]cis", horaire, re.I):
+            m_warn_date = "date absente (non precisee) — Zero Data, Zero Calc"
+        else:
+            m_warn_date = None
 
         cotes = {}
         m_warn = []
+        if m_warn_date:
+            m_warn.append(m_warn_date)
         ligne_totale = None
         for h, cell in col.items():
             hkey = h.strip().lower()
@@ -397,14 +436,12 @@ def parse_capture(capture_text: str):
         line = norm(raw_line)
         if not line:
             continue
-        d = DATE_RE.search(line)
-        t = TIME_RE.search(line)
+        d = _parse_date_str(line)
+        t = _parse_time_str(line, allow_dot=True)
         if d:
-            cur_date = d.group(1)
+            cur_date = d
         if t:
-            hh, mm = int(t.group(1)), int(t.group(2))
-            if 0 <= hh <= 23 and mm < 60:
-                cur_heure = f"{hh:02d}:{mm:02d}"
+            cur_heure = t
 
         if is_competition_line(line):
             if bloc is not None and bloc["matchs"]:

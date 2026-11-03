@@ -1456,6 +1456,13 @@
 - `extract_input.py` inchange : sans binaire = Zero Data, Zero Calc, pas de crash.
 - e2e_ocr : workflows poses, fake tesseract, image vide = trou. Jamais d invention.
 
+## [2026-11-03T07:30:00Z] v2.10 — inbox leftover + dates EU multi-jours
+
+- Live : `/capture` markdown → `Capture parsee (image) : 0 match(s)`. Cause = leftover photo dans IN/, pas le multi-jours.
+- `resolve_capture` : mtime (plus photo-avant-md). `pari_listen.yml` retire le leftover de l'autre format.
+- Parseur : `DD/MM/YY` → ISO par rang ; `HH.MM` seulement a cote d'une date ; `Date non précisée` = warning.
+- Tests e2e_listen + e2e_multiformat. Pas de scrape. Zero Data inchange.
+
 ## [2026-11-02T16:25:20Z] F01 — check-out — status: processing
 
 ## [2026-11-02T16:25:20Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:ede678a0ee5ecf9f58184659753139db — status:done
