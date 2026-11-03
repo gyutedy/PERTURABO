@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-11-03T14:30:41Z",
-  "source": "fixtures_file",
+  "generated_at": "2026-11-03T19:45:29Z",
+  "source": "siege_file",
   "ligue": "Capture — ligue à confirmer",
-  "ligue_tier": "exotique",
+  "ligue_tier": null,
   "matchs": [
     {
       "id": "M1",
-      "dom": "US Lecce",
-      "ext": "Genoa CFC",
-      "ligue": "Italie - Serie A",
-      "date": "2026-11-01",
-      "heure": "18:00",
+      "dom": "Everton FC",
+      "ext": "Coventry City",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-06",
+      "heure": "21:00",
       "cotes": {
-        "1": 3.15,
-        "X": 2.97,
-        "2": 2.47,
+        "1": 1.73,
+        "X": 3.9,
+        "2": 4.4,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -30,114 +30,196 @@
       "stats": {
         "dom": {
           "mj": 12,
-          "marques": 7.0,
-          "encaisses": 15.0,
-          "marques_mt1": 5.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 2.0,
-          "encaisses_mt2": 11.0
+          "marques": 15.0,
+          "encaisses": 16.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 7.0
         },
         "ext": {
-          "mj": 12,
-          "marques": 15.0,
-          "encaisses": 19.0,
-          "marques_mt1": 7.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 13.0
+          "mj": 4,
+          "marques": 2.0,
+          "encaisses": 7.0,
+          "marques_mt1": 0.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 2.0,
+          "encaisses_mt2": 3.0
         }
       },
       "form": {
-        "dom": [],
-        "ext": [
+        "dom": [
           {
-            "date": "2026-10-28",
-            "opp": "Juventus",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "2-0",
-            "hs": 14.0,
-            "hst": 2.0
+            "date": "2026-11-02",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 16.0,
+            "hst": 5.0
           },
           {
-            "date": "2026-10-25",
-            "opp": "Venezia",
-            "venue": "H",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 7.0,
-            "hst": 4.0
+            "date": "2026-10-24",
+            "opp": "Arsenal",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 3.0
           },
           {
             "date": "2026-10-17",
-            "opp": "Roma",
-            "venue": "A",
+            "opp": "Chelsea",
+            "venue": "H",
             "ft": "0-2",
             "ht": "0-0",
-            "hs": 9.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Fiorentina",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "2-0",
-            "hs": 10.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Parma",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-1",
-            "hs": 12.0,
+            "hs": 6.0,
             "hst": 5.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 21.0,
+            "hst": 2.0
           },
           {
             "date": "2026-09-12",
-            "opp": "Frosinone",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Man United",
             "venue": "H",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 18.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Bournemouth",
+            "venue": "A",
             "ft": "1-1",
             "ht": "0-1",
-            "hs": 17.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-04",
-            "opp": "Como",
-            "venue": "H",
-            "ft": "1-4",
-            "ht": "1-3",
-            "hs": 11.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-08-30",
-            "opp": "Lazio",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 8.0,
-            "hst": 1.0
+            "hs": 13.0,
+            "hst": 7.0
           },
           {
             "date": "2026-08-22",
-            "opp": "Napoli",
+            "opp": "Crystal Palace",
             "venue": "H",
-            "ft": "0-2",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 2.0
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 5.0
           },
           {
             "date": "2026-05-24",
-            "opp": "Lecce",
+            "opp": "Tottenham",
             "venue": "A",
             "ft": "0-1",
             "ht": "0-1",
             "hs": 8.0,
+            "hst": 3.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "2-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-19",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-12",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "4-1",
+            "ht": "1-0",
+            "hs": 9.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-13",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "0-5",
+            "ht": "0-1",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Hull",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-21",
+            "opp": "Arsenal",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 4.0,
             "hst": 1.0
           }
         ]
@@ -147,22 +229,1027 @@
         "xg",
         "rest_days",
         "h2h",
-        "form",
         "h2h_scores",
         "timing"
       ]
     },
     {
       "id": "M2",
-      "dom": "Elche CF",
-      "ext": "Valencia CF",
-      "ligue": "Espagne - LaLiga",
-      "date": "2026-11-01",
+      "dom": "Leeds United",
+      "ext": "Tottenham Hotspur",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-07",
+      "heure": "13:30",
+      "cotes": {
+        "1": 2.57,
+        "X": 3.35,
+        "2": 2.67,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 19.0,
+          "encaisses": 17.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 13.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 20.0,
+          "encaisses": 17.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 11.0,
+          "encaisses_mt2": 8.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 10.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Sunderland",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Man United",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Arsenal",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Crystal Palace",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-14",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "4-1",
+            "ht": "3-0",
+            "hs": 15.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 10.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "West Ham",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 3.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Crystal Palace",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 34.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-19",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Man United",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "0-1",
+            "hs": 20.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 9.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 21.0,
+            "hst": 6.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-05-11",
+            "home": "Tottenham",
+            "away": "Leeds",
+            "ft": "1-1",
+            "ht": "0-0"
+          },
+          {
+            "date": "2025-10-04",
+            "home": "Leeds",
+            "away": "Tottenham",
+            "ft": "1-2",
+            "ht": "1-1"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 0,
+        "draws": 1,
+        "ext_wins": 1,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M3",
+      "dom": "Arsenal FC",
+      "ext": "Hull City",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-07",
+      "heure": "16:00",
+      "cotes": {
+        "1": 1.16,
+        "X": 7.5,
+        "2": 16.0,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 28.0,
+          "encaisses": 8.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 18.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 4,
+          "marques": 4.0,
+          "encaisses": 5.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 2.0,
+          "encaisses_mt2": 1.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-11-01",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 10.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 20.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 11.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Sunderland",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "1-1",
+            "hs": 16.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-08-31",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-21",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 20.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 17.0,
+            "hst": 7.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-1",
+            "hs": 9.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 5.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-2",
+            "hs": 22.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "2-1",
+            "hs": 14.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 6.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Man United",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 8.0,
+            "hst": 4.0
+          }
+        ]
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M4",
+      "dom": "Fulham FC",
+      "ext": "Newcastle United",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-07",
+      "heure": "16:00",
+      "cotes": {
+        "1": 2.07,
+        "X": 3.6,
+        "2": 3.3,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 21.0,
+          "encaisses": 14.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 8.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 16.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 3.0,
+          "encaisses_mt2": 9.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 14.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Hull",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 18.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Man United",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Crystal Palace",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "2-1",
+            "hs": 25.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Sunderland",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-08-24",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "1-2",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 21.0,
+            "hst": 6.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-11-02",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 16.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-12",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-4",
+            "ht": "0-1",
+            "hs": 19.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Hull",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "2-0",
+            "hs": 12.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-14",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "1-4",
+            "ht": "0-3",
+            "hs": 7.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-2",
+            "hs": 8.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Liverpool",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-0",
+            "hs": 13.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 7.0,
+            "hst": 2.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-05-24",
+            "home": "Fulham",
+            "away": "Newcastle",
+            "ft": "2-0",
+            "ht": "1-0"
+          },
+          {
+            "date": "2025-10-25",
+            "home": "Newcastle",
+            "away": "Fulham",
+            "ft": "2-1",
+            "ht": "1-0"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 1,
+        "draws": 0,
+        "ext_wins": 1,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M5",
+      "dom": "Nottingham Forest",
+      "ext": "Manchester City",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-07",
       "heure": "18:30",
       "cotes": {
-        "1": 2.32,
-        "X": 3.3,
-        "2": 3.05,
+        "1": 4.4,
+        "X": 4.0,
+        "2": 1.72,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 13.0,
+          "encaisses": 18.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt2": 12.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 20.0,
+          "encaisses": 15.0,
+          "marques_mt1": 11.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 13.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 15.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-1",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "1-2",
+            "hs": 24.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 24.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "0-0",
+            "hs": 22.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Tottenham",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 5.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 21.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-1",
+            "hs": 15.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "3-2",
+            "ht": "2-1",
+            "hs": 19.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "5-3",
+            "ht": "3-2",
+            "hs": 16.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-13",
+            "opp": "Man United",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 6.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-28",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "4-1",
+            "ht": "1-0",
+            "hs": 18.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "0-1",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 3.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-03-04",
+            "home": "Man City",
+            "away": "Nott'm Forest",
+            "ft": "2-2",
+            "ht": "1-0"
+          },
+          {
+            "date": "2025-12-27",
+            "home": "Nott'm Forest",
+            "away": "Man City",
+            "ft": "1-2",
+            "ht": "0-0"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 0,
+        "draws": 1,
+        "ext_wins": 1,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M6",
+      "dom": "Brighton & Hove Albion",
+      "ext": "Brentford FC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-08",
+      "heure": "15:00",
+      "cotes": {
+        "1": 1.91,
+        "X": 3.8,
+        "2": 3.7,
         "mt1": 3.1,
         "mte": 3.0,
         "mt2": 2.1
@@ -187,10 +1274,972 @@
         },
         "ext": {
           "mj": 12,
-          "marques": 10.0,
-          "encaisses": 24.0,
-          "marques_mt1": 2.0,
+          "marques": 13.0,
+          "encaisses": 20.0,
+          "marques_mt1": 5.0,
           "encaisses_mt1": 10.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 10.0
+        }
+      },
+      "form": {
+        "dom": [],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 7.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Liverpool",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 10.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 14.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-18",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 8.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 22.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Tottenham",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 26.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 2.0
+          }
+        ]
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M7",
+      "dom": "Crystal Palace",
+      "ext": "Liverpool FC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-08",
+      "heure": "15:00",
+      "cotes": {
+        "1": 4.7,
+        "X": 4.2,
+        "2": 1.64,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 15.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 10.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 19.0,
+          "encaisses": 21.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 16.0,
+          "encaisses_mt2": 12.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 2.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "0-5",
+            "ht": "0-3",
+            "hs": 5.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "2-1",
+            "hs": 13.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "1-2",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "3-2",
+            "ht": "1-2",
+            "hs": 10.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-28",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "1-4",
+            "ht": "0-1",
+            "hs": 9.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Everton",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 3.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-11-01",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 17.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 13.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "0-1",
+            "hs": 21.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "0-3",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-04",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 10.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-1",
+            "hs": 13.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-1",
+            "hs": 27.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 24.0,
+            "hst": 8.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-04-25",
+            "home": "Liverpool",
+            "away": "Crystal Palace",
+            "ft": "3-1",
+            "ht": "2-0"
+          },
+          {
+            "date": "2025-09-27",
+            "home": "Crystal Palace",
+            "away": "Liverpool",
+            "ft": "2-1",
+            "ht": "1-0"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 1,
+        "draws": 0,
+        "ext_wins": 1,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M8",
+      "dom": "Ipswich Town",
+      "ext": "AFC Bournemouth",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-08",
+      "heure": "15:00",
+      "cotes": {
+        "1": 3.7,
+        "X": 3.7,
+        "2": 1.93,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 4,
+          "marques": 5.0,
+          "encaisses": 5.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 3.0,
+          "encaisses_mt2": 1.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 21.0,
+          "encaisses": 30.0,
+          "marques_mt1": 12.0,
+          "encaisses_mt1": 13.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 17.0
+        }
+      },
+      "form": {
+        "dom": [],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 11.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Man United",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 10.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 29.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "1-5",
+            "ht": "0-2",
+            "hs": 9.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Liverpool",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 20.0,
+            "hst": 10.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "2-1",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 5.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 17.0,
+            "hst": 4.0
+          }
+        ]
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M9",
+      "dom": "Sunderland AFC",
+      "ext": "Chelsea FC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-08",
+      "heure": "15:00",
+      "cotes": {
+        "1": 3.6,
+        "X": 3.55,
+        "2": 1.99,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 21.0,
+          "encaisses": 9.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 5.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 22.0,
+          "encaisses": 14.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 16.0,
+          "encaisses_mt2": 5.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "0-2",
+            "hs": 17.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 3.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "3-5",
+            "ht": "2-3",
+            "hs": 17.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "1-1",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 20.0,
+            "hst": 2.0
+          }
+        ],
+        "ext": []
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M10",
+      "dom": "Manchester United",
+      "ext": "Aston Villa",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-08",
+      "heure": "17:30",
+      "cotes": {
+        "1": 2.27,
+        "X": 3.6,
+        "2": 2.9,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 23.0,
+          "encaisses": 15.0,
+          "marques_mt1": 12.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 11.0,
+          "encaisses_mt2": 11.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 17.0,
+          "encaisses": 16.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 12.0,
+          "encaisses_mt2": 7.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 13.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Tottenham",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 29.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-13",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 16.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Everton",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "5-2",
+            "ht": "1-1",
+            "hs": 33.0,
+            "hst": 11.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-2",
+            "hs": 21.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 11.0,
+            "hst": 7.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 8.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 20.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "3-2",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-08-31",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "0-4",
+            "ht": "0-4",
+            "hs": 6.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 5.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-03-15",
+            "home": "Man United",
+            "away": "Aston Villa",
+            "ft": "3-1",
+            "ht": "0-0"
+          },
+          {
+            "date": "2025-12-21",
+            "home": "Aston Villa",
+            "away": "Man United",
+            "ft": "2-1",
+            "ht": "1-1"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 1,
+        "draws": 0,
+        "ext_wins": 1,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M11",
+      "dom": "Manchester City",
+      "ext": "Fulham FC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-21",
+      "heure": "13:30",
+      "cotes": {
+        "1": 1.45,
+        "X": 4.8,
+        "2": 6.2,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 29.0,
+          "encaisses": 8.0,
+          "marques_mt1": 16.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 13.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 13.0,
+          "encaisses": 21.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 7.0,
           "marques_mt2": 8.0,
           "encaisses_mt2": 14.0
         }
@@ -198,185 +2247,703 @@
       "form": {
         "dom": [
           {
-            "date": "2026-10-24",
-            "opp": "Vallecano",
-            "venue": "A",
-            "ft": "3-0",
-            "ht": "2-0",
-            "hs": 16.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Villarreal",
-            "venue": "A",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 7.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Celta",
+            "date": "2026-10-31",
+            "opp": "Brighton",
             "venue": "H",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-18",
-            "opp": "Espanol",
-            "venue": "A",
-            "ft": "3-1",
-            "ht": "2-0",
-            "hs": 9.0,
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 21.0,
             "hst": 6.0
           },
           {
-            "date": "2026-09-15",
-            "opp": "Real Madrid",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "0-2",
-            "hs": 11.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Ath Bilbao",
+            "date": "2026-10-24",
+            "opp": "Aston Villa",
             "venue": "A",
-            "ft": "1-1",
-            "ht": "0-0",
-            "hs": 3.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-09-07",
-            "opp": "Sociedad",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "0-2",
-            "hs": 20.0,
-            "hst": 10.0
-          },
-          {
-            "date": "2026-08-28",
-            "opp": "Santander",
-            "venue": "A",
-            "ft": "2-3",
-            "ht": "0-3",
-            "hs": 18.0,
+            "ft": "1-2",
+            "ht": "0-1",
+            "hs": 15.0,
             "hst": 7.0
           },
           {
-            "date": "2026-08-23",
-            "opp": "Barcelona",
+            "date": "2026-10-17",
+            "opp": "Ipswich",
             "venue": "H",
-            "ft": "0-5",
-            "ht": "0-2",
-            "hs": 7.0,
+            "ft": "3-2",
+            "ht": "2-1",
+            "hs": 19.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "5-3",
+            "ht": "3-2",
+            "hs": 16.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-13",
+            "opp": "Man United",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 6.0,
             "hst": 2.0
           },
           {
-            "date": "2026-08-17",
-            "opp": "La Coruna",
+            "date": "2026-09-05",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-28",
+            "opp": "Crystal Palace",
             "venue": "A",
-            "ft": "1-1",
+            "ft": "4-1",
+            "ht": "1-0",
+            "hs": 18.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "2-1",
             "ht": "0-1",
-            "hs": 11.0,
+            "hs": 13.0,
             "hst": 6.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 3.0
           }
         ],
         "ext": [
           {
-            "date": "2026-10-24",
-            "opp": "Villarreal",
-            "venue": "H",
-            "ft": "1-2",
-            "ht": "1-0",
-            "hs": 9.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Ath Bilbao",
-            "venue": "H",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 16.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Santander",
+            "date": "2026-10-31",
+            "opp": "Aston Villa",
             "venue": "A",
-            "ft": "2-2",
-            "ht": "1-1",
-            "hs": 10.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Sociedad",
-            "venue": "H",
-            "ft": "2-3",
+            "ft": "1-1",
             "ht": "0-1",
-            "hs": 22.0,
+            "hs": 14.0,
             "hst": 5.0
           },
           {
-            "date": "2026-09-15",
-            "opp": "Alaves",
+            "date": "2026-10-24",
+            "opp": "Coventry",
             "venue": "A",
             "ft": "1-0",
             "ht": "0-0",
-            "hs": 10.0,
+            "hs": 12.0,
             "hst": 3.0
           },
           {
-            "date": "2026-09-11",
-            "opp": "Sevilla",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 3.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Barcelona",
+            "date": "2026-10-17",
+            "opp": "Hull",
             "venue": "H",
-            "ft": "0-5",
-            "ht": "0-2",
-            "hs": 3.0,
-            "hst": 2.0
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 18.0,
+            "hst": 6.0
           },
           {
-            "date": "2026-08-30",
-            "opp": "La Coruna",
+            "date": "2026-10-10",
+            "opp": "Ipswich",
             "venue": "A",
-            "ft": "1-3",
-            "ht": "1-2",
+            "ft": "1-2",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Man United",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
             "hs": 12.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 10.0,
             "hst": 4.0
           },
           {
-            "date": "2026-08-25",
-            "opp": "Betis",
+            "date": "2026-09-05",
+            "opp": "Crystal Palace",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "2-1",
+            "hs": 25.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Sunderland",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-08-24",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "1-2",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 21.0,
+            "hst": 6.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-02-11",
+            "home": "Man City",
+            "away": "Fulham",
+            "ft": "3-0",
+            "ht": "3-0"
+          },
+          {
+            "date": "2025-12-02",
+            "home": "Fulham",
+            "away": "Man City",
+            "ft": "4-5",
+            "ht": "1-3"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 2,
+        "draws": 0,
+        "ext_wins": 0,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M12",
+      "dom": "AFC Bournemouth",
+      "ext": "Nottingham Forest",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-21",
+      "heure": "16:00",
+      "cotes": {
+        "1": 1.85,
+        "X": 3.65,
+        "2": 4.1,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 19.0,
+          "encaisses": 13.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 8.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 17.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 7.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 11.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Man United",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 10.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 29.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "1-5",
+            "ht": "0-2",
+            "hs": 9.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Liverpool",
             "venue": "H",
             "ft": "0-1",
             "ht": "0-0",
-            "hs": 16.0,
+            "hs": 9.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 20.0,
+            "hst": 10.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "2-1",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 5.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 17.0,
+            "hst": 4.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 15.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-1",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "1-2",
+            "hs": 24.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 24.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "0-0",
+            "hs": 22.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Tottenham",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-0",
+            "hs": 12.0,
             "hst": 3.0
           },
           {
             "date": "2026-08-22",
-            "opp": "Celta",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 5.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-05-24",
+            "home": "Nott'm Forest",
+            "away": "Bournemouth",
+            "ft": "1-1",
+            "ht": "1-0"
+          },
+          {
+            "date": "2025-10-26",
+            "home": "Bournemouth",
+            "away": "Nott'm Forest",
+            "ft": "2-0",
+            "ht": "2-0"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 1,
+        "draws": 1,
+        "ext_wins": 0,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M13",
+      "dom": "Aston Villa",
+      "ext": "Sunderland AFC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-21",
+      "heure": "16:00",
+      "cotes": {
+        "1": 1.92,
+        "X": 3.5,
+        "2": 3.9,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 18.0,
+          "encaisses": 10.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 6.0,
+          "encaisses": 17.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 10.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 7.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 8.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 20.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "3-2",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-08-31",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "0-4",
+            "ht": "0-4",
+            "hs": 6.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 5.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "0-2",
+            "hs": 17.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Leeds",
             "venue": "H",
             "ft": "0-0",
             "ht": "0-0",
-            "hs": 8.0,
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 3.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "3-5",
+            "ht": "2-3",
+            "hs": 17.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "1-1",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 20.0,
             "hst": 2.0
           }
         ]
@@ -384,16 +2951,16 @@
       "h2h": {
         "matches": [
           {
-            "date": "2026-04-11",
-            "home": "Elche",
-            "away": "Valencia",
-            "ft": "1-0",
-            "ht": "0-0"
+            "date": "2026-04-19",
+            "home": "Aston Villa",
+            "away": "Sunderland",
+            "ft": "4-3",
+            "ht": "2-1"
           },
           {
-            "date": "2026-01-10",
-            "home": "Valencia",
-            "away": "Elche",
+            "date": "2025-09-21",
+            "home": "Sunderland",
+            "away": "Aston Villa",
             "ft": "1-1",
             "ht": "0-0"
           }
@@ -410,7 +2977,1299 @@
         "rest_days",
         "timing"
       ]
+    },
+    {
+      "id": "M14",
+      "dom": "Coventry City",
+      "ext": "Crystal Palace",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-21",
+      "heure": "16:00",
+      "cotes": {
+        "1": 2.27,
+        "X": 3.5,
+        "2": 3.0,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 5,
+          "marques": 7.0,
+          "encaisses": 9.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 1.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 8.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 14.0,
+          "encaisses": 14.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt2": 8.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "2-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-19",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-12",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "4-1",
+            "ht": "1-0",
+            "hs": 9.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-13",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "0-5",
+            "ht": "0-1",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Man City",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Hull",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-21",
+            "opp": "Arsenal",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 4.0,
+            "hst": 1.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 2.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "0-5",
+            "ht": "0-3",
+            "hs": 5.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "2-1",
+            "hs": 13.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "1-2",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "3-2",
+            "ht": "1-2",
+            "hs": 10.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-28",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "1-4",
+            "ht": "0-1",
+            "hs": 9.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Everton",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 3.0
+          }
+        ]
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M15",
+      "dom": "Tottenham Hotspur",
+      "ext": "Ipswich Town",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-21",
+      "heure": "16:00",
+      "cotes": {
+        "1": 1.58,
+        "X": 4.2,
+        "2": 5.2,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 16.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 9.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 5,
+          "marques": 9.0,
+          "encaisses": 13.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 8.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Crystal Palace",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 34.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-19",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Man United",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "0-1",
+            "hs": 20.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Newcastle",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 9.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 21.0,
+            "hst": 6.0
+          }
+        ],
+        "ext": []
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M16",
+      "dom": "Newcastle United",
+      "ext": "Arsenal FC",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-21",
+      "heure": "18:30",
+      "cotes": {
+        "1": 5.2,
+        "X": 4.2,
+        "2": 1.59,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 22.0,
+          "encaisses": 17.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 13.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 18.0,
+          "encaisses": 9.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 11.0,
+          "encaisses_mt2": 5.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-11-02",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 16.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-12",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-4",
+            "ht": "0-1",
+            "hs": 19.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Hull",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "2-0",
+            "hs": 12.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-14",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "1-4",
+            "ht": "0-3",
+            "hs": 7.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-2",
+            "hs": 8.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Liverpool",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "1-0",
+            "hs": 13.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 7.0,
+            "hst": 2.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-11-01",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 10.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 20.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Nott'm Forest",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Leeds",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 11.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Sunderland",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "1-1",
+            "hs": 16.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-08-31",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 7.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-21",
+            "opp": "Coventry",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 20.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Crystal Palace",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 17.0,
+            "hst": 7.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-04-25",
+            "home": "Arsenal",
+            "away": "Newcastle",
+            "ft": "1-0",
+            "ht": "1-0"
+          },
+          {
+            "date": "2025-09-28",
+            "home": "Newcastle",
+            "away": "Arsenal",
+            "ft": "1-2",
+            "ht": "1-0"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 0,
+        "draws": 0,
+        "ext_wins": 2,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M17",
+      "dom": "Hull City",
+      "ext": "Brighton & Hove Albion",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-22",
+      "heure": "15:00",
+      "cotes": {
+        "1": 5.7,
+        "X": 4.6,
+        "2": 1.5,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 5,
+          "marques": 7.0,
+          "encaisses": 5.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 1.0,
+          "marques_mt2": 4.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 14.0,
+          "encaisses": 19.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 11.0,
+          "marques_mt2": 11.0,
+          "encaisses_mt2": 8.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-1",
+            "hs": 9.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 5.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Everton",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-2",
+            "hs": 22.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "2-1",
+            "hs": 14.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Aston Villa",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Coventry",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 6.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Man United",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 8.0,
+            "hst": 4.0
+          }
+        ],
+        "ext": []
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing"
+      ]
+    },
+    {
+      "id": "M18",
+      "dom": "Liverpool FC",
+      "ext": "Manchester United",
+      "ligue": "Angleterre - Premier League",
+      "date": "2026-11-22",
+      "heure": "17:30",
+      "cotes": {
+        "1": 1.81,
+        "X": 3.85,
+        "2": 4.0,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 20.0,
+          "encaisses": 12.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 3.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 9.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 21.0,
+          "encaisses": 21.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 8.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 13.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-11-01",
+            "opp": "Arsenal",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 17.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Brighton",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 13.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Brentford",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "0-1",
+            "hs": 21.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "0-3",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Fulham",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-04",
+            "opp": "Ipswich",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "2-0",
+            "hs": 10.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-1",
+            "hs": 13.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-1",
+            "hs": 27.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Brentford",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 24.0,
+            "hst": 8.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-10-31",
+            "opp": "Chelsea",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Bournemouth",
+            "venue": "H",
+            "ft": "0-3",
+            "ht": "0-2",
+            "hs": 17.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 13.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Tottenham",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Fulham",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 29.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-13",
+            "opp": "Man City",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 16.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Everton",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 14.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "5-2",
+            "ht": "1-1",
+            "hs": 33.0,
+            "hst": 11.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-2",
+            "hs": 21.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Brighton",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 11.0,
+            "hst": 7.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-05-03",
+            "home": "Man United",
+            "away": "Liverpool",
+            "ft": "3-2",
+            "ht": "2-0"
+          },
+          {
+            "date": "2025-10-19",
+            "home": "Liverpool",
+            "away": "Man United",
+            "ft": "1-2",
+            "ht": "0-1"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 0,
+        "draws": 0,
+        "ext_wins": 2,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
+    },
+    {
+      "id": "M19",
+      "dom": "Brentford FC",
+      "ext": "Everton FC",
+      "ligue": "Angleterre - Premier League",
+      "date": null,
+      "heure": null,
+      "cotes": {
+        "1": 1.82,
+        "X": 3.8,
+        "2": 4.0,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 23.0,
+          "encaisses": 12.0,
+          "marques_mt1": 9.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 7.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 11.0,
+          "encaisses": 11.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 6.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Nott'm Forest",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 7.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Liverpool",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 10.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Aston Villa",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 14.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-18",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "0-0",
+            "hs": 13.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 8.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Sunderland",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Leeds",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-0",
+            "hs": 22.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Tottenham",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "2-0",
+            "hs": 26.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Liverpool",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 2.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-11-02",
+            "opp": "Newcastle",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 16.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Arsenal",
+            "venue": "A",
+            "ft": "0-2",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Chelsea",
+            "venue": "H",
+            "ft": "0-2",
+            "ht": "0-0",
+            "hs": 6.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Hull",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Ipswich",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "1-0",
+            "hs": 21.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 12.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Man United",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "0-0",
+            "hs": 18.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-08-29",
+            "opp": "Bournemouth",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 13.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-08-22",
+            "opp": "Crystal Palace",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 16.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-05-24",
+            "opp": "Tottenham",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-1",
+            "hs": 8.0,
+            "hst": 3.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-04-11",
+            "home": "Brentford",
+            "away": "Everton",
+            "ft": "2-2",
+            "ht": "1-1"
+          },
+          {
+            "date": "2026-01-04",
+            "home": "Everton",
+            "away": "Brentford",
+            "ft": "2-4",
+            "ht": "0-1"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 1,
+        "draws": 1,
+        "ext_wins": 0,
+        "source": "football-data.co.uk"
+      },
+      "holes": [
+        "elo",
+        "xg",
+        "rest_days",
+        "timing"
+      ]
     }
-  ],
-  "warnings": []
+  ]
 }

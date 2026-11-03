@@ -1,30 +1,38 @@
-# 🏟️ FICHE DE SIÈGE — Al Gharafa SC vs Qatar SC
-*Générée le 2026-10-30 19:12 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Aston Villa vs Sunderland AFC
+*Générée le 2026-11-03 19:45 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 40.2%
+**Verdict match : 🔥 GO** — meilleure EV: 26.0%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.10 — ext 0.61 (MT1: 0.50+0.25 · MT2: 0.60+0.36)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 45.9% / 35.5% / 18.6%
-- Over 2.5 : **24.6%** · Under 2.5 : 75.3%
-- Les deux marquent : 32.1%
-- Mi-temps : MT1 27.6% · Égalité 33.4% · **MT2 39.0%**
+- λ attendus : dom 1.46 — ext 0.31 (MT1: 0.75+0.11 · MT2: 0.70+0.20)
+- Score le plus probable : **1-0**
+- 1 / X / 2 : 65.6% / 27.7% / 6.7%
+- Over 2.5 : **26.1%** · Under 2.5 : 73.9%
+- Les deux marquent : 21.5%
+- Mi-temps : MT1 32.5% · Égalité 33.1% · **MT2 34.4%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.67 | 45.9% | -23.4% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.95 | 35.5% | 40.2% |  VALUE | 3.0u |
-| 1X2 | Victoire Extérieur | 3.9 | 18.6% | -27.4% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 33.4% | 0.2% | 🟡 THIN | 0.01u |
+| 1X2 | Victoire Domicile | 1.92 | 65.6% | 26.0% |  VALUE | 3.0u |
+| 1X2 | Nul | 3.5 | 27.7% | -3.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.9 | 6.7% | -74.1% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 33.1% | -0.8% | ⛔ NO_BET | — |
+
+## Lecture du Tyrant/Oracle
+
+> **RAPPORT DE SIÈGE — CARTE PARI**
+
+Nineteen affrontements au banc d'essai. Le verdict tombera sans concession : douze positions marquées GO, sept reléguées au NO_BET. Les exclusions sont sans appel — échantillons domicile ou extérieur jugés trop maigres (4 ou 5 rencontres, seuil de 6 non atteint) pour Everton, Coventry, Arsenal, Hull, Ipswich et Tottenham dans certaines configurations. Toute la carte évolue sous un régime durci : ligue hors top 5, seuil d'espérance de valeur relevé à 8 %, sans exception ni négociation. Les duels phares figurent parmi les positions retenues — Crystal Palace contre Liverpool, Liverpool contre Manchester United, Nottingham Forest contre Manchester City. Le front est large, mais la discipline prime sur l'appât du gain.
+
+Restez prudents : un GO n'est pas une garantie, seulement une porte ouverte sous conditions strictes.
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Nul** @ 3.95 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Domicile** @ 1.92 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

@@ -1,30 +1,38 @@
-# 🏟️ FICHE DE SIÈGE — Maritimo Madeira vs Santa Clara Azores
-*Générée le 2026-11-01 14:44 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Nottingham Forest vs Manchester City
+*Générée le 2026-11-03 19:45 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 93.3%
+**Verdict match : 🟡 THIN** — meilleure EV: 0.3%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.37 — ext 1.33 (MT1: 0.63+0.61 · MT2: 1.74+0.72)
-- Score le plus probable : **2-1**
-- 1 / X / 2 : 59.5% / 21.1% / 19.4%
-- Over 2.5 : **71.5%** · Under 2.5 : 28.5%
-- Les deux marquent : 67.7%
-- Mi-temps : MT1 18.0% · Égalité 17.8% · **MT2 64.2%**
+- λ attendus : dom 0.93 — ext 1.86 (MT1: 0.28+0.82 · MT2: 0.65+1.04)
+- Score le plus probable : **1-1**
+- 1 / X / 2 : 17.0% / 25.1% / 57.9%
+- Over 2.5 : **52.9%** · Under 2.5 : 47.1%
+- Les deux marquent : 52.5%
+- Mi-temps : MT1 25.0% · Égalité 23.7% · **MT2 51.3%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.25 | 59.5% | 93.3% |  VALUE | 3.0u |
-| 1X2 | Nul | 2.97 | 21.1% | -37.5% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.15 | 19.4% | -58.2% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 17.8% | -46.5% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 4.4 | 17.0% | -25.2% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.0 | 25.1% | 0.3% | 🟡 THIN | 0.01u |
+| 1X2 | Victoire Extérieur | 1.72 | 57.9% | -0.3% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 23.7% | -29.0% | ⛔ NO_BET | — |
+
+## Lecture du Tyrant/Oracle
+
+> **RAPPORT DE SIÈGE — CARTE PARI**
+
+Nineteen affrontements au banc d'essai. Le verdict tombera sans concession : douze positions marquées GO, sept reléguées au NO_BET. Les exclusions sont sans appel — échantillons domicile ou extérieur jugés trop maigres (4 ou 5 rencontres, seuil de 6 non atteint) pour Everton, Coventry, Arsenal, Hull, Ipswich et Tottenham dans certaines configurations. Toute la carte évolue sous un régime durci : ligue hors top 5, seuil d'espérance de valeur relevé à 8 %, sans exception ni négociation. Les duels phares figurent parmi les positions retenues — Crystal Palace contre Liverpool, Liverpool contre Manchester United, Nottingham Forest contre Manchester City. Le front est large, mais la discipline prime sur l'appât du gain.
+
+Restez prudents : un GO n'est pas une garantie, seulement une porte ouverte sous conditions strictes.
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Domicile** @ 3.25 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

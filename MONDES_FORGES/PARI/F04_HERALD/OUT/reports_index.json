@@ -1,36 +1,120 @@
 {
-  "generated_at": "2026-11-01T14:44:32Z",
+  "generated_at": "2026-11-03T19:45:32Z",
   "reports": [
     {
       "id": "M1",
-      "match": "US Lecce vs Genoa CFC",
-      "verdict": "GO",
+      "match": "Everton FC vs Coventry City",
+      "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
     },
     {
       "id": "M2",
-      "match": "Elche CF vs Valencia CF",
-      "verdict": "NO_BET",
+      "match": "Leeds United vs Tottenham Hotspur",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
     },
     {
       "id": "M3",
-      "match": "Burgos CF vs CD Castellon",
-      "verdict": "GO",
+      "match": "Arsenal FC vs Hull City",
+      "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {
       "id": "M4",
-      "match": "Academico de Viseu FC vs Rio Ave FC",
-      "verdict": "NO_BET",
+      "match": "Fulham FC vs Newcastle United",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
     },
     {
       "id": "M5",
-      "match": "Maritimo Madeira vs Santa Clara Azores",
-      "verdict": "GO",
+      "match": "Nottingham Forest vs Manchester City",
+      "verdict": "THIN",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
+    },
+    {
+      "id": "M6",
+      "match": "Brighton & Hove Albion vs Brentford FC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
+    },
+    {
+      "id": "M7",
+      "match": "Crystal Palace vs Liverpool FC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
+    },
+    {
+      "id": "M8",
+      "match": "Ipswich Town vs AFC Bournemouth",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
+    },
+    {
+      "id": "M9",
+      "match": "Sunderland AFC vs Chelsea FC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
+    },
+    {
+      "id": "M10",
+      "match": "Manchester United vs Aston Villa",
+      "verdict": "THIN",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
+    },
+    {
+      "id": "M11",
+      "match": "Manchester City vs Fulham FC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M11_fiche.md"
+    },
+    {
+      "id": "M12",
+      "match": "AFC Bournemouth vs Nottingham Forest",
+      "verdict": "THIN",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M12_fiche.md"
+    },
+    {
+      "id": "M13",
+      "match": "Aston Villa vs Sunderland AFC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M13_fiche.md"
+    },
+    {
+      "id": "M14",
+      "match": "Coventry City vs Crystal Palace",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M14_fiche.md"
+    },
+    {
+      "id": "M15",
+      "match": "Tottenham Hotspur vs Ipswich Town",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M15_fiche.md"
+    },
+    {
+      "id": "M16",
+      "match": "Newcastle United vs Arsenal FC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M16_fiche.md"
+    },
+    {
+      "id": "M17",
+      "match": "Hull City vs Brighton & Hove Albion",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M17_fiche.md"
+    },
+    {
+      "id": "M18",
+      "match": "Liverpool FC vs Manchester United",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M18_fiche.md"
+    },
+    {
+      "id": "M19",
+      "match": "Brentford FC vs Everton FC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M19_fiche.md"
     }
   ],
-  "oracle_utilise": false
+  "oracle_utilise": true
 }

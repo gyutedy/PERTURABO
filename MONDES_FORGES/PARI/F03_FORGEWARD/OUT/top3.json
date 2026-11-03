@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-01T14:44:32Z",
+  "generated_at": "2026-11-03T19:45:29Z",
   "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
   "source_predictions": "predictions.json",
   "matchs": [
     {
-      "id": "M3",
-      "match": "Burgos CF vs CD Castellon",
+      "id": "M11",
+      "match": "Manchester City vs Fulham FC",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
       "score_commun": 10.0,
@@ -17,17 +17,39 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.3,
-          "p_modele": 0.6787,
-          "ev": 1.2397
+          "cote": 1.45,
+          "p_modele": 0.8442,
+          "ev": 0.2241
         }
       ],
       "quality_data": "haute",
       "rang_global": 1
     },
     {
-      "id": "M5",
-      "match": "Maritimo Madeira vs Santa Clara Azores",
+      "id": "M13",
+      "match": "Aston Villa vs Sunderland AFC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.92,
+          "p_modele": 0.6564,
+          "ev": 0.2603
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 2
+    },
+    {
+      "id": "M6",
+      "match": "Brighton & Hove Albion vs Brentford FC",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
       "score_commun": 9.7,
@@ -39,20 +61,64 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 3.25,
-          "p_modele": 0.5949,
-          "ev": 0.9334
+          "cote": 1.91,
+          "p_modele": 0.6025,
+          "ev": 0.1508
         }
       ],
       "quality_data": "haute",
-      "rang_global": 2
+      "rang_global": 3
     },
     {
-      "id": "M1",
-      "match": "US Lecce vs Genoa CFC",
+      "id": "M4",
+      "match": "Fulham FC vs Newcastle United",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
-      "score_commun": 9.0,
+      "score_commun": 9.4,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 2.07,
+          "p_modele": 0.5496,
+          "ev": 0.1377
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 4
+    },
+    {
+      "id": "M9",
+      "match": "Sunderland AFC vs Chelsea FC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.7,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 3.6,
+          "p_modele": 0.4392,
+          "ev": 0.5811
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 5
+    },
+    {
+      "id": "M2",
+      "match": "Leeds United vs Tottenham Hotspur",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.6,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -61,17 +127,57 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.47,
-          "p_modele": 0.4926,
-          "ev": 0.2167
+          "cote": 2.67,
+          "p_modele": 0.4191,
+          "ev": 0.119
         }
       ],
       "quality_data": "haute",
-      "rang_global": 3
+      "rang_global": 6
     },
     {
-      "id": "M2",
-      "match": "Elche CF vs Valencia CF",
+      "id": "M12",
+      "match": "AFC Bournemouth vs Nottingham Forest",
+      "verdict_modele": "THIN",
+      "bucket": "HAUTE",
+      "score_commun": 8.6,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.65,
+          "p_modele": 0.2871,
+          "ev": 0.0479
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.85,
+          "p_modele": 0.5488,
+          "ev": 0.0153
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "p_modele": 0.2803,
+          "ev": -0.1591
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 7
+    },
+    {
+      "id": "M3",
+      "match": "Arsenal FC vs Hull City",
       "verdict_modele": "NO_BET",
       "bucket": "HAUTE",
       "score_commun": 8.3,
@@ -81,20 +187,60 @@
         {
           "rang": 1,
           "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 2.32,
-          "p_modele": 0.642,
-          "ev": 0.4894
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 7.5,
+          "p_modele": 0.2081,
+          "ev": 0.5608
         },
         {
           "rang": 2,
           "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 16.0,
+          "p_modele": 0.0706,
+          "ev": 0.1296
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.16,
+          "p_modele": 0.7213,
+          "ev": -0.1633
+        }
+      ],
+      "quality_data": "basse",
+      "rang_global": 8
+    },
+    {
+      "id": "M1",
+      "match": "Everton FC vs Coventry City",
+      "verdict_modele": "NO_BET",
+      "bucket": "HAUTE",
+      "score_commun": 8.1,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.3,
-          "p_modele": 0.1944,
-          "ev": -0.3585
+          "cote": 3.9,
+          "p_modele": 0.2836,
+          "ev": 0.106
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.73,
+          "p_modele": 0.6085,
+          "ev": 0.0527
         },
         {
           "rang": 3,
@@ -102,19 +248,59 @@
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
           "cote": 3.0,
-          "p_modele": 0.203,
-          "ev": -0.391
+          "p_modele": 0.3058,
+          "ev": -0.0826
         }
       ],
       "quality_data": "basse",
-      "rang_global": 4
+      "rang_global": 9
     },
     {
-      "id": "M4",
-      "match": "Academico de Viseu FC vs Rio Ave FC",
-      "verdict_modele": "NO_BET",
-      "bucket": "MOYENNE",
-      "score_commun": 6.4,
+      "id": "M5",
+      "match": "Nottingham Forest vs Manchester City",
+      "verdict_modele": "THIN",
+      "bucket": "HAUTE",
+      "score_commun": 8.1,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.0,
+          "p_modele": 0.2507,
+          "ev": 0.0028
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 1.72,
+          "p_modele": 0.5794,
+          "ev": -0.0034
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 4.4,
+          "p_modele": 0.1699,
+          "ev": -0.2524
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 10
+    },
+    {
+      "id": "M10",
+      "match": "Manchester United vs Aston Villa",
+      "verdict_modele": "THIN",
+      "bucket": "HAUTE",
+      "score_commun": 8.1,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -123,18 +309,142 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.79,
-          "p_modele": 0.5633,
-          "ev": 0.0083
+          "cote": 2.27,
+          "p_modele": 0.4628,
+          "ev": 0.0506
         },
         {
           "rang": 2,
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
-          "cote": 3.4,
-          "p_modele": 0.2609,
-          "ev": -0.1129
+          "cote": 3.6,
+          "p_modele": 0.2616,
+          "ev": -0.0582
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 2.9,
+          "p_modele": 0.2756,
+          "ev": -0.2008
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 11
+    },
+    {
+      "id": "M19",
+      "match": "Brentford FC vs Everton FC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.1,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.8,
+          "p_modele": 0.3364,
+          "ev": 0.2783
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 12
+    },
+    {
+      "id": "M7",
+      "match": "Crystal Palace vs Liverpool FC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.8,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 4.7,
+          "p_modele": 0.2664,
+          "ev": 0.2521
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.2,
+          "p_modele": 0.2919,
+          "ev": 0.226
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 13
+    },
+    {
+      "id": "M16",
+      "match": "Newcastle United vs Arsenal FC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.7,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.2,
+          "p_modele": 0.283,
+          "ev": 0.1886
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 5.2,
+          "p_modele": 0.2092,
+          "ev": 0.0878
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 14
+    },
+    {
+      "id": "M17",
+      "match": "Hull City vs Brighton & Hove Albion",
+      "verdict_modele": "NO_BET",
+      "bucket": "HAUTE",
+      "score_commun": 7.5,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 5.7,
+          "p_modele": 0.5099,
+          "ev": 1.9064
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.6,
+          "p_modele": 0.2907,
+          "ev": 0.3372
         },
         {
           "rang": 3,
@@ -142,12 +452,172 @@
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
           "cote": 3.0,
-          "p_modele": 0.255,
-          "ev": -0.235
+          "p_modele": 0.2631,
+          "ev": -0.2107
         }
       ],
       "quality_data": "basse",
-      "rang_global": 5
+      "rang_global": 15
+    },
+    {
+      "id": "M8",
+      "match": "Ipswich Town vs AFC Bournemouth",
+      "verdict_modele": "NO_BET",
+      "bucket": "HAUTE",
+      "score_commun": 7.3,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 3.7,
+          "p_modele": 0.4867,
+          "ev": 0.8008
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.7,
+          "p_modele": 0.2283,
+          "ev": -0.1553
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "p_modele": 0.2089,
+          "ev": -0.3733
+        }
+      ],
+      "quality_data": "basse",
+      "rang_global": 16
+    },
+    {
+      "id": "M15",
+      "match": "Tottenham Hotspur vs Ipswich Town",
+      "verdict_modele": "NO_BET",
+      "bucket": "HAUTE",
+      "score_commun": 7.3,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 5.2,
+          "p_modele": 0.3053,
+          "ev": 0.5876
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.2,
+          "p_modele": 0.2209,
+          "ev": -0.0722
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.58,
+          "p_modele": 0.4738,
+          "ev": -0.2514
+        }
+      ],
+      "quality_data": "basse",
+      "rang_global": 17
+    },
+    {
+      "id": "M14",
+      "match": "Coventry City vs Crystal Palace",
+      "verdict_modele": "NO_BET",
+      "bucket": "HAUTE",
+      "score_commun": 7.2,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 3.0,
+          "p_modele": 0.4606,
+          "ev": 0.3818
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.5,
+          "p_modele": 0.2827,
+          "ev": -0.0105
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.0,
+          "p_modele": 0.2336,
+          "ev": -0.2992
+        }
+      ],
+      "quality_data": "basse",
+      "rang_global": 18
+    },
+    {
+      "id": "M18",
+      "match": "Liverpool FC vs Manchester United",
+      "verdict_modele": "NO_BET",
+      "bucket": "MOYENNE",
+      "score_commun": 6.9,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.81,
+          "p_modele": 0.5234,
+          "ev": -0.0526
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 4.0,
+          "p_modele": 0.2353,
+          "ev": -0.0588
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.85,
+          "p_modele": 0.2412,
+          "ev": -0.0714
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 19
     }
   ]
 }

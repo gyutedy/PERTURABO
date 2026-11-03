@@ -1,24 +1,25 @@
 {
-  "generated_at": "2026-11-01T14:44:31Z",
+  "generated_at": "2026-11-03T19:45:29Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 2,
-  "no_bet": 3,
+  "go": 13,
+  "no_bet": 6,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 2 GO / 3 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 13 GO / 6 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "US Lecce vs Genoa CFC",
-      "verdict": "GO",
+      "match": "Everton FC vs Coventry City",
+      "verdict": "NO_BET",
       "raisons": [
+        "échantillon ext insuffisant (4 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M2",
-      "match": "Elche CF vs Valencia CF",
+      "match": "Leeds United vs Tottenham Hotspur",
       "verdict": "GO",
       "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
@@ -26,31 +27,142 @@
     },
     {
       "id": "M3",
-      "match": "Burgos CF vs CD Castellon",
+      "match": "Arsenal FC vs Hull City",
       "verdict": "NO_BET",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (4 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M4",
-      "match": "Academico de Viseu FC vs Rio Ave FC",
-      "verdict": "NO_BET",
+      "match": "Fulham FC vs Newcastle United",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     },
     {
       "id": "M5",
-      "match": "Maritimo Madeira vs Santa Clara Azores",
+      "match": "Nottingham Forest vs Manchester City",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M6",
+      "match": "Brighton & Hove Albion vs Brentford FC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M7",
+      "match": "Crystal Palace vs Liverpool FC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M8",
+      "match": "Ipswich Town vs AFC Bournemouth",
       "verdict": "NO_BET",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
+        "échantillon dom insuffisant (4 matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M9",
+      "match": "Sunderland AFC vs Chelsea FC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M10",
+      "match": "Manchester United vs Aston Villa",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M11",
+      "match": "Manchester City vs Fulham FC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M12",
+      "match": "AFC Bournemouth vs Nottingham Forest",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M13",
+      "match": "Aston Villa vs Sunderland AFC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M14",
+      "match": "Coventry City vs Crystal Palace",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (5 matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M15",
+      "match": "Tottenham Hotspur vs Ipswich Town",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon ext insuffisant (5 matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M16",
+      "match": "Newcastle United vs Arsenal FC",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M17",
+      "match": "Hull City vs Brighton & Hove Albion",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (5 matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M18",
+      "match": "Liverpool FC vs Manchester United",
+      "verdict": "GO",
+      "raisons": [
+        "ligue hors top5 → seuil EV durci à 8%"
+      ]
+    },
+    {
+      "id": "M19",
+      "match": "Brentford FC vs Everton FC",
+      "verdict": "GO",
+      "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
       ]
     }
