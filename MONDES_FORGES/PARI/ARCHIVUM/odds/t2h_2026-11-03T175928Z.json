@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-03T17:59:28Z",
+  "source": "the-odds-api",
+  "horizon_h": 3,
+  "scanned": [],
+  "skipped": [
+    {
+      "id": "M1",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M2",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M3",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M4",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M5",
+      "reason": "hors_fenetre"
+    }
+  ],
+  "alerts": []
+}
