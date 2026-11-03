@@ -1463,6 +1463,12 @@
 - Parseur : `DD/MM/YY` → ISO par rang ; `HH.MM` seulement a cote d'une date ; `Date non précisée` = warning.
 - Tests e2e_listen + e2e_multiformat. Pas de scrape. Zero Data inchange.
 
+## [2026-11-03T18:20:00Z] v2.10.1 — inbox YAML hors heredoc
+
+- Live : `/stop` `/start` ACK Worker, jamais de 2e message. `pari-listen` failure etape Inbox : IndentationError heredoc YAML (v2.10 leftover). workflow.py skipped.
+- Fix : `ORCHESTRATOR/LISTEN/inbox_capture.py`. YAML n'embarque plus de Python. `/start` no-op exit 0.
+- Tests compile + no-op + leftover. Zero reseau.
+
 ## [2026-11-02T16:25:20Z] F01 — check-out — status: processing
 
 ## [2026-11-02T16:25:20Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:ede678a0ee5ecf9f58184659753139db — status:done

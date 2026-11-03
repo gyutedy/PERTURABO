@@ -82,7 +82,7 @@ Dans Telegram, envoie `/start`. Tu dois voir :
 1. ACK Worker : `Recu /start — siege en cours (~1 min).`
 2. Reponse `workflow.py` : `Campagne PARI-YYYYMMDD ouverte.`
 
-Si 1 sans 2 : Actions → `pari-listen` (workflow_dispatch). Si rien : webhook / secrets Worker.
+Si 1 sans 2 : Actions → `pari-listen` (workflow_dispatch). v2.10.1 : etape Inbox = `inbox_capture.py` (plus de Python dans le YAML). Si rien : webhook / secrets Worker.
 
 ## Hors v1
 

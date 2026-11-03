@@ -176,6 +176,14 @@
 
 **Telegram** : recolle le tableau markdown dans le meme message que `/capture`. Le siege doit repondre `Capture parsee (markdown_table)` (ou `texte+markdown_table`), **pas** `(image)`. Relis le JSON : dates `2026-11-06` … `2026-11-22` par match.
 
+## ETAT v2.10.1 — INBOX YAML HORS HEREDOC (2026-11-03)
+
+- [x] **Cause live ACK sans siege** : `/stop` 17:07 et `/start` 17:11 → Worker ACK OK, `pari-listen` **failure**. Etape `Inbox capture Telegram` : `IndentationError` (Python heredoc YAML, `except` mal indente, v2.10 leftover). `workflow.py` skipped → pas de notifier → pas de 2e message. Runs 41681058998 / 41681763423, SHA `c3fd6577`.
+- [x] **Fix** : Python sorti du YAML vers `ORCHESTRATOR/LISTEN/inbox_capture.py`. YAML = `python3 ORCHESTRATOR/LISTEN/inbox_capture.py`. `/start` `/stop` = no-op (pas de capture), exit 0. Leftover photo/md inchange.
+- [x] **Tests** : ast.parse du script, `/start` no-op, markdown retire leftover png. e2e_ocr pointe getFile dans le script. Zero reseau.
+
+**Telegram** : retape `/start`. ACK puis `Campagne PARI-YYYYMMDD ouverte.` Si ACK seul : Actions → `pari-listen` (pas le Worker).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

@@ -223,13 +223,60 @@ def main():
     yml = os.path.join(WORLD, "..", "..", ".github", "workflows", "pari_listen.yml")
     yml = os.path.normpath(yml)
     raw = open(yml, encoding="utf-8").read() if os.path.exists(yml) else ""
+    inbox_py = os.path.join(WORLD, "ORCHESTRATOR", "LISTEN", "inbox_capture.py")
+    inbox_src = open(inbox_py, encoding="utf-8").read() if os.path.exists(inbox_py) else ""
     check("L8.workflow_exists", "name: pari-listen" in raw and "workflow.py" in raw)
     check("L8.concurrency", "group: pari-campagne" in raw and "cancel-in-progress: false" in raw)
-    check("L8.inbox_write", "capture_telegram.md" in raw)
-    check("L8.inbox_photo", "capture_file_id" in raw and "getFile" in raw)
-    check("L8.inbox_retire_leftover", "retire leftover" in raw)
+    check("L8.inbox_script", "ORCHESTRATOR/LISTEN/inbox_capture.py" in raw and "python3 <<" not in raw)
+    check("L8.inbox_write", "capture_telegram.md" in inbox_src)
+    check("L8.inbox_photo", "capture_file_id" in raw and "getFile" in inbox_src)
+    check("L8.inbox_retire_leftover", "retire leftover" in inbox_src)
     check("L8.pages_non_bloquant", "continue-on-error: true" in raw)
     check("L8.auto_gates", "PARI_AUTO_GATES" in raw)
+    import ast
+    try:
+        ast.parse(inbox_src)
+        ast_ok = True
+        ast_err = ""
+    except SyntaxError as e:
+        ast_ok = False
+        ast_err = str(e)
+    check("L8.inbox_python_compile", ast_ok, ast_err)
+
+    old_cwd = os.getcwd()
+    old_env = {k: os.environ.get(k) for k in ("CAPTURE_TEXT", "CAPTURE_FILE_ID", "CMD", "TELEGRAM_BOT_TOKEN")}
+    tmp_world = tempfile.mkdtemp(prefix="pari-inbox-")
+    os.makedirs(os.path.join(tmp_world, "F01_SENTINEL", "IN"), exist_ok=True)
+    os.environ["CAPTURE_TEXT"] = ""
+    os.environ["CAPTURE_FILE_ID"] = ""
+    os.environ["CMD"] = "/start"
+    os.environ["TELEGRAM_BOT_TOKEN"] = ""
+    try:
+        os.chdir(tmp_world)
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("inbox_capture", inbox_py)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        rc = mod.main()
+        leftover = os.listdir(os.path.join(tmp_world, "F01_SENTINEL", "IN"))
+        check("L8.inbox_start_noop", rc == 0 and leftover == [], f"rc={rc} files={leftover}")
+        os.environ["CAPTURE_TEXT"] = "| A vs B |\n"
+        rc2 = mod.main()
+        md_path = os.path.join(tmp_world, "F01_SENTINEL", "IN", "capture_telegram.md")
+        png_path = os.path.join(tmp_world, "F01_SENTINEL", "IN", "capture_telegram.png")
+        with open(png_path, "wb") as f:
+            f.write(b"\x89PNG")
+        rc3 = mod.main()
+        check("L8.inbox_md_drops_photo",
+              rc2 == 0 and rc3 == 0 and os.path.exists(md_path) and not os.path.exists(png_path),
+              f"md={os.path.exists(md_path)} png={os.path.exists(png_path)}")
+    finally:
+        os.chdir(old_cwd)
+        for k, v in old_env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
 
     wf_src = open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "workflow.py"), encoding="utf-8").read()
     check(
