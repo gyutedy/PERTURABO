@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-03T19:45:29Z",
-  "source": "siege_file",
+  "generated_at": "2026-11-04T14:45:15Z",
+  "source": "fixtures_file",
   "ligue": "Capture — ligue à confirmer",
-  "ligue_tier": null,
+  "ligue_tier": "exotique",
   "matchs": [
     {
       "id": "M1",
@@ -4271,5 +4271,6 @@
         "timing"
       ]
     }
-  ]
+  ],
+  "warnings": []
 }
