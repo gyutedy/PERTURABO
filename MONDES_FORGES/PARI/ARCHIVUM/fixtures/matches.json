@@ -4274,7 +4274,8 @@
   ],
   "warnings": [
     "inject CAPTEURS 2026-11-03T19:44:31Z [E0]: 38 auto / 0 manquants",
-    "inject CAPTEURS 2026-11-04T14:45:15Z [E0]: 0 auto / 0 manquants"
+    "inject CAPTEURS 2026-11-04T14:45:15Z [E0]: 0 auto / 0 manquants",
+    "inject CAPTEURS 2026-11-05T14:50:10Z [E0]: 0 auto / 0 manquants"
   ],
   "notes_count": 0
 }
