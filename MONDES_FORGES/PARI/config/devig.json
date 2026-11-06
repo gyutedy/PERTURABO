@@ -1,4 +1,5 @@
 {
-  "note": "S4 — bonus double_confirmation (1 pt = 0.01). Diagnostic, jamais producteur de p.",
+  "note": "S8 — multiplicatif defaut. Additif = 2e passe diagnostic, jamais producteur de p.",
+  "default_method": "multiplicative",
   "double_confirmation_bonus_pt": 0.01
 }

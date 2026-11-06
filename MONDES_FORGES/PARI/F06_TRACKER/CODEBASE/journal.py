@@ -50,6 +50,15 @@ def build_procedure(tickets_doc=None, extra=None):
     checks = list(extra.get("checks") or [])
     if not checks:
         checks = ["freeze_lot", "snapshot_t0"]
+    for t in tickets:
+        for j in t.get("jambes") or []:
+            if j.get("devig_gap") is not None:
+                if "devig_gap" not in checks:
+                    checks.append("devig_gap")
+                break
+        else:
+            continue
+        break
 
     seuils = extra.get("seuils")
     if seuils is None:

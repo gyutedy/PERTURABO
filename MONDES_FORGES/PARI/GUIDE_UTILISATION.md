@@ -59,7 +59,7 @@ notes: 0
 ```
 
 Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes.
-| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). Journal F06 : procedure (freeze, immutable) + outcome (mise, cote, G/P, pnl, CLV si connu — absent = hole, jamais 0). |
+| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). v3.9 : stocke `book_odds_close` (T-0 kickoff). Cloture absente = hole, exclu CLV, jamais 0. Journal F06 : procedure (freeze, immutable) + outcome (mise, cote, G/P, pnl, CLV si connu — absent = hole, jamais 0). |
 | `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 
 Équivalent terminal (si tu bosses depuis un PC sans bot) :
@@ -120,7 +120,8 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
 4. **Placement** : tu poses les tickets chez Winner Bet. F06 a deja fige le lot
    (token) + **journal.procedure** (checks, trous, seuils, Kelly — immutable).
    Apres les matchs : `/roi settle L-XXX` pose **journal.outcome** (mise, cote,
-   G/P, pnl, CLV si connu). CLV absent = hole, jamais 0. F06 n'apprend pas.
+   G/P, pnl, CLV si connu) et `book_odds_close` (T-0). Cloture absente = hole,
+   exclu CLV, jamais 0. T-2h n est PAS la cloture. F06 n'apprend pas.
 
 ### Les infos non binaires (blessures, fatigue, enjeux…)
 
@@ -245,11 +246,13 @@ python F00_RADAR/CODEBASE/capteurs.py fit-league \
 # Cloudflare Worker deploy (CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
 # dans env_pari, PAS GitHub Secrets). Absents = skip, Worker live stale.
 
-# The Odds API T-2h (ODDS_API_KEY dans env_pari, PAS GitHub Secrets).
-# Absente = skip. Fenetre 3h avant kickoff. Recast EV (p_modele F03).
-# ESTOMPE si VALUE devient EV<=0. Jamais Poisson, jamais scrape Winner.
-# Kill switch PARI_SKIP_ODDS=1.
+# The Odds API T-2h + T-0 (ODDS_API_KEY dans env_pari, PAS GitHub Secrets).
+# Absente = skip. Fenetre 3h avant kickoff (T-2h). T-0 = grace 15 min autour
+# du coup d envoi. Recast EV (p_modele F03). ESTOMPE si VALUE devient EV<=0.
+# Jamais Poisson, jamais scrape Winner. Kill switch PARI_SKIP_ODDS=1.
+# T-0 n ecrase pas latest.json.
 # python F00_RADAR/CODEBASE/capteurs.py odds-watch [--force] [--notify]
+# python F00_RADAR/CODEBASE/capteurs.py odds-watch --close [--notify]
 
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.

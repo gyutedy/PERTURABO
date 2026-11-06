@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-DEVIG — multiplicatif (S4 / v3.4)
-=================================
+DEVIG — multiplicatif defaut + additif 2e passe (S8 / v3.9)
+===========================================================
 Diagnostic seulement. Jamais un producteur de p.
 Issue manquante → holes, pas de devig cote unique.
-Invariant : S>1 => fair_odds_i > cote_i.
+Invariant multiplicatif : S>1 => fair_odds_i > cote_i.
+Additif = sensibilite, jamais le p_fair / EV / verdict.
 """
 
 from __future__ import annotations
@@ -17,6 +18,7 @@ WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
 CONFIG_PATH = os.path.join(WORLD, "config", "devig.json")
 
 DEFAULT_BONUS_PT = 0.01
+DEFAULT_METHOD = "multiplicative"
 
 
 def load_bonus(path=None):
@@ -33,8 +35,7 @@ def load_bonus(path=None):
     return DEFAULT_BONUS_PT
 
 
-def multiplicative(cotes):
-    """Devig multiplicatif. <2 issues → holes, pas de fair. Cote unique refusee."""
+def _present_cotes(cotes):
     present = {}
     holes = []
     for k, v in (cotes or {}).items():
@@ -47,10 +48,17 @@ def multiplicative(cotes):
             holes.append("cote_invalide:" + str(k))
             continue
         present[str(k)] = f
+    return present, holes
+
+
+def multiplicative(cotes):
+    """Devig multiplicatif. <2 issues → holes, pas de fair. Cote unique refusee."""
+    present, holes = _present_cotes(cotes)
     if len(present) == 1:
         only = next(iter(present))
         return {
             "ok": False,
+            "method": "multiplicative",
             "S": None,
             "p_fair": {},
             "fair_odds": {},
@@ -59,6 +67,7 @@ def multiplicative(cotes):
     if len(present) < 2:
         return {
             "ok": False,
+            "method": "multiplicative",
             "S": None,
             "p_fair": {},
             "fair_odds": {},
@@ -74,12 +83,81 @@ def multiplicative(cotes):
                 holes.append("invariant:" + k)
     return {
         "ok": True,
+        "method": "multiplicative",
         "S": s,
         "p_fair": p_fair,
         "fair_odds": fair_odds,
         "cotes": present,
         "holes": holes,
     }
+
+
+def additive(cotes):
+    """Devig additif. 2e passe diagnostic. <2 issues → holes. p<=0 → hole, jamais clip."""
+    present, holes = _present_cotes(cotes)
+    if len(present) == 1:
+        only = next(iter(present))
+        return {
+            "ok": False,
+            "method": "additive",
+            "S": None,
+            "p_fair": {},
+            "fair_odds": {},
+            "holes": holes + ["issue_manquante", "cote_unique:" + only],
+        }
+    if len(present) < 2:
+        return {
+            "ok": False,
+            "method": "additive",
+            "S": None,
+            "p_fair": {},
+            "fair_odds": {},
+            "holes": holes + ["issue_manquante"],
+        }
+    impl = {k: 1.0 / v for k, v in present.items()}
+    s = sum(impl.values())
+    n = len(present)
+    over = (s - 1.0) / n
+    p_fair = {k: impl[k] - over for k in present}
+    if any(p_fair[k] <= 0 for k in present):
+        return {
+            "ok": False,
+            "method": "additive",
+            "S": s,
+            "p_fair": {},
+            "fair_odds": {},
+            "cotes": present,
+            "holes": holes + ["p_additif_non_positif"],
+        }
+    fair_odds = {k: 1.0 / p_fair[k] for k in present}
+    return {
+        "ok": True,
+        "method": "additive",
+        "S": s,
+        "p_fair": p_fair,
+        "fair_odds": fair_odds,
+        "cotes": present,
+        "holes": holes,
+    }
+
+
+def gap(multi_rec, add_rec):
+    """Ecart p_fair multiplicatif - additif. Diagnostic, jamais un p."""
+    holes = []
+    gap_p = {}
+    if not (multi_rec or {}).get("ok"):
+        holes.extend((multi_rec or {}).get("holes") or ["multi_fail"])
+    if not (add_rec or {}).get("ok"):
+        holes.extend((add_rec or {}).get("holes") or ["add_fail"])
+        return {"ok": False, "gap_p": {}, "holes": holes}
+    pm = (multi_rec or {}).get("p_fair") or {}
+    pa = (add_rec or {}).get("p_fair") or {}
+    keys = [k for k in pm if k in pa]
+    if not keys:
+        return {"ok": False, "gap_p": {}, "holes": holes + ["gap_vide"]}
+    for k in keys:
+        gap_p[k] = pm[k] - pa[k]
+    return {"ok": True, "gap_p": gap_p, "holes": holes}
 
 
 def edge_net_devig(p_modele, cote, p_fair):

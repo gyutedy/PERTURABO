@@ -1,0 +1,42 @@
+# PARI ODDS T-0 — snapshot cotes The Odds API a kickoff.
+# En plus de T-2h. Cle ODDS_API_KEY depuis env_pari (pas GitHub Secrets).
+# Absente = skip (job vert). Jamais scrape Winner. Jamais Poisson.
+# N ecrase PAS latest.json (T-2h). Kill switch PARI_SKIP_ODDS=1.
+
+name: pari-odds-t0
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pari-odds-t0
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Odds watch T-0 kickoff
+        env:
+          PARI_AUTO_GATES: "1"
+        run: |
+          cd MONDES_FORGES/PARI
+          python F00_RADAR/CODEBASE/odds_watch.py --close --notify
+
+      - name: Commit snapshot T-0
+        run: |
+          git config user.name "IW_CUSTOS[bot]"
+          git config user.email "custos@perturabo.iron"
+          git add MONDES_FORGES/PARI/ARCHIVUM/odds
+          git diff --staged --quiet || git commit -m "PARI: snapshot odds T-0 kickoff"
+          git push

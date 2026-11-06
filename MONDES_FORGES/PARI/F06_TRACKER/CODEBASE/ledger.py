@@ -201,6 +201,41 @@ def resolve_1x2(selection, selection_label, ftr):
     return "G" if ftr == want else "P"
 
 
+def load_close_map(odds_dir=None):
+    """Cotes marche T-0 (latest_t0.json). T-2h n est PAS la cloture."""
+    d = odds_dir or os.path.join(WORLD, "ARCHIVUM", "odds")
+    p = os.path.join(d, "latest_t0.json")
+    if not os.path.exists(p):
+        return {}
+    try:
+        with open(p, encoding="utf-8") as f:
+            blob = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    out = {}
+    for item in blob.get("scanned") or []:
+        mid = item.get("id")
+        cotes = item.get("cotes_marche") or {}
+        if mid and isinstance(cotes, dict):
+            out[str(mid)] = cotes
+    return out
+
+
+def close_for_jambe(jambe, close_map):
+    """Cote cloture T-0. Absente / invalide → None, jamais 0."""
+    mid = str((jambe or {}).get("match_id") or "")
+    sel = (jambe or {}).get("selection")
+    cotes = (close_map or {}).get(mid) or {}
+    v = cotes.get(sel) if sel is not None else None
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    if f <= 1:
+        return None
+    return f
+
+
 def settle_leg(jambe, rows):
     """CSV hit → G/P ; marche non 1X2 ou match absent → EN_ATTENTE. Jamais invente."""
     dom, ext = split_match(jambe.get("match") or "")
@@ -217,11 +252,12 @@ def settle_leg(jambe, rows):
     return got
 
 
-def settle_lot(token, csv_path, lots_path=None):
+def settle_lot(token, csv_path, lots_path=None, odds_dir=None):
     lot, box = find_lot(token, lots_path)
     if not lot:
         return None, "token inconnu : " + str(token)
     rows = load_csv_rows(csv_path)
+    close_map = load_close_map(odds_dir)
     tickets_out = []
     for t in (lot.get("snapshot_t0") or {}).get("tickets") or []:
         jambes_out = []
@@ -229,6 +265,13 @@ def settle_lot(token, csv_path, lots_path=None):
             res = settle_leg(j, rows)
             jj = dict(j)
             jj["resultat"] = res
+            close = close_for_jambe(j, close_map)
+            if close is not None:
+                jj["book_odds_close"] = close
+            else:
+                holes = list(jj.get("holes") or [])
+                holes.append("book_odds_close")
+                jj["holes"] = holes
             jambes_out.append(jj)
         results = [x["resultat"] for x in jambes_out]
         if any(r == "EN_ATTENTE" for r in results):
@@ -280,7 +323,12 @@ def format_settle(lot):
             n_pnl += 1
         lines.append(f"T${t.get('rang_ticket')} {t.get('resultat')}{extra}")
         for j in t.get("jambes") or []:
-            lines.append(f"  {j.get('match')} ({j.get('selection_label') or j.get('selection')}) → {j.get('resultat')}")
+            close = j.get("book_odds_close")
+            close_s = f" close {close}" if close is not None else " close trou"
+            lines.append(
+                f"  {j.get('match')} ({j.get('selection_label') or j.get('selection')})"
+                f" → {j.get('resultat')}{close_s}"
+            )
     if n_pnl:
         lines.append(f"PnL lot : **{pnl_sum:+.0f} FC**")
     lines.append("F06 n'apprend pas.")

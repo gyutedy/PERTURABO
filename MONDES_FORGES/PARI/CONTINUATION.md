@@ -281,6 +281,18 @@ Pack S7 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph6b + Ph7. Session = ce pack seul
 
 **Handoff** : pack S8 (sensibilite devig + CLV T-0). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S8 dans cette session.
 
+## ETAT v3.9 — SENSIBILITE DEVIG + CLV T-0 (2026-11-06)
+
+Pack S8 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph7b + Ph8. Session = ce pack seulement.
+
+- [x] **Devig additif** `F03_FORGEWARD/CODEBASE/devig.py` : 2e passe diagnostic. Multiplicatif reste defaut (`p_fair` / `edge_net_devig` / double_confirmation inchanges). Ecart `devig_gap` journalise (procedure check). Cote unique = hole des deux methodes. EV = `P_modele * cote - 1` inchange. Jamais dans Poisson / GO / NO_BET.
+- [x] **Snapshot T-0** `odds_watch.py --close` : fenetre grace 15 min autour du kickoff. Persist `t0_*.json` + `latest_t0.json`. **N ecrase pas** `latest.json` (T-2h). Workflow `pari_odds_t0.yml` */15. Zero cle GitHub.
+- [x] **Settle** `ledger.settle_lot` : `book_odds_close` depuis T-0. Absente = hole `book_odds_close`, exclu CLV, **jamais 0**. T-2h n est PAS la cloture. Metrique `clv = cote_prise / cote_cloture - 1` = S9.
+- [x] **Tests** : `tests/test_clv.py`. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, PLAN S8 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S9 (metrique CLV + F06 diagnostic). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S9 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

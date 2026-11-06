@@ -113,10 +113,12 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
     bonus = _devig.load_bonus()
     cotes = m.get("cotes") or {}
     by_group = {}
+    by_group_add = {}
     for g, keys in MARKET_GROUPS:
         present = {k: cotes[k] for k in keys if cotes.get(k)}
         if present:
             by_group[g] = _devig.multiplicative(present)
+            by_group_add[g] = _devig.additive(present)
     single_verdicts = []
     for sel, cote in cotes.items():
         p = probs.get(sel)
@@ -173,6 +175,21 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
             holes = list((dv or {}).get("holes") or [])
             if holes:
                 rec["devig_holes"] = holes
+        da = by_group_add.get(grp)
+        gp = _devig.gap(dv, da) if dv is not None else {"ok": False, "gap_p": {}, "holes": ["multi_fail"]}
+        if da and da.get("ok") and sel in (da.get("p_fair") or {}):
+            rec["p_fair_additif"] = round(da["p_fair"][sel], 4)
+            rec["fair_odds_additif"] = round(da["fair_odds"][sel], 3)
+        else:
+            rec["p_fair_additif"] = None
+            rec["fair_odds_additif"] = None
+            add_holes = list((da or {}).get("holes") or [])
+            if add_holes:
+                rec["devig_add_holes"] = add_holes
+        if gp.get("ok") and sel in (gp.get("gap_p") or {}):
+            rec["devig_gap"] = round(gp["gap_p"][sel], 6)
+        else:
+            rec["devig_gap"] = None
         out_item["selections"].append(rec)
         single_verdicts.append(verdict)
         if out_item["meilleure_ev"] is None or ev > out_item["meilleure_ev"]:

@@ -19,6 +19,7 @@ Usage:
   python capteurs.py fixtures-list --source api-football --league-id 39 --date 2026-10-25
   python capteurs.py walk-forward --cutoff 2026-01-01 --csv-dir ../../ARCHIVUM/cache/f00
   python capteurs.py fit-league --csv-dir ../../ARCHIVUM/cache/f00
+  python capteurs.py odds-watch [--force] [--notify] [--close]
 """
 
 import argparse
@@ -399,11 +400,12 @@ def cmd_enrich(args):
 
 
 def cmd_odds_watch(args):
-    """Rescan T-2h The Odds API. Cle absente = skip. Jamais dans Poisson."""
+    """Rescan T-2h / T-0 The Odds API. Cle absente = skip. Jamais dans Poisson."""
     import odds_watch
     force = bool(args.force) or os.environ.get("PARI_ODDS_FORCE") == "1"
+    close = bool(getattr(args, "close", False))
     odds_watch.run(carte_path=args.carte, pred_path=args.predictions,
-                   force=force, notify=args.notify)
+                   force=force, notify=args.notify, close=close)
     return True
 
 
@@ -460,6 +462,7 @@ def main():
     ow.add_argument("--predictions", default=None)
     ow.add_argument("--force", action="store_true")
     ow.add_argument("--notify", action="store_true")
+    ow.add_argument("--close", action="store_true", help="snapshot T-0 kickoff")
 
     bs = sub.add_parser("backtest-shares")
     bs.add_argument("--csv-dir", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "cache", "f00"))

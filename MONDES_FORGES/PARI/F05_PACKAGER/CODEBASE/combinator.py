@@ -165,7 +165,9 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
                      "cote": top["cote"], "p_modele": top.get("p_modele"),
                      "ev": top.get("ev"), "bucket": e.get("bucket"),
                      "score_commun": e["score_commun"],
-                     "edge_net_devig": top.get("edge_net_devig")}
+                     "edge_net_devig": top.get("edge_net_devig"),
+                     "devig_gap": top.get("devig_gap"),
+                     "p_fair_additif": top.get("p_fair_additif")}
             _prio.stamp_jambe(jambe, n=n_m, cfg=cfg, lots_box=lots_box)
             sel_list.append(jambe)
             cote_totale *= float(top["cote"] or 1)

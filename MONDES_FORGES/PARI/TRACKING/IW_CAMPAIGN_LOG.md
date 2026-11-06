@@ -1582,3 +1582,11 @@
 - Workflow `pari_elo_fill.yml` hebdo : ClubElo CSV → build-elo → shares elo_slope. Zero cle.
 - Tests : test_backtest.py seede. CLI `capteurs.py walk-forward`.
 - Prochain pack : S8 sensibilite + CLV T-0. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T18:00:00Z] v3.9 — sensibilite devig + CLV T-0 (S8)
+
+- 2e passe additif. Multiplicatif reste defaut. `devig_gap` journalise. EV / Poisson / GO-NO_BET inchanges.
+- Snapshot T-0 kickoff (`latest_t0.json`). T-2h `latest.json` intact. Workflow `pari_odds_t0.yml`.
+- `/roi settle` stocke `book_odds_close`. Cloture absente = hole, exclu CLV, jamais 0.
+- Tests : test_clv.py. CLI `odds-watch --close`.
+- Prochain pack : S9 CLV metrique + F06 diagnostic. Operateur : `/roi settle L-DWG` apres matchs.

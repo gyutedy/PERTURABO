@@ -40,6 +40,8 @@ def compute_match(p, quality):
         "selection_label": s.get("selection_label") or s.get("selection"),
         "cote": s.get("cote"), "p_modele": s.get("p_modele"), "ev": s.get("ev"),
         "edge_net_devig": s.get("edge_net_devig"),
+        "devig_gap": s.get("devig_gap"),
+        "p_fair_additif": s.get("p_fair_additif"),
     } for i, s in enumerate(sorted_sel[:3])]
 
     # score commun 01-10 : qualité data (30%) · proba max du top (40%) · edge EV (30%)

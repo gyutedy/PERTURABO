@@ -15,8 +15,8 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/research/` | Bundles hashés (gitignore). Token L-XXX porte `bundle_id`. | research_bundle.py |
 | `F06_TRACKER/CODEBASE/journal.py` | Journal 2 volets : procedure (freeze, immutable) + outcome (settle). Holes, jamais 0. | ledger.py freeze_lot / settle_lot |
 | `ORCHESTRATOR/CODEBASE/churn.py` | Compteur `config/` : >2 changements / 7j hors calibration → `churn_suspect`. | config/churn.json |
-| `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif diagnostic. Cote unique = hole. Invariant S>1 => fair > cote. | forgeward.py |
-| `config/devig.json` | Bonus double_confirmation (init 1 pt). Pas un producteur de p. | devig.py |
+| `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif defaut + additif 2e passe. Gap journalise. Cote unique = hole. | forgeward.py |
+| `config/devig.json` | `default_method: multiplicative`. Bonus double_confirmation (init 1 pt). Pas un producteur de p. | devig.py |
 | `F05_PACKAGER/CODEBASE/compose.py` | EV compose net = produit (1+edge_net)-1. `jambe_edge_net_negatif` info, pas rejet. | combinator.py |
 | `config/market_priority.json` | Paliers marches. Palier suivant si >= 30 tickets mesures. corners/cards fermes → holes. | market_priority.py |
 | `F02_BREACHER/CODEBASE/league_fit.py` | Fit rho / bonus domicile / part_mt1 depuis CSV cache. n<4 → defaut. | capteurs.py `fit-league` |
@@ -39,9 +39,9 @@ Cartographie des journaux du monde.
 | `CONTRACTS/schema_listen.json` | Contrat update Telegram → {cmd, capture_text, chat_id} | Worker + parse.py |
 | Repo vivant | `gyutedy/PERTURABO` branche principale `pari-forge-perturabo-xs4c` (pas `v2-live-vox-c`) | Worker GH_REF |
 | Worker LIVE | `https://pari-listen.pari-listen.workers.dev` | `.github/workflows/worker_deploy.yml` (CLOUDFLARE_* dans env_pari) |
-| `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util,odds_watch}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE. T-2h = `odds_watch` | workflow.py `/capture` `/valider-1` ; `pari_odds_t2h.yml` |
+| `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util,odds_watch}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE. T-2h + T-0 = `odds_watch` | workflow.py `/capture` `/valider-1` ; `pari_odds_t2h.yml` `pari_odds_t0.yml` |
 | `F01_SENTINEL/CODEBASE/connectors/odds_api.py` | The Odds API (h2h + totals 2.5). Matching nom + difflib 0.9. Cache 1 hit/ligue/jour | odds_watch.py |
-| `ARCHIVUM/odds/` | Snapshots T-2h (`latest.json`, `t2h_*.json`) | odds_watch.persist |
+| `ARCHIVUM/odds/` | Snapshots T-2h (`latest.json`, `t2h_*.json`) + T-0 (`latest_t0.json`, `t0_*.json`). T-0 n ecrase pas latest.json. | odds_watch.persist |
 | `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY`, `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. ESPN voix 3 = public sans cle. Odds T-2h : `ODDS_API_KEY` (optionnelle). Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, sportradar.py, sofascore.py, espn.py, whoscored.py, odds_api.py, tyrant.py, herald.py, notifier.py |
 | `ARCHIVUM/cache/f00/` | Cache 1 hit / equipe / jour (gitignore) | F00 enrich |
 | `ARCHIVUM/fixtures/notes_qualitatives.json` | Notes votees F00 (OUT → TYRANT) | enrich.py |

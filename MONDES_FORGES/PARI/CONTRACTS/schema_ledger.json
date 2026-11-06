@@ -68,15 +68,16 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
             "rang_ticket": 1,
             "resultat": "G|P|EN_ATTENTE",
             "pnl_fc": 0,
-            "jambes": [
-              {
-                "match_id": "M3",
-                "match": "Arsenal vs Chelsea",
-                "marche": "1X2",
-                "selection": "1",
-                "resultat": "G|P|EN_ATTENTE"
-              }
-            ]
+                "jambes": [
+                  {
+                    "match_id": "M3",
+                    "match": "Arsenal vs Chelsea",
+                    "marche": "1X2",
+                    "selection": "1",
+                    "resultat": "G|P|EN_ATTENTE",
+                    "book_odds_close": 1.88
+                  }
+                ]
           }
         ]
       }
@@ -94,3 +95,4 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
 5. `bundle_id` (S2) = reference SHA-256 du research bundle pose a `/valider-1`. Absent si bundle rate (trou, pas invente).
 6. `journal.procedure` (S3) pose a freeze, **immutable**. Checks, trous, seuils, Kelly. Trou = hole, jamais 0.
 7. `journal.outcome` (S3) pose au settle : mise, cote, G/P, pnl, CLV si connu. CLV absent = hole, jamais 0. Ne mute pas procedure.
+8. S8 : `book_odds_close` = cote marche T-0 (`latest_t0.json`). Absente = hole, exclu CLV, jamais 0. T-2h n est PAS la cloture. Metrique `clv = cote_prise / cote_cloture - 1` = S9.
