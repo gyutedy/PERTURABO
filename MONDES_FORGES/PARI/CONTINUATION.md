@@ -184,6 +184,27 @@
 
 **Telegram** : retape `/start`. ACK puis `Campagne PARI-YYYYMMDD ouverte.` Si ACK seul : Actions → `pari-listen` (pas le Worker).
 
+## ETAT v4.0 — PARSEUR MOINS/PLUS + WHITELIST E1/D2 (2026-11-06)
+
+Pack S1 du `TRACKING/PLAN_PARI_CONSOLIDE.md` (v3.5+v4 empiles). Doctrine pack :
+
+1. Zero Data / Zero Calc. Trou = `holes: ["..."]`. Jamais de guess, jamais de defaut silencieux.
+2. EV = `P_modele * cote_brute - 1`. Devig / scorer / Oracle = diagnostic ou veto, jamais un producteur de p.
+3. Oracle / TYRANT / HERALD : lire `content`, jamais un chiffre.
+4. Stdlib Python seulement. Secrets hors commit.
+5. Tests `e2e_*.py` verts + `tests/test_*.py` offline.
+6. Telegram = unique cockpit.
+7. Un commit/push par pack. Session = un pack.
+
+Verrou casse a R4 (pas ce pack) : infos non-binaires hors maths. Moins/Plus sans ligne : **pas de 2.5 invente**. Championship / Bundesliga 2 : **E1 / D2**, CSV de leur ligue, jamais E0/D1.
+
+- [x] **Parseur** `input_capture.py` : en-tete `Moins de X` / `Plus de X` ou colonne `Ligne (Total)` → tags `uX`/`oX`. Ligne absente → `holes: ["ligne_totale_Moins_Plus"]`, cotes `under`/`over` **gardees**. MT 3 cotes identiques sur >= 5 matchs → `cote_plate`, cotes conservees.
+- [x] **Whitelist** `capteurs.py` : `"championship": "E1"`, `"bundesliga 2": "D2"` (+ alias). Retire Championship / Bundesliga 2 de `LIGUE_REJECT`. LaLiga 2 / Serie B / Ligue 2 restent rejetes. `ligue_code` matche la cle la plus longue (D2 avant D1).
+- [x] **Tests** : `tests/test_input_capture_moins_plus.py`. e2e_listen L12 E1/D2. e2e_multiformat non regressif.
+- [x] **Docs** : GUIDE, INDEX, schema_input_capture, IW_CAMPAIGN_LOG, PLAN S1 coche.
+
+**Handoff** : pack S2 (doctor + research bundle). Operateur : `/roi settle L-DWG` apres les matchs. Ph0 rotation cles = Warsmith.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

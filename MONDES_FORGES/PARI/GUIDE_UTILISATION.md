@@ -34,12 +34,12 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | Commande | Ce que ça fait |
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre, **garde la bankroll**) |
-| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). Inbox = fichier `capture_telegram.*` le **plus recent** (un markdown neuf ecrase une vieille photo). Dates `JJ/MM/AA` lues par rang. OCR vide = Zero Data. |
+| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). Inbox = fichier `capture_telegram.*` le **plus recent** (un markdown neuf ecrase une vieille photo). Dates `JJ/MM/AA` lues par rang. OCR vide = Zero Data. Moins/Plus : ligne lue (`Ligne (Total)` ou `Moins de X`) → `uX`/`oX` ; **pas de 2.5 invente** si la ligne manque (`holes` + cotes gardees). |
 | `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
-| `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
+| `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
 | `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide. |
 | `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
 | `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
@@ -83,12 +83,15 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
     `FOOTBALL_DATA_ORG_KEY` (env_pari) = repos F00, **pas Oracle, pas modele premium**.
     Sportradar absent = DOUTE max. ESPN public (sans cle, latence heures possible).
 2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
-    E0/SP1/I1/D1/F1). Alias ligues v2.2.7 : `LaLiga` (sans espace) = SP1 ; `LaLiga 2`
-    / Championship / Serie B rejetes. Alias clubs (`Ath Madrid`, `M'Gladbach`,
-    `Nott'm Forest`…). Merge multi-ligues (`stats_inject_E0.json` + `SP1`…) : un
-    club hors CSV (Paderborn, Coventry) = **skip CE match**, pas NO BET sur toute
-    la slate. Le message compte `GO / FAIBLE-qual / skip-stats`. Puis siège complet
-    (F02→F03→top3) même sur GitHub Actions.
+    E0/SP1/I1/D1/F1/**E1 Championship**/**D2 Bundesliga 2**). Alias ligues v2.2.7 :
+    `LaLiga` (sans espace) = SP1. v4.0 : Championship = E1, Bundesliga 2 = D2
+    (CSV de **leur** ligue, jamais E0/D1). `LaLiga 2` / Serie B / Ligue 2 restent
+    rejetes. Alias clubs (`Ath Madrid`, `M'Gladbach`, `Nott'm Forest`…). Merge
+    multi-ligues (`stats_inject_E0.json` + `SP1` + `E1`…) : un club hors CSV =
+    **skip CE match**, pas NO BET sur toute la slate. Le message compte
+    `GO / FAIBLE-qual / skip-stats`. Puis siège complet (F02→F03→top3) même sur
+    GitHub Actions. Parseur Moins/Plus : sans ligne totale, cotes gardees +
+    `holes: ["ligne_totale_Moins_Plus"]` — jamais de 2.5 par defaut.
       Ligue hors whitelist (IFL, Iran, Israël…) → TOP3 **NO BET** pour CES matchs, jamais
       la demo Cyclops/Lions. `/valider-2` est refuse seulement si 0 GO. v2.2.4 : le siege
       n'utilise `predictions_filtered.json` que si des notes qualitatives ont tourne

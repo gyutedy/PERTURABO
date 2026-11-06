@@ -411,7 +411,7 @@ def cmd_valider1(st, arg):
         except Exception as e:
             print(f"[WF] enrich F00 valider-1 gracieux: {e}")
     if not stats_ok:
-        tell("⚠️ Stats historiques absentes (ligue hors whitelist E0/SP1/I1/D1/F1 ou réseau) — "
+        tell("⚠️ Stats historiques absentes (ligue hors whitelist E0/SP1/I1/D1/F1/E1/D2 ou réseau) — "
              "Zero Data, Zero Calc : le siège sort NO BET. Pas de ticket.")
     ok2, _ = run_orch("--mode", "siege", "--fixtures", carte_path,
                       extra_env={"PARI_AUTO_GATES": "1"})
@@ -453,7 +453,7 @@ def cmd_valider2(st, arg):
     n_go = sum(1 for r in rows if r.get("top3") and not r.get("no_bet_recommande") and r.get("bucket") != "FAIBLE")
     if n_go == 0:
         tell("⛔ VALIDATION 2 refusee : aucun match eligible (NO BET / Zero Data). "
-             "Pas de ticket. Recapture une ligue couverte (E0/SP1/I1/D1/F1) ou injecte les stats.")
+             "Pas de ticket. Recapture une ligue couverte (E0/SP1/I1/D1/F1/E1/D2) ou injecte les stats.")
         return
     budget = st.get("budget_fc") or 0
     sur = st.get("surticket_fc") or 0

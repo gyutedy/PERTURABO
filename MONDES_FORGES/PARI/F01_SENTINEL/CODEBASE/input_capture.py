@@ -251,6 +251,77 @@ def _cote_or_none(cell: str):
     return None
 
 
+_HEADER_SKIP = {
+    "competition & match", "compétition & match", "match", "horaire", "heure",
+    "ligne (total)", "ligne", "total",
+}
+_HEADER_LINE_RE = re.compile(
+    r"^(moins|plus|under|over)\s+(?:de\s+)?(\d+[.,]\d+)$"
+)
+_HEADER_OU_RE = re.compile(r"^([ou])(\d+[.,]\d+)$")
+
+
+def _fmt_ligne(val) -> str:
+    return f"{float(val):.1f}"
+
+
+def _parse_ligne_cell(cell: str):
+    raw = _clean_cell(cell).strip().replace(",", ".")
+    if not raw or raw.lower() in LOCKED_TOKENS or "verrouill" in raw.lower():
+        return None
+    m = re.search(r"(\d+(?:\.\d+)?)", raw)
+    if not m:
+        return None
+    try:
+        return float(m.group(1))
+    except ValueError:
+        return None
+
+
+def _map_header(hkey: str):
+    h = " ".join((hkey or "").strip().lower().replace("é", "e").split())
+    if h in HEADER_MAP:
+        return HEADER_MAP[h], None
+    m = _HEADER_LINE_RE.match(h)
+    if m:
+        side = m.group(1)
+        ligne = float(m.group(2).replace(",", "."))
+        mapped = "under" if side in ("moins", "under") else "over"
+        return mapped, ligne
+    m2 = _HEADER_OU_RE.match(h.replace(" ", ""))
+    if m2:
+        mapped = "over" if m2.group(1) == "o" else "under"
+        return mapped, float(m2.group(2).replace(",", "."))
+    return None, None
+
+
+def _apply_cote_plate(blocs):
+    matches = []
+    for b in blocs:
+        matches.extend(b.get("matchs") or [])
+    counts = {}
+    for m in matches:
+        c = m.get("cotes") or {}
+        if "mt1" in c and "mte" in c and "mt2" in c:
+            t = (c["mt1"], c["mte"], c["mt2"])
+            counts[t] = counts.get(t, 0) + 1
+    plate = {t for t, n in counts.items() if n >= 5}
+    if not plate:
+        return 0
+    n_flag = 0
+    msg = "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+    for m in matches:
+        c = m.get("cotes") or {}
+        t = (c.get("mt1"), c.get("mte"), c.get("mt2"))
+        if t in plate:
+            m["cote_plate"] = True
+            w = m.setdefault("warnings", [])
+            if msg not in w:
+                w.append(msg)
+            n_flag += 1
+    return n_flag
+
+
 def parse_markdown_table(capture_text: str):
     """Parse un tableau markdown Winner Bet (competition+match, horaire, 1/X/2, MT, O/U)."""
     capture_text = _normalize_md_table(capture_text)
@@ -348,32 +419,33 @@ def parse_markdown_table(capture_text: str):
 
         cotes = {}
         m_warn = []
+        m_holes = []
         if m_warn_date:
             m_warn.append(m_warn_date)
         ligne_totale = None
         for h, cell in col.items():
             hkey = h.strip().lower()
-            if hkey in ("competition & match", "compétition & match", "match", "horaire", "heure",
-                        "ligne (total)", "ligne", "total"):
-                if hkey.startswith("ligne"):
-                    raw_l = _clean_cell(cell).replace(",", ".")
-                    try:
-                        ligne_totale = float(raw_l)
-                    except ValueError:
-                        ligne_totale = None
+            if hkey in _HEADER_SKIP and hkey.startswith("ligne"):
+                ligne_totale = _parse_ligne_cell(cell)
+        pending_ou = []
+        for h, cell in col.items():
+            hkey = h.strip().lower()
+            if hkey in _HEADER_SKIP:
                 continue
-            mapped = HEADER_MAP.get(hkey)
+            mapped, ligne_hdr = _map_header(hkey)
             if mapped in ("over", "under"):
                 val = _cote_or_none(cell)
                 if val is None:
-                    if _clean_cell(cell).strip() and _clean_cell(cell).strip().lower() not in LOCKED_TOKENS:
-                        m_warn.append(f"{hkey} illisible: {_clean_cell(cell)}")
+                    cleaned = _clean_cell(cell).strip()
+                    if cleaned and cleaned.lower() not in LOCKED_TOKENS:
+                        m_warn.append(f"{hkey} illisible: {cleaned}")
                     continue
-                if ligne_totale in (1.5, 2.5, 3.5):
-                    tag = ("o" if mapped == "over" else "u") + str(ligne_totale)
+                ligne = ligne_hdr if ligne_hdr is not None else ligne_totale
+                if ligne is not None:
+                    tag = ("o" if mapped == "over" else "u") + _fmt_ligne(ligne)
                     cotes[tag] = val
                 else:
-                    m_warn.append(f"{mapped} sans ligne totale — cote non rattachee")
+                    pending_ou.append((mapped, val, hkey))
                 continue
             if not mapped:
                 continue
@@ -381,6 +453,11 @@ def parse_markdown_table(capture_text: str):
             if val is None:
                 continue
             cotes[mapped] = val
+        if pending_ou:
+            m_holes.append("ligne_totale_Moins_Plus")
+            m_warn.append("Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente")
+            for mapped, val, _hkey in pending_ou:
+                cotes[mapped] = val
 
         n += 1
         match = {
@@ -390,6 +467,7 @@ def parse_markdown_table(capture_text: str):
             "cotes": cotes,
             "marches_disponibles": sorted(cotes.keys()),
             "warnings": m_warn,
+            "holes": m_holes,
         }
         b = bloc_for(competition, cur_date, cur_heure)
         if not b["heure"] and cur_heure:
@@ -397,6 +475,9 @@ def parse_markdown_table(capture_text: str):
         b["matchs"].append(match)
 
     blocs = list(blocs_by_comp.values())
+    n_plate = _apply_cote_plate(blocs)
+    if n_plate:
+        warnings.append(f"cote_plate: {n_plate} match(s) MT identiques (>=5)")
     for b in blocs:
         if not b["competition"]:
             b["warnings"].append("competition/ligue absente — marque manuelle avant siege (Zero Data, Zero Calc)")
@@ -588,6 +669,12 @@ def to_carte(parsed: dict, ligue_default="Capture — ligue à confirmer"):
                   "ligue": comp, "date": b.get("date"), "heure": b.get("heure"),
                   "cotes": m.get("cotes") or None,
                   "marches_disponibles": m.get("marches_disponibles", [])}
+            if m.get("holes"):
+                mm["holes"] = list(m["holes"])
+            if m.get("cote_plate"):
+                mm["cote_plate"] = True
+            if m.get("warnings"):
+                mm["warnings"] = list(m["warnings"])
             matchs.append(mm)
     horizon = parsed.get("captures", [{}])[0].get("date") or "capture"
     return {"source": "input_capture", "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

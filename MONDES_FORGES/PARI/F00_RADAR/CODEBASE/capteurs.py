@@ -38,6 +38,12 @@ LIGUE_CODE = {
     "liga bbva": "SP1",
     "serie a": "I1",
     "seria a": "I1",
+    "championship": "E1",
+    "efl championship": "E1",
+    "bundesliga 2": "D2",
+    "2. bundesliga": "D2",
+    "2 bundesliga": "D2",
+    "zweite bundesliga": "D2",
     "bundesliga": "D1",
     "ligue 1": "F1",
     "ligue1": "F1",
@@ -56,9 +62,8 @@ LIGUE_CODE = {
 }
 
 LIGUE_REJECT = (
-    "laliga 2", "la liga 2", "liga 2", "segunda", "championship",
-    "serie b", "ligue 2", "ligue2", "2 bundesliga", "bundesliga 2",
-    "2. bundesliga", "premier league 2",
+    "laliga 2", "la liga 2", "segunda",
+    "serie b", "ligue 2", "ligue2", "premier league 2",
 )
 
 TEAM_ALIASES = {
@@ -153,7 +158,7 @@ def ligue_code(name: str):
             return None
     if "laliga" in compact:
         return "SP1"
-    for key, code in LIGUE_CODE.items():
+    for key, code in sorted(LIGUE_CODE.items(), key=lambda kv: -len(kv[0])):
         if key in lg or key.replace(" ", "") in compact:
             return code
     return None

@@ -67,7 +67,7 @@ puis `/budget 3000 800` (plafond lot + mise FORCEE ticket sur).
 `/bankroll` est dans git (`index.js` KNOWN). Worker Cloudflare stale jusqu'au
 premier run `pari-worker-deploy` (secrets CF poses). `/budget 3000` seul est
 refuse par `workflow.py`.
-`/valider-1` injecte stats E0/SP1/I1/D1/F1 avec alias `LaLiga` + clubs
+`/valider-1` injecte stats E0/SP1/I1/D1/F1/E1/D2 avec alias `LaLiga` + clubs
 football-data ; un club hors CSV skip CE match (pas NO BET global).
 `/valider-2` = tickets + anti-cannibal + token `L-XXX` (retaper `/budget`
 avant chaque lot Mode A). Aliases deja live : `/data ledger`,

@@ -1520,3 +1520,11 @@
 ## [2026-11-05T14:50:11Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:dab52f3e97852de66660eb04c4a874fc — status:done
 
 ## [2026-11-05T14:50:11Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:48fe3a19e0df74a8b38246a8e3101c2e — status:done
+
+## [2026-11-06T12:00:00Z] v4.0 — parseur Moins/Plus + whitelist E1/D2 (S1)
+
+- Moins/Plus : ligne lue (colonne ou `Moins de X`) → `uX`/`oX`. Ligne absente → `holes: ["ligne_totale_Moins_Plus"]`, cotes `under`/`over` gardees. **Pas de 2.5 invente.**
+- MT : 3 cotes identiques sur >= 5 matchs → `cote_plate`, cotes conservees (pas jetees).
+- Whitelist Championship = E1, Bundesliga 2 = D2. CSV de leur ligue, jamais E0/D1. LaLiga 2 reste rejete.
+- Tests : `tests/test_input_capture_moins_plus.py`. e2e_listen L12 E1/D2. Zero reseau. Pas de scrape.
+- Prochain pack : S2 doctor + research bundle. Operateur : `/roi settle L-DWG` apres matchs.

@@ -370,6 +370,8 @@ def main():
     check("L12.superlig_t1", capteurs.ligue_code("Turkiye - Super Lig") == "T1")
     check("L12.serie_a", capteurs.ligue_code("Italie - Serie A") == "I1")
     check("L12.bundesliga", capteurs.ligue_code("Allemagne - Bundesliga") == "D1")
+    check("L12.bundesliga2_d2", capteurs.ligue_code("Allemagne - Bundesliga 2") == "D2")
+    check("L12.championship_e1", capteurs.ligue_code("Angleterre - Championship") == "E1")
     check("L12.premier", capteurs.ligue_code("Angleterre - Premier League") == "E0")
     check("L12.ligue1", capteurs.ligue_code("France - Ligue 1") == "F1")
 

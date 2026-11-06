@@ -27,7 +27,9 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/fixtures/notes_qualitatives.json` | Notes votees F00 (OUT → TYRANT) | enrich.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |
 | `F01_SENTINEL/F01_LOG.md` | Collectes + nettoyages de donnees | F01 |
-| `F01_SENTINEL/OUT/capture_parsed.json` | JSON reconstitue de la capture (txt/md/png/pdf/docx) | F01 input_capture |
+| `F01_SENTINEL/OUT/capture_parsed.json` | JSON reconstitue de la capture (txt/md/png/pdf/docx). v4.0 : `holes` Moins/Plus, `cote_plate` | F01 input_capture |
+| `TRACKING/PLAN_PARI_CONSOLIDE.md` | Plan d execution unique v3.5+v4 (packs S0–S16) | Warsmith / agent |
+| `tests/test_input_capture_moins_plus.py` | S1 : Moins/Plus sans 2.5, cote_plate, ligue_code E1/D2 | input_capture + capteurs |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |
 | `F03_FORGEWARD/F03_LOG.md` | EV, values, misa Kelly | F03 |
 | `F04_HERALD/F04_LOG.md` | Fiches rédigées (+ usage Oracle) | F04 |
