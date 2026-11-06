@@ -1590,3 +1590,12 @@
 - `/roi settle` stocke `book_odds_close`. Cloture absente = hole, exclu CLV, jamais 0.
 - Tests : test_clv.py. CLI `odds-watch --close`.
 - Prochain pack : S9 CLV metrique + F06 diagnostic. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T19:00:00Z] v3.10 — CLV metrique + F06 diagnostic (S9)
+
+- clv = cote_prise / cote_cloture - 1. Combo = produit des closes. Cloture absente = exclu, jamais 0.
+- Agregats : median, % >0, moyen pondere mise. Cibles config 55% / +0.5 pt.
+- Doctor : n<30 variance (pas un verdict). CLV median 30j < -3 pts = FAIL inchange.
+- F06 Platt 2 params + Beta-Binomial + P(EV>0) MC seede. n<50 = diagnostic `/data diag`, jamais verdict/mise.
+- Tests : test_f06_diag.py. F06 n'apprend pas.
+- Prochain pack : S10 Kelly. Operateur : `/roi settle L-DWG` apres matchs.

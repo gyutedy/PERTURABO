@@ -157,6 +157,9 @@ def main():
     r = parse.parse_update(upd("/data 4"), CHAT)
     check("L4.data_n", r.get("ok") and r.get("cmd") == "/data 4", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/data diag"), CHAT)
+    check("L4.data_diag", r.get("ok") and r.get("cmd") == "/data diag", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/status ledger"), CHAT)
     check("L4.status_ledger", r.get("ok") and r.get("cmd") == "/status ledger", str(r.get("cmd")))
 

@@ -121,7 +121,11 @@ def build_outcome(lot):
         src = snap_tix.get(rang) or {}
         clv = t.get("clv")
         if clv is None:
-            clv = src.get("clv")
+            try:
+                import clv as _clv
+                clv = _clv.ticket_clv(src, t)
+            except Exception:
+                clv = src.get("clv")
         rec = {
             "rang_ticket": rang,
             "mise_fc": src.get("mise_fc") if src.get("mise_fc") is not None else t.get("mise_fc"),

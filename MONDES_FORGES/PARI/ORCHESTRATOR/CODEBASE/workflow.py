@@ -16,7 +16,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /marches O/U2.5,MT2   choisit les marchés visés pour la carte (=livrer infos)
   /combos 3        nombre de tickets (option ^^ : 3:3:2:2 = jambes par ticket)
   valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
-   /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots
+    /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots.  /data diag = F06 CLV/Platt (jamais mise)
    /radar [N]       scan carte courante (skip matchs sans stats, trous declares)
    /pack [N]        assemble le pari pack TOP N (defaut 10)
    /match ID        fiche siege d'un match (id M1 ou rang 1-based)
@@ -544,6 +544,16 @@ def cmd_data(st, arg):
         body = led.format_lots(box, campagne=st.get("campagne"))
         tell(f"TOKEN courant : **{tok}**\n" + body)
         return
+    if head and head[0].lower() in ("diag", "f06", "clv"):
+        d = os.path.join(WORLD, "F06_TRACKER", "CODEBASE")
+        if d not in sys.path:
+            sys.path.insert(0, d)
+        import diag as _diag
+        led = _ledger()
+        box = led.load_lots()
+        report = _diag.diagnose(box.get("lots") or [])
+        tell(_diag.format_telegram(report))
+        return
     t3 = read_text(P("SHARED", "OUT", "TOP3.md"))
     if not t3:
         tell("⛔ Rien encore — /valider-1 pour générer le Top 3."); return
@@ -763,7 +773,7 @@ CMDS = {
     "valider1": None,
     "valider-2": (cmd_valider2, "tickets + anti-cannibal + token L-XXX"),
     "valider2": None,
-    "data": (cmd_data, "table compacte ; /data N fiche ; /data ledger = lots"),
+    "data": (cmd_data, "table compacte ; /data N fiche ; /data ledger = lots ; /data diag = F06"),
     "radar": (cmd_radar, "scan carte (skip stats incompletes)"),
     "pack": (cmd_pack, "pari pack TOP N"),
     "match": (cmd_match, "fiche match (id ou rang)"),

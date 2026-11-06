@@ -227,7 +227,9 @@ def test_settle_close_et_trou():
         check("cl.close_pas_zero", j2.get("book_odds_close") != 0)
         out2 = (got2.get("journal") or {}).get("outcome") or {}
         rec2 = (out2.get("tickets") or [{}])[0]
-        check("cl.s8_pas_clv_num", rec2.get("clv") is None, str(rec2.get("clv")))
+        expected_clv = 1.7 / 1.88 - 1.0
+        check("cl.s9_clv_ratio", rec2.get("clv") is not None
+              and abs(rec2.get("clv") - expected_clv) < 1e-12, str(rec2.get("clv")))
         msg = ledger.format_settle(got2)
         check("cl.fmt_close", "close 1.88" in msg, msg[:200])
         msg_trou = ledger.format_settle(got)

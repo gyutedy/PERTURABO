@@ -303,6 +303,30 @@ def settle_lot(token, csv_path, lots_path=None, odds_dir=None):
     d = os.path.dirname(os.path.abspath(__file__))
     if d not in sys.path:
         sys.path.insert(0, d)
+    import clv as _clv
+    snap_map = {
+        t.get("rang_ticket"): t
+        for t in (lot.get("snapshot_t0") or {}).get("tickets") or []
+    }
+    ratios = []
+    mises = []
+    for t in tickets_out:
+        src = snap_map.get(t.get("rang_ticket")) or {}
+        ratio = _clv.ticket_clv(src, t)
+        if ratio is None:
+            holes = list(t.get("holes") or [])
+            if "clv" not in holes:
+                holes.append("clv")
+            t["holes"] = holes
+            t["clv"] = None
+        else:
+            t["clv"] = ratio
+            ratios.append(ratio)
+            mises.append(src.get("mise_fc") if src.get("mise_fc") is not None else t.get("mise_fc"))
+    agg = _clv.aggregate(ratios, mises)
+    lot["settle"]["clv"] = agg
+    if agg.get("median") is not None:
+        lot["settle"]["clv_median"] = agg["median"]
     import journal as _journal
     _journal.attach_outcome(lot)
     save_lots(box, lots_path)

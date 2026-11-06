@@ -127,7 +127,7 @@ def parse_update(update, allowed_chat_id):
                 "/combos 3  ou  /combos 3:3:2:2\n"
                  "/valider-1\n"
                  "/valider-2  (lot + token L-XXX, anti-cannibal)\n"
-                 "/data  /data N  /data ledger\n"
+                 "/data  /data N  /data ledger  /data diag\n"
                  "/radar  /pack  /match ID\n"
                  "/status  /status ledger  /status doctor\n"
                  "/roi  /roi settle L-XXX\n"

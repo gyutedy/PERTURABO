@@ -293,6 +293,20 @@ Pack S8 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph7b + Ph8. Session = ce pack seul
 
 **Handoff** : pack S9 (metrique CLV + F06 diagnostic). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S9 dans cette session.
 
+## ETAT v3.10 — CLV METRIQUE + F06 DIAGNOSTIC (2026-11-06)
+
+Pack S9 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph8b + Ph9. Session = ce pack seulement.
+
+- [x] **CLV** `F06_TRACKER/CODEBASE/clv.py` : `clv = cote_prise / cote_cloture - 1`. Combo = produit des `book_odds_close`. Absente = exclu, **jamais 0**. Agregats median / % >0 / mean pondere mise. Cibles `config/clv.json` (55% / +0.5 pt).
+- [x] **Settle** pose `ticket.clv` + `settle.clv` agregat. Journal outcome recopie le ratio (S8 hole inchange si close absente).
+- [x] **Doctor** : n<30 variance (note, pas un verdict). Alerte median 30j < -3 pts inchangee. Agregats beat / median_pt.
+- [x] **F06 diag** `diag.py` : Platt 2 params, Beta-Binomial, P(EV>0) MC seede (seed 42). **Verrou n<50** : `locked`, `verdict=None`, `mise=None`. Sortie = `/data diag` seulement.
+- [x] **Telegram** : `/data diag` (alias `/data f06` `/data clv`). Relais parse.py + Worker + help. F06 n'apprend pas.
+- [x] **Tests** : `tests/test_f06_diag.py` bloque sous 50. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, schema_ledger, PLAN S9 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S10 (Kelly 1/8 vers 1/4 gate ECE). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S10 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

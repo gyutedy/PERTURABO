@@ -7,7 +7,7 @@
   "properties": {
     "cmd": {
       "type": "string",
-      "description": "Commande passee telle quelle a workflow.py. Ex: /start, /budget 3000 800, /valider-2, /data ledger, /radar, /pack 10, /match M1, /status ledger, /status doctor, /roi settle L-K7M.",
+      "description": "Commande passee telle quelle a workflow.py. Ex: /start, /budget 3000 800, /valider-2, /data ledger, /data diag, /radar, /pack 10, /match M1, /status ledger, /status doctor, /roi settle L-K7M.",
       "pattern": "^/(start|capture|bankroll|budget|surticket|combos|valider-1|valider-2|data|radar|pack|match|status|roi|stop)( .*)?$"
     },
     "capture_text": {

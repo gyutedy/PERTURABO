@@ -5,6 +5,7 @@ DOCTOR — evidence stack (S2 / v3.1)
 GO / CHECK / FAIL. Offline. Noms de cles seulement, jamais les valeurs.
 Gate : n<300 bruit ; 300-499 observation ; >=500 verdict moteur.
 CLV median 30j < -3 pts = alerte immediate.
+S9 : n<30 variance (pas un verdict). Agregats median / % >0 / mean_w.
 """
 
 from __future__ import annotations
@@ -17,6 +18,9 @@ from statistics import median
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CODE_WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
+_F06 = os.path.normpath(os.path.join(CODE_WORLD, "F06_TRACKER", "CODEBASE"))
+if _F06 not in sys.path:
+    sys.path.insert(0, _F06)
 
 KEY_WATCH = (
     "FOOTBALL_DATA_ORG_KEY",
@@ -251,50 +255,99 @@ def _parse_iso(ts):
             return None
 
 
-def _clv_values(lots, now):
+def _clv_rows_30j(lots, now):
     cut = now - timedelta(days=30)
-    vals = []
+    rows = []
+    try:
+        import clv as _clv
+    except ImportError:
+        _clv = None
     for lot in lots or []:
-        created = _parse_iso(lot.get("created_at") or lot.get("settled_at"))
+        created = _parse_iso(lot.get("created_at") or lot.get("settled_at")
+                             or (lot.get("settle") or {}).get("settled_at"))
         if created is not None and created < cut:
             continue
+        found = 0
+        if _clv is not None:
+            for r in _clv.collect_from_lots([lot]):
+                if isinstance(r.get("clv"), (int, float)):
+                    rows.append(r)
+                    found += 1
+        if found:
+            continue
         if isinstance(lot.get("clv"), (int, float)):
-            vals.append(float(lot["clv"]))
+            rows.append({"clv": float(lot["clv"]), "mise_fc": None})
         settle = lot.get("settle") or {}
         if isinstance(settle.get("clv_median"), (int, float)):
-            vals.append(float(settle["clv_median"]))
+            rows.append({"clv": float(settle["clv_median"]), "mise_fc": None})
         for t in settle.get("tickets") or []:
             if isinstance(t.get("clv"), (int, float)):
-                vals.append(float(t["clv"]))
+                rows.append({"clv": float(t["clv"]), "mise_fc": t.get("mise_fc")})
             elif isinstance(t.get("clv_pts"), (int, float)):
-                vals.append(float(t["clv_pts"]))
-    return vals
+                rows.append({"clv": float(t["clv_pts"]) / 100.0, "mise_fc": t.get("mise_fc")})
+    return rows
+
+
+def _clv_values(lots, now):
+    return [float(r["clv"]) for r in _clv_rows_30j(lots, now) if isinstance(r.get("clv"), (int, float))]
 
 
 def check_clv(world, now=None):
     now = now or datetime.now(timezone.utc)
     box = _load_json(os.path.join(world, "ARCHIVUM", "learnings", "lots.json")) or {}
-    vals = _clv_values(box.get("lots") or [], now)
+    rows = _clv_rows_30j(box.get("lots") or [], now)
+    vals = [float(r["clv"]) for r in rows if isinstance(r.get("clv"), (int, float))]
     if not vals:
         return {
             "id": "clv",
             "ok": True,
             "median_30j": None,
+            "median_pt": None,
+            "pct_pos": None,
+            "mean_weighted_pt": None,
             "n": 0,
             "alerte": False,
             "holes": ["clv"],
-            "note": "CLV absent (S8) — trou, pas 0",
+            "note": "CLV absent — trou, pas 0",
         }
+    def _as_pt(v):
+        return float(v) if abs(float(v)) > 1.0 else float(v) * 100.0
+
     med = float(median(vals))
-    alerte = med < -3.0
+    med_pt = float(median([_as_pt(v) for v in vals]))
+    alerte = med_pt < -3.0
+    pct_pos = sum(1 for v in vals if v > 0) / len(vals)
+    num = 0.0
+    den = 0.0
+    for r in rows:
+        v = r.get("clv")
+        w = r.get("mise_fc")
+        try:
+            w = float(w)
+        except (TypeError, ValueError):
+            w = None
+        if v is None or w is None or w <= 0:
+            continue
+        num += float(v) * w
+        den += w
+    mean_w_pt = _as_pt(num / den) if den else med_pt
+    n = len(vals)
+    note = ""
+    if alerte:
+        note = "CLV median 30j < -3 pts"
+    elif n < 30:
+        note = "n<30 variance — pas un verdict"
     return {
         "id": "clv",
         "ok": not alerte,
         "median_30j": round(med, 4),
-        "n": len(vals),
+        "median_pt": round(med_pt, 4),
+        "pct_pos": round(pct_pos, 4),
+        "mean_weighted_pt": round(mean_w_pt, 4),
+        "n": n,
         "alerte": alerte,
         "holes": [],
-        "note": "CLV median 30j < -3 pts" if alerte else "",
+        "note": note,
     }
 
 
@@ -384,11 +437,17 @@ def format_telegram(report):
             lines.append("cache holes: " + (",".join(h) if h else "—"))
         elif cid == "clv":
             if c.get("alerte"):
-                lines.append(f"CLV ALERTE median_30j={c.get('median_30j')}")
+                lines.append(f"CLV ALERTE median_30j={c.get('median_30j')} n={c.get('n')}")
             elif c.get("holes"):
                 lines.append("CLV: trou (pas 0)")
             else:
-                lines.append(f"CLV median_30j={c.get('median_30j')}")
+                extra = ""
+                if c.get("note"):
+                    extra = " · " + c["note"]
+                lines.append(
+                    f"CLV n={c.get('n')} median_pt={c.get('median_pt')} "
+                    f"beat={c.get('pct_pos')}{extra}"
+                )
     return "\n".join(lines)
 
 

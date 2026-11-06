@@ -44,6 +44,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
 | `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
 | `/data ledger` | Token + lots du jour (inchange). |
+| `/data diag` | F06 diagnostic CLV / Platt / Beta-Binomial / P(EV>0). **n<50 = LOCKED**, jamais verdict/mise. Alias `/data f06` `/data clv`. |
 | `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. v3.8 : flag `incoherence_modele_empirique` si \|P(O2.5) - taux saison\| >= 0.20 (info, pas NO BET). Saison absente = trou. |
 | `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
 | `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. Inconnu = refuse, pas crash. |
@@ -59,7 +60,7 @@ notes: 0
 ```
 
 Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes.
-| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). v3.9 : stocke `book_odds_close` (T-0 kickoff). Cloture absente = hole, exclu CLV, jamais 0. Journal F06 : procedure (freeze, immutable) + outcome (mise, cote, G/P, pnl, CLV si connu — absent = hole, jamais 0). |
+| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). v3.9 : stocke `book_odds_close` (T-0 kickoff). v3.10 : `clv = cote_prise / cote_cloture - 1` (ratio). Cloture absente = hole, exclu CLV, jamais 0. Journal F06 : procedure (freeze, immutable) + outcome (mise, cote, G/P, pnl, CLV si connu — absent = hole, jamais 0). |
 | `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 
 Équivalent terminal (si tu bosses depuis un PC sans bot) :
@@ -120,8 +121,11 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
 4. **Placement** : tu poses les tickets chez Winner Bet. F06 a deja fige le lot
    (token) + **journal.procedure** (checks, trous, seuils, Kelly — immutable).
    Apres les matchs : `/roi settle L-XXX` pose **journal.outcome** (mise, cote,
-   G/P, pnl, CLV si connu) et `book_odds_close` (T-0). Cloture absente = hole,
-   exclu CLV, jamais 0. T-2h n est PAS la cloture. F06 n'apprend pas.
+    G/P, pnl, CLV si connu) et `book_odds_close` (T-0). Cloture absente = hole,
+    exclu CLV, jamais 0. T-2h n est PAS la cloture. v3.10 : `clv = cote_prise /
+    cote_cloture - 1`. Combo = produit des closes. Agregats median / % >0 /
+    mean_w (cibles 55% / +0.5 pt). n<50 tickets reels = `/data diag` seulement,
+    jamais verdict/mise. Doctor n<30 = variance, pas un verdict. F06 n'apprend pas.
 
 ### Les infos non binaires (blessures, fatigue, enjeux…)
 

@@ -1,0 +1,10 @@
+{
+  "note": "S9 — CLV metrique + F06 diagnostic. n<50 = diagnostic /data, jamais verdict/mise.",
+  "clv_beat_pct": 0.55,
+  "clv_median_pt": 0.5,
+  "clv_alerte_pt": -3.0,
+  "n_variance": 30,
+  "n_lock": 50,
+  "mc_draws": 2000,
+  "mc_seed": 42
+}
