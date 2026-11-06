@@ -22,20 +22,61 @@ Usage:
 import json
 import argparse
 import os
+import sys
 from datetime import datetime, timezone
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_BREACHER = os.path.normpath(os.path.join(_HERE, "..", "..", "F02_BREACHER", "CODEBASE"))
+if _HERE not in sys.path:
+    sys.path.insert(0, _HERE)
+if _BREACHER not in sys.path:
+    sys.path.insert(0, _BREACHER)
+import breacher as _breacher  # noqa: E402
+import devig as _devig  # noqa: E402
 
 # Groupes de marchés mutuellement exclusifs (pour le de-marging)
 MARKET_GROUPS = [
     ("1X2", ["1", "X", "2"]),
+    ("OU_0.5", ["o0.5", "u0.5"]),
+    ("OU_1.5", ["o1.5", "u1.5"]),
     ("OU_2.5", ["o2.5", "u2.5"]),
+    ("OU_3.5", ["o3.5", "u3.5"]),
+    ("OU_4.5", ["o4.5", "u4.5"]),
+    ("DC", ["dc_1x", "dc_x2", "dc_12"]),
+    ("TT_H_0.5", ["tt_h_o0.5", "tt_h_u0.5"]),
+    ("TT_H_1.5", ["tt_h_o1.5", "tt_h_u1.5"]),
+    ("TT_H_2.5", ["tt_h_o2.5", "tt_h_u2.5"]),
+    ("TT_A_0.5", ["tt_a_o0.5", "tt_a_u0.5"]),
+    ("TT_A_1.5", ["tt_a_o1.5", "tt_a_u1.5"]),
+    ("TT_A_2.5", ["tt_a_o2.5", "tt_a_u2.5"]),
     ("MT_PROLIFIQUE", ["mt1", "mte", "mt2"]),
+    ("BTTS", ["btts", "btts_no"]),
 ]
 SELECTION_LABELS = {
     "1": "Victoire Domicile", "X": "Nul", "2": "Victoire Extérieur",
+    "o0.5": "Over 0.5", "u0.5": "Under 0.5",
+    "o1.5": "Over 1.5", "u1.5": "Under 1.5",
     "o2.5": "Over 2.5", "u2.5": "Under 2.5",
+    "o3.5": "Over 3.5", "u3.5": "Under 3.5",
+    "o4.5": "Over 4.5", "u4.5": "Under 4.5",
+    "dc_1x": "Double chance 1X", "dc_x2": "Double chance X2", "dc_12": "Double chance 12",
+    "tt_h_o0.5": "Team total domicile Over 0.5", "tt_h_u0.5": "Team total domicile Under 0.5",
+    "tt_h_o1.5": "Team total domicile Over 1.5", "tt_h_u1.5": "Team total domicile Under 1.5",
+    "tt_h_o2.5": "Team total domicile Over 2.5", "tt_h_u2.5": "Team total domicile Under 2.5",
+    "tt_a_o0.5": "Team total exterieur Over 0.5", "tt_a_u0.5": "Team total exterieur Under 0.5",
+    "tt_a_o1.5": "Team total exterieur Over 1.5", "tt_a_u1.5": "Team total exterieur Under 1.5",
+    "tt_a_o2.5": "Team total exterieur Over 2.5", "tt_a_u2.5": "Team total exterieur Under 2.5",
     "mt1": "1re MT plus prolifique", "mte": "Égalité de mi-temps",
-    "mt2": "2e MT plus prolifique", "btts": "Les deux marquent",
+    "mt2": "2e MT plus prolifique", "btts": "Les deux marquent", "btts_no": "Les deux ne marquent pas",
 }
+
+def marche_of(sel):
+    for g, ks in MARKET_GROUPS:
+        if sel in ks:
+            return g
+    if _breacher.score_key(sel):
+        return "CS"
+    return "BTTS"
 
 
 def de_marge(cotes: dict):
@@ -68,9 +109,21 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
         "selections": [], "verdict": "NO_BET", "meilleure_ev": None,
     }
     probs = {k: v for k, v in analysis["probas"].items()}
+    cs = analysis.get("cs") or {}
+    bonus = _devig.load_bonus()
+    cotes = m.get("cotes") or {}
+    by_group = {}
+    for g, keys in MARKET_GROUPS:
+        present = {k: cotes[k] for k in keys if cotes.get(k)}
+        if present:
+            by_group[g] = _devig.multiplicative(present)
     single_verdicts = []
-    for sel, cote in (m.get("cotes") or {}).items():
+    for sel, cote in cotes.items():
         p = probs.get(sel)
+        if p is None:
+            sk = _breacher.score_key(sel)
+            if sk and sk in cs:
+                p = cs[sk]
         if p is None:
             continue
         mise_max = pool["mise_max_pct_bankroll"] if tier == "top5" else pool["mise_max_pct_exotique"]
@@ -85,6 +138,7 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
         else:
             verdict = "NO_BET"
         mise = None
+        f = None
         if verdict == "VALUE":
             f = kelly(p, cote, pool["kelly_fraction"])
         elif verdict == "THIN":
@@ -92,8 +146,8 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
         if verdict in ("VALUE", "THIN") and f:
             f = min(f, mise_max)
             mise = round(f * 100, 2)  # 1u = 1% bankroll
-        out_item["selections"].append({
-            "marche": next((g for g, ks in MARKET_GROUPS for kk in ks if kk == sel), None) or "BTTS",
+        rec = {
+            "marche": marche_of(sel),
             "selection": sel,
             "selection_label": SELECTION_LABELS.get(sel, sel),
             "cote": cote,
@@ -102,13 +156,30 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
             "ev": round(ev, 4),
             "verdict": verdict,
             "mise_units": mise,
-        })
+        }
+        grp = rec["marche"]
+        dv = by_group.get(grp)
+        if dv and dv.get("ok") and sel in (dv.get("p_fair") or {}):
+            pf = dv["p_fair"][sel]
+            rec["p_fair"] = round(pf, 4)
+            rec["fair_odds"] = round(dv["fair_odds"][sel], 3)
+            enet = _devig.edge_net_devig(p, cote, pf)
+            rec["edge_net_devig"] = round(enet, 4) if enet is not None else None
+            dc = _devig.double_confirmation(p, cote, pf, bonus_pt=bonus)
+            rec["double_confirmation"] = dc.get("flag")
+        else:
+            rec["edge_net_devig"] = None
+            rec["double_confirmation"] = None
+            holes = list((dv or {}).get("holes") or [])
+            if holes:
+                rec["devig_holes"] = holes
+        out_item["selections"].append(rec)
         single_verdicts.append(verdict)
         if out_item["meilleure_ev"] is None or ev > out_item["meilleure_ev"]:
             out_item["meilleure_ev"] = round(ev, 4)
 
-    # De-marging propre (no-vig) par groupe
-    novig, _ = de_marge(m.get("cotes") or {}) if m.get("cotes") else ({}, None)
+    # De-marging propre (no-vig) par groupe — tri EV inchange
+    novig, _ = de_marge(cotes) if cotes else ({}, None)
     for sel_obj in out_item["selections"]:
         sel_obj["cote_juste_marche"] = (
             round(1 / novig[sel_obj["selection"]], 3) if sel_obj["selection"] in novig else None

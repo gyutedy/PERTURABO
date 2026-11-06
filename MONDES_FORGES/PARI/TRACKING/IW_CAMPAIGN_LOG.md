@@ -1543,3 +1543,11 @@
 - Churn config/ : >2 changements / 7j hors calibration → churn_suspect.
 - Tests : test_one_writer / test_journal / test_churn. freeze_lot 7 args intact.
 - Prochain pack : S4 marches + devig. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T15:30:00Z] v3.4 — marches elargis + devig diagnostic (S4)
+
+- Memes matrices Poisson : O/U 0.5/1.5/3.5/4.5, DC, team totals, CS top N. Zero equation changee.
+- Devig multiplicatif diagnostic. Cote unique = hole. S>1 => fair_odds > cote. Tri EV inchange.
+- double_confirmation : P_modele > P_fair et EV>0. Bonus 1 pt `config/devig.json`.
+- Tests : test_markets + test_devig (2.75/3.40/2.50).
+- Prochain pack : S5 compose + priorite. Operateur : `/roi settle L-DWG` apres matchs.

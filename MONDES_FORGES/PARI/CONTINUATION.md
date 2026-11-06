@@ -229,6 +229,19 @@ Pack S3 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Evidence 2. Session = ce pack seul
 
 **Handoff** : pack S4 (marches elargis + devig). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S4 dans cette session.
 
+## ETAT v3.4 / v3.5.4b — MARCHES ELARGIS + DEVIG DIAGNOSTIC (2026-11-06)
+
+Pack S4 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph4 + Ph4b. Session = ce pack seulement.
+
+- [x] **Marches** : memes matrices Poisson. O/U 0.5, 1.5, 3.5, 4.5, DC 1X/X2/12, team totals, score exact (top N + cote fournie). Zero equation changee. `o2.5` / 1X2 / BTTS inchanges.
+- [x] **Devig** `F03_FORGEWARD/CODEBASE/devig.py` multiplicatif. Issue manquante / cote unique → holes, pas de fair. Invariant S>1 => fair_odds_i > cote_i.
+- [x] **Diagnostic** : `edge_net_devig` = P_modele/P_fair - 1. Tri EV = `P_modele * cote - 1` inchange.
+- [x] **double_confirmation** : P_modele > P_fair **et** P_modele * cote > 1. Bonus seuil `config/devig.json` (init 1 pt).
+- [x] **Tests** : `tests/test_markets.py`, `tests/test_devig.py` (triple 2.75/3.40/2.50). Zero reseau.
+- [x] **Docs** : GUIDE marches elargis, README, INDEX, schema analysis/predictions, PLAN S4 coche.
+
+**Handoff** : pack S5 (facteur compose + priorite marches). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S5 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

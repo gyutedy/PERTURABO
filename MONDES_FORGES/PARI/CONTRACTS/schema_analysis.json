@@ -39,8 +39,18 @@
               "mt1_plus": {"type": "number", "description": "P(MT1 > MT2)"},
               "mte": {"type": "number", "description": "P(MT1 = MT2) — inclut 0-0/0-0, tue le pari MT2"},
               "mt2_plus": {"type": "number", "description": "P(MT2 > MT1) ≠ part des buts en MT2"},
+              "o0.5": {"type": "number"}, "u0.5": {"type": "number"},
+              "o1.5": {"type": "number"}, "u1.5": {"type": "number"},
+              "o3.5": {"type": "number"}, "u3.5": {"type": "number"},
+              "o4.5": {"type": "number"}, "u4.5": {"type": "number"},
+              "dc_1x": {"type": "number"}, "dc_x2": {"type": "number"}, "dc_12": {"type": "number"},
+              "btts_no": {"type": "number"},
               "score_le_plus_probable": {"type": "string"}
             }
+          },
+          "cs": {
+            "type": "object",
+            "description": "Top N scores exacts (+ cles cotees). Meme matrice, zero equation changee."
           },
           "data_quality": {
             "type": "object",

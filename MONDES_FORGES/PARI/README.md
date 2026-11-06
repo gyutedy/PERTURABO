@@ -54,8 +54,8 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | Porte | Frégate | Produit | Validateur |
 |---|---|---|---|
 | 1 | TYRANT | `carte_verdict.json` (GO/NO-GO sur la carte de matchs, seuil EV ligue) | Warsmith |
-| 2 | F02 BREACHER | `analysis.json` (matrice de scores, probas 1X2 / O-U / mi-temps) | Warsmith |
-| 3 | F03 forgeWARD | `predictions.json` (EV par marché, Kelly, combinés) | Warsmith |
+| 2 | F02 BREACHER | `analysis.json` (matrice de scores, 1X2 / O-U 0.5–4.5 / DC / team totals / CS / mi-temps) | Warsmith |
+| 3 | F03 forgeWARD | `predictions.json` (EV brute inchangee, `edge_net_devig` diagnostic, Kelly, combinés) | Warsmith |
 | 4 | F05 PACKAGER | `pari_pack.json` + `dashboard.html` → Telegram/dash | Warsmith |
 
 `F01 SENTINEL` alimente les portes 1-2. `F00 RADAR` s'exécute avant Porte 1. `F06 TRACKER` après Porte 4 et nourrit `learnings/`.
@@ -68,8 +68,8 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 |---|---|---|---|
 | F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H via `FOOTBALL_DATA_ORG_KEY` dans env_pari — **pas Oracle**) | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
-| F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps | `analysis.json` |
-| F03 | FORGEWARD | De-marging (overround/Shin), EV, Kelly 1/4, scanner combinés | `predictions.json` |
+| F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis | `analysis.json` |
+| F03 | FORGEWARD | De-marging + **devig multiplicatif diagnostic** (jamais producteur de p), EV, Kelly 1/4, scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
 | F05 | PACKAGER | Pari pack final (TOP N=10-20) + dashboard HTML (charte IW) | `pari_pack.json` + `dashboard.html` |
 | F06 | TRACKER | Ledger des lots tokenises (`lots.json`, v2.2.8) + tickets, ROI. Settle CSV football-data. **N'apprend pas.** | `learnings/*` |

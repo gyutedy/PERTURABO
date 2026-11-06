@@ -57,28 +57,95 @@ def score_matrix(lh: float, la: float, rho: float = RHO_DC, max_goals: int = MAX
 
 
 def matrix_stats(m):
-    """Probas 1/X/2, O-U 2.5, BTTS, score le plus probable depuis une matrice."""
+    """Probas depuis la matrice. Equations inchangees. S4 = memes cellules, plus de marches."""
     p1 = px = p2 = po25 = pbtts = 0.0
+    ou_over = {0.5: 0.0, 1.5: 0.0, 3.5: 0.0, 4.5: 0.0}
+    tt_h = {0.5: 0.0, 1.5: 0.0, 2.5: 0.0}
+    tt_a = {0.5: 0.0, 1.5: 0.0, 2.5: 0.0}
     best_p, best_ij = 0.0, (0, 0)
+    scores = {}
     for i, row in enumerate(m):
         for j, p in enumerate(row):
+            tot = i + j
             if i > j:
                 p1 += p
             elif i == j:
                 px += p
             else:
                 p2 += p
-            if i + j >= 3:
+            if tot >= 3:
                 po25 += p
+            if tot >= 1:
+                ou_over[0.5] += p
+            if tot >= 2:
+                ou_over[1.5] += p
+            if tot >= 4:
+                ou_over[3.5] += p
+            if tot >= 5:
+                ou_over[4.5] += p
             if i >= 1 and j >= 1:
                 pbtts += p
+            if i >= 1:
+                tt_h[0.5] += p
+            if i >= 2:
+                tt_h[1.5] += p
+            if i >= 3:
+                tt_h[2.5] += p
+            if j >= 1:
+                tt_a[0.5] += p
+            if j >= 2:
+                tt_a[1.5] += p
+            if j >= 3:
+                tt_a[2.5] += p
+            scores[f"{i}-{j}"] = p
             if p > best_p:
                 best_p, best_ij = p, (i, j)
-    return {
+    out = {
         "1": p1, "X": px, "2": p2, "o2.5": po25, "u2.5": 1 - po25,
-        "btts": pbtts,
+        "btts": pbtts, "btts_no": 1.0 - pbtts,
+        "o0.5": ou_over[0.5], "u0.5": 1.0 - ou_over[0.5],
+        "o1.5": ou_over[1.5], "u1.5": 1.0 - ou_over[1.5],
+        "o3.5": ou_over[3.5], "u3.5": 1.0 - ou_over[3.5],
+        "o4.5": ou_over[4.5], "u4.5": 1.0 - ou_over[4.5],
+        "dc_1x": p1 + px, "dc_x2": px + p2, "dc_12": p1 + p2,
+        "tt_h_o0.5": tt_h[0.5], "tt_h_u0.5": 1.0 - tt_h[0.5],
+        "tt_h_o1.5": tt_h[1.5], "tt_h_u1.5": 1.0 - tt_h[1.5],
+        "tt_h_o2.5": tt_h[2.5], "tt_h_u2.5": 1.0 - tt_h[2.5],
+        "tt_a_o0.5": tt_a[0.5], "tt_a_u0.5": 1.0 - tt_a[0.5],
+        "tt_a_o1.5": tt_a[1.5], "tt_a_u1.5": 1.0 - tt_a[1.5],
+        "tt_a_o2.5": tt_a[2.5], "tt_a_u2.5": 1.0 - tt_a[2.5],
         "score_le_plus_probable": f"{best_ij[0]}-{best_ij[1]}",
+        "_scores": scores,
     }
+    return out
+
+
+def score_key(sel):
+    raw = str(sel or "").strip().lower()
+    if raw.startswith("cs_"):
+        raw = raw[3:]
+    parts = raw.replace(":", "-").split("-")
+    if len(parts) != 2:
+        return None
+    try:
+        i, j = int(parts[0]), int(parts[1])
+    except ValueError:
+        return None
+    if i < 0 or j < 0:
+        return None
+    return f"{i}-{j}"
+
+
+def top_scores(scores, n=10, extra_keys=None):
+    ranked = sorted((scores or {}).items(), key=lambda kv: -kv[1])
+    out = {}
+    for k, v in ranked[:n]:
+        out[k] = v
+    for key in extra_keys or []:
+        sk = score_key(key)
+        if sk and sk in scores:
+            out[sk] = scores[sk]
+    return out
 
 
 def half_total_distribution(m):
@@ -273,9 +340,12 @@ def analyse_match(m, avg):
     m_mt2 = score_matrix(lam_dom_mt2, lam_ext_mt2)
 
     probas = matrix_stats(m_total)
+    scores = probas.pop("_scores", {})
     probas.update(mt_probas(m_mt1, m_mt2))
+    cs = top_scores(scores, n=10, extra_keys=(m.get("cotes") or {}).keys())
 
     quality = "haute" if not flags else ("moyenne" if set(flags) <= {"sans_cotes", "mt_split_estimate", "mt_split_estimate_opp"} else "basse")
+    rounded = {k: (round(v, 4) if isinstance(v, float) else v) for k, v in probas.items()}
     return {
         "id": m["id"],
         "match": f"{m['dom']} vs {m['ext']}",
@@ -284,7 +354,8 @@ def analyse_match(m, avg):
             "dom_mt1": round(lam_dom_mt1, 3), "dom_mt2": round(lam_dom_mt2, 3),
             "ext_mt1": round(lam_ext_mt1, 3), "ext_mt2": round(lam_ext_mt2, 3),
         },
-        "probas": {k: (round(v, 4) if isinstance(v, float) else v) for k, v in probas.items()},
+        "probas": rounded,
+        "cs": {k: round(v, 4) for k, v in cs.items()},
         "data_quality": {"niveau": quality, "flags": flags},
     }
 
