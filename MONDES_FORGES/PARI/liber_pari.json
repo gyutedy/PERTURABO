@@ -62,7 +62,7 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-11-05T14:50:11Z",
+    "last_validation": "2026-11-06T14:29:28Z",
     "errors": []
   },
   "gate_decisions": {
@@ -94,8 +94,8 @@
   "siege_timestamps": {
     "start": "2026-10-29T08:26:34Z",
     "tyrant_done": "2026-11-03T19:45:29Z",
-    "intel_done": "2026-11-05T14:50:11Z",
-    "breach_done": "2026-11-05T14:50:11Z",
+    "intel_done": "2026-11-06T14:29:27Z",
+    "breach_done": "2026-11-06T14:29:28Z",
     "value_done": "2026-11-03T19:45:29Z",
     "herald_done": "2026-11-03T19:45:32Z",
     "pack_done": "2026-11-03T19:45:32Z",

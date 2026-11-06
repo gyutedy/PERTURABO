@@ -1560,3 +1560,9 @@
 - Doctrine : edge = modele calibre + news plus rapide que le book local ; pas d arbitrage.
 - Tests : test_compose + test_market_priority. e2e_listen 113/113.
 - Prochain pack : S6 fit + baseline. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T14:29:27Z] F01 — check-out — status: processing
+
+## [2026-11-06T14:29:27Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:2353252d187a92a061234977925fb65a — status:done
+
+## [2026-11-06T14:29:28Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:ec57aa0779370ddbcdfd3e9e4a59f2f8 — status:done
