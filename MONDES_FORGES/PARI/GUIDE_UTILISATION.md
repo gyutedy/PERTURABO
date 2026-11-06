@@ -115,9 +115,13 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
    v3.5 : chaque ticket porte `ev_compose_net` = produit `(1+edge_net)-1` (precision
    machine, `1.03*1.05-1 = 8.15%`). `jambe_edge_net_negatif` = info, **pas rejet**.
-   Priorite marches : palier suivant si >= 30 tickets mesures (G/P). corners/cards
-   fermes sans data → holes, jamais ouverts. Edge = modele calibre + news plus rapide
-   que le book local ; **pas d arbitrage**. Tri EV brute inchange.
+    Priorite marches : palier suivant si >= 30 tickets mesures (G/P). corners/cards
+    fermes sans data → holes, jamais ouverts. Edge = modele calibre + news plus rapide
+    que le book local ; **pas d arbitrage**. Tri EV brute inchange.
+    v3.10.9b : Kelly **1/8** defaut. **1/4** seulement si ECE walk-forward <= 0.03
+    **et** P(EV>0) >= 0.55 **et** n>=50. P/ECE absents = 1/8 + holes. n<50 jamais 1/4.
+    Combo = un tirage MC conjoint toutes jambes. Fraction journalisee
+    (`kelly_fraction`). Le budget operateur (`mise_fc`) n est **pas** Kelly.
 4. **Placement** : tu poses les tickets chez Winner Bet. F06 a deja fige le lot
    (token) + **journal.procedure** (checks, trous, seuils, Kelly — immutable).
    Apres les matchs : `/roi settle L-XXX` pose **journal.outcome** (mise, cote,

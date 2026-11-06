@@ -69,9 +69,9 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H via `FOOTBALL_DATA_ORG_KEY` dans env_pari — **pas Oracle**). S7 = O2.5 empirique + walk-forward | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
 | F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis. S6 = fit ligue (rho, bonus) + baseline saison EMA | `analysis.json` |
-| F03 | FORGEWARD | De-marging + **devig multiplicatif defaut** + additif 2e passe (S8, jamais producteur de p), EV, Kelly 1/4, scanner combinés | `predictions.json` |
+| F03 | FORGEWARD | De-marging + **devig multiplicatif defaut** + additif 2e passe (S8, jamais producteur de p), EV, Kelly 1/8→1/4 gate ECE (S10), scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
-| F05 | PACKAGER | Pari pack + combinator v3.5 (`ev_compose_net`, market_priority paliers) + dashboard | `pari_pack.json` + `tickets.json` |
+| F05 | PACKAGER | Pari pack + combinator v3.5 (`ev_compose_net`, market_priority paliers) + Kelly stamp S10 (fraction journalisee, `mise_fc` intact) + dashboard | `pari_pack.json` + `tickets.json` |
 | F06 | TRACKER | Ledger des lots tokenises (`lots.json`, v2.2.8) + tickets, ROI. Settle CSV + `book_odds_close` T-0 (S8) + CLV ratio (S9). Diag Platt/Beta/P(EV>0) n<50 = `/data diag` seulement. **N'apprend pas.** | `learnings/*` |
 | TYRANT | Le Tyrant | Vision stratégique : GO/NO-GO carte, seuils EV, filtre ligues exotiques | `carte_verdict.json` |
 | ORCHESTRATOR | Le Nerf | Modes radar/siège/pack/tracker/demo, enchaîne les frégates | — |

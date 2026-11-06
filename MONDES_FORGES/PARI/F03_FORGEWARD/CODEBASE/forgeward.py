@@ -33,6 +33,7 @@ if _BREACHER not in sys.path:
     sys.path.insert(0, _BREACHER)
 import breacher as _breacher  # noqa: E402
 import devig as _devig  # noqa: E402
+import kelly_route as _kelly_route  # noqa: E402
 
 # Groupes de marchés mutuellement exclusifs (pour le de-marging)
 MARKET_GROUPS = [
@@ -210,10 +211,11 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
 
 
 def build_predications(intel, analyses, profile):
+    routed = _kelly_route.route_global()
     pool = {
         "seuil_ev_top5": profile.get("seuil_ev_top5", 0.03),
         "seuil_ev_exotique": profile.get("seuil_ev_exotique", 0.08),
-        "kelly_fraction": profile.get("kelly_fraction", 0.25),
+        "kelly_fraction": routed["fraction"],
         "mise_max_pct_bankroll": profile.get("mise_max_pct_bankroll", 0.05),
         "mise_max_pct_exotique": profile.get("mise_max_pct_exotique", 0.03),
     }
@@ -249,19 +251,27 @@ def build_predications(intel, analyses, profile):
         for s in best:
             p_tot *= s["p_modele"]
             c_tot *= s["cote"]
-        f = kelly(p_tot, c_tot, profile.get("combiné_kelly_fraction", 0.125)) if p_tot * c_tot > 1 and c_tot > 1 else 0.0
+        combo_legs = [{"match_id": s["match_id"], "selection": s["selection"],
+                       "cote": s["cote"], "p_modele": s["p_modele"]} for s in best]
+        combo_route = _kelly_route.route_ticket(jambes=combo_legs)
+        f = kelly(p_tot, c_tot, combo_route["fraction"]) if p_tot * c_tot > 1 and c_tot > 1 else 0.0
         mise = round(min(f * 100, 1.0), 2)  # max 1u
         combines.append({
-            "jambes": [{"match_id": s["match_id"], "selection": s["selection"],
-                        "cote": s["cote"], "p_modele": s["p_modele"]} for s in best],
+            "jambes": combo_legs,
             "cote_totale": round(c_tot, 2),
             "ev_combine": round(ev_comb, 4),
             "mise_units": mise,
+            "kelly_fraction": combo_route["fraction"],
+            "kelly_label": combo_route["label"],
+            "kelly_holes": list(combo_route.get("holes") or []),
         })
     return {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "seuil_ev_applique": pool["seuil_ev_top5" if tier == "top5" else "seuil_ev_exotique"],
         "ligue_tier": tier,
+        "kelly_fraction": routed["fraction"],
+        "kelly_label": routed["label"],
+        "kelly_holes": list(routed.get("holes") or []),
         "predictions": predictions,
         "combines": combines,
     }

@@ -1599,3 +1599,12 @@
 - F06 Platt 2 params + Beta-Binomial + P(EV>0) MC seede. n<50 = diagnostic `/data diag`, jamais verdict/mise.
 - Tests : test_f06_diag.py. F06 n'apprend pas.
 - Prochain pack : S10 Kelly. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T19:20:00Z] v3.10.9b — routage Kelly 1/8 vers 1/4 gate ECE (S10)
+
+- Config : defaut 0.125, plafond 0.25, P(EV>0) 0.55, ECE 0.03, n_lock 50.
+- 1/4 seulement si ECE walk-forward <= 0.03 et P(EV>0) >= 0.55 et n>=50. Sinon 1/8.
+- P/ECE absents = 1/8 + holes. n<50 jamais 1/4.
+- Combo = MC conjoint toutes jambes. Fraction journalisee. Budget operateur (`mise_fc`) intact.
+- Tests : test_kelly_route.py. F06 n'apprend pas.
+- Prochain pack : S11 /marchés + tickets. Operateur : `/roi settle L-DWG` apres matchs.

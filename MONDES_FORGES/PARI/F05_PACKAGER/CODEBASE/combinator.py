@@ -33,10 +33,14 @@ from datetime import datetime, timezone
 import math
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
+_FORGE = os.path.normpath(os.path.join(_HERE, "..", "..", "F03_FORGEWARD", "CODEBASE"))
 if _HERE not in sys.path:
     sys.path.insert(0, _HERE)
+if _FORGE not in sys.path:
+    sys.path.insert(0, _FORGE)
 import compose as _compose  # noqa: E402
 import market_priority as _prio  # noqa: E402
+import kelly_route as _kelly_route  # noqa: E402
 
 JAMBES_MAX_DEF = 4   # au-delà : division en deux classes (A puis B)
 
@@ -189,7 +193,7 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
         for s in sel_list:
             p_agg *= (s.get("p_modele") or 0.5)
         composed = _compose.compose_ticket(sel_list)
-        tickets_out.append({
+        rec = {
             "rang_ticket": i + 1, "classe": classe if i == 0 else ("AUTRE" if (not mises or mises[i] is None) else "FILE_MIXTE"),
             "nb_jambes": len(sel_list), "jambes": sel_list,
             "cote_totale": round(cote_totale, 2), "p_aggregee": round(p_agg, 3),
@@ -198,7 +202,9 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
             "ev_compose_net": composed.get("ev_compose_net"),
             "compose_flags": composed.get("compose_flags") or [],
             "compose_holes": composed.get("compose_holes") or [],
-        })
+        }
+        _kelly_route.stamp_ticket(rec)
+        tickets_out.append(rec)
 
     alloue = sum(t["mise_fc"] for t in tickets_out)
     out = {"tickets": tickets_out,

@@ -307,6 +307,20 @@ Pack S9 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph8b + Ph9. Session = ce pack seul
 
 **Handoff** : pack S10 (Kelly 1/8 vers 1/4 gate ECE). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S10 dans cette session.
 
+## ETAT v3.10.9b — ROUTAGE KELLY 1/8 VERS 1/4 GATE ECE (2026-11-06)
+
+Pack S10 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph9b. Session = ce pack seulement.
+
+- [x] **Config** `config/kelly.json` : fraction defaut 0.125, plafond 0.25, p_ev_positif 0.55, ece 0.03, n_lock 50.
+- [x] **Route** `F03_FORGEWARD/CODEBASE/kelly_route.py` : `calibration_validee` = ECE walk-forward <= 0.03. 1/4 seulement si calibration OK **et** P(EV>0) >= 0.55 **et** n>=50. Sinon 1/8. P/ECE absents = 1/8 + holes. n<50 jamais 1/4.
+- [x] **Forgeward** : `build_predications` prend la fraction `route_global()` (plus le 0.25 profil). Combo = `route_ticket` MC conjoint toutes jambes.
+- [x] **Combinator** : stamp `kelly_fraction` / `kelly_label` / `kelly_holes` / `kelly_p_ev` / `kelly_ece` / `kelly_calibration_validee` sur chaque ticket. **`mise_fc` intact** (budget operateur hors Kelly).
+- [x] **Journal** : `freeze_lot` pose la procedure Kelly (fraction, ECE, P, holes, checks). Journal lit `kelly_fraction` des tickets.
+- [x] **Tests** : `tests/test_kelly_route.py`. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, schema ticket/ledger, PLAN S10 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S11 (`/marchés` + tickets 1..n+10). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S11 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
@@ -325,7 +339,7 @@ Pack S9 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph8b + Ph9. Session = ce pack seul
 | Marchés actifs | MT2 prolifique (signature, cote ~2.10), O/U 1.5, O/U 2.5, 1N2, brit? BTTS | La même matricefique de scores produit tout ; O/U 1.5 et O/U 2.5 sont des marchés distincts (cible le nombre total de buts) |
 | Moteur | Dixon-Coles + Poisson par mi-temps, pur Python | zéro dépendance, Replit/Action-ready; `penaltyblog` en option avancée |
 | Seuils EV | 3% standard / 8% ligues exotiques (flag dans fixtures) | doctrine TYRANT ; auto-ajusté par calibration au fil des tickets |
-| Mises | ou Kelly 1/4, max 5% bankroll ; combiné : Kelly 1/8, max 1u, toutes jambes +EV | protection against ruin |
+| Mises | Kelly 1/8 defaut, 1/4 si ECE walk-forward <= 0.03 et P(EV>0) >= 0.55 et n>=50 ; max 5% bankroll ; combiné : MC conjoint, max 1u ; budget FC operateur intact | protection against ruin |
 | Frégates LLM | TYRANT + HERALD seulement, clé unique optionnelle `ORACLE_API_KEY` (OpenAI-compatible) | l'oracle n'interprète pas les chiffres — jamais |
 | Canal | Telegram privé **bidirectionnel** : Worker CF (webhook) → `pari_listen.yml` → `workflow.py` → notifier. 1 operateur (`chat_id`). Capture v1 = texte colle meme message. | discrétion + mobile ; GitHub n'est pas always-on |
 | Données | whitelist : Football-Data.co.uk, ClubElo, API-Football, football-data.org, Understat | FBref xG retiré 01/2026 — source morte |

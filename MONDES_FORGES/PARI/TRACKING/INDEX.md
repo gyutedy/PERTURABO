@@ -16,6 +16,9 @@ Cartographie des journaux du monde.
 | `F06_TRACKER/CODEBASE/journal.py` | Journal 2 volets : procedure (freeze, immutable) + outcome (settle). Holes, jamais 0. | ledger.py freeze_lot / settle_lot |
 | `F06_TRACKER/CODEBASE/clv.py` | `clv = cote_prise / cote_cloture - 1`. Agregats median / % >0 / mean_w. Combo = produit closes. | ledger.settle_lot |
 | `F06_TRACKER/CODEBASE/diag.py` | Platt + Beta-Binomial + P(EV>0) MC seede. n<50 = diagnostic, jamais verdict/mise. | `/data diag` |
+| `F03_FORGEWARD/CODEBASE/kelly_route.py` | Kelly 1/8 defaut, 1/4 si ECE<=0.03 et P(EV>0)>=0.55 et n>=50. Combo MC conjoint. P/ECE absents = 1/8 + holes. | forgeward.py / combinator.py / ledger.freeze_lot |
+| `config/kelly.json` | fraction_default 0.125, plafond 0.25, p_ev_positif 0.55, ece 0.03, n_lock 50. | kelly_route.py |
+| `tests/test_kelly_route.py` | S10 : gate 1/4, n<50, absents + holes, MC conjoint, stamp sans toucher mise_fc | kelly_route.py |
 | `config/clv.json` | Cibles 55% / +0.5 pt, n_lock 50, n_variance 30, mc_seed 42. | clv.py / diag.py |
 | `ORCHESTRATOR/CODEBASE/churn.py` | Compteur `config/` : >2 changements / 7j hors calibration → `churn_suspect`. | config/churn.json |
 | `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif defaut + additif 2e passe. Gap journalise. Cote unique = hole. | forgeward.py |

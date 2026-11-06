@@ -132,6 +132,16 @@ def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_f
     if d not in sys.path:
         sys.path.insert(0, d)
     import journal as _journal
+    if procedure is None:
+        forge = os.path.join(WORLD, "F03_FORGEWARD", "CODEBASE")
+        if forge not in sys.path:
+            sys.path.insert(0, forge)
+        try:
+            import kelly_route as _kelly_route
+            extra = _kelly_route.procedure_extra_from_tickets(tickets_doc)
+            procedure = _journal.build_procedure(tickets_doc, extra=extra)
+        except Exception:
+            procedure = None
     _journal.attach_procedure(lot, tickets_doc, procedure=procedure)
     return lot
 

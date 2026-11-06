@@ -46,7 +46,13 @@ l'opérateur chez Winner Bet.
        "retour_si_gagne_fc": 24660.0,
        "ev_compose_net": 0.0815,    // S5 : produit (1+edge_net)-1, precision machine
        "compose_flags": [],         // jambe_edge_net_negatif = info, pas rejet
-       "compose_holes": []
+       "compose_holes": [],
+       "kelly_fraction": 0.125,     // S10 : 0.125 defaut, 0.25 si ECE<=0.03 et P(EV>0)>=0.55 et n>=50
+       "kelly_label": "1/8",
+       "kelly_holes": [],
+       "kelly_ece": null,
+       "kelly_p_ev": null,
+       "kelly_calibration_validee": false
      }
    ],
    "budget": {"budget_fc": 6000, "alloue_fc": 6000, "reste_fc": 0, "taux_fc_usd": null},
