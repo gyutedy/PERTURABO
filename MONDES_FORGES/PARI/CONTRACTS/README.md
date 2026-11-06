@@ -12,7 +12,7 @@ chaque frégate lit l'OUT de la précédente et écrit son propre OUT selon son 
 | `schema_notes_qualitatives.json` | F00 vote (`/capture`) / opérateur | TYRANT qualitative |
 | `schema_input_capture.json` | F01 SENTINEL | workflow.py Porte 1 |
 | `schema_listen.json` | ORCHESTRATOR LISTEN (Worker) | pari_listen.yml, workflow.py |
-| `schema_ledger.json` | F06 TRACKER (lots tokenises v2.2.8) | workflow.py `/valider-2`, `/data ledger`, `/roi settle` |
+| `schema_ledger.json` | F06 TRACKER (lots tokenises v2.2.8, `bundle_id` v3.2) | workflow.py `/valider-2`, `/data ledger`, `/roi settle` |
 
 ## Règles communes
 

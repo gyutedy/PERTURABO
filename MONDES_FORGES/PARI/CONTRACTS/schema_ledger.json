@@ -20,6 +20,7 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
       "token": "L-K7M",
       "campagne": "PARI-20261031",
       "capture_id": "C-AB3",
+      "bundle_id": "B-K7M",
       "created_at": "ISO8601",
       "status": "OUVERT|SETTLE_PARTIEL|SETTLE",
       "budget_fc": 3000,
@@ -64,3 +65,4 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
 2. Snapshot T0 fige cotes, p, EV, score, qualite, budget. Modifier top3 apres coup ne change pas le lot.
 3. Settle : CSV ligue/date football-data.co.uk. Match absent → `EN_ATTENTE`, jamais invente.
 4. `/stop` ne touche pas les lots deja figes.
+5. `bundle_id` (S2) = reference SHA-256 du research bundle pose a `/valider-1`. Absent si bundle rate (trou, pas invente).

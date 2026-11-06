@@ -23,8 +23,8 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
      → /capture (tableau markdown DANS le meme message)
      → /budget 3000 800 (plafond lot + mise FORCEE ticket sur)  ← retaper avant CHAQUE lot
      → /combos 3:3:2:2
-     → /valider-1 → PREVIEW 1 (données brutes) → relecture
-     → /valider-2 → PREVIEW 2 + token L-XXX (lot F06, anti-cannibal)
+      → /valider-1 → PREVIEW 1 (données brutes) + research bundle SHA-256 → relecture
+      → /valider-2 → PREVIEW 2 + token L-XXX (lot F06, anti-cannibal, bundle_id)
 Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 (autre token, autres marches)
 Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
 ```
@@ -47,7 +47,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. |
 | `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
 | `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. Inconnu = refuse, pas crash. |
-| `/status` | État campagne. `/status ledger` = lots ouverts + jambes consommees. |
+| `/status` | État campagne + ligne doctor (GO/CHECK/FAIL, gate n). `/status ledger` = lots. `/status doctor` = evidence complete (cles **noms seulement**, contrats, whitelist, cache, CLV). |
 
 Exemple compact (`/data`) :
 
@@ -97,8 +97,10 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
       n'utilise `predictions_filtered.json` que si des notes qualitatives ont tourne
       **cette** campagne (plus de Top 3 Cyclops stale). e2e_final (v2.2.3) aligne la
       carte stats dans `matches.json` apres le siege de test ; la garde prod reste.
-   Puis F02 (Poisson/Dixon-Coles) → F03 (de-marging, EV, Kelly) → filtre qualitatif
-   (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html).
+    Puis F02 (Poisson/Dixon-Coles) → F03 (de-marging, EV, Kelly) → filtre qualitatif
+    (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
+    + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`
+    pour l evidence GO/CHECK/FAIL (cles = noms, jamais les valeurs).
 3. **/valider-2** (v2.2.8) : tickets depuis la classe de fiabilité (ticket sûr = scores
    les plus hauts, reste réparti ; FAIBLE / NO BET exclus) + **anti-cannibal**
    (exclusion `(match_id, marche, selection)` deja sortis sur cette capture ; prochain

@@ -1528,3 +1528,10 @@
 - Whitelist Championship = E1, Bundesliga 2 = D2. CSV de leur ligue, jamais E0/D1. LaLiga 2 reste rejete.
 - Tests : `tests/test_input_capture_moins_plus.py`. e2e_listen L12 E1/D2. Zero reseau. Pas de scrape.
 - Prochain pack : S2 doctor + research bundle. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T13:00:00Z] v3.1/v3.2 — doctor + research bundle (S2)
+
+- Doctor offline : GO/CHECK/FAIL, cles = noms, gate n, CLV < -3 pts = FAIL, CLV absent = trou.
+- Research bundle SHA-256 a `/valider-1`. Gap declare. Token L-XXX porte `bundle_id` (kwargs freeze_lot).
+- `/status doctor` Telegram. Tests `test_doctor.py` + `test_research_bundle.py`.
+- Prochain pack : S3 one-writer + journal. Operateur : `/roi settle L-DWG` apres matchs.

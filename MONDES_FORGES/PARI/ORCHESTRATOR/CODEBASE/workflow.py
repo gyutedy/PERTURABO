@@ -21,7 +21,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
    /pack [N]        assemble le pari pack TOP N (defaut 10)
    /match ID        fiche siege d'un match (id M1 ou rang 1-based)
    /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
-   /status          état de la campagne.  /status ledger = lots + jambes consommees
+   /status          état de la campagne.  /status ledger = lots.  /status doctor = evidence GO/CHECK/FAIL
    /stop            ferme la campagne (lots F06 intacts, consumed reset)
 
 L'état vit dans SHARED/STATE/campagne.json — la conversation elle-même reste la
@@ -418,6 +418,23 @@ def cmd_valider1(st, arg):
     if not ok2:
         tell("⛔ Siège en échec — corrige la carte, puis `/valider-1`."); return
     st["previews"]["preview1"] = "SHARED/OUT/preview1.html"
+    bundle_id = None
+    try:
+        rb_dir = HERE
+        if rb_dir not in sys.path:
+            sys.path.insert(0, rb_dir)
+        import research_bundle as _rb
+        man = _rb.build_bundle(
+            world=WORLD, campagne=st.get("campagne"),
+            capture_id=st.get("capture_id"))
+        bundle_id = man.get("bundle_id")
+        st["bundle_id"] = bundle_id
+        holes = man.get("holes") or []
+        if holes:
+            print(f"[WF] research_bundle {bundle_id} holes={holes}")
+    except Exception as e:
+        print(f"[WF] research_bundle gracieux: {e}")
+        st["bundle_id"] = None
     save(st)
     t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
     rows = t3.get("matchs") or []
@@ -436,12 +453,14 @@ def cmd_valider1(st, arg):
         tell(f"VALIDATION 1 : JSON OK, siege **NO BET** ({why}).\n"
              f"{counts} — {names}\n"
              "PREVIEW 1 ecrasee (plus de demo). `/data` pour la liste.\n"
-             "Ne pas `/valider-2` — aucun ticket a composer.")
+             + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
+             + "Ne pas `/valider-2` — aucun ticket a composer.")
         return
     tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
          f"{counts} — {names}\n"
          "PREVIEW 1 : SHARED/OUT/preview1.html\n"
-         "→ relis ; si ok : `/combos <n>` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
+         + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
+         + "→ relis ; si ok : `/combos <n>` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
          "`/data` pour les rangs.")
 
 
@@ -498,7 +517,7 @@ def cmd_valider2(st, arg):
         st["capture_id"] = led.new_capture_id()
     lot = led.freeze_lot(
         token, st.get("campagne"), st.get("capture_id"),
-        tj, new_legs, budget, sur)
+        tj, new_legs, budget, sur, bundle_id=st.get("bundle_id"))
     led.append_lot(lot)
     st["consumed_legs"] = consumed + new_legs
     st["current_token"] = token
@@ -548,6 +567,14 @@ def cmd_data(st, arg):
     tell(f"notes: {n_notes}\n" + body)
 
 
+def _doctor():
+    d = HERE
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import doctor as _doc
+    return _doc
+
+
 def cmd_status(st, arg):
     head = (arg or "").strip().split()
     if head and head[0].lower() == "ledger":
@@ -556,6 +583,11 @@ def cmd_status(st, arg):
         body = led.format_lots(box, campagne=st.get("campagne"),
                                consumed=st.get("consumed_legs") or [])
         tell(body)
+        return
+    if head and head[0].lower() == "doctor":
+        doc = _doctor()
+        report = doc.diagnose(world=WORLD, code_world=WORLD)
+        tell(doc.format_telegram(report))
         return
     lines = [f"📋 Campagne : {st.get('campagne') or '— aucune —'}"]
     lines += [f"  • {k}: {v}" for k, v in (st.get("steps") or {}).items()]
@@ -566,6 +598,17 @@ def cmd_status(st, arg):
     if tok:
         lines.append(f"  • lot courant: {tok} · capture {st.get('capture_id')} · "
                      f"jambes consommees: {len(st.get('consumed_legs') or [])}")
+    bid = st.get("bundle_id")
+    if bid:
+        lines.append(f"  • bundle: {bid}")
+    try:
+        doc = _doctor()
+        report = doc.diagnose(world=WORLD, code_world=WORLD)
+        gate = report.get("gate") or {}
+        lines.append(f"  • doctor: {report.get('verdict')} · gate {gate.get('niveau')} "
+                     f"(n={gate.get('n_tickets')}) — `/status doctor`")
+    except Exception as e:
+        lines.append(f"  • doctor: trou ({e})")
     tell("\n".join(lines))
 
 
@@ -724,7 +767,7 @@ CMDS = {
     "radar": (cmd_radar, "scan carte (skip stats incompletes)"),
     "pack": (cmd_pack, "pari pack TOP N"),
     "match": (cmd_match, "fiche match (id ou rang)"),
-    "status": (cmd_status, "état ; /status ledger = lots + consumed"),
+    "status": (cmd_status, "état ; /status ledger = lots ; /status doctor = evidence"),
     "roi": (cmd_roi, "ROI ; /roi settle L-XXX"),
     "stop": (cmd_stop, "ferme la campagne (lots F06 intacts)"),
 }

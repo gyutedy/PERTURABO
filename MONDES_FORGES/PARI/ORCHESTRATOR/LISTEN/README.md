@@ -71,7 +71,7 @@ refuse par `workflow.py`.
 football-data ; un club hors CSV skip CE match (pas NO BET global).
 `/valider-2` = tickets + anti-cannibal + token `L-XXX` (retaper `/budget`
 avant chaque lot Mode A). Aliases deja live : `/data ledger`,
-`/status ledger`, `/roi settle L-XXX`. `/data` = table compacte, `/data N` = fiche
+`/status ledger`, `/status doctor`, `/roi settle L-XXX`. `/data` = table compacte, `/data N` = fiche
 (parse.py + index.js alignes ; deploy auto via `worker_deploy.yml`). Relais `/data N` dans git.
 `FOOTBALL_DATA_ORG_KEY` (F00 rest_days), `API_FOOTBALL_KEY` (F00 calendrier) et
 `SPORTRADAR_API_KEY` (F00 notes voix 2) vivent dans `env_pari`. `workflow.py` les charge a chaque commande.

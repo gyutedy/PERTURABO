@@ -104,7 +104,8 @@ def find_lot(token, path=None):
     return None, box
 
 
-def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_fc, surticket_fc):
+def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_fc, surticket_fc,
+               bundle_id=None):
     snap_tickets = json.loads(json.dumps(tickets_doc.get("tickets") or []))
     snap_budget = json.loads(json.dumps(tickets_doc.get("budget") or {}))
     lot = {
@@ -124,6 +125,8 @@ def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_f
         },
         "settle": {"settled_at": None, "source": "football-data.co.uk", "tickets": []},
     }
+    if bundle_id:
+        lot["bundle_id"] = bundle_id
     return lot
 
 

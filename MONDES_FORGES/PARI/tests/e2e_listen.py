@@ -160,6 +160,9 @@ def main():
     r = parse.parse_update(upd("/status ledger"), CHAT)
     check("L4.status_ledger", r.get("ok") and r.get("cmd") == "/status ledger", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/status doctor"), CHAT)
+    check("L4.status_doctor", r.get("ok") and r.get("cmd") == "/status doctor", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/roi settle L-K7M"), CHAT)
     check("L4.roi_settle", r.get("ok") and r.get("cmd") == "/roi settle L-K7M", str(r.get("cmd")))
 

@@ -205,6 +205,18 @@ Verrou casse a R4 (pas ce pack) : infos non-binaires hors maths. Moins/Plus sans
 
 **Handoff** : pack S2 (doctor + research bundle). Operateur : `/roi settle L-DWG` apres les matchs. Ph0 rotation cles = Warsmith.
 
+## ETAT v3.1 / v3.2 — DOCTOR + RESEARCH BUNDLE (2026-11-06)
+
+Pack S2 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Evidence 1. Session = ce pack seulement.
+
+- [x] **Doctor** `ORCHESTRATOR/CODEBASE/doctor.py --offline --json` : GO / CHECK / FAIL. Cles = **noms seulement** (jamais les valeurs). Contrats vs champs required. Whitelist vs connecteurs (E1/D2 ESPN = holes, pas invente). Cache fraicheur + trous. Gate : n<300 bruit ; 300-499 observation ; >=500 verdict moteur. Exception : CLV median 30j < -3 pts = FAIL. CLV absent = trou, pas 0.
+- [x] **Research bundle** `research_bundle.py` : a `/valider-1`, dossier `ARCHIVUM/research/B-XXX` + `manifest.json` SHA-256. `--verify`. Gap declare, jamais comble. `freeze_lot(..., bundle_id=)` optionnel (kwargs, e2e freeze_lot 7 args intact).
+- [x] **Telegram** : `/status` ligne doctor. `/status doctor` evidence complete. Relais parse.py + Worker (`status` extra deja cable). `/help` liste `/status doctor`.
+- [x] **Tests** : `tests/test_doctor.py`, `tests/test_research_bundle.py`. e2e_listen L4.status_doctor. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, schema_ledger bundle_id, PLAN S2 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S3 (one-writer + journal proc/outcome). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S3 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

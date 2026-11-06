@@ -9,7 +9,10 @@ Cartographie des journaux du monde.
 | `TYRANT/TYRANT_LOG.md` | Verdicts de carte GO/NO-GO | TYRANT |
 | `TYRANT/QUALITATIVE_LOG.md` | Verdicts du filtre non-binaire borné (exclusions, seuils, NO BET rec.) | TYRANT qualitative |
 | `F05_TICKETS/F05_TICKETS_LOG.md` | Compositions de tickets + backroll par campagne (v2) | F05 combinator |
-| `SHARED/STATE/campagne.json` | État du cycle de campagne Telegram (/start → /valider-2). v2.2.8 `consumed_legs`, `capture_id`, `current_token`, `budget_seq`. v2.2.5 `bankroll_fc` persiste + `budget_fc`/`surticket_fc` forces. | workflow.py |
+| `SHARED/STATE/campagne.json` | État du cycle de campagne Telegram (/start → /valider-2). v2.2.8 `consumed_legs`, `capture_id`, `current_token`, `budget_seq`. v2.2.5 `bankroll_fc` persiste + `budget_fc`/`surticket_fc` forces. v3.2 `bundle_id`. | workflow.py |
+| `ORCHESTRATOR/CODEBASE/doctor.py` | Evidence GO/CHECK/FAIL (`--offline --json`). Cles = noms. Gate n<300 bruit / 300-499 observation / >=500 moteur. CLV median 30j < -3 pts = FAIL. | `/status` `/status doctor` |
+| `ORCHESTRATOR/CODEBASE/research_bundle.py` | Dossier `ARCHIVUM/research/B-XXX` + `manifest.json` SHA-256 a `/valider-1`. `--verify`. Gap declare, jamais comble. | workflow.py `/valider-1` |
+| `ARCHIVUM/research/` | Bundles hashés (gitignore). Token L-XXX porte `bundle_id`. | research_bundle.py |
 | `ARCHIVUM/learnings/lots.json` | Ledger F06 lots (token L-XXX = cle, snapshot T0). F06 n'apprend pas. | workflow.py `/valider-2`, ledger.py |
 | `CONTRACTS/schema_ledger.json` | Contrat lot / jambes / snapshot T0 / settle G/P/EN_ATTENTE | F06 ledger.py |
 | `ORCHESTRATOR/CODEBASE/data_view.py` | Vues `/data` compact + `/data N` fiche (affichage, jamais Poisson) | workflow.py `cmd_data` |
