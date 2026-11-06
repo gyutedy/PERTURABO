@@ -5,6 +5,7 @@ Bras opératoire des sources whitelist :
   - build-stats       : football-data.co.uk (SANS CLÉ) → stats Dom/Ext + split MT
   - build-elo         : ClubElo (SANS CLE) → carte Elo du jour (timeout = trou)
   - backtest-shares   : parts MT1 + pente Elo depuis CSV cache (offline)
+  - fit-league        : rho / bonus domicile / part_mt1 → league_params.json (offline)
   - fixtures-list     : calendrier live (API-Football ou football-data.org, CLE)
   - inject            : peuple une carte de matchs (stats + Elo) depuis la bibliothèque
   - telegram-test     : vérifie le bot (TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID)
@@ -252,6 +253,24 @@ def cmd_build_elo(args):
     return True
 
 
+def cmd_fit_league(args):
+    f02 = os.path.normpath(os.path.join(HERE, "..", "..", "F02_BREACHER", "CODEBASE"))
+    if f02 not in sys.path:
+        sys.path.insert(0, f02)
+    import league_fit
+    if args.csv:
+        rec = league_fit.fit_file(args.csv)
+        leagues = {}
+        if rec and rec.get("league_code"):
+            leagues[rec["league_code"]] = rec
+        blob = league_fit.wrap_blob(leagues)
+    else:
+        blob = league_fit.fit_dir(args.csv_dir)
+    league_fit.save_params(blob, args.out)
+    print(f"[CAPTEURS] fit-league {len(blob.get('leagues') or {})} ligue(s) → {args.out}")
+    return True
+
+
 def cmd_backtest_shares(args):
     import backtest
     elo_map = backtest.load_elo(args.elo)
@@ -432,12 +451,18 @@ def main():
     bs.add_argument("--elo", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "teams", "elo.json"))
     bs.add_argument("--out", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "learnings", "shares.json"))
 
+    flg = sub.add_parser("fit-league")
+    flg.add_argument("--csv", default=None)
+    flg.add_argument("--csv-dir", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "cache", "f00"))
+    flg.add_argument("--out", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "learnings", "league_params.json"))
+
     args = parser.parse_args()
     {"build-stats": cmd_build_stats, "build-elo": cmd_build_elo,
      "fixtures-list": cmd_fixtures_list, "inject": cmd_inject,
      "enrich": cmd_enrich, "odds-watch": cmd_odds_watch,
-     "telegram-test": cmd_telegram_test,
-     "backtest-shares": cmd_backtest_shares}[args.cmd](args)
+      "telegram-test": cmd_telegram_test,
+      "backtest-shares": cmd_backtest_shares,
+      "fit-league": cmd_fit_league}[args.cmd](args)
 
 
 if __name__ == "__main__":

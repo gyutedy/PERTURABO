@@ -1566,3 +1566,11 @@
 ## [2026-11-06T14:29:27Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:2353252d187a92a061234977925fb65a — status:done
 
 ## [2026-11-06T14:29:28Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:ec57aa0779370ddbcdfd3e9e4a59f2f8 — status:done
+
+## [2026-11-06T16:30:00Z] v3.6 — fit ligue + baseline saison recency (S6)
+
+- Fit stdlib CSV : rho (grille), bonus domicile clip [1.00, 1.25], part_mt1 → `league_params.json` (gitignore). n<4 / ligue absente → defaut + `params: default`.
+- Baseline saison EMA demi-vie 45j. Split att/def dom/ext stocke, pas injecte dans Poisson. Saison absente → fallback carte + hole.
+- Bonus 1.10 / rho -0.13 preserves si pas de fit (e2e intact). part_mt1 : shares > fit > mesure > 0.44.
+- Tests : test_league_fit + test_baseline. CLI `capteurs.py fit-league`.
+- Prochain pack : S7 empirique + walk-forward. Operateur : `/roi settle L-DWG` apres matchs.

@@ -19,6 +19,10 @@ Cartographie des journaux du monde.
 | `config/devig.json` | Bonus double_confirmation (init 1 pt). Pas un producteur de p. | devig.py |
 | `F05_PACKAGER/CODEBASE/compose.py` | EV compose net = produit (1+edge_net)-1. `jambe_edge_net_negatif` info, pas rejet. | combinator.py |
 | `config/market_priority.json` | Paliers marches. Palier suivant si >= 30 tickets mesures. corners/cards fermes → holes. | market_priority.py |
+| `F02_BREACHER/CODEBASE/league_fit.py` | Fit rho / bonus domicile / part_mt1 depuis CSV cache. n<4 → defaut. | capteurs.py `fit-league` |
+| `F02_BREACHER/CODEBASE/baseline.py` | Moyennes ligue saison complete + EMA 45j. Split att/def. Saison absente = trou. | breacher.league_averages |
+| `config/league_fit.json` | Demi-vie EMA, grille rho, clips, defauts (1.10 / -0.13 / 0.44). | league_fit.py / baseline.py |
+| `ARCHIVUM/learnings/league_params.json` | Parametres fit (gitignore). Ligue absente → `params: default`. | league_fit.py |
 | `F05_PACKAGER/CODEBASE/market_priority.py` | Gate palier + holes sans_data. n = settle G/P seulement. | combinator.py |
 | `config/` | Compteur churn versionne (`churn.json` au 1er record). Calibration exclue. | churn.py |
 | `ARCHIVUM/learnings/lots.json` | Ledger F06 lots (token L-XXX = cle, snapshot T0). F06 n'apprend pas. | workflow.py `/valider-2`, ledger.py |

@@ -257,6 +257,18 @@ Pack S5 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph4c + Ph4d. Session = ce pack seu
 
 **Handoff** : pack S6 (fit ligue + baseline saison recency). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S6 dans cette session.
 
+## ETAT v3.6 — FIT LIGUE + BASELINE SAISON RECENCY (2026-11-06)
+
+Pack S6 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph5 + Ph6. Session = ce pack seulement.
+
+- [x] **Fit** `F02_BREACHER/CODEBASE/league_fit.py` : rho (grille log-vraisemblance stdlib), bonus domicile `1+(mh-ma)/(mh+ma)` clip [1.00, 1.25], part_mt1. Sortie `ARCHIVUM/learnings/league_params.json` (gitignore). Ligue absente / n<4 → defauts + flag `params: default`.
+- [x] **Baseline** `F02_BREACHER/CODEBASE/baseline.py` : saison complete cachee, EMA demi-vie 45j (`config/league_fit.json`). Split att/def dom/ext par equipe (stocke, pas injecte dans Poisson). Saison absente → fallback carte + `holes: ["saison"]` + `baseline: carte`.
+- [x] **Cablage** `breacher.league_averages` / `analyse_match` : rho et bonus_domicile depuis le fit si present, sinon 1.10 / 0.95 / RHO_DC inchanges (e2e siege intact). `part_mt1` : shares > fit > mesure carte > 0.44. CLI `capteurs.py fit-league`.
+- [x] **Tests** : `tests/test_league_fit.py`, `tests/test_baseline.py`. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, PLAN S6 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S7 (empirique O2.5 + backtest walk-forward). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S7 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

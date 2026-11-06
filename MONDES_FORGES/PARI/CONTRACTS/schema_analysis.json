@@ -11,7 +11,14 @@
       "properties": {
         "buts_dom_moy": {"type": "number"},
         "buts_ext_moy": {"type": "number"},
-        "part_mt1_ligue": {"type": "number", "description": "≈0.42-0.44 par défaut, mesuré si data"}
+        "part_mt1_ligue": {"type": "number", "description": "≈0.42-0.44 par défaut, mesuré si data"},
+        "rho": {"type": "number", "description": "Dixon-Coles. Fit ligue ou defaut -0.13"},
+        "bonus_domicile": {"type": "number"},
+        "bonus_exterieur": {"type": "number"},
+        "baseline": {"type": "string", "description": "saison | carte"},
+        "params": {"type": "string", "description": "fitted | default"},
+        "flags": {"type": "array", "items": {"type": "string"}},
+        "holes": {"type": "array", "items": {"type": "string"}}
       }
     },
     "analyses": {

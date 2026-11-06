@@ -98,7 +98,9 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
       **cette** campagne (plus de Top 3 Cyclops stale). e2e_final (v2.2.3) aligne la
       carte stats dans `matches.json` apres le siege de test ; la garde prod reste.
     Puis F02 (Poisson/Dixon-Coles, **memes matrices** : O/U 0.5/1.5/3.5/4.5, DC 1X/X2/12,
-    team totals, score exact top N si cote) → F03 (EV = P_modele * cote - 1 inchange ;
+    team totals, score exact top N si cote. v3.6 : rho / bonus domicile fit sur CSV
+    saison si `league_params.json` present, sinon 1.10 / RHO_DC. Baseline = saison
+    EMA 45j, fallback carte si CSV absent. Equations inchangees.) → F03 (EV = P_modele * cote - 1 inchange ;
     `edge_net_devig` diagnostic seulement ; cote unique = hole, pas de fair) → filtre qualitatif
     (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
     + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`

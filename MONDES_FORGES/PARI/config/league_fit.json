@@ -1,0 +1,17 @@
+{
+  "note": "S6 — fit ligue (rho, bonus, part_mt1) + baseline saison EMA. Stdlib, zero reseau.",
+  "half_life_days": 45,
+  "min_matches": 4,
+  "rho_grid": {"lo": -0.25, "hi": 0.05, "step": 0.01},
+  "clip": {
+    "bonus_domicile": [1.0, 1.25],
+    "bonus_exterieur": [0.75, 1.05],
+    "rho": [-0.3, 0.05]
+  },
+  "defaults": {
+    "rho": -0.13,
+    "bonus_domicile": 1.1,
+    "bonus_exterieur": 0.95,
+    "part_mt1": 0.44
+  }
+}

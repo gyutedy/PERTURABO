@@ -265,8 +265,38 @@ def _part_mt1_measured(matchs):
     return parts / n
 
 
-def league_averages(matchs, ligue=None, league_code=None):
-    """Moyennes de la ligue (baseline) : buts domicile/ext sur l'échantillon."""
+def _fitted_params(code, params_path=None):
+    try:
+        import league_fit
+        return league_fit.params_for(code, path=params_path)
+    except Exception:
+        return None
+
+
+def _season_baseline(code, csv_dir=None, as_of=None):
+    try:
+        import baseline
+        return baseline.league_baseline(code, csv_dir=csv_dir, as_of=as_of)
+    except Exception:
+        return None
+
+
+def _part_mt1_from_fit(fitted):
+    if not isinstance(fitted, dict) or fitted.get("params") != "fitted":
+        return None
+    val = fitted.get("part_mt1") or fitted.get("part_mt1_ligue")
+    try:
+        f = float(val)
+    except (TypeError, ValueError):
+        return None
+    if 0.30 <= f <= 0.60:
+        return f
+    return None
+
+
+def league_averages(matchs, ligue=None, league_code=None,
+                    csv_dir=None, params_path=None, as_of=None):
+    """Moyennes ligue : saison cachee si presente, sinon echantillon carte."""
     dom_x, ext_x, n = 0.0, 0.0, 0
     for m in matchs:
         s = m.get("stats") or {}
@@ -279,13 +309,52 @@ def league_averages(matchs, ligue=None, league_code=None):
     if n == 0:
         raise ValueError("Aucune stat d'équipe valide — Zero Data, Zero Calc")
     code = _league_code_of(matchs, ligue=ligue, league_code=league_code)
-    part = _part_mt1_from_shares(code) or _part_mt1_measured(matchs) or DEFAULT_PART_MT1
-    return {
-        "buts_dom_moy": dom_x / n,
-        "buts_ext_moy": ext_x / n,
+    flags, holes = [], []
+    season = _season_baseline(code, csv_dir=csv_dir, as_of=as_of)
+    if season and season.get("buts_dom_moy") is not None:
+        buts_dom = season["buts_dom_moy"]
+        buts_ext = season["buts_ext_moy"]
+        baseline_src = "saison"
+    else:
+        buts_dom = dom_x / n
+        buts_ext = ext_x / n
+        baseline_src = "carte"
+        holes.append("saison")
+        flags.append("baseline: carte")
+    fitted = _fitted_params(code, params_path=params_path)
+    if fitted and fitted.get("params") == "fitted":
+        bonus_d = fitted.get("bonus_domicile", 1.10)
+        bonus_e = fitted.get("bonus_exterieur", 0.95)
+        rho = fitted.get("rho", RHO_DC)
+        params_src = "fitted"
+    else:
+        bonus_d = 1.10
+        bonus_e = 0.95
+        rho = RHO_DC
+        params_src = "default"
+        flags.append("params: default")
+    part = (_part_mt1_from_shares(code)
+            or _part_mt1_from_fit(fitted)
+            or _part_mt1_measured(matchs)
+            or DEFAULT_PART_MT1)
+    out = {
+        "buts_dom_moy": buts_dom,
+        "buts_ext_moy": buts_ext,
         "part_mt1_ligue": part,
         "league_code": code,
+        "rho": rho,
+        "bonus_domicile": bonus_d,
+        "bonus_exterieur": bonus_e,
+        "baseline": baseline_src,
+        "params": params_src,
+        "flags": flags,
+        "holes": holes,
     }
+    if season:
+        out["encaisses_dom_moy"] = season.get("encaisses_dom_moy", buts_ext)
+        out["encaisses_ext_moy"] = season.get("encaisses_ext_moy", buts_dom)
+        out["teams"] = season.get("teams") or {}
+    return out
 
 
 def half_split_lambda(lam_total, scored_mt1, conceded_mt1, flags, part_ligue=None):
@@ -319,9 +388,11 @@ def analyse_match(m, avg):
     def_dom = max(sd["encaisses"] / max(sd["mj"], 1) / avg["buts_ext_moy"], 0.05)
     def_ext = max(se["encaisses"] / max(se["mj"], 1) / avg["buts_dom_moy"], 0.05)
 
-    # Bonus domicile standard (~+10%)
-    lambda_dom = att_dom * def_ext * avg["buts_dom_moy"] * 1.10
-    lambda_ext = att_ext * def_dom * avg["buts_ext_moy"] * 0.95
+    bonus_d = avg["bonus_domicile"] if avg.get("bonus_domicile") is not None else 1.10
+    bonus_e = avg["bonus_exterieur"] if avg.get("bonus_exterieur") is not None else 0.95
+    rho = avg["rho"] if avg.get("rho") is not None else RHO_DC
+    lambda_dom = att_dom * def_ext * avg["buts_dom_moy"] * bonus_d
+    lambda_ext = att_ext * def_dom * avg["buts_ext_moy"] * bonus_e
 
     # Split mi-temps : part d'équipe si présente, part ligue sinon
     scored_mt1_dom = (sd["marques_mt1"] / sd["marques"]) if sd.get("marques_mt1") else None
@@ -335,9 +406,9 @@ def analyse_match(m, avg):
     lam_dom_mt2 = lambda_dom - lam_dom_mt1
     lam_ext_mt2 = lambda_ext - lam_ext_mt1
 
-    m_total = score_matrix(lambda_dom, lambda_ext)
-    m_mt1 = score_matrix(lam_dom_mt1, lam_ext_mt1)
-    m_mt2 = score_matrix(lam_dom_mt2, lam_ext_mt2)
+    m_total = score_matrix(lambda_dom, lambda_ext, rho=rho)
+    m_mt1 = score_matrix(lam_dom_mt1, lam_ext_mt1, rho=rho)
+    m_mt2 = score_matrix(lam_dom_mt2, lam_ext_mt2, rho=rho)
 
     probas = matrix_stats(m_total)
     scores = probas.pop("_scores", {})
@@ -380,6 +451,8 @@ def analyse_fixtures(matchs, ligue=None, league_code=None):
         }
     moy = {}
     for k, v in avg.items():
+        if k == "teams":
+            continue
         if isinstance(v, float):
             moy[k] = round(v, 4)
         else:
