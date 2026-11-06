@@ -1608,3 +1608,12 @@
 - Combo = MC conjoint toutes jambes. Fraction journalisee. Budget operateur (`mise_fc`) intact.
 - Tests : test_kelly_route.py. F06 n'apprend pas.
 - Prochain pack : S11 /marchés + tickets. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T19:45:00Z] v4.1 — /marches + tickets 1..n+10 + anti meme-navire (S11)
+
+- `/marches O/U2.5,MT2` (alias `/marchés`, option `mono`). Table couverture avant election.
+- 0 match au-dessus du seuil = 0 ticket. EV_FLOOR 0.03 inviolable. Combo plancher 0.05. Pas de remplissage.
+- 1 a n+10 jambes. Meme match interdit sur un ticket. Mono-marche = un seul marche / ticket.
+- Log append-only `market_election_log.json`. `/status` alerte concentration >60%.
+- Tests : test_marches.py. Relais parse.py + Worker + schema_listen.
+- Prochain pack : S12 scorer. Operateur : `/roi settle L-DWG` apres matchs.

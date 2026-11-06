@@ -359,6 +359,8 @@ def main():
     parser.add_argument("--mises-fc", default=None, help="mises explicites 3000:1000:1000")
     parser.add_argument("--taux-fc-usd", type=float, default=None, help="taux FC→USD pour les unités")
     parser.add_argument("--exclude-legs", default=None, help="JSON anti-cannibal (mode tickets)")
+    parser.add_argument("--markets", default=None, help="marches elus CSV (mode tickets)")
+    parser.add_argument("--mono", action="store_true", help="ticket mono-marche (mode tickets)")
     args = parser.parse_args()
 
     if args.mode == "imprime":
@@ -401,6 +403,10 @@ def main():
             cmd += ["--taux-fc-usd", str(args.taux_fc_usd)]
         if getattr(args, "exclude_legs", None):
             cmd += ["--exclude-legs", args.exclude_legs]
+        if getattr(args, "markets", None):
+            cmd += ["--markets", args.markets]
+        if getattr(args, "mono", False):
+            cmd += ["--mono"]
         r = subprocess.run(cmd)
         if r.returncode == 0:
             run_frigate(P("F05_PACKAGER", "CODEBASE", "preview2.py"))

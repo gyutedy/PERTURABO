@@ -23,6 +23,8 @@ KNOWN = (
     "budget",
     "surticket",
     "combos",
+    "marches",
+    "marchés",
     "valider-1",
     "valider-2",
     "valider1",
@@ -40,6 +42,7 @@ MAX_CAPTURE = 4096
 CANON = {
     "valider1": "valider-1",
     "valider2": "valider-2",
+    "marchés": "marches",
 }
 
 
@@ -125,6 +128,7 @@ def parse_update(update, allowed_chat_id):
                 "/bankroll 50000  (pot global, une fois)\n"
                 "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n"
                 "/combos 3  ou  /combos 3:3:2:2\n"
+                "/marches O/U2.5,MT2  (alias /marchés, option mono)\n"
                  "/valider-1\n"
                  "/valider-2  (lot + token L-XXX, anti-cannibal)\n"
                  "/data  /data N  /data ledger  /data diag\n"
@@ -178,7 +182,7 @@ def parse_update(update, allowed_chat_id):
     cmd = "/" + canon
     if extra.strip() and canon in (
         "budget", "combos", "bankroll", "surticket", "data", "status", "roi",
-        "radar", "pack", "match",
+        "radar", "pack", "match", "marches",
     ):
         cmd = cmd + " " + extra.split("\n", 1)[0].strip()
     return {

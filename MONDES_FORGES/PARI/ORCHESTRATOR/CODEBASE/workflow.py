@@ -13,8 +13,8 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
   valider-1        épingle le JSON capture → carte → siège → Top3 → PREVIEW 1
   /corriger-1      (rejoue /capture après correction de la capture OCR)
-  /marches O/U2.5,MT2   choisit les marchés visés pour la carte (=livrer infos)
-  /combos 3        nombre de tickets (option ^^ : 3:3:2:2 = jambes par ticket)
+  /marches O/U2.5,MT2   elit les marches (canon /marches, alias /marchés). Table couverture avant.
+  /combos 3        nombre de tickets (1 a n+10 jambes ; option 3:3:2:2)
   valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
     /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots.  /data diag = F06 CLV/Platt (jamais mise)
    /radar [N]       scan carte courante (skip matchs sans stats, trous declares)
@@ -80,6 +80,7 @@ def state():
             return json.load(f)
     return {"campagne": None, "steps": {}, "bankroll_fc": 0, "budget_fc": 0,
             "surticket_fc": 0, "combos": 3, "jambes": None, "marches": None,
+            "marches_mono": False,
             "capture": None, "capturer_statut": None, "previews": {},
             "capture_id": None, "consumed_legs": [], "budget_seq": 0,
             "last_lot_budget_seq": 0, "lots_alloue_jour": 0, "current_token": None}
@@ -127,15 +128,17 @@ def cmd_start(st, arg):
     st["current_token"] = None
     st["lots_alloue_jour"] = 0
     st["last_lot_budget_seq"] = 0
+    st["marches"] = None
+    st["marches_mono"] = False
     save(st)
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne **{st['campagne']}** ouverte.\n"
          + (f"Bankroll : **{br:.0f} FC** (persiste).\n" if br else
             "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
           + "1. Capture Winner Bet : `/capture` + tableau markdown DANS le meme message, ou photo avec caption `/capture`\n"
-         "2. `/budget 3000 800` (plafond lot + mise FORCEE ticket sur) et `/combos 3`\n"
-         "3. `/valider-1` → PREVIEW 1 (donnees brutes) → tu relis → `/valider-2`"
-         " apres verif → PREVIEW 2 + token L-XXX\n"
+         "2. `/budget 3000 800` (plafond lot + mise FORCEE ticket sur)\n"
+         "3. `/valider-1` → PREVIEW 1 + table couverture → `/marches O/U2.5,MT2` → `/combos 3` → `/valider-2`"
+         " → PREVIEW 2 + token L-XXX\n"
          "Mode A : meme capture, retape `/budget` puis `/valider-2` (lot 2).\n"
          "Mode B : `/stop` → `/start` → nouvelle capture.")
 
@@ -280,6 +283,14 @@ def cmd_surticket(st, text):
             ". Pose aussi `/budget JOUR SURTICKET`."))
 
 
+def _marches_mod():
+    d = P("F05_PACKAGER", "CODEBASE")
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import marches as _m
+    return _m
+
+
 def cmd_combos(st, text):
     if not st.get("campagne"):
         tell("⛔ Pas de campagne — `/start` d'abord."); return
@@ -295,8 +306,48 @@ def cmd_combos(st, text):
         st["jambes"] = ":".join(str(x) for x in vals[1:vals[0] + 1])
     st["steps"]["combos"] = _now()
     save(st)
-    tell(f"🧩 Tickets : **{st['combos']}**"
-         + (f" · jambes par ticket : {st['jambes']}" if st.get("jambes") else ""))
+    tell(f"Tickets : **{st['combos']}**"
+         + (f" · jambes par ticket : {st['jambes']}" if st.get("jambes") else "")
+         + " (1 a n+10 matchs distincts, meme navire interdit)")
+
+
+def cmd_marches(st, text):
+    if not st.get("campagne"):
+        tell("Pas de campagne — `/start` d'abord."); return
+    if not st.get("steps", {}).get("valider1"):
+        tell("Pas de Top 3 — `/valider-1` d'abord, table couverture avant election."); return
+    mmod = _marches_mod()
+    t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
+    raw = (text or "").strip()
+    if not raw:
+        tell(mmod.format_coverage(t3)
+             + "\nFormat : `/marches O/U2.5,MT2` (alias `/marchés`). `mono` = ticket mono-marche.")
+        return
+    canons, mono, inconnus = mmod.parse_marches_arg(raw)
+    if inconnus and not canons:
+        tell("Marche inconnu : " + ", ".join(inconnus)
+             + ". Ex. `/marches O/U2.5,MT2` ou `/marches 1X2 mono`."); return
+    n = mmod.coverage_n(t3, canons)
+    cov = mmod.format_coverage(t3, markets=canons)
+    if n == 0:
+        st["marches"] = canons
+        st["marches_mono"] = bool(mono)
+        st["steps"]["marches"] = _now()
+        save(st)
+        tell("0 match au-dessus du seuil — 0 ticket.\n" + cov)
+        return
+    st["marches"] = canons
+    st["marches_mono"] = bool(mono)
+    st["steps"]["marches"] = _now()
+    save(st)
+    try:
+        mmod.append_election(canons, campagne=st.get("campagne"), mono=mono)
+    except OSError as e:
+        print(f"[WF] election_log gracieux: {e}")
+    extra = " · MONO-MARCHE" if mono else ""
+    unk = (" · ignores: " + ", ".join(inconnus)) if inconnus else ""
+    tell("Marches elus : **" + ", ".join(canons) + "**" + extra + unk + "\n" + cov
+         + "\n→ `/combos` puis `/valider-2`. EV_FLOOR 3% inviolable. Meme match interdit.")
 
 
 def _capteurs():
@@ -456,11 +507,17 @@ def cmd_valider1(st, arg):
              + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
              + "Ne pas `/valider-2` — aucun ticket a composer.")
         return
+    cov = ""
+    try:
+        cov = "\n" + _marches_mod().format_coverage(t3)
+    except Exception as e:
+        print(f"[WF] couverture gracieux: {e}")
     tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
          f"{counts} — {names}\n"
          "PREVIEW 1 : SHARED/OUT/preview1.html\n"
          + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
-         + "→ relis ; si ok : `/combos <n>` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
+         + cov + "\n"
+         + "→ relis ; `/marches O/U2.5,MT2` → `/combos` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
          "`/data` pour les rangs.")
 
 
@@ -496,6 +553,18 @@ def cmd_valider2(st, arg):
            "--surticket-fc", str(sur)]
     if st.get("jambes"):
         cmd += ["--jambes", st["jambes"]]
+    if st.get("marches"):
+        cmd += ["--markets", ",".join(st["marches"])]
+        n_cov = 0
+        try:
+            n_cov = _marches_mod().coverage_n(t3, st["marches"])
+        except Exception:
+            n_cov = n_go
+        if n_cov == 0:
+            tell("0 match au-dessus du seuil — 0 ticket. Budget non engage.")
+            return
+    if st.get("marches_mono"):
+        cmd += ["--mono"]
     if consumed:
         os.makedirs(STATE_DIR, exist_ok=True)
         ex_path = os.path.join(STATE_DIR, "exclude_legs.json")
@@ -603,7 +672,9 @@ def cmd_status(st, arg):
     lines += [f"  • {k}: {v}" for k, v in (st.get("steps") or {}).items()]
     lines.append(f"  • bankroll: {st.get('bankroll_fc') or 0} FC (pot global)")
     lines.append(f"  • budget jour: {st.get('budget_fc')} FC · ticket sur FORCE: {st.get('surticket_fc')} FC"
-                 f" · combos: {st.get('combos')} · jambes: {st.get('jambes')}")
+                 f" · combos: {st.get('combos')} · jambes: {st.get('jambes')}"
+                 f" · marches: {st.get('marches')}"
+                 + (" · MONO" if st.get("marches_mono") else ""))
     tok = st.get("current_token")
     if tok:
         lines.append(f"  • lot courant: {tok} · capture {st.get('capture_id')} · "
@@ -619,6 +690,14 @@ def cmd_status(st, arg):
                      f"(n={gate.get('n_tickets')}) — `/status doctor`")
     except Exception as e:
         lines.append(f"  • doctor: trou ({e})")
+    try:
+        conc = _marches_mod().concentration()
+        if conc.get("alerte"):
+            share = conc.get("share") or 0
+            lines.append(
+                f"  • ALERTE concentration : {conc.get('max_marche')} = {share * 100:.0f}% des elections")
+    except Exception as e:
+        print(f"[WF] concentration gracieux: {e}")
     tell("\n".join(lines))
 
 
@@ -759,6 +838,8 @@ def cmd_stop(st, arg):
     st["budget_fc"] = 0
     st["surticket_fc"] = 0
     st["budget_seq"] = 0
+    st["marches"] = None
+    st["marches_mono"] = False
     save(st)
 
 
@@ -768,7 +849,9 @@ CMDS = {
     "bankroll": (cmd_bankroll, "pot global FC (persiste)"),
     "budget": (cmd_budget, "plafond jour + mise FORCEE ticket sur"),
     "surticket": (cmd_surticket, "force la mise du ticket sur"),
-    "combos": (cmd_combos, "nb tickets (+jambes)"),
+    "combos": (cmd_combos, "nb tickets (+jambes 1..n+10)"),
+    "marches": (cmd_marches, "elit les marches (alias /marchés)"),
+    "marchés": (cmd_marches, "alias accent"),
     "valider-1": (cmd_valider1, "valide preview 1 → siège"),
     "valider1": None,
     "valider-2": (cmd_valider2, "tickets + anti-cannibal + token L-XXX"),

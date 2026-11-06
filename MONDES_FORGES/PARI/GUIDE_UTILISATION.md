@@ -22,8 +22,9 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 /start → /budget bankroll 50000 (une fois, pot global — PAS /bankroll tant que Worker stale)
      → /capture (tableau markdown DANS le meme message)
      → /budget 3000 800 (plafond lot + mise FORCEE ticket sur)  ← retaper avant CHAQUE lot
-     → /combos 3:3:2:2
-      → /valider-1 → PREVIEW 1 (données brutes) + research bundle SHA-256 → relecture
+      → /valider-1 → PREVIEW 1 + table couverture → relecture
+      → /marches O/U2.5,MT2  (alias /marchés ; option `mono`)
+      → /combos 3:3:2:2
       → /valider-2 → PREVIEW 2 + token L-XXX (lot F06, anti-cannibal, bundle_id)
 Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 (autre token, autres marches)
 Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
@@ -38,9 +39,10 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
-| `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets (+ nb de matchs par ticket) |
-| `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) |
-| `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide. |
+| `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets + jambes (1 a n+10 matchs distincts). Meme match interdit sur un ticket. |
+| `/marches O/U2.5,MT2` | Elit les marches (canon `/marches`, alias `/marchés`). Table couverture (n, meilleur EV, marge). `mono` = ticket mono-marche. 0 match → 0 ticket. EV_FLOOR 3% inviolable. |
+| `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) + table couverture |
+| `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide, 0 match elu. |
 | `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
 | `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
 | `/data ledger` | Token + lots du jour (inchange). |
@@ -106,13 +108,19 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
     (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
     + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`
     pour l evidence GO/CHECK/FAIL (cles = noms, jamais les valeurs).
-3. **/valider-2** (v2.2.8) : tickets depuis la classe de fiabilité (ticket sûr = scores
+3. **/marches** (v4.1) : table couverture (n matchs EV>=3%, meilleur EV, marge).
+   `/marches O/U2.5,MT2` elit. Alias `/marchés`. `mono` = toutes les jambes d un ticket
+   = un seul marche. 0 match → 0 ticket, message honnete. EV_FLOOR 0.03 inviolable
+   (baisser = refuse). Combo plancher 0.05. Jamais jambe de remplissage. Meme match
+   = meme navire = interdit. 1 a n+10 jambes (`/combos 3:3:2:2` reste valide).
+   Log append-only ; `/status` alerte si un marche >60% des elections.
+3b. **/valider-2** (v2.2.8) : tickets depuis la classe de fiabilité (ticket sûr = scores
    les plus hauts, reste réparti ; FAIBLE / NO BET exclus) + **anti-cannibal**
    (exclusion `(match_id, marche, selection)` deja sortis sur cette capture ; prochain
    marche Top 3 libre ; plancher qualite fixe) + **backroll** (`/budget` retape avant
    chaque lot Mode A) → PREVIEW 2 + token `L-XXX` + snapshot T0 dans `ARCHIVUM/learnings/lots.json`.
-   Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE.
-   `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
+   Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE,
+   si 0 match elu. `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
    v3.5 : chaque ticket porte `ev_compose_net` = produit `(1+edge_net)-1` (precision
    machine, `1.03*1.05-1 = 8.15%`). `jambe_edge_net_negatif` = info, **pas rejet**.
     Priorite marches : palier suivant si >= 30 tickets mesures (G/P). corners/cards

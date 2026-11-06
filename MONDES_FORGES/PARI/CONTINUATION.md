@@ -321,6 +321,22 @@ Pack S10 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph9b. Session = ce pack seulement
 
 **Handoff** : pack S11 (`/marchés` + tickets 1..n+10). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S11 dans cette session.
 
+## ETAT v4.1 — /marches + TICKETS 1..n+10 + ANTI MEME-NAVIRE (2026-11-06)
+
+Pack S11 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. v4 R2 + R6. Session = ce pack seulement.
+
+- [x] **`/marches`** `workflow.cmd_marches`. `st["marches"]` jusqu a `/valider-2`. Canon ASCII `/marches`. Alias `/marchés` (parse.py + Worker + CMDS). Option `mono`.
+- [x] **Relais** : parse.py KNOWN + extra, Worker `index.js`, `schema_listen.json`, `/help`.
+- [x] **Couverture avant election** : n matchs EV>=3%, meilleur EV, marge (trou si absente). 0 match → 0 ticket, message honnete.
+- [x] **`ARCHIVUM/learnings/market_election_log.json`** append-only. `/status` alerte si un marche >60% des elections.
+- [x] **combinator `--markets`** : tri EV desc **dans** les marches elus. **Pas** de plafond 2 jambes. **1 a n+10** matchs / ticket (`/combos`).
+- [x] **Meme match = meme navire = interdit** (intra-ticket). Flag **mono-marche** : toutes les jambes = un seul marche.
+- [x] **EV_FLOOR 0.03 inviolable.** EV combo plancher 0.05. Jamais jambe de remplissage. Baisser le floor = refuse.
+- [x] **Tests** : `tests/test_marches.py` 38/38. e2e_listen 117/117. compose 24/24. kelly 56/56. Zero reseau.
+- [x] **Docs** : GUIDE cycle `/valider-1` → couverture → `/marches` → `/combos` → `/valider-2`. INDEX, README, PLAN S11 coche.
+
+**Handoff** : pack S12 (scorer eligibilite F03). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S12 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

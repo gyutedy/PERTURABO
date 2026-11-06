@@ -70,7 +70,8 @@ refuse par `workflow.py`.
 `/valider-1` injecte stats E0/SP1/I1/D1/F1/E1/D2 avec alias `LaLiga` + clubs
 football-data ; un club hors CSV skip CE match (pas NO BET global).
 `/valider-2` = tickets + anti-cannibal + token `L-XXX` (retaper `/budget`
-avant chaque lot Mode A). Aliases deja live : `/data ledger`,
+avant chaque lot Mode A). `/marches O/U2.5,MT2` (alias `/marchés`, option `mono`)
+relais parse.py + index.js. Aliases deja live : `/data ledger`,
 `/status ledger`, `/status doctor`, `/roi settle L-XXX`. `/data` = table compacte, `/data N` = fiche, `/data diag` = F06 CLV/Platt (n<50 jamais mise)
 (parse.py + index.js alignes ; deploy auto via `worker_deploy.yml`). Relais `/data N` dans git.
 `FOOTBALL_DATA_ORG_KEY` (F00 rest_days), `API_FOOTBALL_KEY` (F00 calendrier) et

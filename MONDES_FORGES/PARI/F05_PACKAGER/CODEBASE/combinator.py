@@ -41,8 +41,10 @@ if _FORGE not in sys.path:
 import compose as _compose  # noqa: E402
 import market_priority as _prio  # noqa: E402
 import kelly_route as _kelly_route  # noqa: E402
+import marches as _marches  # noqa: E402
 
-JAMBES_MAX_DEF = 4   # au-delà : division en deux classes (A puis B)
+JAMBES_MAX_DEF = 4
+EV_COMBO_FLOOR = _marches.EV_COMBO_FLOOR
 
 
 def _parse_mises(free_spec):
@@ -96,38 +98,98 @@ def apply_exclusion(events, exclude_legs, ev_floor=EV_FLOOR):
     return out
 
 
+def _pick_jambes(events, nj, mono=False, ev_floor=EV_FLOOR, combo_floor=EV_COMBO_FLOOR):
+    """1 match = 1 navire. Jamais 2 jambes du meme match. Jamais remplissage sous floor."""
+    picked = []
+    used = set()
+    marche_ticket = None
+    for e in events:
+        mid = str(e.get("id") or "")
+        if mid in used:
+            continue
+        tops = e.get("top3") or []
+        if not tops:
+            continue
+        top = tops[0]
+        m = _marches.canon_marche(top.get("marche"))
+        if mono and marche_ticket is None:
+            marche_ticket = m
+        if mono and m != marche_ticket:
+            continue
+        ev = top.get("ev")
+        try:
+            if ev is None or float(ev) < ev_floor:
+                continue
+        except (TypeError, ValueError):
+            continue
+        jambe = {
+            "match_id": e.get("id"), "match": e.get("match"),
+            "marche": top.get("marche") or "",
+            "selection": top.get("selection"),
+            "selection_label": top.get("selection_label"),
+            "cote": top.get("cote"), "p_modele": top.get("p_modele"),
+            "ev": top.get("ev"), "bucket": e.get("bucket"),
+            "score_commun": e.get("score_commun"),
+            "edge_net_devig": top.get("edge_net_devig"),
+            "devig_gap": top.get("devig_gap"),
+            "p_fair_additif": top.get("p_fair_additif"),
+        }
+        trial = picked + [jambe]
+        if len(trial) >= 2:
+            cev = _marches.combo_ev(trial)
+            if cev is not None and cev < combo_floor:
+                continue
+        picked.append(jambe)
+        used.add(mid)
+        if len(picked) >= nj:
+            break
+    return picked
+
+
 def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
             mises_free, jambes_max=JAMBES_MAX_DEF, mise_min=100.0, taux=None,
-            exclude_legs=None, lots_box=None, n_mesures=None, prio_cfg=None):
+            exclude_legs=None, lots_box=None, n_mesures=None, prio_cfg=None,
+            markets=None, mono=False, ev_floor=EV_FLOOR, combo_floor=EV_COMBO_FLOOR):
     """Compose les tickets + allocation de backroll. Renvoie (tickets sort, warnings)."""
     warnings = []
+    if _marches.refuse_floor(ev_floor):
+        return {"tickets": [], "budget": {"budget_fc": budget_fc, "alloue_fc": 0,
+                "reste_fc": budget_fc}}, ["EV_FLOOR 0.03 inviolable — baisser le floor refuse"]
     if exclude_legs:
-        pool_src = apply_exclusion(top3_events, exclude_legs)
+        pool_src = apply_exclusion(top3_events, exclude_legs, ev_floor=ev_floor)
     else:
         pool_src = top3_events
+    if markets is not None:
+        pool_src = _marches.filter_events(pool_src, markets, ev_floor=ev_floor)
     eligible = [w for w in pool_src if not w.get("no_bet_recommande")
                 and w.get("bucket") != "FAIBLE"
                 and any((w.get("top3") or []))]
-    eligible.sort(key=lambda e: (-e["score_commun"], e["rang_global"]))
+    if markets is not None:
+        eligible.sort(key=lambda e: (-float((e.get("top3") or [{}])[0].get("ev") or 0),
+                                    -e.get("score_commun", 0), e.get("rang_global", 0)))
+    else:
+        eligible.sort(key=lambda e: (-e["score_commun"], e["rang_global"]))
 
     if not eligible:
+        msg = "0 match au-dessus du seuil — 0 ticket. Budget non engage."
+        if markets is None:
+            msg = "Aucun match éligible (buckets FAIBLE / NO BET) — budget non engagé"
         return {"tickets": [], "budget": {"budget_fc": budget_fc, "alloue_fc": 0,
-                "reste_fc": budget_fc}}, ["Aucun match éligible (buckets FAIBLE / NO BET) — budget non engagé"]
+                "reste_fc": budget_fc}}, [msg]
 
-    # Compositions : classe A (les meilleurs) puis B (les autres) si trop long
-    jambes_max = max(1, jambes_max)
-    tickets_out = []
-    pool = list(eligible)
-
-    # nombre de jambes par ticket demandé par l'opérateur
     jbt = jambes_by_ticket or []
     if len(jbt) < tickets:
         jbt = list(jbt) + [2] * (tickets - len(jbt))
-    if max(jbt) > jambes_max:
-        warnings.append(f"{max(jbt)} jambes demandées > {jambes_max} → division en deux classes de fiabilité (A puis B)")
+    cap = _marches.jambes_cap(jbt, n_plus=10)
+    jambes_max = max(1, cap)
+    tickets_out = []
+    pool = list(eligible)
 
-    # Ticket 1 (SÛR) : les matchs au score le plus élevé (buckets HAUTE d'abord)
-    j1 = min(max(2, jbt[0]), min(len(pool), jambes_max))
+    if max(jbt) > jambes_max:
+        warnings.append(
+            f"{max(jbt)} jambes demandees > {jambes_max} (1..n+10) — cap applique, pas de remplissage")
+
+    j1 = min(max(1, jbt[0]), min(len(pool), jambes_max))
     ticket_defs = []
     cl_a = pool[:j1]
     ticket_defs.append((j1, cl_a))
@@ -137,7 +199,6 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
     for k in range(rest_tick):
         if not pool_b:
             break
-        # repartition équitable du RESTE entre les tickets restants (à chaque iteration)
         per = max(1, math.ceil(len(pool_b) / max(1, rest_tick - k)))
         jk = min(max(1, jbt[k + 1] if k + 1 < len(jbt) else jbt[-1]), jambes_max)
         chunk = pool_b[:max(jk, per)]
@@ -155,26 +216,14 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
             mises = list(mises) + [None] * (tickets - len(mises))
     reste = max(0.0, budget_fc - surticket_fc)
     per_other = round(reste / max(1, rest_tick), 2) if rest_tick > 0 else 0.0
-    for i, (nj, jambes) in enumerate(ticket_defs):
-        jambes = (jambes or [])[:nj]
-        if not jambes:
+    for i, (nj, chunk) in enumerate(ticket_defs):
+        sel_list = _pick_jambes(chunk, nj, mono=mono, ev_floor=ev_floor, combo_floor=combo_floor)
+        if not sel_list:
             continue
         cote_totale = 1.0
-        sel_list = []
-        for e in jambes:
-            top = (e["top3"] or [])[0]
-            jambe = {"match_id": e["id"], "match": e["match"],
-                     "marche": top.get("marche") or "",
-                     "selection": top["selection"], "selection_label": top["selection_label"],
-                     "cote": top["cote"], "p_modele": top.get("p_modele"),
-                     "ev": top.get("ev"), "bucket": e.get("bucket"),
-                     "score_commun": e["score_commun"],
-                     "edge_net_devig": top.get("edge_net_devig"),
-                     "devig_gap": top.get("devig_gap"),
-                     "p_fair_additif": top.get("p_fair_additif")}
+        for jambe in sel_list:
             _prio.stamp_jambe(jambe, n=n_m, cfg=cfg, lots_box=lots_box)
-            sel_list.append(jambe)
-            cote_totale *= float(top["cote"] or 1)
+            cote_totale *= float(jambe.get("cote") or 1)
         if i == 0:
             mise = surticket_fc
             classe = "SUR_TICKET"
@@ -210,10 +259,13 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
     out = {"tickets": tickets_out,
            "budget": {"budget_fc": budget_fc, "alloue_fc": alloue, "reste_fc": round(budget_fc - alloue, 2),
                       "taux_fc_usd": taux},
-            "regles": {"jambes_max": jambes_max, "mise_min_fc": mise_min,
+             "regles": {"jambes_max": jambes_max, "mise_min_fc": mise_min,
                        "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
-                       "division": f"> {jambes_max} jambes → division en deux classes de fiabilité",
+                       "division": f"1 a n+10 jambes (cap {jambes_max}) ; meme match interdit",
                        "ev_compose": "produit (1+edge_net)-1 precision machine ; jambe_edge_net_negatif info pas rejet",
+                       "ev_floor": ev_floor, "ev_combo_floor": combo_floor,
+                       "markets": list(markets) if markets is not None else None,
+                       "mono": bool(mono),
                        "market_priority_min": cfg.get("min_tickets_mesures"),
                        "n_tickets_mesures": n_m,
                        "doctrine_edge": "modele calibre + news plus rapide que le book local ; pas d arbitrage"}}
@@ -230,6 +282,9 @@ def main():
     arg.add_argument("--surticket-fc", type=float, default=0.0, help="mise du ticket sûr en FC")
     arg.add_argument("--mises-fc", default=None, help="alternativement, mises explicites 3000:1000:1000")
     arg.add_argument("--jambes-max", type=int, default=JAMBES_MAX_DEF)
+    arg.add_argument("--markets", default=None, help="marches elus CSV, ex: OU_2.5,MT_PROLIFIQUE")
+    arg.add_argument("--mono", action="store_true", help="toutes les jambes d un ticket = un seul marche")
+    arg.add_argument("--ev-floor", type=float, default=EV_FLOOR)
     arg.add_argument("--mise-min-fc", type=float, default=100.0)
     arg.add_argument("--taux-fc-usd", type=float, default=None, help="taux FC → USD (pour les unités 1u=1% bankroll)")
     arg.add_argument("--out-json", default=os.path.join(here, "..", "OUT", "tickets.json"))
@@ -251,12 +306,16 @@ def main():
             exclude_legs = json.loads(raw)
 
     jbt = [int(x) for x in (args.jambes or "").split(":") if x.strip()] or []
+    markets = None
+    if args.markets is not None:
+        markets = [x.strip() for x in args.markets.split(",") if x.strip()]
     res, wrn = allocate(
         top3.get("matchs", []), tickets=max(1, args.tickets), jambes_by_ticket=jbt,
         surticket_fc=args.surticket_fc, budget_fc=args.budget_fc,
         mises_free=args.mises_fc, jambes_max=args.jambes_max,
         mise_min=args.mise_min_fc, taux=args.taux_fc_usd,
-        exclude_legs=exclude_legs)
+        exclude_legs=exclude_legs, markets=markets, mono=bool(args.mono),
+        ev_floor=args.ev_floor)
 
     out = {"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            **res, "warnings": [*wrn, *top3_wrn_from_warnings(top3)]}

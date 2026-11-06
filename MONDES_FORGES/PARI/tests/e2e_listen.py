@@ -145,6 +145,12 @@ def main():
     r = parse.parse_update(upd("/combos 3:3:2:2"), CHAT)
     check("L4.combos", r.get("ok") and r.get("cmd") == "/combos 3:3:2:2", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/marches O/U2.5,MT2"), CHAT)
+    check("L4.marches", r.get("ok") and r.get("cmd") == "/marches O/U2.5,MT2", str(r.get("cmd")))
+
+    r = parse.parse_update(upd("/marchés O/U2.5,MT2"), CHAT)
+    check("L4.marches_accent", r.get("ok") and r.get("cmd") == "/marches O/U2.5,MT2", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/valider-1"), CHAT)
     check("L4.valider1", r.get("ok") and r.get("cmd") == "/valider-1")
 
@@ -175,6 +181,7 @@ def main():
           and "/start" in help_txt and "/budget 3000 800" in help_txt
           and ("photo" in help_txt.lower() or "/capture" in help_txt))
     check("L5.help_data_n", "/data N" in help_txt, help_txt)
+    check("L5.help_marches", "/marches" in help_txt, help_txt)
 
     r = parse.parse_update(upd("/foobar"), CHAT)
     check("L5.unknown_reply", (not r.get("ok")) and r.get("action") == "reply" and r.get("reason") == "unknown")

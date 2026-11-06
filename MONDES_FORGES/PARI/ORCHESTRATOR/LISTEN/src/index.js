@@ -11,11 +11,12 @@
 
 const KNOWN = new Set([
   "start", "capture", "bankroll", "budget", "surticket", "combos",
+  "marches", "marchés",
   "valider-1", "valider-2", "valider1", "valider2",
   "data", "radar", "pack", "match", "status", "roi", "stop",
 ]);
 const LOCAL = new Set(["help", "aide"]);
-const CANON = { valider1: "valider-1", valider2: "valider-2" };
+const CANON = { valider1: "valider-1", valider2: "valider-2", "marchés": "marches" };
 const MAX_CAPTURE = 4096;
 const HELP =
   "Campagne PARI — commandes :\n" +
@@ -24,6 +25,7 @@ const HELP =
   "/bankroll 50000  (pot global, une fois)\n" +
   "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +
+  "/marches O/U2.5,MT2  (alias /marchés, option mono)\n" +
   "/valider-1\n" +
   "/valider-2  (lot + token L-XXX, anti-cannibal)\n" +
   "/data  /data N  /data ledger  /data diag\n" +
@@ -123,7 +125,7 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {
