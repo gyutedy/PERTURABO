@@ -337,6 +337,25 @@ Pack S11 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. v4 R2 + R6. Session = ce pack seu
 
 **Handoff** : pack S12 (scorer eligibilite F03). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S12 dans cette session.
 
+## ETAT v4.2 — MARKET PROFILES + SCORER ELIGIBILITE F03 (2026-11-06)
+
+Pack S12 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. v4 R3. Session = ce pack seulement.
+
+Choix F03 : eligibilite apres EV, **pas** Poisson F02, **pas** fiches F04. Scorer = veto / score 0-1, jamais un producteur de p.
+
+- [x] **`ARCHIVUM/learnings/market_profiles.json`** versionne. Poids a priori. Ne pas retuner a la main (S16 si n>=50).
+- [x] **Module** `F03_FORGEWARD/CODEBASE/market_scorer.py`. Portes A1-A4 binaires hors score.
+  - A1 groupe complet (cotes du marche).
+  - A2 praticable cote >= 1.10.
+  - A3 historique : `mj_insuffisant` / qualite basse = refus.
+  - A4 vitrine : overround > 20% = refus. MT 2.10/3.40/2.10 (24.6%) refuse ; 2.20/3.60/2.20 (18.7%) passe. 1X2 2.10/3.40/3.50 (5.6%) passe.
+- [x] **B1-B6** : B1 0.30, B2 0.20 (MT B1 0.25 / B2 0.25), B3 0.20 **asymetrie info seulement** (T-2h vs cote capture, pas severite blessure), B4 0.15, B5 0.10, B6 0.05. Score 0-1, seuil 0.50-0.60 selon marche. Trou data → score reduit + holes. Chaque contribution journalisee.
+- [x] **forgeward** : stamp `scorer_*` + `overround`. Si ineligible et VALUE/THIN → NO_BET, `mise_units` None. **EV = P_modele * cote - 1 inchange.** p_modele inchange.
+- [x] **Tests** : `tests/test_market_scorer.py` 81/81. kelly 56/56. compose 24/24. devig 23/23. e2e_listen 117/117. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, schema_predictions, PLAN S12 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S13 (facteurs etat lambda + table effectifs). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S13 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

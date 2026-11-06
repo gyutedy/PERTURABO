@@ -22,6 +22,9 @@ Cartographie des journaux du monde.
 | `F05_PACKAGER/CODEBASE/marches.py` | S11 : election, couverture EV>=3%, anti meme-navire, mono, floors. Canon `/marches` | workflow.py `/marches` / combinator.py |
 | `ARCHIVUM/learnings/market_election_log.json` | Append-only elections marches. `/status` alerte >60% | marches.append_election |
 | `tests/test_marches.py` | S11 : 0 match→0 ticket, meme navire, mono, 10 jambes, floor refuse | marches.py / combinator.py |
+| `F03_FORGEWARD/CODEBASE/market_scorer.py` | S12 : portes A1-A4 hors score, B1-B6 0-1, veto F03. Jamais Poisson. | forgeward.py |
+| `ARCHIVUM/learnings/market_profiles.json` | Poids / seuils a priori (versionne). Ne pas retuner a la main. | market_scorer.load_profiles |
+| `tests/test_market_scorer.py` | S12 : A1-A4, overround 24.6% vs 18.7%, MT poids, EV inchange | market_scorer.py / forgeward.py |
 | `config/clv.json` | Cibles 55% / +0.5 pt, n_lock 50, n_variance 30, mc_seed 42. | clv.py / diag.py |
 | `ORCHESTRATOR/CODEBASE/churn.py` | Compteur `config/` : >2 changements / 7j hors calibration → `churn_suspect`. | config/churn.json |
 | `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif defaut + additif 2e passe. Gap journalise. Cote unique = hole. | forgeward.py |

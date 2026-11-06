@@ -1617,3 +1617,12 @@
 - Log append-only `market_election_log.json`. `/status` alerte concentration >60%.
 - Tests : test_marches.py. Relais parse.py + Worker + schema_listen.
 - Prochain pack : S12 scorer. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T21:30:00Z] v4.2 — market_profiles + scorer eligibilite F03 (S12)
+
+- Scorer dans F03 (eligibilite, pas Poisson F02, pas fiches F04).
+- A1 groupe / A2 praticable (>=1.10) / A3 historique / A4 marge >20% = refus hors score.
+- B1 0.30 B2 0.20 (MT 0.25/0.25) B3 0.20 asymetrie info B4 0.15 B5 0.10 B6 0.05.
+- Trou data → score reduit + holes. EV / p_modele inchanges. Ineligible VALUE/THIN → NO_BET.
+- Tests : test_market_scorer.py 81/81. Poisson inchange.
+- Prochain pack : S13 lambda effectifs. Operateur : `/roi settle L-DWG` apres matchs.

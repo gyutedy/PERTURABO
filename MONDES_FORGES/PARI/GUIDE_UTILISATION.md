@@ -104,7 +104,11 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
     team totals, score exact top N si cote. v3.6 : rho / bonus domicile fit sur CSV
     saison si `league_params.json` present, sinon 1.10 / RHO_DC. Baseline = saison
     EMA 45j, fallback carte si CSV absent. Equations inchangees.) → F03 (EV = P_modele * cote - 1 inchange ;
-    `edge_net_devig` diagnostic seulement ; cote unique = hole, pas de fair) → filtre qualitatif
+    `edge_net_devig` diagnostic seulement ; cote unique = hole, pas de fair ;
+    **scorer S12** : portes A1-A4 hors score (groupe / praticable cote>=1.10 / historique /
+    marge>20% = refus vitrine). Score B1-B6 0-1, seuil 0.50-0.60. B3 = asymetrie info
+    (T-2h), pas severite blessure. Trou = score reduit + holes. Ineligible → NO_BET.
+    Jamais un p.) → filtre qualitatif
     (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
     + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`
     pour l evidence GO/CHECK/FAIL (cles = noms, jamais les valeurs).

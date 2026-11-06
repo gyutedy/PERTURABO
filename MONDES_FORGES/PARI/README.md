@@ -55,7 +55,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 |---|---|---|---|
 | 1 | TYRANT | `carte_verdict.json` (GO/NO-GO sur la carte de matchs, seuil EV ligue) | Warsmith |
 | 2 | F02 BREACHER | `analysis.json` (matrice de scores, 1X2 / O-U 0.5–4.5 / DC / team totals / CS / mi-temps) | Warsmith |
-| 3 | F03 forgeWARD | `predictions.json` (EV brute inchangee, `edge_net_devig` diagnostic, Kelly, combinés) | Warsmith |
+| 3 | F03 forgeWARD | `predictions.json` (EV brute inchangee, scorer eligibilite S12, `edge_net_devig` diagnostic, Kelly, combinés) | Warsmith |
 | 4 | F05 PACKAGER | `pari_pack.json` + `dashboard.html` → Telegram/dash | Warsmith |
 
 `F01 SENTINEL` alimente les portes 1-2. `F00 RADAR` s'exécute avant Porte 1. `F06 TRACKER` après Porte 4 et nourrit `learnings/`.
@@ -69,7 +69,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H via `FOOTBALL_DATA_ORG_KEY` dans env_pari — **pas Oracle**). S7 = O2.5 empirique + walk-forward | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
 | F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis. S6 = fit ligue (rho, bonus) + baseline saison EMA | `analysis.json` |
-| F03 | FORGEWARD | De-marging + **devig multiplicatif defaut** + additif 2e passe (S8, jamais producteur de p), EV, Kelly 1/8→1/4 gate ECE (S10), scanner combinés | `predictions.json` |
+| F03 | FORGEWARD | De-marging + **devig multiplicatif defaut** + additif 2e passe (S8, jamais producteur de p), EV, **scorer eligibilite S12** (A1-A4 veto, B1-B6 0-1, jamais un p), Kelly 1/8→1/4 gate ECE (S10), scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
 | F05 | PACKAGER | Pari pack + combinator v3.5 (`ev_compose_net`, market_priority paliers) + Kelly stamp S10 (fraction journalisee, `mise_fc` intact) + dashboard | `pari_pack.json` + `tickets.json` |
 | F06 | TRACKER | Ledger des lots tokenises (`lots.json`, v2.2.8) + tickets, ROI. Settle CSV + `book_odds_close` T-0 (S8) + CLV ratio (S9). Diag Platt/Beta/P(EV>0) n<50 = `/data diag` seulement. **N'apprend pas.** | `learnings/*` |

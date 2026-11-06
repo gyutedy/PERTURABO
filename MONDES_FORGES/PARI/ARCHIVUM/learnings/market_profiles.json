@@ -1,0 +1,45 @@
+{
+  "note": "S12 a priori. Scorer eligibilite F03, jamais Poisson. Ne pas retuner a la main. S16 backtest si n>=50 tickets reels.",
+  "version": 1,
+  "overround_max": 0.20,
+  "cote_min": 1.10,
+  "default": {
+    "seuil": 0.50,
+    "poids": {
+      "B1": 0.30,
+      "B2": 0.20,
+      "B3": 0.20,
+      "B4": 0.15,
+      "B5": 0.10,
+      "B6": 0.05
+    }
+  },
+  "marches": {
+    "1X2": {"seuil": 0.55},
+    "OU_0.5": {"seuil": 0.50},
+    "OU_1.5": {"seuil": 0.50},
+    "OU_2.5": {"seuil": 0.50},
+    "OU_3.5": {"seuil": 0.50},
+    "OU_4.5": {"seuil": 0.50},
+    "MT_PROLIFIQUE": {
+      "seuil": 0.55,
+      "poids": {
+        "B1": 0.25,
+        "B2": 0.25,
+        "B3": 0.20,
+        "B4": 0.15,
+        "B5": 0.10,
+        "B6": 0.05
+      }
+    },
+    "BTTS": {"seuil": 0.50},
+    "DC": {"seuil": 0.55},
+    "CS": {"seuil": 0.60},
+    "TT_H_0.5": {"seuil": 0.50},
+    "TT_H_1.5": {"seuil": 0.50},
+    "TT_H_2.5": {"seuil": 0.50},
+    "TT_A_0.5": {"seuil": 0.50},
+    "TT_A_1.5": {"seuil": 0.50},
+    "TT_A_2.5": {"seuil": 0.50}
+  }
+}

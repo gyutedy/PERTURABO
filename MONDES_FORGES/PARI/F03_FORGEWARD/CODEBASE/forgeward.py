@@ -34,6 +34,7 @@ if _BREACHER not in sys.path:
 import breacher as _breacher  # noqa: E402
 import devig as _devig  # noqa: E402
 import kelly_route as _kelly_route  # noqa: E402
+import market_scorer as _scorer  # noqa: E402
 
 # Groupes de marchés mutuellement exclusifs (pour le de-marging)
 MARKET_GROUPS = [
@@ -191,6 +192,33 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
             rec["devig_gap"] = round(gp["gap_p"][sel], 6)
         else:
             rec["devig_gap"] = None
+        gkeys = _scorer.GROUP_KEYS.get(grp)
+        if gkeys:
+            group_cotes = {k: cotes[k] for k in gkeys if cotes.get(k)}
+        else:
+            group_cotes = {sel: cote}
+        t2h_blob = m.get("odds_t2h") or m.get("cotes_t2h") or {}
+        t2h = t2h_blob.get(sel) if isinstance(t2h_blob, dict) else None
+        scored = _scorer.score(
+            sel, cote, grp, group_cotes, analysis=analysis,
+            extra={
+                "p_modele": p, "ev": ev, "cote": cote,
+                "cote_t2h": t2h,
+                "double_confirmation": rec.get("double_confirmation"),
+            },
+        )
+        rec["scorer_eligible"] = scored["eligible"]
+        rec["scorer_score"] = scored["score"]
+        rec["scorer_seuil"] = scored["seuil"]
+        rec["scorer_gates"] = scored["gates"]
+        rec["scorer_refuse"] = list(scored.get("refuse") or [])
+        rec["scorer_contrib"] = scored["contrib"]
+        rec["scorer_holes"] = list(scored.get("holes") or [])
+        rec["overround"] = scored.get("overround")
+        if not scored["eligible"] and verdict in ("VALUE", "THIN"):
+            rec["verdict"] = "NO_BET"
+            rec["mise_units"] = None
+            verdict = "NO_BET"
         out_item["selections"].append(rec)
         single_verdicts.append(verdict)
         if out_item["meilleure_ev"] is None or ev > out_item["meilleure_ev"]:

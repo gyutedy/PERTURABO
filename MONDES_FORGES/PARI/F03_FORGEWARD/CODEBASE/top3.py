@@ -42,6 +42,9 @@ def compute_match(p, quality):
         "edge_net_devig": s.get("edge_net_devig"),
         "devig_gap": s.get("devig_gap"),
         "p_fair_additif": s.get("p_fair_additif"),
+        "overround": s.get("overround"),
+        "scorer_score": s.get("scorer_score"),
+        "scorer_eligible": s.get("scorer_eligible"),
     } for i, s in enumerate(sorted_sel[:3])]
 
     # score commun 01-10 : qualité data (30%) · proba max du top (40%) · edge EV (30%)

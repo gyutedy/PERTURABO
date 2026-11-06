@@ -37,7 +37,15 @@
                 "ev": {"type": "number", "description": "P_modele × cote − 1"},
                 "verdict": {"type": "string", "enum": ["VALUE", "THIN", "NO_BET"]},
                 "mise_units": {"type": ["number", "null"],
-                  "description": "¼ Kelly plafonné, null si NO_BET"}
+                  "description": "¼ Kelly plafonné, null si NO_BET"},
+                "scorer_eligible": {"type": ["boolean", "null"], "description": "S12 F03 veto"},
+                "scorer_score": {"type": ["number", "null"], "description": "0-1, jamais un p"},
+                "scorer_seuil": {"type": ["number", "null"]},
+                "scorer_gates": {"type": ["object", "null"]},
+                "scorer_refuse": {"type": "array"},
+                "scorer_contrib": {"type": ["object", "null"]},
+                "scorer_holes": {"type": "array"},
+                "overround": {"type": ["number", "null"]}
               }
             }
           },
