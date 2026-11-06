@@ -312,7 +312,7 @@ Numerotation commits : `PARI v3.Y` pour le socle mesure/moteur, `PARI v4.Y` pour
 - [x] S4 marches + devig
 - [x] S5 compose + priorite
 - [x] S6 fit + baseline
-- [ ] S7 empirique + walk-forward
+- [x] S7 empirique + walk-forward
 - [ ] S8 sensibilite + CLV T-0
 - [ ] S9 CLV metrique + F06 diag
 - [ ] S10 Kelly

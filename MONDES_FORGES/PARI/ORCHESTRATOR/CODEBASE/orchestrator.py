@@ -201,6 +201,24 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
     custos("check-out", "--frigate", "F02")
     analysis_out = P("F02_BREACHER", "OUT", "analysis.json")
     run_frigate(P("F02_BREACHER", "CODEBASE", "breacher.py"), "--input", intel_out, "--output", analysis_out)
+    try:
+        sys.path.insert(0, P("F00_RADAR", "CODEBASE"))
+        sys.path.insert(0, P("TYRANT", "CODEBASE"))
+        import empirique
+        import tyrant
+        with open(analysis_out, encoding="utf-8") as f:
+            analysis = json.load(f)
+        empirique.stamp(analysis)
+        with open(analysis_out, "w", encoding="utf-8") as f:
+            json.dump(analysis, f, indent=2, ensure_ascii=False)
+        if os.path.exists(carte_out):
+            with open(carte_out, encoding="utf-8") as f:
+                carte = json.load(f)
+            tyrant.stamp_empirique(carte, analysis)
+            with open(carte_out, "w", encoding="utf-8") as f:
+                json.dump(carte, f, indent=2, ensure_ascii=False)
+    except Exception:
+        pass
     custos("check-in", "--frigate", "F02", "--output", analysis_out)
     print("\n[ORCH] ⛔ GATE 2 requise → validation analyses BREACHER")
     custos("gate", "--gate", "2", "--decision", "yes", "--notes", "auto (PARI_AUTO_GATES)")

@@ -1,0 +1,7 @@
+{
+  "note": "S7 — garde-fou O2.5 empirique + walk-forward. Jamais in-sample. Jamais invente un 0.",
+  "o25_gap": 0.20,
+  "ev_min": 0.03,
+  "kelly_frac": 0.25,
+  "ece_bins": 10
+}

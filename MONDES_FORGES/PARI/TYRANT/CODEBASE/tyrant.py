@@ -46,6 +46,50 @@ def _load_env_pari():
 _load_env_pari()
 
 
+FLAG_EMPIRIQUE = "incoherence_modele_empirique"
+O25_GAP = 0.20
+
+
+def flag_empirique(p_modele, empirique, gap=None):
+    """Flag TYRANT si |P_modele - O2.5 empirique| >= 0.20. Trou = pas de flag."""
+    if p_modele is None or empirique is None:
+        return False
+    try:
+        p, e = float(p_modele), float(empirique)
+    except (TypeError, ValueError):
+        return False
+    thr = O25_GAP if gap is None else float(gap)
+    return abs(p - e) >= thr
+
+
+def stamp_empirique(carte, analysis, gap=None):
+    """Ajoute le flag aux verdicts. Ne change pas GO/NO_BET. Jamais un 0 invente."""
+    if not carte or not analysis:
+        return carte
+    rate = analysis.get("o2.5_empirique")
+    by_id = {}
+    for a in analysis.get("analyses") or []:
+        by_id[a.get("id")] = a
+    for v in carte.get("verdicts") or []:
+        a = by_id.get(v.get("id")) or {}
+        p = (a.get("probas") or {}).get("o2.5")
+        emp = a.get("o2.5_empirique") if a.get("o2.5_empirique") is not None else rate
+        flags = list(v.get("flags") or [])
+        if flag_empirique(p, emp, gap=gap):
+            if FLAG_EMPIRIQUE not in flags:
+                flags.append(FLAG_EMPIRIQUE)
+            raisons = list(v.get("raisons") or [])
+            if FLAG_EMPIRIQUE not in raisons:
+                raisons.append(FLAG_EMPIRIQUE)
+            v["raisons"] = raisons
+        v["flags"] = flags
+        if emp is not None:
+            v["o2.5_empirique"] = emp
+        if p is not None:
+            v["o2.5_modele"] = p
+    return carte
+
+
 def detect_tier(ligue: str) -> str:
     lw = (ligue or "").lower().replace("-", " ")
     compact = lw.replace(" ", "")
@@ -130,11 +174,19 @@ def main():
     here = os.path.dirname(os.path.abspath(__file__))
     parser = argparse.ArgumentParser(description="TYRANT — carte GO/NO-GO PARI")
     parser.add_argument("--intel", required=True)
+    parser.add_argument("--analysis", default=None)
     parser.add_argument("--output", default=os.path.join(here, "..", "OUT", "carte_verdict.json"))
     args = parser.parse_args()
     with open(args.intel, "r", encoding="utf-8") as f:
         intel = json.load(f)
     carte = build_carte(intel)
+    if args.analysis and os.path.exists(args.analysis):
+        try:
+            with open(args.analysis, encoding="utf-8") as f:
+                analysis = json.load(f)
+            stamp_empirique(carte, analysis)
+        except (OSError, json.JSONDecodeError):
+            pass
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(carte, f, indent=2, ensure_ascii=False)

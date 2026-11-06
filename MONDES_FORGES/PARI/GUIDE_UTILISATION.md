@@ -44,7 +44,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
 | `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
 | `/data ledger` | Token + lots du jour (inchange). |
-| `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. |
+| `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. v3.8 : flag `incoherence_modele_empirique` si \|P(O2.5) - taux saison\| >= 0.20 (info, pas NO BET). Saison absente = trou. |
 | `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
 | `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. Inconnu = refuse, pas crash. |
 | `/status` | État campagne + ligne doctor (GO/CHECK/FAIL, gate n). `/status ledger` = lots. `/status doctor` = evidence complete (cles **noms seulement**, contrats, whitelist, cache, CLV). |
@@ -210,6 +210,20 @@ Les équipes manquantes sont signalées « Zero Data, Zero Calc » — corrige l
 ou remplit à la main, jamais d'invention.
 
 **Étape 5 — le radar** : `python ORCHESTRATOR/CODEBASE/orchestrator.py --mode radar --fixtures ARCHIVUM/fixtures/matches.json`
+
+**Étape 6 — walk-forward** (cut-off explicite, jamais in-sample) :
+
+```bash
+python F00_RADAR/CODEBASE/capteurs.py walk-forward --cutoff 2026-01-01 \
+    --csv-dir ARCHIVUM/cache/f00 --out ARCHIVUM/learnings/backtest_report.json
+```
+
+Odds absentes = trou, jamais 0. Rapport gitignore. Fit ligue (S6) :
+
+```bash
+python F00_RADAR/CODEBASE/capteurs.py fit-league \
+    --csv-dir ARCHIVUM/cache/f00 --out ARCHIVUM/learnings/league_params.json
+```
 
 ### 🗓️ Le calendrier automatique (clés optionnelles)
 

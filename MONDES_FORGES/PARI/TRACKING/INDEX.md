@@ -23,6 +23,11 @@ Cartographie des journaux du monde.
 | `F02_BREACHER/CODEBASE/baseline.py` | Moyennes ligue saison complete + EMA 45j. Split att/def. Saison absente = trou. | breacher.league_averages |
 | `config/league_fit.json` | Demi-vie EMA, grille rho, clips, defauts (1.10 / -0.13 / 0.44). | league_fit.py / baseline.py |
 | `ARCHIVUM/learnings/league_params.json` | Parametres fit (gitignore). Ligue absente → `params: default`. | league_fit.py |
+| `F00_RADAR/CODEBASE/empirique.py` | Taux O2.5 saison vs P_modele. Ecart >= 0.20 → flag `incoherence_modele_empirique`. | radar.py / tyrant.py |
+| `F00_RADAR/CODEBASE/walkforward.py` | Backtest cut-off explicite. Brier/RPS/ECE, hit EV>=3%, Kelly 1/4. Jamais in-sample. | capteurs.py `walk-forward` |
+| `config/empirique.json` | Seuil gap 0.20, ev_min 0.03, kelly 0.25, ece_bins 10. | empirique.py / walkforward.py |
+| `ARCHIVUM/learnings/backtest_report.json` | Rapport walk-forward (gitignore). Odds absentes = holes. | walkforward.py |
+| `.github/workflows/pari_elo_fill.yml` | ClubElo hebdo → elo.json + shares elo_slope. Timeout = trou. Zero cle. | Actions lundi 05:00 UTC |
 | `F05_PACKAGER/CODEBASE/market_priority.py` | Gate palier + holes sans_data. n = settle G/P seulement. | combinator.py |
 | `config/` | Compteur churn versionne (`churn.json` au 1er record). Calibration exclue. | churn.py |
 | `ARCHIVUM/learnings/lots.json` | Ledger F06 lots (token L-XXX = cle, snapshot T0). F06 n'apprend pas. | workflow.py `/valider-2`, ledger.py |

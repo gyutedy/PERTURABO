@@ -23,6 +23,7 @@ BREACHER_DIR = os.path.join(HERE, "..", "..", "F02_BREACHER", "CODEBASE")
 sys.path.insert(0, HERE)
 sys.path.insert(0, BREACHER_DIR)
 import breacher  # noqa: E402
+import empirique  # noqa: E402
 from capteurs import ligue_code as resolve_ligue_code  # noqa: E402
 
 _STAT_KEYS = ("mj", "marques", "encaisses")
@@ -174,7 +175,7 @@ def apply_learnings(analyse, learnings=None):
     return analyse
 
 
-def run_radar(matchs, top=20, ligue=None, league_code=None):
+def run_radar(matchs, top=20, ligue=None, league_code=None, csv_dir=None):
     stamp_ligue(matchs, ligue=ligue, league_code=league_code)
     complete, holes = split_complete(matchs)
     analyse = breacher.analyse_fixtures(complete, ligue=ligue, league_code=league_code)
@@ -187,6 +188,7 @@ def run_radar(matchs, top=20, ligue=None, league_code=None):
         )
         a["radar_score"] = a["radar_score_raw"]
     apply_learnings(analyse)
+    empirique.stamp(analyse, csv_dir=csv_dir)
     ranked = sorted(analyse.get("analyses") or [], key=lambda a: a.get("radar_score") or 0, reverse=True)
     analyse["analyses"] = ranked
     analyse["top_ids"] = [a["id"] for a in ranked[:top]]
@@ -218,6 +220,14 @@ def render_radar_md(analyse, top=20, max_rows=200):
         lines += ["", f"Learnings F06 actifs (n={learn.get('n')}, facteur {learn.get('factor')})."]
     else:
         lines += ["", "Learnings F06 : identity (sous 50 tickets settle) — F06 n'apprend pas."]
+    emp = analyse.get("o2.5_empirique")
+    if emp is None:
+        eh = analyse.get("empirique_holes") or []
+        if eh:
+            lines += ["", "O2.5 empirique : trou (" + ", ".join(str(x) for x in eh) + ")."]
+    else:
+        nflag = analyse.get("empirique_flags") or 0
+        lines += ["", f"O2.5 empirique ligue : {emp:.0%} — {nflag} flag(s) {empirique.FLAG}."]
     lines += ["", f"**Top {top}** passe la coupe noire ; le reste est archivé.",
               "", "*Le radar sert à trouver où creuser — la Value sort après la "
               "comparaison aux cotes du book (Compartiment 3).*"]

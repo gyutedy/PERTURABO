@@ -1,0 +1,45 @@
+# PARI ELO FILL — ClubElo hebdo si elo.json absent / trou.
+# CSV ClubElo (sans cle) → build-elo → backtest-shares elo_slope.
+# Timeout / vide = trou declare, jamais de pente inventee. Zero cle.
+
+name: pari-elo-fill
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pari-elo-fill
+  cancel-in-progress: false
+
+jobs:
+  fill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: ClubElo + shares elo_slope
+        run: |
+          cd MONDES_FORGES/PARI
+          python F00_RADAR/CODEBASE/capteurs.py build-elo --date $(date -u +%F) \
+            --out ARCHIVUM/teams/elo.json || true
+          python F00_RADAR/CODEBASE/capteurs.py backtest-shares \
+            --csv-dir ARCHIVUM/cache/f00 \
+            --elo ARCHIVUM/teams/elo.json \
+            --out ARCHIVUM/learnings/shares.json || true
+
+      - name: Commit elo / shares
+        run: |
+          git config user.name "IW_CUSTOS[bot]"
+          git config user.email "custos@perturabo.iron"
+          git add MONDES_FORGES/PARI/ARCHIVUM/teams/elo.json \
+                  MONDES_FORGES/PARI/ARCHIVUM/learnings/shares.json
+          git diff --staged --quiet || git commit -m "PARI: ClubElo hebdo + shares elo_slope"
+          git push

@@ -1574,3 +1574,11 @@
 - Bonus 1.10 / rho -0.13 preserves si pas de fit (e2e intact). part_mt1 : shares > fit > mesure > 0.44.
 - Tests : test_league_fit + test_baseline. CLI `capteurs.py fit-league`.
 - Prochain pack : S7 empirique + walk-forward. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T17:00:00Z] v3.8 — empirique O2.5 + backtest walk-forward (S7)
+
+- Taux O2.5 saison. |P_modele - empirique| >= 0.20 → flag TYRANT `incoherence_modele_empirique` (info, pas NO BET). Trou = hole, jamais 0.
+- Walk-forward cut-off explicite, jamais in-sample. Brier / RPS / ECE, hit-rate EV>=3%, yield Kelly 1/4. `backtest_report.json` gitignore.
+- Workflow `pari_elo_fill.yml` hebdo : ClubElo CSV → build-elo → shares elo_slope. Zero cle.
+- Tests : test_backtest.py seede. CLI `capteurs.py walk-forward`.
+- Prochain pack : S8 sensibilite + CLV T-0. Operateur : `/roi settle L-DWG` apres matchs.

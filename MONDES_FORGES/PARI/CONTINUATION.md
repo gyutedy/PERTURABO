@@ -269,6 +269,18 @@ Pack S6 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph5 + Ph6. Session = ce pack seule
 
 **Handoff** : pack S7 (empirique O2.5 + backtest walk-forward). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S7 dans cette session.
 
+## ETAT v3.8 — EMPIRIQUE O2.5 + WALK-FORWARD (2026-11-06)
+
+Pack S7 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph6b + Ph7. Session = ce pack seulement.
+
+- [x] **Empirique** `F00_RADAR/CODEBASE/empirique.py` : taux O2.5 saison cachee. `|P_modele - empirique| >= 0.20` → flag TYRANT `incoherence_modele_empirique` (info, **pas NO BET**). Saison absente → `holes: ["o2.5_empirique"]`, jamais 0 invente. Cable radar + siege (stamp apres F02).
+- [x] **Walk-forward** `F00_RADAR/CODEBASE/walkforward.py` : cut-off explicite, train < cutoff, test >= cutoff, `in_sample: false`. Metrics Brier / RPS / ECE, hit-rate EV>=3%, yield Kelly 1/4. Odds absentes = hole, jamais 0. Sortie `ARCHIVUM/learnings/backtest_report.json` (gitignore). CLI `capteurs.py walk-forward --cutoff`.
+- [x] **ClubElo hebdo** `.github/workflows/pari_elo_fill.yml` : lundi 05:00 UTC. CSV ClubElo → `build-elo` → `backtest-shares` elo_slope. Timeout = trou. Zero cle.
+- [x] **Tests** : `tests/test_backtest.py` seede. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, PLAN S7 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S8 (sensibilite devig + CLV T-0). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S8 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

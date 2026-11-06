@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 ARCHIVUM/research/
 ARCHIVUM/learnings/league_params.json
+ARCHIVUM/learnings/backtest_report.json

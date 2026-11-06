@@ -6,6 +6,7 @@ Bras opératoire des sources whitelist :
   - build-elo         : ClubElo (SANS CLE) → carte Elo du jour (timeout = trou)
   - backtest-shares   : parts MT1 + pente Elo depuis CSV cache (offline)
   - fit-league        : rho / bonus domicile / part_mt1 → league_params.json (offline)
+  - walk-forward      : Brier/RPS/ECE cut-off explicite → backtest_report.json (offline)
   - fixtures-list     : calendrier live (API-Football ou football-data.org, CLE)
   - inject            : peuple une carte de matchs (stats + Elo) depuis la bibliothèque
   - telegram-test     : vérifie le bot (TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID)
@@ -16,6 +17,8 @@ Usage:
   python capteurs.py inject --stats ../../ARCHIVUM/teams/E0_2627.json \
       --carte ../../ARCHIVUM/fixtures/matches.json [--elo ../../ARCHIVUM/teams/elo.json]
   python capteurs.py fixtures-list --source api-football --league-id 39 --date 2026-10-25
+  python capteurs.py walk-forward --cutoff 2026-01-01 --csv-dir ../../ARCHIVUM/cache/f00
+  python capteurs.py fit-league --csv-dir ../../ARCHIVUM/cache/f00
 """
 
 import argparse
@@ -253,6 +256,18 @@ def cmd_build_elo(args):
     return True
 
 
+def cmd_walk_forward(args):
+    import walkforward
+    if args.csv:
+        rec = walkforward.run_file(args.csv, args.cutoff, out=args.out)
+        print(f"[CAPTEURS] walk-forward n_train={rec.get('n_train')} n_test={rec.get('n_test')} "
+              f"holes={rec.get('holes')} → {args.out}")
+    else:
+        blob = walkforward.run_dir(args.csv_dir, args.cutoff, out=args.out)
+        print(f"[CAPTEURS] walk-forward {len(blob.get('leagues') or {})} ligue(s) → {args.out}")
+    return True
+
+
 def cmd_fit_league(args):
     f02 = os.path.normpath(os.path.join(HERE, "..", "..", "F02_BREACHER", "CODEBASE"))
     if f02 not in sys.path:
@@ -456,13 +471,20 @@ def main():
     flg.add_argument("--csv-dir", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "cache", "f00"))
     flg.add_argument("--out", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "learnings", "league_params.json"))
 
+    wf = sub.add_parser("walk-forward")
+    wf.add_argument("--csv", default=None)
+    wf.add_argument("--csv-dir", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "cache", "f00"))
+    wf.add_argument("--cutoff", required=True)
+    wf.add_argument("--out", default=os.path.join(HERE, "..", "..", "ARCHIVUM", "learnings", "backtest_report.json"))
+
     args = parser.parse_args()
     {"build-stats": cmd_build_stats, "build-elo": cmd_build_elo,
      "fixtures-list": cmd_fixtures_list, "inject": cmd_inject,
      "enrich": cmd_enrich, "odds-watch": cmd_odds_watch,
       "telegram-test": cmd_telegram_test,
       "backtest-shares": cmd_backtest_shares,
-      "fit-league": cmd_fit_league}[args.cmd](args)
+      "fit-league": cmd_fit_league,
+      "walk-forward": cmd_walk_forward}[args.cmd](args)
 
 
 if __name__ == "__main__":
