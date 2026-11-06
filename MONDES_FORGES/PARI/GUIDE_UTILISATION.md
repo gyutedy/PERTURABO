@@ -59,7 +59,7 @@ notes: 0
 ```
 
 Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes.
-| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). |
+| `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). Journal F06 : procedure (freeze, immutable) + outcome (mise, cote, G/P, pnl, CLV si connu — absent = hole, jamais 0). |
 | `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 
 Équivalent terminal (si tu bosses depuis un PC sans bot) :
@@ -109,7 +109,9 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE.
    `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
 4. **Placement** : tu poses les tickets chez Winner Bet. F06 a deja fige le lot
-   (token). Apres les matchs : `/roi settle L-XXX`. F06 n'apprend pas.
+   (token) + **journal.procedure** (checks, trous, seuils, Kelly — immutable).
+   Apres les matchs : `/roi settle L-XXX` pose **journal.outcome** (mise, cote,
+   G/P, pnl, CLV si connu). CLV absent = hole, jamais 0. F06 n'apprend pas.
 
 ### Les infos non binaires (blessures, fatigue, enjeux…)
 

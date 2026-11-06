@@ -4,6 +4,7 @@ F06 LEDGER — lots tokenises (v2.2.8)
 ====================================
 Token = cle (L-XXX), pas la date. Snapshot T0 a /valider-2.
 Settle scores football-data.co.uk : G/P/EN_ATTENTE, jamais invente.
+Journal 2 volets (S3) : procedure immutable a freeze, outcome au settle.
 F06 n'apprend pas : pas d'ecriture calibration.json.
 """
 
@@ -105,7 +106,7 @@ def find_lot(token, path=None):
 
 
 def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_fc, surticket_fc,
-               bundle_id=None):
+               bundle_id=None, procedure=None):
     snap_tickets = json.loads(json.dumps(tickets_doc.get("tickets") or []))
     snap_budget = json.loads(json.dumps(tickets_doc.get("budget") or {}))
     lot = {
@@ -127,6 +128,11 @@ def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_f
     }
     if bundle_id:
         lot["bundle_id"] = bundle_id
+    d = os.path.dirname(os.path.abspath(__file__))
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import journal as _journal
+    _journal.attach_procedure(lot, tickets_doc, procedure=procedure)
     return lot
 
 
@@ -251,6 +257,11 @@ def settle_lot(token, csv_path, lots_path=None):
         lot["status"] = "SETTLE"
     elif any(t["resultat"] != "EN_ATTENTE" for t in tickets_out):
         lot["status"] = "SETTLE_PARTIEL"
+    d = os.path.dirname(os.path.abspath(__file__))
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import journal as _journal
+    _journal.attach_outcome(lot)
     save_lots(box, lots_path)
     return lot, None
 

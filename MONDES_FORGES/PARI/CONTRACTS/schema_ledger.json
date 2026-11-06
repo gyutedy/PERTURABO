@@ -34,6 +34,32 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
         "tickets": [],
         "budget": {"budget_fc": 3000, "alloue_fc": 3000, "reste_fc": 0}
       },
+      "journal": {
+        "procedure": {
+          "attached_at": "ISO8601",
+          "checks": ["freeze_lot", "snapshot_t0"],
+          "holes": ["kelly", "seuils"],
+          "seuils": null,
+          "kelly": null,
+          "warnings": [],
+          "regles": {}
+        },
+        "outcome": {
+          "attached_at": "ISO8601",
+          "tickets": [
+            {
+              "rang_ticket": 1,
+              "mise_fc": 100,
+              "cote": 1.7,
+              "resultat": "G|P|EN_ATTENTE",
+              "pnl_fc": 0,
+              "clv": null
+            }
+          ],
+          "pnl_lot_fc": 0,
+          "holes": ["clv"]
+        }
+      },
       "settle": {
         "settled_at": "ISO8601|null",
         "source": "football-data.co.uk",
@@ -66,3 +92,5 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
 3. Settle : CSV ligue/date football-data.co.uk. Match absent → `EN_ATTENTE`, jamais invente.
 4. `/stop` ne touche pas les lots deja figes.
 5. `bundle_id` (S2) = reference SHA-256 du research bundle pose a `/valider-1`. Absent si bundle rate (trou, pas invente).
+6. `journal.procedure` (S3) pose a freeze, **immutable**. Checks, trous, seuils, Kelly. Trou = hole, jamais 0.
+7. `journal.outcome` (S3) pose au settle : mise, cote, G/P, pnl, CLV si connu. CLV absent = hole, jamais 0. Ne mute pas procedure.

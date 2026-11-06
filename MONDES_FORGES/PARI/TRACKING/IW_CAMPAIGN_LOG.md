@@ -1535,3 +1535,11 @@
 - Research bundle SHA-256 a `/valider-1`. Gap declare. Token L-XXX porte `bundle_id` (kwargs freeze_lot).
 - `/status doctor` Telegram. Tests `test_doctor.py` + `test_research_bundle.py`.
 - Prochain pack : S3 one-writer + journal. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T14:30:00Z] v3.3 — one-writer + journal proc/outcome (S3)
+
+- One-writer : seul `notifier.py` envoie sendMessage Python. Worker ACK + inbox getFile autorises.
+- Journal F06 2 volets : procedure immutable a freeze ; outcome au settle. CLV/Kelly/seuils absents = holes.
+- Churn config/ : >2 changements / 7j hors calibration → churn_suspect.
+- Tests : test_one_writer / test_journal / test_churn. freeze_lot 7 args intact.
+- Prochain pack : S4 marches + devig. Operateur : `/roi settle L-DWG` apres matchs.

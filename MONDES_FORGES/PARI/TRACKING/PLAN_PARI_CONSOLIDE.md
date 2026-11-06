@@ -308,7 +308,7 @@ Numerotation commits : `PARI v3.Y` pour le socle mesure/moteur, `PARI v4.Y` pour
 - [x] S0 Ph0 Warsmith (GO 2026-11-06 ; rotation cles reste Warsmith-side)
 - [x] S1 v4.0 parseur + E1/D2
 - [x] S2 doctor + bundle
-- [ ] S3 one-writer + journal
+- [x] S3 one-writer + journal
 - [ ] S4 marches + devig
 - [ ] S5 compose + priorite
 - [ ] S6 fit + baseline

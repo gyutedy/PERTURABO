@@ -217,6 +217,18 @@ Pack S2 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Evidence 1. Session = ce pack seul
 
 **Handoff** : pack S3 (one-writer + journal proc/outcome). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S3 dans cette session.
 
+## ETAT v3.3 — ONE-WRITER + JOURNAL PROC/OUTCOME (2026-11-06)
+
+Pack S3 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Evidence 2. Session = ce pack seulement.
+
+- [x] **One-writer** : `notifier.py` = seul `sendMessage` Python. Lint `tests/test_one_writer.py`. Worker ACK (`LISTEN/src/index.js`) et `inbox_capture.py` getFile autorises.
+- [x] **Journal F06 2 volets** `F06_TRACKER/CODEBASE/journal.py` : (a) procedure a freeze (checks, trous, seuils, Kelly) **immutable** ; (b) outcome au settle (mise, cote, G/P, pnl, CLV si connu). CLV / Kelly / seuils absents = holes, jamais 0. `freeze_lot(..., procedure=)` kwargs (e2e 7 args intact).
+- [x] **Churn** `ORCHESTRATOR/CODEBASE/churn.py` + `config/churn.json` : >2 changements / 7j hors calibration → `churn_suspect`. Calibration exclue du compteur.
+- [x] **Tests** : `tests/test_one_writer.py`, `tests/test_journal.py`, `tests/test_churn.py`. e2e_listen freeze_lot 7 args. Zero reseau.
+- [x] **Docs** : GUIDE settle, INDEX journal/churn, schema_ledger journal, PLAN S3 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S4 (marches elargis + devig). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S4 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
