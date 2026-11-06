@@ -71,7 +71,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 | F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis | `analysis.json` |
 | F03 | FORGEWARD | De-marging + **devig multiplicatif diagnostic** (jamais producteur de p), EV, Kelly 1/4, scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
-| F05 | PACKAGER | Pari pack final (TOP N=10-20) + dashboard HTML (charte IW) | `pari_pack.json` + `dashboard.html` |
+| F05 | PACKAGER | Pari pack + combinator v3.5 (`ev_compose_net`, market_priority paliers) + dashboard | `pari_pack.json` + `tickets.json` |
 | F06 | TRACKER | Ledger des lots tokenises (`lots.json`, v2.2.8) + tickets, ROI. Settle CSV football-data. **N'apprend pas.** | `learnings/*` |
 | TYRANT | Le Tyrant | Vision stratégique : GO/NO-GO carte, seuils EV, filtre ligues exotiques | `carte_verdict.json` |
 | ORCHESTRATOR | Le Nerf | Modes radar/siège/pack/tracker/demo, enchaîne les frégates | — |

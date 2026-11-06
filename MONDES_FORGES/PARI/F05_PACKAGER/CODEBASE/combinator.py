@@ -28,8 +28,15 @@ Sortie  : F05_PACKAGER/OUT/tickets.json   (contrat schema_ticket_final.json)
 import json
 import argparse
 import os
+import sys
 from datetime import datetime, timezone
 import math
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+if _HERE not in sys.path:
+    sys.path.insert(0, _HERE)
+import compose as _compose  # noqa: E402
+import market_priority as _prio  # noqa: E402
 
 JAMBES_MAX_DEF = 4   # au-delà : division en deux classes (A puis B)
 
@@ -87,7 +94,7 @@ def apply_exclusion(events, exclude_legs, ev_floor=EV_FLOOR):
 
 def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
             mises_free, jambes_max=JAMBES_MAX_DEF, mise_min=100.0, taux=None,
-            exclude_legs=None):
+            exclude_legs=None, lots_box=None, n_mesures=None, prio_cfg=None):
     """Compose les tickets + allocation de backroll. Renvoie (tickets sort, warnings)."""
     warnings = []
     if exclude_legs:
@@ -133,6 +140,9 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
         ticket_defs.append((jk, chunk[:jk] if chunk else chunk))
         pool_b = pool_b[len(chunk):]
 
+    cfg = prio_cfg if prio_cfg is not None else _prio.load_config()
+    n_m = n_mesures if n_mesures is not None else _prio.n_tickets_mesures(lots_box=lots_box)
+
     # — Allocation backroll —
     mises = None
     if mises_free:
@@ -149,12 +159,15 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
         sel_list = []
         for e in jambes:
             top = (e["top3"] or [])[0]
-            sel_list.append({"match_id": e["id"], "match": e["match"],
-                             "marche": top.get("marche") or "",
-                             "selection": top["selection"], "selection_label": top["selection_label"],
-                             "cote": top["cote"], "p_modele": top.get("p_modele"),
-                             "ev": top.get("ev"), "bucket": e.get("bucket"),
-                             "score_commun": e["score_commun"]})
+            jambe = {"match_id": e["id"], "match": e["match"],
+                     "marche": top.get("marche") or "",
+                     "selection": top["selection"], "selection_label": top["selection_label"],
+                     "cote": top["cote"], "p_modele": top.get("p_modele"),
+                     "ev": top.get("ev"), "bucket": e.get("bucket"),
+                     "score_commun": e["score_commun"],
+                     "edge_net_devig": top.get("edge_net_devig")}
+            _prio.stamp_jambe(jambe, n=n_m, cfg=cfg, lots_box=lots_box)
+            sel_list.append(jambe)
             cote_totale *= float(top["cote"] or 1)
         if i == 0:
             mise = surticket_fc
@@ -173,21 +186,29 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
         p_agg = 1.0
         for s in sel_list:
             p_agg *= (s.get("p_modele") or 0.5)
+        composed = _compose.compose_ticket(sel_list)
         tickets_out.append({
             "rang_ticket": i + 1, "classe": classe if i == 0 else ("AUTRE" if (not mises or mises[i] is None) else "FILE_MIXTE"),
             "nb_jambes": len(sel_list), "jambes": sel_list,
             "cote_totale": round(cote_totale, 2), "p_aggregee": round(p_agg, 3),
             "ev_limitee": None, "mise_fc": mise, "mise_units": units,
             "retour_si_gagne_fc": round(mise * cote_totale, 2),
+            "ev_compose_net": composed.get("ev_compose_net"),
+            "compose_flags": composed.get("compose_flags") or [],
+            "compose_holes": composed.get("compose_holes") or [],
         })
 
     alloue = sum(t["mise_fc"] for t in tickets_out)
     out = {"tickets": tickets_out,
            "budget": {"budget_fc": budget_fc, "alloue_fc": alloue, "reste_fc": round(budget_fc - alloue, 2),
                       "taux_fc_usd": taux},
-           "regles": {"jambes_max": jambes_max, "mise_min_fc": mise_min,
-                      "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
-                      "division": f"> {jambes_max} jambes → division en deux classes de fiabilité"}}
+            "regles": {"jambes_max": jambes_max, "mise_min_fc": mise_min,
+                       "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
+                       "division": f"> {jambes_max} jambes → division en deux classes de fiabilité",
+                       "ev_compose": "produit (1+edge_net)-1 precision machine ; jambe_edge_net_negatif info pas rejet",
+                       "market_priority_min": cfg.get("min_tickets_mesures"),
+                       "n_tickets_mesures": n_m,
+                       "doctrine_edge": "modele calibre + news plus rapide que le book local ; pas d arbitrage"}}
     return out, warnings
 
 

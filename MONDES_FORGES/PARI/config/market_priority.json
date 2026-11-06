@@ -1,0 +1,19 @@
+{
+  "note": "S5 — palier suivant si >= 30 tickets mesures. corners/cards fermes sans data → holes. Pas d'arbitrage.",
+  "min_tickets_mesures": 30,
+  "paliers": [
+    {
+      "id": 0,
+      "marches": ["1X2", "OU_2.5", "BTTS", "MT_PROLIFIQUE"]
+    },
+    {
+      "id": 1,
+      "marches": ["OU_1.5", "OU_3.5", "DC", "TT_H_0.5", "TT_H_1.5", "TT_H_2.5", "TT_A_0.5", "TT_A_1.5", "TT_A_2.5"]
+    },
+    {
+      "id": 2,
+      "marches": ["OU_0.5", "OU_4.5", "CS"]
+    }
+  ],
+  "fermes_sans_data": ["corners", "cards"]
+}

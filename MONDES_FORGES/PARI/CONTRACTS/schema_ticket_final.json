@@ -39,17 +39,24 @@ l'opérateur chez Winner Bet.
          "selection": "u2.5", "selection_label": "Under 2.5",
          "cote": 2.14, "p_modele": 0.748, "score_commun": 9.2}
       ],
-      "cote_totale": 8.22,
-      "p_aggregee": 0.47,
-      "mise_fc": 3000.0,
-      "mise_units": null,          // si taux_fc_usd fourni → 1u = 1% bankroll
-      "retour_si_gagne_fc": 24660.0
-    }
-  ],
-  "budget": {"budget_fc": 6000, "alloue_fc": 6000, "reste_fc": 0, "taux_fc_usd": null},
-  "regles": {"jambes_max": 4, "mise_min_fc": 100,
-             "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
-             "division": "> 4 jambes → division en deux classes de fiabilité"},
+       "cote_totale": 8.22,
+       "p_aggregee": 0.47,
+       "mise_fc": 3000.0,
+       "mise_units": null,          // si taux_fc_usd fourni → 1u = 1% bankroll
+       "retour_si_gagne_fc": 24660.0,
+       "ev_compose_net": 0.0815,    // S5 : produit (1+edge_net)-1, precision machine
+       "compose_flags": [],         // jambe_edge_net_negatif = info, pas rejet
+       "compose_holes": []
+     }
+   ],
+   "budget": {"budget_fc": 6000, "alloue_fc": 6000, "reste_fc": 0, "taux_fc_usd": null},
+   "regles": {"jambes_max": 4, "mise_min_fc": 100,
+              "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
+              "division": "> 4 jambes → division en deux classes de fiabilité",
+              "ev_compose": "produit (1+edge_net)-1 ; jambe_edge_net_negatif info pas rejet",
+              "market_priority_min": 30,
+              "n_tickets_mesures": 0,
+              "doctrine_edge": "modele calibre + news plus rapide que le book local ; pas d arbitrage"},
   "warnings": ["NO BET recommandé exclu...", "..."]
 }
 ```

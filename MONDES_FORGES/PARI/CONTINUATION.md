@@ -242,6 +242,21 @@ Pack S4 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph4 + Ph4b. Session = ce pack seul
 
 **Handoff** : pack S5 (facteur compose + priorite marches). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S5 dans cette session.
 
+## ETAT v3.5 — FACTEUR COMPOSE + PRIORITE MARCHES (2026-11-06)
+
+Pack S5 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph4c + Ph4d. Session = ce pack seulement.
+
+- [x] **EV compose net** `F05_PACKAGER/CODEBASE/compose.py` : produit `(1+edge_net) - 1`, precision machine. `1.03*1.05-1 = 8.15%`.
+- [x] **`jambe_edge_net_negatif`** : flag info, **pas rejet**. Ticket conserve la jambe. Trou `edge_net` = hole, jamais substitue par EV brute.
+- [x] **combinator** : pose `ev_compose_net` / `compose_flags` / `compose_holes` sur chaque ticket. Tri EV brute inchange.
+- [x] **`config/market_priority.json`** : palier suivant si >= 30 tickets mesures (G/P settle, EN_ATTENTE ignore). Palier 0 = 1X2/O2.5/BTTS/MT. Palier 1 a n>=30. Palier 2 a n>=60.
+- [x] **corners / cards** fermes sans data → `holes: ["sans_data", "corners"|"cards"]`. Jamais ouverts. Jamais droppes.
+- [x] **Doctrine** : edge = modele calibre + news plus rapide que le book local ; **pas d arbitrage**.
+- [x] **Tests** : `tests/test_compose.py` (8.15%), `tests/test_market_priority.py`. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, schema_ticket_final, PLAN S5 coche.
+
+**Handoff** : pack S6 (fit ligue + baseline saison recency). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S6 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

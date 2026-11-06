@@ -1551,3 +1551,12 @@
 - double_confirmation : P_modele > P_fair et EV>0. Bonus 1 pt `config/devig.json`.
 - Tests : test_markets + test_devig (2.75/3.40/2.50).
 - Prochain pack : S5 compose + priorite. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-06T16:00:00Z] v3.5 — facteur compose + priorite marches (S5)
+
+- EV compose net = produit (1+edge_net)-1, precision machine (1.03*1.05-1 = 8.15%).
+- jambe_edge_net_negatif = info, pas rejet. Trou edge_net = hole, jamais EV brute.
+- market_priority : palier suivant si >= 30 tickets mesures (G/P). corners/cards fermes → holes.
+- Doctrine : edge = modele calibre + news plus rapide que le book local ; pas d arbitrage.
+- Tests : test_compose + test_market_priority. e2e_listen 113/113.
+- Prochain pack : S6 fit + baseline. Operateur : `/roi settle L-DWG` apres matchs.

@@ -310,7 +310,7 @@ Numerotation commits : `PARI v3.Y` pour le socle mesure/moteur, `PARI v4.Y` pour
 - [x] S2 doctor + bundle
 - [x] S3 one-writer + journal
 - [x] S4 marches + devig
-- [ ] S5 compose + priorite
+- [x] S5 compose + priorite
 - [ ] S6 fit + baseline
 - [ ] S7 empirique + walk-forward
 - [ ] S8 sensibilite + CLV T-0

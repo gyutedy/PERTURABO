@@ -110,6 +110,11 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    chaque lot Mode A) → PREVIEW 2 + token `L-XXX` + snapshot T0 dans `ARCHIVUM/learnings/lots.json`.
    Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE.
    `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
+   v3.5 : chaque ticket porte `ev_compose_net` = produit `(1+edge_net)-1` (precision
+   machine, `1.03*1.05-1 = 8.15%`). `jambe_edge_net_negatif` = info, **pas rejet**.
+   Priorite marches : palier suivant si >= 30 tickets mesures (G/P). corners/cards
+   fermes sans data → holes, jamais ouverts. Edge = modele calibre + news plus rapide
+   que le book local ; **pas d arbitrage**. Tri EV brute inchange.
 4. **Placement** : tu poses les tickets chez Winner Bet. F06 a deja fige le lot
    (token) + **journal.procedure** (checks, trous, seuils, Kelly — immutable).
    Apres les matchs : `/roi settle L-XXX` pose **journal.outcome** (mise, cote,

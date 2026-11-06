@@ -17,6 +17,9 @@ Cartographie des journaux du monde.
 | `ORCHESTRATOR/CODEBASE/churn.py` | Compteur `config/` : >2 changements / 7j hors calibration → `churn_suspect`. | config/churn.json |
 | `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif diagnostic. Cote unique = hole. Invariant S>1 => fair > cote. | forgeward.py |
 | `config/devig.json` | Bonus double_confirmation (init 1 pt). Pas un producteur de p. | devig.py |
+| `F05_PACKAGER/CODEBASE/compose.py` | EV compose net = produit (1+edge_net)-1. `jambe_edge_net_negatif` info, pas rejet. | combinator.py |
+| `config/market_priority.json` | Paliers marches. Palier suivant si >= 30 tickets mesures. corners/cards fermes → holes. | market_priority.py |
+| `F05_PACKAGER/CODEBASE/market_priority.py` | Gate palier + holes sans_data. n = settle G/P seulement. | combinator.py |
 | `config/` | Compteur churn versionne (`churn.json` au 1er record). Calibration exclue. | churn.py |
 | `ARCHIVUM/learnings/lots.json` | Ledger F06 lots (token L-XXX = cle, snapshot T0). F06 n'apprend pas. | workflow.py `/valider-2`, ledger.py |
 | `CONTRACTS/schema_ledger.json` | Contrat lot / jambes / snapshot T0 / settle G/P/EN_ATTENTE | F06 ledger.py |
