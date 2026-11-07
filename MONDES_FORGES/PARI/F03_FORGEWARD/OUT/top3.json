@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T17:35:07Z",
+  "generated_at": "2026-11-07T18:26:13Z",
   "methode": "Top 3 = VALUE seulement, tri EV desc puis p_modele desc. Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. Score commun 01-10 = 30% qualité data + 40% p_modele de la jambe #1 + 30% edge EV de la jambe #1 (pas le p_max du pool). Pool vide = score 0 FAIBLE. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. p_fav = max p_modele des selections 1/2. vestiaire_ok = state_factors.applied et effectifs connus.",
   "source_predictions": "predictions.json",
   "matchs": [

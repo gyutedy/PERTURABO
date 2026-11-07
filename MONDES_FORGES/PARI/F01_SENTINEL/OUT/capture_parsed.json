@@ -928,7 +928,7 @@
   "warnings": [
     "cote_plate: 20 match(s) MT identiques (>=5)"
   ],
-  "statut": "A_VALIDER",
+  "statut": "VALIDE",
   "n_matchs": 23,
   "source_format": "text+markdown_table"
 }

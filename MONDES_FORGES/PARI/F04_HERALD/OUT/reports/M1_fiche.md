@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — AJ Auxerre vs Paris FC
-*Générée le 2026-11-07 17:35 UTC — siege_id courant*
+*Générée le 2026-11-07 18:26 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 108.8%
 

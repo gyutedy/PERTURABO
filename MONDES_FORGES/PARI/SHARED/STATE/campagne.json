@@ -2,7 +2,8 @@
   "campagne": "PARI-20261107",
   "steps": {
     "start": "2026-11-07T18:23:12Z",
-    "capture": "2026-11-07T18:23:47Z"
+    "capture": "2026-11-07T18:23:47Z",
+    "valider1": "2026-11-07T18:25:27Z"
   },
   "budget_fc": 0,
   "surticket_fc": 0,
@@ -10,8 +11,10 @@
   "jambes": "3:2:2",
   "marches": null,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "A_VALIDER",
-  "previews": {},
+  "capturer_statut": "VALIDE",
+  "previews": {
+    "preview1": "SHARED/OUT/preview1.html"
+  },
   "bankroll_fc": 3000.0,
   "budget_seq": 0,
   "capture_id": "C-VHK",
@@ -22,5 +25,5 @@
   "notes_count": 0,
   "marches_mono": false,
   "pending_lot": null,
-  "bundle_id": "B-M4H"
+  "bundle_id": "B-5A5"
 }

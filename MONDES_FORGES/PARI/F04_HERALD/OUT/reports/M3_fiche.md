@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Hertha BSC vs VFL Wolfsburg
-*Générée le 2026-11-07 17:35 UTC — siege_id courant*
+*Générée le 2026-11-07 18:26 UTC — siege_id courant*
 
 **Verdict match : ⛔ NO_BET** — meilleure EV: 15.1%
 

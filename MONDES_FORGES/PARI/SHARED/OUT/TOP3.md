@@ -1,6 +1,6 @@
 ### 🛡️ PERTURABO · PARI — TOP 3 MARCHÉS PAR MATCH (score commun 01-10)
 
-*generated 2026-11-07T17:35:07Z — 23 matchs classés — notes: 0*
+*generated 2026-11-07T18:26:13Z — 23 matchs classés — notes: 0*
 
 - **#1 Excelsior Rotterdam vs Go Ahead Eagles** — score **9.4/10** — bucket 🟢 HAUTE (données haute)
     1. Victoire Domicile — cote 2.8 — proba 56% — EV +55.7%

@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Valencia CF vs Real Madrid
-*Générée le 2026-11-07 17:35 UTC — siege_id courant*
+*Générée le 2026-11-07 18:26 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 175.1%
 

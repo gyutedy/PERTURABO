@@ -1778,3 +1778,31 @@
 ## [2026-11-07T17:35:07Z] F05 — check-out — status: processing
 
 ## [2026-11-07T17:35:07Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:0761b7488c8d85872d31b149bf5d7ce8 — status:done
+
+## [2026-11-07T18:26:12Z] TYRANT — check-out — status: processing
+
+## [2026-11-07T18:26:13Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:c285493e32a85a8e021db74a808c2f23 — status:done
+
+## [2026-11-07T18:26:13Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:781ff225d90c8179ec902366cd28b254 — status:done
+
+## [2026-11-07T18:26:13Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-11-07T18:26:13Z] F02 — check-out — status: processing
+
+## [2026-11-07T18:26:13Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:932322fdd73f14919b637f5481579b0e — status:done
+
+## [2026-11-07T18:26:13Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-11-07T18:26:13Z] F03 — check-out — status: processing
+
+## [2026-11-07T18:26:13Z] F03 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:bc7720f1af5eeeeb08f6837234e2f11d — status:done
+
+## [2026-11-07T18:26:13Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-11-07T18:26:13Z] F04 — check-out — status: processing
+
+## [2026-11-07T18:26:13Z] F04 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:9002742a9c4275ddac843817cacbe936 — status:done
+
+## [2026-11-07T18:26:13Z] F05 — check-out — status: processing
+
+## [2026-11-07T18:26:13Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:8ac2bc4552132a4556145b597e58ed31 — status:done
