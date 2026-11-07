@@ -59,6 +59,11 @@ def test_top3_pas_de_recycle():
     rows, score, bucket = top3mod.compute_match(p, "basse")
     check("v.top3_vide_nobet", rows == [], str(rows))
     check("v.top3_pas_x", not any(r.get("selection") == "X" for r in rows))
+    check("v.vide_score0", score == 0.0, str(score))
+    check("v.vide_faible", bucket == "FAIBLE", str(bucket))
+    _, score_h, bucket_h = top3mod.compute_match(p, "haute")
+    check("v.vide_haute_pas_fake", score_h == 0.0 and bucket_h == "FAIBLE",
+          str((score_h, bucket_h)))
 
 
 def test_top3_value_seulement():
@@ -75,6 +80,24 @@ def test_top3_value_seulement():
     check("v.top3_1", rows and rows[0]["selection"] == "1")
     check("v.top3_verdict", rows and rows[0].get("verdict") == "VALUE")
     check("v.top3_elig", rows and rows[0].get("scorer_eligible") is True)
+
+
+def test_score_sur_jambe():
+    p = {
+        "id": "M1", "match": "A vs B", "verdict": "GO",
+        "selections": [
+            _sel("1", 0.10, "VALUE", True, p=0.72, cote=1.50),
+            _sel("X", 0.625, "VALUE", True, p=0.21, cote=7.7),
+        ],
+    }
+    rows, score, bucket = top3mod.compute_match(p, "basse")
+    check("v.score_jambe_x", rows and rows[0]["selection"] == "X", str(rows))
+    expected = round(10 * (0.30 * 0.45 + 0.40 * (0.21 / 0.65) + 0.30 * 1.0), 1)
+    check("v.score_sur_jambe", score == expected, f"{score} vs {expected}")
+    score_pmax = round(10 * (0.30 * 0.45 + 0.40 * min(1.0, 0.72 / 0.65) + 0.30 * 1.0), 1)
+    check("v.score_pas_pmax", score != score_pmax, f"{score} vs pmax {score_pmax}")
+    check("v.score_pfav", rows and rows[0].get("p_fav") == 0.72, str(rows[0] if rows else None))
+    check("v.score_vest_legacy", rows and rows[0].get("vestiaire_ok") is True)
 
 
 def test_combinator_jette_arsenal_gala():
@@ -185,6 +208,7 @@ def main():
     print("=" * 70)
     test_top3_pas_de_recycle()
     test_top3_value_seulement()
+    test_score_sur_jambe()
     test_combinator_jette_arsenal_gala()
     test_scorer_ko_meme_si_label_value()
     test_zero_value_zero_ticket()

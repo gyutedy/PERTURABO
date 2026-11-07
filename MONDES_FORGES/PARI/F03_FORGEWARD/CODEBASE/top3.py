@@ -30,10 +30,46 @@ BUCKETS = [("HAUTE", 7.0), ("MOYENNE", 5.0), ("FAIBLE", 0.0)]
 FEEDER_TITRE = "PERTURABO · PARI — TOP 3 MARCHÉS PAR MATCH (score commun 01-10)"
 
 
-def compute_match(p, quality):
-    """Top 3 VALUE + score commun. Zero VALUE = top3 vide, jamais de recycle EV."""
+def p_fav_of(p):
+    """Plus haute p_modele parmi les selections 1 et 2 (toutes, pas seulement VALUE)."""
+    best = None
+    for s in p.get("selections") or []:
+        if str(s.get("selection") or "") not in ("1", "2"):
+            continue
+        pm = s.get("p_modele")
+        if pm is None:
+            continue
+        try:
+            v = float(pm)
+        except (TypeError, ValueError):
+            continue
+        if best is None or v > best:
+            best = v
+    return best
+
+
+def vestiaire_ok(analysis):
+    """True si state_factors appliques et effectifs connus. Sans analysis = True (legacy)."""
+    if not analysis:
+        return True
+    sf = analysis.get("state_factors") or {}
+    holes = list(sf.get("holes") or []) + list(analysis.get("holes") or [])
+    if not sf.get("applied"):
+        return False
+    if "effectifs" in holes:
+        return False
+    return True
+
+
+def compute_match(p, quality, analysis=None):
+    """Top 3 VALUE + score commun. Zero VALUE = top3 vide, jamais de recycle EV.
+
+    Score = jambe #1 (p_modele, ev), pas le p_max du pool. Pool vide = 0 FAIBLE.
+    """
     pool = [s for s in p.get("selections", []) if s.get("verdict") == "VALUE"]
     sorted_sel = sorted(pool, key=lambda s: (-(s.get("ev") or 0), -(s.get("p_modele") or 0)))
+    p_fav = p_fav_of(p)
+    vest = vestiaire_ok(analysis)
     top3 = [{
         "rang": i + 1, "marche": s.get("marche"), "selection": s.get("selection"),
         "selection_label": s.get("selection_label") or s.get("selection"),
@@ -51,14 +87,19 @@ def compute_match(p, quality):
         "pieges": s.get("pieges") or [],
         "piege_detail": s.get("piege_detail") or {},
         "lecture_cotes": s.get("lecture_cotes") or {},
+        "p_fav": p_fav,
+        "vestiaire_ok": vest,
     } for i, s in enumerate(sorted_sel[:3])]
 
-    # score commun 01-10 : qualité data (30%) · proba max du top (40%) · edge EV (30%)
-    p_max = max((s.get("p_modele") or 0) for s in pool) if pool else 0.0
-    ev_max = max((s.get("ev") or 0) for s in pool) if pool else 0.0
+    if not pool:
+        return top3, 0.0, "FAIBLE"
+
+    jambe = top3[0]
+    p_leg = jambe.get("p_modele") or 0.0
+    ev_leg = jambe.get("ev") or 0.0
     wq = QUALITY_WEIGHT.get(quality, 0.45)
-    wproba = min(1.0, p_max / 0.65)          # 65% de proba = référence parfaite
-    wedge = max(0.0, min(1.0, 0.5 + 5 * ev_max))
+    wproba = min(1.0, p_leg / 0.65)
+    wedge = max(0.0, min(1.0, 0.5 + 5 * ev_leg))
     score = round(10 * (0.30 * wq + 0.40 * wproba + 0.30 * wedge), 1)
     score = max(0.0, min(10.0, score))
     bucket = next(n for n, seuil in BUCKETS if score >= seuil)
@@ -81,6 +122,7 @@ def main():
         analysis = json.load(f)
 
     quality_by_id = {a["id"]: a.get("data_quality", {}).get("niveau", "basse") for a in analysis.get("analyses", [])}
+    analysis_by_id = {a["id"]: a for a in analysis.get("analyses", [])}
     norb = {}
     if args.notes_filter and os.path.exists(args.notes_filter):
         with open(args.notes_filter, encoding="utf-8") as f:
@@ -90,7 +132,7 @@ def main():
     out_rows = []
     for p in predictions.get("predictions", []):
         qualite = quality_by_id.get(p["id"], "basse")
-        top3, score, bucket = compute_match(p, qualite)
+        top3, score, bucket = compute_match(p, qualite, analysis_by_id.get(p["id"]))
         fv = (norb.get(p["id"]) or {})
         out_rows.append({
             "id": p["id"], "match": p.get("match"), "verdict_modele": p.get("verdict"),
@@ -109,9 +151,12 @@ def main():
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "methode": ("Top 3 = VALUE seulement, tri EV desc puis p_modele desc. "
                     "Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. "
-                    "Score commun 01-10 = 30% qualité data + 40% proba max "
-                    "+ 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. "
-                    "Le score est comparable entre matchs et entre campagnes."),
+                    "Score commun 01-10 = 30% qualité data + 40% p_modele de la jambe #1 "
+                    "+ 30% edge EV de la jambe #1 (pas le p_max du pool). "
+                    "Pool vide = score 0 FAIBLE. "
+                    "Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. "
+                    "p_fav = max p_modele des selections 1/2. "
+                    "vestiaire_ok = state_factors.applied et effectifs connus."),
         "source_predictions": os.path.basename(args.predictions),
         "matchs": out_rows,
     }

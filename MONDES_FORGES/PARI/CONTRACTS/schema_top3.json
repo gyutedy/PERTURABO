@@ -10,9 +10,11 @@ qualitative_verdict). Consommateurs : Preview 1, Preview 2 (ticket final), Teleg
 1. **Top 3 par match** : tri par EV desc, à égalité par `p_modele` desc.
     Uniquement VERDICT `VALUE`. Zero VALUE = `top3` vide. Jamais de recycle EV / NO_BET.
 2. **Score commun 01-10** (le "scoring à la clipping") :
-   `10 × (0.30 × qualité_data + 0.40 × proba_max_top + 0.30 × edge_EV)`
+   `10 × (0.30 × qualité_data + 0.40 × p_modele_jambe_#1 + 0.30 × edge_EV_jambe_#1)`
    — qualité data : haute=1.0 · moyenne=0.75 · basse=0.45 ;
-   — proba_max_top normalisée sur 65% ; edge EV borné [0,1] (0.5 + 5×EV_max).
+   — p_modele de la jambe #1 (plus haute EV) normalisée sur 65% ;
+   — edge EV borné [0,1] (0.5 + 5×EV de la jambe #1).
+   Pool vide (zero VALUE) = score 0, bucket FAIBLE.
    Comparable entre matchs, entre ligues et entre campagnes (calibration F06).
 3. **Buckets** : score ≥ 7 → `HAUTE` · ≥ 5 → `MOYENNE` · < 5 → `FAIBLE`.
 4. Le filtre qualitatif TYRANT (notes non binaires)** précède le Top 3 :
@@ -41,6 +43,7 @@ qualitative_verdict). Consommateurs : Preview 1, Preview 2 (ticket final), Teleg
           "selection_label": "Under 2.5", "cote": 2.14,
           "p_modele": 0.7481, "ev": 0.60, "verdict": "VALUE",
           "scorer_score": 0.85, "scorer_eligible": true,
+          "p_fav": 0.72, "vestiaire_ok": true,
           "pieges": [], "lecture_cotes": {"capture": 2.14, "t2h": 2.10, "t0": null}}
       ]
     }
