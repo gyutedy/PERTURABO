@@ -23,7 +23,7 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
      → /capture (tableau markdown DANS le meme message)
      → /budget 3000 800 (plafond lot + mise FORCEE ticket sur)  ← retaper avant CHAQUE lot
       → /valider-1 → PREVIEW 1 + table couverture → relecture
-      → /marches O/U2.5,MT2  (alias /marchés ; option `mono`)
+       → /marches  (commande hint = marches jouables du jour ; alias /marchés ; option `mono`)
       → /combos 3:3:2:2
       → /valider-2 → PREVIEW 2 + pending L-XXX → /approve L-XXX (lot F06, anti-cannibal, bundle_id)
       Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 → /approve (autre token, autres marches)
@@ -40,7 +40,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets + jambes (1 a n+10 matchs distincts). Meme match interdit sur un ticket. |
-| `/marches O/U2.5,MT2` | Elit les marches (canon `/marches`, alias `/marchés`). Table couverture VALUE F03 (n, meilleur EV, marge). `mono` = ticket mono-marche. 0 match → 0 ticket. THIN hors combo. |
+| `/marches 1X2` | Elit les marches (canon `/marches`, alias `/marchés`). Table couverture = jambes **jouables** (tank-X hors n). Apres `/valider-1` le hint est `/marches` calque sur cette table — pas le stub `O/U2.5,MT2`. `mono` = ticket mono-marche. 0 match → 0 ticket. THIN hors combo. `cote_plate` = flag, jambe MT reste. |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) + table couverture |
 | `/valider-2` | Compose les tickets + metro Oracle + fees/slippage dans le seuil + pending `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide, 0 match elu. Live : `/approve L-XXX` fige T0. Actions `PARI_AUTO_GATES=1` fige tout de suite. |
 | `/approve L-XXX` | Fige le lot pending (snapshot T0). Token mismatch = refuse. |
@@ -119,8 +119,10 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
      (si notes **ou** flags S13) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
     + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`
     pour l evidence GO/CHECK/FAIL (cles = noms, jamais les valeurs).
-3. **/marches** (v4.1) : table couverture (n matchs VALUE F03, meilleur EV, marge).
-   `/marches O/U2.5,MT2` elit. Alias `/marchés`. `mono` = toutes les jambes d un ticket
+3. **/marches** (v4.1 + hint du jour) : table couverture (n matchs VALUE F03 **jouables**,
+   meilleur EV, marge). X sous tank (`p_fav>=0.55`, vestiaire vide) hors n.
+   Le hint post `/valider-1` recopie cette table (`/marches 1X2` si seul 1X2 couvert).
+   Alias `/marchés`. `cote_plate` = flag, jambe MT **reste**. `mono` = toutes les jambes d un ticket
    = un seul marche. 0 match → 0 ticket, message honnete. Tickets = VALUE seulement
    (THIN hors combo). EV_FLOOR 0.03 reste le plancher numerique (baisser = refuse).
    Combo plancher 0.05. Jamais jambe de remplissage. Meme match

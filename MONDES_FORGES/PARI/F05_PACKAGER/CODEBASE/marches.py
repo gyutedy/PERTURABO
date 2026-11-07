@@ -238,6 +238,29 @@ def coverage_n(top3, markets, ev_floor=EV_FLOOR):
     return n
 
 
+HINT_LABEL = {
+    "1X2": "1X2",
+    "OU_0.5": "O/U0.5",
+    "OU_1.5": "O/U1.5",
+    "OU_2.5": "O/U2.5",
+    "OU_3.5": "O/U3.5",
+    "OU_4.5": "O/U4.5",
+    "MT_PROLIFIQUE": "MT2",
+    "BTTS": "BTTS",
+    "DC": "DC",
+    "CS": "CS",
+}
+
+
+def hint_marches(top3, ev_floor=EV_FLOOR):
+    """Commande /marches calquee sur la couverture jouable du jour. Vide = ''."""
+    rows = coverage_rows(top3, ev_floor=ev_floor)
+    if not rows:
+        return ""
+    labels = [HINT_LABEL.get(r["marche"], r["marche"]) for r in rows]
+    return "/marches " + ",".join(labels)
+
+
 def format_coverage(top3, markets=None, ev_floor=EV_FLOOR):
     rows = coverage_rows(top3, ev_floor=ev_floor)
     wanted = {canon_marche(m) for m in markets} if markets else None

@@ -13,7 +13,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
   valider-1        épingle le JSON capture → carte → siège → Top3 → PREVIEW 1
   /corriger-1      (rejoue /capture après correction de la capture OCR)
-  /marches O/U2.5,MT2   elit les marches (canon /marches, alias /marchés). Table couverture avant.
+  /marches 1X2     elit les marches du jour (hint post /valider-1). Alias /marchés. Table couverture = jambes jouables.
   /combos 3        nombre de tickets (1 a n+10 jambes ; option 3:3:2:2)
   valider-2        tickets + metro Oracle + fees/slippage + pending L-XXX
   /approve L-XXX   fige le lot pending (snapshot T0). Refuse token mismatch.
@@ -140,7 +140,7 @@ def cmd_start(st, arg):
             "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
           + "1. Capture Winner Bet : `/capture` + tableau markdown DANS le meme message, ou photo avec caption `/capture`\n"
          "2. `/budget 3000 800` (plafond lot + mise FORCEE ticket sur)\n"
-          "3. `/valider-1` → PREVIEW 1 + table couverture → `/marches O/U2.5,MT2` → `/combos 3` → `/valider-2`"
+          "3. `/valider-1` → PREVIEW 1 + table couverture → `/marches` (marches du jour) → `/combos 3` → `/valider-2`"
           " → PREVIEW 2 + pending → `/approve L-XXX`\n"
           "Mode A : meme capture, retape `/budget` puis `/valider-2` (lot 2).\n"
          "Mode B : `/stop` → `/start` → nouvelle capture.")
@@ -323,8 +323,11 @@ def cmd_marches(st, text):
     t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
     raw = (text or "").strip()
     if not raw:
+        hint = mmod.hint_marches(t3)
+        extra = ("\n→ " + hint) if hint else "\n(aucun marche jouable)"
         tell(mmod.format_coverage(t3)
-             + "\nFormat : `/marches O/U2.5,MT2` (alias `/marchés`). `mono` = ticket mono-marche.")
+             + extra
+             + "\nFormat : `/marches 1X2` (alias `/marchés`). `mono` = ticket mono-marche. MT cote_plate = flag, jambe reste.")
         return
     canons, mono, inconnus = mmod.parse_marches_arg(raw)
     if inconnus and not canons:
@@ -511,16 +514,20 @@ def cmd_valider1(st, arg):
              + "Ne pas `/valider-2` — aucun ticket a composer.")
         return
     cov = ""
+    hint = ""
     try:
-        cov = "\n" + _marches_mod().format_coverage(t3)
+        mmod = _marches_mod()
+        cov = "\n" + mmod.format_coverage(t3)
+        hint = mmod.hint_marches(t3)
     except Exception as e:
         print(f"[WF] couverture gracieux: {e}")
+    next_cmd = hint if hint else "(0 marche jouable — ne pas /valider-2)"
     tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
          f"{counts} — {names}\n"
          "PREVIEW 1 : SHARED/OUT/preview1.html\n"
          + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
          + cov + "\n"
-         + "→ relis ; `/marches O/U2.5,MT2` → `/combos` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
+         + f"→ relis ; `{next_cmd}` → `/combos` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
          "`/data` pour les rangs.")
 
 

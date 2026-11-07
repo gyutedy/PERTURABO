@@ -449,8 +449,20 @@ Pas de wrangler manuel. Operateur : attendre le job vert, puis retaper `/marches
 
 **Handoff** : attendre Actions `pari-worker-deploy`. Puis Telegram :
 `/start` → `/budget bankroll N` → `/capture` → `/budget 3000 800` → `/valider-1`
-→ `/marches O/U2.5,MT2` → `/combos 3:3:2:2` → `/valider-2` → `/approve L-XXX`.
+→ `/marches` (hint = marches du jour) → `/combos 3:3:2:2` → `/valider-2` → `/approve L-XXX`.
 `/roi settle` seulement apres les matchs.
+
+## ETAT v4.6.3 — HINT MARCHES DU JOUR (2026-11-07)
+
+Siege live 23 matchs : couverture 1X2 n=3 EV +175% (X-tank) + hint stub `/marches O/U2.5,MT2`.
+Hint aveugle. Couverture compte encore un X non jouable.
+
+- [x] `hint_marches(top3)` : `/marches` calque sur `coverage_rows` (jambes jouables).
+- [x] `/valider-1` et `/marches` vide : hint du jour, plus le stub `O/U2.5,MT2`.
+- [x] Tank-X hors n (deja `jambe_jouable`). `cote_plate` = flag, MT **reste jouable**.
+- [x] Tests : `test_hint_du_jour` (PSG X hors n, Gala 1 in, MT plate in, pas de stub).
+
+**Handoff** : attendre Actions. Operateur : `/data` puis coller le hint affiche, pas un stub.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

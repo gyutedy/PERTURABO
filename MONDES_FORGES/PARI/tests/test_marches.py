@@ -216,6 +216,55 @@ def test_workflow_cmd():
         marches.LOG_PATH = old_log
 
 
+def test_hint_du_jour():
+    top3 = {"matchs": [
+        ev("M1", "A vs B", "1X2", "1", 0.20),
+        ev("M2", "C vs D", "OU_2.5", "o2.5", 0.12),
+    ]}
+    h = marches.hint_marches(top3)
+    check("m.hint_1x2_ou", h == "/marches 1X2,O/U2.5" or h == "/marches O/U2.5,1X2", h)
+    empty = marches.hint_marches({"matchs": [ev("M1", "A vs B", "1X2", "1", 0.01)]})
+    check("m.hint_vide", empty == "", empty)
+    tank_x = {
+        "id": "M1", "match": "PSG vs Troyes", "score_commun": 8.0, "rang_global": 1,
+        "bucket": "HAUTE", "no_bet_recommande": False,
+        "top3": [{
+            "marche": "1X2", "selection": "X", "selection_label": "X",
+            "cote": 7.7, "p_modele": 0.21, "ev": 1.75, "verdict": "VALUE",
+            "scorer_eligible": True, "p_fav": 0.81, "vestiaire_ok": False,
+        }],
+    }
+    gala_1 = {
+        "id": "M8", "match": "Gala vs Amed", "score_commun": 8.0, "rang_global": 2,
+        "bucket": "HAUTE", "no_bet_recommande": False,
+        "top3": [{
+            "marche": "1X2", "selection": "1", "selection_label": "1",
+            "cote": 1.37, "p_modele": 0.81, "ev": 0.11, "verdict": "VALUE",
+            "scorer_eligible": True, "p_fav": 0.81, "vestiaire_ok": False,
+        }],
+    }
+    mt_plate = {
+        "id": "M3", "match": "A vs B", "score_commun": 8.0, "rang_global": 3,
+        "bucket": "HAUTE", "no_bet_recommande": False,
+        "top3": [{
+            "marche": "MT_PROLIFIQUE", "selection": "mt2", "selection_label": "MT2",
+            "cote": 2.10, "p_modele": 0.55, "ev": 0.15, "verdict": "VALUE",
+            "scorer_eligible": True, "pieges": ["cote_plate"],
+        }],
+    }
+    blob = {"matchs": [tank_x, gala_1, mt_plate]}
+    rows = marches.coverage_rows(blob)
+    by_m = {r["marche"]: r for r in rows}
+    check("m.cov_pas_tank_x", by_m.get("1X2", {}).get("n") == 1, str(rows))
+    check("m.cov_mt_plate_in", "MT_PROLIFIQUE" in by_m, str(rows))
+    h2 = marches.hint_marches(blob)
+    check("m.hint_pas_stub", "O/U2.5,MT2" not in h2, h2)
+    check("m.hint_1x2", "1X2" in h2, h2)
+    check("m.hint_mt", "MT2" in h2, h2)
+    check("m.plate_jouable", marches.jambe_jouable(mt_plate["top3"][0]) is True)
+    check("m.tank_x_hors", marches.jambe_jouable(tank_x["top3"][0]) is False)
+
+
 def test_schema_listen():
     schema = json.load(open(os.path.join(WORLD, "CONTRACTS", "schema_listen.json"), encoding="utf-8"))
     pat = schema["properties"]["cmd"]["pattern"]
@@ -236,6 +285,7 @@ def main():
     test_combo_floor_pas_remplissage()
     test_couverture_et_log()
     test_workflow_cmd()
+    test_hint_du_jour()
     test_schema_listen()
     n_fail = sum(1 for _, ok, _ in CHECKS if not ok)
     print("=" * 70)

@@ -1675,6 +1675,13 @@
 - Operateur : attendre job vert, ne pas retaper `/marches` avant.
 - `/roi settle L-DWG` / `L-CEB` seulement apres les matchs.
 
+## [2026-11-07T18:40:00Z] v4.6.3 — hint marches du jour (couverture jouable)
+
+- `/valider-1` hint = `/marches` calque sur coverage_rows (jambes jouables).
+- Plus de stub `O/U2.5,MT2`. Tank-X hors n. cote_plate = flag, MT reste.
+- Tests : test_hint_du_jour. Operateur : coller le hint affiche.
+- Prochain : docs cycle operateur (phase C) puis siege live avec table effectifs.
+
 ## [2026-11-07T09:34:29Z] TYRANT — check-out — status: processing
 
 ## [2026-11-07T09:34:29Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:7f84060653a3dc2c4eba3a020661c483 — status:done
