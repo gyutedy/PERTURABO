@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T13:57:16Z",
+  "generated_at": "2026-11-07T18:27:40Z",
   "source": "the-odds-api",
   "kind": "t0",
   "horizon_h": 0,
@@ -39,18 +39,62 @@
     },
     {
       "id": "M9",
-      "reason": "hors_fenetre"
+      "reason": "trou_marche"
     },
     {
       "id": "M10",
-      "reason": "hors_fenetre"
+      "reason": "trou_marche"
     },
     {
       "id": "M11",
-      "reason": "hors_fenetre"
+      "reason": "trou_marche"
     },
     {
       "id": "M12",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M13",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M14",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M15",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M16",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M17",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M18",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M19",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M20",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M21",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M22",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M23",
       "reason": "hors_fenetre"
     }
   ],

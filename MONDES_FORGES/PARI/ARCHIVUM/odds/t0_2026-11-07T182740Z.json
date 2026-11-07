@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-11-07T18:27:40Z",
+  "source": "the-odds-api",
+  "kind": "t0",
+  "horizon_h": 0,
+  "scanned": [],
+  "skipped": [
+    {
+      "id": "M1",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M2",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M3",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M4",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M5",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M6",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M7",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M8",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M9",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M10",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M11",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M12",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M13",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M14",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M15",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M16",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M17",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M18",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M19",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M20",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M21",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M22",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M23",
+      "reason": "hors_fenetre"
+    }
+  ],
+  "alerts": []
+}
