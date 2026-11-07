@@ -7,6 +7,15 @@
         "1X2"
       ],
       "mono": false
+    },
+    {
+      "ts": "2026-11-07T18:28:19Z",
+      "campagne": "PARI-20261107",
+      "marches": [
+        "1X2",
+        "MT_PROLIFIQUE"
+      ],
+      "mono": false
     }
   ]
 }
