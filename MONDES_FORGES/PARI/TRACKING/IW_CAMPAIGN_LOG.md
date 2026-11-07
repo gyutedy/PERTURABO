@@ -1668,6 +1668,13 @@
 - Metro docstring sans `reasoning_content` (garde source).
 - Tests : metro 27/27, weights 18/18, e2e_listen 118/118. Plan clos.
 
+## [2026-11-07T14:30:00Z] v4.6.2 — redeploy Worker codebook marches approve
+
+- Bump LISTEN/src/index.js → path filter `pari-worker-deploy`.
+- Cause live : Worker stale, `/marches` inconnu alors que git KNOWN l a.
+- Operateur : attendre job vert, ne pas retaper `/marches` avant.
+- `/roi settle L-DWG` / `L-CEB` seulement apres les matchs.
+
 ## [2026-11-07T09:34:29Z] TYRANT — check-out — status: processing
 
 ## [2026-11-07T09:34:29Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:7f84060653a3dc2c4eba3a020661c483 — status:done

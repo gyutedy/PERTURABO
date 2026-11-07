@@ -438,6 +438,20 @@ Session verification S16 (pas un nouveau pack). 4 tests rouges a HEAD v4.6.
 
 **Handoff** : S16 operationnel. Plan clos. Operateur : `/roi settle L-DWG` apres les matchs.
 
+## ETAT v4.6.2 — REDEPLOY WORKER CODEBOOK (2026-11-07)
+
+Bump `LISTEN/src/index.js` pour declencher `pari-worker-deploy`. Git connaissait
+`/marches` `/approve` depuis S11/S16 ; Worker live stale → `Commande inconnue : /marches`.
+Pas de wrangler manuel. Operateur : attendre le job vert, puis retaper `/marches`.
+
+- [x] Commentaire codebook dans `index.js` (KNOWN deja a jour : marches, approve, combos).
+- [x] Docs CONTINUATION + IW_CAMPAIGN_LOG. Plan S0-S16 reste clos.
+
+**Handoff** : attendre Actions `pari-worker-deploy`. Puis Telegram :
+`/start` → `/budget bankroll N` → `/capture` → `/budget 3000 800` → `/valider-1`
+→ `/marches O/U2.5,MT2` → `/combos 3:3:2:2` → `/valider-2` → `/approve L-XXX`.
+`/roi settle` seulement apres les matchs.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

@@ -2,6 +2,7 @@
  * PARI LISTEN — Cloudflare Worker (webhook Telegram)
  * Relais uniquement : allowlist chat_id, parse commande, ACK, dispatch GitHub.
  * Miroir de parse.py. Zero calcul, zero Dixon-Coles.
+ * v4.6.2 codebook : /marches /approve /combos 3:3:2:2 (redeploy Worker).
  *
  * Secrets wrangler (jamais dans git) :
  *   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_WEBHOOK_SECRET, GITHUB_DISPATCH_TOKEN
