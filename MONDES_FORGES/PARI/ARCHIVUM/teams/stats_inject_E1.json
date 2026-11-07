@@ -1,0 +1,614 @@
+{
+  "generated_at": "2026-11-07T09:33:51Z",
+  "source": "football-data.co.uk (usage privé, whitelist)",
+  "league_code": "E1",
+  "season": "2627",
+  "merged_seasons": [
+    "2627",
+    "2526"
+  ],
+  "tier": "secondaire",
+  "last_n_considered": 12,
+  "teams": {
+    "Birmingham": {
+      "dom": {
+        "mj": 12,
+        "marques": 24.0,
+        "encaisses": 11.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 6.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 8.0,
+        "encaisses": 20.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 13.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Ipswich": {
+      "dom": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 10.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 13.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 16.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Charlton": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 12.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 16.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Watford": {
+      "dom": {
+        "mj": 12,
+        "marques": 20.0,
+        "encaisses": 12.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 2.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 17.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Coventry": {
+      "dom": {
+        "mj": 12,
+        "marques": 27.0,
+        "encaisses": 9.0,
+        "marques_mt1": 13.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 27.0,
+        "encaisses": 16.0,
+        "marques_mt1": 13.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Hull": {
+      "dom": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 18.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 19.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Southampton": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 11.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 20.0,
+        "encaisses": 22.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 15.0
+      }
+    },
+    "Wrexham": {
+      "dom": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 18.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 12.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Middlesbrough": {
+      "dom": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 11.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 5.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 14.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Swansea": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 16.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 15.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Norwich": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 17.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 13.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 19.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Millwall": {
+      "dom": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 15.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 16.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Oxford": {
+      "dom": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 17.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 16.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Portsmouth": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 13.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 8.0,
+        "encaisses": 21.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "QPR": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 17.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 13.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 20.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 16.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 4.0
+      }
+    },
+    "Preston": {
+      "dom": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 12.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 13.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 5.0
+      }
+    },
+    "Stoke": {
+      "dom": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 10.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 13.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 5.0
+      }
+    },
+    "Derby": {
+      "dom": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 18.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 15.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "West Brom": {
+      "dom": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 11.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 6.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 21.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Blackburn": {
+      "dom": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 18.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 10.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Sheffield United": {
+      "dom": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 13.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 24.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 18.0
+      }
+    },
+    "Bristol City": {
+      "dom": {
+        "mj": 12,
+        "marques": 18.0,
+        "encaisses": 13.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 6.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 15.0,
+        "encaisses": 14.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Leicester": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 14.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 20.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 14.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Sheffield Weds": {
+      "dom": {
+        "mj": 12,
+        "marques": 7.0,
+        "encaisses": 29.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 14.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 15.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 22.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Wolves": {
+      "dom": {
+        "mj": 7,
+        "marques": 13.0,
+        "encaisses": 7.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 7,
+        "marques": 12.0,
+        "encaisses": 10.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 4.0
+      }
+    },
+    "Bolton": {
+      "dom": {
+        "mj": 7,
+        "marques": 9.0,
+        "encaisses": 15.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 7,
+        "marques": 10.0,
+        "encaisses": 11.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Lincoln": {
+      "dom": {
+        "mj": 7,
+        "marques": 8.0,
+        "encaisses": 16.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 7,
+        "marques": 6.0,
+        "encaisses": 8.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 1.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Burnley": {
+      "dom": {
+        "mj": 7,
+        "marques": 8.0,
+        "encaisses": 10.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 7,
+        "marques": 10.0,
+        "encaisses": 16.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "West Ham": {
+      "dom": {
+        "mj": 7,
+        "marques": 18.0,
+        "encaisses": 11.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 7,
+        "marques": 18.0,
+        "encaisses": 10.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 2.0
+      }
+    },
+    "Cardiff": {
+      "dom": {
+        "mj": 7,
+        "marques": 16.0,
+        "encaisses": 9.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 7,
+        "marques": 6.0,
+        "encaisses": 14.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 7.0
+      }
+    }
+  }
+}

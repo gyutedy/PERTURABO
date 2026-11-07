@@ -4,7 +4,8 @@
     "start": "2026-11-07T09:17:34Z",
     "capture": "2026-11-07T09:19:11Z",
     "budget": "2026-11-07T09:27:18Z",
-    "combos": "2026-11-07T09:30:35Z"
+    "combos": "2026-11-07T09:30:35Z",
+    "valider1": "2026-11-07T09:33:39Z"
   },
   "budget_fc": 3000.0,
   "surticket_fc": 800.0,
@@ -12,8 +13,10 @@
   "jambes": "4:3:3",
   "marches": null,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "A_VALIDER",
-  "previews": {},
+  "capturer_statut": "VALIDE",
+  "previews": {
+    "preview1": "SHARED/OUT/preview1.html"
+  },
   "bankroll_fc": 3000.0,
   "budget_seq": 1,
   "capture_id": "C-YE5",
@@ -23,5 +26,6 @@
   "lots_alloue_jour": 0,
   "notes_count": 0,
   "marches_mono": false,
-  "pending_lot": null
+  "pending_lot": null,
+  "bundle_id": "B-GX4"
 }

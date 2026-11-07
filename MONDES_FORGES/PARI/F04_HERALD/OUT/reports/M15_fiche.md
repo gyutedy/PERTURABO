@@ -1,34 +1,30 @@
-# 🏟️ FICHE DE SIÈGE — Tottenham Hotspur vs Ipswich Town
-*Générée le 2026-11-03 19:45 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — FSV Mainz vs Bayern Munich
+*Générée le 2026-11-07 09:34 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 58.8%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 0.7%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.23 — ext 1.79 (MT1: 0.80+1.00 · MT2: 1.43+0.79)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 47.4% / 22.1% / 30.5%
-- Over 2.5 : **76.5%** · Under 2.5 : 23.5%
-- Les deux marquent : 75.3%
-- Mi-temps : MT1 32.1% · Égalité 20.0% · **MT2 47.9%**
-- Qualité data : basse (mj_insuffisant)
+- λ attendus : dom 0.77 — ext 2.71 (MT1: 0.32+1.21 · MT2: 0.45+1.49)
+- Score le plus probable : **0-2**
+- 1 / X / 2 : 7.3% / 15.5% / 77.2%
+- Over 2.5 : **67.5%** · Under 2.5 : 32.5%
+- Les deux marquent : 51.1%
+- Mi-temps : MT1 31.0% · Égalité 21.6% · **MT2 47.4%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.58 | 47.4% | -25.1% | ⛔ NO_BET | — |
-| 1X2 | Nul | 4.2 | 22.1% | -7.2% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 5.2 | 30.5% | 58.8% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.0% | -40.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 8.5 | 7.3% | -37.9% | ⛔ NO_BET | — |
+| 1X2 | Nul | 6.5 | 15.5% | 0.7% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 1.27 | 77.2% | -2.0% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 21.6% | -35.2% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
-> **RAPPORT DE SIÈGE — CARTE PARI**
-
-Nineteen affrontements au banc d'essai. Le verdict tombera sans concession : douze positions marquées GO, sept reléguées au NO_BET. Les exclusions sont sans appel — échantillons domicile ou extérieur jugés trop maigres (4 ou 5 rencontres, seuil de 6 non atteint) pour Everton, Coventry, Arsenal, Hull, Ipswich et Tottenham dans certaines configurations. Toute la carte évolue sous un régime durci : ligue hors top 5, seuil d'espérance de valeur relevé à 8 %, sans exception ni négociation. Les duels phares figurent parmi les positions retenues — Crystal Palace contre Liverpool, Liverpool contre Manchester United, Nottingham Forest contre Manchester City. Le front est large, mais la discipline prime sur l'appât du gain.
-
-Restez prudents : un GO n'est pas une garantie, seulement une porte ouverte sous conditions strictes.
+> (Oracle indisponible: HTTP Error 403: Forbidden)
 
 ## Ordre de marche
 

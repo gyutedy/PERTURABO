@@ -1,38 +1,34 @@
-# 🏟️ FICHE DE SIÈGE — Sunderland AFC vs Chelsea FC
-*Générée le 2026-11-03 19:45 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Malaga CF vs Racing Santander
+*Générée le 2026-11-07 09:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 58.1%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 72.1%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.40 — ext 1.02 (MT1: 0.68+0.37 · MT2: 0.72+0.66)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 43.9% / 30.2% / 25.9%
-- Over 2.5 : **43.7%** · Under 2.5 : 56.3%
-- Les deux marquent : 50.0%
-- Mi-temps : MT1 29.0% · Égalité 26.6% · **MT2 44.3%**
-- Qualité data : haute
+- λ attendus : dom 2.80 — ext 1.11 (MT1: 1.26+0.75 · MT2: 1.54+0.36)
+- Score le plus probable : **2-1**
+- 1 / X / 2 : 71.7% / 16.7% / 11.6%
+- Over 2.5 : **74.9%** · Under 2.5 : 25.1%
+- Les deux marquent : 63.9%
+- Mi-temps : MT1 41.8% · Égalité 20.6% · **MT2 37.5%**
+- Qualité data : basse (mj_insuffisant)
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.6 | 43.9% | 58.1% |  VALUE | 3.0u |
-| 1X2 | Nul | 3.55 | 30.2% | 7.2% | 🟡 THIN | 0.35u |
-| 1X2 | Victoire Extérieur | 1.99 | 25.9% | -48.5% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 26.6% | -20.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.4 | 71.7% | 72.1% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.5 | 16.7% | -41.5% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 2.8 | 11.6% | -67.5% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.6% | -38.1% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
-> **RAPPORT DE SIÈGE — CARTE PARI**
-
-Nineteen affrontements au banc d'essai. Le verdict tombera sans concession : douze positions marquées GO, sept reléguées au NO_BET. Les exclusions sont sans appel — échantillons domicile ou extérieur jugés trop maigres (4 ou 5 rencontres, seuil de 6 non atteint) pour Everton, Coventry, Arsenal, Hull, Ipswich et Tottenham dans certaines configurations. Toute la carte évolue sous un régime durci : ligue hors top 5, seuil d'espérance de valeur relevé à 8 %, sans exception ni négociation. Les duels phares figurent parmi les positions retenues — Crystal Palace contre Liverpool, Liverpool contre Manchester United, Nottingham Forest contre Manchester City. Le front est large, mais la discipline prime sur l'appât du gain.
-
-Restez prudents : un GO n'est pas une garantie, seulement une porte ouverte sous conditions strictes.
+> (Oracle indisponible: HTTP Error 403: Forbidden)
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Domicile** @ 3.6 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

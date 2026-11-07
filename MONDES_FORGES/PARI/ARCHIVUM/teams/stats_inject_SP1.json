@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T14:43:29Z",
+  "generated_at": "2026-11-07T09:33:54Z",
   "source": "football-data.co.uk (usage privé, whitelist)",
   "league_code": "SP1",
   "season": "2627",
@@ -412,11 +412,11 @@
     },
     "Santander": {
       "dom": {
-        "mj": 5,
+        "mj": 6,
         "marques": 11.0,
-        "encaisses": 8.0,
+        "encaisses": 11.0,
         "marques_mt1": 7.0,
-        "encaisses_mt1": 4.0,
+        "encaisses_mt1": 7.0,
         "marques_mt2": 4.0,
         "encaisses_mt2": 4.0
       },
@@ -432,12 +432,12 @@
     },
     "La Coruna": {
       "dom": {
-        "mj": 5,
-        "marques": 6.0,
-        "encaisses": 5.0,
+        "mj": 6,
+        "marques": 8.0,
+        "encaisses": 6.0,
         "marques_mt1": 3.0,
-        "encaisses_mt1": 2.0,
-        "marques_mt2": 3.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
         "encaisses_mt2": 3.0
       },
       "ext": {
@@ -461,12 +461,12 @@
         "encaisses_mt2": 4.0
       },
       "ext": {
-        "mj": 5,
-        "marques": 2.0,
-        "encaisses": 9.0,
+        "mj": 6,
+        "marques": 3.0,
+        "encaisses": 11.0,
         "marques_mt1": 1.0,
-        "encaisses_mt1": 4.0,
-        "marques_mt2": 1.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 2.0,
         "encaisses_mt2": 5.0
       }
     }

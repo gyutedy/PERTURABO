@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T08:34:45Z",
+  "generated_at": "2026-11-07T09:34:00Z",
   "source": "football-data.co.uk (usage privé, whitelist)",
   "league_code": "D1",
   "season": "2627",
@@ -372,13 +372,13 @@
     },
     "Elversberg": {
       "dom": {
-        "mj": 3,
-        "marques": 8.0,
-        "encaisses": 7.0,
-        "marques_mt1": 5.0,
+        "mj": 4,
+        "marques": 12.0,
+        "encaisses": 8.0,
+        "marques_mt1": 8.0,
         "encaisses_mt1": 2.0,
-        "marques_mt2": 3.0,
-        "encaisses_mt2": 5.0
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 6.0
       },
       "ext": {
         "mj": 4,
@@ -401,7 +401,7 @@
         "encaisses_mt2": 2.0
       },
       "ext": {
-        "mj": 3,
+        "mj": 4,
         "marques": 2.0,
         "encaisses": 5.0,
         "marques_mt1": 2.0,
@@ -412,13 +412,13 @@
     },
     "Schalke 04": {
       "dom": {
-        "mj": 3,
+        "mj": 4,
         "marques": 0.0,
-        "encaisses": 1.0,
+        "encaisses": 3.0,
         "marques_mt1": 0.0,
-        "encaisses_mt1": 1.0,
+        "encaisses_mt1": 2.0,
         "marques_mt2": 0.0,
-        "encaisses_mt2": 0.0
+        "encaisses_mt2": 1.0
       },
       "ext": {
         "mj": 4,

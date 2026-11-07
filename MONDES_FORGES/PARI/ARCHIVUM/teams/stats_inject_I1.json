@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T14:43:27Z",
+  "generated_at": "2026-11-07T09:33:57Z",
   "source": "football-data.co.uk (usage privé, whitelist)",
   "league_code": "I1",
   "season": "2627",
@@ -421,23 +421,23 @@
         "encaisses_mt2": 4.0
       },
       "ext": {
-        "mj": 5,
-        "marques": 7.0,
-        "encaisses": 14.0,
-        "marques_mt1": 3.0,
-        "encaisses_mt1": 7.0,
+        "mj": 6,
+        "marques": 8.0,
+        "encaisses": 16.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
         "marques_mt2": 4.0,
-        "encaisses_mt2": 7.0
+        "encaisses_mt2": 8.0
       }
     },
     "Frosinone": {
       "dom": {
-        "mj": 5,
-        "marques": 14.0,
+        "mj": 6,
+        "marques": 16.0,
         "encaisses": 6.0,
         "marques_mt1": 9.0,
         "encaisses_mt1": 3.0,
-        "marques_mt2": 5.0,
+        "marques_mt2": 7.0,
         "encaisses_mt2": 3.0
       },
       "ext": {
@@ -461,11 +461,11 @@
         "encaisses_mt2": 8.0
       },
       "ext": {
-        "mj": 4,
+        "mj": 5,
         "marques": 3.0,
-        "encaisses": 9.0,
+        "encaisses": 10.0,
         "marques_mt1": 1.0,
-        "encaisses_mt1": 6.0,
+        "encaisses_mt1": 7.0,
         "marques_mt2": 2.0,
         "encaisses_mt2": 3.0
       }

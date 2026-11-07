@@ -1,174 +1,184 @@
 {
-  "generated_at": "2026-11-03T19:45:32Z",
+  "generated_at": "2026-11-07T09:34:30Z",
   "siege_id": null,
   "devise": "USD",
   "titre": "DIRECTION DES SIÈGES — TOP 10",
   "top_picks": [
     {
-      "match_id": "M9",
-      "match": "Sunderland AFC vs Chelsea FC",
+      "match_id": "M6",
+      "match": "Bristol City vs Norwich City",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 3.6,
-      "p_modele": 0.4392,
-      "ev": 0.5811,
+      "cote": 2.85,
+      "p_modele": 0.5886,
+      "ev": 0.6775,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 1
     },
     {
-      "match_id": "M19",
-      "match": "Brentford FC vs Everton FC",
+      "match_id": "M8",
+      "match": "Wrexham AFC vs Wolverhampton Wanderers",
       "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 3.8,
-      "p_modele": 0.3364,
-      "ev": 0.2783,
-      "mise_units": 2.48,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 3.45,
+      "p_modele": 0.4336,
+      "ev": 0.4959,
+      "mise_units": 2.53,
       "note_risque": "qualité data: haute",
       "rang": 2
     },
     {
-      "match_id": "M13",
-      "match": "Aston Villa vs Sunderland AFC",
+      "match_id": "M1",
+      "match": "Eyupspor vs Kocaelispor",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 1.92,
-      "p_modele": 0.6564,
-      "ev": 0.2603,
-      "mise_units": 3.0,
+      "cote": 3.8,
+      "p_modele": 0.3732,
+      "ev": 0.4182,
+      "mise_units": 1.87,
       "note_risque": "qualité data: haute",
       "rang": 3
     },
     {
-      "match_id": "M7",
-      "match": "Crystal Palace vs Liverpool FC",
+      "match_id": "M13",
+      "match": "Torino FC vs US Lecce",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 4.7,
-      "p_modele": 0.2664,
-      "ev": 0.2521,
-      "mise_units": 1.7,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 3.55,
+      "p_modele": 0.3666,
+      "ev": 0.3014,
+      "mise_units": 1.48,
       "note_risque": "qualité data: haute",
       "rang": 4
     },
     {
       "match_id": "M7",
-      "match": "Crystal Palace vs Liverpool FC",
+      "match": "Portsmouth FC vs Stoke City",
       "marche": "1X2",
       "selection": "X",
       "selection_label": "Nul",
-      "cote": 4.2,
-      "p_modele": 0.2919,
-      "ev": 0.226,
-      "mise_units": 1.77,
+      "cote": 3.25,
+      "p_modele": 0.3934,
+      "ev": 0.2786,
+      "mise_units": 1.55,
       "note_risque": "qualité data: haute",
       "rang": 5
     },
     {
-      "match_id": "M11",
-      "match": "Manchester City vs Fulham FC",
+      "match_id": "M1",
+      "match": "Eyupspor vs Kocaelispor",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 1.45,
-      "p_modele": 0.8442,
-      "ev": 0.2241,
-      "mise_units": 3.0,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 3.15,
+      "p_modele": 0.3724,
+      "ev": 0.1731,
+      "mise_units": 1.01,
       "note_risque": "qualité data: haute",
       "rang": 6
     },
     {
-      "match_id": "M16",
-      "match": "Newcastle United vs Arsenal FC",
+      "match_id": "M13",
+      "match": "Torino FC vs US Lecce",
       "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 4.2,
-      "p_modele": 0.283,
-      "ev": 0.1886,
-      "mise_units": 1.47,
+      "selection": "2",
+      "selection_label": "Victoire Extérieur",
+      "cote": 4.4,
+      "p_modele": 0.2614,
+      "ev": 0.1502,
+      "mise_units": 0.55,
       "note_risque": "qualité data: haute",
       "rang": 7
     },
     {
-      "match_id": "M6",
-      "match": "Brighton & Hove Albion vs Brentford FC",
+      "match_id": "M16",
+      "match": "RB Leipzig vs FC Augsburg",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 1.91,
-      "p_modele": 0.6025,
-      "ev": 0.1508,
+      "cote": 1.43,
+      "p_modele": 0.8036,
+      "ev": 0.1491,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 8
     },
     {
-      "match_id": "M4",
-      "match": "Fulham FC vs Newcastle United",
+      "match_id": "M11",
+      "match": "Samsunspor vs Konyaspor",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 2.07,
-      "p_modele": 0.5496,
-      "ev": 0.1377,
-      "mise_units": 3.0,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 3.2,
+      "p_modele": 0.347,
+      "ev": 0.1104,
+      "mise_units": 0.63,
       "note_risque": "qualité data: haute",
       "rang": 9
     },
     {
-      "match_id": "M2",
-      "match": "Leeds United vs Tottenham Hotspur",
+      "match_id": "M3",
+      "match": "Holstein Kiel vs Arminia Bielefeld",
       "marche": "1X2",
-      "selection": "2",
-      "selection_label": "Victoire Extérieur",
-      "cote": 2.67,
-      "p_modele": 0.4191,
-      "ev": 0.119,
-      "mise_units": 1.78,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.35,
+      "p_modele": 0.4643,
+      "ev": 0.0911,
+      "mise_units": 0.84,
       "note_risque": "qualité data: haute",
       "rang": 10
     }
   ],
   "no_bet": [
     {
-      "match_id": "M1",
-      "match": "Everton FC vs Coventry City",
+      "match_id": "M2",
+      "match": "1 FC Nuremberg vs SV Darmstadt 98",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M4",
+      "match": "VfL 1899 Osnabruck vs 1 FC Kaiserslautern",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
-      "match_id": "M3",
-      "match": "Arsenal FC vs Hull City",
+      "match_id": "M9",
+      "match": "Malaga CF vs Racing Santander",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
-      "match_id": "M8",
-      "match": "Ipswich Town vs AFC Bournemouth",
+      "match_id": "M10",
+      "match": "Burgos CF vs RC Celta Fortuna",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M12",
+      "match": "Cagliari Calcio vs Frosinone Calcio",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M14",
-      "match": "Coventry City vs Crystal Palace",
+      "match": "Borussia Dortmund vs SV 07 Elversberg",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M15",
-      "match": "Tottenham Hotspur vs Ipswich Town",
+      "match": "FSV Mainz vs Bayern Munich",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M17",
-      "match": "Hull City vs Brighton & Hove Albion",
+      "match": "SC Paderborn 07 vs Eintracht Frankfurt",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
       "match_id": "M18",
-      "match": "Liverpool FC vs Manchester United",
+      "match": "Arsenal FC vs Hull City",
       "raison": "EV < seuil sur tous les marchés"
     }
   ],
@@ -176,27 +186,33 @@
     {
       "jambes": [
         {
-          "match_id": "M9",
+          "match_id": "M6",
           "selection": "1",
-          "cote": 3.6,
-          "p_modele": 0.4392
+          "cote": 2.85,
+          "p_modele": 0.5886
         },
         {
-          "match_id": "M19",
-          "selection": "X",
+          "match_id": "M8",
+          "selection": "1",
+          "cote": 3.45,
+          "p_modele": 0.4336
+        },
+        {
+          "match_id": "M1",
+          "selection": "1",
           "cote": 3.8,
-          "p_modele": 0.3364
-        },
-        {
-          "match_id": "M13",
-          "selection": "1",
-          "cote": 1.92,
-          "p_modele": 0.6564
+          "p_modele": 0.3732
         }
       ],
-      "cote_totale": 26.27,
-      "ev_combine": 1.5472,
-      "mise_units": 0.77
+      "cote_totale": 37.36,
+      "ev_combine": 2.5588,
+      "mise_units": 0.88,
+      "kelly_fraction": 0.125,
+      "kelly_label": "1/8",
+      "kelly_holes": [
+        "ece",
+        "n<50"
+      ]
     }
   ],
   "loterie": {
@@ -205,11 +221,11 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 24.97,
-    "ev_moyenne_pct": 0.2418,
-    "nb_matchs_analyses": 19,
-    "nb_no_bet": 7,
-    "nb_matchs_go": 12
+    "mise_totale_units": 17.34,
+    "ev_moyenne_pct": 0.2845,
+    "nb_matchs_analyses": 18,
+    "nb_no_bet": 9,
+    "nb_matchs_go": 9
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
   "carte_tyran": {

@@ -1,0 +1,434 @@
+{
+  "generated_at": "2026-11-07T09:33:43Z",
+  "source": "football-data.co.uk (usage privé, whitelist)",
+  "league_code": "T1",
+  "season": "2627",
+  "merged_seasons": [
+    "2627",
+    "2526"
+  ],
+  "tier": "secondaire",
+  "last_n_considered": 12,
+  "teams": {
+    "Gaziantep": {
+      "dom": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 21.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 13.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 19.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Galatasaray": {
+      "dom": {
+        "mj": 12,
+        "marques": 32.0,
+        "encaisses": 10.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 20.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 24.0,
+        "encaisses": 7.0,
+        "marques_mt1": 12.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 5.0
+      }
+    },
+    "Samsunspor": {
+      "dom": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 12.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 16.0,
+        "encaisses": 15.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Genclerbirligi": {
+      "dom": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 16.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 9.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 18.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 10.0
+      }
+    },
+    "Antalyaspor": {
+      "dom": {
+        "mj": 12,
+        "marques": 17.0,
+        "encaisses": 27.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 16.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 7.0,
+        "encaisses": 11.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 4.0
+      }
+    },
+    "Kasimpasa": {
+      "dom": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 18.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 17.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 8.0
+      }
+    },
+    "Rizespor": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 17.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 13.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 19.0,
+        "encaisses": 18.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 9.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Goztep": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 5.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 1.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 11.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Eyupspor": {
+      "dom": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 17.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 10.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 8.0,
+        "encaisses": 18.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Konyaspor": {
+      "dom": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 14.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 11.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 23.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 11.0
+      }
+    },
+    "Trabzonspor": {
+      "dom": {
+        "mj": 12,
+        "marques": 24.0,
+        "encaisses": 12.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 24.0,
+        "encaisses": 16.0,
+        "marques_mt1": 11.0,
+        "encaisses_mt1": 10.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Kocaelispor": {
+      "dom": {
+        "mj": 12,
+        "marques": 13.0,
+        "encaisses": 8.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 4.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 16.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 6.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Karagumruk": {
+      "dom": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 19.0,
+        "marques_mt1": 6.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 12.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 11.0,
+        "encaisses": 26.0,
+        "marques_mt1": 4.0,
+        "encaisses_mt1": 11.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 15.0
+      }
+    },
+    "Alanyaspor": {
+      "dom": {
+        "mj": 12,
+        "marques": 12.0,
+        "encaisses": 12.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 8.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 14.0,
+        "encaisses": 18.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 9.0,
+        "encaisses_mt2": 12.0
+      }
+    },
+    "Fenerbahce": {
+      "dom": {
+        "mj": 12,
+        "marques": 27.0,
+        "encaisses": 12.0,
+        "marques_mt1": 14.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 6.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 28.0,
+        "encaisses": 11.0,
+        "marques_mt1": 14.0,
+        "encaisses_mt1": 8.0,
+        "marques_mt2": 14.0,
+        "encaisses_mt2": 3.0
+      }
+    },
+    "Besiktas": {
+      "dom": {
+        "mj": 12,
+        "marques": 23.0,
+        "encaisses": 14.0,
+        "marques_mt1": 10.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 7.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 22.0,
+        "encaisses": 15.0,
+        "marques_mt1": 14.0,
+        "encaisses_mt1": 6.0,
+        "marques_mt2": 8.0,
+        "encaisses_mt2": 9.0
+      }
+    },
+    "Buyuksehyr": {
+      "dom": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 16.0,
+        "marques_mt1": 9.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 11.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 21.0,
+        "encaisses": 10.0,
+        "marques_mt1": 8.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 13.0,
+        "encaisses_mt2": 6.0
+      }
+    },
+    "Kayserispor": {
+      "dom": {
+        "mj": 12,
+        "marques": 9.0,
+        "encaisses": 26.0,
+        "marques_mt1": 2.0,
+        "encaisses_mt1": 12.0,
+        "marques_mt2": 7.0,
+        "encaisses_mt2": 14.0
+      },
+      "ext": {
+        "mj": 12,
+        "marques": 10.0,
+        "encaisses": 20.0,
+        "marques_mt1": 0.0,
+        "encaisses_mt1": 7.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 13.0
+      }
+    },
+    "Corum": {
+      "dom": {
+        "mj": 4,
+        "marques": 6.0,
+        "encaisses": 4.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 2.0
+      },
+      "ext": {
+        "mj": 6,
+        "marques": 15.0,
+        "encaisses": 12.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 10.0,
+        "encaisses_mt2": 7.0
+      }
+    },
+    "Amedspor": {
+      "dom": {
+        "mj": 6,
+        "marques": 19.0,
+        "encaisses": 4.0,
+        "marques_mt1": 7.0,
+        "encaisses_mt1": 1.0,
+        "marques_mt2": 12.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 4,
+        "marques": 6.0,
+        "encaisses": 7.0,
+        "marques_mt1": 1.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
+        "encaisses_mt2": 4.0
+      }
+    },
+    "Erzurumspor": {
+      "dom": {
+        "mj": 5,
+        "marques": 5.0,
+        "encaisses": 7.0,
+        "marques_mt1": 3.0,
+        "encaisses_mt1": 4.0,
+        "marques_mt2": 2.0,
+        "encaisses_mt2": 3.0
+      },
+      "ext": {
+        "mj": 5,
+        "marques": 4.0,
+        "encaisses": 8.0,
+        "marques_mt1": 0.0,
+        "encaisses_mt1": 2.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 6.0
+      }
+    }
+  }
+}

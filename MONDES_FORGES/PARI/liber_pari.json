@@ -1,5 +1,5 @@
 {
-  "fleet_status": "analysed",
+  "fleet_status": "pack_ready",
   "siege_id": "PARI-DEMO-20261029-0826",
   "monde": "pari",
   "warsmith_brief": {
@@ -62,26 +62,26 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-11-06T14:29:28Z",
+    "last_validation": "2026-11-07T09:34:30Z",
     "errors": []
   },
   "gate_decisions": {
     "gate_1": {
       "label": "Validation carte TYRANT (GO/NO-GO siège)",
       "validated": true,
-      "timestamp": "2026-11-03T19:45:29Z",
+      "timestamp": "2026-11-07T09:34:29Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_2": {
       "label": "Validation analyses BREACHER (probas, matrice)",
       "validated": true,
-      "timestamp": "2026-11-03T19:45:29Z",
+      "timestamp": "2026-11-07T09:34:29Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_3": {
       "label": "Validation verdicts FORGEWARD (EV, Kelly, combinés)",
       "validated": true,
-      "timestamp": "2026-11-03T19:45:29Z",
+      "timestamp": "2026-11-07T09:34:30Z",
       "notes": "auto (PARI_AUTO_GATES)"
     },
     "gate_4": {
@@ -93,12 +93,12 @@
   },
   "siege_timestamps": {
     "start": "2026-10-29T08:26:34Z",
-    "tyrant_done": "2026-11-03T19:45:29Z",
-    "intel_done": "2026-11-06T14:29:27Z",
-    "breach_done": "2026-11-06T14:29:28Z",
-    "value_done": "2026-11-03T19:45:29Z",
-    "herald_done": "2026-11-03T19:45:32Z",
-    "pack_done": "2026-11-03T19:45:32Z",
+    "tyrant_done": "2026-11-07T09:34:29Z",
+    "intel_done": "2026-11-07T09:34:29Z",
+    "breach_done": "2026-11-07T09:34:29Z",
+    "value_done": "2026-11-07T09:34:30Z",
+    "herald_done": "2026-11-07T09:34:30Z",
+    "pack_done": "2026-11-07T09:34:30Z",
     "end": null
   }
 }

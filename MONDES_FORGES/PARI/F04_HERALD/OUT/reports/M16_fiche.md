@@ -1,38 +1,34 @@
-# 🏟️ FICHE DE SIÈGE — Newcastle United vs Arsenal FC
-*Générée le 2026-11-03 19:45 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — RB Leipzig vs FC Augsburg
+*Générée le 2026-11-07 09:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 18.9%
+**Verdict match : 🔥 GO** — meilleure EV: 14.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.94 — ext 1.58 (MT1: 0.38+0.49 · MT2: 0.56+1.09)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 20.9% / 28.3% / 50.8%
-- Over 2.5 : **46.3%** · Under 2.5 : 53.7%
-- Les deux marquent : 50.1%
-- Mi-temps : MT1 20.2% · Égalité 24.1% · **MT2 55.6%**
+- λ attendus : dom 3.50 — ext 1.15 (MT1: 1.66+0.42 · MT2: 1.85+0.73)
+- Score le plus probable : **3-1**
+- 1 / X / 2 : 80.4% / 11.9% / 7.7%
+- Over 2.5 : **84.3%** · Under 2.5 : 15.7%
+- Les deux marquent : 66.8%
+- Mi-temps : MT1 31.9% · Égalité 18.5% · **MT2 49.7%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 5.2 | 20.9% | 8.8% |  VALUE | 0.52u |
-| 1X2 | Nul | 4.2 | 28.3% | 18.9% |  VALUE | 1.47u |
-| 1X2 | Victoire Extérieur | 1.59 | 50.8% | -19.3% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 24.1% | -27.6% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.43 | 80.4% | 14.9% |  VALUE | 3.0u |
+| 1X2 | Nul | 5.2 | 11.9% | -38.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 5.7 | 7.7% | -55.9% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 18.5% | -44.6% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
-> **RAPPORT DE SIÈGE — CARTE PARI**
-
-Nineteen affrontements au banc d'essai. Le verdict tombera sans concession : douze positions marquées GO, sept reléguées au NO_BET. Les exclusions sont sans appel — échantillons domicile ou extérieur jugés trop maigres (4 ou 5 rencontres, seuil de 6 non atteint) pour Everton, Coventry, Arsenal, Hull, Ipswich et Tottenham dans certaines configurations. Toute la carte évolue sous un régime durci : ligue hors top 5, seuil d'espérance de valeur relevé à 8 %, sans exception ni négociation. Les duels phares figurent parmi les positions retenues — Crystal Palace contre Liverpool, Liverpool contre Manchester United, Nottingham Forest contre Manchester City. Le front est large, mais la discipline prime sur l'appât du gain.
-
-Restez prudents : un GO n'est pas une garantie, seulement une porte ouverte sous conditions strictes.
+> (Oracle indisponible: HTTP Error 403: Forbidden)
 
 ## Ordre de marche
 
-- Miser **0.52u** sur **Victoire Domicile** @ 5.2 (¼ Kelly plafonné).
+- Miser **3.0u** sur **Victoire Domicile** @ 1.43 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

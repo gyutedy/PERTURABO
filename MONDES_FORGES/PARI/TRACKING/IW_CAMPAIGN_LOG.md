@@ -1667,3 +1667,31 @@
 - `_renorm` somme exacte 1.0 (residu B6).
 - Metro docstring sans `reasoning_content` (garde source).
 - Tests : metro 27/27, weights 18/18, e2e_listen 118/118. Plan clos.
+
+## [2026-11-07T09:34:29Z] TYRANT — check-out — status: processing
+
+## [2026-11-07T09:34:29Z] TYRANT — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/TYRANT/OUT/carte_verdict.json — md5:7f84060653a3dc2c4eba3a020661c483 — status:done
+
+## [2026-11-07T09:34:29Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:373fdacc6f69863a65505424aed698c7 — status:done
+
+## [2026-11-07T09:34:29Z] Gate 1 (Validation carte TYRANT (GO/NO-GO siège)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-11-07T09:34:29Z] F02 — check-out — status: processing
+
+## [2026-11-07T09:34:29Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:379480f6ab3f9b07fb099dd55429e0db — status:done
+
+## [2026-11-07T09:34:29Z] Gate 2 (Validation analyses BREACHER (probas, matrice)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-11-07T09:34:29Z] F03 — check-out — status: processing
+
+## [2026-11-07T09:34:30Z] F03 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F03_FORGEWARD/OUT/predictions.json — md5:ee57dd01f21a472b32289740be066155 — status:done
+
+## [2026-11-07T09:34:30Z] Gate 3 (Validation verdicts FORGEWARD (EV, Kelly, combinés)) — VALIDÉE — auto (PARI_AUTO_GATES)
+
+## [2026-11-07T09:34:30Z] F04 — check-out — status: processing
+
+## [2026-11-07T09:34:30Z] F04 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/OUT/reports_index.json — md5:5206d74a88d700ac17d1c7221572df4d — status:done
+
+## [2026-11-07T09:34:30Z] F05 — check-out — status: processing
+
+## [2026-11-07T09:34:30Z] F05 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F05_PACKAGER/OUT/pari_pack.json — md5:cc0bc7e595a1d9ab6fde6ba669f76cca — status:done
