@@ -65,12 +65,13 @@
             "description": "S13 holes effectifs. PAS dans data_quality (A3 intact)."},
           "state_factors": {
             "type": "object",
-            "description": "S13 table A. Vide = applied false, factor 1.00, holes.",
+            "description": "S13 table A + flags S15 (injuries API). Vide = applied false, factor 1.00, holes. S15 n ajuste jamais factor_*.",
             "properties": {
               "applied": {"type": "boolean"},
               "factor_dom": {"type": "number"},
               "factor_ext": {"type": "number"},
-              "flags": {"type": "array", "items": {"type": "string"}},
+              "flags": {"type": "array", "items": {"type": "string"},
+                "description": "S13 rotation_lourde/derby/meteo/retour_100/cap_hit + S15 buteur_manquant/defenseur_manquant/double_motivation/satisfait_nul"},
               "holes": {"type": "array", "items": {"type": "string"}},
               "cap_hit": {"type": "boolean"},
               "journal": {"type": "array", "items": {"type": "string"}}

@@ -66,18 +66,18 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 | Code | Nom | Rôle | Output |
 |---|---|---|---|
-| F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H via `FOOTBALL_DATA_ORG_KEY` dans env_pari — **pas Oracle**). S7 = O2.5 empirique + walk-forward | `radar.json` + `notes_qualitatives.json` |
+| F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H via `FOOTBALL_DATA_ORG_KEY` dans env_pari — **pas Oracle**). S7 = O2.5 empirique + walk-forward. S15 = injuries API flags (jamais un 2e lambda) | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
 | F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis. S6 = fit ligue (rho, bonus) + baseline saison EMA. S13 = facteurs etat lambda (table A, cap ±20%) | `analysis.json` |
 | F03 | FORGEWARD | De-marging + **devig multiplicatif defaut** + additif 2e passe (S8, jamais producteur de p), EV, **scorer eligibilite S12** (A1-A4 veto, B1-B6 0-1, jamais un p), **pieges S14** (cote_plate / marge_anomalique / cote_figee_sur_news / marche_vitrine, 3e lecture capture/T-2h/T-0), Kelly 1/8→1/4 gate ECE (S10), scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
 | F05 | PACKAGER | Pari pack + combinator v3.5 (`ev_compose_net`, market_priority paliers) + Kelly stamp S10 (fraction journalisee, `mise_fc` intact) + dashboard | `pari_pack.json` + `tickets.json` |
 | F06 | TRACKER | Ledger des lots tokenises (`lots.json`, v2.2.8) + tickets, ROI. Settle CSV + `book_odds_close` T-0 (S8) + CLV ratio (S9). Diag Platt/Beta/P(EV>0) n<50 = `/data diag` seulement. **N'apprend pas.** | `learnings/*` |
-| TYRANT | Le Tyrant | Vision stratégique : GO/NO-GO carte, seuils EV, filtre ligues exotiques | `carte_verdict.json` |
+| TYRANT | Le Tyrant | Vision stratégique : GO/NO-GO carte, seuils EV, filtre ligues exotiques. S15 flags injuries (veto/seuil, jamais un P) | `carte_verdict.json` |
 | ORCHESTRATOR | Le Nerf | Modes radar/siège/pack/tracker/demo, enchaîne les frégates | — |
 | IW_CUSTOS | Le Gardien | check-out/check-in/gate/validate — seul accès à `liber_pari.json` | — |
 
-**Partage Oracle** : `TYRANT` + `HERALD` utilisent la clé `ORACLE_API_KEY` (OpenAI-compatible, GitHub Secret). Sans clé → fiches en template, TYRANT se limite au filtre froid. Le monde tourne à 100% sans clé. `FOOTBALL_DATA_ORG_KEY` (rest_days), `API_FOOTBALL_KEY` (calendrier) et `SPORTRADAR_API_KEY` (notes voix 2) ne sont **pas** Oracle : F00 seulement, chargees depuis `env_pari` a chaque commande Telegram.
+**Partage Oracle** : `TYRANT` + `HERALD` utilisent la clé `ORACLE_API_KEY` (OpenAI-compatible, GitHub Secret). Sans clé → fiches en template, TYRANT se limite au filtre froid. Le monde tourne à 100% sans clé. `FOOTBALL_DATA_ORG_KEY` (rest_days), `API_FOOTBALL_KEY` (calendrier + injuries flags S15) et `SPORTRADAR_API_KEY` (notes voix 2) ne sont **pas** Oracle : F00 seulement, chargees depuis `env_pari` a chaque commande Telegram.
 
 ---
 

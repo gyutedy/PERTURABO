@@ -64,6 +64,64 @@ def _state_flags(an):
         return []
     return list((an.get("state_factors") or {}).get("flags") or [])
 
+
+S15_FLAGS = (
+    "double_motivation",
+    "satisfait_nul",
+    "buteur_manquant",
+    "defenseur_manquant",
+)
+
+S15_VETO = {
+    "buteur_manquant": ["o2.5", "o3.5", "btts"],
+    "satisfait_nul": ["1", "2"],
+}
+
+S15_SEUIL = {
+    "defenseur_manquant": 0.02,
+    "double_motivation": 0.02,
+}
+
+
+def _s13_priced(an, kind):
+    """Anti-double-compte : table A S13 a deja factorise att/def."""
+    if not isinstance(an, dict):
+        return False
+    journal = " ".join((an.get("state_factors") or {}).get("journal") or [])
+    if kind == "att":
+        return " att x" in journal
+    if kind == "def":
+        return "def_adverse" in journal or "gardien_adverse" in journal
+    return False
+
+
+def apply_s15_flags(sf_flags, an, excluded, bonus_total):
+    """Veto / seuil. Jamais un P. Jamais un lambda. Label only si S13 a deja prix."""
+    flags = list(sf_flags or [])
+    reasons_extra = []
+    s15_hit = [f for f in flags if f in S15_FLAGS]
+    if not s15_hit:
+        return excluded, bonus_total, reasons_extra
+    if "buteur_manquant" in flags:
+        if _s13_priced(an, "att"):
+            reasons_extra.append("buteur_manquant (S13 deja prix, pas de 2e lambda)")
+        else:
+            excluded.update(S15_VETO["buteur_manquant"])
+            reasons_extra.append("buteur_manquant (API, veto O/BTTS, pas de lambda)")
+    if "defenseur_manquant" in flags:
+        if _s13_priced(an, "def"):
+            reasons_extra.append("defenseur_manquant (S13 deja prix, pas de 2e lambda)")
+        else:
+            bonus_total += S15_SEUIL["defenseur_manquant"]
+            reasons_extra.append("defenseur_manquant (API, seuil, pas de lambda)")
+    if "double_motivation" in flags:
+        bonus_total += S15_SEUIL["double_motivation"]
+        reasons_extra.append("double_motivation (seuil, pas de lambda)")
+    if "satisfait_nul" in flags:
+        excluded.update(S15_VETO["satisfait_nul"])
+        reasons_extra.append("satisfait_nul (veto 1/2, pas de lambda)")
+    return excluded, bonus_total, reasons_extra
+
 # --- Table bornée de règles (macro → preset par impact) -----------------------
 # effets = (marches_exclus[selection codes], bonus_seuil_ev)
 RULES = {
@@ -184,6 +242,12 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
             excluded.update(_state_mod().marches_exclus(sf_flags))
         except Exception:
             pass
+        s15_reasons = []
+        try:
+            excluded, bonus_total, s15_reasons = apply_s15_flags(
+                sf_flags, an_by_id.get(p["id"]), excluded, bonus_total)
+        except Exception:
+            s15_reasons = []
 
         quality = qual_by_id.get(p["id"], "basse")
         no_bet_rec = (elevates >= 2) or (elevates >= 1 and quality == "basse") or (bonus_total >= 0.06 and quality != "haute")
@@ -206,6 +270,9 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
                 reasons.append(f"EV {s['ev']:.1%} < seuil effectif {eff_seuil:.1%} (bonus qualitatif)")
             if o_btts_deconseilles and s["selection"] in ("o2.5", "o3.5", "btts"):
                 reasons.append("O/BTTS deconseilles (rotation_lourde, pas de lambda)")
+            for extra in s15_reasons:
+                if extra not in reasons:
+                    reasons.append(extra)
             if reasons:
                 sq["raisons"] = reasons
 
@@ -234,6 +301,9 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
             vrec["state_flags"] = list(sf_flags)
         if o_btts_deconseilles:
             vrec["o_btts_deconseilles"] = True
+        s15_on = [f for f in sf_flags if f in S15_FLAGS]
+        if s15_on:
+            vrec["s15_flags"] = s15_on
         verdicts.append(vrec)
 
     methode = ("filtre qualitatif BORNÉ (exclusion de marches / hausse du seuil d'EV / NO BET recommandé). "
@@ -241,6 +311,8 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
     if any((a.get("state_factors") or {}).get("applied") or (a.get("state_factors") or {}).get("flags")
            for a in analyses):
         methode += " S13 table A : derby/meteo/retour_100 = marches_exclus ; rotation_lourde = flag O/BTTS."
+    if any(f in S15_FLAGS for a in analyses for f in ((a.get("state_factors") or {}).get("flags") or [])):
+        methode += " S15 injuries API : flags TYRANT (veto/seuil), jamais un 2e lambda, jamais un P."
     verdict_out = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "methode": methode,
@@ -254,7 +326,7 @@ def main():
     here = os.path.dirname(os.path.abspath(__file__))
     p = argparse.ArgumentParser(description="TYRANT — filtre qualitatif borné")
     p.add_argument("--predictions", required=True)
-    p.add_argument("--notes", required=True)
+    p.add_argument("--notes", required=True, help="notes json (trou OK si fichier absent)")
     p.add_argument("--analysis", default=None)
     p.add_argument("--out-verdict", default=os.path.join(here, "..", "OUT", "qualitative_verdict.json"))
     p.add_argument("--out-filtered", default=os.path.join(here, "..", "..", "F03_FORGEWARD", "OUT", "predictions_filtered.json"))
@@ -262,8 +334,10 @@ def main():
 
     with open(args.predictions, encoding="utf-8") as f:
         predictions = json.load(f)
-    with open(args.notes, encoding="utf-8") as f:
-        notes = json.load(f)
+    notes = {}
+    if args.notes and os.path.exists(args.notes):
+        with open(args.notes, encoding="utf-8") as f:
+            notes = json.load(f)
     analysis = []
     if args.analysis and os.path.exists(args.analysis):
         with open(args.analysis, encoding="utf-8") as f:

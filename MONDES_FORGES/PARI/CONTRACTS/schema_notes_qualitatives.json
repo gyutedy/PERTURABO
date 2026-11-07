@@ -18,7 +18,10 @@ Elle ne crée jamais de probabilité, n'ajoute jamais de +EV.
 casse le verrou v2 pour **cette** table. Lambdas F02 reçoivent des facteurs
 capés ±20%, journalisés. Derby / meteo / retour_100 restent veto TYRANT
 (`marches_exclus`). `rotation_lourde` (>=4) = flag "O/BTTS deconseilles",
-jamais un facteur lambda. API blessures (S15) = flags only, pas un 2e lambda.
+jamais un facteur lambda. API blessures (S15) = flags only, pas un 2e lambda :
+`buteur_manquant` / `defenseur_manquant` / `double_motivation` / `satisfait_nul`.
+Veto ou seuil TYRANT. Si table A S13 a deja prix att/def, label only (anti-double-compte).
+`api_football` n est **pas** une 4e voix du vote.
 
 ## Vote F00 (v3)
 

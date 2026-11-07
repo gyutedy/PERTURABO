@@ -1,6 +1,6 @@
 """
-F00 ENRICH — gâchette /capture : binaire + notes 3 voix.
-Trou visible. Matching par nom. Jamais dans Poisson.
+F00 ENRICH — gâchette /capture : binaire + notes 3 voix + S15 injuries flags.
+Trou visible. Matching par nom. Jamais dans Poisson. S15 = flags, jamais un lambda.
 """
 
 import json
@@ -289,6 +289,28 @@ def enrich_carte(carte, skip_notes=None, skip_binary=None):
                     timing_ok = False
             if not timing_ok and "timing" not in holes:
                 holes.append("timing")
+
+        skip_inj = skip_all or skip_binary or _env_skip("PARI_SKIP_INJURIES", "PARI_SKIP_BINARY")
+        if not skip_inj:
+            try:
+                import injuries as _inj
+                blob = _inj.flags_for(m, code)
+            except Exception:
+                blob = {
+                    "flags": [],
+                    "holes": ["injuries"],
+                    "detail": {"reason": "import_ko"},
+                    "source": "api-football",
+                }
+            m["s15"] = {
+                "flags": list((blob or {}).get("flags") or []),
+                "holes": list((blob or {}).get("holes") or []),
+                "detail": (blob or {}).get("detail") or {},
+                "source": (blob or {}).get("source") or "api-football",
+            }
+            for h in m["s15"]["holes"]:
+                if h not in holes:
+                    holes.append(h)
 
         m["holes"] = holes
 

@@ -198,7 +198,11 @@ def marches_exclus(flags, cfg=None):
     cfg = cfg or load_config()
     vetoes = cfg.get("marches_exclus") or {}
     out = set()
-    skip = {"rotation_lourde", "cap_hit"}
+    skip = {
+        "rotation_lourde", "cap_hit",
+        "buteur_manquant", "defenseur_manquant",
+        "double_motivation", "satisfait_nul",
+    }
     for f in flags or []:
         if f in skip:
             continue

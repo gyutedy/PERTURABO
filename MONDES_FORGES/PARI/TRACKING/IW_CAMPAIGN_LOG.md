@@ -1642,3 +1642,12 @@
 - `/data` `/radar` `/match` : SCORER 6 criteres + flags pieges. EV / p_modele inchanges.
 - Tests : test_pieges.py. MT plate x10 → flag ; marge 22% → marche retire.
 - Prochain pack : S15 injuries API flags. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-07T08:30:00Z] v3.11 — injuries API flags TYRANT sans lambda (S15)
+
+- Connecteur `injuries.py` : API-Football, cle existante, holes si KO. Cache 1 hit/ligue/jour.
+- 4 flags : buteur_manquant / defenseur_manquant / double_motivation / satisfait_nul. Veto ou seuil. Jamais un P. Jamais un 2e lambda.
+- Anti-double-compte : table A S13 deja prix → label only. `api_football` n est pas une 4e voix vote.
+- Siege : qualitative si notes ou state_flags. `PARI_SKIP_INJURIES=1`.
+- Tests : test_injuries.py. Operateur : `/roi settle L-DWG` apres matchs.
+- Prochain pack : S16 Oracle meta + poids scorer.

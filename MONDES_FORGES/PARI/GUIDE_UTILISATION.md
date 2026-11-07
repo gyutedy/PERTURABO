@@ -80,9 +80,12 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    date, heure, matchs, tous les marches affiches (1X2, O/U toutes lignes, MT1/MTE/MT2,
    BTTS). Cellules "Verrouille" ignorees. Champs manquants → warning, jamais devine
     (Zero Data, Zero Calc). JSON reconstitue = a relire avant tout calcul.
-    **F00** enchaine : Elo ClubElo + xG Understat + repos/H2H football-data.org + vote
-    notes (Sofa / Sportradar / ESPN). Message : `notes: N` (0 = trou, jamais invente). OUT = 3 voix.
-    `PARI_SKIP_F00=1` coupe l enrichissement (CI).
+     **F00** enchaine : Elo ClubElo + xG Understat + repos/H2H football-data.org + vote
+     notes (Sofa / Sportradar / ESPN) + **S15 injuries API** (flags TYRANT, jamais un
+     2e lambda). Message : `notes: N` (0 = trou, jamais invente). OUT = 3 voix.
+     Flags S15 : `buteur_manquant` / `defenseur_manquant` / `double_motivation` /
+     `satisfait_nul` (veto ou seuil, pas un P). `PARI_SKIP_F00=1` coupe l enrichissement (CI).
+     `PARI_SKIP_INJURIES=1` coupe S15 seulement.
     `FOOTBALL_DATA_ORG_KEY` (env_pari) = repos F00, **pas Oracle, pas modele premium**.
     Sportradar absent = DOUTE max. ESPN public (sans cle, latence heures possible).
 2. **/valider-1** : carte validée → injection **stats** (football-data.co.uk, ligues
@@ -279,6 +282,8 @@ python F00_RADAR/CODEBASE/capteurs.py fit-league \
 
 # API-Football (100 req/jour Free — API_FOOTBALL_KEY dans env_pari).
 # Pas Oracle / pas modele premium. Header x-apisports-key. Ping /status.
+# S15 injuries : meme cle, flags TYRANT (jamais un 2e lambda). Holes si KO.
+# Cache 1 hit/ligue/jour. Kill switch PARI_SKIP_INJURIES=1.
 python F00_RADAR/CODEBASE/capteurs.py fixtures-list --source api-football \
     --league-id 39 --date 2026-10-25 --out ARCHIVUM/fixtures/calendrier.json
 
@@ -326,7 +331,10 @@ precedent, recolle le markdown.
 (`dom` / `ext`). Vide = lambdas x1.00 + holes. `rotation_lourde` (>=4) = flag
 TYRANT "O/BTTS deconseilles", **pas** de facteur lambda. Derby / meteo /
 retour_100 = veto `marches_exclus` seulement. Cap cumule ±20%, journalise.
-Jamais un 2e lambda via API.
+Jamais un 2e lambda via API. S15 (`buteur_manquant` / `defenseur_manquant` /
+`double_motivation` / `satisfait_nul`) = flags TYRANT (veto / seuil) : ils ne
+remplissent **pas** cette table. Si la table A a deja prix att/def, le flag
+API reste un label (anti-double-compte).
 
 ```
 | Match | Cote | att | def | gk | milieu | repos | rotation | derby | meteo | retour |

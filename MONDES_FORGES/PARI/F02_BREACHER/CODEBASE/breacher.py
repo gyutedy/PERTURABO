@@ -401,6 +401,19 @@ def analyse_match(m, avg):
         lambda_dom, lambda_ext = sf["lambda_dom"], sf["lambda_ext"]
     except Exception:
         sf = None
+    if sf is not None:
+        s15 = m.get("s15") if isinstance(m.get("s15"), dict) else {}
+        if s15:
+            try:
+                conn = os.path.normpath(os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)),
+                    "..", "..", "F01_SENTINEL", "CODEBASE", "connectors"))
+                if conn not in sys.path:
+                    sys.path.insert(0, conn)
+                import injuries as _inj
+                sf = _inj.stamp_state(sf, s15)
+            except Exception:
+                pass
 
     # Split mi-temps : part d'équipe si présente, part ligue sinon
     scored_mt1_dom = (sd["marques_mt1"] / sd["marques"]) if sd.get("marques_mt1") else None

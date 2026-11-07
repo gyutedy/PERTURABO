@@ -1,5 +1,5 @@
 {
-  "note": "S13 — facteurs etat lambda (table operateur seulement). Vide = x1.00 + holes. Cap cumule ±20% journalise. rotation_lourde >=4 = flag TYRANT, pas de lambda. Derby/meteo/retour_100 = veto marches_exclus, jamais un 2e lambda.",
+  "note": "S13 — facteurs etat lambda (table operateur seulement). Vide = x1.00 + holes. Cap cumule ±20% journalise. rotation_lourde >=4 = flag TYRANT, pas de lambda. Derby/meteo/retour_100 = veto marches_exclus, jamais un 2e lambda. S15 flags (buteur_manquant/defenseur_manquant/double_motivation/satisfait_nul) skip marches_exclus ici : veto/seuil dans qualitative.py.",
   "att_per_unit": 0.90,
   "att_max_units": 2,
   "milieu": 0.96,

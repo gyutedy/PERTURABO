@@ -248,7 +248,19 @@ def suite_siege(fixtures, carte_out, intel_out, top_pack):
         int(notes_blob.get("notes_count") or 0) > 0
         or any((n.get("themes") and not n.get("items")) for n in notes_blob.get("notes") or [])
     )
-    if has_notes:
+    has_state = False
+    if os.path.exists(analysis_out):
+        try:
+            with open(analysis_out, encoding="utf-8") as f:
+                _an = json.load(f)
+            has_state = any(
+                (a.get("state_factors") or {}).get("flags")
+                for a in (_an.get("analyses") or [])
+                if isinstance(a, dict)
+            )
+        except (OSError, json.JSONDecodeError, TypeError):
+            has_state = False
+    if has_notes or has_state:
         custos("check-out", "--frigate", "TYRANT")
         qualitative_out = P("TYRANT", "OUT", "qualitative_verdict.json")
         run_frigate(P("TYRANT", "CODEBASE", "qualitative.py"),

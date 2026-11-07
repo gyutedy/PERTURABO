@@ -399,6 +399,21 @@ Pack S14 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. v4 R5 + R8. Session = ce pack seu
 
 **Handoff** : pack S15 (injuries API flags TYRANT, jamais un 2e lambda). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S15 dans cette session.
 
+## ETAT v3.11 — INJURIES API FLAGS TYRANT (2026-11-07)
+
+Pack S15 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph10 + Ph10b. Session = ce pack seulement.
+
+- [x] **`injuries.py`** `F01_SENTINEL/CODEBASE/connectors/injuries.py`. Cle existante `API_FOOTBALL_KEY`. Cache 1 hit/ligue/jour. Timeout / 40x / cle absente = `holes: ["injuries"]`. Jamais SystemExit. Jamais un P.
+- [x] **4 flags TYRANT** : `buteur_manquant` (veto O/BTTS), `defenseur_manquant` (seuil +2 pts), `double_motivation` (seuil +2 pts), `satisfait_nul` (veto 1/2). **Jamais un 2e facteur lambda.**
+- [x] **Anti-double-compte** : si table A S13 a deja prix att/def, le flag reste un label (pas de veto/seuil extra). `stamp_state` append flags/holes, lambdas intactes.
+- [x] **Pas une 4e voix** : `api_football` hors `vote.INDEPENDENT`. 3 wrappers du meme upstream ≠ OUT.
+- [x] **Siege** : qualitative tourne si notes **ou** `state_factors.flags` (S13/S15). Notes absentes = fichier vide OK.
+- [x] **Kill switch** `PARI_SKIP_INJURIES=1`. Skip aussi si `PARI_SKIP_F00` / `PARI_SKIP_BINARY`.
+- [x] **Tests** : `tests/test_injuries.py`. Holes, mock HTTP, anti-double-lambda, veto sans S13. Zero reseau.
+- [x] **Docs** : GUIDE, INDEX, README, schema notes/analysis, PLAN S15 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S16 (Oracle meta + backtest poids scorer). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S16 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
