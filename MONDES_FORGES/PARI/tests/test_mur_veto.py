@@ -179,6 +179,84 @@ def test_marches_filtre():
     check("v.jouable_legacy", marches.jambe_jouable({"marche": "1X2", "ev": 0.12, "selection": "1"}) is True)
 
 
+def test_tank_x_veto():
+    tank_x = _top("X", 0.625, verdict="VALUE", eligible=True, cote=7.7, p=0.21)
+    tank_x["p_fav"] = 0.72
+    tank_x["vestiaire_ok"] = False
+    check("v.tank_x_bloque", marches.jambe_jouable(tank_x) is False)
+
+    tank_x_ok = dict(tank_x)
+    tank_x_ok["vestiaire_ok"] = True
+    check("v.tank_x_vestiaire", marches.jambe_jouable(tank_x_ok) is True)
+
+    gala_1 = _top("1", 0.1089, verdict="VALUE", eligible=True, cote=1.37, p=0.81)
+    gala_1["p_fav"] = 0.81
+    gala_1["vestiaire_ok"] = False
+    check("v.tank_1_ok", marches.jambe_jouable(gala_1) is True)
+
+    x_pas_tank = _top("X", 0.20, verdict="VALUE", eligible=True, cote=3.5, p=0.40)
+    x_pas_tank["p_fav"] = 0.40
+    x_pas_tank["vestiaire_ok"] = False
+    check("v.x_pas_tank", marches.jambe_jouable(x_pas_tank) is True)
+
+    x_legacy = _top("X", 0.20, verdict="VALUE", eligible=True, cote=3.5, p=0.40)
+    check("v.x_legacy_sans_pfav", marches.jambe_jouable(x_legacy) is True)
+
+    ou = {"marche": "OU_2.5", "selection": "u2.5", "selection_label": "u2.5",
+          "cote": 2.1, "p_modele": 0.55, "ev": 0.15, "verdict": "VALUE",
+          "scorer_eligible": True, "p_fav": 0.72, "vestiaire_ok": False}
+    check("v.tank_pas_jeter_ou", marches.jambe_jouable(ou) is True)
+
+    events = [
+        _event("M1", "Arsenal FC vs Hull City", [tank_x], score=8.3),
+        _event("M8", "Galatasaray Istanbul vs Amed", [gala_1], score=8.3),
+        _event("M12", "VfB Stuttgart vs Werder Bremen", [
+            _top("1", 0.367, verdict="VALUE", eligible=True, cote=1.87, p=0.73),
+        ], score=10.0),
+        _event("M4", "Tank vs Side", [tank_x, ou], score=9.0),
+    ]
+    res, _ = combinator.allocate(
+        events, tickets=2, jambes_by_ticket=[3, 2],
+        surticket_fc=400, budget_fc=1000, mises_free=None, n_mesures=0)
+    ids = [j["match_id"] for t in res["tickets"] for j in t["jambes"]]
+    sels = {j["match_id"]: j["selection"] for t in res["tickets"] for j in t["jambes"]}
+    check("v.tank_pas_arsenal_x", "M1" not in ids, str(ids))
+    check("v.tank_gala_1", "M8" in ids and sels.get("M8") == "1", str(sels))
+    check("v.tank_stuttgart", "M12" in ids, str(ids))
+    check("v.tank_autre_marche", "M4" in ids and sels.get("M4") == "u2.5", str(sels))
+
+
+def test_vestiaire_et_pfav():
+    check("v.vest_legacy", top3mod.vestiaire_ok(None) is True)
+    check("v.vest_applique", top3mod.vestiaire_ok({
+        "state_factors": {"applied": True, "holes": []}, "holes": [],
+    }) is True)
+    check("v.vest_pas_applique", top3mod.vestiaire_ok({
+        "state_factors": {"applied": False, "holes": ["effectifs"]},
+        "holes": ["effectifs"],
+    }) is False)
+    check("v.vest_trou", top3mod.vestiaire_ok({
+        "state_factors": {"applied": True, "holes": ["effectifs"]},
+        "holes": ["effectifs"],
+    }) is False)
+    p = {"selections": [
+        _sel("1", -0.17, "NO_BET", False, p=0.72),
+        _sel("X", 0.625, "VALUE", True, p=0.21),
+        _sel("2", 0.13, "NO_BET", False, p=0.07),
+    ]}
+    check("v.pfav_1", top3mod.p_fav_of(p) == 0.72, str(top3mod.p_fav_of(p)))
+    an = {"state_factors": {"applied": False, "holes": ["effectifs"]},
+          "holes": ["effectifs"]}
+    rows, _, _ = top3mod.compute_match(
+        {"id": "M1", "selections": [
+            _sel("1", -0.17, "NO_BET", False, p=0.72, cote=1.15),
+            _sel("X", 0.625, "VALUE", True, p=0.21, cote=7.7),
+        ]}, "basse", an)
+    check("v.stamp_pfav", rows and rows[0].get("p_fav") == 0.72)
+    check("v.stamp_vest_ko", rows and rows[0].get("vestiaire_ok") is False)
+    check("v.stamp_x_bloque", rows and marches.jambe_jouable(rows[0]) is False)
+
+
 def test_thin_hors_combo():
     events = [
         _event("M11", "Nottingham Forest vs Manchester City", [
@@ -213,6 +291,8 @@ def main():
     test_scorer_ko_meme_si_label_value()
     test_zero_value_zero_ticket()
     test_marches_filtre()
+    test_tank_x_veto()
+    test_vestiaire_et_pfav()
     test_thin_hors_combo()
     n_fail = sum(1 for _, ok, _ in CHECKS if not ok)
     print("=" * 70)

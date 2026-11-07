@@ -139,6 +139,8 @@ def _pick_jambes(events, nj, mono=False, ev_floor=EV_FLOOR, combo_floor=EV_COMBO
             "edge_net_devig": top.get("edge_net_devig"),
             "devig_gap": top.get("devig_gap"),
             "p_fair_additif": top.get("p_fair_additif"),
+            "p_fav": top.get("p_fav"),
+            "vestiaire_ok": top.get("vestiaire_ok"),
         }
         trial = picked + [jambe]
         if len(trial) >= 2:

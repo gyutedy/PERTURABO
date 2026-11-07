@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 EV_FLOOR = 0.03
 EV_COMBO_FLOOR = 0.05
 CONCENTRATION_ALERTE = 0.60
+TANK_P = 0.55
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 WORLD = os.path.normpath(os.path.join(_HERE, "..", ".."))
@@ -133,6 +134,24 @@ def parse_marches_arg(text):
     return canons, mono, inconnus
 
 
+def x_de_tank(top):
+    """X 1X2 sous un favori p_fav >= TANK_P. p_fav manquant = pas tank (legacy)."""
+    if not top:
+        return False
+    if str(top.get("selection") or "") != "X":
+        return False
+    m = canon_marche(top.get("marche"))
+    if m and m != "1X2":
+        return False
+    pf = top.get("p_fav")
+    if pf is None:
+        return False
+    try:
+        return float(pf) >= TANK_P
+    except (TypeError, ValueError):
+        return False
+
+
 def jambe_jouable(top):
     if not top:
         return False
@@ -140,6 +159,8 @@ def jambe_jouable(top):
     if v is not None and v != "VALUE":
         return False
     if top.get("scorer_eligible") is False:
+        return False
+    if x_de_tank(top) and top.get("vestiaire_ok") is not True:
         return False
     return True
 
