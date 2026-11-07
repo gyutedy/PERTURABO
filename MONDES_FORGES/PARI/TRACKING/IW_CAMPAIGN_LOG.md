@@ -1626,3 +1626,11 @@
 - Trou data → score reduit + holes. EV / p_modele inchanges. Ineligible VALUE/THIN → NO_BET.
 - Tests : test_market_scorer.py 81/81. Poisson inchange.
 - Prochain pack : S13 lambda effectifs. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-07T06:30:00Z] v4.3 — facteurs etat lambda + table effectifs (S13)
+
+- 2e table `/capture` : att / def / gk / milieu / repos / rotation. Vide = x1.00 + holes.
+- Cap cumule ±20% journalise. rotation_lourde >=4 = flag TYRANT, pas de lambda.
+- Derby / meteo / retour_100 = marches_exclus TYRANT. Holes hors data_quality.
+- Tests : test_state_factors.py. Verrou v2 casse pour cette table operateur seulement.
+- Prochain pack : S14 pieges + /data. Operateur : `/roi settle L-DWG` apres matchs.

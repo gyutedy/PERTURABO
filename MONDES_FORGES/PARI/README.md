@@ -32,7 +32,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 | Mode | Commande | Ce que ça fait |
 |---|---|---|
-| `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue**. Telegram : markdown dans le meme message **ou** photo + caption `/capture` (OCR). v2.2.1 recoud les rangs. v2.10 inbox mtime (plus de leftover photo) + dates EU `JJ/MM/AA` par rang. → Porte 1 → carte |
+| `input-capture` | `orchestrator.py --mode input-capture --capture c.md [--valider]` | **Capture Winner Bet (txt/md/png/pdf/docx) → JSON reconstitue**. Telegram : markdown dans le meme message **ou** photo + caption `/capture` (OCR). v2.2.1 recoud les rangs. v2.10 inbox mtime (plus de leftover photo) + dates EU `JJ/MM/AA` par rang. S13 : 2e table effectifs optionnelle. → Porte 1 → carte |
 | `workflow` | `orchestrator.py --mode workflow --cmd "/start ..."` | **Cycle de campagne Telegram** : /start, /capture, /bankroll, /budget JOUR SURTICKET (v2.2.5 force ticket sur), **/marches** (v4.1 election + couverture, alias `/marchés`, option `mono`), /combos (1..n+10, meme navire interdit), /valider-1 (inject alias LaLiga/clubs + merge ligues v2.2.7 + table couverture), /valider-2 v2.2.8 (lots token L-XXX + anti-cannibal + snapshot T0 ; refuse si 0 GO, budget non retape, pool vide, 0 match elu), /data (table compacte), /data N (fiche), /data ledger, **/radar [N]** (trous declares), **/pack [N]** (TOP N, refuse sans predictions), **/match ID** (fiche M1 ou rang), /status ledger (alerte concentration >60%), /roi settle L-XXX, /stop |
 | `radar` | `orchestrator.py --mode radar` | Scan de **toute la ligue** : classement de tous les matchs du jour (buts attendus, P(O2.5), P(MT2 > MT1)) → TOP 20 |
 | `siege` | `orchestrator.py --mode siege --ids M1,M2` | Analyse fine des matchs choisis : cotes Winner Bet → de-marging → EV → Kelly → verdict PARIER / NO BET (+ filtre qualitatif + Top 3 + Preview 1) |
@@ -68,7 +68,7 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 |---|---|---|---|
 | F00 | RADAR/CAPTEURS | Scan ligue + **enrich `/capture`** (Elo, xG, repos/H2H via `FOOTBALL_DATA_ORG_KEY` dans env_pari — **pas Oracle**). S7 = O2.5 empirique + walk-forward | `radar.json` + `notes_qualitatives.json` |
 | F01 | SENTINEL | Collecte + nettoyage des données (fixtures, stats, cotes txt/capture) | `matches_intel.json` |
-| F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis. S6 = fit ligue (rho, bonus) + baseline saison EMA | `analysis.json` |
+| F02 | BREACHER | Le moteur math : Dixon-Coles, Poisson bivarié, Elo, λ par mi-temps. S4 = memes matrices, marches elargis. S6 = fit ligue (rho, bonus) + baseline saison EMA. S13 = facteurs etat lambda (table A, cap ±20%) | `analysis.json` |
 | F03 | FORGEWARD | De-marging + **devig multiplicatif defaut** + additif 2e passe (S8, jamais producteur de p), EV, **scorer eligibilite S12** (A1-A4 veto, B1-B6 0-1, jamais un p), Kelly 1/8→1/4 gate ECE (S10), scanner combinés | `predictions.json` |
 | F04 | HERALD | **Frégate lourde (Oracle)** : fiches de siège lisibles + meta-prompt | `reports/*.md` |
 | F05 | PACKAGER | Pari pack + combinator v3.5 (`ev_compose_net`, market_priority paliers) + Kelly stamp S10 (fraction journalisee, `mise_fc` intact) + dashboard | `pari_pack.json` + `tickets.json` |

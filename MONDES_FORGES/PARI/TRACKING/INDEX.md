@@ -25,6 +25,9 @@ Cartographie des journaux du monde.
 | `F03_FORGEWARD/CODEBASE/market_scorer.py` | S12 : portes A1-A4 hors score, B1-B6 0-1, veto F03. Jamais Poisson. | forgeward.py |
 | `ARCHIVUM/learnings/market_profiles.json` | Poids / seuils a priori (versionne). Ne pas retuner a la main. | market_scorer.load_profiles |
 | `tests/test_market_scorer.py` | S12 : A1-A4, overround 24.6% vs 18.7%, MT poids, EV inchange | market_scorer.py / forgeward.py |
+| `config/state_factors.json` | S13 : att x0.90 max 2, milieu x0.96, def adv x1.06, gk x1.05, cap ±20%. | state_factors.py |
+| `F02_BREACHER/CODEBASE/state_factors.py` | Facteurs etat lambda table A. Vide = x1.00 + holes. | breacher.analyse_match |
+| `tests/test_state_factors.py` | S13 : parseur 2e table, p_o25, cap, rotation flag, derby veto | input_capture + state_factors + qualitative |
 | `config/clv.json` | Cibles 55% / +0.5 pt, n_lock 50, n_variance 30, mc_seed 42. | clv.py / diag.py |
 | `ORCHESTRATOR/CODEBASE/churn.py` | Compteur `config/` : >2 changements / 7j hors calibration → `churn_suspect`. | config/churn.json |
 | `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif defaut + additif 2e passe. Gap journalise. Cote unique = hole. | forgeward.py |

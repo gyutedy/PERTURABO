@@ -318,7 +318,7 @@ Numerotation commits : `PARI v3.Y` pour le socle mesure/moteur, `PARI v4.Y` pour
 - [x] S10 Kelly
 - [x] S11 /marchés + tickets
 - [x] S12 scorer
-- [ ] S13 lambda effectifs
+- [x] S13 lambda effectifs
 - [ ] S14 pieges + /data
 - [ ] S15 flags injuries
 - [ ] S16 Oracle + poids

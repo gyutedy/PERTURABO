@@ -40,7 +40,16 @@ Consommateurs : Warsmith (validation Porte 1), carte fixtures → TYRANT/F02/F03
           "marches_disponibles": ["1", "X", "2", "o2.5", "..."],
           "warnings": ["..."],
           "holes": ["ligne_totale_Moins_Plus"],
-          "cote_plate": false
+          "cote_plate": false,
+          "effectifs": {
+            "dom": {"attaquants_titulaires_absents": 1, "defenseurs_cles_absents": 0,
+                    "gardien_1_absent": false, "milieu_createur_absent": false,
+                    "jours_repos": 6, "rotation_lourde": 0},
+            "ext": {"attaquants_titulaires_absents": 0, "defenseurs_cles_absents": 0,
+                    "gardien_1_absent": false, "milieu_createur_absent": false,
+                    "jours_repos": 4, "rotation_lourde": 0},
+            "derby": false, "meteo": false, "retour_100": false
+          }
         }
       ],
       "warnings": ["compétition/ligue absente ..."]
@@ -59,6 +68,8 @@ Consommateurs : Warsmith (validation Porte 1), carte fixtures → TYRANT/F02/F03
     Moins/Plus : si la ligne (colonne `Ligne (Total)` ou en-tete `Moins de X`) est lisible,
     tags `uX`/`oX`. Sinon `holes: ["ligne_totale_Moins_Plus"]`, cotes `under`/`over` **gardees**,
     **jamais** de 2.5 invente. MT identiques sur >= 5 matchs : flag `cote_plate`, cotes conservees.
+    S13 : 2e table effectifs optionnelle (meme `/capture`). Absente = pas de champ `effectifs`
+    (F02 applique x1.00 + holes). Colonnes : att / def / gk / milieu / repos / rotation / derby / meteo / retour.
 3. **Pas de conversion de devise** dans ce module — le budget se pose après (Phase backroll).
 4. Le JSON reconstitué portant des warnings ne bloque PAS la validation — le Warsmith
    contrôle la bonne affectation des colonnes (1X2 par position, par exemple).

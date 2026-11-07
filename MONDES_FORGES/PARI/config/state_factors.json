@@ -1,0 +1,15 @@
+{
+  "note": "S13 — facteurs etat lambda (table operateur seulement). Vide = x1.00 + holes. Cap cumule ±20% journalise. rotation_lourde >=4 = flag TYRANT, pas de lambda. Derby/meteo/retour_100 = veto marches_exclus, jamais un 2e lambda.",
+  "att_per_unit": 0.90,
+  "att_max_units": 2,
+  "milieu": 0.96,
+  "def_adverse_per_unit": 1.06,
+  "gardien_adverse": 1.05,
+  "cap": [0.8, 1.2],
+  "rotation_lourde_min": 4,
+  "marches_exclus": {
+    "derby": ["o2.5", "o3.5", "btts"],
+    "meteo": ["o2.5", "o3.5", "btts"],
+    "retour_100": ["mt1", "mte", "mt2"]
+  }
+}

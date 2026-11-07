@@ -14,6 +14,12 @@ Son effet est **borné** à trois choses :
 3. **recommander** le NO BET (≥ 2 impacts élèvés, ou 1 élèvé + data basse).
 Elle ne crée jamais de probabilité, n'ajoute jamais de +EV.
 
+**Exception S13 (table operateur seulement)** : la 2e table `/capture` (effectifs)
+casse le verrou v2 pour **cette** table. Lambdas F02 reçoivent des facteurs
+capés ±20%, journalisés. Derby / meteo / retour_100 restent veto TYRANT
+(`marches_exclus`). `rotation_lourde` (>=4) = flag "O/BTTS deconseilles",
+jamais un facteur lambda. API blessures (S15) = flags only, pas un 2e lambda.
+
 ## Vote F00 (v3)
 
 | Verdict | Condition | Effet TYRANT |

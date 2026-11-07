@@ -394,6 +394,14 @@ def analyse_match(m, avg):
     lambda_dom = att_dom * def_ext * avg["buts_dom_moy"] * bonus_d
     lambda_ext = att_ext * def_dom * avg["buts_ext_moy"] * bonus_e
 
+    sf = None
+    try:
+        import state_factors
+        sf = state_factors.apply(m, lambda_dom, lambda_ext)
+        lambda_dom, lambda_ext = sf["lambda_dom"], sf["lambda_ext"]
+    except Exception:
+        sf = None
+
     # Split mi-temps : part d'équipe si présente, part ligue sinon
     scored_mt1_dom = (sd["marques_mt1"] / sd["marques"]) if sd.get("marques_mt1") else None
     scored_mt1_ext = (se["marques_mt1"] / se["marques"]) if se.get("marques_mt1") else None
@@ -417,7 +425,7 @@ def analyse_match(m, avg):
 
     quality = "haute" if not flags else ("moyenne" if set(flags) <= {"sans_cotes", "mt_split_estimate", "mt_split_estimate_opp"} else "basse")
     rounded = {k: (round(v, 4) if isinstance(v, float) else v) for k, v in probas.items()}
-    return {
+    out = {
         "id": m["id"],
         "match": f"{m['dom']} vs {m['ext']}",
         "lambdas": {
@@ -429,6 +437,24 @@ def analyse_match(m, avg):
         "cs": {k: round(v, 4) for k, v in cs.items()},
         "data_quality": {"niveau": quality, "flags": flags},
     }
+    if sf is not None:
+        out["lambdas"]["dom_raw"] = round(sf["lambda_dom_raw"], 3)
+        out["lambdas"]["ext_raw"] = round(sf["lambda_ext_raw"], 3)
+        out["state_factors"] = {
+            "applied": sf["applied"],
+            "factor_dom": round(sf["factor_dom"], 4),
+            "factor_ext": round(sf["factor_ext"], 4),
+            "flags": list(sf["flags"]),
+            "holes": list(sf["holes"]),
+            "cap_hit": sf["cap_hit"],
+            "journal": list(sf["journal"]),
+        }
+        if sf["holes"]:
+            out.setdefault("holes", [])
+            for h in sf["holes"]:
+                if h not in out["holes"]:
+                    out["holes"].append(h)
+    return out
 
 
 def analyse_fixtures(matchs, ligue=None, league_code=None):

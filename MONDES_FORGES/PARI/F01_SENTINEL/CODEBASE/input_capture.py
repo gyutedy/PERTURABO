@@ -73,6 +73,14 @@ def norm(txt: str) -> str:
     return " ".join((txt or "").split())
 
 
+def _fold_ascii(txt: str) -> str:
+    t = (txt or "").lower()
+    return t.translate(str.maketrans(
+        "àáâäãåèéêëìíîïòóôöõùúûüçñ",
+        "aaaaaaeeeeiiiiooooouuuucn",
+    ))
+
+
 def canon_label(tok: str):
     low = tok.lower().replace("o ", "o").replace("u ", "u")
     if low in LABEL_LOOKUP:
@@ -255,6 +263,46 @@ _HEADER_SKIP = {
     "competition & match", "compétition & match", "match", "horaire", "heure",
     "ligne (total)", "ligne", "total",
 }
+
+_EFFECTIF_FIELD_ALIASES = {
+    "attaquants_titulaires_absents": (
+        "attaquants_titulaires_absents", "att", "att_abs", "attaquants",
+        "attaquants_titulaires",
+    ),
+    "defenseurs_cles_absents": (
+        "defenseurs_cles_absents", "def", "def_abs", "defenseurs",
+        "defenseurs_cles",
+    ),
+    "gardien_1_absent": (
+        "gardien_1_absent", "gk", "gardien", "gardien_1", "gardien1",
+    ),
+    "milieu_createur_absent": (
+        "milieu_createur_absent", "milieu", "crea", "milieu_createur",
+    ),
+    "jours_repos": (
+        "jours_repos", "repos", "rest_days",
+    ),
+    "rotation_lourde": (
+        "rotation_lourde", "rotation", "rot",
+    ),
+    "derby": ("derby",),
+    "meteo": ("meteo", "weather"),
+    "retour_100": ("retour_100", "retour", "retour100", "retour_100pct"),
+}
+_EFFECTIF_LOOKUP = {}
+for _canon, _aliases in _EFFECTIF_FIELD_ALIASES.items():
+    for _a in _aliases:
+        _EFFECTIF_LOOKUP[_fold_ascii(_a).replace(" ", "_")] = _canon
+_SIDE_HEADERS = {"cote", "equipe", "side", "cote_side"}
+_SIDE_DOM = {"dom", "domicile", "home", "h"}
+_SIDE_EXT = {"ext", "exterieur", "away", "a"}
+_INT_FIELDS = {
+    "attaquants_titulaires_absents", "defenseurs_cles_absents",
+    "jours_repos", "rotation_lourde",
+}
+_BOOL_FIELDS = {
+    "gardien_1_absent", "milieu_createur_absent", "derby", "meteo", "retour_100",
+}
 _HEADER_LINE_RE = re.compile(
     r"^(moins|plus|under|over)\s+(?:de\s+)?(\d+[.,]\d+)$"
 )
@@ -322,12 +370,191 @@ def _apply_cote_plate(blocs):
     return n_flag
 
 
+def _norm_header_key(h: str) -> str:
+    return _fold_ascii(h or "").replace(" ", "_").replace("-", "_")
+
+
+def _is_effectif_header(header) -> bool:
+    keys = [_norm_header_key(h) for h in (header or [])]
+    if any(k in _EFFECTIF_LOOKUP for k in keys):
+        return True
+    for k in keys:
+        for suffix in ("_dom", "_ext", "_domicile", "_exterieur"):
+            if k.endswith(suffix) and k[: -len(suffix)] in _EFFECTIF_LOOKUP:
+                return True
+    return False
+
+
+def _is_odds_header(header) -> bool:
+    joined = "|".join(_fold_ascii(h or "") for h in (header or []))
+    return "1" in joined.split("|") and "x" in joined.split("|") and "2" in joined.split("|")
+
+
+def _parse_effectif_cell(field, raw):
+    s = _clean_cell(raw or "").strip().lower()
+    if not s or s in LOCKED_TOKENS or "verrouill" in s:
+        return None
+    if field in _BOOL_FIELDS:
+        if s in ("1", "oui", "yes", "true", "o", "y", "x"):
+            return True
+        if s in ("0", "non", "no", "false", "n"):
+            return False
+        return bool(s)
+    try:
+        return int(float(s.replace(",", ".")))
+    except ValueError:
+        return None
+
+
+def _blank_side():
+    rec = {k: 0 for k in _INT_FIELDS}
+    rec.update({k: False for k in _BOOL_FIELDS})
+    return rec
+
+
+def _match_key_from_line(match_line: str):
+    line = re.sub(r"<[^>]+>", "", match_line or "").strip()
+    teams = TEAMSEP_RE.split(line, maxsplit=1)
+    if len(teams) != 2:
+        vs = re.split(r"\s+vs\.?\s+", line, maxsplit=1, flags=re.IGNORECASE)
+        teams = vs if len(vs) == 2 else None
+    if not teams or len(teams) != 2:
+        return None, None, None
+    dom, ext = teams[0].strip(), teams[1].strip()
+    if not dom or not ext:
+        return None, None, None
+    return f"{dom.lower()}|{ext.lower()}", dom, ext
+
+
+def _detect_side(header, cells, first_cell=""):
+    for i, h in enumerate(header or []):
+        hk = _norm_header_key(h)
+        if hk in _SIDE_HEADERS or hk in _SIDE_DOM or hk in _SIDE_EXT:
+            raw = _fold_ascii(_clean_cell(cells[i] if i < len(cells) else "")).strip()
+            if raw in _SIDE_DOM or hk in _SIDE_DOM:
+                return "dom"
+            if raw in _SIDE_EXT or hk in _SIDE_EXT:
+                return "ext"
+    first = _fold_ascii(first_cell or "")
+    tokens = first.replace("|", " ").split()
+    if tokens:
+        last = tokens[-1].strip("()[]")
+        if last in _SIDE_DOM:
+            return "dom"
+        if last in _SIDE_EXT:
+            return "ext"
+    return None
+
+
+def _parse_effectif_row(header, cells):
+    """Retourne (match_key, side, fields, suffix_map) ou None."""
+    if not header or not cells:
+        return None
+    first = cells[0] if cells else ""
+    first_clean = _clean_cell(first)
+    key, dom, ext = _match_key_from_line(first_clean)
+    if not key:
+        parts = [p.strip() for p in re.split(r"\n|<br\s*/?>", first) if p.strip()]
+        if parts:
+            key, dom, ext = _match_key_from_line(parts[-1])
+    if not key:
+        return None
+    side = _detect_side(header, cells, first_clean)
+    fields = {}
+    suffix_map = {"dom": {}, "ext": {}}
+    for i, h in enumerate(header):
+        hk = _norm_header_key(h)
+        if hk in _SIDE_HEADERS or hk in ("match", "competition_&_match",
+                                         "competition", "horaire", "heure", "cote"):
+            continue
+        raw = cells[i] if i < len(cells) else ""
+        for suffix, dest in (("_dom", "dom"), ("_domicile", "dom"),
+                             ("_ext", "ext"), ("_exterieur", "ext")):
+            if hk.endswith(suffix):
+                base = hk[: -len(suffix)]
+                field = _EFFECTIF_LOOKUP.get(base)
+                if field:
+                    val = _parse_effectif_cell(field, raw)
+                    if val is not None:
+                        suffix_map[dest][field] = val
+                break
+        else:
+            field = _EFFECTIF_LOOKUP.get(hk)
+            if field:
+                val = _parse_effectif_cell(field, raw)
+                if val is not None:
+                    fields[field] = val
+    return key, side, fields, suffix_map, (dom, ext)
+
+
+def parse_effectif_tables(capture_text: str):
+    """Parse la 2e table canonique (effectifs). Deux rangs (dom/ext) par match."""
+    capture_text = _normalize_md_table(capture_text or "")
+    by_key = {}
+    header = None
+    for raw_line in capture_text.splitlines():
+        line = raw_line.strip()
+        if not line.startswith("|"):
+            continue
+        cells = _split_md_row(line)
+        if not cells:
+            continue
+        if "---" in line or ":-" in line:
+            continue
+        cleaned = [_clean_cell(c).lower() for c in cells]
+        if _is_effectif_header(cleaned) and not _is_odds_header(cleaned):
+            header = cleaned
+            continue
+        if _is_odds_header(cleaned):
+            header = None
+            continue
+        if header is None:
+            continue
+        parsed = _parse_effectif_row(header, cells)
+        if not parsed:
+            continue
+        key, side, fields, suffix_map, teams = parsed
+        rec = by_key.setdefault(key, {
+            "dom_name": teams[0], "ext_name": teams[1],
+            "dom": _blank_side(), "ext": _blank_side(),
+        })
+        if suffix_map["dom"] or suffix_map["ext"]:
+            rec["dom"].update(suffix_map["dom"])
+            rec["ext"].update(suffix_map["ext"])
+        target = side or "dom"
+        rec[target].update(fields)
+        for flag in ("derby", "meteo", "retour_100"):
+            if fields.get(flag) or suffix_map["dom"].get(flag) or suffix_map["ext"].get(flag):
+                rec[flag] = True
+    return by_key
+
+
+def _attach_effectifs(blocs, by_key):
+    if not by_key:
+        return 0
+    n = 0
+    for b in blocs:
+        for m in b.get("matchs") or []:
+            key = f"{(m.get('dom') or '').lower()}|{(m.get('ext') or '').lower()}"
+            rec = by_key.get(key)
+            if not rec:
+                continue
+            payload = {"dom": rec["dom"], "ext": rec["ext"]}
+            for flag in ("derby", "meteo", "retour_100"):
+                if rec.get(flag):
+                    payload[flag] = True
+            m["effectifs"] = payload
+            n += 1
+    return n
+
+
 def parse_markdown_table(capture_text: str):
     """Parse un tableau markdown Winner Bet (competition+match, horaire, 1/X/2, MT, O/U)."""
     capture_text = _normalize_md_table(capture_text)
     warnings = []
     blocs_by_comp = {}
     header = None
+    skip_effectif = False
     bloc_idx = 0
     n = 0
 
@@ -356,8 +583,15 @@ def parse_markdown_table(capture_text: str):
         joined = "|".join(c.lower() for c in cells)
         if "---" in line or ":-" in line:
             continue
-        if header is None and ("1" in joined and "x" in joined and "2" in joined):
-            header = [_clean_cell(c).lower() for c in cells]
+        cleaned_hdr = [_clean_cell(c).lower() for c in cells]
+        if _is_odds_header(cleaned_hdr):
+            header = cleaned_hdr
+            skip_effectif = False
+            continue
+        if _is_effectif_header(cleaned_hdr):
+            skip_effectif = True
+            continue
+        if skip_effectif:
             continue
         if header is None:
             continue
@@ -475,6 +709,9 @@ def parse_markdown_table(capture_text: str):
         b["matchs"].append(match)
 
     blocs = list(blocs_by_comp.values())
+    n_eff = _attach_effectifs(blocs, parse_effectif_tables(capture_text))
+    if n_eff:
+        warnings.append(f"effectifs: {n_eff} match(s) enrichis (table operateur S13)")
     n_plate = _apply_cote_plate(blocs)
     if n_plate:
         warnings.append(f"cote_plate: {n_plate} match(s) MT identiques (>=5)")
@@ -669,6 +906,8 @@ def to_carte(parsed: dict, ligue_default="Capture — ligue à confirmer"):
                   "ligue": comp, "date": b.get("date"), "heure": b.get("heure"),
                   "cotes": m.get("cotes") or None,
                   "marches_disponibles": m.get("marches_disponibles", [])}
+            if m.get("effectifs"):
+                mm["effectifs"] = m["effectifs"]
             if m.get("holes"):
                 mm["holes"] = list(m["holes"])
             if m.get("cote_plate"):

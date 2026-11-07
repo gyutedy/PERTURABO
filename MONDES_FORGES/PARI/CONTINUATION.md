@@ -356,6 +356,29 @@ Choix F03 : eligibilite apres EV, **pas** Poisson F02, **pas** fiches F04. Score
 
 **Handoff** : pack S13 (facteurs etat lambda + table effectifs). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S13 dans cette session.
 
+## ETAT v4.3 — FACTEURS ETAT LAMBDA + TABLE EFFECTIFS (2026-11-07)
+
+Pack S13 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. v4 R4. Session = ce pack seulement.
+
+Decision v2 "non-binaires hors maths" **cassee pour cette table operateur seulement**.
+API blessures (S15) reste flags, jamais un 2e lambda.
+
+- [x] **`input_capture.py`** : 2e table canonique dans le meme `/capture`.
+  Colonnes `att` / `def` / `gk` / `milieu` / `repos` / `rotation` / derby / meteo / retour.
+  Deux rangs `dom`/`ext` (colonne `Cote`) ou suffixes `_dom`/`_ext`. Rangs effectifs
+  ignores cote cote. En-tete 1/X/2 jamais reecrit par un rang data (Auxerre).
+- [x] **`config/state_factors.json`** : att x0.90 / unite (max 2) ; milieu x0.96 ;
+  def adverse x1.06 ; gardien x1.05 ; vide x1.00 + holes. Cap cumule ±20%, journalise.
+- [x] **`F02_BREACHER/CODEBASE/state_factors.py`** + stamp `analyse_match`.
+  Lambdas brutes conservees `dom_raw`/`ext_raw`. Holes **hors** `data_quality` (A3 intact).
+- [x] **`rotation_lourde` (>=4)** : pas de facteur lambda ; flag TYRANT "O/BTTS deconseilles".
+- [x] **Derby / meteo / retour_100** : TYRANT veto `marches_exclus` seulement.
+- [x] **Tests** : `tests/test_state_factors.py`. 1 att out → p_o25 baisse ; cap respecte ;
+  absent data → x1.00 + holes. notes_zero intact.
+- [x] **Docs** : GUIDE table effectifs, schema_input_capture / analysis / notes, INDEX, README, PLAN S13 coche.
+
+**Handoff** : pack S14 (detecteurs pieges + /data scorer). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S14 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

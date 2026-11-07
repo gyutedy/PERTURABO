@@ -35,7 +35,7 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | Commande | Ce que ça fait |
 |---|---|
 | `/start` | Ouvre la campagne du jour (reset propre, **garde la bankroll**) |
-| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). Inbox = fichier `capture_telegram.*` le **plus recent** (un markdown neuf ecrase une vieille photo). Dates `JJ/MM/AA` lues par rang. OCR vide = Zero Data. Moins/Plus : ligne lue (`Ligne (Total)` ou `Moins de X`) → `uX`/`oX` ; **pas de 2.5 invente** si la ligne manque (`holes` + cotes gardees). |
+| `/capture` | Telegram : colle le tableau markdown **dans le meme message**, **ou** envoie une **photo** avec caption `/capture` (OCR tesseract). CLI : `/capture <fichier>` (txt/md/png/pdf/docx). Inbox = fichier `capture_telegram.*` le **plus recent** (un markdown neuf ecrase une vieille photo). Dates `JJ/MM/AA` lues par rang. OCR vide = Zero Data. Moins/Plus : ligne lue (`Ligne (Total)` ou `Moins de X`) → `uX`/`oX` ; **pas de 2.5 invente** si la ligne manque (`holes` + cotes gardees). **S13** : 2e table effectifs (meme message) optionnelle — vide = x1.00 + holes. |
 | `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
@@ -109,7 +109,7 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
     marge>20% = refus vitrine). Score B1-B6 0-1, seuil 0.50-0.60. B3 = asymetrie info
     (T-2h), pas severite blessure. Trou = score reduit + holes. Ineligible → NO_BET.
     Jamais un p.) → filtre qualitatif
-    (si notes) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
+     (si notes **ou** flags S13) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
     + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`
     pour l evidence GO/CHECK/FAIL (cles = noms, jamais les valeurs).
 3. **/marches** (v4.1) : table couverture (n matchs EV>=3%, meilleur EV, marge).
@@ -318,6 +318,25 @@ parseur recoud les rangs. Dates `JJ/MM/AA` (ex. `21/11/26 16:00`) sont lues **pa
 rang** — plusieurs jours dans un seul tableau = OK. La reponse doit dire
 `(markdown_table)` et pas `(image)` : `(image)` = leftover photo d'un essai
 precedent, recolle le markdown.
+
+**S13 — 2e table effectifs** (optionnelle, meme `/capture`). Deux rangs par match
+(`dom` / `ext`). Vide = lambdas x1.00 + holes. `rotation_lourde` (>=4) = flag
+TYRANT "O/BTTS deconseilles", **pas** de facteur lambda. Derby / meteo /
+retour_100 = veto `marches_exclus` seulement. Cap cumule ±20%, journalise.
+Jamais un 2e lambda via API.
+
+```
+| Match | Cote | att | def | gk | milieu | repos | rotation | derby | meteo | retour |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Everton FC vs Coventry City | dom | 1 | 0 | 0 | 0 | 6 | 0 | 0 | 0 | 0 |
+| Everton FC vs Coventry City | ext | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 0 | 0 |
+```
+
+Colonnes : `att` = attaquants titulaires absents (x0.90 / unite, max 2) ;
+`def` = defenseurs cles absents (x1.06 sur lambda adverse) ; `gk` = gardien 1
+absent (x1.05 adverse) ; `milieu` = createur absent (x0.96) ; `repos` =
+`jours_repos` (stocke, fatigue deja F00) ; `rotation` >= 4 = flag.
+Suffixes `att_dom` / `att_ext` acceptes sur un seul rang.
 
 Test envoi seul (sans webhook) :
 

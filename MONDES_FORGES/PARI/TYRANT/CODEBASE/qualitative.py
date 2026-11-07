@@ -26,7 +26,43 @@ Usage:
 import json
 import argparse
 import os
+import sys
 from datetime import datetime, timezone
+
+_SF = None
+
+
+def _state_mod():
+    global _SF
+    if _SF is not None:
+        return _SF
+    here = os.path.dirname(os.path.abspath(__file__))
+    f02 = os.path.normpath(os.path.join(here, "..", "..", "F02_BREACHER", "CODEBASE"))
+    if f02 not in sys.path:
+        sys.path.insert(0, f02)
+    import state_factors as sf  # noqa: E402
+    _SF = sf
+    return _SF
+
+
+def _as_analysis(analysis):
+    return analysis if isinstance(analysis, dict) else {}
+
+
+def _has_state(analysis):
+    for a in (_as_analysis(analysis).get("analyses") or []):
+        if not isinstance(a, dict):
+            continue
+        sf = a.get("state_factors") or {}
+        if sf.get("flags"):
+            return True
+    return False
+
+
+def _state_flags(an):
+    if not isinstance(an, dict):
+        return []
+    return list((an.get("state_factors") or {}).get("flags") or [])
 
 # --- Table bornée de règles (macro → preset par impact) -----------------------
 # effets = (marches_exclus[selection codes], bonus_seuil_ev)
@@ -103,8 +139,11 @@ def note_themes_for_tyrant(note: dict):
 
 def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
     """Applique le filtre borné. Retourne (verdict_qualitatif, predictions_filtrées)."""
-    if int(notes.get("notes_count") or 0) == 0 and not any(
-            (n.get("themes") or n.get("items")) for n in notes.get("notes") or []):
+    analysis = _as_analysis(analysis)
+    notes = notes if isinstance(notes, dict) else {}
+    has_notes = int(notes.get("notes_count") or 0) > 0 or any(
+        (n.get("themes") or n.get("items")) for n in notes.get("notes") or [])
+    if not has_notes and not _has_state(analysis):
         empty_v = {
             "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "methode": "filtre qualitatif BORNÉ — notes_count 0, aucun effet.",
@@ -112,7 +151,9 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
             "verdicts": [],
         }
         return empty_v, json.loads(json.dumps(predictions))
-    qual_by_id = {a["id"]: a.get("data_quality", {}).get("niveau", "basse") for a in analysis.get("analyses", [])}
+    analyses = [a for a in (analysis.get("analyses") or []) if isinstance(a, dict) and a.get("id")]
+    qual_by_id = {a["id"]: a.get("data_quality", {}).get("niveau", "basse") for a in analyses}
+    an_by_id = {a["id"]: a for a in analyses}
     note_by_id = {n["match_id"]: n for n in notes.get("notes", []) if n.get("match_id")}
 
     verdicts = []
@@ -137,6 +178,13 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
             if info["impact"] == "eleve":
                 elevates += 1
 
+        sf_flags = _state_flags(an_by_id.get(p["id"]))
+        o_btts_deconseilles = "rotation_lourde" in sf_flags
+        try:
+            excluded.update(_state_mod().marches_exclus(sf_flags))
+        except Exception:
+            pass
+
         quality = qual_by_id.get(p["id"], "basse")
         no_bet_rec = (elevates >= 2) or (elevates >= 1 and quality == "basse") or (bonus_total >= 0.06 and quality != "haute")
 
@@ -156,6 +204,8 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
                 s["verdict"] = "NO_BET"
                 s["mise_units"] = None
                 reasons.append(f"EV {s['ev']:.1%} < seuil effectif {eff_seuil:.1%} (bonus qualitatif)")
+            if o_btts_deconseilles and s["selection"] in ("o2.5", "o3.5", "btts"):
+                reasons.append("O/BTTS deconseilles (rotation_lourde, pas de lambda)")
             if reasons:
                 sq["raisons"] = reasons
 
@@ -174,17 +224,26 @@ def apply_qualitative(predictions: dict, analysis: dict, notes: dict):
                 if not any("NO BET recommandé" in x for x in rss):
                     rss.append("NO BET recommandé par le filtre qualitatif (impact non-binaire trop élevé)")
 
-        verdicts.append({
+        vrec = {
             "match_id": p["id"], "themes": themes,
             "n_impacts_eleves": elevates, "bonus_seuil_ev": round(bonus_total, 3),
             "marches_exclus": sorted(excluded), "quality_data": quality,
             "no_bet_recommande": no_bet_rec,
-        })
+        }
+        if sf_flags:
+            vrec["state_flags"] = list(sf_flags)
+        if o_btts_deconseilles:
+            vrec["o_btts_deconseilles"] = True
+        verdicts.append(vrec)
 
+    methode = ("filtre qualitatif BORNÉ (exclusion de marches / hausse du seuil d'EV / NO BET recommandé). "
+               "Jamais de probabilité ajoutée.")
+    if any((a.get("state_factors") or {}).get("applied") or (a.get("state_factors") or {}).get("flags")
+           for a in analyses):
+        methode += " S13 table A : derby/meteo/retour_100 = marches_exclus ; rotation_lourde = flag O/BTTS."
     verdict_out = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "methode": "filtre qualitatif BORNÉ (exclusion de marches / hausse du seuil d'EV / NO BET recommandé). "
-                   "Jamais de probabilité ajoutée.",
+        "methode": methode,
         "source_notes": notes.get("source") or "operateur (notes non binaires)",
         "verdicts": verdicts,
     }
