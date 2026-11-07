@@ -15,7 +15,8 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /corriger-1      (rejoue /capture après correction de la capture OCR)
   /marches O/U2.5,MT2   elit les marches (canon /marches, alias /marchés). Table couverture avant.
   /combos 3        nombre de tickets (1 a n+10 jambes ; option 3:3:2:2)
-  valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
+  valider-2        tickets + metro Oracle + fees/slippage + pending L-XXX
+  /approve L-XXX   fige le lot pending (snapshot T0). Refuse token mismatch.
     /data            table compacte HAUTE puis FAIBLE.  /data N = fiche (S14 scorer + pieges).  /data ledger = lots.  /data diag = F06 CLV/Platt (jamais mise)
    /radar [N]       scan carte courante (skip matchs sans stats, trous declares). S14 : flags pieges
    /pack [N]        assemble le pari pack TOP N (defaut 10)
@@ -83,7 +84,8 @@ def state():
             "marches_mono": False,
             "capture": None, "capturer_statut": None, "previews": {},
             "capture_id": None, "consumed_legs": [], "budget_seq": 0,
-            "last_lot_budget_seq": 0, "lots_alloue_jour": 0, "current_token": None}
+            "last_lot_budget_seq": 0, "lots_alloue_jour": 0, "current_token": None,
+            "pending_lot": None}
 
 
 def save(st):
@@ -130,6 +132,7 @@ def cmd_start(st, arg):
     st["last_lot_budget_seq"] = 0
     st["marches"] = None
     st["marches_mono"] = False
+    st["pending_lot"] = None
     save(st)
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne **{st['campagne']}** ouverte.\n"
@@ -137,9 +140,9 @@ def cmd_start(st, arg):
             "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
           + "1. Capture Winner Bet : `/capture` + tableau markdown DANS le meme message, ou photo avec caption `/capture`\n"
          "2. `/budget 3000 800` (plafond lot + mise FORCEE ticket sur)\n"
-         "3. `/valider-1` → PREVIEW 1 + table couverture → `/marches O/U2.5,MT2` → `/combos 3` → `/valider-2`"
-         " → PREVIEW 2 + token L-XXX\n"
-         "Mode A : meme capture, retape `/budget` puis `/valider-2` (lot 2).\n"
+          "3. `/valider-1` → PREVIEW 1 + table couverture → `/marches O/U2.5,MT2` → `/combos 3` → `/valider-2`"
+          " → PREVIEW 2 + pending → `/approve L-XXX`\n"
+          "Mode A : meme capture, retape `/budget` puis `/valider-2` (lot 2).\n"
          "Mode B : `/stop` → `/start` → nouvelle capture.")
 
 
@@ -524,6 +527,10 @@ def cmd_valider1(st, arg):
 def cmd_valider2(st, arg):
     if not st.get("steps", {}).get("valider1"):
         tell("⛔ Valider la Preview 1 d'abord (`/valider-1` puis relecture)."); return
+    if st.get("pending_lot"):
+        tok = (st.get("pending_lot") or {}).get("token") or "L-XXX"
+        tell(f"⛔ VALIDATION 2 refusee : lot pending **{tok}**. `/approve {tok}` d'abord.")
+        return
     t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
     rows = t3.get("matchs") or []
     n_go = sum(1 for r in rows if r.get("top3") and not r.get("no_bet_recommande") and r.get("bucket") != "FAIBLE")
@@ -531,6 +538,16 @@ def cmd_valider2(st, arg):
         tell("⛔ VALIDATION 2 refusee : aucun match eligible (NO BET / Zero Data). "
              "Pas de ticket. Recapture une ligue couverte (E0/SP1/I1/D1/F1/E1/D2) ou injecte les stats.")
         return
+    notes = load_json(P("ARCHIVUM", "fixtures", "notes_qualitatives.json")) or {}
+    qualitative = load_json(P("TYRANT", "OUT", "qualitative_verdict.json")) or {}
+    metro_rec = {"skipped": True, "reason": "metro_fail", "holes": ["metro"]}
+    metro_line = "METRO Oracle: skip (metro_fail)."
+    try:
+        mmod = _metro()
+        metro_rec = mmod.review(top3=t3, notes=notes, qualitative=qualitative)
+        metro_line = mmod.format_telegram(metro_rec)
+    except Exception:
+        pass
     budget = st.get("budget_fc") or 0
     sur = st.get("surticket_fc") or 0
     if budget <= 0 or sur <= 0:
@@ -548,15 +565,19 @@ def cmd_valider2(st, arg):
              f"> bankroll ({br:.0f} FC).")
         return
     consumed = list(st.get("consumed_legs") or [])
+    ev_floor, fr = _friction().effective_floor()
     cmd = ["--mode", "tickets", "--combos", str(st.get("combos") or 3),
            "--budget-fc", str(budget),
-           "--surticket-fc", str(sur)]
+           "--surticket-fc", str(sur),
+           "--ev-floor", str(ev_floor)]
     if st.get("jambes"):
         cmd += ["--jambes", st["jambes"]]
     if st.get("marches"):
         cmd += ["--markets", ",".join(st["marches"])]
         n_cov = 0
         try:
+            n_cov = _marches_mod().coverage_n(t3, st["marches"], ev_floor=ev_floor)
+        except TypeError:
             n_cov = _marches_mod().coverage_n(t3, st["marches"])
         except Exception:
             n_cov = n_go
@@ -584,24 +605,66 @@ def cmd_valider2(st, arg):
     new_legs = led.legs_from_tickets(tj.get("tickets") or [])
     if not st.get("capture_id"):
         st["capture_id"] = led.new_capture_id()
-    lot = led.freeze_lot(
-        token, st.get("campagne"), st.get("capture_id"),
-        tj, new_legs, budget, sur, bundle_id=st.get("bundle_id"))
-    led.append_lot(lot)
-    st["consumed_legs"] = consumed + new_legs
-    st["current_token"] = token
-    st["last_lot_budget_seq"] = int(st.get("budget_seq") or 0)
-    st["lots_alloue_jour"] = deja + float((tj.get("budget") or {}).get("alloue_fc") or budget)
-    st["steps"]["valider2"] = _now()
+    pending = {
+        "token": token,
+        "new_legs": new_legs,
+        "budget_fc": budget,
+        "surticket_fc": sur,
+        "ev_floor": ev_floor,
+        "fees": fr.get("fees"),
+        "slippage": fr.get("slippage"),
+        "metro": metro_rec.get("text"),
+        "metro_holes": list(metro_rec.get("holes") or []),
+    }
     st["previews"]["preview2"] = "SHARED/OUT/preview2.html"
     st["previews"]["preview1"] = "SHARED/OUT/preview1.html"
+    if os.environ.get("PARI_AUTO_GATES") == "1":
+        _freeze_pending(st, token, tj, new_legs, budget, sur)
+        tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
+        tell("VALIDATION 2 : TICKETS + BACKROLL poses.\n"
+             f"{metro_line}\n"
+             f"TOKEN **{token}** — snapshot T0 fige. `/roi settle {token}` apres les matchs.\n"
+             + (tmd or "") +
+             "\nPREVIEW 2 : SHARED/OUT/preview2.html — ticket final. "
+             "Place chez Winner Bet. F06 a fige le lot (n'apprend pas).")
+        return
+    st["pending_lot"] = pending
     save(st)
     tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
-    tell("VALIDATION 2 : TICKETS + BACKROLL poses.\n"
-         f"TOKEN **{token}** — snapshot T0 fige. `/roi settle {token}` apres les matchs.\n"
+    tell("VALIDATION 2 : TICKETS + BACKROLL poses (pending).\n"
+         f"{metro_line}\n"
+         f"TOKEN **{token}** — fees+slippage dans le seuil. `/approve {token}` pour figer T0.\n"
          + (tmd or "") +
          "\nPREVIEW 2 : SHARED/OUT/preview2.html — ticket final. "
-         "Place chez Winner Bet. F06 a fige le lot (n'apprend pas).")
+         "Lot non fige tant que `/approve` n est pas tape.")
+
+
+def cmd_approve(st, arg):
+    pending = st.get("pending_lot") or {}
+    tok_p = str(pending.get("token") or "").strip().upper()
+    raw = (arg or "").strip().split()
+    tok = (raw[0] if raw else "").strip().upper()
+    if tok and not tok.startswith("L-"):
+        tok = "L-" + tok
+    if not tok_p:
+        tell("⛔ APPROVE refusee : aucun lot pending. `/valider-2` d'abord.")
+        return
+    if not tok or tok != tok_p:
+        tell(f"⛔ APPROVE refusee : token mismatch. Pending **{tok_p}**.")
+        return
+    tj = load_json(P("F05_PACKAGER", "OUT", "tickets.json")) or {}
+    if not (tj.get("tickets") or []):
+        tell("⛔ APPROVE refusee : tickets absents. Budget non engage.")
+        return
+    new_legs = pending.get("new_legs") or []
+    budget = pending.get("budget_fc") or st.get("budget_fc") or 0
+    sur = pending.get("surticket_fc") or st.get("surticket_fc") or 0
+    _freeze_pending(st, tok_p, tj, new_legs, budget, sur)
+    tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
+    tell("APPROVE : lot fige.\n"
+         f"TOKEN **{tok_p}** — snapshot T0. `/roi settle {tok_p}` apres les matchs.\n"
+         + (tmd or "") +
+         "\nPlace chez Winner Bet. F06 a fige le lot (n'apprend pas).")
 
 
 def cmd_data(st, arg):
@@ -881,7 +944,44 @@ def cmd_stop(st, arg):
     st["budget_seq"] = 0
     st["marches"] = None
     st["marches_mono"] = False
+    st["pending_lot"] = None
     save(st)
+
+
+def _metro():
+    d = os.path.normpath(os.path.join(HERE, "..", "..", "TYRANT", "CODEBASE"))
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import metro as _m
+    return _m
+
+
+def _friction():
+    d = os.path.normpath(os.path.join(HERE, "..", "..", "F05_PACKAGER", "CODEBASE"))
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import ticket_friction as _tf
+    return _tf
+
+
+def _freeze_pending(st, token, tj, new_legs, budget, sur):
+    led = _ledger()
+    lot = led.freeze_lot(
+        token, st.get("campagne"), st.get("capture_id"),
+        tj, new_legs, budget, sur, bundle_id=st.get("bundle_id"))
+    led.append_lot(lot)
+    deja = float(st.get("lots_alloue_jour") or 0)
+    consumed = list(st.get("consumed_legs") or [])
+    st["consumed_legs"] = consumed + new_legs
+    st["current_token"] = token
+    st["last_lot_budget_seq"] = int(st.get("budget_seq") or 0)
+    st["lots_alloue_jour"] = deja + float((tj.get("budget") or {}).get("alloue_fc") or budget)
+    st["steps"]["valider2"] = _now()
+    st["pending_lot"] = None
+    st["previews"]["preview2"] = "SHARED/OUT/preview2.html"
+    st["previews"]["preview1"] = "SHARED/OUT/preview1.html"
+    save(st)
+    return lot
 
 
 CMDS = {
@@ -895,8 +995,9 @@ CMDS = {
     "marchés": (cmd_marches, "alias accent"),
     "valider-1": (cmd_valider1, "valide preview 1 → siège"),
     "valider1": None,
-    "valider-2": (cmd_valider2, "tickets + anti-cannibal + token L-XXX"),
+    "valider-2": (cmd_valider2, "tickets + metro + pending L-XXX"),
     "valider2": None,
+    "approve": (cmd_approve, "fige le lot pending L-XXX"),
     "data": (cmd_data, "table compacte ; /data N fiche ; /data ledger = lots ; /data diag = F06"),
     "radar": (cmd_radar, "scan carte (skip stats incompletes)"),
     "pack": (cmd_pack, "pari pack TOP N"),

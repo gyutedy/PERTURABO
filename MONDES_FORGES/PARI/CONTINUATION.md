@@ -414,6 +414,19 @@ Pack S15 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph10 + Ph10b. Session = ce pack s
 
 **Handoff** : pack S16 (Oracle meta + backtest poids scorer). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S16 dans cette session.
 
+## ETAT v4.6 — ORACLE METRO + BACKTEST POIDS SCORER (2026-11-07)
+
+Pack S16 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph11 + v4 R7. Session = ce pack seulement. Plan clos.
+
+- [x] **Metro** `TYRANT/CODEBASE/metro.py` avant `/valider-2`. Risques / trous / ranking qualitatif. Lit `content`, jamais un chiffre. Digit dans la reponse = hole `oracle_digit`, texte jete. Cle absente / skip env = skip, siege intact.
+- [x] **Fees + slippage** `config/ticket_friction.json` (0.005 + 0.005). Seuil effectif = EV_FLOOR + fees + slippage. **Jamais sous 0.03.** Cable `--ev-floor` combinator via orchestrator.
+- [x] **`/approve L-XXX`** : `/valider-2` pose un lot pending + token. `/approve L-XXX` fige T0 (freeze_lot 7 args intact). Token mismatch = refuse. `PARI_AUTO_GATES=1` (Actions / e2e) fige tout de suite.
+- [x] **R7** `F03_FORGEWARD/CODEBASE/backtest_weights.py`. n<50 tickets reels G/P = locked, a priori intact. n>=50 : **une seule** maj `market_profiles.json` journalisee (`scorer_weight_journal.json`). Jamais a la main. Ligues x marches. Seed 42.
+- [x] **Tests** : `tests/test_oracle_metro.py` (zero chiffre, mock HTTP), `tests/test_backtest_weights.py` seede. Relais parse.py + Worker + schema_listen `/approve`.
+- [x] **Docs** : GUIDE cycle `/valider-2` → `/approve`, INDEX, README, PLAN S16 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : plan S0–S16 clos. Operateur : `/roi settle L-DWG` apres les matchs. Pas de pack suivant dans ce plan.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

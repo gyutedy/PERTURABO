@@ -29,6 +29,7 @@ KNOWN = (
     "valider-2",
     "valider1",
     "valider2",
+    "approve",
     "data",
     "radar",
     "pack",
@@ -130,7 +131,8 @@ def parse_update(update, allowed_chat_id):
                 "/combos 3  ou  /combos 3:3:2:2\n"
                 "/marches O/U2.5,MT2  (alias /marchés, option mono)\n"
                  "/valider-1\n"
-                 "/valider-2  (lot + token L-XXX, anti-cannibal)\n"
+                 "/valider-2  (lot pending + token L-XXX, anti-cannibal)\n"
+                 "/approve L-XXX  (fige le lot pending)\n"
                  "/data  /data N  /data ledger  /data diag\n"
                  "/radar  /pack  /match ID\n"
                  "/status  /status ledger  /status doctor\n"
@@ -182,7 +184,7 @@ def parse_update(update, allowed_chat_id):
     cmd = "/" + canon
     if extra.strip() and canon in (
         "budget", "combos", "bankroll", "surticket", "data", "status", "roi",
-        "radar", "pack", "match", "marches",
+        "radar", "pack", "match", "marches", "approve",
     ):
         cmd = cmd + " " + extra.split("\n", 1)[0].strip()
     return {

@@ -121,14 +121,8 @@ def load_profiles(path=None):
     }
 
 
-def profile_for(marche, profiles=None):
-    profiles = profiles or load_profiles()
-    base_poids = dict(profiles["default"]["poids"])
-    base_seuil = float(profiles["default"]["seuil"])
-    rec = (profiles.get("marches") or {}).get(marche) or {}
-    if not isinstance(rec, dict):
-        rec = {}
-    poids = dict(base_poids)
+def _merge_poids(base, rec):
+    poids = dict(base)
     src = rec.get("poids") if isinstance(rec.get("poids"), dict) else {}
     for k in KEYS:
         if k in src:
@@ -136,10 +130,31 @@ def profile_for(marche, profiles=None):
             if fv is not None:
                 poids[k] = fv
     seuil = _f(rec.get("seuil"))
+    return poids, seuil
+
+
+def profile_for(marche, profiles=None, ligue=None):
+    profiles = profiles or load_profiles()
+    base_poids = dict(profiles["default"]["poids"])
+    base_seuil = float(profiles["default"]["seuil"])
+    rec = (profiles.get("marches") or {}).get(marche) or {}
+    if not isinstance(rec, dict):
+        rec = {}
+    poids, seuil = _merge_poids(base_poids, rec)
     if seuil is None:
         seuil = base_seuil
+    if ligue:
+        ligues = profiles.get("ligues") if isinstance(profiles.get("ligues"), dict) else {}
+        lrec = ligues.get(ligue) if isinstance(ligues.get(ligue), dict) else {}
+        lmarches = lrec.get("marches") if isinstance(lrec.get("marches"), dict) else {}
+        overlay = lmarches.get(marche) if isinstance(lmarches.get(marche), dict) else {}
+        if overlay:
+            poids, seu2 = _merge_poids(poids, overlay)
+            if seu2 is not None:
+                seuil = seu2
     return {
         "marche": marche,
+        "ligue": ligue,
         "seuil": seuil,
         "poids": poids,
         "overround_max": float(profiles["overround_max"]),
@@ -445,8 +460,11 @@ def _b6(extra, holes):
 def score(selection, cote, marche, group_cotes, analysis=None, extra=None, profiles=None):
     """Eligibilite d une selection. EV / p_modele inchanges (lus, jamais ecrits)."""
     profiles = profiles or load_profiles()
-    prof = profile_for(marche, profiles)
     extra = dict(extra or {})
+    ligue = extra.get("league_code") or extra.get("ligue")
+    if ligue is None and isinstance(extra.get("match"), dict):
+        ligue = extra["match"].get("league_code") or extra["match"].get("ligue_code")
+    prof = profile_for(marche, profiles, ligue=ligue)
     extra.setdefault("cote", cote)
     holes = []
     a1_ok, a1_missing = gate_a1(marche, group_cotes, selection)

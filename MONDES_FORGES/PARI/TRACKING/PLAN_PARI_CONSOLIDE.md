@@ -321,6 +321,6 @@ Numerotation commits : `PARI v3.Y` pour le socle mesure/moteur, `PARI v4.Y` pour
 - [x] S13 lambda effectifs
 - [x] S14 pieges + /data
 - [x] S15 flags injuries
-- [ ] S16 Oracle + poids
+- [x] S16 Oracle + poids
 
 Reprise : premier pack non coche, apres S0 GO.

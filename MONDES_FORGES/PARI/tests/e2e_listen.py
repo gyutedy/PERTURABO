@@ -157,6 +157,9 @@ def main():
     r = parse.parse_update(upd("/valider1"), CHAT)
     check("L4.valider1_alias", r.get("ok") and r.get("cmd") == "/valider-1", str(r.get("cmd")))
 
+    r = parse.parse_update(upd("/approve L-K7M"), CHAT)
+    check("L4.approve", r.get("ok") and r.get("cmd") == "/approve L-K7M", str(r.get("cmd")))
+
     r = parse.parse_update(upd("/data ledger"), CHAT)
     check("L4.data_ledger", r.get("ok") and r.get("cmd") == "/data ledger", str(r.get("cmd")))
 
@@ -514,6 +517,9 @@ def main():
     old_tell = workflow.tell
     old_orch = workflow.run_orch
     old_world = workflow.WORLD
+    old_ag = os.environ.get("PARI_AUTO_GATES")
+    os.environ["PARI_AUTO_GATES"] = "1"
+    os.environ["PARI_SKIP_ORACLE"] = "1"
     tmpw = tempfile.mkdtemp(prefix="pari-wf-")
     for sub in ("F03_FORGEWARD/OUT", "F05_PACKAGER/OUT", "SHARED/OUT", "SHARED/STATE",
                 "ARCHIVUM/learnings", "ARCHIVUM/fixtures"):
@@ -673,6 +679,11 @@ def main():
         workflow.WORLD = old_world
         ledger.LOTS_PATH = old_lots
         ledger.TICKETS_PATH = old_tix
+        if old_ag is None:
+            os.environ.pop("PARI_AUTO_GATES", None)
+        else:
+            os.environ["PARI_AUTO_GATES"] = old_ag
+        os.environ.pop("PARI_SKIP_ORACLE", None)
 
     parse_src = open(os.path.join(WORLD, "ORCHESTRATOR", "LISTEN", "parse.py"), encoding="utf-8").read()
     check("L13.parse_forward_roi", '"data", "status", "roi"' in parse_src)

@@ -32,6 +32,13 @@ Cartographie des journaux du monde.
 | `tests/test_pieges.py` | S14 : MT plate x10, marge 22% retire, figee+news, /data SCORER+PIEGES | market_scorer.py / forgeward.py / data_view.py |
 | `F01_SENTINEL/CODEBASE/connectors/injuries.py` | S15 : API-Football injuries → 4 flags TYRANT. Holes si KO. Jamais un P / jamais un 2e lambda | enrich.py / breacher.py / qualitative.py |
 | `tests/test_injuries.py` | S15 mock, holes, anti-double-lambda, veto sans S13 | injuries.py + qualitative.py |
+| `TYRANT/CODEBASE/metro.py` | S16 Oracle meta-review avant `/valider-2`. Zero digit. Cle absente = skip | workflow.py `/valider-2` |
+| `config/ticket_friction.json` | S16 fees 0.005 + slippage 0.005. Seuil = EV_FLOOR + fees + slip. Jamais < 0.03 | ticket_friction.py |
+| `F05_PACKAGER/CODEBASE/ticket_friction.py` | Charge friction, `effective_floor` | combinator `--ev-floor` |
+| `F03_FORGEWARD/CODEBASE/backtest_weights.py` | R7 poids B1-B6. n<50 lock. Une maj journalisee. Seed 42 | market_profiles.json |
+| `ARCHIVUM/learnings/scorer_weight_journal.json` | Journal unique maj poids (gitignore si vide) | backtest_weights.retune |
+| `tests/test_oracle_metro.py` | S16 zero chiffre, mock HTTP, fees, `/approve` mismatch | metro.py + friction + workflow |
+| `tests/test_backtest_weights.py` | S16 n<50 lock, write once, ligue x marche, seed 42 | backtest_weights.py |
 | `config/clv.json` | Cibles 55% / +0.5 pt, n_lock 50, n_variance 30, mc_seed 42. | clv.py / diag.py |
 | `ORCHESTRATOR/CODEBASE/churn.py` | Compteur `config/` : >2 changements / 7j hors calibration → `churn_suspect`. | config/churn.json |
 | `F03_FORGEWARD/CODEBASE/devig.py` | Devig multiplicatif defaut + additif 2e passe. Gap journalise. Cote unique = hole. | forgeward.py |

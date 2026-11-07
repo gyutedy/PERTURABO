@@ -1,0 +1,5 @@
+{
+  "note": "S16 — fees + slippage releves le seuil EV. Jamais baisser EV_FLOOR 0.03.",
+  "fees": 0.005,
+  "slippage": 0.005
+}

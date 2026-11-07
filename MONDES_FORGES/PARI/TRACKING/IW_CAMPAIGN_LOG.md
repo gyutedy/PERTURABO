@@ -1651,3 +1651,12 @@
 - Siege : qualitative si notes ou state_flags. `PARI_SKIP_INJURIES=1`.
 - Tests : test_injuries.py. Operateur : `/roi settle L-DWG` apres matchs.
 - Prochain pack : S16 Oracle meta + poids scorer.
+
+## [2026-11-07T12:00:00Z] v4.6 — oracle meta + backtest poids scorer (S16)
+
+- Metro Oracle avant `/valider-2` : risques / trous / ranking. Zero digit. Cle absente = skip.
+- Fees 0.005 + slippage 0.005 dans le seuil EV. Jamais sous 0.03.
+- `/approve L-XXX` fige le lot pending. AUTO_GATES fige tout de suite.
+- Backtest B1-B6 : n<50 lock a priori ; n>=50 une seule maj journalisee. Seed 42.
+- Tests : test_oracle_metro.py + test_backtest_weights.py. Plan S0-S16 clos.
+- Operateur : `/roi settle L-DWG` apres matchs.

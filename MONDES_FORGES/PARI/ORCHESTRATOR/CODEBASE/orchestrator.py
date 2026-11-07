@@ -373,6 +373,7 @@ def main():
     parser.add_argument("--exclude-legs", default=None, help="JSON anti-cannibal (mode tickets)")
     parser.add_argument("--markets", default=None, help="marches elus CSV (mode tickets)")
     parser.add_argument("--mono", action="store_true", help="ticket mono-marche (mode tickets)")
+    parser.add_argument("--ev-floor", type=float, default=None, help="seuil EV (fees+slippage S16, jamais < 0.03)")
     args = parser.parse_args()
 
     if args.mode == "imprime":
@@ -419,6 +420,8 @@ def main():
             cmd += ["--markets", args.markets]
         if getattr(args, "mono", False):
             cmd += ["--mono"]
+        if getattr(args, "ev_floor", None) is not None:
+            cmd += ["--ev-floor", str(args.ev_floor)]
         r = subprocess.run(cmd)
         if r.returncode == 0:
             run_frigate(P("F05_PACKAGER", "CODEBASE", "preview2.py"))

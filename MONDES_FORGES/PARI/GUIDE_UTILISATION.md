@@ -25,8 +25,8 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
       → /valider-1 → PREVIEW 1 + table couverture → relecture
       → /marches O/U2.5,MT2  (alias /marchés ; option `mono`)
       → /combos 3:3:2:2
-      → /valider-2 → PREVIEW 2 + token L-XXX (lot F06, anti-cannibal, bundle_id)
-Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 (autre token, autres marches)
+      → /valider-2 → PREVIEW 2 + pending L-XXX → /approve L-XXX (lot F06, anti-cannibal, bundle_id)
+      Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 → /approve (autre token, autres marches)
 Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
 ```
 
@@ -42,7 +42,8 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets + jambes (1 a n+10 matchs distincts). Meme match interdit sur un ticket. |
 | `/marches O/U2.5,MT2` | Elit les marches (canon `/marches`, alias `/marchés`). Table couverture (n, meilleur EV, marge). `mono` = ticket mono-marche. 0 match → 0 ticket. EV_FLOOR 3% inviolable. |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) + table couverture |
-| `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide, 0 match elu. |
+| `/valider-2` | Compose les tickets + metro Oracle + fees/slippage dans le seuil + pending `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide, 0 match elu. Live : `/approve L-XXX` fige T0. Actions `PARI_AUTO_GATES=1` fige tout de suite. |
+| `/approve L-XXX` | Fige le lot pending (snapshot T0). Token mismatch = refuse. |
 | `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP/PIEGES. `—` = trou, jamais 0.0 invente. S14 : flags pieges (cote_plate, marge_anomalique, cote_figee_sur_news, marche_vitrine). |
 | `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE, **SCORER 6 criteres** (edge/bande/info/data/marge/confirm) + lecture cotes capture/T-2h/T-0 + PIEGES. Hors liste = erreur courte. |
 | `/data ledger` | Token + lots du jour (inchange). |
@@ -124,13 +125,15 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
    (baisser = refuse). Combo plancher 0.05. Jamais jambe de remplissage. Meme match
    = meme navire = interdit. 1 a n+10 jambes (`/combos 3:3:2:2` reste valide).
    Log append-only ; `/status` alerte si un marche >60% des elections.
-3b. **/valider-2** (v2.2.8) : tickets depuis la classe de fiabilité (ticket sûr = scores
-   les plus hauts, reste réparti ; FAIBLE / NO BET exclus) + **anti-cannibal**
-   (exclusion `(match_id, marche, selection)` deja sortis sur cette capture ; prochain
-   marche Top 3 libre ; plancher qualite fixe) + **backroll** (`/budget` retape avant
-   chaque lot Mode A) → PREVIEW 2 + token `L-XXX` + snapshot T0 dans `ARCHIVUM/learnings/lots.json`.
-   Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE,
-   si 0 match elu. `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
+3b. **/valider-2** (v4.6) : tickets depuis la classe de fiabilité (ticket sûr = scores
+    les plus hauts, reste réparti ; FAIBLE / NO BET exclus) + **anti-cannibal**
+    (exclusion `(match_id, marche, selection)` deja sortis sur cette capture ; prochain
+    marche Top 3 libre ; plancher qualite fixe) + **backroll** (`/budget` retape avant
+    chaque lot Mode A) + **metro Oracle** (risques/trous/ranking, zero chiffre) +
+    **fees+slippage** dans le seuil (jamais sous 0.03) → PREVIEW 2 + pending `L-XXX`.
+    `/approve L-XXX` fige snapshot T0 dans `ARCHIVUM/learnings/lots.json`.
+    Refuse si le sur-ticket n est pas pose, si `/budget` n a pas ete retape, si 0 jambe HAUTE,
+    si 0 match elu, si token approve mismatch. `/combos 4` n est pas un quota : mieux 2 tickets HAUTE que 4 reliquats.
    v3.5 : chaque ticket porte `ev_compose_net` = produit `(1+edge_net)-1` (precision
    machine, `1.03*1.05-1 = 8.15%`). `jambe_edge_net_negatif` = info, **pas rejet**.
     Priorite marches : palier suivant si >= 30 tickets mesures (G/P). corners/cards
@@ -169,7 +172,8 @@ push `SHARED/OUT` dans le dossier Pages — les liens arrivent dans Telegram.
 
 `ORACLE_API_KEY` (Secret GitHub, OpenAI-compatible) est utilisé par TYRANT/HERALD
 **hors du job du monde forger**, pour le qualitatif et la rédaction — jamais pour les
-chiffres. Sans clé : le monde tourne à 100 %.
+chiffres. S16 : **metro** avant `/valider-2` (risques, trous, ranking). Reponse avec
+un digit = jete (`oracle_digit`). Sans clé : skip, le monde tourne à 100 %.
 
 ---
 
