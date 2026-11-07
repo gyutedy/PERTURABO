@@ -1,159 +1,9 @@
 {
-  "generated_at": "2026-11-07T19:20:53Z",
+  "generated_at": "2026-11-07T22:53:24Z",
   "source": "the-odds-api",
   "kind": "t2h",
   "horizon_h": 3,
-  "scanned": [
-    {
-      "id": "M4",
-      "dom": "AS Roma",
-      "ext": "Sassuolo Calcio",
-      "code": "I1",
-      "kickoff": "2026-11-07T20:45:00Z",
-      "bookmaker": "pinnacle",
-      "cotes_capture": {
-        "1": 1.34,
-        "X": 5.5,
-        "2": 7.5,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1,
-        "under": 2.92,
-        "over": 1.39
-      },
-      "cotes_marche": {
-        "1": 1.31,
-        "2": 9.5,
-        "X": 6.25
-      },
-      "moves": [
-        {
-          "selection": "X",
-          "cote_capture": 5.5,
-          "cote_marche": 6.25
-        },
-        {
-          "selection": "2",
-          "cote_capture": 7.5,
-          "cote_marche": 9.5
-        }
-      ],
-      "alerts": []
-    },
-    {
-      "id": "M5",
-      "dom": "Valencia CF",
-      "ext": "Real Madrid",
-      "code": "SP1",
-      "kickoff": "2026-11-07T21:00:00Z",
-      "bookmaker": "pinnacle",
-      "cotes_capture": {
-        "1": 10.0,
-        "X": 6.2,
-        "2": 1.26,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1,
-        "under": 2.52,
-        "over": 1.44
-      },
-      "cotes_marche": {
-        "2": 1.25,
-        "1": 12.04,
-        "X": 6.58
-      },
-      "moves": [
-        {
-          "selection": "1",
-          "cote_capture": 10.0,
-          "cote_marche": 12.04
-        },
-        {
-          "selection": "X",
-          "cote_capture": 6.2,
-          "cote_marche": 6.58
-        }
-      ],
-      "alerts": []
-    },
-    {
-      "id": "M6",
-      "dom": "Excelsior Rotterdam",
-      "ext": "Go Ahead Eagles",
-      "code": "N1",
-      "kickoff": "2026-11-07T21:00:00Z",
-      "bookmaker": "pinnacle",
-      "cotes_capture": {
-        "1": 2.8,
-        "X": 3.55,
-        "2": 2.37,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1,
-        "under": 2.35,
-        "over": 1.58
-      },
-      "cotes_marche": {
-        "1": 2.65,
-        "2": 2.59,
-        "X": 3.74
-      },
-      "moves": [
-        {
-          "selection": "1",
-          "cote_capture": 2.8,
-          "cote_marche": 2.65
-        },
-        {
-          "selection": "X",
-          "cote_capture": 3.55,
-          "cote_marche": 3.74
-        },
-        {
-          "selection": "2",
-          "cote_capture": 2.37,
-          "cote_marche": 2.59
-        }
-      ],
-      "alerts": []
-    },
-    {
-      "id": "M7",
-      "dom": "Paris Saint-Germain",
-      "ext": "ESTAC Troyes",
-      "code": "F1",
-      "kickoff": "2026-11-07T21:05:00Z",
-      "bookmaker": "pinnacle",
-      "cotes_capture": {
-        "1": 1.17,
-        "X": 7.7,
-        "2": 13.5,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.1,
-        "under": 3.1,
-        "over": 1.35
-      },
-      "cotes_marche": {
-        "1": 1.14,
-        "2": 20.07,
-        "X": 9.89
-      },
-      "moves": [
-        {
-          "selection": "X",
-          "cote_capture": 7.7,
-          "cote_marche": 9.89
-        },
-        {
-          "selection": "2",
-          "cote_capture": 13.5,
-          "cote_marche": 20.07
-        }
-      ],
-      "alerts": []
-    }
-  ],
+  "scanned": [],
   "skipped": [
     {
       "id": "M1",
@@ -165,11 +15,27 @@
     },
     {
       "id": "M3",
-      "reason": "trou_marche"
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M4",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M5",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M6",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M7",
+      "reason": "hors_fenetre"
     },
     {
       "id": "M8",
-      "reason": "trou_marche"
+      "reason": "hors_fenetre"
     },
     {
       "id": "M9",
