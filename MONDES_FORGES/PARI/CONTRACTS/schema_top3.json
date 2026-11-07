@@ -40,7 +40,9 @@ qualitative_verdict). Consommateurs : Preview 1, Preview 2 (ticket final), Teleg
       "top3": [
         {"rang": 1, "marche": "OU_2.5", "selection": "u2.5",
          "selection_label": "Under 2.5", "cote": 2.14,
-         "p_modele": 0.7481, "ev": 0.60}
+         "p_modele": 0.7481, "ev": 0.60,
+         "scorer_score": 0.85, "scorer_eligible": true,
+         "pieges": [], "lecture_cotes": {"capture": 2.14, "t2h": 2.10, "t0": null}}
       ]
     }
   ]

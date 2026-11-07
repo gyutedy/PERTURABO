@@ -72,6 +72,27 @@ SELECTION_LABELS = {
     "mt2": "2e MT plus prolifique", "btts": "Les deux marquent", "btts_no": "Les deux ne marquent pas",
 }
 
+def _odds_map(kind="t2h"):
+    """Cotes marche T-2h (latest.json) ou T-0 (latest_t0.json). Trou = {}."""
+    world = os.path.normpath(os.path.join(_HERE, "..", ".."))
+    name = "latest_t0.json" if kind == "t0" else "latest.json"
+    path = os.path.join(world, "ARCHIVUM", "odds", name)
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, encoding="utf-8") as f:
+            blob = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    out = {}
+    for item in blob.get("scanned") or []:
+        mid = item.get("id")
+        cotes = item.get("cotes_marche") or {}
+        if mid and isinstance(cotes, dict):
+            out[str(mid)] = cotes
+    return out
+
+
 def marche_of(sel):
     for g, ks in MARKET_GROUPS:
         if sel in ks:
@@ -104,7 +125,7 @@ def kelly(p: float, cote: float, fraction: float) -> float:
     return fraction * edge / (cote - 1)
 
 
-def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
+def predict_match(m: dict, analysis: dict, pool: dict, tier: str, t2h_map=None, t0_map=None):
     seuil = pool["seuil_ev_top5"] if tier == "top5" else pool["seuil_ev_exotique"]
     out_item = {
         "id": m["id"], "match": f"{m['dom']} vs {m['ext']}",
@@ -114,6 +135,8 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
     cs = analysis.get("cs") or {}
     bonus = _devig.load_bonus()
     cotes = m.get("cotes") or {}
+    t2h_map = t2h_map if t2h_map is not None else {}
+    t0_map = t0_map if t0_map is not None else {}
     by_group = {}
     by_group_add = {}
     for g, keys in MARKET_GROUPS:
@@ -197,14 +220,25 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
             group_cotes = {k: cotes[k] for k in gkeys if cotes.get(k)}
         else:
             group_cotes = {sel: cote}
-        t2h_blob = m.get("odds_t2h") or m.get("cotes_t2h") or {}
+        t2h_blob = m.get("odds_t2h") or m.get("cotes_t2h") or t2h_map.get(str(m.get("id"))) or {}
         t2h = t2h_blob.get(sel) if isinstance(t2h_blob, dict) else None
+        t0_blob = m.get("odds_t0") or m.get("cotes_t0") or m.get("odds_close") or t0_map.get(str(m.get("id"))) or {}
+        t0 = t0_blob.get(sel) if isinstance(t0_blob, dict) else None
+        notes_out = m.get("notes_out")
+        if notes_out is None:
+            notes_out = m.get("out_n")
         scored = _scorer.score(
             sel, cote, grp, group_cotes, analysis=analysis,
             extra={
                 "p_modele": p, "ev": ev, "cote": cote,
                 "cote_t2h": t2h,
+                "cote_t0": t0,
+                "odds_t2h_blob": t2h_blob,
+                "odds_t0_blob": t0_blob,
                 "double_confirmation": rec.get("double_confirmation"),
+                "cote_plate": bool(m.get("cote_plate")),
+                "match": m,
+                "notes_out": notes_out,
             },
         )
         rec["scorer_eligible"] = scored["eligible"]
@@ -215,6 +249,9 @@ def predict_match(m: dict, analysis: dict, pool: dict, tier: str):
         rec["scorer_contrib"] = scored["contrib"]
         rec["scorer_holes"] = list(scored.get("holes") or [])
         rec["overround"] = scored.get("overround")
+        rec["pieges"] = list(scored.get("pieges") or [])
+        rec["piege_detail"] = scored.get("piege_detail") or {}
+        rec["lecture_cotes"] = scored.get("lecture_cotes") or {}
         if not scored["eligible"] and verdict in ("VALUE", "THIN"):
             rec["verdict"] = "NO_BET"
             rec["mise_units"] = None
@@ -249,10 +286,13 @@ def build_predications(intel, analyses, profile):
     }
     tier = intel.get("ligue_tier", "exotique")
     by_id = {a["id"]: a for a in analyses}
+    t2h_map = _odds_map("t2h")
+    t0_map = _odds_map("t0")
     predictions = []
     for m in intel.get("matchs") or []:
         if m["id"] in by_id:
-            predictions.append(predict_match(m, by_id[m["id"]], pool, tier))
+            predictions.append(predict_match(m, by_id[m["id"]], pool, tier,
+                                             t2h_map=t2h_map, t0_map=t0_map))
         else:
             predictions.append({
                 "id": m["id"],

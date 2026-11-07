@@ -45,6 +45,12 @@ def compute_match(p, quality):
         "overround": s.get("overround"),
         "scorer_score": s.get("scorer_score"),
         "scorer_eligible": s.get("scorer_eligible"),
+        "scorer_seuil": s.get("scorer_seuil"),
+        "scorer_refuse": s.get("scorer_refuse") or [],
+        "scorer_contrib": s.get("scorer_contrib"),
+        "pieges": s.get("pieges") or [],
+        "piege_detail": s.get("piege_detail") or {},
+        "lecture_cotes": s.get("lecture_cotes") or {},
     } for i, s in enumerate(sorted_sel[:3])]
 
     # score commun 01-10 : qualité data (30%) · proba max du top (40%) · edge EV (30%)

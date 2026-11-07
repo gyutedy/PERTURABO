@@ -16,10 +16,10 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /marches O/U2.5,MT2   elit les marches (canon /marches, alias /marchés). Table couverture avant.
   /combos 3        nombre de tickets (1 a n+10 jambes ; option 3:3:2:2)
   valider-2        tickets + anti-cannibal + snapshot T0 + token L-XXX
-    /data            table compacte HAUTE puis FAIBLE.  /data N = fiche.  /data ledger = lots.  /data diag = F06 CLV/Platt (jamais mise)
-   /radar [N]       scan carte courante (skip matchs sans stats, trous declares)
+    /data            table compacte HAUTE puis FAIBLE.  /data N = fiche (S14 scorer + pieges).  /data ledger = lots.  /data diag = F06 CLV/Platt (jamais mise)
+   /radar [N]       scan carte courante (skip matchs sans stats, trous declares). S14 : flags pieges
    /pack [N]        assemble le pari pack TOP N (defaut 10)
-   /match ID        fiche siege d'un match (id M1 ou rang 1-based)
+   /match ID        fiche siege d'un match (id M1 ou rang 1-based). S14 : scorer + 6 criteres + pieges
    /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
    /status          état de la campagne.  /status ledger = lots.  /status doctor = evidence GO/CHECK/FAIL
    /stop            ferme la campagne (lots F06 intacts, consumed reset)
@@ -732,10 +732,30 @@ def cmd_radar(st, arg):
     ok, out = run_orch("--mode", "radar", "--fixtures", carte, "--top", str(top))
     md = read_text(P("SHARED", "OUT", "RADAR.md")) or ""
     head = "\n".join(md.splitlines()[:24]) if md else (out.strip()[-800:] if out else "")
+    extra = ""
+    try:
+        from data_view import format_criteres  # noqa: E402
+        pred = load_json(P("F03_FORGEWARD", "OUT", "predictions.json")) or {}
+        flags = []
+        for p in (pred.get("predictions") or [])[:8]:
+            for s in p.get("selections") or []:
+                for f in (s.get("pieges") or []):
+                    if f not in flags:
+                        flags.append(f)
+        if flags:
+            extra = "\nPIEGES " + ",".join(flags)
+        top_go = next((p for p in (pred.get("predictions") or []) if p.get("verdict") == "GO"), None)
+        if top_go:
+            best = max(top_go.get("selections") or [{}], key=lambda s: s.get("ev") or -99)
+            crit = format_criteres(best)
+            if crit:
+                extra += "\n" + crit
+    except Exception as e:
+        print(f"[WF] radar pieges gracieux: {e}")
     if not ok:
-        tell("RADAR refuse (Zero Data ou sentinel). Trous declares, pas de crash.\n" + head)
+        tell("RADAR refuse (Zero Data ou sentinel). Trous declares, pas de crash.\n" + head + extra)
         return
-    tell("RADAR — scan carte (matchs incomplets = trous, pas crash).\n" + head)
+    tell("RADAR — scan carte (matchs incomplets = trous, pas crash).\n" + head + extra)
 
 
 def cmd_pack(st, arg):
@@ -798,9 +818,26 @@ def cmd_match(st, arg):
         if target is None:
             tell(f"Match `{token}` introuvable dans la carte."); return
     mid = target.get("id")
+    extra_scorer = ""
+    try:
+        from data_view import format_criteres  # noqa: E402
+        pred = load_json(P("F03_FORGEWARD", "OUT", "predictions.json")) or {}
+        prow = next((x for x in (pred.get("predictions") or []) if x.get("id") == mid), None)
+        if prow:
+            sels = [s for s in (prow.get("selections") or []) if s.get("scorer_score") is not None]
+            best = max(sels, key=lambda s: s.get("ev") or -99) if sels else None
+            if best:
+                crit = format_criteres(best)
+                if crit:
+                    extra_scorer = "\n" + crit
+                pie = ",".join(best.get("pieges") or [])
+                if pie:
+                    extra_scorer += "\nPIEGES " + pie
+    except Exception as e:
+        print(f"[WF] match pieges gracieux: {e}")
     fiche = read_text(P("F04_HERALD", "OUT", "reports", f"{mid}_fiche.md"))
     if fiche:
-        tell("\n".join(fiche.splitlines()[:40]))
+        tell("\n".join(fiche.splitlines()[:40]) + extra_scorer)
         return
     analysis = load_json(P("F02_BREACHER", "OUT", "analysis.json")) or {}
     a = next((x for x in (analysis.get("analyses") or []) if x.get("id") == mid), None)
@@ -817,7 +854,11 @@ def cmd_match(st, arg):
             f"λ {lam.get('dom_total')}–{lam.get('ext_total')}  "
             f"O2.5 {pct(p.get('o2.5'))}  MT2> {pct(p.get('mt2_plus'))}\n"
             f"qualité { (a.get('data_quality') or {}).get('niveau') }"
+            + extra_scorer
         )
+        return
+    if extra_scorer:
+        tell(f"{target.get('dom')} vs {target.get('ext')} ({mid})" + extra_scorer)
         return
     tell(f"{target.get('dom')} vs {target.get('ext')} ({mid}) — pas d'analyse. `/radar` ou `/valider-1`.")
 

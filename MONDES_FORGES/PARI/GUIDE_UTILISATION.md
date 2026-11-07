@@ -43,25 +43,25 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/marches O/U2.5,MT2` | Elit les marches (canon `/marches`, alias `/marchés`). Table couverture (n, meilleur EV, marge). `mono` = ticket mono-marche. 0 match → 0 ticket. EV_FLOOR 3% inviolable. |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) + table couverture |
 | `/valider-2` | Compose les tickets + anti-cannibal + snapshot T0 + token `L-XXX`. **Refuse** si NO BET / Zero Data, `/budget` absent, `/budget` non retapé (Mode A), pool HAUTE vide, 0 match elu. |
-| `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP. `—` = trou, jamais 0.0 invente. |
-| `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE. Hors liste = erreur courte. |
+| `/data` | Prefixe `notes: N` puis **table compacte** (HAUTE puis FAIBLE). Colonnes Q/SC/ELO/xG/REPOS/H2H/TROU/OUT/TOP/PIEGES. `—` = trou, jamais 0.0 invente. S14 : flags pieges (cote_plate, marge_anomalique, cote_figee_sur_news, marche_vitrine). |
+| `/data N` | Fiche exhaustive du rang N (1-based, ordre compact). H2H scores+MT, forme 10, TROU timing, notes OUT/DOUTE/IGNORE, **SCORER 6 criteres** (edge/bande/info/data/marge/confirm) + lecture cotes capture/T-2h/T-0 + PIEGES. Hors liste = erreur courte. |
 | `/data ledger` | Token + lots du jour (inchange). |
 | `/data diag` | F06 diagnostic CLV / Platt / Beta-Binomial / P(EV>0). **n<50 = LOCKED**, jamais verdict/mise. Alias `/data f06` `/data clv`. |
-| `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. v3.8 : flag `incoherence_modele_empirique` si \|P(O2.5) - taux saison\| >= 0.20 (info, pas NO BET). Saison absente = trou. |
+| `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. v3.8 : flag `incoherence_modele_empirique` si \|P(O2.5) - taux saison\| >= 0.20 (info, pas NO BET). Saison absente = trou. S14 : ligne PIEGES + SCORER si predictions presentes. |
 | `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
-| `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. Inconnu = refuse, pas crash. |
+| `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. S14 : SCORER 6 criteres + PIEGES. Inconnu = refuse, pas crash. |
 | `/status` | État campagne + ligne doctor (GO/CHECK/FAIL, gate n). `/status ledger` = lots. `/status doctor` = evidence complete (cles **noms seulement**, contrats, whitelist, cache, CLV). |
 
 Exemple compact (`/data`) :
 
 ```
 notes: 0
-#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP
-1  Milan-Inter      H 10.0  +12  1.8/1.4  6/4    4-3-5  —         0   1 @3.45
-11 Delfin-Cuenca    F  2.9   —    —/—     —/—    —      elo,xg    0   NO BET
+#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP PIEGES
+1  Milan-Inter      H 10.0  +12  1.8/1.4  6/4    4-3-5  —         0   1 @3.45 —
+11 Delfin-Cuenca    F  2.9   —    —/—     —/—    —      elo,xg    0   NO BET —
 ```
 
-Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes.
+Exemple fiche (`/data 1`) : identite + Q + score + TOP, Elo/xG/repos, H2H scores+MT, forme D 10, forme E 10, TROU timing, notes, SCORER 6 criteres, COTES capture/T-2h/T-0, PIEGES.
 | `/roi` | ROI cumulé. `/roi settle L-XXX` = scores football-data (G/P/EN_ATTENTE, jamais invente). v3.9 : stocke `book_odds_close` (T-0 kickoff). v3.10 : `clv = cote_prise / cote_cloture - 1` (ratio). Cloture absente = hole, exclu CLV, jamais 0. Journal F06 : procedure (freeze, immutable) + outcome (mise, cote, G/P, pnl, CLV si connu — absent = hole, jamais 0). |
 | `/stop` | Ferme la campagne. Bankroll survit. Lots F06 intacts. `consumed_legs` reset. |
 
@@ -107,8 +107,11 @@ python ORCHESTRATOR/CODEBASE/orchestrator.py --mode tickets --combos 3 --jambes 
     `edge_net_devig` diagnostic seulement ; cote unique = hole, pas de fair ;
     **scorer S12** : portes A1-A4 hors score (groupe / praticable cote>=1.10 / historique /
     marge>20% = refus vitrine). Score B1-B6 0-1, seuil 0.50-0.60. B3 = asymetrie info
-    (T-2h), pas severite blessure. Trou = score reduit + holes. Ineligible → NO_BET.
-    Jamais un p.) → filtre qualitatif
+    (T-2h / T-0), pas severite blessure. Trou = score reduit + holes. Ineligible → NO_BET.
+    Jamais un p. **S14 pieges** : `cote_plate` (MT identiques >=5, cotes gardees),
+    `marge_anomalique` (overround >10%, B5), `cote_figee_sur_news` (B3, |move|<1% + notes OUT),
+    `marche_vitrine` (marge >20% → A4, marche retire). 3e lecture capture → T-2h → T-0.
+    Affichage `/data` `/radar` `/match`.) → filtre qualitatif
      (si notes **ou** flags S13) → **Top 3 marchés + score commun 01-10** → PREVIEW 1 (SHARED/OUT/preview1.html)
     + **research bundle** SHA-256 (`ARCHIVUM/research/B-XXX`, gaps declares). `/status doctor`
     pour l evidence GO/CHECK/FAIL (cles = noms, jamais les valeurs).

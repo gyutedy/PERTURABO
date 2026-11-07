@@ -45,7 +45,10 @@
                 "scorer_refuse": {"type": "array"},
                 "scorer_contrib": {"type": ["object", "null"]},
                 "scorer_holes": {"type": "array"},
-                "overround": {"type": ["number", "null"]}
+                "overround": {"type": ["number", "null"]},
+                "pieges": {"type": "array", "description": "S14 flags cote_plate / marge_anomalique / cote_figee_sur_news / marche_vitrine"},
+                "piege_detail": {"type": ["object", "null"]},
+                "lecture_cotes": {"type": ["object", "null"], "description": "S14 3e lecture capture / T-2h / T-0. Trou = null, jamais 0"}
               }
             }
           },

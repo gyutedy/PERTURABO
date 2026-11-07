@@ -1634,3 +1634,11 @@
 - Derby / meteo / retour_100 = marches_exclus TYRANT. Holes hors data_quality.
 - Tests : test_state_factors.py. Verrou v2 casse pour cette table operateur seulement.
 - Prochain pack : S14 pieges + /data. Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-07T07:30:00Z] v4.4 — detecteurs pieges + /data scorer (S14)
+
+- 3e lecture cotes : capture → T-2h → T-0 close. Trou = null, jamais 0.
+- Detecteurs : cote_plate (cotes gardees), marge_anomalique (>10% B5), cote_figee_sur_news (B3 + notes OUT), marche_vitrine (>20% A4 retire).
+- `/data` `/radar` `/match` : SCORER 6 criteres + flags pieges. EV / p_modele inchanges.
+- Tests : test_pieges.py. MT plate x10 → flag ; marge 22% → marche retire.
+- Prochain pack : S15 injuries API flags. Operateur : `/roi settle L-DWG` apres matchs.

@@ -1,10 +1,13 @@
 """
 ORCHESTRATOR — vues /data (compact + fiche). Affichage seul, jamais Poisson.
+S14 : score correspondance + 6 criteres + flags pieges (jamais un p).
 """
 
 from __future__ import annotations
 
+import os
 import re
+import sys
 
 COMPACT_MAX = 3500
 SKIP_TOKS = {
@@ -171,11 +174,57 @@ def _out_n(note):
     return sum(1 for it in (note.get("items") or []) if (it.get("verdict") or "").upper() == "OUT")
 
 
+def _scorer_mod():
+    here = os.path.dirname(os.path.abspath(__file__))
+    world = os.path.normpath(os.path.join(here, "..", ".."))
+    d = os.path.join(world, "F03_FORGEWARD", "CODEBASE")
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import market_scorer as _ms
+    return _ms
+
+
+def _sel_scored(sel):
+    if not sel:
+        return None
+    return {
+        "score": sel.get("scorer_score"),
+        "seuil": sel.get("scorer_seuil"),
+        "eligible": sel.get("scorer_eligible"),
+        "contrib": sel.get("scorer_contrib") or {},
+        "refuse": sel.get("scorer_refuse") or [],
+        "pieges": sel.get("pieges") or [],
+    }
+
+
+def format_criteres(sel):
+    scored = _sel_scored(sel)
+    if not scored or scored.get("score") is None:
+        return ""
+    try:
+        return _scorer_mod().format_criteres(scored)
+    except Exception:
+        return ""
+
+
+def _pieges_cell(row):
+    flags = []
+    seen = set()
+    for s in (row.get("top3") or []):
+        for f in (s.get("pieges") or []):
+            if f not in seen:
+                seen.add(f)
+                flags.append(f)
+    if row.get("cote_plate") and "cote_plate" not in seen:
+        flags.append("cote_plate")
+    return ",".join(flags) if flags else "—"
+
+
 def render_compact(top3, md, carte, notes):
     rows = ranked_rows(top3, md)
     if not rows:
         return "Aucun match classe."
-    header = "#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP"
+    header = "#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP PIEGES"
     haute = []
     all_lines = []
     for i, row in enumerate(rows, 1):
@@ -195,16 +244,17 @@ def render_compact(top3, md, carte, notes):
         trou = _trou_cell(intel.get("holes"))
         out_n = _out_n(note)
         top = _top_cell(row)
+        pie = _pieges_cell(row)
         match_s = _pair(dom, ext)[:16]
         line = (
             f"{i:<2} {match_s:<16} {q} {sc_s:>4}  {elo:>4}  {xg_s:<7}  "
-            f"{repos:<5}  {h2h:<6}  {trou:<8}  {out_n}   {top}"
+            f"{repos:<5}  {h2h:<6}  {trou:<8}  {out_n}   {top} {pie}"
         )
         all_lines.append(line)
         if q == "H":
             haute.append(line)
     body = "\n".join([header] + all_lines)
-    extra = "\n— = trou. /data N = fiche."
+    extra = "\n— = trou. /data N = fiche. PIEGES = cote_plate/marge_anomalique/cote_figee/marche_vitrine."
     if len(body) + len(extra) > COMPACT_MAX and haute:
         body = "\n".join([header] + haute) + "\n... /data N"
         extra = ""
@@ -301,6 +351,19 @@ def render_fiche(n, top3, md, carte, notes, n_notes=0):
     elif "timing" in holes or not tm.get("event_id"):
         lines.append("TROU timing")
     lines.append(_notes_block(note))
+    top_sel = (row.get("top3") or [{}])[0] if row.get("top3") else {}
+    crit = format_criteres(top_sel)
+    if crit:
+        lines.append(crit)
+    lect = (top_sel or {}).get("lecture_cotes") or {}
+    if lect.get("capture") is not None:
+        bits = [f"cap {lect.get('capture')}"]
+        bits.append(f"T-2h {lect.get('t2h') if lect.get('t2h') is not None else '—'}")
+        bits.append(f"T-0 {lect.get('t0') if lect.get('t0') is not None else '—'}")
+        lines.append("COTES " + "  ".join(bits))
+    pie = _pieges_cell(row)
+    if pie != "—":
+        lines.append("PIEGES " + pie)
     show = [h for h in holes if h != "timing"]
     if show:
         lines.append("TROU " + ",".join(show))

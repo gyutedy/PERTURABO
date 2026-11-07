@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-MARKET SCORER — eligibilite F03 (S12 / v4.2)
-============================================
+MARKET SCORER — eligibilite F03 (S12 / v4.2) + pieges S14
+=========================================================
 Portes A1-A4 binaires hors score. Score B1-B6 dans [0, 1].
+S14 : 3e lecture cotes (capture → T-2h → T-0 close). Detecteurs
+cote_plate / marge_anomalique / cote_figee_sur_news / marche_vitrine.
 Jamais un producteur de p. Poisson F02 inchange. HERALD inchange.
 Trou data → score reduit + holes. Stdlib only.
 """
@@ -30,6 +32,17 @@ DEFAULT_POIDS = {
 DEFAULT_SEUIL = 0.50
 OVERROUND_MAX = 0.20
 COTE_MIN = 1.10
+MARGE_ANOMALIQUE = 0.10
+FIGEE_MOVE = 0.01
+B3_MOVE = 0.03
+CRITERES_LABELS = {
+    "B1": "edge",
+    "B2": "bande",
+    "B3": "info",
+    "B4": "data",
+    "B5": "marge",
+    "B6": "confirm",
+}
 
 GROUP_KEYS = {
     "1X2": ("1", "X", "2"),
@@ -194,6 +207,154 @@ def gate_a4(group_cotes, overround_max=OVERROUND_MAX):
     return ov <= float(overround_max), ov
 
 
+def detect_cote_plate(match=None, extra=None):
+    """Flag parseur S1 : 3 cotes MT identiques sur >= 5 matchs. Cotes conservees."""
+    extra = extra or {}
+    if extra.get("cote_plate") is True:
+        return True
+    m = match or extra.get("match") or {}
+    return bool(m.get("cote_plate"))
+
+
+def detect_marge_anomalique(group_cotes, seuil=MARGE_ANOMALIQUE):
+    """B5 : overround > 10% = marge anomalique (info). A4 reste a 20%."""
+    ov = overround(group_cotes)
+    if ov is None:
+        return False, None
+    return ov > float(seuil), ov
+
+
+def detect_marche_vitrine(group_cotes, overround_max=OVERROUND_MAX):
+    """A4 : overround > 20% = marche vitrine, refuse hors score."""
+    a4_ok, ov = gate_a4(group_cotes, overround_max)
+    return (not a4_ok), ov
+
+
+def _cote_from(blob, sel):
+    if not isinstance(blob, dict):
+        return None
+    if sel is None:
+        return None
+    return _f(blob.get(sel))
+
+
+def detect_cote_figee_sur_news(cote, extra=None, selection=None):
+    """B3 : capture vs T-2h figee (|move| < 1%) alors que notes OUT existent."""
+    extra = extra or {}
+    t2h = _f(extra.get("cote_t2h"))
+    if t2h is None:
+        t2h = _f(extra.get("odds_t2h"))
+    if t2h is None and selection is not None:
+        blob = extra.get("odds_t2h_blob") or extra.get("cotes_t2h") or {}
+        t2h = _cote_from(blob, selection)
+    fv = _f(cote)
+    if t2h is None or t2h <= 1 or fv is None:
+        return False
+    move = abs(fv - t2h) / t2h
+    if move >= FIGEE_MOVE:
+        return False
+    notes_out = extra.get("notes_out")
+    if notes_out is None:
+        notes_out = extra.get("out_n")
+    try:
+        n_out = int(notes_out or 0)
+    except (TypeError, ValueError):
+        n_out = 0
+    return n_out >= 1
+
+
+def lecture_cotes(cote, extra=None, selection=None):
+    """3e lecture : T-0 capture → T-2h → T-0 close. Trou = None, jamais 0."""
+    extra = extra or {}
+    cap = _f(cote)
+    t2h = _f(extra.get("cote_t2h"))
+    if t2h is None:
+        t2h = _f(extra.get("odds_t2h"))
+    if t2h is None and selection is not None:
+        t2h = _cote_from(extra.get("odds_t2h_blob") or extra.get("cotes_t2h") or {}, selection)
+    close = _f(extra.get("cote_t0"))
+    if close is None:
+        close = _f(extra.get("cote_close"))
+    if close is None and selection is not None:
+        close = _cote_from(extra.get("odds_t0_blob") or extra.get("cotes_t0") or {}, selection)
+    move_t2h = None
+    if cap is not None and t2h is not None and t2h > 1:
+        move_t2h = (cap - t2h) / t2h
+    move_close = None
+    if cap is not None and close is not None and close > 1:
+        move_close = (cap - close) / close
+    return {
+        "capture": cap,
+        "t2h": t2h,
+        "t0": close,
+        "move_t2h": round(move_t2h, 6) if move_t2h is not None else None,
+        "move_t0": round(move_close, 6) if move_close is not None else None,
+    }
+
+
+def pieges(selection, cote, marche, group_cotes, extra=None, match=None, overround_max=OVERROUND_MAX):
+    extra = extra or {}
+    plate = detect_cote_plate(match=match, extra=extra)
+    anom, ov = detect_marge_anomalique(group_cotes)
+    vitrine, ov_v = detect_marche_vitrine(group_cotes, overround_max)
+    figee = detect_cote_figee_sur_news(cote, extra=extra, selection=selection)
+    lect = lecture_cotes(cote, extra=extra, selection=selection)
+    flags = []
+    if plate:
+        flags.append("cote_plate")
+    if anom:
+        flags.append("marge_anomalique")
+    if figee:
+        flags.append("cote_figee_sur_news")
+    if vitrine:
+        flags.append("marche_vitrine")
+    return {
+        "cote_plate": plate,
+        "marge_anomalique": anom,
+        "cote_figee_sur_news": figee,
+        "marche_vitrine": vitrine,
+        "flags": flags,
+        "overround": round(ov, 6) if ov is not None else (round(ov_v, 6) if ov_v is not None else None),
+        "lecture": lect,
+    }
+
+
+def format_criteres(scored):
+    """6 criteres B1-B6 + flags pieges. Affichage, jamais un p."""
+    scored = scored or {}
+    contrib = scored.get("contrib") or {}
+    bits = []
+    for k in KEYS:
+        raw = (contrib.get(k) or {}).get("raw")
+        label = CRITERES_LABELS.get(k, k)
+        if raw is None:
+            bits.append(f"{label} —")
+        else:
+            bits.append(f"{label} {raw:.2f}")
+    score = scored.get("score")
+    seuil = scored.get("seuil")
+    elig = scored.get("eligible")
+    head = "SCORER —"
+    if score is not None:
+        head = f"SCORER {score:.2f}"
+        if seuil is not None:
+            head += f"/{seuil:.2f}"
+        if elig is True:
+            head += " GO"
+        elif elig is False:
+            head += " NO"
+    refuse = scored.get("scorer_refuse") or scored.get("refuse") or []
+    if refuse:
+        head += " A:" + ",".join(str(x) for x in refuse)
+    piege_flags = list(scored.get("pieges") or [])
+    if not piege_flags and scored.get("piege_flags"):
+        piege_flags = list(scored.get("piege_flags"))
+    line = head + "  " + " ".join(bits)
+    if piege_flags:
+        line += "  PIEGES " + ",".join(piege_flags)
+    return line
+
+
 def _b1(extra, holes):
     p = _f((extra or {}).get("p_modele"))
     cote = _f((extra or {}).get("cote"))
@@ -225,18 +386,19 @@ def _b2(cote, holes):
 
 
 def _b3(extra, cote, holes):
-    t2h = _f((extra or {}).get("cote_t2h"))
-    if t2h is None:
-        t2h = _f((extra or {}).get("odds_t2h"))
-    if t2h is None or t2h <= 1:
-        holes.append("b3_asymetrie")
-        return 0.0
-    fv = _f(cote)
+    lect = lecture_cotes(cote, extra=extra)
+    fv = lect.get("capture")
     if fv is None:
         holes.append("b3_asymetrie")
         return 0.0
-    move = abs(fv - t2h) / t2h
-    if move >= 0.03:
+    ref = lect.get("t2h")
+    if ref is None or ref <= 1:
+        ref = lect.get("t0")
+    if ref is None or ref <= 1:
+        holes.append("b3_asymetrie")
+        return 0.0
+    move = abs(fv - ref) / ref
+    if move >= B3_MOVE:
         return 1.0
     return 0.4
 
@@ -327,6 +489,11 @@ def score(selection, cote, marche, group_cotes, analysis=None, extra=None, profi
         total = 1.0
     gates_ok = len(refuse) == 0
     eligible = bool(gates_ok and total >= float(prof["seuil"]))
+    trap = pieges(
+        selection, cote, marche, group_cotes,
+        extra=extra, match=extra.get("match"),
+        overround_max=prof["overround_max"],
+    )
     return {
         "eligible": eligible,
         "score": round(total, 4),
@@ -338,4 +505,12 @@ def score(selection, cote, marche, group_cotes, analysis=None, extra=None, profi
         "contrib": contrib,
         "overround": round(ov, 6) if ov is not None else None,
         "holes": _uniq(holes),
+        "pieges": trap["flags"],
+        "piege_detail": {
+            "cote_plate": trap["cote_plate"],
+            "marge_anomalique": trap["marge_anomalique"],
+            "cote_figee_sur_news": trap["cote_figee_sur_news"],
+            "marche_vitrine": trap["marche_vitrine"],
+        },
+        "lecture_cotes": trap["lecture"],
     }

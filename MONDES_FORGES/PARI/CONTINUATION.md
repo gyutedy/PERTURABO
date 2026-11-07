@@ -379,6 +379,26 @@ API blessures (S15) reste flags, jamais un 2e lambda.
 
 **Handoff** : pack S14 (detecteurs pieges + /data scorer). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S14 dans cette session.
 
+## ETAT v4.4 — DETECTEURS PIEGES + /DATA SCORER (2026-11-07)
+
+Pack S14 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. v4 R5 + R8. Session = ce pack seulement.
+
+- [x] **3e lecture cotes** : capture (T-0 book) → T-2h (`latest.json`) → T-0 close (`latest_t0.json`).
+  Stamp `lecture_cotes` sur chaque selection. Trou = null, jamais 0. B3 lit T-2h, sinon T-0.
+- [x] **Detecteurs** dans `market_scorer.py` (jamais un p) :
+  - `cote_plate` : flag parseur S1, cotes conservees.
+  - `marge_anomalique` (B5) : overround > 10%, info, pas veto.
+  - `cote_figee_sur_news` (B3) : |move capture vs T-2h| < 1% **et** notes OUT >= 1.
+  - `marche_vitrine` : overround > 20% → A4, marche retire (MT 2.10/3.40/2.10).
+- [x] **forgeward** : stamp `pieges` / `piege_detail` / `lecture_cotes`. EV / p_modele inchanges.
+  Snapshots T-2h / T-0 lus si absents du match.
+- [x] **`/data` `/radar` `/match`** : score correspondance + 6 criteres (edge/bande/info/data/marge/confirm) + flags pieges. Compact = colonne PIEGES. Fiche = SCORER + COTES + PIEGES.
+- [x] **Vocabulaire** GUIDE + CONTINUATION aligne (Warsmith).
+- [x] **Tests** : `tests/test_pieges.py`. MT plate x10 → flag ; marge 22% → marche retire. Poisson inchange.
+- [x] **Docs** : GUIDE, INDEX, README, schema_predictions / schema_top3, PLAN S14 coche, IW_CAMPAIGN_LOG.
+
+**Handoff** : pack S15 (injuries API flags TYRANT, jamais un 2e lambda). Operateur : `/roi settle L-DWG` apres les matchs. Ne pas enchainer S15 dans cette session.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
