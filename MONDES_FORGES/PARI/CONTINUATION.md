@@ -427,6 +427,17 @@ Pack S16 du `TRACKING/PLAN_PARI_CONSOLIDE.md`. Ph11 + v4 R7. Session = ce pack s
 
 **Handoff** : plan S0–S16 clos. Operateur : `/roi settle L-DWG` apres les matchs. Pas de pack suivant dans ce plan.
 
+## ETAT v4.6.1 — HOTFIX S16 (2026-11-07)
+
+Session verification S16 (pas un nouveau pack). 4 tests rouges a HEAD v4.6.
+
+- [x] **`load_profiles`** : `ligues` droppees → overlay ligue x marche jamais lu. Restaure. Scorer E0/OU_2.5 seuil 0.55 + B1 0.40.
+- [x] **`_renorm`** : `round(_, 4)` par cle → somme 1.0001. Residu sur B6, somme = 1.0.
+- [x] **metro docstring** : `reasoning_content` dans le commentaire cassait le garde `g.jamais_reasoning`. Code lit `content` seulement. Inchange.
+- [x] **Tests** : metro 27/27, weights 18/18, scorer 81/81, pieges 56/56, e2e_listen 118/118.
+
+**Handoff** : S16 operationnel. Plan clos. Operateur : `/roi settle L-DWG` apres les matchs.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

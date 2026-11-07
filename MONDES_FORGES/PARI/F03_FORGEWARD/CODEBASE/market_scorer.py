@@ -111,12 +111,14 @@ def load_profiles(path=None):
     if cote_min is None:
         cote_min = COTE_MIN
     marches = blob.get("marches") if isinstance(blob.get("marches"), dict) else {}
+    ligues = blob.get("ligues") if isinstance(blob.get("ligues"), dict) else {}
     return {
         "version": blob.get("version", 1),
         "overround_max": ov_max,
         "cote_min": cote_min,
         "default": {"seuil": seuil, "poids": poids},
         "marches": marches,
+        "ligues": ligues,
         "path": p,
     }
 

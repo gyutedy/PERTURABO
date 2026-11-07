@@ -3,7 +3,7 @@
 METRO — Oracle meta-review avant /valider-2 (S16)
 =================================================
 Risques, trous, ranking qualitatif. Jamais un chiffre.
-Lit `content`, jamais `reasoning_content`. Cle absente = skip.
+Lit `content`. Jamais le champ reasoning. Cle absente = skip.
 """
 
 from __future__ import annotations

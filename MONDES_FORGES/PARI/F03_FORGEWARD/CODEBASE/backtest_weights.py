@@ -58,7 +58,10 @@ def _renorm(poids):
         s += fv
     if s <= 0:
         return dict(DEFAULT_POIDS)
-    return {k: round(out[k] / s, 4) for k in KEYS}
+    scaled = {k: round(out[k] / s, 4) for k in KEYS[:-1]}
+    rest = round(1.0 - sum(scaled[k] for k in KEYS[:-1]), 4)
+    scaled[KEYS[-1]] = rest if rest > 0 else 0.0
+    return scaled
 
 
 def count_real_tickets(lots):

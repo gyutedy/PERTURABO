@@ -1660,3 +1660,10 @@
 - Backtest B1-B6 : n<50 lock a priori ; n>=50 une seule maj journalisee. Seed 42.
 - Tests : test_oracle_metro.py + test_backtest_weights.py. Plan S0-S16 clos.
 - Operateur : `/roi settle L-DWG` apres matchs.
+
+## [2026-11-07T13:00:00Z] v4.6.1 — hotfix S16 (overlay ligues + renorm)
+
+- `load_profiles` restitue `ligues` (overlay ligue x marche).
+- `_renorm` somme exacte 1.0 (residu B6).
+- Metro docstring sans `reasoning_content` (garde source).
+- Tests : metro 27/27, weights 18/18, e2e_listen 118/118. Plan clos.

@@ -22,7 +22,7 @@ Cartographie des journaux du monde.
 | `F05_PACKAGER/CODEBASE/marches.py` | S11 : election, couverture EV>=3%, anti meme-navire, mono, floors. Canon `/marches` | workflow.py `/marches` / combinator.py |
 | `ARCHIVUM/learnings/market_election_log.json` | Append-only elections marches. `/status` alerte >60% | marches.append_election |
 | `tests/test_marches.py` | S11 : 0 match→0 ticket, meme navire, mono, 10 jambes, floor refuse | marches.py / combinator.py |
-| `F03_FORGEWARD/CODEBASE/market_scorer.py` | S12 : portes A1-A4 hors score, B1-B6 0-1, veto F03. Jamais Poisson. | forgeward.py |
+| `F03_FORGEWARD/CODEBASE/market_scorer.py` | S12 : portes A1-A4 hors score, B1-B6 0-1, veto F03. Jamais Poisson. v4.6.1 : `ligues` conservees dans load_profiles | forgeward.py |
 | `ARCHIVUM/learnings/market_profiles.json` | Poids / seuils a priori (versionne). Ne pas retuner a la main. | market_scorer.load_profiles |
 | `tests/test_market_scorer.py` | S12 : A1-A4, overround 24.6% vs 18.7%, MT poids, EV inchange | market_scorer.py / forgeward.py |
 | `config/state_factors.json` | S13 : att x0.90 max 2, milieu x0.96, def adv x1.06, gk x1.05, cap ±20%. | state_factors.py |
@@ -35,7 +35,7 @@ Cartographie des journaux du monde.
 | `TYRANT/CODEBASE/metro.py` | S16 Oracle meta-review avant `/valider-2`. Zero digit. Cle absente = skip | workflow.py `/valider-2` |
 | `config/ticket_friction.json` | S16 fees 0.005 + slippage 0.005. Seuil = EV_FLOOR + fees + slip. Jamais < 0.03 | ticket_friction.py |
 | `F05_PACKAGER/CODEBASE/ticket_friction.py` | Charge friction, `effective_floor` | combinator `--ev-floor` |
-| `F03_FORGEWARD/CODEBASE/backtest_weights.py` | R7 poids B1-B6. n<50 lock. Une maj journalisee. Seed 42 | market_profiles.json |
+| `F03_FORGEWARD/CODEBASE/backtest_weights.py` | R7 poids B1-B6. n<50 lock. Une maj journalisee. Seed 42. v4.6.1 : renorm somme 1.0 | market_profiles.json |
 | `ARCHIVUM/learnings/scorer_weight_journal.json` | Journal unique maj poids (gitignore si vide) | backtest_weights.retune |
 | `tests/test_oracle_metro.py` | S16 zero chiffre, mock HTTP, fees, `/approve` mismatch | metro.py + friction + workflow |
 | `tests/test_backtest_weights.py` | S16 n<50 lock, write once, ligue x marche, seed 42 | backtest_weights.py |
