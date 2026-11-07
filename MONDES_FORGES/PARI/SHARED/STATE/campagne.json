@@ -5,12 +5,13 @@
     "capture": "2026-11-07T12:44:40Z",
     "budget": "2026-11-07T12:47:07Z",
     "valider1": "2026-11-07T12:48:09Z",
-    "marches": "2026-11-07T13:35:02Z"
+    "marches": "2026-11-07T13:35:02Z",
+    "combos": "2026-11-07T13:41:40Z"
   },
   "budget_fc": 1000.0,
   "surticket_fc": 400.0,
   "combos": 3,
-  "jambes": "4:3:3",
+  "jambes": "3:2:2",
   "marches": [
     "1X2"
   ],
