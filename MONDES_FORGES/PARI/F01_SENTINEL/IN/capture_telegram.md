@@ -1,21 +1,14 @@
-/capture
-| Compétition & Match | Horaire | 1 | X | 2 | Moins | Plus | 1st | Égal | 2nd |
+| Compétition & Match | Horaire | 1 | X | 2 | Moins | Plus | 1X | X2 | 12 |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Turkiye - Super Lig<br>Eyupspor vs Kocaelispor | Aujourd'hui 11:30 (#150) | 3.80 | 3.15 | 1.89 | 1.57 | 2.20 | 3.10 | 3.00 | 2.10 |
-| Allemagne - 2. Bundesliga<br>1 FC Nuremberg vs SV Darmstadt 98 | Aujourd'hui 13:00 (#335) | 1.67 | 3.90 | 3.90 | 2.55 | 1.50 | 3.10 | 3.00 | 2.10 |
-| Allemagne - 2. Bundesliga<br>Holstein Kiel vs Arminia Bielefeld | Aujourd'hui 13:00 (#163) | 2.35 | 3.25 | 2.67 | 1.90 | 1.87 | 3.10 | 3.00 | 2.10 |
-| Allemagne - 2. Bundesliga<br>VfL 1899 Osnabruck vs 1 FC Kaiserslautern | Aujourd'hui 13:00 (#157) | 2.17 | 3.40 | 2.82 | 2.15 | 1.69 | 3.10 | 3.00 | 2.10 |
-| Angleterre - Premier League<br>Leeds United vs Tottenham Hotspur | Aujourd'hui 13:30 (#409) | 2.67 | 3.35 | 2.57 | 1.91 | 1.86 | 3.10 | 3.00 | 2.10 |
-| Angleterre - Championship<br>Bristol City vs Norwich City | Aujourd'hui 13:30 (#197) | 2.85 | 3.45 | 2.37 | 1.97 | 1.81 | 3.10 | 3.00 | 2.10 |
-| Angleterre - Championship<br>Portsmouth FC vs Stoke City | Aujourd'hui 13:30 (#169) | 2.25 | 3.25 | 3.25 | 1.67 | 2.17 | 3.10 | 3.00 | 2.10 |
-| Angleterre - Championship<br>Wrexham AFC vs Wolverhampton Wanderers | Aujourd'hui 13:30 (#247) | 3.45 | 3.40 | 2.10 | 1.81 | 1.97 | 3.10 | 3.00 | 2.10 |
-| Espagne - LaLiga<br>Malaga CF vs Racing Santander | Aujourd'hui 14:00 (#443) | 2.40 | 3.50 | 2.80 | 2.10 | 1.63 | 3.10 | 3.00 | 2.10 |
-| Espagne - LaLiga 2<br>Burgos CF vs RC Celta Fortuna | Aujourd'hui 14:00 (#455) | 1.71 | 3.40 | 4.30 | 1.83 | 1.83 | 3.10 | 3.00 | 2.10 |
-| Turkiye - Super Lig<br>Samsunspor vs Konyaspor | Aujourd'hui 14:00 (#173) | 2.17 | 3.20 | 2.97 | 1.81 | 1.86 | 3.10 | 3.00 | 2.10 |
-| Italie - Serie A<br>Cagliari Calcio vs Frosinone Calcio | Aujourd'hui 15:00 (#280) | 2.97 | 3.70 | 2.22 | 2.67 | 1.46 | 3.10 | 3.00 | 2.10 |
-| Italie - Serie A<br>Torino FC vs US Lecce | Aujourd'hui 15:00 (#281) | 1.81 | 3.55 | 4.40 | 1.92 | 1.85 | 3.10 | 3.00 | 2.10 |
-| Allemagne - Bundesliga<br>Borussia Dortmund vs SV 07 Elversberg | Aujourd'hui 15:30 (#437) | 1.33 | 5.70 | 7.50 | 3.10 | 1.36 | 3.10 | 3.00 | 2.10 |
-| Allemagne - Bundesliga<br>FSV Mainz vs Bayern Munich | Aujourd'hui 15:30 (#431) | 8.50 | 6.50 | 1.27 | 3.75 | 1.26 | 3.10 | 3.00 | 2.10 |
-| Allemagne - Bundesliga<br>RB Leipzig vs FC Augsburg | Aujourd'hui 15:30 (#424) | 1.43 | 5.20 | 5.70 | 3.80 | 1.25 | 3.10 | 3.00 | 2.10 |
-| Allemagne - Bundesliga<br>SC Paderborn 07 vs Eintracht Frankfurt | Aujourd'hui 15:30 (#433) | 2.87 | 3.80 | 2.22 | 2.65 | 1.47 | 3.10 | 3.00 | 2.10 |
-| Angleterre - Premier League<br>Arsenal FC vs Hull City | Aujourd'hui 16:00 | 1.15 | 7.70 | 17.00 | 2.55 | 1.50 | 3.10 | 3.00 | 2.10 |
+| Angleterre - Premier League<br>Arsenal FC vs Hull City | Aujourd'hui 16:00 (#412) | 1.15 | 7.70 | 17.00 | 2.55 | 1.50 | 1.01 | 4.40 | 1.09 |
+| Angleterre - Premier League<br>Fulham FC vs Newcastle United | Aujourd'hui 16:00 (#410) | 2.00 | 3.60 | 3.50 | 2.12 | 1.70 | 1.26 | 1.71 | 1.30 |
+| Angleterre - Championship<br>Birmingham City vs Swansea City | Aujourd'hui 16:00 (#175) | 1.84 | 3.65 | 4.10 | 1.97 | 1.81 | 1.20 | 1.84 | 1.29 |
+| Angleterre - Championship<br>Blackburn Rovers vs West Ham United | Aujourd'hui 16:00 (#176) | 4.90 | 4.20 | 1.62 | 2.35 | 1.58 | 2.12 | 1.16 | 1.24 |
+| Espagne - LaLiga 2<br>Cadiz CF vs Real Oviedo | Aujourd'hui 16:15 (#192) | 2.72 | 3.20 | 2.32 | 1.76 | 1.92 | 1.50 | 1.37 | 1.34 |
+| Pays-Bas - Eredivisie<br>Fortuna Sittard vs SC Telstar | Aujourd'hui 16:30 (#142) | 2.07 | 3.50 | 3.40 | 2.12 | 1.70 | 1.28 | 1.66 | 1.31 |
+| Portugal - Liga Portugal<br>Nacional da Madeira vs Academico de Viseu FC | Aujourd'hui 16:30 (#224) | 2.85 | 3.05 | 2.29 | 1.69 | 2.02 | 1.51 | 1.34 | 1.35 |
+| Turkiye - Super Lig<br>Galatasaray Istanbul vs Amed Sportif Faaliyetler | Aujourd'hui 17:00 (#246) | 1.37 | 4.70 | 6.00 | 2.62 | 1.41 | 1.10 | 2.65 | 1.18 |
+| Turkiye - Super Lig<br>Goztepe Izmir vs Istanbul Basaksehir | Aujourd'hui 17:00 (#245) | 1.89 | 3.50 | 3.40 | 2.10 | 1.63 | 1.26 | 1.74 | 1.29 |
+| Italie - Serie A<br>Parma Calcio vs Bologna FC | Aujourd'hui 18:00 (#310) | 5.00 | 3.60 | 1.71 | 1.72 | 2.10 | 2.00 | 1.15 | 1.29 |
+| Angleterre - Premier League<br>Nottingham Forest vs Manchester City | Aujourd'hui 18:30 (#417) | 4.40 | 3.90 | 1.73 | 2.20 | 1.65 | 1.97 | 1.18 | 1.26 |
+| Allemagne - Bundesliga<br>VfB Stuttgart vs Werder Bremen | Aujourd'hui 18:30 (#422) | 1.87 | 4.10 | 3.55 | 3.10 | 1.36 | 1.26 | 1.82 | 1.25 |
