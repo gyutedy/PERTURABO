@@ -5,10 +5,11 @@
     "capture": "2026-11-07T18:23:47Z",
     "valider1": "2026-11-07T18:25:27Z",
     "marches": "2026-11-07T18:28:19Z",
-    "combos": "2026-11-07T18:30:27Z"
+    "combos": "2026-11-07T18:30:27Z",
+    "budget": "2026-11-07T18:33:09Z"
   },
-  "budget_fc": 0,
-  "surticket_fc": 0,
+  "budget_fc": 1000.0,
+  "surticket_fc": 1000.0,
   "combos": 1,
   "jambes": "3",
   "marches": [
@@ -21,7 +22,7 @@
     "preview1": "SHARED/OUT/preview1.html"
   },
   "bankroll_fc": 3000.0,
-  "budget_seq": 0,
+  "budget_seq": 1,
   "capture_id": "C-VHK",
   "consumed_legs": [],
   "current_token": null,
