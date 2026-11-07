@@ -1,0 +1,192 @@
+{
+  "generated_at": "2026-11-07T14:59:43Z",
+  "source": "the-odds-api",
+  "kind": "t2h",
+  "horizon_h": 3,
+  "scanned": [
+    {
+      "id": "M1",
+      "dom": "Arsenal FC",
+      "ext": "Hull City",
+      "code": "E0",
+      "kickoff": "2026-11-07T16:00:00Z",
+      "bookmaker": "pinnacle",
+      "cotes_capture": {
+        "1": 1.15,
+        "X": 7.7,
+        "2": 17.0,
+        "1X": 1.01,
+        "X2": 4.4,
+        "12": 1.09,
+        "under": 2.55,
+        "over": 1.5
+      },
+      "cotes_marche": {
+        "1": 1.15,
+        "2": 25.0,
+        "X": 8.5
+      },
+      "moves": [
+        {
+          "selection": "X",
+          "cote_capture": 7.7,
+          "cote_marche": 8.5
+        },
+        {
+          "selection": "2",
+          "cote_capture": 17.0,
+          "cote_marche": 25.0
+        }
+      ],
+      "alerts": []
+    },
+    {
+      "id": "M2",
+      "dom": "Fulham FC",
+      "ext": "Newcastle United",
+      "code": "E0",
+      "kickoff": "2026-11-07T16:00:00Z",
+      "bookmaker": "pinnacle",
+      "cotes_capture": {
+        "1": 2.0,
+        "X": 3.6,
+        "2": 3.5,
+        "1X": 1.26,
+        "X2": 1.71,
+        "12": 1.3,
+        "under": 2.12,
+        "over": 1.7
+      },
+      "cotes_marche": {
+        "1": 1.98,
+        "2": 3.79,
+        "X": 3.91
+      },
+      "moves": [
+        {
+          "selection": "X",
+          "cote_capture": 3.6,
+          "cote_marche": 3.91
+        },
+        {
+          "selection": "2",
+          "cote_capture": 3.5,
+          "cote_marche": 3.79
+        }
+      ],
+      "alerts": []
+    },
+    {
+      "id": "M6",
+      "dom": "Fortuna Sittard",
+      "ext": "SC Telstar",
+      "code": "N1",
+      "kickoff": "2026-11-07T16:30:00Z",
+      "bookmaker": "pinnacle",
+      "cotes_capture": {
+        "1": 2.07,
+        "X": 3.5,
+        "2": 3.4,
+        "1X": 1.28,
+        "X2": 1.66,
+        "12": 1.31,
+        "under": 2.12,
+        "over": 1.7
+      },
+      "cotes_marche": {
+        "1": 2.05,
+        "2": 3.6,
+        "X": 3.76
+      },
+      "moves": [
+        {
+          "selection": "X",
+          "cote_capture": 3.5,
+          "cote_marche": 3.76
+        },
+        {
+          "selection": "2",
+          "cote_capture": 3.4,
+          "cote_marche": 3.6
+        }
+      ],
+      "alerts": []
+    },
+    {
+      "id": "M9",
+      "dom": "Goztepe Izmir",
+      "ext": "Istanbul Basaksehir",
+      "code": "T1",
+      "kickoff": "2026-11-07T17:00:00Z",
+      "bookmaker": "pinnacle",
+      "cotes_capture": {
+        "1": 1.89,
+        "X": 3.5,
+        "2": 3.4,
+        "1X": 1.26,
+        "X2": 1.74,
+        "12": 1.29,
+        "under": 2.1,
+        "over": 1.63
+      },
+      "cotes_marche": {
+        "2": 3.78,
+        "1": 2.01,
+        "X": 3.72
+      },
+      "moves": [
+        {
+          "selection": "1",
+          "cote_capture": 1.89,
+          "cote_marche": 2.01
+        },
+        {
+          "selection": "X",
+          "cote_capture": 3.5,
+          "cote_marche": 3.72
+        },
+        {
+          "selection": "2",
+          "cote_capture": 3.4,
+          "cote_marche": 3.78
+        }
+      ],
+      "alerts": []
+    }
+  ],
+  "skipped": [
+    {
+      "id": "M3",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M4",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M5",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M7",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M8",
+      "reason": "trou_marche"
+    },
+    {
+      "id": "M10",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M11",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M12",
+      "reason": "hors_fenetre"
+    }
+  ],
+  "alerts": []
+}
