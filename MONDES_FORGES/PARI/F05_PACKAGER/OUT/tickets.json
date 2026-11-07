@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T19:47:46Z",
+  "generated_at": "2026-11-07T13:42:14Z",
   "tickets": [
     {
       "rang_ticket": 1,
@@ -7,48 +7,89 @@
       "nb_jambes": 3,
       "jambes": [
         {
-          "match_id": "M11",
-          "match": "Manchester City vs Fulham FC",
+          "match_id": "M1",
+          "match": "Arsenal FC vs Hull City",
           "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.45,
-          "p_modele": 0.8442,
-          "ev": 0.2241,
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 7.7,
+          "p_modele": 0.2111,
+          "ev": 0.6255,
           "bucket": "HAUTE",
-          "score_commun": 10.0
+          "score_commun": 8.3,
+          "edge_net_devig": 0.7202,
+          "devig_gap": 0.01227,
+          "p_fair_additif": 0.1105,
+          "priority_open": true,
+          "priority_palier": 0
         },
         {
-          "match_id": "M13",
-          "match": "Aston Villa vs Sunderland AFC",
+          "match_id": "M12",
+          "match": "VfB Stuttgart vs Werder Bremen",
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.92,
-          "p_modele": 0.6564,
-          "ev": 0.2603,
+          "cote": 1.87,
+          "p_modele": 0.7313,
+          "ev": 0.3675,
           "bucket": "HAUTE",
-          "score_commun": 10.0
+          "score_commun": 10.0,
+          "edge_net_devig": 0.4501,
+          "devig_gap": -0.01032,
+          "p_fair_additif": 0.5146,
+          "priority_open": true,
+          "priority_palier": 0
         },
         {
-          "match_id": "M6",
-          "match": "Brighton & Hove Albion vs Brentford FC",
+          "match_id": "M4",
+          "match": "Blackburn Rovers vs West Ham United",
           "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.91,
-          "p_modele": 0.6025,
-          "ev": 0.1508,
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 1.62,
+          "p_modele": 0.7419,
+          "ev": 0.2019,
           "bucket": "HAUTE",
-          "score_commun": 9.7
+          "score_commun": 10.0,
+          "edge_net_devig": 0.2733,
+          "devig_gap": -0.014824,
+          "p_fair_additif": 0.5975,
+          "priority_open": true,
+          "priority_palier": 0
         }
       ],
-      "cote_totale": 5.32,
-      "p_aggregee": 0.334,
+      "cote_totale": 23.33,
+      "p_aggregee": 0.115,
       "ev_limitee": null,
-      "mise_fc": 800.0,
+      "mise_fc": 400.0,
       "mise_units": null,
-      "retour_si_gagne_fc": 4253.95
+      "retour_si_gagne_fc": 9330.55,
+      "ev_compose_net": 2.1761984900659996,
+      "compose_flags": [],
+      "compose_holes": [],
+      "kelly_fraction": 0.125,
+      "kelly_label": "1/8",
+      "kelly_holes": [
+        "ece",
+        "n<50"
+      ],
+      "kelly_ece": null,
+      "kelly_p_ev": 0.5275,
+      "kelly_calibration_validee": false,
+      "kelly": {
+        "fraction": 0.125,
+        "label": "1/8",
+        "p_ev": 0.5275,
+        "ece": null,
+        "calibration_validee": false,
+        "holes": [
+          "ece",
+          "n<50"
+        ],
+        "n": 0,
+        "locked": true,
+        "conjoint": true
+      }
     },
     {
       "rang_ticket": 2,
@@ -56,36 +97,72 @@
       "nb_jambes": 2,
       "jambes": [
         {
-          "match_id": "M4",
+          "match_id": "M3",
+          "match": "Birmingham City vs Swansea City",
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 1.84,
+          "p_modele": 0.6428,
+          "ev": 0.1828,
+          "bucket": "HAUTE",
+          "score_commun": 10.0,
+          "edge_net_devig": 0.2553,
+          "devig_gap": -0.010966,
+          "p_fair_additif": 0.523,
+          "priority_open": true,
+          "priority_palier": 0
+        },
+        {
+          "match_id": "M2",
           "match": "Fulham FC vs Newcastle United",
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.07,
-          "p_modele": 0.5496,
-          "ev": 0.1377,
+          "cote": 2.0,
+          "p_modele": 0.5559,
+          "ev": 0.1118,
           "bucket": "HAUTE",
-          "score_commun": 9.4
-        },
-        {
-          "match_id": "M9",
-          "match": "Sunderland AFC vs Chelsea FC",
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 3.6,
-          "p_modele": 0.4392,
-          "ev": 0.5811,
-          "bucket": "HAUTE",
-          "score_commun": 8.7
+          "score_commun": 9.4,
+          "edge_net_devig": 0.1824,
+          "devig_gap": -0.008687,
+          "p_fair_additif": 0.4788,
+          "priority_open": true,
+          "priority_palier": 0
         }
       ],
-      "cote_totale": 7.45,
-      "p_aggregee": 0.241,
+      "cote_totale": 3.68,
+      "p_aggregee": 0.357,
       "ev_limitee": null,
-      "mise_fc": 1100.0,
+      "mise_fc": 300.0,
       "mise_units": null,
-      "retour_si_gagne_fc": 8197.2
+      "retour_si_gagne_fc": 1104.0,
+      "ev_compose_net": 0.48426671999999993,
+      "compose_flags": [],
+      "compose_holes": [],
+      "kelly_fraction": 0.125,
+      "kelly_label": "1/8",
+      "kelly_holes": [
+        "ece",
+        "n<50"
+      ],
+      "kelly_ece": null,
+      "kelly_p_ev": 0.5475,
+      "kelly_calibration_validee": false,
+      "kelly": {
+        "fraction": 0.125,
+        "label": "1/8",
+        "p_ev": 0.5475,
+        "ece": null,
+        "calibration_validee": false,
+        "holes": [
+          "ece",
+          "n<50"
+        ],
+        "n": 0,
+        "locked": true,
+        "conjoint": true
+      }
     },
     {
       "rang_ticket": 3,
@@ -93,49 +170,97 @@
       "nb_jambes": 2,
       "jambes": [
         {
-          "match_id": "M19",
-          "match": "Brentford FC vs Everton FC",
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.8,
-          "p_modele": 0.3364,
-          "ev": 0.2783,
-          "bucket": "HAUTE",
-          "score_commun": 8.1
-        },
-        {
-          "match_id": "M7",
-          "match": "Crystal Palace vs Liverpool FC",
+          "match_id": "M8",
+          "match": "Galatasaray Istanbul vs Amed Sportif Faaliyetler",
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 4.7,
-          "p_modele": 0.2664,
-          "ev": 0.2521,
+          "cote": 1.37,
+          "p_modele": 0.8094,
+          "ev": 0.1089,
           "bucket": "HAUTE",
-          "score_commun": 7.8
+          "score_commun": 8.3,
+          "edge_net_devig": 0.2301,
+          "devig_gap": -0.035502,
+          "p_fair_additif": 0.6935,
+          "priority_open": true,
+          "priority_palier": 0
+        },
+        {
+          "match_id": "M11",
+          "match": "Nottingham Forest vs Manchester City",
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.9,
+          "p_modele": 0.2672,
+          "ev": 0.0421,
+          "bucket": "HAUTE",
+          "score_commun": 8.5,
+          "edge_net_devig": 0.1064,
+          "devig_gap": 0.005667,
+          "p_fair_additif": 0.2358,
+          "priority_open": true,
+          "priority_palier": 0
         }
       ],
-      "cote_totale": 17.86,
-      "p_aggregee": 0.09,
+      "cote_totale": 5.34,
+      "p_aggregee": 0.216,
       "ev_limitee": null,
-      "mise_fc": 1100.0,
+      "mise_fc": 300.0,
       "mise_units": null,
-      "retour_si_gagne_fc": 19646.0
+      "retour_si_gagne_fc": 1602.9,
+      "ev_compose_net": 0.36098264,
+      "compose_flags": [],
+      "compose_holes": [],
+      "kelly_fraction": 0.125,
+      "kelly_label": "1/8",
+      "kelly_holes": [
+        "ece",
+        "n<50"
+      ],
+      "kelly_ece": null,
+      "kelly_p_ev": 0.4125,
+      "kelly_calibration_validee": false,
+      "kelly": {
+        "fraction": 0.125,
+        "label": "1/8",
+        "p_ev": 0.4125,
+        "ece": null,
+        "calibration_validee": false,
+        "holes": [
+          "ece",
+          "n<50"
+        ],
+        "n": 0,
+        "locked": true,
+        "conjoint": true
+      }
     }
   ],
   "budget": {
-    "budget_fc": 3000.0,
-    "alloue_fc": 3000.0,
+    "budget_fc": 1000.0,
+    "alloue_fc": 1000.0,
     "reste_fc": 0.0,
     "taux_fc_usd": null
   },
   "regles": {
-    "jambes_max": 4,
+    "jambes_max": 13,
     "mise_min_fc": 100.0,
     "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
-    "division": "> 4 jambes → division en deux classes de fiabilité"
+    "division": "1 a n+10 jambes (cap 13) ; meme match interdit",
+    "ev_compose": "produit (1+edge_net)-1 precision machine ; jambe_edge_net_negatif info pas rejet",
+    "ev_floor": 0.039999999999999994,
+    "ev_combo_floor": 0.05,
+    "markets": [
+      "1X2"
+    ],
+    "mono": false,
+    "market_priority_min": 30,
+    "n_tickets_mesures": 0,
+    "doctrine_edge": "modele calibre + news plus rapide que le book local ; pas d arbitrage"
   },
-  "warnings": []
+  "warnings": [
+    "4 match(s) bucket FAIBLE — exclus des tickets"
+  ]
 }

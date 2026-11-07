@@ -6,7 +6,8 @@
     "budget": "2026-11-07T12:47:07Z",
     "valider1": "2026-11-07T12:48:09Z",
     "marches": "2026-11-07T13:35:02Z",
-    "combos": "2026-11-07T13:41:40Z"
+    "combos": "2026-11-07T13:41:40Z",
+    "valider2": "2026-11-07T13:42:14Z"
   },
   "budget_fc": 1000.0,
   "surticket_fc": 400.0,
@@ -18,15 +19,52 @@
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
   "capturer_statut": "VALIDE",
   "previews": {
-    "preview1": "SHARED/OUT/preview1.html"
+    "preview1": "SHARED/OUT/preview1.html",
+    "preview2": "SHARED/OUT/preview2.html"
   },
   "bankroll_fc": 3000.0,
   "budget_seq": 1,
   "capture_id": "C-9QH",
-  "consumed_legs": [],
-  "current_token": null,
-  "last_lot_budget_seq": 0,
-  "lots_alloue_jour": 0,
+  "consumed_legs": [
+    {
+      "match_id": "M1",
+      "marche": "1X2",
+      "selection": "X"
+    },
+    {
+      "match_id": "M12",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M4",
+      "marche": "1X2",
+      "selection": "2"
+    },
+    {
+      "match_id": "M3",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M2",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M8",
+      "marche": "1X2",
+      "selection": "1"
+    },
+    {
+      "match_id": "M11",
+      "marche": "1X2",
+      "selection": "X"
+    }
+  ],
+  "current_token": "L-SRP",
+  "last_lot_budget_seq": 1,
+  "lots_alloue_jour": 1000.0,
   "notes_count": 0,
   "marches_mono": false,
   "pending_lot": null,
