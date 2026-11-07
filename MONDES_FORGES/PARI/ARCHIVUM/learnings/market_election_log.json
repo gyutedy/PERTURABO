@@ -1,0 +1,12 @@
+{
+  "elections": [
+    {
+      "ts": "2026-11-07T13:35:02Z",
+      "campagne": "PARI-20261107",
+      "marches": [
+        "1X2"
+      ],
+      "mono": false
+    }
+  ]
+}
