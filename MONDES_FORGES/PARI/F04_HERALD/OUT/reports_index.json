@@ -1,101 +1,53 @@
 {
-  "generated_at": "2026-11-07T09:34:30Z",
+  "generated_at": "2026-11-07T12:48:47Z",
   "reports": [
     {
       "id": "M1",
-      "match": "Eyupspor vs Kocaelispor",
-      "verdict": "GO",
+      "match": "Arsenal FC vs Hull City",
+      "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
     },
     {
+      "id": "M2",
+      "match": "Fulham FC vs Newcastle United",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
+    },
+    {
       "id": "M3",
-      "match": "Holstein Kiel vs Arminia Bielefeld",
+      "match": "Birmingham City vs Swansea City",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {
       "id": "M4",
-      "match": "VfL 1899 Osnabruck vs 1 FC Kaiserslautern",
-      "verdict": "NO_BET",
+      "match": "Blackburn Rovers vs West Ham United",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
     },
     {
-      "id": "M5",
-      "match": "Leeds United vs Tottenham Hotspur",
-      "verdict": "THIN",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
-    },
-    {
-      "id": "M6",
-      "match": "Bristol City vs Norwich City",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
-    },
-    {
-      "id": "M7",
-      "match": "Portsmouth FC vs Stoke City",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
-    },
-    {
       "id": "M8",
-      "match": "Wrexham AFC vs Wolverhampton Wanderers",
-      "verdict": "GO",
+      "match": "Galatasaray Istanbul vs Amed Sportif Faaliyetler",
+      "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
     },
     {
-      "id": "M9",
-      "match": "Malaga CF vs Racing Santander",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M9_fiche.md"
+      "id": "M10",
+      "match": "Parma Calcio vs Bologna FC",
+      "verdict": "THIN",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
     },
     {
       "id": "M11",
-      "match": "Samsunspor vs Konyaspor",
-      "verdict": "GO",
+      "match": "Nottingham Forest vs Manchester City",
+      "verdict": "THIN",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M11_fiche.md"
     },
     {
       "id": "M12",
-      "match": "Cagliari Calcio vs Frosinone Calcio",
-      "verdict": "NO_BET",
+      "match": "VfB Stuttgart vs Werder Bremen",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M12_fiche.md"
-    },
-    {
-      "id": "M13",
-      "match": "Torino FC vs US Lecce",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M13_fiche.md"
-    },
-    {
-      "id": "M14",
-      "match": "Borussia Dortmund vs SV 07 Elversberg",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M14_fiche.md"
-    },
-    {
-      "id": "M15",
-      "match": "FSV Mainz vs Bayern Munich",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M15_fiche.md"
-    },
-    {
-      "id": "M16",
-      "match": "RB Leipzig vs FC Augsburg",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M16_fiche.md"
-    },
-    {
-      "id": "M17",
-      "match": "SC Paderborn 07 vs Eintracht Frankfurt",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M17_fiche.md"
-    },
-    {
-      "id": "M18",
-      "match": "Arsenal FC vs Hull City",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M18_fiche.md"
     }
   ],
   "oracle_utilise": false

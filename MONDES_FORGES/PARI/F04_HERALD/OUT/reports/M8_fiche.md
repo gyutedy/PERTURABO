@@ -1,26 +1,25 @@
-# 🏟️ FICHE DE SIÈGE — Wrexham AFC vs Wolverhampton Wanderers
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Galatasaray Istanbul vs Amed Sportif Faaliyetler
+*Générée le 2026-11-07 12:48 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 49.6%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 10.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.04 — ext 1.79 (MT1: 1.03+0.87 · MT2: 1.01+0.92)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 43.4% / 23.1% / 33.5%
-- Over 2.5 : **73.6%** · Under 2.5 : 26.4%
-- Les deux marquent : 73.5%
-- Mi-temps : MT1 39.0% · Égalité 20.9% · **MT2 40.2%**
-- Qualité data : haute
+- λ attendus : dom 3.12 — ext 0.86 (MT1: 1.25+0.20 · MT2: 1.87+0.66)
+- Score le plus probable : **3-0**
+- 1 / X / 2 : 80.9% / 12.7% / 6.3%
+- Over 2.5 : **75.8%** · Under 2.5 : 24.2%
+- Les deux marquent : 55.7%
+- Mi-temps : MT1 21.1% · Égalité 18.1% · **MT2 60.9%**
+- Qualité data : basse (mj_insuffisant)
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 3.45 | 43.4% | 49.6% |  VALUE | 2.53u |
-| 1X2 | Nul | 3.4 | 23.1% | -21.4% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.1 | 33.5% | -29.6% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.9% | -37.4% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.37 | 80.9% | 10.9% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.7 | 12.7% | -40.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 6.0 | 6.3% | -62.1% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +27,7 @@
 
 ## Ordre de marche
 
-- Miser **2.53u** sur **Victoire Domicile** @ 3.45 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

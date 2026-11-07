@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T19:33:07Z",
+  "generated_at": "2026-11-07T12:48:16Z",
   "source": "football-data.co.uk (usage privé, whitelist)",
   "league_code": "N1",
   "season": "2627",
@@ -372,12 +372,12 @@
     },
     "Cambuur": {
       "dom": {
-        "mj": 5,
-        "marques": 8.0,
+        "mj": 6,
+        "marques": 12.0,
         "encaisses": 15.0,
-        "marques_mt1": 3.0,
+        "marques_mt1": 6.0,
         "encaisses_mt1": 10.0,
-        "marques_mt2": 5.0,
+        "marques_mt2": 6.0,
         "encaisses_mt2": 5.0
       },
       "ext": {
@@ -401,13 +401,13 @@
         "encaisses_mt2": 10.0
       },
       "ext": {
-        "mj": 5,
+        "mj": 6,
         "marques": 6.0,
-        "encaisses": 16.0,
+        "encaisses": 23.0,
         "marques_mt1": 2.0,
-        "encaisses_mt1": 5.0,
+        "encaisses_mt1": 7.0,
         "marques_mt2": 4.0,
-        "encaisses_mt2": 11.0
+        "encaisses_mt2": 16.0
       }
     },
     "Den Haag": {
@@ -421,11 +421,11 @@
         "encaisses_mt2": 4.0
       },
       "ext": {
-        "mj": 5,
+        "mj": 6,
         "marques": 5.0,
-        "encaisses": 11.0,
+        "encaisses": 12.0,
         "marques_mt1": 3.0,
-        "encaisses_mt1": 3.0,
+        "encaisses_mt1": 4.0,
         "marques_mt2": 2.0,
         "encaisses_mt2": 8.0
       }

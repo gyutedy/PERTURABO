@@ -1,26 +1,25 @@
-# 🏟️ FICHE DE SIÈGE — Cagliari Calcio vs Frosinone Calcio
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — VfB Stuttgart vs Werder Bremen
+*Générée le 2026-11-07 12:48 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 25.6%
+**Verdict match : 🔥 GO** — meilleure EV: 36.8%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.95 — ext 1.74 (MT1: 0.93+0.83 · MT2: 1.01+0.91)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 42.3% / 23.8% / 34.0%
-- Over 2.5 : **71.2%** · Under 2.5 : 28.8%
-- Les deux marquent : 71.8%
-- Mi-temps : MT1 36.3% · Égalité 21.2% · **MT2 42.4%**
-- Qualité data : basse (mj_insuffisant)
+- λ attendus : dom 2.24 — ext 0.63 (MT1: 0.92+0.22 · MT2: 1.32+0.41)
+- Score le plus probable : **2-0**
+- 1 / X / 2 : 73.1% / 19.0% / 7.8%
+- Over 2.5 : **54.7%** · Under 2.5 : 45.3%
+- Les deux marquent : 42.8%
+- Mi-temps : MT1 25.4% · Égalité 23.4% · **MT2 51.2%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.97 | 42.3% | 25.6% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.7 | 23.8% | -12.1% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.22 | 34.0% | -24.6% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 21.2% | -36.3% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.87 | 73.1% | 36.8% |  VALUE | 3.0u |
+| 1X2 | Nul | 4.1 | 19.0% | -22.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 3.55 | 7.8% | -72.2% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +27,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **3.0u** sur **Victoire Domicile** @ 1.87 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

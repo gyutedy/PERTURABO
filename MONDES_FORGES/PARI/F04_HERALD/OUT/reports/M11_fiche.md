@@ -1,26 +1,25 @@
-# 🏟️ FICHE DE SIÈGE — Samsunspor vs Konyaspor
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Nottingham Forest vs Manchester City
+*Générée le 2026-11-07 12:48 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 11.0%
+**Verdict match : 🟡 THIN** — meilleure EV: 4.2%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.12 — ext 0.75 (MT1: 0.48+0.33 · MT2: 0.64+0.42)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 42.4% / 34.7% / 22.9%
-- Over 2.5 : **28.9%** · Under 2.5 : 71.1%
-- Les deux marquent : 37.3%
-- Mi-temps : MT1 27.5% · Égalité 31.4% · **MT2 41.1%**
+- λ attendus : dom 0.91 — ext 1.72 (MT1: 0.27+0.76 · MT2: 0.64+0.96)
+- Score le plus probable : **1-1**
+- 1 / X / 2 : 18.2% / 26.7% / 55.0%
+- Over 2.5 : **48.7%** · Under 2.5 : 51.3%
+- Les deux marquent : 50.3%
+- Mi-temps : MT1 24.8% · Égalité 24.6% · **MT2 50.6%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.17 | 42.4% | -8.0% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.2 | 34.7% | 11.0% |  VALUE | 0.63u |
-| 1X2 | Victoire Extérieur | 2.97 | 22.9% | -32.0% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 31.4% | -5.7% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 4.4 | 18.2% | -19.8% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.9 | 26.7% | 4.2% | 🟡 THIN | 0.09u |
+| 1X2 | Victoire Extérieur | 1.73 | 55.0% | -4.8% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +27,7 @@
 
 ## Ordre de marche
 
-- Miser **0.63u** sur **Nul** @ 3.2 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

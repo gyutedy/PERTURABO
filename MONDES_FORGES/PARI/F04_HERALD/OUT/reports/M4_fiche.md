@@ -1,26 +1,25 @@
-# 🏟️ FICHE DE SIÈGE — VfL 1899 Osnabruck vs 1 FC Kaiserslautern
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Blackburn Rovers vs West Ham United
+*Générée le 2026-11-07 12:48 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 18.0%
+**Verdict match : 🔥 GO** — meilleure EV: 20.2%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.18 — ext 1.39 (MT1: 0.64+0.54 · MT2: 1.54+0.85)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 54.4% / 22.7% / 23.0%
-- Over 2.5 : **69.2%** · Under 2.5 : 30.8%
-- Les deux marquent : 67.8%
-- Mi-temps : MT1 17.6% · Égalité 18.1% · **MT2 64.3%**
-- Qualité data : basse (mj_insuffisant)
+- λ attendus : dom 0.88 — ext 2.65 (MT1: 0.51+1.03 · MT2: 0.37+1.62)
+- Score le plus probable : **0-2**
+- 1 / X / 2 : 9.1% / 16.7% / 74.2%
+- Over 2.5 : **68.3%** · Under 2.5 : 31.7%
+- Les deux marquent : 55.1%
+- Mi-temps : MT1 30.3% · Égalité 21.4% · **MT2 48.3%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.17 | 54.4% | 18.0% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.4 | 22.7% | -22.9% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.82 | 23.0% | -35.2% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 18.1% | -45.8% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 4.9 | 9.1% | -55.4% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.2 | 16.7% | -29.8% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 1.62 | 74.2% | 20.2% |  VALUE | 3.0u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +27,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **3.0u** sur **Victoire Extérieur** @ 1.62 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
