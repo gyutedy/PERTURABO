@@ -775,6 +775,207 @@
           }
         }
       }
+    },
+    {
+      "token": "L-NZU",
+      "campagne": "PARI-20261107",
+      "capture_id": "C-VHK",
+      "created_at": "2026-11-07T18:33:48Z",
+      "status": "OUVERT",
+      "budget_fc": 1000.0,
+      "surticket_fc": 1000.0,
+      "alloue_fc": 1000.0,
+      "consumed_legs": [
+        {
+          "match_id": "M5",
+          "marche": "1X2",
+          "selection": "1"
+        },
+        {
+          "match_id": "M1",
+          "marche": "1X2",
+          "selection": "1"
+        },
+        {
+          "match_id": "M6",
+          "marche": "1X2",
+          "selection": "1"
+        }
+      ],
+      "snapshot_t0": {
+        "generated_at": "2026-11-07T18:33:48Z",
+        "tickets": [
+          {
+            "rang_ticket": 1,
+            "classe": "SUR_TICKET",
+            "nb_jambes": 3,
+            "jambes": [
+              {
+                "match_id": "M5",
+                "match": "Valencia CF vs Real Madrid",
+                "marche": "1X2",
+                "selection": "1",
+                "selection_label": "Victoire Domicile",
+                "cote": 10.0,
+                "p_modele": 0.2751,
+                "ev": 1.751,
+                "bucket": "HAUTE",
+                "score_commun": 7.7,
+                "verdict": "VALUE",
+                "scorer_eligible": true,
+                "edge_net_devig": 1.9021,
+                "devig_gap": 0.013106,
+                "p_fair_additif": 0.0817,
+                "p_fav": 0.4341,
+                "vestiaire_ok": false,
+                "priority_open": true,
+                "priority_palier": 0
+              },
+              {
+                "match_id": "M1",
+                "match": "AJ Auxerre vs Paris FC",
+                "marche": "1X2",
+                "selection": "1",
+                "selection_label": "Victoire Domicile",
+                "cote": 5.0,
+                "p_modele": 0.4176,
+                "ev": 1.088,
+                "bucket": "HAUTE",
+                "score_commun": 8.6,
+                "verdict": "VALUE",
+                "scorer_eligible": true,
+                "edge_net_devig": 1.2128,
+                "devig_gap": 0.008641,
+                "p_fair_additif": 0.1801,
+                "p_fav": 0.4176,
+                "vestiaire_ok": false,
+                "priority_open": true,
+                "priority_palier": 0
+              },
+              {
+                "match_id": "M6",
+                "match": "Excelsior Rotterdam vs Go Ahead Eagles",
+                "marche": "1X2",
+                "selection": "1",
+                "selection_label": "Victoire Domicile",
+                "cote": 2.8,
+                "p_modele": 0.5561,
+                "ev": 0.5571,
+                "bucket": "HAUTE",
+                "score_commun": 9.4,
+                "verdict": "VALUE",
+                "scorer_eligible": true,
+                "edge_net_devig": 0.6517,
+                "devig_gap": -0.000203,
+                "p_fair_additif": 0.3369,
+                "p_fav": 0.5561,
+                "vestiaire_ok": false,
+                "priority_open": true,
+                "priority_palier": 0
+              }
+            ],
+            "cote_totale": 140.0,
+            "p_aggregee": 0.064,
+            "ev_limitee": null,
+            "mise_fc": 1000.0,
+            "mise_units": null,
+            "retour_si_gagne_fc": 140000.0,
+            "ev_compose_net": 9.606832355696,
+            "compose_flags": [],
+            "compose_holes": [],
+            "kelly_fraction": 0.125,
+            "kelly_label": "1/8",
+            "kelly_holes": [
+              "ece",
+              "n<50"
+            ],
+            "kelly_ece": null,
+            "kelly_p_ev": 0.663,
+            "kelly_calibration_validee": false,
+            "kelly": {
+              "fraction": 0.125,
+              "label": "1/8",
+              "p_ev": 0.663,
+              "ece": null,
+              "calibration_validee": false,
+              "holes": [
+                "ece",
+                "n<50"
+              ],
+              "n": 0,
+              "locked": true,
+              "conjoint": true
+            }
+          }
+        ],
+        "budget": {
+          "budget_fc": 1000.0,
+          "alloue_fc": 1000.0,
+          "reste_fc": 0.0,
+          "taux_fc_usd": null
+        }
+      },
+      "settle": {
+        "settled_at": null,
+        "source": "football-data.co.uk",
+        "tickets": []
+      },
+      "bundle_id": "B-5A5",
+      "journal": {
+        "procedure": {
+          "attached_at": "2026-11-07T18:33:48Z",
+          "checks": [
+            "kelly_route",
+            "devig_gap"
+          ],
+          "holes": [
+            "ece",
+            "n<50",
+            "seuils"
+          ],
+          "seuils": null,
+          "kelly": {
+            "fraction": 0.125,
+            "label": "1/8",
+            "p_ev": 0.663,
+            "ece": null,
+            "calibration_validee": false,
+            "n": 0,
+            "locked": true,
+            "holes": [
+              "ece",
+              "n<50"
+            ],
+            "checks": [
+              "kelly_route"
+            ],
+            "fractions": [
+              0.125
+            ],
+            "source": "tickets"
+          },
+          "warnings": [
+            "19 match(s) bucket FAIBLE — exclus des tickets"
+          ],
+          "regles": {
+            "jambes_max": 13,
+            "mise_min_fc": 100.0,
+            "classe_sur_ticket": "matchs au score le plus haut (buckets puis top3)",
+            "division": "1 a n+10 jambes (cap 13) ; meme match interdit",
+            "ev_compose": "produit (1+edge_net)-1 precision machine ; jambe_edge_net_negatif info pas rejet",
+            "ev_floor": 0.039999999999999994,
+            "ev_combo_floor": 0.05,
+            "markets": [
+              "1X2",
+              "MT_PROLIFIQUE"
+            ],
+            "mono": false,
+            "market_priority_min": 30,
+            "n_tickets_mesures": 0,
+            "doctrine_edge": "modele calibre + news plus rapide que le book local ; pas d arbitrage"
+          }
+        }
+      }
     }
   ]
 }
