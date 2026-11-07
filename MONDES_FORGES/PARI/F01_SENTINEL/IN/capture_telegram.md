@@ -1,3 +1,4 @@
+/capture
 | Compétition & Match | Horaire | 1 | X | 2 | Moins | Plus | 1st | Égal | 2nd |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Turkiye - Super Lig<br>Eyupspor vs Kocaelispor | Aujourd'hui 11:30 (#150) | 3.80 | 3.15 | 1.89 | 1.57 | 2.20 | 3.10 | 3.00 | 2.10 |

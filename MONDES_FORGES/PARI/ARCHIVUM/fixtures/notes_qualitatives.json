@@ -1,129 +1,50 @@
 {
-  "generated_at": "2026-11-03T19:45:29Z",
+  "generated_at": "2026-11-07T09:19:41Z",
   "source": "f00_vote",
   "notes_count": 0,
   "window_h": 48,
   "notes": [
     {
       "match_id": "M1",
-      "dom": "Everton FC",
-      "ext": "Coventry City",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Aurèle Amenda (Calf Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
+      "dom": "Eyupspor",
+      "ext": "Kocaelispor",
+      "items": []
     },
     {
       "match_id": "M2",
+      "dom": "1 FC Nuremberg",
+      "ext": "SV Darmstadt 98",
+      "items": []
+    },
+    {
+      "match_id": "M3",
+      "dom": "Holstein Kiel",
+      "ext": "Arminia Bielefeld",
+      "items": []
+    },
+    {
+      "match_id": "M4",
+      "dom": "VfL 1899 Osnabruck",
+      "ext": "1 FC Kaiserslautern",
+      "items": []
+    },
+    {
+      "match_id": "M5",
       "dom": "Leeds United",
       "ext": "Tottenham Hotspur",
       "items": [
         {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Mateo Joseph (Knee Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
-    },
-    {
-      "match_id": "M3",
-      "dom": "Arsenal FC",
-      "ext": "Hull City",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Bukayo Saka (Muscle Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
-    },
-    {
-      "match_id": "M4",
-      "dom": "Fulham FC",
-      "ext": "Newcastle United",
-      "items": [
-        {
           "theme": "suspensions",
           "verdict": "DOUTE",
-          "detail": "Jacob Ramsey (yellow_or_red_card_suspension)",
+          "detail": "Odobert, Wilson (injured)",
           "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Ewen Jaouen (Hamstring Injury) | Fernandez-Pardo, Matias (other)",
-          "sources": [
-            "sofascore",
             "sportradar"
           ],
           "window_h": 48,
           "impact": null
-        }
-      ]
-    },
-    {
-      "match_id": "M5",
-      "dom": "Nottingham Forest",
-      "ext": "Manchester City",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Igor Jesus (Calf Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
         },
         {
-          "theme": "suspensions",
+          "theme": "blessures",
           "verdict": "IGNORE",
           "detail": "",
           "sources": [],
@@ -134,101 +55,34 @@
     },
     {
       "match_id": "M6",
-      "dom": "Brighton & Hove Albion",
-      "ext": "Brentford FC",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Evan Ferguson (Ankle Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
+      "dom": "Bristol City",
+      "ext": "Norwich City",
+      "items": []
     },
     {
       "match_id": "M7",
-      "dom": "Crystal Palace",
-      "ext": "Liverpool FC",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Chadi Riad (Knee Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "DOUTE",
-          "detail": "Bradley, Conor (injured)",
-          "sources": [
-            "sportradar"
-          ],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
+      "dom": "Portsmouth FC",
+      "ext": "Stoke City",
+      "items": []
     },
     {
       "match_id": "M8",
-      "dom": "Ipswich Town",
-      "ext": "AFC Bournemouth",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Alex Scott (Muscle Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
+      "dom": "Wrexham AFC",
+      "ext": "Wolverhampton Wanderers",
+      "items": []
     },
     {
       "match_id": "M9",
-      "dom": "Sunderland AFC",
-      "ext": "Chelsea FC",
+      "dom": "Malaga CF",
+      "ext": "Racing Santander",
       "items": [
         {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Daniel Ballard (Hamstring Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
           "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
+          "verdict": "DOUTE",
+          "detail": "Mantilla, Alvaro (injured)",
+          "sources": [
+            "sportradar"
+          ],
           "window_h": 48,
           "impact": null
         }
@@ -236,23 +90,25 @@
     },
     {
       "match_id": "M10",
-      "dom": "Manchester United",
-      "ext": "Aston Villa",
+      "dom": "Burgos CF",
+      "ext": "RC Celta Fortuna",
+      "items": []
+    },
+    {
+      "match_id": "M11",
+      "dom": "Samsunspor",
+      "ext": "Konyaspor",
+      "items": []
+    },
+    {
+      "match_id": "M12",
+      "dom": "Cagliari Calcio",
+      "ext": "Frosinone Calcio",
       "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Benjamin Šeško (Leg Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
         {
           "theme": "suspensions",
           "verdict": "DOUTE",
-          "detail": "Shaw, Luke (injured)",
+          "detail": "Obert, Adam (suspended)",
           "sources": [
             "sportradar"
           ],
@@ -262,75 +118,17 @@
       ]
     },
     {
-      "match_id": "M11",
-      "dom": "Manchester City",
-      "ext": "Fulham FC",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Antoine Semenyo (Leg Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
-    },
-    {
-      "match_id": "M12",
-      "dom": "AFC Bournemouth",
-      "ext": "Nottingham Forest",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Alex Scott (Muscle Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
-    },
-    {
       "match_id": "M13",
-      "dom": "Aston Villa",
-      "ext": "Sunderland AFC",
+      "dom": "Torino FC",
+      "ext": "US Lecce",
       "items": [
         {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Aaron Wan-Bissaka (Hamstring Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
           "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
+          "verdict": "DOUTE",
+          "detail": "Mandragora, Rolando (injured)",
+          "sources": [
+            "sportradar"
+          ],
           "window_h": 48,
           "impact": null
         }
@@ -338,24 +136,16 @@
     },
     {
       "match_id": "M14",
-      "dom": "Coventry City",
-      "ext": "Crystal Palace",
+      "dom": "Borussia Dortmund",
+      "ext": "SV 07 Elversberg",
       "items": [
         {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Aurèle Amenda (Calf Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
           "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
+          "verdict": "DOUTE",
+          "detail": "Guirassy, Serhou (injured)",
+          "sources": [
+            "sportradar"
+          ],
           "window_h": 48,
           "impact": null
         }
@@ -363,24 +153,26 @@
     },
     {
       "match_id": "M15",
-      "dom": "Tottenham Hotspur",
-      "ext": "Ipswich Town",
+      "dom": "FSV Mainz",
+      "ext": "Bayern Munich",
       "items": [
         {
-          "theme": "blessures",
+          "theme": "suspensions",
           "verdict": "DOUTE",
-          "detail": "Mykhailo Mudryk (Ankle Injury)",
+          "detail": "Mwene, Phillipp (suspended)",
           "sources": [
-            "sofascore"
+            "sportradar"
           ],
           "window_h": 48,
           "impact": null
         },
         {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
+          "theme": "blessures",
+          "verdict": "DOUTE",
+          "detail": "Haidara, Alynho (other)",
+          "sources": [
+            "sportradar"
+          ],
           "window_h": 48,
           "impact": null
         }
@@ -388,25 +180,14 @@
     },
     {
       "match_id": "M16",
-      "dom": "Newcastle United",
-      "ext": "Arsenal FC",
+      "dom": "RB Leipzig",
+      "ext": "FC Augsburg",
       "items": [
         {
           "theme": "suspensions",
           "verdict": "DOUTE",
-          "detail": "Jacob Ramsey (yellow_or_red_card_suspension)",
+          "detail": "Kaltefleiter, Benno (injured)",
           "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Ewen Jaouen (Hamstring Injury) | Fernandez-Pardo, Matias (other)",
-          "sources": [
-            "sofascore",
             "sportradar"
           ],
           "window_h": 48,
@@ -416,48 +197,13 @@
     },
     {
       "match_id": "M17",
-      "dom": "Hull City",
-      "ext": "Brighton & Hove Albion",
+      "dom": "SC Paderborn 07",
+      "ext": "Eintracht Frankfurt",
       "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Charlie Hughes (Groin Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
-          "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
-          "window_h": 48,
-          "impact": null
-        }
-      ]
-    },
-    {
-      "match_id": "M18",
-      "dom": "Liverpool FC",
-      "ext": "Manchester United",
-      "items": [
-        {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Conor Bradley (Knee Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
         {
           "theme": "suspensions",
           "verdict": "DOUTE",
-          "detail": "Bradley, Conor (injured)",
+          "detail": "Hoffmeier, Marcel (injured)",
           "sources": [
             "sportradar"
           ],
@@ -467,25 +213,17 @@
       ]
     },
     {
-      "match_id": "M19",
-      "dom": "Brentford FC",
-      "ext": "Everton FC",
+      "match_id": "M18",
+      "dom": "Arsenal FC",
+      "ext": "Hull City",
       "items": [
         {
-          "theme": "blessures",
-          "verdict": "DOUTE",
-          "detail": "Fabio Carvalho (Knock Injury)",
-          "sources": [
-            "sofascore"
-          ],
-          "window_h": 48,
-          "impact": null
-        },
-        {
           "theme": "suspensions",
-          "verdict": "IGNORE",
-          "detail": "",
-          "sources": [],
+          "verdict": "DOUTE",
+          "detail": "Dowman, Max (suspended)",
+          "sources": [
+            "sportradar"
+          ],
           "window_h": 48,
           "impact": null
         }
