@@ -86,6 +86,8 @@ def apply_exclusion(events, exclude_legs, ev_floor=EV_FLOOR):
             key = leg_key(e.get("id"), top.get("marche"), top.get("selection"))
             if key in consumed:
                 continue
+            if not _marches.jambe_jouable(top):
+                continue
             ev = top.get("ev")
             if ev is not None and float(ev) < ev_floor:
                 continue
@@ -110,7 +112,9 @@ def _pick_jambes(events, nj, mono=False, ev_floor=EV_FLOOR, combo_floor=EV_COMBO
         tops = e.get("top3") or []
         if not tops:
             continue
-        top = tops[0]
+        top = next((t for t in tops if _marches.jambe_jouable(t)), None)
+        if top is None:
+            continue
         m = _marches.canon_marche(top.get("marche"))
         if mono and marche_ticket is None:
             marche_ticket = m
@@ -130,6 +134,8 @@ def _pick_jambes(events, nj, mono=False, ev_floor=EV_FLOOR, combo_floor=EV_COMBO
             "cote": top.get("cote"), "p_modele": top.get("p_modele"),
             "ev": top.get("ev"), "bucket": e.get("bucket"),
             "score_commun": e.get("score_commun"),
+            "verdict": top.get("verdict"),
+            "scorer_eligible": top.get("scorer_eligible"),
             "edge_net_devig": top.get("edge_net_devig"),
             "devig_gap": top.get("devig_gap"),
             "p_fair_additif": top.get("p_fair_additif"),
@@ -155,15 +161,12 @@ def allocate(top3_events, tickets, jambes_by_ticket, surticket_fc, budget_fc,
     if _marches.refuse_floor(ev_floor):
         return {"tickets": [], "budget": {"budget_fc": budget_fc, "alloue_fc": 0,
                 "reste_fc": budget_fc}}, ["EV_FLOOR 0.03 inviolable — baisser le floor refuse"]
-    if exclude_legs:
-        pool_src = apply_exclusion(top3_events, exclude_legs, ev_floor=ev_floor)
-    else:
-        pool_src = top3_events
+    pool_src = apply_exclusion(top3_events, exclude_legs, ev_floor=ev_floor)
     if markets is not None:
         pool_src = _marches.filter_events(pool_src, markets, ev_floor=ev_floor)
     eligible = [w for w in pool_src if not w.get("no_bet_recommande")
                 and w.get("bucket") != "FAIBLE"
-                and any((w.get("top3") or []))]
+                and any(_marches.jambe_jouable(t) for t in (w.get("top3") or []))]
     if markets is not None:
         eligible.sort(key=lambda e: (-float((e.get("top3") or [{}])[0].get("ev") or 0),
                                     -e.get("score_commun", 0), e.get("rang_global", 0)))

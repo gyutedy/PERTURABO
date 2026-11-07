@@ -8,8 +8,7 @@ qualitative_verdict). Consommateurs : Preview 1, Preview 2 (ticket final), Teleg
 ## Règles de classement (verrouillées)
 
 1. **Top 3 par match** : tri par EV desc, à égalité par `p_modele` desc.
-   Seuls les VERDICT `VALUE` sont éligibles si au moins un existe ; sinon tous les
-   marchés chiffrés (affichage informatif, jamais un push).
+    Uniquement VERDICT `VALUE`. Zero VALUE = `top3` vide. Jamais de recycle EV / NO_BET.
 2. **Score commun 01-10** (le "scoring à la clipping") :
    `10 × (0.30 × qualité_data + 0.40 × proba_max_top + 0.30 × edge_EV)`
    — qualité data : haute=1.0 · moyenne=0.75 · basse=0.45 ;
@@ -39,10 +38,10 @@ qualitative_verdict). Consommateurs : Preview 1, Preview 2 (ticket final), Teleg
       "rang_global": 1,
       "top3": [
         {"rang": 1, "marche": "OU_2.5", "selection": "u2.5",
-         "selection_label": "Under 2.5", "cote": 2.14,
-         "p_modele": 0.7481, "ev": 0.60,
-         "scorer_score": 0.85, "scorer_eligible": true,
-         "pieges": [], "lecture_cotes": {"capture": 2.14, "t2h": 2.10, "t0": null}}
+          "selection_label": "Under 2.5", "cote": 2.14,
+          "p_modele": 0.7481, "ev": 0.60, "verdict": "VALUE",
+          "scorer_score": 0.85, "scorer_eligible": true,
+          "pieges": [], "lecture_cotes": {"capture": 2.14, "t2h": 2.10, "t0": null}}
       ]
     }
   ]

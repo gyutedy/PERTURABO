@@ -133,11 +133,24 @@ def parse_marches_arg(text):
     return canons, mono, inconnus
 
 
+def jambe_jouable(top):
+    if not top:
+        return False
+    v = top.get("verdict")
+    if v is not None and v != "VALUE":
+        return False
+    if top.get("scorer_eligible") is False:
+        return False
+    return True
+
+
 def _eligible_top(event, ev_floor=EV_FLOOR):
     if event.get("no_bet_recommande") or event.get("bucket") == "FAIBLE":
         return []
     out = []
     for top in event.get("top3") or []:
+        if not jambe_jouable(top):
+            continue
         ev = top.get("ev")
         if ev is None:
             continue
@@ -237,6 +250,8 @@ def filter_events(events, markets, ev_floor=EV_FLOOR):
         tops = []
         for top in e.get("top3") or []:
             if wanted is not None and canon_marche(top.get("marche")) not in wanted:
+                continue
+            if not jambe_jouable(top):
                 continue
             ev = top.get("ev")
             if ev is None:

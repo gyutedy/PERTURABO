@@ -31,14 +31,14 @@ FEEDER_TITRE = "PERTURABO · PARI — TOP 3 MARCHÉS PAR MATCH (score commun 01-
 
 
 def compute_match(p, quality):
-    """Top 3 + score commun d'un match. Le match NO_BET garde son score mais sans top3 exploitable."""
-    sel = [s for s in p.get("selections", []) if s.get("verdict") == "VALUE"]
-    pool = sel if sel else [s for s in p.get("selections", []) if s.get("ev") is not None]
+    """Top 3 VALUE + score commun. Zero VALUE = top3 vide, jamais de recycle EV."""
+    pool = [s for s in p.get("selections", []) if s.get("verdict") == "VALUE"]
     sorted_sel = sorted(pool, key=lambda s: (-(s.get("ev") or 0), -(s.get("p_modele") or 0)))
     top3 = [{
         "rang": i + 1, "marche": s.get("marche"), "selection": s.get("selection"),
         "selection_label": s.get("selection_label") or s.get("selection"),
         "cote": s.get("cote"), "p_modele": s.get("p_modele"), "ev": s.get("ev"),
+        "verdict": s.get("verdict"),
         "edge_net_devig": s.get("edge_net_devig"),
         "devig_gap": s.get("devig_gap"),
         "p_fair_additif": s.get("p_fair_additif"),
@@ -107,8 +107,9 @@ def main():
 
     out = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "methode": ("Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre "
-                    "qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max "
+        "methode": ("Top 3 = VALUE seulement, tri EV desc puis p_modele desc. "
+                    "Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. "
+                    "Score commun 01-10 = 30% qualité data + 40% proba max "
                     "+ 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. "
                     "Le score est comparable entre matchs et entre campagnes."),
         "source_predictions": os.path.basename(args.predictions),
