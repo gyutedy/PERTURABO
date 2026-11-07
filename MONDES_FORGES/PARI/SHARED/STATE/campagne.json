@@ -4,13 +4,17 @@
     "start": "2026-11-07T12:40:27Z",
     "capture": "2026-11-07T12:44:40Z",
     "budget": "2026-11-07T12:47:07Z",
-    "valider1": "2026-11-07T12:48:09Z"
+    "valider1": "2026-11-07T12:48:09Z",
+    "marches": "2026-11-07T12:53:10Z"
   },
   "budget_fc": 1000.0,
   "surticket_fc": 400.0,
   "combos": 3,
   "jambes": "4:3:3",
-  "marches": null,
+  "marches": [
+    "OU_2.5",
+    "MT_PROLIFIQUE"
+  ],
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
   "capturer_statut": "VALIDE",
   "previews": {
