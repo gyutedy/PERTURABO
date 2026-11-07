@@ -1,239 +1,11 @@
 {
-  "generated_at": "2026-11-07T12:48:46Z",
-  "methode": "Top 3 = tri par EV desc puis p_modele desc, marchés SORTIS du filtre qualitatif borné. Score commun 01-10 = 30% qualité data + 40% proba max + 30% edge EV. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. Le score est comparable entre matchs et entre campagnes.",
+  "generated_at": "2026-11-07T17:35:07Z",
+  "methode": "Top 3 = VALUE seulement, tri EV desc puis p_modele desc. Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. Score commun 01-10 = 30% qualité data + 40% p_modele de la jambe #1 + 30% edge EV de la jambe #1 (pas le p_max du pool). Pool vide = score 0 FAIBLE. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. p_fav = max p_modele des selections 1/2. vestiaire_ok = state_factors.applied et effectifs connus.",
   "source_predictions": "predictions.json",
   "matchs": [
     {
-      "id": "M3",
-      "match": "Birmingham City vs Swansea City",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 10.0,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.84,
-          "p_modele": 0.6428,
-          "ev": 0.1828,
-          "edge_net_devig": 0.2553,
-          "devig_gap": -0.010966,
-          "p_fair_additif": 0.523,
-          "overround": 0.061353,
-          "scorer_score": 0.77,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.84,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 1
-    },
-    {
-      "id": "M4",
-      "match": "Blackburn Rovers vs West Ham United",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 10.0,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 1.62,
-          "p_modele": 0.7419,
-          "ev": 0.2019,
-          "edge_net_devig": 0.2733,
-          "devig_gap": -0.014824,
-          "p_fair_additif": 0.5975,
-          "overround": 0.059461,
-          "scorer_score": 0.8,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.62,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 2
-    },
-    {
-      "id": "M12",
-      "match": "VfB Stuttgart vs Werder Bremen",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 10.0,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.87,
-          "p_modele": 0.7313,
-          "ev": 0.3675,
-          "edge_net_devig": 0.4501,
-          "devig_gap": -0.01032,
-          "p_fair_additif": 0.5146,
-          "overround": 0.060352,
-          "scorer_score": 0.77,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.87,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 3
-    },
-    {
-      "id": "M2",
-      "match": "Fulham FC vs Newcastle United",
+      "id": "M6",
+      "match": "Excelsior Rotterdam vs Go Ahead Eagles",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
       "score_commun": 9.4,
@@ -245,14 +17,15 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.0,
-          "p_modele": 0.5559,
-          "ev": 0.1118,
-          "edge_net_devig": 0.1824,
-          "devig_gap": -0.008687,
-          "p_fair_additif": 0.4788,
-          "overround": 0.063492,
-          "scorer_score": 0.77,
+          "cote": 2.8,
+          "p_modele": 0.5561,
+          "ev": 0.5571,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.6517,
+          "devig_gap": -0.000203,
+          "p_fair_additif": 0.3369,
+          "overround": 0.060774,
+          "scorer_score": 0.97,
           "scorer_eligible": true,
           "scorer_seuil": 0.55,
           "scorer_refuse": [],
@@ -269,8 +42,8 @@
             },
             "B3": {
               "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
+              "raw": 1.0,
+              "contrib": 0.2
             },
             "B4": {
               "poids": 0.15,
@@ -288,29 +61,33 @@
               "contrib": 0.05
             }
           },
-          "pieges": [],
+          "pieges": [
+            "cote_plate"
+          ],
           "piege_detail": {
-            "cote_plate": false,
+            "cote_plate": true,
             "marge_anomalique": false,
             "cote_figee_sur_news": false,
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 2.0,
-            "t2h": null,
+            "capture": 2.8,
+            "t2h": 2.05,
             "t0": null,
-            "move_t2h": null,
+            "move_t2h": 0.365854,
             "move_t0": null
-          }
+          },
+          "p_fav": 0.5561,
+          "vestiaire_ok": false
         }
       ],
       "quality_data": "haute",
-      "rang_global": 4
+      "rang_global": 1
     },
     {
-      "id": "M10",
-      "match": "Parma Calcio vs Bologna FC",
-      "verdict_modele": "THIN",
+      "id": "M1",
+      "match": "AJ Auxerre vs Paris FC",
+      "verdict_modele": "GO",
       "bucket": "HAUTE",
       "score_commun": 8.6,
       "no_bet_recommande": false,
@@ -319,15 +96,314 @@
         {
           "rang": 1,
           "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 1.71,
-          "p_modele": 0.6,
-          "ev": 0.026,
-          "edge_net_devig": 0.0902,
-          "devig_gap": -0.01358,
-          "p_fair_additif": 0.5639,
-          "overround": 0.062573,
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 5.0,
+          "p_modele": 0.4176,
+          "ev": 1.088,
+          "verdict": "VALUE",
+          "edge_net_devig": 1.2128,
+          "devig_gap": 0.008641,
+          "p_fair_additif": 0.1801,
+          "overround": 0.059756,
+          "scorer_score": 0.9,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "cote_plate"
+          ],
+          "piege_detail": {
+            "cote_plate": true,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 5.0,
+            "t2h": 1.15,
+            "t0": null,
+            "move_t2h": 3.347826,
+            "move_t0": null
+          },
+          "p_fav": 0.4176,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.0,
+          "p_modele": 0.3239,
+          "ev": 0.2956,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.373,
+          "devig_gap": 0.005822,
+          "p_fair_additif": 0.2301,
+          "overround": 0.059756,
+          "scorer_score": 0.9,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "cote_plate"
+          ],
+          "piege_detail": {
+            "cote_plate": true,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 4.0,
+            "t2h": 8.5,
+            "t0": null,
+            "move_t2h": -0.529412,
+            "move_t0": null
+          },
+          "p_fav": 0.4176,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 2
+    },
+    {
+      "id": "M5",
+      "match": "Valencia CF vs Real Madrid",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.7,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "1",
+          "selection_label": "Victoire Domicile",
+          "cote": 10.0,
+          "p_modele": 0.2751,
+          "ev": 1.751,
+          "verdict": "VALUE",
+          "edge_net_devig": 1.9021,
+          "devig_gap": 0.013106,
+          "p_fair_additif": 0.0817,
+          "overround": 0.054941,
+          "scorer_score": 0.65,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.25,
+              "contrib": 0.05
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "cote_plate"
+          ],
+          "piege_detail": {
+            "cote_plate": true,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 10.0,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4341,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 6.2,
+          "p_modele": 0.2907,
+          "ev": 0.8023,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.9014,
+          "devig_gap": 0.009914,
+          "p_fair_additif": 0.143,
+          "overround": 0.054941,
+          "scorer_score": 0.65,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.25,
+              "contrib": 0.05
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "cote_plate"
+          ],
+          "piege_detail": {
+            "cote_plate": true,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 6.2,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4341,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 3
+    },
+    {
+      "id": "M4",
+      "match": "AS Roma vs Sassuolo Calcio",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.6,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 5.5,
+          "p_modele": 0.2533,
+          "ev": 0.3932,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4787,
+          "devig_gap": 0.009952,
+          "p_fair_additif": 0.1613,
+          "overround": 0.06142,
           "scorer_score": 0.62,
           "scorer_eligible": true,
           "scorer_seuil": 0.55,
@@ -335,13 +411,13 @@
           "scorer_contrib": {
             "B1": {
               "poids": 0.3,
-              "raw": 0.5,
-              "contrib": 0.15
+              "raw": 1.0,
+              "contrib": 0.3
             },
             "B2": {
               "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
+              "raw": 0.25,
+              "contrib": 0.05
             },
             "B3": {
               "poids": 0.2,
@@ -364,781 +440,83 @@
               "contrib": 0.05
             }
           },
-          "pieges": [],
+          "pieges": [
+            "cote_plate"
+          ],
           "piege_detail": {
-            "cote_plate": false,
+            "cote_plate": true,
             "marge_anomalique": false,
             "cote_figee_sur_news": false,
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 1.71,
+            "capture": 5.5,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
             "move_t0": null
-          }
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.6,
-          "p_modele": 0.2716,
-          "ev": -0.0222,
-          "edge_net_devig": 0.0389,
-          "devig_gap": 0.0045,
-          "p_fair_additif": 0.2569,
-          "overround": 0.062573,
-          "scorer_score": 0.335,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
           },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 3.6,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 3,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 5.0,
-          "p_modele": 0.1284,
-          "ev": -0.358,
-          "edge_net_devig": -0.3178,
-          "devig_gap": 0.00908,
-          "p_fair_additif": 0.1791,
-          "overround": 0.062573,
-          "scorer_score": 0.335,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 5.0,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
+          "p_fav": 0.6673,
+          "vestiaire_ok": false
         }
       ],
       "quality_data": "haute",
+      "rang_global": 4
+    },
+    {
+      "id": "M2",
+      "match": "FC Alverca SAD vs Casa Pia Lisbon",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
       "rang_global": 5
     },
     {
-      "id": "M11",
-      "match": "Nottingham Forest vs Manchester City",
-      "verdict_modele": "THIN",
-      "bucket": "HAUTE",
-      "score_commun": 8.5,
+      "id": "M3",
+      "match": "Hertha BSC vs VFL Wolfsburg",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.9,
-          "p_modele": 0.2672,
-          "ev": 0.0421,
-          "edge_net_devig": 0.1064,
-          "devig_gap": 0.005667,
-          "p_fair_additif": 0.2358,
-          "overround": 0.061718,
-          "scorer_score": 0.67,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 3.9,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 1.73,
-          "p_modele": 0.5505,
-          "ev": -0.0476,
-          "edge_net_devig": 0.0111,
-          "devig_gap": -0.013029,
-          "p_fair_additif": 0.5575,
-          "overround": 0.061718,
-          "scorer_score": 0.435,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.73,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 3,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 4.4,
-          "p_modele": 0.1822,
-          "ev": -0.1983,
-          "edge_net_devig": -0.1488,
-          "devig_gap": 0.007361,
-          "p_fair_additif": 0.2067,
-          "overround": 0.061718,
-          "scorer_score": 0.335,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.7,
-              "contrib": 0.07
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 4.4,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
-      "quality_data": "haute",
+      "top3": [],
+      "quality_data": "basse",
       "rang_global": 6
     },
     {
-      "id": "M1",
-      "match": "Arsenal FC vs Hull City",
+      "id": "M7",
+      "match": "Paris Saint-Germain vs ESTAC Troyes",
       "verdict_modele": "NO_BET",
-      "bucket": "HAUTE",
-      "score_commun": 8.3,
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 7.7,
-          "p_modele": 0.2111,
-          "ev": 0.6255,
-          "edge_net_devig": 0.7202,
-          "devig_gap": 0.01227,
-          "p_fair_additif": 0.1105,
-          "overround": 0.058259,
-          "scorer_score": 0.5,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [
-            "A3"
-          ],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.25,
-              "contrib": 0.05
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 7.7,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 17.0,
-          "p_modele": 0.0667,
-          "ev": 0.1339,
-          "edge_net_devig": 0.2,
-          "devig_gap": 0.016181,
-          "p_fair_additif": 0.0394,
-          "overround": 0.058259,
-          "scorer_score": 0.5,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [
-            "A3"
-          ],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.25,
-              "contrib": 0.05
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 17.0,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 3,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.15,
-          "p_modele": 0.7222,
-          "ev": -0.1695,
-          "edge_net_devig": -0.1211,
-          "devig_gap": -0.028451,
-          "p_fair_additif": 0.8501,
-          "overround": 0.058259,
-          "scorer_score": 0.165,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [
-            "A3"
-          ],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.25,
-              "contrib": 0.05
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.15,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
+      "top3": [],
       "quality_data": "basse",
       "rang_global": 7
     },
     {
       "id": "M8",
-      "match": "Galatasaray Istanbul vs Amed Sportif Faaliyetler",
+      "match": "Sporting CP vs Moreirense FC",
       "verdict_modele": "NO_BET",
-      "bucket": "HAUTE",
-      "score_commun": 8.3,
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.37,
-          "p_modele": 0.8094,
-          "ev": 0.1089,
-          "edge_net_devig": 0.2301,
-          "devig_gap": -0.035502,
-          "p_fair_additif": 0.6935,
-          "overround": 0.10936,
-          "scorer_score": 0.49,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [
-            "A3"
-          ],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.4,
-              "contrib": 0.04
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [
-            "marge_anomalique"
-          ],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": true,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.37,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 4.7,
-          "p_modele": 0.1274,
-          "ev": -0.4012,
-          "edge_net_devig": -0.3357,
-          "devig_gap": 0.015479,
-          "p_fair_additif": 0.1763,
-          "overround": 0.10936,
-          "scorer_score": 0.155,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [
-            "A3"
-          ],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.4,
-              "contrib": 0.04
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "pieges": [
-            "marge_anomalique"
-          ],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": true,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 4.7,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "rang": 3,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 6.0,
-          "p_modele": 0.0632,
-          "ev": -0.6208,
-          "edge_net_devig": -0.5793,
-          "devig_gap": 0.020023,
-          "p_fair_additif": 0.1302,
-          "overround": 0.10936,
-          "scorer_score": 0.105,
-          "scorer_eligible": false,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [
-            "A3"
-          ],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.25,
-              "contrib": 0.05
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.4,
-              "contrib": 0.04
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "pieges": [
-            "marge_anomalique"
-          ],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": true,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 6.0,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
+      "top3": [],
       "quality_data": "basse",
       "rang_global": 8
     },
     {
-      "id": "M5",
-      "match": "Cadiz CF vs Real Oviedo",
+      "id": "M9",
+      "match": "Aris Thessaloniki vs Panaitolikos Agrinio",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [],
@@ -1146,11 +524,11 @@
       "rang_global": 9
     },
     {
-      "id": "M6",
-      "match": "Fortuna Sittard vs SC Telstar",
+      "id": "M10",
+      "match": "Drogheda United FC vs University College Dublin",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [],
@@ -1158,11 +536,11 @@
       "rang_global": 10
     },
     {
-      "id": "M7",
-      "match": "Nacional da Madeira vs Academico de Viseu FC",
+      "id": "M11",
+      "match": "Ironi Tiberias vs Beitar Jerusalem FC",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [],
@@ -1170,16 +548,148 @@
       "rang_global": 11
     },
     {
-      "id": "M9",
-      "match": "Goztepe Izmir vs Istanbul Basaksehir",
+      "id": "M12",
+      "match": "NK Siroki Brijeg vs FK Zeljeznicar Sarajevo",
       "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
-      "score_commun": 2.9,
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [],
       "quality_data": "basse",
       "rang_global": 12
+    },
+    {
+      "id": "M13",
+      "match": "Altrincham FC vs Notts County",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 13
+    },
+    {
+      "id": "M14",
+      "match": "Grenoble Foot 38 vs Thonon Evian GG FC",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 14
+    },
+    {
+      "id": "M15",
+      "match": "FC Rodange 91 vs FC Koeppchen Wormeldange",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 15
+    },
+    {
+      "id": "M16",
+      "match": "Sleza Wroclaw vs Pogon Szczecin",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 16
+    },
+    {
+      "id": "M17",
+      "match": "UD Gijon Industrial vs CD Praviano",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 17
+    },
+    {
+      "id": "M18",
+      "match": "Kisvarda FC vs Puskas Akademia FC Felcsut",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 18
+    },
+    {
+      "id": "M19",
+      "match": "Aberdeen FC vs Hibernian FC",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 19
+    },
+    {
+      "id": "M20",
+      "match": "FC Cartagena vs UE Sant Andreu",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 20
+    },
+    {
+      "id": "M21",
+      "match": "Unionistas de Salamanca CF vs Zamora CF",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 21
+    },
+    {
+      "id": "M22",
+      "match": "CA Talleres de Cordoba vs Estudiantes de La Plata",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 22
+    },
+    {
+      "id": "M23",
+      "match": "Gimnasia y Esgrima Mendoza vs Independiente Rivadavia",
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [],
+      "quality_data": "basse",
+      "rang_global": 23
     }
   ]
 }

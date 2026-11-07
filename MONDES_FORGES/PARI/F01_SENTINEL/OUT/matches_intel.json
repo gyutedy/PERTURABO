@@ -1,33 +1,33 @@
 {
-  "generated_at": "2026-11-07T13:23:04Z",
-  "source": "fixtures_file",
+  "generated_at": "2026-11-07T17:35:07Z",
+  "source": "siege_file",
   "ligue": "Capture — ligue à confirmer",
-  "ligue_tier": "exotique",
+  "ligue_tier": null,
   "matchs": [
     {
       "id": "M1",
-      "dom": "Arsenal FC",
-      "ext": "Hull City",
-      "ligue": "Angleterre - Premier League",
+      "dom": "AJ Auxerre",
+      "ext": "Paris FC",
+      "ligue": "France - Ligue 1",
       "date": "2026-11-07",
-      "heure": "16:00",
+      "heure": "19:00",
       "cotes": {
-        "1": 1.15,
-        "X": 7.7,
-        "2": 17.0,
-        "1X": 1.01,
-        "X2": 4.4,
-        "12": 1.09,
-        "under": 2.55,
-        "over": 1.5
+        "1": 5.0,
+        "X": 4.0,
+        "2": 1.64,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.1,
+        "over": 1.72
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -37,207 +37,128 @@
         "xg",
         "rest_days",
         "h2h",
+        "form",
         "h2h_scores",
         "timing",
         "standings"
       ],
+      "cote_plate": true,
       "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
       ],
       "stats": {
         "dom": {
           "mj": 12,
-          "marques": 28.0,
-          "encaisses": 8.0,
-          "marques_mt1": 10.0,
-          "encaisses_mt1": 2.0,
-          "marques_mt2": 18.0,
-          "encaisses_mt2": 6.0
+          "marques": 10.0,
+          "encaisses": 15.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 8.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt2": 7.0
         },
         "ext": {
-          "mj": 4,
-          "marques": 4.0,
-          "encaisses": 5.0,
-          "marques_mt1": 2.0,
-          "encaisses_mt1": 4.0,
-          "marques_mt2": 2.0,
-          "encaisses_mt2": 1.0
+          "mj": 12,
+          "marques": 13.0,
+          "encaisses": 18.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 11.0
         }
       },
       "form": {
-        "dom": [
+        "dom": [],
+        "ext": [
           {
             "date": "2026-11-01",
-            "opp": "Liverpool",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 10.0,
-            "hst": 3.0
+            "opp": "Monaco",
+            "venue": "H",
+            "ft": "3-1",
+            "ht": "2-0",
+            "hs": 19.0,
+            "hst": 10.0
           },
           {
             "date": "2026-10-24",
-            "opp": "Everton",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "1-0",
-            "hs": 20.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-10-18",
-            "opp": "Nott'm Forest",
+            "opp": "Lens",
             "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 9.0,
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 4.0,
             "hst": 1.0
           },
           {
-            "date": "2026-10-10",
-            "opp": "Leeds",
+            "date": "2026-10-18",
+            "opp": "Rennes",
             "venue": "H",
-            "ft": "2-1",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Brighton",
-            "venue": "A",
-            "ft": "0-3",
-            "ht": "0-2",
-            "hs": 11.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Sunderland",
-            "venue": "A",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Chelsea",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "1-1",
-            "hs": 16.0,
+            "ft": "4-3",
+            "ht": "2-1",
+            "hs": 19.0,
             "hst": 9.0
           },
           {
-            "date": "2026-08-31",
-            "opp": "Aston Villa",
+            "date": "2026-10-10",
+            "opp": "Lorient",
             "venue": "A",
-            "ft": "1-0",
+            "ft": "0-1",
             "ht": "0-0",
-            "hs": 7.0,
-            "hst": 2.0
+            "hs": 17.0,
+            "hst": 3.0
           },
           {
-            "date": "2026-08-21",
-            "opp": "Coventry",
+            "date": "2026-09-19",
+            "opp": "Strasbourg",
             "venue": "H",
-            "ft": "3-0",
-            "ht": "2-0",
-            "hs": 20.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Crystal Palace",
-            "venue": "A",
             "ft": "2-1",
             "ht": "1-0",
             "hs": 17.0,
             "hst": 7.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-10-31",
-            "opp": "Ipswich",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "0-1",
-            "hs": 9.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-25",
-            "opp": "Brentford",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "1-0",
-            "hs": 12.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Fulham",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 5.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Everton",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "0-0",
-            "hs": 9.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Newcastle",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-2",
-            "hs": 22.0,
-            "hst": 4.0
           },
           {
             "date": "2026-09-12",
-            "opp": "Chelsea",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "2-1",
-            "hs": 14.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Aston Villa",
+            "opp": "Lyon",
             "venue": "H",
             "ft": "0-0",
             "ht": "0-0",
-            "hs": 11.0,
+            "hs": 6.0,
             "hst": 4.0
           },
           {
-            "date": "2026-08-29",
-            "opp": "Coventry",
+            "date": "2026-09-06",
+            "opp": "Marseille",
             "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 6.0,
-            "hst": 2.0
+            "ft": "3-2",
+            "ht": "2-1",
+            "hs": 18.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Nice",
+            "venue": "H",
+            "ft": "3-0",
+            "ht": "1-0",
+            "hs": 15.0,
+            "hst": 4.0
           },
           {
             "date": "2026-08-22",
-            "opp": "Man United",
+            "opp": "Troyes",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-05-17",
+            "opp": "Paris SG",
             "venue": "H",
-            "ft": "2-0",
-            "ht": "2-0",
-            "hs": 8.0,
-            "hst": 4.0
+            "ft": "2-1",
+            "ht": "0-0",
+            "hs": 17.0,
+            "hst": 9.0
           }
         ]
       },
@@ -260,28 +181,28 @@
     },
     {
       "id": "M2",
-      "dom": "Fulham FC",
-      "ext": "Newcastle United",
-      "ligue": "Angleterre - Premier League",
+      "dom": "FC Alverca SAD",
+      "ext": "Casa Pia Lisbon",
+      "ligue": "Portugal - Liga Portugal",
       "date": "2026-11-07",
-      "heure": "16:00",
+      "heure": "19:00",
       "cotes": {
-        "1": 2.0,
-        "X": 3.6,
-        "2": 3.5,
-        "1X": 1.26,
-        "X2": 1.71,
-        "12": 1.3,
-        "under": 2.12,
-        "over": 1.7
+        "1": 1.77,
+        "X": 3.4,
+        "2": 4.0,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.77,
+        "over": 1.9
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -290,282 +211,52 @@
         "elo",
         "xg",
         "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
         "timing",
-        "standings"
+        "injuries"
       ],
+      "cote_plate": true,
       "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
       ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 21.0,
-          "encaisses": 14.0,
-          "marques_mt1": 7.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 14.0,
-          "encaisses_mt2": 8.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 11.0,
-          "encaisses": 16.0,
-          "marques_mt1": 8.0,
-          "encaisses_mt1": 7.0,
-          "marques_mt2": 3.0,
-          "encaisses_mt2": 9.0
-        }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-10-31",
-            "opp": "Aston Villa",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "0-1",
-            "hs": 14.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "Coventry",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Hull",
-            "venue": "H",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 18.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Ipswich",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-0",
-            "hs": 13.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Man United",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Liverpool",
-            "venue": "A",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 10.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Crystal Palace",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "2-1",
-            "hs": 25.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-08-30",
-            "opp": "Sunderland",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-08-24",
-            "opp": "Chelsea",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "1-2",
-            "hs": 14.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Newcastle",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "1-0",
-            "hs": 21.0,
-            "hst": 6.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-11-02",
-            "opp": "Everton",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 17.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-25",
-            "opp": "Crystal Palace",
-            "venue": "A",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 10.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Aston Villa",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 16.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-10-12",
-            "opp": "Coventry",
-            "venue": "A",
-            "ft": "1-4",
-            "ht": "0-1",
-            "hs": 19.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Hull",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "2-0",
-            "hs": 12.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-14",
-            "opp": "Leeds",
-            "venue": "A",
-            "ft": "1-4",
-            "ht": "0-3",
-            "hs": 7.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Bournemouth",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "1-2",
-            "hs": 8.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-08-29",
-            "opp": "Tottenham",
-            "venue": "A",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-08-23",
-            "opp": "Liverpool",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "1-0",
-            "hs": 13.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Fulham",
-            "venue": "A",
-            "ft": "0-2",
-            "ht": "0-1",
-            "hs": 7.0,
-            "hst": 2.0
-          }
-        ]
-      },
-      "h2h": {
-        "matches": [
-          {
-            "date": "2026-05-24",
-            "home": "Fulham",
-            "away": "Newcastle",
-            "ft": "2-0",
-            "ht": "1-0"
-          },
-          {
-            "date": "2025-10-25",
-            "home": "Newcastle",
-            "away": "Fulham",
-            "ft": "2-1",
-            "ht": "1-0"
-          }
-        ],
-        "played": 2,
-        "dom_wins": 1,
-        "draws": 0,
-        "ext_wins": 1,
-        "source": "football-data.co.uk"
-      },
       "s15": {
         "flags": [],
         "holes": [
-          "standings"
+          "injuries"
         ],
         "detail": {
-          "injuries": {
-            "att": [],
-            "def": []
-          },
-          "standings": {
-            "reason": "fetch_ko"
-          }
+          "reason": "ligue_inconnue"
         },
         "source": "api-football"
       }
     },
     {
       "id": "M3",
-      "dom": "Birmingham City",
-      "ext": "Swansea City",
-      "ligue": "Angleterre - Championship",
+      "dom": "Hertha BSC",
+      "ext": "VFL Wolfsburg",
+      "ligue": "Allemagne - 2. Bundesliga",
       "date": "2026-11-07",
-      "heure": "16:00",
+      "heure": "20:30",
       "cotes": {
-        "1": 1.84,
-        "X": 3.65,
-        "2": 4.1,
-        "1X": 1.2,
-        "X2": 1.84,
-        "12": 1.29,
-        "under": 1.97,
-        "over": 1.81
+        "1": 2.01,
+        "X": 3.75,
+        "2": 2.85,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 3.15,
+        "over": 1.34
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -574,240 +265,36 @@
         "elo",
         "xg",
         "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
         "timing",
         "standings"
       ],
+      "cote_plate": true,
       "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
       ],
       "stats": {
         "dom": {
           "mj": 12,
-          "marques": 24.0,
-          "encaisses": 11.0,
-          "marques_mt1": 12.0,
+          "marques": 11.0,
+          "encaisses": 13.0,
+          "marques_mt1": 5.0,
           "encaisses_mt1": 5.0,
-          "marques_mt2": 12.0,
-          "encaisses_mt2": 6.0
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 8.0
         },
         "ext": {
-          "mj": 12,
-          "marques": 10.0,
-          "encaisses": 15.0,
-          "marques_mt1": 4.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 6.0,
-          "encaisses_mt2": 9.0
+          "mj": 5,
+          "marques": 11.0,
+          "encaisses": 8.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 5.0,
+          "encaisses_mt2": 6.0
         }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-11-03",
-            "opp": "Millwall",
-            "venue": "H",
-            "ft": "3-0",
-            "ht": "3-0",
-            "hs": 19.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-10-31",
-            "opp": "Lincoln",
-            "venue": "A",
-            "ft": "3-1",
-            "ht": "1-0",
-            "hs": 17.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "Cardiff",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 7.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "QPR",
-            "venue": "H",
-            "ft": "3-0",
-            "ht": "1-0",
-            "hs": 11.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-13",
-            "opp": "Preston",
-            "venue": "H",
-            "ft": "4-0",
-            "ht": "3-0",
-            "hs": 19.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "West Brom",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 15.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Middlesbrough",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "0-1",
-            "hs": 15.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Derby",
-            "venue": "A",
-            "ft": "2-1",
-            "ht": "1-1",
-            "hs": 19.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-09-09",
-            "opp": "Norwich",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-2",
-            "hs": 14.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Wolves",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "2-2",
-            "hs": 15.0,
-            "hst": 5.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-11-03",
-            "opp": "Portsmouth",
-            "venue": "A",
-            "ft": "1-3",
-            "ht": "0-1",
-            "hs": 10.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-31",
-            "opp": "Blackburn",
-            "venue": "H",
-            "ft": "4-0",
-            "ht": "3-0",
-            "hs": 19.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "QPR",
-            "venue": "A",
-            "ft": "0-5",
-            "ht": "0-4",
-            "hs": 8.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "West Ham",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 11.0,
-            "hst": 0.0
-          },
-          {
-            "date": "2026-10-13",
-            "opp": "Millwall",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 14.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Norwich",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "0-1",
-            "hs": 12.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Lincoln",
-            "venue": "A",
-            "ft": "2-1",
-            "ht": "0-1",
-            "hs": 10.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Burnley",
-            "venue": "H",
-            "ft": "3-1",
-            "ht": "2-0",
-            "hs": 13.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-08",
-            "opp": "Southampton",
-            "venue": "A",
-            "ft": "1-3",
-            "ht": "0-2",
-            "hs": 10.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Wrexham",
-            "venue": "H",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 6.0,
-            "hst": 3.0
-          }
-        ]
-      },
-      "h2h": {
-        "matches": [
-          {
-            "date": "2026-01-17",
-            "home": "Swansea",
-            "away": "Birmingham",
-            "ft": "1-1",
-            "ht": "1-0"
-          },
-          {
-            "date": "2025-09-20",
-            "home": "Birmingham",
-            "away": "Swansea",
-            "ft": "1-0",
-            "ht": "0-0"
-          }
-        ],
-        "played": 2,
-        "dom_wins": 1,
-        "draws": 1,
-        "ext_wins": 0,
-        "source": "football-data.co.uk"
       },
       "s15": {
         "flags": [],
@@ -828,28 +315,28 @@
     },
     {
       "id": "M4",
-      "dom": "Blackburn Rovers",
-      "ext": "West Ham United",
-      "ligue": "Angleterre - Championship",
+      "dom": "AS Roma",
+      "ext": "Sassuolo Calcio",
+      "ligue": "Italie - Serie A",
       "date": "2026-11-07",
-      "heure": "16:00",
+      "heure": "20:45",
       "cotes": {
-        "1": 4.9,
-        "X": 4.2,
-        "2": 1.62,
-        "1X": 2.12,
-        "X2": 1.16,
-        "12": 1.24,
-        "under": 2.35,
-        "over": 1.58
+        "1": 1.34,
+        "X": 5.5,
+        "2": 7.5,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.92,
+        "over": 1.39
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -864,123 +351,666 @@
         "timing",
         "standings"
       ],
+      "cote_plate": true,
       "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
       ],
       "stats": {
         "dom": {
           "mj": 12,
-          "marques": 11.0,
-          "encaisses": 18.0,
-          "marques_mt1": 4.0,
-          "encaisses_mt1": 8.0,
-          "marques_mt2": 7.0,
-          "encaisses_mt2": 10.0
+          "marques": 16.0,
+          "encaisses": 6.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 10.0,
+          "encaisses_mt2": 4.0
         },
         "ext": {
-          "mj": 7,
-          "marques": 18.0,
-          "encaisses": 10.0,
-          "marques_mt1": 6.0,
-          "encaisses_mt1": 8.0,
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 15.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 11.0,
+          "encaisses_mt2": 9.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-10-31",
+            "opp": "Udinese",
+            "venue": "A",
+            "ft": "5-2",
+            "ht": "4-0",
+            "hs": 14.0,
+            "hst": 9.0
+          },
+          {
+            "date": "2026-10-27",
+            "opp": "Cagliari",
+            "venue": "H",
+            "ft": "4-2",
+            "ht": "2-1",
+            "hs": 20.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Napoli",
+            "venue": "A",
+            "ft": "3-3",
+            "ht": "0-1",
+            "hs": 24.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Genoa",
+            "venue": "H",
+            "ft": "2-0",
+            "ht": "0-0",
+            "hs": 15.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Como",
+            "venue": "A",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 9.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-19",
+            "opp": "Inter",
+            "venue": "H",
+            "ft": "2-2",
+            "ht": "2-0",
+            "hs": 18.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-14",
+            "opp": "Torino",
+            "venue": "A",
+            "ft": "2-0",
+            "ht": "1-0",
+            "hs": 14.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-05",
+            "opp": "Atalanta",
+            "venue": "H",
+            "ft": "2-1",
+            "ht": "0-0",
+            "hs": 39.0,
+            "hst": 10.0
+          },
+          {
+            "date": "2026-08-31",
+            "opp": "Lecce",
+            "venue": "A",
+            "ft": "4-0",
+            "ht": "3-0",
+            "hs": 15.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-08-24",
+            "opp": "Fiorentina",
+            "venue": "H",
+            "ft": "4-0",
+            "ht": "1-0",
+            "hs": 17.0,
+            "hst": 8.0
+          }
+        ],
+        "ext": []
+      },
+      "s15": {
+        "flags": [],
+        "holes": [
+          "standings"
+        ],
+        "detail": {
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M5",
+      "dom": "Valencia CF",
+      "ext": "Real Madrid",
+      "ligue": "Espagne - LaLiga",
+      "date": "2026-11-07",
+      "heure": "21:00",
+      "cotes": {
+        "1": 10.0,
+        "X": 6.2,
+        "2": 1.26,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.52,
+        "over": 1.44
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "timing",
+        "standings"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 13.0,
+          "marques_mt1": 3.0,
+          "encaisses_mt1": 2.0,
           "marques_mt2": 12.0,
-          "encaisses_mt2": 2.0
+          "encaisses_mt2": 11.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 24.0,
+          "encaisses": 11.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 3.0,
+          "marques_mt2": 14.0,
+          "encaisses_mt2": 8.0
+        }
+      },
+      "form": {
+        "dom": [
+          {
+            "date": "2026-11-01",
+            "opp": "Elche",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 5.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "Villarreal",
+            "venue": "H",
+            "ft": "1-2",
+            "ht": "1-0",
+            "hs": 9.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-17",
+            "opp": "Ath Bilbao",
+            "venue": "H",
+            "ft": "0-0",
+            "ht": "0-0",
+            "hs": 16.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-10-11",
+            "opp": "Santander",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "1-1",
+            "hs": 10.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Sociedad",
+            "venue": "H",
+            "ft": "2-3",
+            "ht": "0-1",
+            "hs": 22.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-09-15",
+            "opp": "Alaves",
+            "venue": "A",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 10.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-11",
+            "opp": "Sevilla",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 3.0,
+            "hst": 0.0
+          },
+          {
+            "date": "2026-09-06",
+            "opp": "Barcelona",
+            "venue": "H",
+            "ft": "0-5",
+            "ht": "0-2",
+            "hs": 3.0,
+            "hst": 2.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "La Coruna",
+            "venue": "A",
+            "ft": "1-3",
+            "ht": "1-2",
+            "hs": 12.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-25",
+            "opp": "Betis",
+            "venue": "H",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 16.0,
+            "hst": 3.0
+          }
+        ],
+        "ext": [
+          {
+            "date": "2026-11-01",
+            "opp": "Santander",
+            "venue": "A",
+            "ft": "3-0",
+            "ht": "3-0",
+            "hs": 22.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "Barcelona",
+            "venue": "A",
+            "ft": "2-1",
+            "ht": "1-0",
+            "hs": 10.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Sevilla",
+            "venue": "H",
+            "ft": "4-1",
+            "ht": "2-0",
+            "hs": 15.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-10-10",
+            "opp": "Villarreal",
+            "venue": "H",
+            "ft": "1-0",
+            "ht": "0-0",
+            "hs": 11.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Ath Madrid",
+            "venue": "A",
+            "ft": "1-2",
+            "ht": "0-0",
+            "hs": 8.0,
+            "hst": 3.0
+          },
+          {
+            "date": "2026-09-15",
+            "opp": "Elche",
+            "venue": "A",
+            "ft": "3-2",
+            "ht": "2-0",
+            "hs": 20.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Vallecano",
+            "venue": "H",
+            "ft": "4-1",
+            "ht": "3-0",
+            "hs": 24.0,
+            "hst": 11.0
+          },
+          {
+            "date": "2026-09-04",
+            "opp": "Betis",
+            "venue": "A",
+            "ft": "0-1",
+            "ht": "0-0",
+            "hs": 20.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-08-30",
+            "opp": "Malaga",
+            "venue": "H",
+            "ft": "4-0",
+            "ht": "3-0",
+            "hs": 19.0,
+            "hst": 8.0
+          },
+          {
+            "date": "2026-08-26",
+            "opp": "Sociedad",
+            "venue": "H",
+            "ft": "4-1",
+            "ht": "1-1",
+            "hs": 20.0,
+            "hst": 11.0
+          }
+        ]
+      },
+      "h2h": {
+        "matches": [
+          {
+            "date": "2026-02-08",
+            "home": "Valencia",
+            "away": "Real Madrid",
+            "ft": "0-2",
+            "ht": "0-0"
+          },
+          {
+            "date": "2025-11-01",
+            "home": "Real Madrid",
+            "away": "Valencia",
+            "ft": "4-0",
+            "ht": "3-0"
+          }
+        ],
+        "played": 2,
+        "dom_wins": 0,
+        "draws": 0,
+        "ext_wins": 2,
+        "source": "football-data.co.uk"
+      },
+      "s15": {
+        "flags": [],
+        "holes": [
+          "standings"
+        ],
+        "detail": {
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M6",
+      "dom": "Excelsior Rotterdam",
+      "ext": "Go Ahead Eagles",
+      "ligue": "Pays-Bas - Eredivisie",
+      "date": "2026-11-07",
+      "heure": "21:00",
+      "cotes": {
+        "1": 2.8,
+        "X": 3.55,
+        "2": 2.37,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.35,
+        "over": 1.58
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "standings"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 13.0,
+          "encaisses": 16.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 5.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 11.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 16.0,
+          "encaisses": 23.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 12.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 11.0
         }
       },
       "form": {
         "dom": [],
         "ext": [
           {
-            "date": "2026-11-04",
-            "opp": "Cardiff",
-            "venue": "A",
-            "ft": "3-3",
-            "ht": "0-3",
-            "hs": 18.0,
-            "hst": 10.0
-          },
-          {
             "date": "2026-10-31",
-            "opp": "West Brom",
-            "venue": "H",
-            "ft": "1-3",
-            "ht": "1-1",
-            "hs": 14.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "Southampton",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "1-3",
-            "hs": 28.0,
-            "hst": 11.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Swansea",
+            "opp": "Cambuur",
             "venue": "A",
-            "ft": "1-0",
+            "ft": "0-4",
+            "ht": "0-3",
+            "hs": 10.0,
+            "hst": 1.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "Telstar",
+            "venue": "H",
+            "ft": "3-2",
+            "ht": "2-0",
+            "hs": 16.0,
+            "hst": 7.0
+          },
+          {
+            "date": "2026-10-18",
+            "opp": "Zwolle",
+            "venue": "A",
+            "ft": "1-4",
             "ht": "1-0",
-            "hs": 9.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-10-14",
-            "opp": "Lincoln",
-            "venue": "A",
-            "ft": "6-0",
-            "ht": "1-0",
-            "hs": 32.0,
-            "hst": 12.0
-          },
-          {
-            "date": "2026-10-09",
-            "opp": "QPR",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "0-1",
-            "hs": 12.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Millwall",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "0-2",
-            "hs": 15.0,
+            "hs": 18.0,
             "hst": 6.0
           },
           {
-            "date": "2026-09-11",
-            "opp": "Wrexham",
+            "date": "2026-10-10",
+            "opp": "Sparta Rotterdam",
             "venue": "H",
-            "ft": "6-0",
-            "ht": "2-0",
-            "hs": 19.0,
-            "hst": 9.0
+            "ft": "3-3",
+            "ht": "0-1",
+            "hs": 17.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-20",
+            "opp": "Nijmegen",
+            "venue": "A",
+            "ft": "1-1",
+            "ht": "1-1",
+            "hs": 14.0,
+            "hst": 6.0
+          },
+          {
+            "date": "2026-09-12",
+            "opp": "Groningen",
+            "venue": "H",
+            "ft": "1-1",
+            "ht": "0-1",
+            "hs": 24.0,
+            "hst": 6.0
           },
           {
             "date": "2026-09-08",
-            "opp": "Bolton",
+            "opp": "Utrecht",
             "venue": "A",
-            "ft": "3-2",
-            "ht": "2-2",
-            "hs": 11.0,
+            "ft": "3-3",
+            "ht": "1-0",
+            "hs": 13.0,
             "hst": 7.0
           },
           {
-            "date": "2026-09-05",
-            "opp": "Derby",
+            "date": "2026-08-29",
+            "opp": "AZ Alkmaar",
+            "venue": "A",
+            "ft": "2-5",
+            "ht": "1-2",
+            "hs": 10.0,
+            "hst": 4.0
+          },
+          {
+            "date": "2026-08-23",
+            "opp": "Den Haag",
             "venue": "H",
-            "ft": "3-0",
+            "ft": "3-1",
             "ht": "1-0",
-            "hs": 20.0,
-            "hst": 7.0
+            "hs": 11.0,
+            "hst": 5.0
+          },
+          {
+            "date": "2026-08-16",
+            "opp": "Feyenoord",
+            "venue": "A",
+            "ft": "2-2",
+            "ht": "0-2",
+            "hs": 14.0,
+            "hst": 6.0
           }
         ]
+      },
+      "s15": {
+        "flags": [],
+        "holes": [
+          "standings"
+        ],
+        "detail": {
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M7",
+      "dom": "Paris Saint-Germain",
+      "ext": "ESTAC Troyes",
+      "ligue": "France - Ligue 1",
+      "date": "2026-11-07",
+      "heure": "21:05",
+      "cotes": {
+        "1": 1.17,
+        "X": 7.7,
+        "2": 13.5,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 3.1,
+        "over": 1.35
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "standings"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 22.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 11.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 11.0
+        },
+        "ext": {
+          "mj": 4,
+          "marques": 2.0,
+          "encaisses": 5.0,
+          "marques_mt1": 2.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 0.0,
+          "encaisses_mt2": 3.0
+        }
       },
       "s15": {
         "flags": [],
@@ -1001,28 +1031,28 @@
     },
     {
       "id": "M8",
-      "dom": "Galatasaray Istanbul",
-      "ext": "Amed Sportif Faaliyetler",
-      "ligue": "Turkiye - Super Lig",
+      "dom": "Sporting CP",
+      "ext": "Moreirense FC",
+      "ligue": "Portugal - Liga Portugal",
       "date": "2026-11-07",
-      "heure": "17:00",
+      "heure": "21:30",
       "cotes": {
-        "1": 1.37,
-        "X": 4.7,
-        "2": 6.0,
-        "1X": 1.1,
-        "X2": 2.65,
-        "12": 1.18,
-        "under": 2.62,
-        "over": 1.41
+        "1": 1.1,
+        "X": 7.0,
+        "2": 15.5,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.65,
+        "over": 1.4
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -1035,72 +1065,156 @@
         "form",
         "h2h_scores",
         "timing",
-        "standings"
+        "injuries"
       ],
+      "cote_plate": true,
       "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
       ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 32.0,
-          "encaisses": 10.0,
-          "marques_mt1": 12.0,
-          "encaisses_mt1": 3.0,
-          "marques_mt2": 20.0,
-          "encaisses_mt2": 7.0
-        },
-        "ext": {
-          "mj": 4,
-          "marques": 6.0,
-          "encaisses": 7.0,
-          "marques_mt1": 1.0,
-          "encaisses_mt1": 3.0,
-          "marques_mt2": 5.0,
-          "encaisses_mt2": 4.0
-        }
-      },
       "s15": {
         "flags": [],
         "holes": [
-          "standings"
+          "injuries"
         ],
         "detail": {
-          "injuries": {
-            "att": [],
-            "def": []
-          },
-          "standings": {
-            "reason": "fetch_ko"
-          }
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M9",
+      "dom": "Aris Thessaloniki",
+      "ext": "Panaitolikos Agrinio",
+      "ligue": "Grèce - Super League",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 1.34,
+        "X": 4.5,
+        "2": 7.2,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.99,
+        "over": 1.7
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
         },
         "source": "api-football"
       }
     },
     {
       "id": "M10",
-      "dom": "Parma Calcio",
-      "ext": "Bologna FC",
-      "ligue": "Italie - Serie A",
+      "dom": "Drogheda United FC",
+      "ext": "University College Dublin",
+      "ligue": "Irlande - Premier Division",
       "date": "2026-11-07",
-      "heure": "18:00",
+      "heure": "18:30",
       "cotes": {
-        "1": 5.0,
-        "X": 3.6,
-        "2": 1.71,
-        "1X": 2.0,
-        "X2": 1.15,
-        "12": 1.29,
-        "under": 1.72,
-        "over": 2.1
+        "1": 1.71,
+        "X": 3.7,
+        "2": 3.95,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.1,
+        "over": 1.64
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M11",
+      "dom": "Ironi Tiberias",
+      "ext": "Beitar Jerusalem FC",
+      "ligue": "Israël - Premier League",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 7.2,
+        "X": 5.2,
+        "2": 1.29,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.67,
+        "over": 1.4
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -1115,408 +1229,12 @@
         "timing",
         "standings"
       ],
+      "cote_plate": true,
       "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
       ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 8.0,
-          "encaisses": 17.0,
-          "marques_mt1": 3.0,
-          "encaisses_mt1": 8.0,
-          "marques_mt2": 5.0,
-          "encaisses_mt2": 9.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 20.0,
-          "encaisses": 17.0,
-          "marques_mt1": 9.0,
-          "encaisses_mt1": 5.0,
-          "marques_mt2": 11.0,
-          "encaisses_mt2": 12.0
-        }
-      },
-      "form": {
-        "dom": [],
-        "ext": [
-          {
-            "date": "2026-10-31",
-            "opp": "Monza",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "1-1",
-            "hs": 10.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-28",
-            "opp": "Milan",
-            "venue": "A",
-            "ft": "4-2",
-            "ht": "1-2",
-            "hs": 9.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "Cagliari",
-            "venue": "A",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 10.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Inter",
-            "venue": "H",
-            "ft": "1-3",
-            "ht": "1-1",
-            "hs": 11.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Lecce",
-            "venue": "A",
-            "ft": "2-1",
-            "ht": "1-0",
-            "hs": 9.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Torino",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "1-0",
-            "hs": 11.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-09-13",
-            "opp": "Napoli",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 5.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-06",
-            "opp": "Sassuolo",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "0-1",
-            "hs": 21.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-08-31",
-            "opp": "Atalanta",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 16.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-08-24",
-            "opp": "Lazio",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 14.0,
-            "hst": 5.0
-          }
-        ]
-      },
-      "s15": {
-        "flags": [],
-        "holes": [
-          "standings"
-        ],
-        "detail": {
-          "injuries": {
-            "att": [],
-            "def": []
-          },
-          "standings": {
-            "reason": "fetch_ko"
-          }
-        },
-        "source": "api-football"
-      }
-    },
-    {
-      "id": "M11",
-      "dom": "Nottingham Forest",
-      "ext": "Manchester City",
-      "ligue": "Angleterre - Premier League",
-      "date": "2026-11-07",
-      "heure": "18:30",
-      "cotes": {
-        "1": 4.4,
-        "X": 3.9,
-        "2": 1.73,
-        "1X": 1.97,
-        "X2": 1.18,
-        "12": 1.26,
-        "under": 2.2,
-        "over": 1.65
-      },
-      "marches_disponibles": [
-        "1",
-        "12",
-        "1X",
-        "2",
-        "X",
-        "X2",
-        "over",
-        "under"
-      ],
-      "holes": [
-        "ligne_totale_Moins_Plus",
-        "elo",
-        "xg",
-        "rest_days",
-        "timing",
-        "standings"
-      ],
-      "warnings": [
-        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
-      ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 13.0,
-          "encaisses": 18.0,
-          "marques_mt1": 6.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 7.0,
-          "encaisses_mt2": 12.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 20.0,
-          "encaisses": 15.0,
-          "marques_mt1": 11.0,
-          "encaisses_mt1": 2.0,
-          "marques_mt2": 9.0,
-          "encaisses_mt2": 13.0
-        }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-10-31",
-            "opp": "Brentford",
-            "venue": "A",
-            "ft": "0-2",
-            "ht": "0-1",
-            "hs": 15.0,
-            "hst": 1.0
-          },
-          {
-            "date": "2026-10-23",
-            "opp": "Ipswich",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "1-1",
-            "hs": 17.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-18",
-            "opp": "Arsenal",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 14.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Crystal Palace",
-            "venue": "A",
-            "ft": "1-3",
-            "ht": "1-2",
-            "hs": 24.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Coventry",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 24.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Aston Villa",
-            "venue": "A",
-            "ft": "2-1",
-            "ht": "0-0",
-            "hs": 22.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Tottenham",
-            "venue": "H",
-            "ft": "0-0",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-08-29",
-            "opp": "Liverpool",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "1-0",
-            "hs": 12.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-08-22",
-            "opp": "Leeds",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Bournemouth",
-            "venue": "H",
-            "ft": "1-1",
-            "ht": "1-0",
-            "hs": 15.0,
-            "hst": 5.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-10-31",
-            "opp": "Brighton",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 21.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "Aston Villa",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-1",
-            "hs": 15.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Ipswich",
-            "venue": "H",
-            "ft": "3-2",
-            "ht": "2-1",
-            "hs": 19.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-10-11",
-            "opp": "Liverpool",
-            "venue": "A",
-            "ft": "3-0",
-            "ht": "0-0",
-            "hs": 15.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-20",
-            "opp": "Sunderland",
-            "venue": "H",
-            "ft": "5-3",
-            "ht": "3-2",
-            "hs": 16.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-09-13",
-            "opp": "Man United",
-            "venue": "A",
-            "ft": "1-0",
-            "ht": "0-0",
-            "hs": 6.0,
-            "hst": 2.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "Coventry",
-            "venue": "H",
-            "ft": "1-0",
-            "ht": "1-0",
-            "hs": 15.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-08-28",
-            "opp": "Crystal Palace",
-            "venue": "A",
-            "ft": "4-1",
-            "ht": "1-0",
-            "hs": 18.0,
-            "hst": 9.0
-          },
-          {
-            "date": "2026-08-23",
-            "opp": "Bournemouth",
-            "venue": "H",
-            "ft": "2-1",
-            "ht": "0-1",
-            "hs": 13.0,
-            "hst": 6.0
-          },
-          {
-            "date": "2026-05-24",
-            "opp": "Aston Villa",
-            "venue": "H",
-            "ft": "1-2",
-            "ht": "1-0",
-            "hs": 16.0,
-            "hst": 3.0
-          }
-        ]
-      },
-      "h2h": {
-        "matches": [
-          {
-            "date": "2026-03-04",
-            "home": "Man City",
-            "away": "Nott'm Forest",
-            "ft": "2-2",
-            "ht": "1-0"
-          },
-          {
-            "date": "2025-12-27",
-            "home": "Nott'm Forest",
-            "away": "Man City",
-            "ft": "1-2",
-            "ht": "0-0"
-          }
-        ],
-        "played": 2,
-        "dom_wins": 0,
-        "draws": 1,
-        "ext_wins": 1,
-        "source": "football-data.co.uk"
-      },
+      "stats": {},
       "s15": {
         "flags": [],
         "holes": [
@@ -1536,28 +1254,28 @@
     },
     {
       "id": "M12",
-      "dom": "VfB Stuttgart",
-      "ext": "Werder Bremen",
-      "ligue": "Allemagne - Bundesliga",
+      "dom": "NK Siroki Brijeg",
+      "ext": "FK Zeljeznicar Sarajevo",
+      "ligue": "Bosnia and Herzegovina - Premijer Liga",
       "date": "2026-11-07",
       "heure": "18:30",
       "cotes": {
-        "1": 1.87,
-        "X": 4.1,
-        "2": 3.55,
-        "1X": 1.26,
-        "X2": 1.82,
-        "12": 1.25,
-        "under": 3.1,
-        "over": 1.36
+        "1": 2.07,
+        "X": 3.0,
+        "2": 3.45,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.54,
+        "over": 2.27
       },
       "marches_disponibles": [
         "1",
-        "12",
-        "1X",
         "2",
         "X",
-        "X2",
+        "mt1",
+        "mt2",
+        "mte",
         "over",
         "under"
       ],
@@ -1566,258 +1284,597 @@
         "elo",
         "xg",
         "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
         "timing",
-        "standings"
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M13",
+      "dom": "Altrincham FC",
+      "ext": "Notts County",
+      "ligue": "Angleterre - FA Cup",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 4.4,
+        "X": 3.85,
+        "2": 1.74,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.1,
+        "over": 1.71
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M14",
+      "dom": "Grenoble Foot 38",
+      "ext": "Thonon Evian GG FC",
+      "ligue": "France - Seconde Ligue, Women",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 2.75,
+        "X": 3.25,
+        "2": 2.3,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.85,
+        "over": 1.82
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M15",
+      "dom": "FC Rodange 91",
+      "ext": "FC Koeppchen Wormeldange",
+      "ligue": "Luxembourg - Coupe de Luxembourg",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 1.32,
+        "X": 5.0,
+        "2": 6.7,
+        "under": 2.65,
+        "over": 1.4
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
       ],
       "warnings": [
         "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
       ],
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 21.0,
-          "encaisses": 12.0,
-          "marques_mt1": 10.0,
-          "encaisses_mt1": 5.0,
-          "marques_mt2": 11.0,
-          "encaisses_mt2": 7.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 11.0,
-          "encaisses": 23.0,
-          "marques_mt1": 3.0,
-          "encaisses_mt1": 8.0,
-          "marques_mt2": 8.0,
-          "encaisses_mt2": 15.0
-        }
-      },
-      "form": {
-        "dom": [
-          {
-            "date": "2026-10-31",
-            "opp": "Leverkusen",
-            "venue": "A",
-            "ft": "4-2",
-            "ht": "2-1",
-            "hs": 15.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-10-23",
-            "opp": "M'gladbach",
-            "venue": "H",
-            "ft": "2-3",
-            "ht": "1-1",
-            "hs": 15.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Hamburg",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 24.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-10-10",
-            "opp": "Paderborn",
-            "venue": "A",
-            "ft": "2-0",
-            "ht": "1-0",
-            "hs": 18.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Dortmund",
-            "venue": "H",
-            "ft": "0-1",
-            "ht": "0-0",
-            "hs": 12.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "Hoffenheim",
-            "venue": "A",
-            "ft": "1-2",
-            "ht": "0-1",
-            "hs": 16.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-04",
-            "opp": "FC Koln",
-            "venue": "H",
-            "ft": "4-1",
-            "ht": "1-0",
-            "hs": 22.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-08-28",
-            "opp": "Bayern Munich",
-            "venue": "A",
-            "ft": "1-5",
-            "ht": "0-1",
-            "hs": 11.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-05-16",
-            "opp": "Ein Frankfurt",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "2-0",
-            "hs": 13.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-05-09",
-            "opp": "Leverkusen",
-            "venue": "H",
-            "ft": "3-1",
-            "ht": "2-1",
-            "hs": 20.0,
-            "hst": 9.0
-          }
-        ],
-        "ext": [
-          {
-            "date": "2026-10-31",
-            "opp": "Hoffenheim",
-            "venue": "H",
-            "ft": "2-0",
-            "ht": "0-0",
-            "hs": 17.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-10-24",
-            "opp": "Mainz",
-            "venue": "A",
-            "ft": "3-2",
-            "ht": "2-1",
-            "hs": 17.0,
-            "hst": 8.0
-          },
-          {
-            "date": "2026-10-17",
-            "opp": "Paderborn",
-            "venue": "H",
-            "ft": "2-2",
-            "ht": "0-2",
-            "hs": 18.0,
-            "hst": 11.0
-          },
-          {
-            "date": "2026-10-09",
-            "opp": "Dortmund",
-            "venue": "A",
-            "ft": "2-2",
-            "ht": "0-0",
-            "hs": 11.0,
-            "hst": 4.0
-          },
-          {
-            "date": "2026-09-19",
-            "opp": "Augsburg",
-            "venue": "H",
-            "ft": "3-2",
-            "ht": "0-1",
-            "hs": 20.0,
-            "hst": 11.0
-          },
-          {
-            "date": "2026-09-12",
-            "opp": "FC Koln",
-            "venue": "A",
-            "ft": "1-1",
-            "ht": "0-1",
-            "hs": 14.0,
-            "hst": 5.0
-          },
-          {
-            "date": "2026-09-05",
-            "opp": "RB Leipzig",
-            "venue": "H",
-            "ft": "3-1",
-            "ht": "1-0",
-            "hs": 12.0,
-            "hst": 7.0
-          },
-          {
-            "date": "2026-08-30",
-            "opp": "Freiburg",
-            "venue": "A",
-            "ft": "1-4",
-            "ht": "0-2",
-            "hs": 9.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-05-16",
-            "opp": "Dortmund",
-            "venue": "H",
-            "ft": "0-2",
-            "ht": "0-0",
-            "hs": 9.0,
-            "hst": 3.0
-          },
-          {
-            "date": "2026-05-09",
-            "opp": "Hoffenheim",
-            "venue": "A",
-            "ft": "0-1",
-            "ht": "0-1",
-            "hs": 11.0,
-            "hst": 2.0
-          }
-        ]
-      },
-      "h2h": {
-        "matches": [
-          {
-            "date": "2026-04-26",
-            "home": "Stuttgart",
-            "away": "Werder Bremen",
-            "ft": "1-1",
-            "ht": "0-1"
-          },
-          {
-            "date": "2025-12-14",
-            "home": "Werder Bremen",
-            "away": "Stuttgart",
-            "ft": "0-4",
-            "ht": "0-2"
-          }
-        ],
-        "played": 2,
-        "dom_wins": 1,
-        "draws": 1,
-        "ext_wins": 0,
-        "source": "football-data.co.uk"
-      },
       "s15": {
         "flags": [],
         "holes": [
-          "standings"
+          "injuries"
         ],
         "detail": {
-          "injuries": {
-            "att": [],
-            "def": []
-          },
-          "standings": {
-            "reason": "fetch_ko"
-          }
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M16",
+      "dom": "Sleza Wroclaw",
+      "ext": "Pogon Szczecin",
+      "ligue": "Pologne - Ekstraliga, Women",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 7.0,
+        "X": 5.5,
+        "2": 1.27,
+        "under": 3.2,
+        "over": 1.29
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M17",
+      "dom": "UD Gijon Industrial",
+      "ext": "CD Praviano",
+      "ligue": "Espagne amateur - Tercera Federacion, Group 2",
+      "date": "2026-11-07",
+      "heure": "18:30",
+      "cotes": {
+        "1": 2.37,
+        "X": 3.25,
+        "2": 2.65,
+        "under": 1.79,
+        "over": 1.88
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M18",
+      "dom": "Kisvarda FC",
+      "ext": "Puskas Akademia FC Felcsut",
+      "ligue": "Hongrie - NB I",
+      "date": "2026-11-07",
+      "heure": "18:45",
+      "cotes": {
+        "1": 2.92,
+        "X": 3.4,
+        "2": 2.12,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 2.02,
+        "over": 1.68
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M19",
+      "dom": "Aberdeen FC",
+      "ext": "Hibernian FC",
+      "ligue": "Écosse - Premiership",
+      "date": "2026-11-07",
+      "heure": "18:45",
+      "cotes": {
+        "1": 2.52,
+        "X": 3.2,
+        "2": 2.52,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.84,
+        "over": 1.83
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M20",
+      "dom": "FC Cartagena",
+      "ext": "UE Sant Andreu",
+      "ligue": "Espagne - Primera Federacion",
+      "date": "2026-11-07",
+      "heure": "18:45",
+      "cotes": {
+        "1": 1.96,
+        "X": 3.2,
+        "2": 3.4,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.7,
+        "over": 1.99
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M21",
+      "dom": "Unionistas de Salamanca CF",
+      "ext": "Zamora CF",
+      "ligue": "Espagne - Primera Federacion",
+      "date": "2026-11-07",
+      "heure": "18:45",
+      "cotes": {
+        "1": 2.9,
+        "X": 3.0,
+        "2": 2.32,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.5,
+        "over": 2.35
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M22",
+      "dom": "CA Talleres de Cordoba",
+      "ext": "Estudiantes de La Plata",
+      "ligue": "Argentine - Primera LPF",
+      "date": "2026-11-07",
+      "heure": "19:00",
+      "cotes": {
+        "1": 2.55,
+        "X": 2.95,
+        "2": 2.6,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.6,
+        "over": 2.15
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
+        },
+        "source": "api-football"
+      }
+    },
+    {
+      "id": "M23",
+      "dom": "Gimnasia y Esgrima Mendoza",
+      "ext": "Independiente Rivadavia",
+      "ligue": "Argentine - Primera LPF",
+      "date": "2026-11-07",
+      "heure": "19:00",
+      "cotes": {
+        "1": 3.05,
+        "X": 2.72,
+        "2": 2.4,
+        "mt1": 3.1,
+        "mte": 3.0,
+        "mt2": 2.1,
+        "under": 1.57,
+        "over": 2.2
+      },
+      "marches_disponibles": [
+        "1",
+        "2",
+        "X",
+        "mt1",
+        "mt2",
+        "mte",
+        "over",
+        "under"
+      ],
+      "holes": [
+        "ligne_totale_Moins_Plus",
+        "elo",
+        "xg",
+        "rest_days",
+        "h2h",
+        "form",
+        "h2h_scores",
+        "timing",
+        "injuries"
+      ],
+      "cote_plate": true,
+      "warnings": [
+        "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
+        "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+      ],
+      "s15": {
+        "flags": [],
+        "holes": [
+          "injuries"
+        ],
+        "detail": {
+          "reason": "ligue_inconnue"
         },
         "source": "api-football"
       }
     }
-  ],
-  "warnings": []
+  ]
 }

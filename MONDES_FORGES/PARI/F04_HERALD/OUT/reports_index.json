@@ -1,53 +1,41 @@
 {
-  "generated_at": "2026-11-07T12:48:47Z",
+  "generated_at": "2026-11-07T17:35:07Z",
   "reports": [
     {
       "id": "M1",
-      "match": "Arsenal FC vs Hull City",
-      "verdict": "NO_BET",
+      "match": "AJ Auxerre vs Paris FC",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
     },
     {
-      "id": "M2",
-      "match": "Fulham FC vs Newcastle United",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
-    },
-    {
       "id": "M3",
-      "match": "Birmingham City vs Swansea City",
-      "verdict": "GO",
+      "match": "Hertha BSC vs VFL Wolfsburg",
+      "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {
       "id": "M4",
-      "match": "Blackburn Rovers vs West Ham United",
+      "match": "AS Roma vs Sassuolo Calcio",
       "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
     },
     {
-      "id": "M8",
-      "match": "Galatasaray Istanbul vs Amed Sportif Faaliyetler",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M8_fiche.md"
-    },
-    {
-      "id": "M10",
-      "match": "Parma Calcio vs Bologna FC",
-      "verdict": "THIN",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M10_fiche.md"
-    },
-    {
-      "id": "M11",
-      "match": "Nottingham Forest vs Manchester City",
-      "verdict": "THIN",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M11_fiche.md"
-    },
-    {
-      "id": "M12",
-      "match": "VfB Stuttgart vs Werder Bremen",
+      "id": "M5",
+      "match": "Valencia CF vs Real Madrid",
       "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M12_fiche.md"
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
+    },
+    {
+      "id": "M6",
+      "match": "Excelsior Rotterdam vs Go Ahead Eagles",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
+    },
+    {
+      "id": "M7",
+      "match": "Paris Saint-Germain vs ESTAC Troyes",
+      "verdict": "NO_BET",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
     }
   ],
   "oracle_utilise": false

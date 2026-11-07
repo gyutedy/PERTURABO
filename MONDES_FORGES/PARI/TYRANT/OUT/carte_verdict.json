@@ -1,102 +1,103 @@
 {
-  "generated_at": "2026-11-07T12:48:46Z",
+  "generated_at": "2026-11-07T17:35:07Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 6,
-  "no_bet": 6,
+  "go": 4,
+  "no_bet": 19,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 6 GO / 6 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 4 GO / 19 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Arsenal FC vs Hull City",
-      "verdict": "NO_BET",
+      "match": "AJ Auxerre vs Paris FC",
+      "verdict": "GO",
       "raisons": [
-        "échantillon ext insuffisant (4 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
       "flags": [],
-      "o2.5_modele": 0.4321
+      "o2.5_modele": 0.3666
     },
     {
       "id": "M2",
-      "match": "Fulham FC vs Newcastle United",
-      "verdict": "GO",
+      "match": "FC Alverca SAD vs Casa Pia Lisbon",
+      "verdict": "NO_BET",
       "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [],
-      "o2.5_modele": 0.4023
+      "flags": []
     },
     {
       "id": "M3",
-      "match": "Birmingham City vs Swansea City",
-      "verdict": "GO",
+      "match": "Hertha BSC vs VFL Wolfsburg",
+      "verdict": "NO_BET",
       "raisons": [
+        "échantillon ext insuffisant (5 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
       "flags": [],
-      "o2.5_modele": 0.376
+      "o2.5_modele": 0.5936
     },
     {
       "id": "M4",
-      "match": "Blackburn Rovers vs West Ham United",
+      "match": "AS Roma vs Sassuolo Calcio",
       "verdict": "GO",
       "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
       ],
       "flags": [],
-      "o2.5_modele": 0.6833
+      "o2.5_modele": 0.3438
     },
     {
       "id": "M5",
-      "match": "Cadiz CF vs Real Oviedo",
-      "verdict": "NO_BET",
+      "match": "Valencia CF vs Real Madrid",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": []
+      "flags": [],
+      "o2.5_modele": 0.4842
     },
     {
       "id": "M6",
-      "match": "Fortuna Sittard vs SC Telstar",
-      "verdict": "NO_BET",
+      "match": "Excelsior Rotterdam vs Go Ahead Eagles",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": []
+      "flags": [],
+      "o2.5_modele": 0.6339
     },
     {
       "id": "M7",
-      "match": "Nacional da Madeira vs Academico de Viseu FC",
-      "verdict": "NO_BET",
-      "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "flags": []
-    },
-    {
-      "id": "M8",
-      "match": "Galatasaray Istanbul vs Amed Sportif Faaliyetler",
+      "match": "Paris Saint-Germain vs ESTAC Troyes",
       "verdict": "NO_BET",
       "raisons": [
         "échantillon ext insuffisant (4 matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
       "flags": [],
-      "o2.5_modele": 0.7584
+      "o2.5_modele": 0.3696
+    },
+    {
+      "id": "M8",
+      "match": "Sporting CP vs Moreirense FC",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
     },
     {
       "id": "M9",
-      "match": "Goztepe Izmir vs Istanbul Basaksehir",
+      "match": "Aris Thessaloniki vs Panaitolikos Agrinio",
       "verdict": "NO_BET",
       "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
         "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
@@ -104,33 +105,157 @@
     },
     {
       "id": "M10",
-      "match": "Parma Calcio vs Bologna FC",
-      "verdict": "GO",
+      "match": "Drogheda United FC vs University College Dublin",
+      "verdict": "NO_BET",
       "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [],
-      "o2.5_modele": 0.3912
+      "flags": []
     },
     {
       "id": "M11",
-      "match": "Nottingham Forest vs Manchester City",
-      "verdict": "GO",
+      "match": "Ironi Tiberias vs Beitar Jerusalem FC",
+      "verdict": "NO_BET",
       "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [],
-      "o2.5_modele": 0.4869
+      "flags": []
     },
     {
       "id": "M12",
-      "match": "VfB Stuttgart vs Werder Bremen",
-      "verdict": "GO",
+      "match": "NK Siroki Brijeg vs FK Zeljeznicar Sarajevo",
+      "verdict": "NO_BET",
       "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [],
-      "o2.5_modele": 0.5473
+      "flags": []
+    },
+    {
+      "id": "M13",
+      "match": "Altrincham FC vs Notts County",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M14",
+      "match": "Grenoble Foot 38 vs Thonon Evian GG FC",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M15",
+      "match": "FC Rodange 91 vs FC Koeppchen Wormeldange",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M16",
+      "match": "Sleza Wroclaw vs Pogon Szczecin",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M17",
+      "match": "UD Gijon Industrial vs CD Praviano",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M18",
+      "match": "Kisvarda FC vs Puskas Akademia FC Felcsut",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M19",
+      "match": "Aberdeen FC vs Hibernian FC",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M20",
+      "match": "FC Cartagena vs UE Sant Andreu",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M21",
+      "match": "Unionistas de Salamanca CF vs Zamora CF",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M22",
+      "match": "CA Talleres de Cordoba vs Estudiantes de La Plata",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
+    },
+    {
+      "id": "M23",
+      "match": "Gimnasia y Esgrima Mendoza vs Independiente Rivadavia",
+      "verdict": "NO_BET",
+      "raisons": [
+        "échantillon dom insuffisant (None matchs < 6)",
+        "échantillon ext insuffisant (None matchs < 6)",
+        "ligue hors top5 → seuil EV durci à 8%"
+      ],
+      "flags": []
     }
   ]
 }

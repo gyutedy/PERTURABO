@@ -3,7 +3,8 @@
   "steps": {
     "start": "2026-11-07T17:31:14Z",
     "capture": "2026-11-07T17:32:16Z",
-    "budget": "2026-11-07T17:33:49Z"
+    "budget": "2026-11-07T17:33:49Z",
+    "valider1": "2026-11-07T17:34:20Z"
   },
   "budget_fc": 1000.0,
   "surticket_fc": 300.0,
@@ -11,8 +12,10 @@
   "jambes": "3:2:2",
   "marches": null,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "A_VALIDER",
-  "previews": {},
+  "capturer_statut": "VALIDE",
+  "previews": {
+    "preview1": "SHARED/OUT/preview1.html"
+  },
   "bankroll_fc": 3000.0,
   "budget_seq": 1,
   "capture_id": "C-T3T",
@@ -23,5 +26,5 @@
   "notes_count": 0,
   "marches_mono": false,
   "pending_lot": null,
-  "bundle_id": "B-55K"
+  "bundle_id": "B-M4H"
 }

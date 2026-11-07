@@ -1,91 +1,182 @@
 {
-  "generated_at": "2026-11-07T12:48:47Z",
+  "generated_at": "2026-11-07T17:35:07Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 4",
+  "titre": "DIRECTION DES SIÈGES — TOP 6",
   "top_picks": [
     {
-      "match_id": "M12",
-      "match": "VfB Stuttgart vs Werder Bremen",
+      "match_id": "M5",
+      "match": "Valencia CF vs Real Madrid",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 1.87,
-      "p_modele": 0.7313,
-      "ev": 0.3675,
-      "mise_units": 3.0,
+      "cote": 10.0,
+      "p_modele": 0.2751,
+      "ev": 1.751,
+      "mise_units": 2.43,
       "note_risque": "qualité data: haute",
       "rang": 1
     },
     {
-      "match_id": "M4",
-      "match": "Blackburn Rovers vs West Ham United",
+      "match_id": "M1",
+      "match": "AJ Auxerre vs Paris FC",
       "marche": "1X2",
-      "selection": "2",
-      "selection_label": "Victoire Extérieur",
-      "cote": 1.62,
-      "p_modele": 0.7419,
-      "ev": 0.2019,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 5.0,
+      "p_modele": 0.4176,
+      "ev": 1.088,
       "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 2
     },
     {
-      "match_id": "M3",
-      "match": "Birmingham City vs Swansea City",
+      "match_id": "M5",
+      "match": "Valencia CF vs Real Madrid",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 1.84,
-      "p_modele": 0.6428,
-      "ev": 0.1828,
-      "mise_units": 2.72,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 6.2,
+      "p_modele": 0.2907,
+      "ev": 0.8023,
+      "mise_units": 1.93,
       "note_risque": "qualité data: haute",
       "rang": 3
     },
     {
-      "match_id": "M2",
-      "match": "Fulham FC vs Newcastle United",
+      "match_id": "M6",
+      "match": "Excelsior Rotterdam vs Go Ahead Eagles",
       "marche": "1X2",
       "selection": "1",
       "selection_label": "Victoire Domicile",
-      "cote": 2.0,
-      "p_modele": 0.5559,
-      "ev": 0.1118,
-      "mise_units": 1.4,
+      "cote": 2.8,
+      "p_modele": 0.5561,
+      "ev": 0.5571,
+      "mise_units": 3.0,
       "note_risque": "qualité data: haute",
       "rang": 4
+    },
+    {
+      "match_id": "M4",
+      "match": "AS Roma vs Sassuolo Calcio",
+      "marche": "1X2",
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 5.5,
+      "p_modele": 0.2533,
+      "ev": 0.3932,
+      "mise_units": 1.09,
+      "note_risque": "qualité data: haute",
+      "rang": 5
+    },
+    {
+      "match_id": "M1",
+      "match": "AJ Auxerre vs Paris FC",
+      "marche": "1X2",
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 4.0,
+      "p_modele": 0.3239,
+      "ev": 0.2956,
+      "mise_units": 1.23,
+      "note_risque": "qualité data: haute",
+      "rang": 6
     }
   ],
   "no_bet": [
     {
-      "match_id": "M1",
-      "match": "Arsenal FC vs Hull City",
+      "match_id": "M2",
+      "match": "FC Alverca SAD vs Casa Pia Lisbon",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M3",
+      "match": "Hertha BSC vs VFL Wolfsburg",
       "raison": "EV < seuil sur tous les marchés"
-    },
-    {
-      "match_id": "M5",
-      "match": "Cadiz CF vs Real Oviedo",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M6",
-      "match": "Fortuna Sittard vs SC Telstar",
-      "raison": "aucune cote fournie"
     },
     {
       "match_id": "M7",
-      "match": "Nacional da Madeira vs Academico de Viseu FC",
-      "raison": "aucune cote fournie"
-    },
-    {
-      "match_id": "M8",
-      "match": "Galatasaray Istanbul vs Amed Sportif Faaliyetler",
+      "match": "Paris Saint-Germain vs ESTAC Troyes",
       "raison": "EV < seuil sur tous les marchés"
     },
     {
+      "match_id": "M8",
+      "match": "Sporting CP vs Moreirense FC",
+      "raison": "aucune cote fournie"
+    },
+    {
       "match_id": "M9",
-      "match": "Goztepe Izmir vs Istanbul Basaksehir",
+      "match": "Aris Thessaloniki vs Panaitolikos Agrinio",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M10",
+      "match": "Drogheda United FC vs University College Dublin",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M11",
+      "match": "Ironi Tiberias vs Beitar Jerusalem FC",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M12",
+      "match": "NK Siroki Brijeg vs FK Zeljeznicar Sarajevo",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M13",
+      "match": "Altrincham FC vs Notts County",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M14",
+      "match": "Grenoble Foot 38 vs Thonon Evian GG FC",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M15",
+      "match": "FC Rodange 91 vs FC Koeppchen Wormeldange",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M16",
+      "match": "Sleza Wroclaw vs Pogon Szczecin",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M17",
+      "match": "UD Gijon Industrial vs CD Praviano",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M18",
+      "match": "Kisvarda FC vs Puskas Akademia FC Felcsut",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M19",
+      "match": "Aberdeen FC vs Hibernian FC",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M20",
+      "match": "FC Cartagena vs UE Sant Andreu",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M21",
+      "match": "Unionistas de Salamanca CF vs Zamora CF",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M22",
+      "match": "CA Talleres de Cordoba vs Estudiantes de La Plata",
+      "raison": "aucune cote fournie"
+    },
+    {
+      "match_id": "M23",
+      "match": "Gimnasia y Esgrima Mendoza vs Independiente Rivadavia",
       "raison": "aucune cote fournie"
     }
   ],
@@ -93,27 +184,27 @@
     {
       "jambes": [
         {
-          "match_id": "M12",
+          "match_id": "M5",
           "selection": "1",
-          "cote": 1.87,
-          "p_modele": 0.7313
+          "cote": 10.0,
+          "p_modele": 0.2751
         },
         {
-          "match_id": "M4",
-          "selection": "2",
-          "cote": 1.62,
-          "p_modele": 0.7419
+          "match_id": "M1",
+          "selection": "1",
+          "cote": 5.0,
+          "p_modele": 0.4176
         },
         {
-          "match_id": "M3",
-          "selection": "1",
-          "cote": 1.84,
-          "p_modele": 0.6428
+          "match_id": "M5",
+          "selection": "X",
+          "cote": 6.2,
+          "p_modele": 0.2907
         }
       ],
-      "cote_totale": 5.57,
-      "ev_combine": 0.944,
-      "mise_units": 1.0,
+      "cote_totale": 310.0,
+      "ev_combine": 9.3526,
+      "mise_units": 0.38,
       "kelly_fraction": 0.125,
       "kelly_label": "1/8",
       "kelly_holes": [
@@ -128,11 +219,11 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 11.12,
-    "ev_moyenne_pct": 0.216,
-    "nb_matchs_analyses": 12,
-    "nb_no_bet": 6,
-    "nb_matchs_go": 6
+    "mise_totale_units": 13.06,
+    "ev_moyenne_pct": 0.8145,
+    "nb_matchs_analyses": 23,
+    "nb_no_bet": 19,
+    "nb_matchs_go": 4
   },
   "disclaimer": "🪙 Jeu responsable : le pari est un divertissement à maîtriser. Ces probabilités ne sont des certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.",
   "carte_tyran": {

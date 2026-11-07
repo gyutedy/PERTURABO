@@ -1,26 +1,26 @@
-# 🏟️ FICHE DE SIÈGE — Leeds United vs Tottenham Hotspur
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Valencia CF vs Real Madrid
+*Générée le 2026-11-07 17:35 UTC — siege_id courant*
 
-**Verdict match : 🟡 THIN** — meilleure EV: 5.7%
+**Verdict match : 🔥 GO** — meilleure EV: 175.1%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.75 — ext 1.64 (MT1: 0.88+0.56 · MT2: 0.87+1.08)
+- λ attendus : dom 1.13 — ext 1.48 (MT1: 0.27+0.42 · MT2: 0.87+1.05)
 - Score le plus probable : **1-1**
-- 1 / X / 2 : 39.6% / 25.2% / 35.2%
-- Over 2.5 : **65.8%** · Under 2.5 : 34.2%
-- Les deux marquent : 67.8%
-- Mi-temps : MT1 28.8% · Égalité 21.6% · **MT2 49.7%**
+- 1 / X / 2 : 27.5% / 29.1% / 43.4%
+- Over 2.5 : **48.4%** · Under 2.5 : 51.6%
+- Les deux marquent : 53.9%
+- Mi-temps : MT1 13.0% · Égalité 20.7% · **MT2 66.3%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.67 | 39.6% | 5.7% | 🟡 THIN | 0.21u |
-| 1X2 | Nul | 3.35 | 25.2% | -15.7% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.57 | 35.2% | -9.4% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 21.6% | -35.4% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 10.0 | 27.5% | 175.1% |  VALUE | 2.43u |
+| 1X2 | Nul | 6.2 | 29.1% | 80.2% |  VALUE | 1.93u |
+| 1X2 | Victoire Extérieur | 1.26 | 43.4% | -45.3% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.7% | -38.0% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +28,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **2.43u** sur **Victoire Domicile** @ 10.0 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
