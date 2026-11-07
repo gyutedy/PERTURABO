@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T07:09:56Z",
+  "generated_at": "2026-11-07T13:57:16Z",
   "source": "the-odds-api",
   "kind": "t0",
   "horizon_h": 0,
@@ -52,34 +52,6 @@
     {
       "id": "M12",
       "reason": "hors_fenetre"
-    },
-    {
-      "id": "M13",
-      "reason": "hors_fenetre"
-    },
-    {
-      "id": "M14",
-      "reason": "hors_fenetre"
-    },
-    {
-      "id": "M15",
-      "reason": "hors_fenetre"
-    },
-    {
-      "id": "M16",
-      "reason": "hors_fenetre"
-    },
-    {
-      "id": "M17",
-      "reason": "hors_fenetre"
-    },
-    {
-      "id": "M18",
-      "reason": "hors_fenetre"
-    },
-    {
-      "id": "M19",
-      "reason": "kickoff_absent"
     }
   ],
   "alerts": []
