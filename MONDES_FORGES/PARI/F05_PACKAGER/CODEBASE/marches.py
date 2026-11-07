@@ -220,7 +220,7 @@ def coverage_n(top3, markets, ev_floor=EV_FLOOR):
 def format_coverage(top3, markets=None, ev_floor=EV_FLOOR):
     rows = coverage_rows(top3, ev_floor=ev_floor)
     wanted = {canon_marche(m) for m in markets} if markets else None
-    lines = [f"COUVERTURE (EV>={ev_floor * 100:.0f}%)", "Marche          n  meilleur EV  marge"]
+    lines = ["COUVERTURE (VALUE F03)", "Marche          n  meilleur EV  marge"]
     shown = 0
     total_n = 0
     for r in rows:

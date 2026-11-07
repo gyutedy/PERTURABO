@@ -156,6 +156,29 @@ def test_marches_filtre():
     check("v.jouable_legacy", marches.jambe_jouable({"marche": "1X2", "ev": 0.12, "selection": "1"}) is True)
 
 
+def test_thin_hors_combo():
+    events = [
+        _event("M11", "Nottingham Forest vs Manchester City", [
+            _top("X", 0.0421, verdict="THIN", eligible=True, cote=3.9, p=0.267),
+        ], score=8.5, verdict_modele="THIN"),
+        _event("M12", "VfB Stuttgart vs Werder Bremen", [
+            _top("1", 0.367, verdict="VALUE", eligible=True, cote=1.87, p=0.73),
+        ], score=10.0),
+    ]
+    res, _ = combinator.allocate(
+        events, tickets=1, jambes_by_ticket=[2],
+        surticket_fc=400, budget_fc=1000, mises_free=None, n_mesures=0)
+    ids = [j["match_id"] for t in res["tickets"] for j in t["jambes"]]
+    check("v.pas_forest_thin", "M11" not in ids, str(ids))
+    check("v.stuttgart_value", "M12" in ids, str(ids))
+    check("v.jouable_thin", marches.jambe_jouable(_top("X", 0.0421, "THIN", True)) is False)
+    out = marches.filter_events(events, ["1X2"], ev_floor=0.03)
+    check("v.filt_pas_thin", [e["id"] for e in out] == ["M12"], str([e["id"] for e in out]))
+    txt = marches.format_coverage({"matchs": events}, markets=["1X2"])
+    check("v.cov_value", "VALUE" in txt, txt[:80])
+    check("v.cov_pas_ev3", "EV>=3%" not in txt, txt[:80])
+
+
 def main():
     print("=" * 70)
     print("TEST MUR VETO — phase 1")
@@ -166,6 +189,7 @@ def main():
     test_scorer_ko_meme_si_label_value()
     test_zero_value_zero_ticket()
     test_marches_filtre()
+    test_thin_hors_combo()
     n_fail = sum(1 for _, ok, _ in CHECKS if not ok)
     print("=" * 70)
     print(f"mur veto : {len(CHECKS) - n_fail}/{len(CHECKS)} PASS" +

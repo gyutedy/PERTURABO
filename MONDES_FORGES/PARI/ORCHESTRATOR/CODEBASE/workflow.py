@@ -350,7 +350,7 @@ def cmd_marches(st, text):
     extra = " · MONO-MARCHE" if mono else ""
     unk = (" · ignores: " + ", ".join(inconnus)) if inconnus else ""
     tell("Marches elus : **" + ", ".join(canons) + "**" + extra + unk + "\n" + cov
-         + "\n→ `/combos` puis `/valider-2`. EV_FLOOR 3% inviolable. Meme match interdit.")
+          + "\n→ `/combos` puis `/valider-2`. Tickets = VALUE F03 seulement. Meme match interdit.")
 
 
 def _capteurs():
