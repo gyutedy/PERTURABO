@@ -464,6 +464,19 @@ Hint aveugle. Couverture compte encore un X non jouable.
 
 **Handoff** : attendre Actions. Operateur : `/data` puis coller le hint affiche, pas un stub.
 
+## ETAT v4.7 — CYCLE OPERATEUR HINT DU JOUR (2026-11-07)
+
+Phase C. Docs + `/help` alignes sur le hint. `cote_plate` reste flag, MT jouable.
+
+- [x] `/help` (parse.py + Worker) : `/marches` = hint du jour, plus le stub `O/U2.5,MT2`.
+- [x] GUIDE : apres `/valider-1` → `/data` → coller le hint. Table effectifs dans `/capture`. `/approve` seulement si pas de X-tank.
+- [x] LISTEN README + schema_listen. Parse `/marches O/U2.5,MT2` reste valide (alias).
+
+**Handoff** : attendre Actions vert `pari-worker-deploy`. Telegram :
+`/stop` → `/start` → `/capture` (+ table effectifs) → `/budget 1000 300` → `/valider-1`
+→ `/data` → coller le hint → `/combos` → `/valider-2` → `/approve`.
+`/roi settle` apres les matchs.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

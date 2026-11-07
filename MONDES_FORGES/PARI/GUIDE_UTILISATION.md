@@ -22,10 +22,10 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 /start → /budget bankroll 50000 (une fois, pot global — PAS /bankroll tant que Worker stale)
      → /capture (tableau markdown DANS le meme message)
      → /budget 3000 800 (plafond lot + mise FORCEE ticket sur)  ← retaper avant CHAQUE lot
-      → /valider-1 → PREVIEW 1 + table couverture → relecture
-       → /marches  (commande hint = marches jouables du jour ; alias /marchés ; option `mono`)
-      → /combos 3:3:2:2
-      → /valider-2 → PREVIEW 2 + pending L-XXX → /approve L-XXX (lot F06, anti-cannibal, bundle_id)
+      → /valider-1 → PREVIEW 1 + table couverture (jambes jouables) → /data
+       → coller le hint `/marches …` affiche (pas un stub). Table effectifs dans /capture sinon X-tank bloque.
+       → /combos 3:3:2:2
+      → /valider-2 → PREVIEW 2 + pending L-XXX → /approve L-XXX seulement si /data n a pas de X sous tank
       Mode A (meme capture, lot suivant) : /budget retapé → /valider-2 → /approve (autre token, autres marches)
 Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
 ```

@@ -332,7 +332,7 @@ def cmd_marches(st, text):
     canons, mono, inconnus = mmod.parse_marches_arg(raw)
     if inconnus and not canons:
         tell("Marche inconnu : " + ", ".join(inconnus)
-             + ". Ex. `/marches O/U2.5,MT2` ou `/marches 1X2 mono`."); return
+              + ". Ex. `/marches 1X2` ou `/marches O/U2.5 mono`."); return
     n = mmod.coverage_n(t3, canons)
     cov = mmod.format_coverage(t3, markets=canons)
     if n == 0:

@@ -129,7 +129,7 @@ def parse_update(update, allowed_chat_id):
                 "/bankroll 50000  (pot global, une fois)\n"
                 "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n"
                 "/combos 3  ou  /combos 3:3:2:2\n"
-                "/marches O/U2.5,MT2  (alias /marchés, option mono)\n"
+                "/marches  (hint du jour apres /valider-1 ; alias /marchés, option mono)\n"
                  "/valider-1\n"
                  "/valider-2  (lot pending + token L-XXX, anti-cannibal)\n"
                  "/approve L-XXX  (fige le lot pending)\n"

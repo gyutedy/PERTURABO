@@ -1675,6 +1675,13 @@
 - Operateur : attendre job vert, ne pas retaper `/marches` avant.
 - `/roi settle L-DWG` / `L-CEB` seulement apres les matchs.
 
+## [2026-11-07T18:55:00Z] v4.7 — cycle operateur hint du jour
+
+- /help parse.py + Worker : /marches = hint du jour, plus stub O/U2.5,MT2.
+- GUIDE : /valider-1 → /data → coller le hint. cote_plate = flag, MT jouable.
+- Operateur : /stop puis recapture + table effectifs. /approve si pas de X-tank.
+- /roi settle apres les matchs.
+
 ## [2026-11-07T18:40:00Z] v4.6.3 — hint marches du jour (couverture jouable)
 
 - `/valider-1` hint = `/marches` calque sur coverage_rows (jambes jouables).

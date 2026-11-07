@@ -68,6 +68,7 @@ def test_parse_telegram():
     check("m.parse_mono", r3.get("ok") and "mono" in (r3.get("cmd") or ""), str(r3.get("cmd")))
     help_txt = parse.parse_update(upd("/help"), CHAT).get("reply") or ""
     check("m.help", "/marches" in help_txt, help_txt[:80])
+    check("m.help_pas_stub", "O/U2.5,MT2" not in help_txt, help_txt[help_txt.find("/marches"):help_txt.find("/marches")+80] if "/marches" in help_txt else help_txt[:80])
 
 
 def test_zero_match_zero_ticket():

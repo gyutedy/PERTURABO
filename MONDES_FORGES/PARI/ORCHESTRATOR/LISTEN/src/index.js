@@ -2,7 +2,7 @@
  * PARI LISTEN — Cloudflare Worker (webhook Telegram)
  * Relais uniquement : allowlist chat_id, parse commande, ACK, dispatch GitHub.
  * Miroir de parse.py. Zero calcul, zero Dixon-Coles.
- * v4.6.2 codebook : /marches /approve /combos 3:3:2:2 (redeploy Worker).
+ * v4.7 codebook : /marches = hint du jour (pas stub O/U2.5,MT2).
  *
  * Secrets wrangler (jamais dans git) :
  *   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_WEBHOOK_SECRET, GITHUB_DISPATCH_TOKEN
@@ -26,7 +26,7 @@ const HELP =
   "/bankroll 50000  (pot global, une fois)\n" +
   "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +
-  "/marches O/U2.5,MT2  (alias /marchés, option mono)\n" +
+  "/marches  (hint du jour apres /valider-1 ; alias /marchés, option mono)\n" +
   "/valider-1\n" +
   "/valider-2  (lot pending + token L-XXX, anti-cannibal)\n" +
   "/approve L-XXX  (fige le lot pending)\n" +
