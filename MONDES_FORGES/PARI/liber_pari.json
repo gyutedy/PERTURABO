@@ -1,5 +1,5 @@
 {
-  "fleet_status": "pack_ready",
+  "fleet_status": "analysed",
   "siege_id": "PARI-DEMO-20261029-0826",
   "monde": "pari",
   "warsmith_brief": {
@@ -62,7 +62,7 @@
     "last_settle": null
   },
   "iw_custos": {
-    "last_validation": "2026-11-07T18:26:13Z",
+    "last_validation": "2026-11-08T13:43:13Z",
     "errors": []
   },
   "gate_decisions": {
@@ -94,8 +94,8 @@
   "siege_timestamps": {
     "start": "2026-10-29T08:26:34Z",
     "tyrant_done": "2026-11-07T18:26:13Z",
-    "intel_done": "2026-11-07T18:26:13Z",
-    "breach_done": "2026-11-07T18:26:13Z",
+    "intel_done": "2026-11-08T13:43:13Z",
+    "breach_done": "2026-11-08T13:43:13Z",
     "value_done": "2026-11-07T18:26:13Z",
     "herald_done": "2026-11-07T18:26:13Z",
     "pack_done": "2026-11-07T18:26:13Z",

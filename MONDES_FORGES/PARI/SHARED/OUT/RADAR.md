@@ -1,20 +1,18 @@
 # RADAR DE SIÈGE — Capture — ligue à confirmer
-*Généré le 2026-11-07T13:23:04Z — moteur: Dixon-Coles PARI*
+*Généré le 2026-11-08T13:43:13Z — moteur: Dixon-Coles PARI*
 
 | Rang | Match | λ total | P(O2.5) | P(MT2>) | Score |
 |---|---|---|---|---|---|
-| * 1 | Galatasaray Istanbul vs Amed Sportif Faaliyetler (M8) | 4.52 | 83% | 63% | 0.796 |
-| * 2 | Blackburn Rovers vs West Ham United (M4) | 4.16 | 78% | 50% | 0.733 |
-| * 3 | VfB Stuttgart vs Werder Bremen (M12) | 3.26 | 63% | 53% | 0.630 |
-| * 4 | Nottingham Forest vs Manchester City (M11) | 3.07 | 59% | 53% | 0.600 |
-| * 5 | Parma Calcio vs Bologna FC (M10) | 2.65 | 49% | 46% | 0.511 |
-| * 6 | Fulham FC vs Newcastle United (M2) | 2.63 | 49% | 43% | 0.497 |
-| * 7 | Arsenal FC vs Hull City (M1) | 2.73 | 51% | 33% | 0.483 |
-| * 8 | Birmingham City vs Swansea City (M3) | 2.50 | 46% | 43% | 0.475 |
+| * 1 | Excelsior Rotterdam vs Go Ahead Eagles (M6) | 3.27 | 63% | 42% | 0.599 |
+| * 2 | Hertha BSC vs VFL Wolfsburg (M3) | 3.08 | 59% | 50% | 0.593 |
+| * 3 | Valencia CF vs Real Madrid (M5) | 2.61 | 48% | 66% | 0.563 |
+| * 4 | AS Roma vs Sassuolo Calcio (M4) | 2.08 | 34% | 49% | 0.415 |
+| * 5 | AJ Auxerre vs Paris FC (M1) | 2.16 | 37% | 44% | 0.414 |
+| * 6 | Paris Saint-Germain vs ESTAC Troyes (M7) | 2.17 | 37% | 35% | 0.391 |
 
 Learnings F06 : identity (sous 50 tickets settle) — F06 n'apprend pas.
 
-O2.5 empirique ligue : 53% — 2 flag(s) incoherence_modele_empirique.
+O2.5 empirique : trou (o2.5_empirique).
 
 **Top 20** passe la coupe noire ; le reste est archivé.
 

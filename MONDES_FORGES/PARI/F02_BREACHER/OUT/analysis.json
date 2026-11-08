@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T18:26:13Z",
+  "generated_at": "2026-11-08T13:43:13Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_moyennes": {
     "buts_dom_moy": 1.1111,
@@ -516,10 +516,5 @@
         "standings"
       ]
     }
-  ],
-  "o2.5_empirique": null,
-  "o2.5_empirique_n": 0,
-  "empirique_holes": [
-    "o2.5_empirique"
   ]
 }
