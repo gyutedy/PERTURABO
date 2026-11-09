@@ -1884,7 +1884,8 @@
     "inject CAPTEURS 2026-11-07T18:25:37Z [SP1]: 2 auto / 0 manquants",
     "inject CAPTEURS 2026-11-07T18:25:39Z [N1]: 2 auto / 0 manquants",
     "inject CAPTEURS 2026-11-07T18:25:42Z [E0]: 0 auto / 2 manquants",
-    "inject CAPTEURS 2026-11-08T13:43:13Z [E0]: 0 auto / 2 manquants"
+    "inject CAPTEURS 2026-11-08T13:43:13Z [E0]: 0 auto / 2 manquants",
+    "inject CAPTEURS 2026-11-09T16:43:30Z [E0]: 0 auto / 2 manquants"
   ],
   "notes_count": 0
 }

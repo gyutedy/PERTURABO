@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T13:43:05Z",
+  "generated_at": "2026-11-09T16:43:21Z",
   "source": "football-data.co.uk (usage privé, whitelist)",
   "league_code": "E0",
   "season": "2627",
@@ -421,13 +421,13 @@
         "encaisses_mt2": 8.0
       },
       "ext": {
-        "mj": 4,
-        "marques": 2.0,
-        "encaisses": 7.0,
+        "mj": 5,
+        "marques": 3.0,
+        "encaisses": 10.0,
         "marques_mt1": 0.0,
         "encaisses_mt1": 4.0,
-        "marques_mt2": 2.0,
-        "encaisses_mt2": 3.0
+        "marques_mt2": 3.0,
+        "encaisses_mt2": 6.0
       }
     },
     "Hull": {
@@ -441,24 +441,24 @@
         "encaisses_mt2": 4.0
       },
       "ext": {
-        "mj": 4,
+        "mj": 5,
         "marques": 4.0,
-        "encaisses": 5.0,
+        "encaisses": 6.0,
         "marques_mt1": 2.0,
         "encaisses_mt1": 4.0,
         "marques_mt2": 2.0,
-        "encaisses_mt2": 1.0
+        "encaisses_mt2": 2.0
       }
     },
     "Ipswich": {
       "dom": {
-        "mj": 4,
-        "marques": 5.0,
-        "encaisses": 5.0,
+        "mj": 5,
+        "marques": 6.0,
+        "encaisses": 7.0,
         "marques_mt1": 2.0,
-        "encaisses_mt1": 4.0,
-        "marques_mt2": 3.0,
-        "encaisses_mt2": 1.0
+        "encaisses_mt1": 5.0,
+        "marques_mt2": 4.0,
+        "encaisses_mt2": 2.0
       },
       "ext": {
         "mj": 5,
