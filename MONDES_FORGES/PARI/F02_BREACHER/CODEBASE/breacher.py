@@ -394,6 +394,19 @@ def analyse_match(m, avg):
     lambda_dom = att_dom * def_ext * avg["buts_dom_moy"] * bonus_d
     lambda_ext = att_ext * def_dom * avg["buts_ext_moy"] * bonus_e
 
+    engine_src = "poisson"
+    engine_holes = []
+    try:
+        import engine_dc
+        ov = engine_dc.overlay(m, avg, lambda_dom, lambda_ext, rho)
+        lambda_dom, lambda_ext = ov["lambda_dom"], ov["lambda_ext"]
+        rho = ov["rho"] if ov.get("rho") is not None else rho
+        engine_src = ov.get("engine") or "poisson"
+        engine_holes = list(ov.get("holes") or [])
+    except Exception:
+        engine_src = "poisson"
+        engine_holes = ["params_absents"]
+
     sf = None
     try:
         import state_factors
@@ -449,7 +462,13 @@ def analyse_match(m, avg):
         "probas": rounded,
         "cs": {k: round(v, 4) for k, v in cs.items()},
         "data_quality": {"niveau": quality, "flags": flags},
+        "engine": engine_src,
     }
+    if engine_holes:
+        out.setdefault("holes", [])
+        for h in engine_holes:
+            if h not in out["holes"]:
+                out["holes"].append(h)
     if sf is not None:
         out["lambdas"]["dom_raw"] = round(sf["lambda_dom_raw"], 3)
         out["lambdas"]["ext_raw"] = round(sf["lambda_ext_raw"], 3)

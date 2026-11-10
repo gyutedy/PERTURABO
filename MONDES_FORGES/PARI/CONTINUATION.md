@@ -492,12 +492,15 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
       MLE stdlib. Equipe absente / n<60 = holes, jamais invente.
       Elo absent = prior 0 + hole `elo`, jamais 1500. Score 0-0 lu.
       Ne cable pas breacher (V2b). Sortie `dc_params.json` gitignore.
-- [ ] Packs V2b/c : engine_dc / calibration
+- [x] Pack V2b : `F02_BREACHER/CODEBASE/engine_dc.py` cable dans
+      `breacher.analyse_match`. Params fitted + 2 equipes -> lambdas MLE.
+      Sinon Poisson carte + holes (`params_absents` / `equipe_absente` /
+      `ligue_absente`). Tickets toujours geles. Calibration = V2c.
 - [ ] Packs VC/V3/V4/V5/V6 : vanus_fetch, vanus_gate, packager, Telegram relais, ledger
 - [ ] Pack VX : CSV + fit + backtest GO/NO-GO
 
 **Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : V2b `engine_dc.py` (cablage breacher). CSV Big 5 toujours a poser.
+Prochain pack : V2c calibration (`backtest_market.py` / gates RPS ECE). CSV Big 5 toujours a poser.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
