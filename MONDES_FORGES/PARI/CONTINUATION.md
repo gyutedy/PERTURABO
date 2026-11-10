@@ -488,12 +488,16 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
       `columns` reelles, `hors_couverture` (I1/D1/… absents, jamais estimes).
       Cache `ARCHIVUM/cache/f00/` encore vide → inventaire n_lignes=0 tant
       que les CSV Big 5 ne sont pas poses (P0 manuel).
-- [ ] Packs V2a/b/c : model_dc / engine_dc / calibration
+- [x] Pack V2a : `F02_BREACHER/CODEBASE/model_dc.py` + `fit_dc.py`.
+      MLE stdlib. Equipe absente / n<60 = holes, jamais invente.
+      Elo absent = prior 0 + hole `elo`, jamais 1500. Score 0-0 lu.
+      Ne cable pas breacher (V2b). Sortie `dc_params.json` gitignore.
+- [ ] Packs V2b/c : engine_dc / calibration
 - [ ] Packs VC/V3/V4/V5/V6 : vanus_fetch, vanus_gate, packager, Telegram relais, ledger
 - [ ] Pack VX : CSV + fit + backtest GO/NO-GO
 
 **Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : V2a `model_dc.py` + `fit_dc.py`. CSV Big 5 toujours a poser.
+Prochain pack : V2b `engine_dc.py` (cablage breacher). CSV Big 5 toujours a poser.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

@@ -1827,3 +1827,4 @@
 
 ## [2026-11-10] v5.0 pack V0 — MOTEUR GELE (tickets_enabled=false). Ledger intact. Un pack = un commit.
 ## [2026-11-10] v5.0 pack V1 — market_csv contrat football-data Zero Data. Cache f00 vide.
+## [2026-11-10] v5.0 pack V2a — model_dc + fit_dc MLE. Elo jamais 1500. Ne cable pas breacher.

@@ -78,6 +78,9 @@ Cartographie des journaux du monde.
 | `config/moteur.json` | Interrupteur tickets_enabled + engine dc_mle + gates RPS/ECE | moteur_flag.py |
 | `F02_BREACHER/CODEBASE/moteur_flag.py` | Seul lecteur du drapeau. Illisible = GELE | workflow `/modele` `/gel` `/valider-2` |
 | `F00_RADAR/CODEBASE/market_csv.py` | CSV football-data, trous declares, jamais invente | inventaire / fit_dc |
+| `F02_BREACHER/CODEBASE/model_dc.py` | Dixon-Coles MLE : lambdas, log_pmf, priors, poids temporel | fit_dc.py |
+| `F02_BREACHER/CODEBASE/fit_dc.py` | Fit ligue MLE. n<60 / equipe absente = holes. Elo jamais 1500 | dc_params.json |
+| `tests/test_model_dc.py` | V2a : 0-0, None, n<60, ghost drop, stdlib, pas breacher | model_dc.py / fit_dc.py |
 | `tests/test_input_capture_moins_plus.py` | S1 : Moins/Plus sans 2.5, cote_plate, ligue_code E1/D2 | input_capture + capteurs |
 | `tests/test_f06_diag.py` | S9 : CLV ratio, agregats, n<50 lock, Platt/Beta/MC seede | clv.py + diag.py |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |
