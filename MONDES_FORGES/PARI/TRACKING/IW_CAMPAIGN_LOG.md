@@ -1831,3 +1831,4 @@
 ## [2026-11-10] v5.0 pack V2b — engine_dc cable breacher. Equipe absente = Poisson + holes. Gel intact.
 ## [2026-11-10] v5.0 pack V2c — backtest_market RPS/ECE vs marche. n<300 = pas de GO. Gel intact.
 ## [2026-11-10] v5.0 pack VC — vanus_fetch CSV Big 5. Timeout/HTML = hole. Pas de gate. Gel intact.
+## [2026-11-10] v5.0 pack V3 — vanus_gate vanus.signal.v1. Jackpot veto, alarme info. Jamais un p. Gel intact.

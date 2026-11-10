@@ -507,13 +507,19 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
       (E0/SP1/I1/D1/F1) football-data.co.uk. Timeout / HTML / vide /
       skip = hole, jamais invente. Pas de gate. Pas cable capteurs.
       `PARI_SKIP_VANUS=1` = hors_couverture Big 5. Tickets geles.
-- [ ] Packs V3/V4/V5/V6 : vanus_gate, packager, Telegram relais, ledger
+- [x] Pack V3 : `F00_RADAR/CODEBASE/vanus_gate.py`. Lecture
+      `vanus.signal.v1`. Jackpot = veto selections opposees.
+      Alarme = flag info. Isole / aucun = pass. Timeout / skip /
+      contrat faux / match absent = hole. Jamais un p. Pas cable
+      capteurs / qualitative / workflow. Tickets geles.
+- [ ] Packs V4/V5/V6 : packager, Telegram relais, ledger
 - [ ] Pack VX : CSV + fit + backtest GO/NO-GO
 
 **Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : V3 (vanus_gate). CSV Big 5 toujours a poser (P0 manuel)
+Prochain pack : V4 (packager). CSV Big 5 toujours a poser (P0 manuel)
 ou `python F00_RADAR/CODEBASE/vanus_fetch.py --season 2526`.
 Calibration mesuree seulement apres CSV + cutoff. Sans n>=300 = pas de GO.
+Signal VANUS a coller dans `ARCHIVUM/vanus/latest.json` (export VANUS).
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

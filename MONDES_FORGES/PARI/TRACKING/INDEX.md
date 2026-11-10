@@ -88,6 +88,8 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/learnings/calibration_moteur.json` | Blob calibration (gitignore). `/modele` `/gel off` | backtest_market.py |
 | `F00_RADAR/CODEBASE/vanus_fetch.py` | VC : CSV Big 5 football-data. Timeout/HTML = hole. Pas de gate | cache f00 |
 | `tests/test_vanus_fetch.py` | VC : skip, timeout, HTML, vide, hors_couverture, gel intact | vanus_fetch.py |
+| `F00_RADAR/CODEBASE/vanus_gate.py` | V3 : greffe vanus.signal.v1. Jackpot veto, alarme info, isole pass. Jamais un p | ARCHIVUM/vanus |
+| `tests/test_vanus_gate.py` | V3 : skip, contrat, match miss, jackpot/alarme/isole, stamp p intact, gel | vanus_gate.py |
 | `tests/test_input_capture_moins_plus.py` | S1 : Moins/Plus sans 2.5, cote_plate, ligue_code E1/D2 | input_capture + capteurs |
 | `tests/test_f06_diag.py` | S9 : CLV ratio, agregats, n<50 lock, Platt/Beta/MC seede | clv.py + diag.py |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |
