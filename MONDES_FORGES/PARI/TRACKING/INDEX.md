@@ -86,6 +86,8 @@ Cartographie des journaux du monde.
 | `F00_RADAR/CODEBASE/backtest_market.py` | V2c : walk-forward RPS/ECE/logloss vs marche. n<300 = pas de GO | calibration_moteur.json |
 | `tests/test_backtest_market.py` | V2c : gates, cutoff, cote<=1, 0-0, gel intact | backtest_market.py |
 | `ARCHIVUM/learnings/calibration_moteur.json` | Blob calibration (gitignore). `/modele` `/gel off` | backtest_market.py |
+| `F00_RADAR/CODEBASE/vanus_fetch.py` | VC : CSV Big 5 football-data. Timeout/HTML = hole. Pas de gate | cache f00 |
+| `tests/test_vanus_fetch.py` | VC : skip, timeout, HTML, vide, hors_couverture, gel intact | vanus_fetch.py |
 | `tests/test_input_capture_moins_plus.py` | S1 : Moins/Plus sans 2.5, cote_plate, ligue_code E1/D2 | input_capture + capteurs |
 | `tests/test_f06_diag.py` | S9 : CLV ratio, agregats, n<50 lock, Platt/Beta/MC seede | clv.py + diag.py |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |
