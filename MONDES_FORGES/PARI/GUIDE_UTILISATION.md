@@ -51,6 +51,9 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. v3.8 : flag `incoherence_modele_empirique` si \|P(O2.5) - taux saison\| >= 0.20 (info, pas NO BET). Saison absente = trou. S14 : ligne PIEGES + SCORER si predictions presentes. |
 | `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
 | `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. S14 : SCORER 6 criteres + PIEGES. Inconnu = refuse, pas crash. |
+| `/vanus` | Lecture `vanus.signal.v1` sur la carte. Jackpot = veto selections opposees, alarme = flag info. Skip / signal absent / match miss = hole. **Jamais un p.** `/vanus ID` = un match (`M1` ou rang). Tickets geles. |
+| `/modele` | Etat moteur (drapeau tickets, calibration). Lecture seule. |
+| `/gel on\|off` | Gele ou degele l emission de tickets. `off` exige verdict GO. |
 | `/status` | État campagne + ligne doctor (GO/CHECK/FAIL, gate n). `/status ledger` = lots. `/status doctor` = evidence complete (cles **noms seulement**, contrats, whitelist, cache, CLV). |
 
 Exemple compact (`/data`) :

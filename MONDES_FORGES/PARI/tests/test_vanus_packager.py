@@ -26,10 +26,6 @@ def _src():
     return open(os.path.join(WORLD, "F05_PACKAGER", "CODEBASE", "packager.py"), encoding="utf-8").read()
 
 
-def _wf():
-    return open(os.path.join(WORLD, "ORCHESTRATOR", "CODEBASE", "workflow.py"), encoding="utf-8").read()
-
-
 def _blob(niveau="isole", selection="home", n=1, found=1):
     indexes = {
         "predictlix": {"pick": "home", "model_pct": None, "at": "2026-11-09T10:00:00Z"},
@@ -124,7 +120,7 @@ def main():
     check("pk.stdlib", "import numpy" not in src and "import scipy" not in src)
     check("pk.pas_tickets", "set_tickets" not in src and "tickets_enabled" not in src)
     check("pk.pas_poisson", "score_matrix" not in src and "lambda_dom" not in src)
-    check("pk.pas_workflow", "vanus_gate" not in _wf())
+    check("pk.pas_workflow", "import workflow" not in src and "cmd_vanus" not in src)
     ast.parse(src)
     check("pk.ast", True)
 

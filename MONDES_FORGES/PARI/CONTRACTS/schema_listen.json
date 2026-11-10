@@ -7,8 +7,8 @@
   "properties": {
     "cmd": {
       "type": "string",
-      "description": "Commande passee telle quelle a workflow.py. Ex: /start, /budget 3000 800, /marches 1X2, /valider-2, /approve L-K7M, /data ledger, /data diag, /radar, /pack 10, /match M1, /status ledger, /status doctor, /roi settle L-K7M.",
-      "pattern": "^/(start|capture|bankroll|budget|surticket|combos|marches|valider-1|valider-2|approve|data|radar|pack|match|status|roi|stop)( .*)?$"
+      "description": "Commande passee telle quelle a workflow.py. Ex: /start, /budget 3000 800, /marches 1X2, /valider-2, /approve L-K7M, /data ledger, /data diag, /radar, /pack 10, /match M1, /vanus, /vanus M1, /modele, /gel on, /status ledger, /status doctor, /roi settle L-K7M.",
+      "pattern": "^/(start|capture|bankroll|budget|surticket|combos|marches|valider-1|valider-2|approve|data|radar|pack|match|status|roi|stop|modele|gel|vanus)( .*)?$"
     },
     "capture_text": {
       "type": ["string", "null"],

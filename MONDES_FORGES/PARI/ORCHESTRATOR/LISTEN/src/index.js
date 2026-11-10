@@ -2,7 +2,7 @@
  * PARI LISTEN — Cloudflare Worker (webhook Telegram)
  * Relais uniquement : allowlist chat_id, parse commande, ACK, dispatch GitHub.
  * Miroir de parse.py. Zero calcul, zero Dixon-Coles.
- * v4.7 codebook : /marches = hint du jour (pas stub O/U2.5,MT2).
+ * v5 codebook : /vanus /modele /gel (lecture vanus.signal.v1, jamais un p).
  *
  * Secrets wrangler (jamais dans git) :
  *   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_WEBHOOK_SECRET, GITHUB_DISPATCH_TOKEN
@@ -15,6 +15,7 @@ const KNOWN = new Set([
   "marches", "marchés",
   "valider-1", "valider-2", "valider1", "valider2", "approve",
   "data", "radar", "pack", "match", "status", "roi", "stop",
+  "modele", "gel", "vanus",
 ]);
 const LOCAL = new Set(["help", "aide"]);
 const CANON = { valider1: "valider-1", valider2: "valider-2", "marchés": "marches" };
@@ -32,6 +33,7 @@ const HELP =
   "/approve L-XXX  (fige le lot pending)\n" +
   "/data  /data N  /data ledger  /data diag\n" +
   "/radar  /pack  /match ID\n" +
+  "/vanus  /vanus ID  /modele  /gel on|off\n" +
   "/status  /status ledger  /status doctor\n" +
   "/roi  /roi settle L-XXX\n" +
   "/stop";
@@ -127,7 +129,7 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches" || canon === "approve")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches" || canon === "approve" || canon === "gel" || canon === "vanus")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {

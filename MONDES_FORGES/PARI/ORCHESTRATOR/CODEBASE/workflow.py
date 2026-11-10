@@ -25,6 +25,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
     /status          état de la campagne.  /status ledger = lots.  /status doctor = evidence GO/CHECK/FAIL
     /modele          etat du moteur (drapeau, calibration). Lecture seule.
     /gel on|off      gele ou degele l emission de tickets. off exige verdict GO.
+    /vanus [ID]      lecture vanus.signal.v1 (jackpot veto / alarme info). Jamais un p.
     /stop            ferme la campagne (lots F06 intacts, consumed reset)
 
 L'état vit dans SHARED/STATE/campagne.json — la conversation elle-même reste la
@@ -1006,6 +1007,83 @@ def _freeze_pending(st, token, tj, new_legs, budget, sur):
     return lot
 
 
+def _fmt_vanus_line(m, rec):
+    mid = (m or {}).get("id") or "?"
+    label = "%s vs %s" % ((m or {}).get("dom") or "?", (m or {}).get("ext") or "?")
+    rec = rec or {}
+    act = rec.get("action") or "skip"
+    niveau = rec.get("niveau") or "—"
+    sel = rec.get("selection") or "—"
+    veto = ",".join(rec.get("veto") or []) or "—"
+    flags = ",".join(rec.get("flags") or []) or "—"
+    holes = ",".join(rec.get("holes") or []) or "—"
+    n = rec.get("n") or 0
+    return "%s %s  %s %s sel=%s n=%s veto=%s flags=%s holes=%s" % (
+        mid, label, act, niveau, sel, n, veto, flags, holes)
+
+
+def cmd_vanus(st, arg):
+    radar_dir = os.path.normpath(os.path.join(HERE, "..", "..", "F00_RADAR", "CODEBASE"))
+    if radar_dir not in sys.path:
+        sys.path.insert(0, radar_dir)
+    try:
+        import vanus_gate
+    except Exception:
+        tell("vanus_gate introuvable — F00_RADAR/CODEBASE absent du path.")
+        return
+    path = P("ARCHIVUM", "vanus", "latest.json")
+    blob, holes = vanus_gate.load(path)
+    if blob is None:
+        tell("VANUS — signal absent. Trous : " + ",".join(holes or ["vanus_absent"])
+             + ". Coller ARCHIVUM/vanus/latest.json (export VANUS). Jamais un p.")
+        return
+    contrat_holes = vanus_gate.validate(blob)
+    if contrat_holes:
+        tell("VANUS — contrat faux. Trous : " + ",".join(contrat_holes) + ". Jamais un p.")
+        return
+    carte = load_json(P("ARCHIVUM", "fixtures", "matches.json")) or {}
+    matchs = carte.get("matchs") or []
+    raw = (arg or "").strip().split()
+    if raw:
+        token = raw[0]
+        target = None
+        if token.isdigit():
+            idx = int(token) - 1
+            if 0 <= idx < len(matchs):
+                target = matchs[idx]
+        if target is None:
+            for m in matchs:
+                if str(m.get("id") or "").upper() == token.upper():
+                    target = m
+                    break
+        if target is None:
+            tell("VANUS — match `%s` introuvable dans la carte. `/capture` d'abord." % token)
+            return
+        rec = vanus_gate.gate(target.get("dom"), target.get("ext"),
+                              date=target.get("date"), blob=blob)
+        tell(_fmt_vanus_line(target, rec))
+        return
+    if not matchs:
+        tell("VANUS — carte vide. `/capture` d'abord. Signal OK. Jamais un p.")
+        return
+    lines = ["VANUS — lecture seule. Jamais un p. Tickets geles."]
+    n_veto = n_info = n_pass = n_hole = 0
+    for m in matchs:
+        rec = vanus_gate.gate(m.get("dom"), m.get("ext"), date=m.get("date"), blob=blob)
+        lines.append(_fmt_vanus_line(m, rec))
+        act = rec.get("action")
+        if rec.get("holes") and act == "skip":
+            n_hole += 1
+        elif act == "veto":
+            n_veto += 1
+        elif act == "info":
+            n_info += 1
+        else:
+            n_pass += 1
+    lines.append("veto %s  alarme %s  pass %s  holes %s" % (n_veto, n_info, n_pass, n_hole))
+    tell("\n".join(lines))
+
+
 def cmd_modele(st, rest):
     """Etat du moteur : drapeau, version, derniere calibration connue."""
     try:
@@ -1074,6 +1152,7 @@ CMDS = {
     "stop": (cmd_stop, "ferme la campagne (lots F06 intacts)"),
     "modele": (cmd_modele, "etat du moteur (lecture seule)"),
     "gel": (cmd_gel, "gele ou degele l'emission de tickets"),
+    "vanus": (cmd_vanus, "lecture vanus.signal.v1 (jamais un p)"),
 }
 
 

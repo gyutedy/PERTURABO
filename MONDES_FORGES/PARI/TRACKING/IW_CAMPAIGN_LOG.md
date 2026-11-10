@@ -1833,3 +1833,4 @@
 ## [2026-11-10] v5.0 pack VC — vanus_fetch CSV Big 5. Timeout/HTML = hole. Pas de gate. Gel intact.
 ## [2026-11-10] v5.0 pack V3 — vanus_gate vanus.signal.v1. Jackpot veto, alarme info. Jamais un p. Gel intact.
 ## [2026-11-10] v5.0 pack V4 — packager greffe vanus_gate. Jackpot drop, alarme flag. p/EV intacts. Gel intact.
+## [2026-11-10] v5.0 pack V5 — Telegram /vanus lecture vanus.signal.v1. Jackpot veto, alarme info. Jamais un p. Gel intact.
