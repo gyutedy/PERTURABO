@@ -512,11 +512,15 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
       Alarme = flag info. Isole / aucun = pass. Timeout / skip /
       contrat faux / match absent = hole. Jamais un p. Pas cable
       capteurs / qualitative / workflow. Tickets geles.
-- [ ] Packs V4/V5/V6 : packager, Telegram relais, ledger
+- [x] Pack V4 : `F05_PACKAGER/CODEBASE/packager.py` greffe
+      vanus_gate. Jackpot drop selection opposee + combo. Alarme =
+      flag info. Skip / match absent = hole. p_modele / EV intacts.
+      Pas cable Telegram / workflow. Tickets geles.
+- [ ] Packs V5/V6 : Telegram relais, ledger
 - [ ] Pack VX : CSV + fit + backtest GO/NO-GO
 
 **Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : V4 (packager). CSV Big 5 toujours a poser (P0 manuel)
+Prochain pack : V5 (Telegram relais). CSV Big 5 toujours a poser (P0 manuel)
 ou `python F00_RADAR/CODEBASE/vanus_fetch.py --season 2526`.
 Calibration mesuree seulement apres CSV + cutoff. Sans n>=300 = pas de GO.
 Signal VANUS a coller dans `ARCHIVUM/vanus/latest.json` (export VANUS).
