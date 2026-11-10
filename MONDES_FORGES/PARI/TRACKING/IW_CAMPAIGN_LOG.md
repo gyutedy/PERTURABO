@@ -1829,3 +1829,4 @@
 ## [2026-11-10] v5.0 pack V1 — market_csv contrat football-data Zero Data. Cache f00 vide.
 ## [2026-11-10] v5.0 pack V2a — model_dc + fit_dc MLE. Elo jamais 1500. Ne cable pas breacher.
 ## [2026-11-10] v5.0 pack V2b — engine_dc cable breacher. Equipe absente = Poisson + holes. Gel intact.
+## [2026-11-10] v5.0 pack V2c — backtest_market RPS/ECE vs marche. n<300 = pas de GO. Gel intact.

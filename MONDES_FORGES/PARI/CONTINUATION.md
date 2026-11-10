@@ -496,11 +496,19 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
       `breacher.analyse_match`. Params fitted + 2 equipes -> lambdas MLE.
       Sinon Poisson carte + holes (`params_absents` / `equipe_absente` /
       `ligue_absente`). Tickets toujours geles. Calibration = V2c.
+- [x] Pack V2c : `F00_RADAR/CODEBASE/backtest_market.py`. Walk-forward
+      cut-off, fit train seulement, jamais in-sample. RPS/ECE/logloss
+      modele vs marche (cotes 1X2 ouvertes). Gates `config/moteur.json`
+      (rps_gap_max=0.0, ece_max=0.03, logloss_gap_max=0.0, min_oos=300).
+      n_oos < 300 = verdict None (pas de GO). Cote <= 1.0 = hole.
+      Score 0-0 lu. `/gel off` refuse sans verdict GO. Sortie
+      `calibration_moteur.json` gitignore. Tickets toujours geles.
 - [ ] Packs VC/V3/V4/V5/V6 : vanus_fetch, vanus_gate, packager, Telegram relais, ledger
 - [ ] Pack VX : CSV + fit + backtest GO/NO-GO
 
 **Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : V2c calibration (`backtest_market.py` / gates RPS ECE). CSV Big 5 toujours a poser.
+Prochain pack : VC (vanus_fetch). CSV Big 5 toujours a poser (P0 manuel).
+Calibration mesuree seulement apres CSV + cutoff. Sans n>=300 = pas de GO.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
