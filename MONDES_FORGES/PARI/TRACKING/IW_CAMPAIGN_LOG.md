@@ -1826,3 +1826,4 @@
 ## [2026-11-10T15:06:27Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:561c75cd3477c4a3ddce7ff0b93bf1c3 — status:done
 
 ## [2026-11-10] v5.0 pack V0 — MOTEUR GELE (tickets_enabled=false). Ledger intact. Un pack = un commit.
+## [2026-11-10] v5.0 pack V1 — market_csv contrat football-data Zero Data. Cache f00 vide.

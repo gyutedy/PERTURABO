@@ -483,13 +483,17 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
 
 - [x] Pack V0 : `config/moteur.json` tickets_enabled=false + `moteur_flag.py`.
       `/valider-2` refuse. `/modele` `/gel`. `/gel off` refuse sans GO.
-- [ ] Pack V1 : `market_csv.py`
+- [x] Pack V1 : `F00_RADAR/CODEBASE/market_csv.py`. Zero Data. `_num` refuse
+      cote <= 1.0. Scores 0 autorises (`_score`). Inventaire : `n_lignes`,
+      `columns` reelles, `hors_couverture` (I1/D1/… absents, jamais estimes).
+      Cache `ARCHIVUM/cache/f00/` encore vide → inventaire n_lignes=0 tant
+      que les CSV Big 5 ne sont pas poses (P0 manuel).
 - [ ] Packs V2a/b/c : model_dc / engine_dc / calibration
 - [ ] Packs VC/V3/V4/V5/V6 : vanus_fetch, vanus_gate, packager, Telegram relais, ledger
 - [ ] Pack VX : CSV + fit + backtest GO/NO-GO
 
 **Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : V1 `market_csv.py`.
+Prochain pack : V2a `model_dc.py` + `fit_dc.py`. CSV Big 5 toujours a poser.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
