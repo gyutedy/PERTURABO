@@ -477,6 +477,20 @@ Phase C. Docs + `/help` alignes sur le hint. `cote_plate` reste flag, MT jouable
 → `/data` → coller le hint → `/combos` → `/valider-2` → `/approve`.
 `/roi settle` apres les matchs.
 
+## ETAT v5.0 pack V0 — GEL MOTEUR (2026-11-10)
+
+Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
+
+- [x] Pack V0 : `config/moteur.json` tickets_enabled=false + `moteur_flag.py`.
+      `/valider-2` refuse. `/modele` `/gel`. `/gel off` refuse sans GO.
+- [ ] Pack V1 : `market_csv.py`
+- [ ] Packs V2a/b/c : model_dc / engine_dc / calibration
+- [ ] Packs VC/V3/V4/V5/V6 : vanus_fetch, vanus_gate, packager, Telegram relais, ledger
+- [ ] Pack VX : CSV + fit + backtest GO/NO-GO
+
+**Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
+Prochain pack : V1 `market_csv.py`.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

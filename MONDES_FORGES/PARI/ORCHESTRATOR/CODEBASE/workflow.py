@@ -21,9 +21,11 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
    /radar [N]       scan carte courante (skip matchs sans stats, trous declares). S14 : flags pieges
    /pack [N]        assemble le pari pack TOP N (defaut 10)
    /match ID        fiche siege d'un match (id M1 ou rang 1-based). S14 : scorer + 6 criteres + pieges
-   /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
-   /status          état de la campagne.  /status ledger = lots.  /status doctor = evidence GO/CHECK/FAIL
-   /stop            ferme la campagne (lots F06 intacts, consumed reset)
+    /roi             tracker F06 : ROI cumulé.  /roi settle L-XXX = scores CSV
+    /status          état de la campagne.  /status ledger = lots.  /status doctor = evidence GO/CHECK/FAIL
+    /modele          etat du moteur (drapeau, calibration). Lecture seule.
+    /gel on|off      gele ou degele l emission de tickets. off exige verdict GO.
+    /stop            ferme la campagne (lots F06 intacts, consumed reset)
 
 L'état vit dans SHARED/STATE/campagne.json — la conversation elle-même reste la
 source de vérité côté Telegram ; GitHub Actions sont le chauffeur (chaque
@@ -44,6 +46,9 @@ from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
+_ENGINE_DIR = os.path.join(WORLD, "F02_BREACHER", "CODEBASE")
+if _ENGINE_DIR not in sys.path:
+    sys.path.insert(0, _ENGINE_DIR)
 STATE_DIR = os.path.join(WORLD, "SHARED", "STATE")
 STATE_PATH = os.path.join(STATE_DIR, "campagne.json")
 NOTIFIER = os.path.join(HERE, "notifier.py")
@@ -532,6 +537,16 @@ def cmd_valider1(st, arg):
 
 
 def cmd_valider2(st, arg):
+    try:
+        import moteur_flag
+    except Exception:
+        moteur_flag = None
+    if moteur_flag is not None and not moteur_flag.tickets_enabled():
+        tell("⛔ MOTEUR GELE — config/moteur.json : tickets_enabled = false.\n"
+             "Aucun ticket, aucune mise, jusqu'a validation du moteur "
+             + moteur_flag.engine() + ".\n"
+             "Le ledger F06 reste intact. `/modele` = etat. `/gel off` quand la phase 2 est verte.")
+        return
     if not st.get("steps", {}).get("valider1"):
         tell("⛔ Valider la Preview 1 d'abord (`/valider-1` puis relecture)."); return
     if st.get("pending_lot"):
@@ -991,6 +1006,51 @@ def _freeze_pending(st, token, tj, new_legs, budget, sur):
     return lot
 
 
+def cmd_modele(st, rest):
+    """Etat du moteur : drapeau, version, derniere calibration connue."""
+    try:
+        import moteur_flag
+        blob = moteur_flag.load()
+    except Exception:
+        tell("Moteur illisible — config/moteur.json absent.")
+        return
+    cal = load_json(P("ARCHIVUM", "learnings", "calibration_moteur.json")) or {}
+    lignes = [
+        f"MOTEUR : {blob.get('engine')} / {blob.get('engine_version')}",
+        f"TICKETS : {'OUVERTS' if blob.get('tickets_enabled') else 'GELE'}",
+        f"VALIDATION : {'requise' if blob.get('require_calibration') else 'non requise'}",
+    ]
+    if cal:
+        lignes.append(f"Derniere mesure : {cal.get('generated_at')} "
+                      f"n={cal.get('n')} verdict={cal.get('verdict')}")
+        lignes.append(f"RPS modele {cal.get('rps_modele')} / marche {cal.get('rps_marche')}")
+        lignes.append(f"ECE {cal.get('ece')} — logloss {cal.get('logloss_modele')} / {cal.get('logloss_marche')}")
+    else:
+        lignes.append("Aucune calibration mesuree — `/roi diag` apres backtest_market.py")
+    tell("\n".join(lignes))
+
+
+def cmd_gel(st, rest):
+    """`/gel on|off` — bascule le drapeau. off exige une calibration valide."""
+    try:
+        import moteur_flag
+    except Exception:
+        tell("moteur_flag introuvable — F02_BREACHER/CODEBASE absent du path.")
+        return
+    arg = (rest or "").strip().lower()
+    if arg not in ("on", "off"):
+        tell(f"Drapeau actuel : tickets_enabled={moteur_flag.tickets_enabled()}. Format `/gel on` ou `/gel off`.")
+        return
+    if arg == "off" and moteur_flag.load().get("require_calibration"):
+        cal = load_json(P("ARCHIVUM", "learnings", "calibration_moteur.json")) or {}
+        if cal.get("verdict") != "GO":
+            tell("⛔ Refus : calibration absente ou verdict " + str(cal.get("verdict"))
+                 + ". Lance backtest_market.py et lis le verdict.")
+            return
+    blob = moteur_flag.set_tickets(arg == "off")
+    tell(f"Drapeau enregistre : tickets_enabled={blob.get('tickets_enabled')}")
+
+
 CMDS = {
     "start": (cmd_start, "ouvre la campagne"),
     "capture": (cmd_capture, "capture txt/md/png/pdf/docx"),
@@ -1012,6 +1072,8 @@ CMDS = {
     "status": (cmd_status, "état ; /status ledger = lots ; /status doctor = evidence"),
     "roi": (cmd_roi, "ROI ; /roi settle L-XXX"),
     "stop": (cmd_stop, "ferme la campagne (lots F06 intacts)"),
+    "modele": (cmd_modele, "etat du moteur (lecture seule)"),
+    "gel": (cmd_gel, "gele ou degele l'emission de tickets"),
 }
 
 

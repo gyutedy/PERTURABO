@@ -1,0 +1,26 @@
+{
+  "note": "Interrupteur du moteur. tickets_enabled=false = aucun ticket, aucune mise. Le ledger reste fige.",
+  "engine": "dc_mle",
+  "engine_version": "pari.model_dc.v1",
+  "tickets_enabled": false,
+  "require_calibration": true,
+  "gates": {
+    "rps_gap_max": 0.0,
+    "ece_max": 0.03,
+    "logloss_gap_max": 0.0,
+    "min_matches_oos": 300
+  },
+  "fit": {
+    "half_life_days": 60,
+    "min_team_matches": 5,
+    "min_league_matches": 60,
+    "sigma_att": 0.35,
+    "sigma_def": 0.35,
+    "sigma_rho": 0.25,
+    "elo_scale": 0.0015,
+    "elo_prior_weight": 0.5,
+    "elo_prior_full_matches": 10,
+    "max_iterations": 600,
+    "tol": 1e-9
+  }
+}
