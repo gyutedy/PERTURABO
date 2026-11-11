@@ -1835,3 +1835,4 @@
 ## [2026-11-10] v5.0 pack V4 — packager greffe vanus_gate. Jackpot drop, alarme flag. p/EV intacts. Gel intact.
 ## [2026-11-10] v5.0 pack V5 — Telegram /vanus lecture vanus.signal.v1. Jackpot veto, alarme info. Jamais un p. Gel intact.
 ## [2026-11-10] v5.0 pack V6 — ledger freeze vanus_gate. Flags T0. p/EV intacts. 7 args intact. Gel intact.
+## [2026-11-11] v5.0 pack VX — vanus_calibrate CSV+fit+backtest. Live n=950 NO-GO (rps/logloss). BOM strip. Gel intact.

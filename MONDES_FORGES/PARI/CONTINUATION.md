@@ -523,14 +523,18 @@ Pack V0 seulement. Un pack = un commit. Tickets geles. Ledger F06 intact.
 - [x] Pack V6 : ledger freeze greffe vanus_gate. Jackpot/alarme =
       flags T0. Skip / absent / match miss = hole. p/EV intacts.
       freeze_lot 7 args intact. F06 n'apprend pas. Tickets geles.
-- [ ] Pack VX : CSV + fit + backtest GO/NO-GO
+- [x] Pack VX : `vanus_calibrate.py` CSV Big 5 + fit_dc +
+      backtest_market. BOM CSV strippe (utf-8-sig), jamais invente.
+      Live 2425+2526 cutoff 2026-01-01 : n=950 verdict **NO-GO**
+      (rps_gap + logloss_gap). ECE 0.008 OK. Elo = hole.
+      n<300 = verdict None. Ne touche pas tickets_enabled.
+      Sortie gitignore. Tickets geles.
 
-**Handoff** : tickets GELES. Ne pas `/valider-2` en live. `/modele` pour l'etat.
-Prochain pack : VX (CSV + fit + backtest GO/NO-GO). CSV Big 5 toujours
-a poser (P0 manuel) ou `python F00_RADAR/CODEBASE/vanus_fetch.py --season 2526`.
-Calibration mesuree seulement apres CSV + cutoff. Sans n>=300 = pas de GO.
-Signal VANUS a coller dans `ARCHIVUM/vanus/latest.json` (export VANUS).
-Telegram : `/vanus` apres `/capture` (carte). Worker auto-deploy au push LISTEN.
+**Handoff** : tickets GELES. Verdict mesure = NO-GO. Ne pas `/gel off`.
+Ne pas `/valider-2` en live. `/modele` pour l'etat. Relancer
+`python F00_RADAR/CODEBASE/vanus_calibrate.py --seasons 2425,2526 --cutoff 2026-01-01`
+quand Elo pose / plus de saisons. Sans GO = gel. Signal VANUS a coller
+dans `ARCHIVUM/vanus/latest.json`. Telegram : `/vanus` apres `/capture`.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 

@@ -69,8 +69,13 @@ def _pair(row, home_key, away_key):
 
 
 def read_rows(path):
-    with open(path, encoding="utf-8", errors="replace") as f:
-        return list(csv.DictReader(io.StringIO(f.read())))
+    with open(path, encoding="utf-8-sig", errors="replace") as f:
+        text = f.read()
+    rows = list(csv.DictReader(io.StringIO(text)))
+    cleaned = []
+    for r in rows:
+        cleaned.append({(k or "").lstrip("\ufeff").strip(): v for k, v in r.items()})
+    return cleaned
 
 
 def normalize(row):

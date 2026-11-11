@@ -126,6 +126,17 @@ def main():
     finally:
         sys.stdout = old_stdout
         sys.argv = old_argv
+    bom_dir = tempfile.mkdtemp(prefix="pari-v1bom-")
+    bom_path = os.path.join(bom_dir, "E0.csv")
+    with open(bom_path, "w", encoding="utf-8") as f:
+        f.write("\ufeffDiv,Date,HomeTeam,AwayTeam,FTHG,FTAG,B365H,B365D,B365A\n")
+        f.write("E0,09/08/2025,Arsenal,Chelsea,0,0,1.85,3.60,4.20\n")
+    bom_rows = market_csv.read_rows(bom_path)
+    check("v1.bom_key", "Div" in bom_rows[0] and "\ufeffDiv" not in bom_rows[0], str(list(bom_rows[0].keys())[:3]))
+    bom_blob = market_csv.load_dir(bom_dir)
+    check("v1.bom_div", bom_blob["rows"] and bom_blob["rows"][0]["div"] == "E0",
+          str(bom_blob["rows"][0].get("div") if bom_blob["rows"] else None))
+
     rec = json.load(open(rec_path, encoding="utf-8"))
     check("v1.inventaire_n", rec["n_lignes"] == 3, str(rec["n_lignes"]))
     check("v1.inventaire_div", rec["divisions"].get("E0") == 2 and rec["divisions"].get("SP1") == 1, str(rec["divisions"]))
