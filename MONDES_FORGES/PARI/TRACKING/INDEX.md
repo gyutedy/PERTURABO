@@ -94,6 +94,8 @@ Cartographie des journaux du monde.
 | `tests/test_vanus_packager.py` | V4 : jackpot veto, alarme keep, skip hole, combo drop, gel intact | packager.py |
 | `ORCHESTRATOR/CODEBASE/workflow.py` `cmd_vanus` | V5 : `/vanus` `/vanus ID` lecture vanus.signal.v1. Jamais un p | vanus_gate.py |
 | `tests/test_vanus_telegram.py` | V5 : skip, contrat, absent, jackpot/alarme/isole, id, gel intact | workflow.py / parse.py |
+| `F06_TRACKER/CODEBASE/ledger.py` `stamp_vanus` | V6 : freeze T0 flags vanus. Jamais un p. 7 args intact | vanus_gate.py |
+| `tests/test_vanus_ledger.py` | V6 : jackpot/alarme/isole/skip/miss, p intact, gel | ledger.py |
 | `tests/test_input_capture_moins_plus.py` | S1 : Moins/Plus sans 2.5, cote_plate, ligue_code E1/D2 | input_capture + capteurs |
 | `tests/test_f06_diag.py` | S9 : CLV ratio, agregats, n<50 lock, Platt/Beta/MC seede | clv.py + diag.py |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |

@@ -6,6 +6,8 @@ Token = cle (L-XXX), pas la date. Snapshot T0 a /valider-2.
 Settle scores football-data.co.uk : G/P/EN_ATTENTE, jamais invente.
 Journal 2 volets (S3) : procedure immutable a freeze, outcome au settle.
 F06 n'apprend pas : pas d'ecriture calibration.json.
+Pack V6 : greffe vanus_gate a freeze. Jackpot/alarme = flags T0.
+Skip / absent / match miss = hole. Jamais un p. Tickets geles.
 """
 
 from __future__ import annotations
@@ -105,10 +107,82 @@ def find_lot(token, path=None):
     return None, box
 
 
+def _vanus():
+    d = os.path.join(WORLD, "F00_RADAR", "CODEBASE")
+    if d not in sys.path:
+        sys.path.insert(0, d)
+    import vanus_gate as vg
+    return vg
+
+
+def _uniq(seq):
+    out = []
+    seen = set()
+    for x in seq or []:
+        s = str(x)
+        if s in seen:
+            continue
+        seen.add(s)
+        out.append(s)
+    return out
+
+
+def stamp_vanus(tickets, blob=None, path=None):
+    """Observation VANUS sur une copie. Jamais un p. Source intacte."""
+    vg = _vanus()
+    holes = []
+    n_veto = n_info = n_pass = 0
+    cache = {}
+    out = json.loads(json.dumps(tickets or []))
+    for t in out:
+        if not isinstance(t, dict):
+            continue
+        for j in t.get("jambes") or []:
+            if not isinstance(j, dict):
+                continue
+            home, away = split_match(j.get("match") or "")
+            if not home:
+                home = j.get("dom") or j.get("home") or ""
+            if not away:
+                away = j.get("ext") or j.get("away") or ""
+            date = j.get("date")
+            key = (home, away, str(date or "")[:10])
+            if key not in cache:
+                cache[key] = vg.gate(home, away, date=date, path=path, blob=blob)
+            rec = cache[key]
+            stamped = vg.stamp_event(j, rec)
+            j.clear()
+            j.update(stamped)
+            holes.extend(rec.get("holes") or [])
+            act = rec.get("action")
+            if rec.get("holes") and act == "skip":
+                pass
+            elif act == "veto":
+                n_veto += 1
+            elif act == "info":
+                n_info += 1
+            else:
+                n_pass += 1
+    summary = {
+        "holes": _uniq(holes),
+        "n_veto": n_veto,
+        "n_info": n_info,
+        "n_pass": n_pass,
+        "n_matchs": len(cache),
+    }
+    return out, summary
+
+
 def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_fc, surticket_fc,
-               bundle_id=None, procedure=None):
+               bundle_id=None, procedure=None, vanus_blob=None, vanus_path=None):
     snap_tickets = json.loads(json.dumps(tickets_doc.get("tickets") or []))
     snap_budget = json.loads(json.dumps(tickets_doc.get("budget") or {}))
+    vanus_summary = {"holes": ["vanus_absent"], "n_veto": 0, "n_info": 0, "n_pass": 0, "n_matchs": 0}
+    try:
+        snap_tickets, vanus_summary = stamp_vanus(
+            snap_tickets, blob=vanus_blob, path=vanus_path)
+    except Exception:
+        vanus_summary = {"holes": ["vanus_gate"], "n_veto": 0, "n_info": 0, "n_pass": 0, "n_matchs": 0}
     lot = {
         "token": token,
         "campagne": campagne,
@@ -124,6 +198,7 @@ def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_f
             "tickets": snap_tickets,
             "budget": snap_budget,
         },
+        "vanus": vanus_summary,
         "settle": {"settled_at": None, "source": "football-data.co.uk", "tickets": []},
     }
     if bundle_id:
@@ -136,12 +211,17 @@ def freeze_lot(token, campagne, capture_id, tickets_doc, consumed_legs, budget_f
         forge = os.path.join(WORLD, "F03_FORGEWARD", "CODEBASE")
         if forge not in sys.path:
             sys.path.insert(0, forge)
+        extra = {"holes": list(vanus_summary.get("holes") or []), "checks": ["vanus_gate"]}
         try:
             import kelly_route as _kelly_route
-            extra = _kelly_route.procedure_extra_from_tickets(tickets_doc)
-            procedure = _journal.build_procedure(tickets_doc, extra=extra)
+            kel = _kelly_route.procedure_extra_from_tickets(tickets_doc)
+            extra["holes"] = _uniq(list(kel.get("holes") or []) + extra["holes"])
+            extra["checks"] = _uniq(list(kel.get("checks") or []) + extra["checks"])
+            extra["kelly"] = kel.get("kelly")
+            extra["seuils"] = kel.get("seuils")
         except Exception:
-            procedure = None
+            pass
+        procedure = _journal.build_procedure(tickets_doc, extra=extra)
     _journal.attach_procedure(lot, tickets_doc, procedure=procedure)
     return lot
 

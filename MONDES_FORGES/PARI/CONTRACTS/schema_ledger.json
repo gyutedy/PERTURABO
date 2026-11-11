@@ -26,10 +26,17 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
       "budget_fc": 3000,
       "surticket_fc": 800,
       "alloue_fc": 3000,
-      "consumed_legs": [
-        {"match_id": "M3", "marche": "1X2", "selection": "1"}
-      ],
-      "snapshot_t0": {
+        "consumed_legs": [
+          {"match_id": "M3", "marche": "1X2", "selection": "1"}
+        ],
+        "vanus": {
+          "holes": [],
+          "n_veto": 0,
+          "n_info": 0,
+          "n_pass": 0,
+          "n_matchs": 0
+        },
+        "snapshot_t0": {
         "generated_at": "ISO8601",
         "tickets": [],
         "budget": {"budget_fc": 3000, "alloue_fc": 3000, "reste_fc": 0}
@@ -98,3 +105,4 @@ G/P/EN_ATTENTE + PnL FC, jamais `calibration.json`.
   8. S8 : `book_odds_close` = cote marche T-0 (`latest_t0.json`). Absente = hole, exclu CLV, jamais 0. T-2h n est PAS la cloture.
   9. S9 : `clv = cote_prise / cote_cloture - 1` (ratio). Combo = produit des closes. Agregats median / % >0 / mean_w. n<50 = diagnostic `/data diag`, jamais verdict/mise.
   10. S10 : Kelly 1/8 defaut, 1/4 si ECE walk-forward <= 0.03 et P(EV>0) >= 0.55 et n>=50. P/ECE absents = 1/8 + holes. Combo = MC conjoint. `mise_fc` operateur intact. Fraction journalisee (`journal.procedure.kelly`).
+  11. V6 : `vanus` = observation T0 (`holes`, n_veto/n_info/n_pass). Jambes snapshot portent `vanus_action` / `vanus_flags` / `vanus_veto`. Skip / absent / match miss = hole. **Jamais un p.** F06 n'apprend pas. freeze_lot 7 args intact.
