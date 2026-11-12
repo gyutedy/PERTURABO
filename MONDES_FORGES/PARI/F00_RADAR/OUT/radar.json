@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T15:06:27Z",
+  "generated_at": "2026-11-12T15:28:56Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_moyennes": {
     "buts_dom_moy": 1.1111,
@@ -85,6 +85,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -97,10 +103,6 @@
         "cap_hit": false,
         "journal": []
       },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
       "radar_score_raw": 0.5985,
       "radar_score": 0.5985
     },
@@ -171,6 +173,12 @@
           "mj_insuffisant"
         ]
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -183,10 +191,6 @@
         "cap_hit": false,
         "journal": []
       },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
       "radar_score_raw": 0.5926,
       "radar_score": 0.5926
     },
@@ -255,6 +259,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -267,10 +277,6 @@
         "cap_hit": false,
         "journal": []
       },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
       "radar_score_raw": 0.5631,
       "radar_score": 0.5631
     },
@@ -339,6 +345,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -351,10 +363,6 @@
         "cap_hit": false,
         "journal": []
       },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
       "radar_score_raw": 0.415,
       "radar_score": 0.415
     },
@@ -423,6 +431,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -435,10 +449,6 @@
         "cap_hit": false,
         "journal": []
       },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
       "radar_score_raw": 0.4136,
       "radar_score": 0.4136
     },
@@ -509,6 +519,12 @@
           "mj_insuffisant"
         ]
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -521,10 +537,6 @@
         "cap_hit": false,
         "journal": []
       },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
       "radar_score_raw": 0.3911,
       "radar_score": 0.3911
     }

@@ -1836,3 +1836,9 @@
 ## [2026-11-10] v5.0 pack V5 — Telegram /vanus lecture vanus.signal.v1. Jackpot veto, alarme info. Jamais un p. Gel intact.
 ## [2026-11-10] v5.0 pack V6 — ledger freeze vanus_gate. Flags T0. p/EV intacts. 7 args intact. Gel intact.
 ## [2026-11-11] v5.0 pack VX — vanus_calibrate CSV+fit+backtest. Live n=950 NO-GO (rps/logloss). BOM strip. Gel intact.
+
+## [2026-11-12T15:28:56Z] F01 — check-out — status: processing
+
+## [2026-11-12T15:28:56Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:b9e02a2c522b364a01ae88fec3cb4684 — status:done
+
+## [2026-11-12T15:28:56Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:a6d3571f6e71cb7d71439baae290919e — status:done

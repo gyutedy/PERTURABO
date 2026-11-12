@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T15:06:27Z",
+  "generated_at": "2026-11-12T15:28:56Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_moyennes": {
     "buts_dom_moy": 1.1111,
@@ -85,6 +85,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -96,11 +102,7 @@
         ],
         "cap_hit": false,
         "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ]
+      }
     },
     {
       "id": "M3",
@@ -169,6 +171,12 @@
           "mj_insuffisant"
         ]
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -180,11 +188,7 @@
         ],
         "cap_hit": false,
         "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ]
+      }
     },
     {
       "id": "M4",
@@ -251,6 +255,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -262,11 +272,7 @@
         ],
         "cap_hit": false,
         "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ]
+      }
     },
     {
       "id": "M5",
@@ -333,6 +339,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -344,11 +356,7 @@
         ],
         "cap_hit": false,
         "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ]
+      }
     },
     {
       "id": "M6",
@@ -415,6 +423,12 @@
         "niveau": "haute",
         "flags": []
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -426,11 +440,7 @@
         ],
         "cap_hit": false,
         "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ]
+      }
     },
     {
       "id": "M7",
@@ -499,6 +509,12 @@
           "mj_insuffisant"
         ]
       },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
       "state_factors": {
         "applied": false,
         "factor_dom": 1.0,
@@ -510,11 +526,7 @@
         ],
         "cap_hit": false,
         "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ]
+      }
     }
   ]
 }
