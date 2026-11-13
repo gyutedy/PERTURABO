@@ -1,5 +1,5 @@
 # RADAR DE SIÈGE — Capture — ligue à confirmer
-*Généré le 2026-11-12T15:28:56Z — moteur: Dixon-Coles PARI*
+*Généré le 2026-11-13T14:46:22Z — moteur: Dixon-Coles PARI*
 
 | Rang | Match | λ total | P(O2.5) | P(MT2>) | Score |
 |---|---|---|---|---|---|
