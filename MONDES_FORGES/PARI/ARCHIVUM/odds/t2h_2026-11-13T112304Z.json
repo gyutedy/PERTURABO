@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-11-13T11:23:04Z",
+  "source": "the-odds-api",
+  "kind": "t2h",
+  "horizon_h": 3,
+  "scanned": [],
+  "skipped": [
+    {
+      "id": "M1",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M2",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M3",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M4",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M5",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M6",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M7",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M8",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M9",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M10",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M11",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M12",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M13",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M14",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M15",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M16",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M17",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M18",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M19",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M20",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M21",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M22",
+      "reason": "hors_fenetre"
+    },
+    {
+      "id": "M23",
+      "reason": "hors_fenetre"
+    }
+  ],
+  "alerts": []
+}
