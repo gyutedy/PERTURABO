@@ -900,3 +900,114 @@ F00_CAPTEURS/CODEBASE/capteurs.py
 
 
 ## [2026-10-18T08:56:25Z] campaign_closed — SOPHIE_RAIN_CLIPIFY_US_2026 — siege_closed_at: 2026-10-18T08:56:25Z
+
+---
+
+## [2026-11-15] MARK1 — frégate autonome déployée (pack JSON, jamais de MP4)
+
+### Contexte
+MARK1 est une **frégate autonome** ajoutée à côté du forge, dans `MONDES_FORGES/CLIPPING/MARK1/`.
+Elle ne remplace aucune frégate, ne supprime aucune ligne, et ne demande aucune clé.
+
+Elle applique la doctrine CLIPPING **jusque dans son propre code** : elle **ne produit
+jamais de vidéo**. Ni MP4, ni ffmpeg, ni `.ass`. Elle produit un **pack JSON** déposé dans
+`EXPORT/`, que **OMNIS_WATCH** transforme en clip.
+
+> « Le forge CLIPPING ne touche **jamais** une vidéo. Il décide **quoi** clipper, sous **quel**
+> angle, avec **quel** texte — et livre à OMNIS_WATCH un `production_pack.json` prêt à
+> consommer. » (`README.md`)
+
+### Arborescence créée
+```
+MONDES_FORGES/CLIPPING/MARK1/
+├── mark1.py                     CLI, 7 commandes (248 l.)
+├── README.md                    doc de la frégate
+├── config/selection.json        source unique des seuils
+├── libs/                        env, economy, s1_context, title_forge,
+│                                campaign, gates, tokens, ledger (849 l.)
+├── tests/test_mark1.py          36 tests (224 l.)
+├── packs/demo.json              pack d'exemple
+├── CDC/                         CDC V1 (déprécié) + CDC V2 (à jour)
+├── OUT/                         ledger.csv (gitignoré)
+└── TRACKING/                    MARK1_LOG.md + MARK1_V1_V2_CHANGES.md
+```
+
+**1 326 lignes de Python, 0 dépendance.**
+
+### Ce que MARK1 fait
+- **S1** — mesure l'auto-suffisance contextuelle d'un titre. Rejette
+  `"Cucumber Key? The Shocking Truth Behind It"` (le titre réellement produit par la forge)
+  pour entité non expliquée.
+- **Titres** — 12 gabarits, 0 LLM. `generate()` ne rend **que** des titres valides : pas de
+  repli qui violerait une porte.
+- **Économie** — `net_per_1k`, `views_needed`, `approval_rate`, `cap_usd_per_clip`, `usd_per_hour`.
+- **Campagnes** — éligibilité CPM / `funded` / budget / plateforme.
+- **Tokens** — `pack_token` (8 hex, par pack) et `clip_token`
+  (`A01-20261115-ae45e408`, par clip, contient le pack_token).
+- **Ledger** — CSV 26 colonnes, idempotent, apparié **par `clip_token`**.
+
+### Portes implémentées (6)
+`G0_PACK` · `A1_ACCOUNT` · `A2_CAMPAIGN` · `S2_DURATION` · **`C2_DISCLOSURE`** · `X1_EXPORT`
+
+`C2_DISCLOSURE` est **nouvelle** : elle applique la règle C2 de `CONTRACTS/clipping_rules.md`
+(`#ad`/`#sponsored` obligatoire dans la caption). Sans elle, MARK1 exportait des clips
+impubliables — rejet Whop + shadowban.
+
+### Sorties réellement mesurées
+```
+$ python mark1.py selftest
+Ran 36 tests in 0.136s
+OK
+
+$ python mark1.py doctor
+[OK] dependances : aucune (stdlib seule, aucun ffmpeg)
+[ absent] (9 clés) ...
+[OK] export_dir               MONDES_FORGES/CLIPPING/EXPORT
+[OK] asset_modes              blur, reframing
+[OK] GLOBAL
+
+$ python mark1.py export packs/demo.json --platform tiktok
+[OK] X1_EXPORT : 2 clip_tokens uniques, mode=blur
+[OK] pack ecrit : EXPORT/production_pack_mark1_DEMO_C1.json
+[OK] ledger : A01-20261115-ae45e408
+[OK] ledger : A02-20261115-ae45e408
+```
+
+### Vocabulaire aligné sur la forge
+- `asset_mode` ∈ {`blur`, `reframing`} — nom réel du terrain
+  (`production_pack_asf_c1.json`, `liber_clipping.json → inputs_warsmith.asset_mode`).
+  Le vocabulaire complet est `split|reframing|ranking|blur`
+  (`F00D_NARRATIVUM/CODEBASE/caviar_director.py:34`) ; MARK1 n'admet que les **deux éprouvés**.
+- `production_pack_mark1_<campagne>.json` dans `EXPORT/` — préfixe `mark1_` pour ne pas
+  collisionner avec les packs `F05_PACKAGER`.
+
+### Two key changes from the first draft (CDC V2)
+Le CDC V2 annonçait `render.style` avec 24 tests et ~820 lignes. L'implémentation réelle :
+`asset_mode`, **36 tests**, **1 326 lignes**. Les écarts sont consignés dans
+`MARK1/TRACKING/MARK1_LOG.md` (§ « Écarts assumés »).
+
+### Invariants vérifiés
+| Invariant | Vérification |
+|---|---|
+| Aucun appel réseau | `grep urllib\|requests\|socket` → 0 |
+| Aucun seuil en dur | tout dans `config/selection.json` |
+| `llm_enabled` jamais lu | `grep llm_enabled` → 0 |
+| Aucune suppression dans la forge | `git status` : seul `MARK1/` est nouveau |
+| Aucun ffmpeg / MP4 | `grep ffmpeg\|ffprobe` → seulement des négations en docstring |
+
+### Documentation
+- `GUIDE_UTILISATION/24_MODE_MARK1.md` — guide opérateur
+- `MARK1/README.md` — doc technique
+- `MARK1/TRACKING/MARK1_LOG.md` — journal + sorties mesurées
+- `MARK1/TRACKING/MARK1_V1_V2_CHANGES.md` — écarts V1 → V2
+- `MARK1/CDC/MARK1_CDC_V2_CLIPPING.html` — CDC complet (V1 en archive, déprécié)
+
+### Ce qui n'a PAS été vérifié
+- **Aucun pack réel de campagne** n'a été exporté : seul `packs/demo.json` a tourné.
+- **S1 n'est pas calibré.** L'hypothèse « `context_dep` bas → portée hors-fans haute » reste
+  **non validée**. Aucune donnée réelle ne l'appuie.
+- **Le taux de frais (10 %) et le délai de règlement sont NON VÉRIFIÉS.**
+
+### Prochain
+Premier pack réel de campagne → consigner le `pack_token` produit dans `MARK1_LOG.md`, et
+tout champ que OMNIS_WATCH déclarera manquant.

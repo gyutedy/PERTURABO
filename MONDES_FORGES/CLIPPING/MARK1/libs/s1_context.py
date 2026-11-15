@@ -1,0 +1,156 @@
+"""libs/s1_context.py -- S1, auto-suffisance contextuelle.
+
+LE PROBLEME QU IL RESOUT
+    Le titre reellement produit par la forge etait
+    "Cucumber Key? The Shocking Truth Behind It". Un spectateur froid ne sait pas
+    ce qu est "Cucumber Key". Le titre n est pas mauvais : il est inintelligible
+    sans le contexte du fan.
+
+CE QU IL MESURE
+    `context_dependency` : la part du titre qui n a de sens que si l on connait
+    deja le sujet. Une entite est "expliquee" si elle est apparue plus haut dans
+    le titre avec une apposition, si elle est le sujet declare, ou si c est un
+    terme universel.
+
+CE QU IL NE FAIT PAS
+    Aucune API, aucun modele, aucune heuristique magique. Un lexique de mots
+    universels, une detection d apposition, et une liste de termes internes
+    declares. C est grossier et c est assume : l hypothese S1 est NON VALIDEE
+    (voir le CDC section 15.2), elle est mesuree, pas supposee.
+
+HYPOTHESE CENTRALE (non validee) : context_dep bas -> portee hors-fans haute.
+"""
+
+from __future__ import annotations
+
+import re
+
+# Mots qui n ont besoin d aucun contexte : un spectateur froid les comprend.
+_UNIVERSAL = frozenset("""
+il elle ils elles on nous vous je tu me moi toi lui leur
+un une des le la les ce cet cette ces mon ma mes ton ta tes son sa ses notre nos
+a ai as avons avez ont avait avaient eu etre ete suis es est sommes etes sont
+fait font faisait faire dit dire va aller vient venir prend prendre mis met mettre
+perdu perd gagne paye vend vendu achete donne trouve
+tout tous toute toutes rien personne quelqu un quelque chose
+jour jours nuit semaine semaines mois an ans annee annees heure heures minute minutes
+seconde secondes fois
+dollar dollars euro euros cent cents million millions milliard milliards
+argent prix cher chere gratuit gratis
+homme femme fille garcon gamin gamine enfant enfants
+pere mere frere soeur ami amie amis famille
+vie mort vivant tue
+nouveau nouvelle vieux vieille jeune grand grande petit petite gros grosse
+premier premiere dernier derniere meilleur pire
+plus moins tres trop peu beaucoup assez encore deja jamais toujours souvent
+avant apres pendant depuis jusqu sans avec pour par dans sur sous entre chez vers
+et ou mais donc car ni or si comme quand parce alors puis
+ne pas
+stop arret arreter commence commencer change changer
+vrai faux vraiment
+reve cauchemar
+seul seule ensemble
+monde terre pays ville maison voiture telephone ordinateur travail ecole
+""".split())
+
+_APPOSITION = re.compile(r"\s*,\s*(?:le|la|les|l|un|une|the)\s+", re.IGNORECASE)
+_CAP_SEQ = re.compile(r"\b[A-Z][\w-]*(?:\s+[A-Z][\w-]*)*")
+_WORD = re.compile(r"[A-Za-z]+")
+
+
+def _universal(token):
+    return token.lower().strip("-") in _UNIVERSAL
+
+
+def _explained_by_apposition(text, entity):
+    """Vrai si l entite est suivie d une virgule puis d un article (apposition).
+
+    "Sophie Rain, la creatrice la plus suivie, a tout arrete" -> expliquee.
+    """
+    idx = text.find(entity)
+    if idx < 0:
+        return False
+    tail = text[idx + len(entity):]
+    return bool(_APPOSITION.match(tail))
+
+
+def _candidate_entities(text):
+    """Sequences capitalisees de 2 caracteres ou plus, hors mots universels.
+
+    Les mots en debut de phrase sont captures aussi : c est voulu. Un titre
+    qui commence par un nom propre inconnu doit etre signale.
+    """
+    found = []
+    for m in _CAP_SEQ.finditer(text):
+        seq = m.group(0).strip()
+        if len(seq) < 2:
+            continue
+        tokens = seq.split()
+        if all(_universal(t) for t in tokens):
+            continue
+        found.append((seq, m.start()))
+    return found
+
+
+def analyse(text, subject="", internal_terms=()):
+    """Analyse un texte (titre ou hook) et rend un dict.
+
+    Cles rendues :
+        verdict                 : "ok" ou "reject"
+        context_dependency      : 0.0 a 1.0, part du texte non universelle
+        unexplained_entities    : entites capitalisees non expliquees
+        internal_terms          : termes internes trouves
+        reasons                 : liste lisible de ce qui a fait rejeter
+        word_count              : nombre de mots
+    """
+    raw = (text or "").strip()
+    reasons = []
+
+    if not raw:
+        return {
+            "verdict": "reject",
+            "context_dependency": 1.0,
+            "unexplained_entities": [],
+            "internal_terms": [],
+            "reasons": ["empty"],
+            "word_count": 0,
+        }
+
+    subject_norm = (subject or "").strip().lower()
+    internals = [t.strip() for t in (internal_terms or ()) if t and t.strip()]
+    words = _WORD.findall(raw)
+    lowered = raw.lower()
+
+    # 1. Termes internes declares -- la seule facon de detecter une private joke.
+    hit_internals = [t for t in internals if t.lower() in lowered]
+    if hit_internals:
+        reasons.append("internal_term")
+
+    # 2. Entites capitalisees non expliquees.
+    unexplained = []
+    for seq, _pos in _candidate_entities(raw):
+        if subject_norm and seq.lower() in subject_norm:
+            continue
+        if _explained_by_apposition(raw, seq):
+            continue
+        if seq not in unexplained:
+            unexplained.append(seq)
+
+    if unexplained:
+        reasons.append("unexplained_entity")
+
+    # 3. Dependance au contexte : part des mots non universels.
+    if words:
+        unknown = sum(1 for w in words if not _universal(w))
+        dep = round(unknown / len(words), 4)
+    else:
+        dep = 0.0
+
+    return {
+        "verdict": "reject" if reasons else "ok",
+        "context_dependency": dep,
+        "unexplained_entities": unexplained,
+        "internal_terms": hit_internals,
+        "reasons": reasons,
+        "word_count": len(words),
+    }

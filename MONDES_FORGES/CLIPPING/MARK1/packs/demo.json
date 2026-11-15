@@ -1,0 +1,39 @@
+{
+  "mode": "mark1",
+  "source": {
+    "vod_url": "https://www.twitch.tv/videos/2873615032",
+    "duration_total_sec": 3600
+  },
+  "asset_mode": "blur",
+  "subject": "Sophie Rain",
+  "internal_terms": ["duel"],
+  "campaign": {
+    "campaign_id": "DEMO_C1",
+    "rate_usd_per_1k": 2.0,
+    "funded": true,
+    "budget_remaining_usd": 500,
+    "platforms": ["tiktok", "youtube_shorts"],
+    "cap_usd_per_clip": 200
+  },
+  "account": {
+    "handle": "@mark1_demo",
+    "warmup_days": 21,
+    "banned": false
+  },
+  "assets": [
+    {
+      "id": "A01",
+      "start_sec": 897,
+      "end_sec": 927,
+      "title": "Il a tout perdu en une nuit",
+      "caption": "Il a tout perdu en une nuit #ad"
+    },
+    {
+      "id": "A02",
+      "start_sec": 1200,
+      "end_sec": 1240,
+      "title": "La verite est sortie trois jours apres",
+      "caption": "La verite est sortie trois jours apres #sponsored"
+    }
+  ]
+}

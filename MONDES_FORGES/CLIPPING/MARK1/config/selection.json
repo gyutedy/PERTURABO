@@ -1,0 +1,36 @@
+{
+  "_comment": "MARK1 — source unique des seuils. Aucun seuil n'est ecrit en dur dans le Python : ce fichier est le seul endroit ou l'on change un comportement.",
+
+  "title_max_words": 8,
+  "title_min_words": 4,
+  "title_max_chars": 60,
+  "cta_stoplist": [
+    "abonne", "abonne-toi", "abonnez-vous", "subscribe", "suis-moi", "follow me",
+    "like", "like et partage", "partage", "share", "swipe up", "lien en bio",
+    "link in bio", "commente", "comment below", "tag a friend", "act now"
+  ],
+  "allowed_question_mark": false,
+
+  "min_segment_sec": 8,
+  "max_segment_sec": 90,
+
+  "allowed_asset_modes": ["blur", "reframing"],
+  "default_asset_mode": "blur",
+
+  "min_cpm_usd_per_1k": 1.5,
+  "platform_fee_pct": 0.10,
+  "default_approval_rate": 1.0,
+  "default_cap_usd_per_clip": 200,
+
+  "min_warmup_days": 7,
+
+  "disclosure_tags": ["#ad", "#sponsored"],
+  "require_disclosure": true,
+
+  "export_dir": "../EXPORT",
+  "export_prefix": "production_pack_mark1_",
+  "ledger_path": "OUT/ledger.csv",
+
+  "internal_terms_min_chars": 3,
+  "s1_max_unexplained_entities": 0
+}

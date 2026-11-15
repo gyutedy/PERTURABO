@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MARK1 — Cahier des charges V1 — Monde-forge CLIPPING</title>
+<style>
+:root{--ink:#1a1a1a;--blood:#7a1f2b;--line:#c9b8ba;--bg:#fafafa;--ok:#1c6b3a;--warn:#8a5a00;--bad:#8a1c1c;--code:#141414}
+*{box-sizing:border-box}
+body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.62}
+.page{max-width:1000px;margin:0 auto;background:#fff;padding:60px 72px;box-shadow:0 0 24px rgba(0,0,0,.09)}
+h1{font-size:32px;border-bottom:3px solid var(--blood);padding-bottom:12px;color:var(--blood);margin:0 0 6px}
+.sub{color:#666;font-size:14px;margin-bottom:8px;letter-spacing:.3px}
+.nav{font-family:Consolas,'Courier New',monospace;font-size:12px;background:#f2ecec;border:1px solid var(--line);padding:6px 10px;display:inline-block;margin-bottom:30px}
+h2{font-size:22px;color:var(--blood);margin-top:46px;border-left:5px solid var(--blood);padding-left:13px;page-break-after:avoid}
+h3{font-size:17px;color:#333;margin-top:28px;page-break-after:avoid}
+h4{font-size:15px;color:var(--blood);margin:22px 0 6px}
+p{margin:10px 0}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--blood);color:#fff;font-weight:600;font-size:12.5px;letter-spacing:.2px}
+tr:nth-child(even) td{background:#faf7f7}
+code{font-family:Consolas,'Courier New',monospace;font-size:12.5px;background:#f2ecec;padding:1px 4px;border-radius:2px}
+pre{background:var(--code);color:#dcdcdc;padding:14px 16px;overflow-x:auto;font-family:Consolas,'Courier New',monospace;font-size:12.2px;line-height:1.5;border-radius:3px;margin:12px 0;white-space:pre}
+pre .fn{display:block;color:#e8b44a;font-family:Consolas,monospace;font-size:11.5px;letter-spacing:.4px;border-bottom:1px solid #3a3a3a;padding-bottom:6px;margin-bottom:10px;text-transform:none}
+pre.out{background:#0d1a12;color:#bfe3cb}
+pre.out .fn{color:#8fd6a5;border-bottom-color:#204a30}
+.tag{font-family:Consolas,monospace;font-size:10.5px;padding:1px 6px;border-radius:2px;white-space:nowrap;font-weight:600;letter-spacing:.3px}
+.v{background:#dff0e4;color:var(--ok);border:1px solid #a9d3b7}
+.d{background:#fdf1d8;color:var(--warn);border:1px solid #e2c68a}
+.nv{background:#fbe4e4;color:var(--bad);border:1px solid #e0a8a8}
+.rf{background:#3b1010;color:#fff;border:1px solid #3b1010}
+.okbox{background:#f0f7f2;border-left:5px solid var(--ok);padding:12px 16px;margin:18px 0;font-size:14px}
+.warn{background:#fdf6e7;border-left:5px solid var(--warn);padding:12px 16px;margin:18px 0;font-size:14px}
+.stop{background:#fbeeee;border-left:5px solid var(--bad);padding:12px 16px;margin:18px 0;font-size:14px}
+.kv{display:grid;grid-template-columns:210px 1fr;gap:2px 14px;font-size:13.5px;margin:14px 0;border:1px solid var(--line);padding:12px 14px;background:#fcfafa}
+.kv b{color:var(--blood)}
+ul,ol{margin:10px 0;padding-left:24px}
+li{margin:5px 0}
+.small{font-size:12.5px;color:#555}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+.foot{margin-top:44px;border-top:3px solid var(--blood);padding-top:14px;font-size:12.5px;color:#555}
+.toc{columns:2;font-size:13.5px;border:1px solid var(--line);padding:14px 20px;background:#fcfafa}
+.toc a{color:var(--blood);text-decoration:none}
+@media print{body{background:#fff}.page{box-shadow:none;padding:0}pre{page-break-inside:avoid}}
+</style></head><body><div class="page">
+
+<h1>MARK1 — Cahier des charges V2</h1>
+<div class="sub">Référence unique : <b>monde-forge CLIPPING</b> · dépôt <code>gyutedy/PERTURABO</code>, branche <code>pari-forge-perturabo-xs4c</code>, dossier <code>MONDES_FORGES/CLIPPING</code> · <b>Version 2</b> · 2026-11-15</div>
+<div class="sub"><i>« Le Mark 1 qui sort de la grotte. »</i> — un moteur déterministe, zéro dépendance, qui produit un <b>pack de production court et livrable</b>, refuse les mauvais candidats, et mesure son propre revenu.</div>
+<div class="nav">NAVIGATION = ON · document V2 · <b>remplace V1</b> · portée : CLIPPING seulement</div>
+
+<div class="stop"><b>V2 — ce qui change par rapport à V1, en une ligne.</b>
+MARK1 <b>ne produit plus de MP4</b>. Il produit un <b>pack JSON livrable</b> dans <code>EXPORT/</code> et le consommateur externe rend la vidéo. Motif : <b>PERTURABO/CLIPPING ne touche jamais une vidéo</b> (doctrine du <code>README.md</code> de la forge, citée au §1 constat n°9). MARK1 reste une frégate de CLIPPING : même isolée, elle respecte les règles globales du monde — étanche, elle ne communique que par JSON.
+<br><br>Le détail complet des changements, avec motif et condition de renversement, est dans <code>MARK1/TRACKING/MARK1_V1_V2_CHANGES.md</code>. Il est <b>destiné aux agents de codage qui connaissent déjà le V1</b> : ils doivent le lire avant d'implémenter le V2. Le V1 (<code>MARK1_CDC_V1_CLIPPING.html</code>) est conservé comme archive et <b>ne doit plus être implémenté</b>.</div>
+
+<h2 id="s0">0. À lire en premier (pour l'agent de codage)</h2>
+
+<div class="okbox"><b>Auto-suffisance — définition exacte, valable pour ce document uniquement.</b><br>
+« Ce document est auto-suffisant » signifie une seule chose : <b>ce fichier HTML, à lui seul, contient tout ce dont un agent de codage a besoin pour copier le code, l'exécuter, le tester et le mettre à jour</b> — sans relire un chat, sans ouvrir un autre cahier des charges, sans demander une information manquante. Le code est complet, l'arborescence est complète, les tests sont complets, les sorties attendues sont réelles, la procédure de mise à jour est écrite (§16).
+<br><br>L'auto-suffisance <b>ne dit rien du monde-forge lui-même</b> et ne concerne <b>aucun autre monde-forge</b>. Elle ne signifie pas que CLIPPING peut fonctionner sans ffmpeg, sans VOD ni sans campagne : elle signifie que ce document ne renvoie à rien d'extérieur.</div>
+
+<div class="stop"><b>Périmètre — verrouillé.</b> Ce cahier des charges ne traite que <b>le monde-forge CLIPPING</b>. Il ne modifie, ne réduit, ne « remet en V1 » <b>aucun autre monde-forge</b>, et ne contient aucune proposition en ce sens. Un autre monde-forge déjà en V3 le reste : il n'est ni un livrable, ni une cible d'édition, ni une dépendance de ce document. Si un contenu d'un autre monde apparaît ici, c'est une erreur de périmètre, pas une décision.</div>
+
+<div class="kv">
+<b>Ce que tu dois produire</b><span>Le dossier <code>MARK1/</code> décrit au §7, à côté du code existant de <code>MONDES_FORGES/CLIPPING</code>. Douze fichiers Python (11 modules + CLI), un dossier de tests, un dossier de sortie.</span>
+<b>Ce que tu ne dois pas faire</b><span>Ne rien supprimer dans <code>MONDES_FORGES/CLIPPING</code>. Ne pas « améliorer » l'architecture. Ne pas coder le V2+ (§13). Ne pas appeler de LLM. <b>Ne jamais produire de MP4</b> — c'est une hérésie dans ce monde-forge.</span>
+<b>Ce que tu dois vérifier</b><span><code>python3 -m unittest discover -s tests -v</code> → <code>Ran 24 tests</code> · <code>OK</code>. Puis un pack réel validé par <code>X1_EXPORT</code> et écrit dans <code>EXPORT/</code> (§10).</span>
+<b>Si un bloc ne s'exécute pas</b><span>Tu ne réécris pas. Tu écris l'erreur exacte dans <code>MARK1/TRACKING/MARK1_LOG.md</code> et tu t'arrêtes à la porte fautive.</span>
+<b>Dépendances externes</b><span>Python 3.10+ (syntaxe <code>str | None</code>). <b>Rien d'autre. Aucun <code>pip install</code>. Aucun <code>ffmpeg</code>.</b></span>
+<b>LLM</b><span><code>llm_enabled</code> vaut <code>false</code> dans <code>config/selection.json</code> et <b>rien</b> dans le code ne l'appelle.</span>
+<b>Statut de la livraison</b><span>Le code du §8 n'a <b>pas encore été exécuté</b> en V2 : il est fourni complet, et les sorties du §9/§10 sont marquées <span class="tag d">ATTENDU</span> jusqu'à la première exécution. Le §16.2 impose de les remplacer par les sorties réelles dès que <code>selftest</code> a tourné. Les sorties réelles du V1 restent lisibles au §15 pour comparaison.</span>
+<b>Conformité à la doctrine CLIPPING</b><span>MARK1 remet son pack à <code>EXPORT/</code>. Il ne coupe, ne cadre, ne rend aucune vidéo. Le rendu appartient au consommateur externe (générique — non nommé ici).</span>
+</div>
+
+<h3>0.1 Ce que contient ce document</h3>
+<div class="toc">
+<a href="#s1">1. Diagnostic — ce que la lecture du code a montré</a><br>
+<a href="#s2">2. Décision d'architecture — ce qui sort, ce qui naît</a><br>
+<a href="#s3">3. Doctrine héritée, et ce qu'elle devient</a><br>
+<a href="#s4">4. Périmètre V1 — la liste fermée</a><br>
+<a href="#s5">5. Le pack MARK1 — contrat d'entrée</a><br>
+<a href="#s6">6. Les portes</a><br>
+<a href="#s7">7. Arborescence — 12 fichiers, ~820 lignes</a><br>
+<a href="#s8">8. Le code complet</a><br>
+<a href="#s9">9. Tests — et le résultat</a><br>
+<a href="#s10">10. Le pack, vérifié</a><br>
+<a href="#s11">11. Ordre de travail — 3 jours</a><br>
+<a href="#s12">12. Definition of Done + budget</a><br>
+<a href="#s13">13. V2+ — ce qui est reporté, et à quelle condition</a><br>
+<a href="#s14">14. Journal des décisions</a><br>
+<a href="#s15">15. Provenance et statut de vérification</a><br>
+<a href="#s16">16. Mise à jour de ce document</a><br>
+<a href="#s17">17. L'outil de statistiques — contrat d'interface</a>
+</div>
+
+<h3>0.2 Les quatre étiquettes utilisées dans tout le document</h3>
+<p class="small">Chaque affirmation factuelle porte une étiquette. Aucun chiffre n'est cité sans son étiquette, sa source et, quand il y en a une, sa preuve lisible dans le dépôt (fichier + ligne).</p>
+<table>
+<tr><th style="width:130px">Étiquette</th><th>Signification exacte</th></tr>
+<tr><td><span class="tag v">VÉRIFIÉ</span></td><td>Lu dans la source indiquée pendant la rédaction de ce document, ou recopié d'une sortie de commande réellement exécutée. Preuve fournie (fichier:ligne, ou sortie brute).</td></tr>
+<tr><td><span class="tag d">DÉDUIT</span></td><td>Calculé ici à partir d'entrées vérifiées. Le calcul est montré et il est reproductible par un test du §9.</td></tr>
+<tr><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Plausible, non confirmé dans cette session. <b>Jamais utilisé comme fondement d'une décision</b> : le document dit ce qui manque pour trancher et où le trouver.</td></tr>
+<tr><td><span class="tag rf">RÉFUTÉ</span></td><td>Contredit par une source ouverte. La contradiction est citée.</td></tr>
+</table>
+
+<h2 id="s1">1. Diagnostic — ce que la lecture du code existant a montré</h2>
+
+<p>Avant d'écrire une ligne, <code>MONDES_FORGES/CLIPPING</code> a été cloné sur sa branche exacte (<code>pari-forge-perturabo-xs4c</code>) et lu. Mesures de taille d'abord, pour situer :</p>
+
+<table>
+<tr><th style="width:290px">Mesure</th><th style="width:110px">Valeur</th><th>Comment elle a été obtenue</th></tr>
+<tr><td>Fichiers dans <code>MONDES_FORGES/CLIPPING</code></td><td><b>796</b></td><td><code>find . -type f | wc -l</code> <span class="tag v">VÉRIFIÉ</span></td></tr>
+<tr><td>dont hors <code>ARCHIVUM/</code> (base de connaissances)</td><td><b>404</b></td><td><code>find . -type f -not -path "./ARCHIVUM/*" | wc -l</code> <span class="tag v">VÉRIFIÉ</span></td></tr>
+<tr><td>Fichiers <code>.py</code> hors ARCHIVUM</td><td><b>104</b></td><td><code>find . -name "*.py" -not -path "./ARCHIVUM/*" | wc -l</code> <span class="tag v">VÉRIFIÉ</span></td></tr>
+<tr><td>Lignes de <code>.py</code> hors ARCHIVUM</td><td><b>23 127</b></td><td><code>find . -name "*.py" ... -exec cat {} + | wc -l</code> <span class="tag v">VÉRIFIÉ</span></td></tr>
+<tr><td>Sections du pack produites par la forge</td><td><b>10 sections / 206 clés</b></td><td><code>EXPORT/production_pack_pur_v2901790628_A01.json</code>, comptage récursif des clés <span class="tag v">VÉRIFIÉ</span></td></tr>
+</table>
+
+<h3>1.1 Les onze constats, chacun avec sa preuve</h3>
+<p>Tous portent sur <b>CLIPPING uniquement</b>. Aucun ne concerne un autre monde-forge. Chaque ligne est vérifiable en ouvrant le fichier cité à la ligne citée.</p>
+
+<table>
+<tr><th style="width:25%">Constat</th><th style="width:31%">Preuve (fichier : ligne)</th><th style="width:95px">Étiquette</th><th style="width:24%">Conséquence</th></tr>
+
+<tr>
+<td><b>Une opinion de LLM pèse 50 % du verdict final.</b> Sans clé API, le score du LLM vaut exactement <code>5.0</code> : la moitié du classement devient une constante, et tout le classement s'écrase sur l'intensité du chat.</td>
+<td><code>F00B_VOX/CODEBASE/libs/vox_premium.py:109</code> → <code>combo = 0.5 * intens * 10 + 0.5 * r["score"]</code><br>repli <code>5.0</code> aux lignes <code>60</code>, <code>70</code>, <code>77-79</code></td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Le classement final n'est pas mesurable. C'est le défaut principal.</td>
+</tr>
+
+<tr>
+<td><b>Le capteur d'émotion est mort.</b> <code>emotion_scores</code> est calculé, puis <b>seulement journalisé</b> : il n'est jamais retourné à l'appelant. Les trois familles d'emotes sont déclarées puis jetées.</td>
+<td><code>libs/auto_detector.py:469-474</code> (<code>emotion_scores[emo] = count</code> puis <code>_log(...)</code>) et <code>:65-69</code> (<code>_EMOTION_EMOTES</code>)</td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Le critère <code>emotion</code>, de poids <b>0,25</b>, mesure en réalité le volume de chat, pas l'émotion.</td>
+</tr>
+
+<tr>
+<td><b>Trois mots sont dupliqués dans la liste de déclencheurs.</b> 31 entrées, <b>28 distinctes</b> : <code>huge</code>, <code>impossible</code>, <code>vraiment</code> apparaissent deux fois.</td>
+<td><code>libs/auto_detector.py:51-57</code> ; comptage : 31 entrées / 28 distinctes<br>effet : <code>:591</code> <code>hook_score = min(10, 4.0 + hook_hits * 2.5 + …)</code> ; poids <code>:560</code> <code>"hook_force": 0.30</code></td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Un mot peut compter deux fois : +2,5 sur un score de poids 0,30. Le critère le plus lourd est biaisé par des doublons lexicaux.</td>
+</tr>
+
+<tr>
+<td><b>Deux seuils de rejet contradictoires, aucun dans un fichier de configuration.</b> Le même candidat est accepté par un chemin et rejeté par l'autre.</td>
+<td><code>libs/auto_detector.py:687</code> → <code>if final &lt; 4.0</code><br><code>f00b_vox.py:525</code> → <code>if s["final_score"] &lt; 6.0</code></td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Aucun seuil n'est auditable de l'extérieur. MARK1 en met un seul, dans <code>config/selection.json</code>.</td>
+</tr>
+
+<tr>
+<td><b><code>os</code> n'est jamais importé dans le capteur audio.</b> Le module n'importe que <code>subprocess</code>, puis appelle <code>os.path.exists</code> : le chemin nominal lève <code>NameError</code>.</td>
+<td><code>libs/audio_sensor.py:14</code> (<code>import subprocess</code>) puis <code>:26</code> (<code>os.path.exists(audio_path)</code>)</td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Les features rire / applaudissement sont soit absentes, soit plantées. Jamais fonctionnelles.</td>
+</tr>
+
+<tr>
+<td><b>Le seul capteur « audience froide » n'existe pas.</b> Le label du capteur de chaleur est le nombre de vues des clips déjà créés par les fans : c'est un écho de fan, architecturalement incapable de mesurer l'appel à un non-fan.</td>
+<td><code>libs/clips_heatmap.py</code>, docstring :12-18 (<code>« La communauté a déjà voté … vues cumulées → preuve de performance »</code>)</td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>C'est le maillon qui manque, et c'est précisément ce que MARK1 ajoute (S1, §8.2).</td>
+</tr>
+
+<tr>
+<td><b>La doctrine interdit les fadeouts, mais aucun module CLIPPING ne la contrôle.</b> Le contrat est un texte ; rien ne le lit comme une porte.</td>
+<td><code>CONTRACTS/clipping_rules.md:90</code> → <code>« ❌ … fadeouts / silences &gt; 3s »</code><br>lecteurs du fichier : <code>F06_TRACKER/CODEBASE/tracker.py:53-54</code> et <code>F04_COPYWRITER/CODEBASE/libs/context_builder.py:9</code> — jamais en tant que porte</td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Un clip peut violer la doctrine sans qu'aucune porte ne le voie.</td>
+</tr>
+
+<tr>
+<td><b>Le prompt qui doit produire les titres est généré par un LLM, puis figé.</b> Et le document de doctrine qui devrait le contraindre est resté un squelette : <b>6</b> marqueurs « À REMPLIR PAR LE WARSMITH ».</td>
+<td><code>F04_COPYWRITER/CODEBASE/copywriter.py:507</code> (<code>cmd_init_systemprompt</code>), appelé <code>:1466</code><br><code>CONTRACTS/copywriting_doctrine.md:18,32,45,58,72,85</code></td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Boucle auto-référentielle : le titre réellement produit dépend du contexte du jour.</td>
+</tr>
+
+<tr>
+<td><b>Le titre réellement produit est illisible pour un non-fan.</b> Exemple sorti de la chaîne complète : <code>"Cucumber Key? The Shocking Truth Behind It"</code>. « Cucumber Key » est une référence interne : un spectateur froid n'a aucune prise dessus. Et il finit par un point d'interrogation.</td>
+<td><code>EXPORT/production_pack_pur_v2901790628_A01.json</code> → champ <code>overlay_title</code></td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Le nom propre non expliqué est le tueur de portée hors-fans. D'où S1 (rejet dur, pas un score).</td>
+</tr>
+
+<tr>
+<td><b>Le pack a grossi : 10 sections, 206 clés imbriquées.</b> Et — c'est écrit noir sur blanc dans le README de la forge — <b>CLIPPING ne touche jamais une vidéo</b> : il décide quoi clipper, sous quel angle, avec quel texte, et livre le pack à un consommateur extérieur.</td>
+<td>Mesure : 206 clés (comptage récursif)<br><code>MONDES_FORGES/CLIPPING/README.md</code> → <i>« Le forge CLIPPING ne touche jamais une vidéo. Il décide quoi clipper, sous quel angle, avec quel texte — et livre à OMNIS_WATCH un production_pack.json prêt à consommer. »</i></td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>Côté CLIPPING, <b>aucun</b> de ces 206 champs n'a de lecteur : le lecteur est ailleurs. Un pack d'entrée de porte doit être lisible par la porte, donc court.</td>
+</tr>
+
+<tr>
+<td><b>Les contrats de la forge sont courts, mais non exécutables.</b> Un contrat de 109 lignes de prose ne rejette rien tout seul.</td>
+<td><code>CONTRACTS/clipping_rules.md</code> 109 lignes · <code>CONTRACTS/whop_rules.md</code> 70 lignes · <code>CONTRACTS/production_pack_schema.json</code> 185 lignes</td>
+<td><span class="tag v">VÉRIFIÉ</span></td>
+<td>MARK1 transforme le contrat en fonctions : un seuil = une valeur dans la config, une règle = une fonction qui rend <code>(ok, code, message)</code>.</td>
+</tr>
+</table>
+
+<div class="warn"><b>Conclusion du diagnostic.</b> Côté CLIPPING, le cerveau n'est pas vide : il est <b>bruyant</b>. Le scoring est déjà déterministe à 85 %, mais une opinion non mesurable pèse la moitié du verdict, un capteur sur cinq est mort, et le seul critère qui compte pour sortir de l'audience fan — « un non-fan comprend-il ce clip ? » — n'existe nulle part. MARK1 ne répare pas les vingt-trois mille lignes : il ajoute le capteur manquant et retire l'opinion, dans un dossier autonome, à côté.</div>
+
+<h2 id="s2">2. Décision d'architecture — ce qui sort du chemin, ce qui naît</h2>
+
+<p>MARK1 n'est pas une réécriture de la forge. C'est un <b>dossier autonome</b> ajouté à côté du code existant, qui n'en supprime aucune ligne et n'en modifie aucune. La règle appliquée est unique : <b>une ligne de code n'entre que si elle sert l'une des trois fonctions du §4</b>.</p>
+
+<div class="stop"><b>Invariant de nature — non négociable.</b> MARK1 est une frégate du monde-forge CLIPPING. Même isolée, elle respecte les règles globales du monde : <b>étanche</b> (elle ne communique que par JSON), et <b>sans contact avec la vidéo</b>. <b>Aucun fichier de MARK1 n'appelle ffmpeg, n'ouvre un conteneur vidéo, ne coupe, ne cadre, ne réencode.</b> C'est la doctrine écrite du <code>README.md</code> de la forge, citée au §1 constat n°9. Produire un MP4 est une <b>hérésie</b> dans ce monde : le rendu appartient à un consommateur externe, qui lit le pack et rend la vidéo de son côté.</div>
+
+<h3>2.1 Ce qui sort du chemin critique — et pourquoi c'est un gaspillage mesuré, pas un avis</h3>
+<table>
+<tr><th style="width:22%">Élément</th><th style="width:33%">Coût réel constaté</th><th style="width:22%">Preuve</th><th>Décision MARK1</th></tr>
+<tr><td><b>Le score LLM dans le verdict de sélection</b></td><td>Une clé API, un timeout réseau, des reprises, et une dégradation silencieuse à <code>5.0</code> qui fausse la moitié du classement</td><td><code>vox_premium.py:109</code> <span class="tag v">VÉRIFIÉ</span></td><td><b>Sorti du chemin.</b> <code>llm_enabled: false</code>. Le titre se génère par gabarits (§8.3). Aucun appel réseau dans MARK1.</td></tr>
+<tr><td><b>Le second seuil de rejet (6,0)</b></td><td>Deux vérités pour un même candidat selon le chemin d'appel ; impossible de dire lequel a raison sans lire deux fichiers</td><td><code>f00b_vox.py:525</code> vs <code>auto_detector.py:687</code> <span class="tag v">VÉRIFIÉ</span></td><td><b>Un seul seuil</b>, dans <code>config/selection.json</code>, lu par toutes les portes.</td></tr>
+<tr><td><b>Le capteur d'émotion mort (poids 0,25)</b></td><td>3 familles d'emotes déclarées, 0 signal retourné : le critère le plus lourd après le hook mesure du volume</td><td><code>auto_detector.py:469-474</code> <span class="tag v">VÉRIFIÉ</span></td><td><b>Remplacé, pas réparé.</b> Réparer un critère non validé coûte un jour ; S1 coûte 80 lignes et se teste.</td></tr>
+<tr><td><b><code>clips_heatmap</code> comme label d'audience</b></td><td>Le label est produit par les fans : il mesure l'enthousiasme fan, pas l'appel au non-fan</td><td><code>clips_heatmap.py</code> docstring <span class="tag v">VÉRIFIÉ</span></td><td><b>Conservé comme entrée de contexte</b> (il est bon pour trouver les moments), <b>jamais comme label de sortie</b>.</td></tr>
+<tr><td><b>Le pack à 206 clés comme entrée de porte</b></td><td>Une porte qui doit lire 206 clés pour dire oui ou non ne se teste pas ; et 0 de ces clés n'a de lecteur côté CLIPPING</td><td>mesure + README <span class="tag v">VÉRIFIÉ</span></td><td><b>Le pack d'entrée MARK1 est court</b> (§5) : 8 sections, un champ = un lecteur.</td></tr>
+<tr><td><b>Les 23 127 lignes existantes</b></td><td>Elles fonctionnent pour ce qu'elles font. Les toucher, c'est risquer la forge entière pour un clip.</td><td>mesure <span class="tag v">VÉRIFIÉ</span></td><td><b>Zéro suppression, zéro réécriture.</b> MARK1 vit dans <code>MARK1/</code>, à côté.</td></tr>
+<tr><td><b>Le rendu vidéo (ffmpeg, .ass, 9:16)</b></td><td>La doctrine du monde interdit à CLIPPING de toucher une vidéo. Un moteur de rendu dans la forge, même isolé, crée une exception qui finit par être invoquée.</td><td>README de la forge, cité §1 constat n°9 <span class="tag v">VÉRIFIÉ</span></td><td><b>Sorti du périmètre.</b> MARK1 écrit un pack JSON livrable. Le consommateur externe rend la vidéo. Le style (<code>blur</code> / <code>reframing</code>) est transmis dans le pack, pas exécuté.</td></tr>
+</table>
+
+<h3>2.2 Ce qui naît — les deux pièces que CLIPPING n'avait pas</h3>
+<table>
+<tr><th style="width:20%">Nouveau</th><th style="width:22%">Fichier</th><th>Ce que ça répond</th><th style="width:27%">Pourquoi c'est le cœur</th></tr>
+<tr>
+<td><b>S1 — auto-suffisance contextuelle</b></td>
+<td><code>libs/s1_context.py</code> (80 lignes)</td>
+<td>« Un spectateur qui n'a jamais entendu parler de cette personne comprend-il ce clip ? »</td>
+<td>C'est le seul critère qui fait sortir de l'audience fan. Aucune source publiée ne le valide : il est donc <b>mesuré et rejetant</b>, pas supposé. Preuve : le test <code>test_bad_title_is_rejected</code> (§9).</td>
+</tr>
+<tr>
+<td><b>Économie du clip</b></td>
+<td><code>libs/economy.py</code> (39 lignes)</td>
+<td>Vues nécessaires pour 500 $ nets · $ net par heure · plafond par clip · effet du taux d'approbation</td>
+<td>C'est le <b>prix</b> que CLIPPING n'avait pas. Sans prix, aucun classement n'est falsifiable : « bon clip » devient une opinion de plus.</td>
+</tr>
+<tr>
+<td><b>Ledger</b></td>
+<td><code>libs/ledger.py</code> (58 lignes)</td>
+<td>25 colonnes, écriture idempotente, mise à jour par <code>clip_token</code></td>
+<td>Sans table de mesure, ni le moteur ni un LLM ne sont évaluables. C'est la seule source de vérité du §12. Le <code>clip_token</code> est la clé stable qui permet au futur outil de statistiques d'apparier un lien publié à sa ligne.</td>
+</tr>
+<tr>
+<td><b>Tokens — identité du clip</b></td>
+<td><code>libs/tokens.py</code> (46 lignes)</td>
+<td><code>pack_token</code> = hash du pack · <code>clip_token</code> = <code>&lt;asset_id&gt;-&lt;date_export&gt;-&lt;pack_token&gt;</code></td>
+<td>Un pack porte plusieurs clips : il faut une identité <b>par clip</b>, dérivable et traçable. Le <code>clip_token</code> contient le <code>pack_token</code>, donc on remonte du clip au pack entier sans table de correspondance.</td>
+</tr>
+<tr>
+<td><b>Portes</b></td>
+<td><code>libs/gates.py</code> (70 lignes)</td>
+<td>Chaque règle = une fonction = <code>(ok, code, message)</code></td>
+<td>Une doctrine non exécutable ne rejette rien : constat n°7 du §1.</td>
+</tr>
+</table>
+
+<h2 id="s3">3. Doctrine héritée, et ce qu'elle devient</h2>
+
+<h3>3.1 « Herbert Simon » — rationalité limitée</h3>
+<p>Le concept est réel : Herbert Simon, prix Nobel d'économie 1978. Au-delà d'un certain point, réfléchir davantage ne réduit plus l'incertitude ; les réponses restantes sont dans le monde réel. <span class="tag d">DÉDUIT</span> — le nom, le prix et l'année sont des faits biographiques contrôlables ; la formulation « au-delà d'un point, réfléchir ne paie plus » est la lecture standard de <i>Models of Man</i> (1957), pas une citation littérale. <span class="tag nv">NON VÉRIFIÉ</span> sur le texte exact de 1957, non ouvert dans cette session.</p>
+<p><b>Règle MARK1 n°1 :</b> aucun module ne consomme plus d'un jour de travail avant qu'un clip ne soit publié. C'est cette règle qui justifie les six sorties du §2.1.</p>
+
+<h3>3.2 « Iron Man » — les cinq niveaux</h3>
+<table>
+<tr><th style="width:34%">Niveau</th><th>Traduction MARK1</th><th style="width:110px">État</th></tr>
+<tr><td>1. Le caveau — inventorier ce qu'on a</td><td>Inventaire du code existant (§1). On ne recode que ce qui manque.</td><td><b>FAIT</b></td></tr>
+<tr><td>2. L'arche — la réserve</td><td>La première soumission de clip <b>payée</b> sur une campagne financée. Pas un abonné : un versement.</td><td>APRÈS J3</td></tr>
+<tr><td>3. Le Mark 1 — le prototype qui fonctionne</td><td>Ce moteur : ~620 lignes de moteur, 0 dépendance, <b>un pack livrable en une commande</b>.</td><td><b>CE DOCUMENT</b></td></tr>
+<tr><td>4. Protocole d'upgrade — une contrainte, un correctif</td><td>Après 10 clips publiés : un seul changement tous les 15 jours, mesuré dans le ledger.</td><td>V2+</td></tr>
+<tr><td>5. Jarvis — le système tourne sans toi</td><td>Le ledger + les portes + l'outil de statistiques. Mais <b>il ne publie pas tout seul</b> en V2, et c'est volontaire.</td><td>V2+</td></tr>
+</table>
+
+<h2 id="s4">4. Périmètre V2 — la liste fermée</h2>
+
+<p>Exactement <b>trois</b> fonctions. Toute ligne de code qui ne sert pas l'une des trois n'entre pas dans le dossier.</p>
+
+<table>
+<tr><th style="width:28px">#</th><th style="width:16%">Fonction</th><th>Ce qu'elle fait exactement</th><th style="width:20%">Porte qui la juge</th></tr>
+<tr><td><b>1</b></td><td><b>Filtrer</b></td><td>S1 (contexte), gabarits de titre, TOS, CTA, durée, campagne, warmup. Chaque règle est une fonction qui rend <code>(ok, code, message)</code>. Une porte refuse ou laisse passer — elle ne rend jamais un score.</td><td><code>G0_PACK · A1 · A2 · V2_CONTEXT · T1_TITLE · S2_DURATION</code></td></tr>
+<tr><td><b>2</b></td><td><b>Titrer</b></td><td>Douze gabarits déterministes produisent les titres <b>déjà valides</b> ; le validateur rejette trop long, trop court, CTA, TOS, point d'interrogation, absence d'enjeu, dépendance au contexte. <b>Zéro LLM</b>. Jamais de repli sur un candidat invalide.</td><td><code>T1_TITLE</code></td></tr>
+<tr><td><b>3</b></td><td><b>Exporter + mesurer</b></td><td>Écrit le <b>pack livrable</b> dans <code>EXPORT/</code> avec son <code>pack_token</code> et un <code>clip_token</code> par asset ; écrit une ligne de ledger par clip (idempotente sur <code>clip_token</code>) ; calcule le prix (<code>net_per_1k</code>, <code>views_needed</code>, <code>usd_per_hour</code>).</td><td><code>X1_EXPORT · R2_LEDGER</code></td></tr>
+</table>
+
+<div class="warn"><b>Ce que la V2 retire à la V1 : trois fonctions et deux fichiers.</b> Les fonctions « Couper », « Cadrer en 9:16 » et « Titrer + sous-titrer au rendu » ne sont pas « reportées » : elles <b>sortent du monde CLIPPING</b>. Les fichiers <code>libs/render.py</code> et <code>libs/ass_builder.py</code> <b>n'existent pas</b> en V2. Le style de cadrage devient un <b>champ de sortie du pack</b> (<code>render.style</code>, valeurs <code>blur</code> / <code>reframing</code>), lu par le consommateur. Vocabulaire aligné sur la forge : <code>EXPORT/production_pack_asf_c1.json</code> porte déjà <code>"style": "blur"</code>, et <code>F00D_NARRATIVUM/CODEBASE/caviar_director.py:326</code> déclare <code>{"style": "reframing"}</code> <span class="tag v">VÉRIFIÉ</span>.</div>
+
+<div class="stop"><b>Hors périmètre V2 — interdit de coder, même « parce que ce serait rapide » :</b> <b>rendu vidéo (ffmpeg, .ass, sous-titres incrustés, 9:16)</b>, b-roll, flash blanc, SFX, jump cuts, punch-in, zoom sous toute forme, glow, segmentation de personne, LUT et profils de couleur, watermark, musique, preview UI, Remotion, Node, npm, upload automatique, publication multi-comptes, appel LLM dans le chemin critique, second réencodage.<br>
+Le rendu en tête de liste n'est pas un oubli du V1 : c'est la correction principale de la V2. Non par mépris : <b>par doctrine et par mesure</b>. Aucune source ouverte ne montre que ces éléments déplacent les signaux de classement déclarés par les plateformes (§15).</div>
+
+<h2 id="s5">5. Le pack MARK1 — contrat d'entrée</h2>
+
+<p>Le pack existant fait 10 sections et 206 clés. Il est remplacé, <b>pour l'entrée de MARK1 uniquement</b>, par le contrat ci-dessous. Règle : <b>un champ = un lecteur</b>. La porte <code>G0_PACK</code> refuse tout pack non conforme, et c'est la seule fonction qui le lit.</p>
+
+<pre class="code"><span class="fn">packs/mark1_pack.example.json — le contrat d'entrée V2, tel qu'il est sur le disque</span>{
+  "mode": "mark1",
+  "source": { "vod_url": "https://www.twitch.tv/videos/XXXXX", "platform": "twitch" },
+  "render": { "style": "blur" },
+  "subject": "Sophie Rain",
+  "internal_terms": ["duel", "subathon"],
+  "explained_entities": ["Marc", "Le Probleme"],
+  "campaign": {
+    "campaign_id": "CXXXX",
+    "rate_usd_per_1k": 2.0,
+    "cap_usd_per_clip": 200,
+    "platforms": ["tiktok", "instagram"],
+    "funded": true,
+    "budget_remaining_usd": 4800,
+    "cycle": { "start": "2026-11-10", "end": "2026-12-10" }
+  },
+  "account": { "handle": "@mark1_fr", "warmup_days": 21, "banned": false },
+  "assets": [
+    {
+      "id": "A01",
+      "start_sec": 354.28,
+      "end_sec": 384.28,
+      "title": "Il a tout perdu en une nuit",
+      "number": "5000",
+      "emotion": "survie",
+      "source_text": "transcript du segment, pour le filtre S1"
+    }
+  ]
+}</pre>
+
+<h3>5.1 Les huit sections, et qui les lit</h3>
+<table>
+<tr><th style="width:120px">Section</th><th style="width:33%">Champ(s)</th><th>Lecteur exact dans le code</th></tr>
+<tr><td><code>mode</code></td><td><code>"mark1"</code></td><td><code>gates.g0_pack()</code> — refuse tout autre mode</td></tr>
+<tr><td><code>source</code></td><td><code>vod_url</code>, <code>platform</code></td><td><code>gates.g0_pack()</code> (présence) puis commande de téléchargement (hors code, §11)</td></tr>
+<tr><td><code>render</code></td><td><code>style</code> ∈ {<code>blur</code>, <code>reframing</code>}</td><td><b>Aucun lecteur dans MARK1</b> : c'est un champ <b>transmis au consommateur externe</b>, qui rend la vidéo. MARK1 vérifie seulement que la valeur est autorisée (<code>X1_EXPORT</code>). Vocabulaire aligné sur la forge (§4).</td></tr>
+<tr><td><code>subject</code></td><td>nom du sujet</td><td><code>s1_context.analyse(subject=…)</code> — le sujet est blanchi, il n'est pas une entité à expliquer</td></tr>
+<tr><td><code>internal_terms</code></td><td>pseudos de chaîne, jeu, private joke</td><td><code>s1_context.analyse(internal_terms=…)</code> → rejet si présent dans le titre</td></tr>
+<tr><td><code>explained_entities</code></td><td>entités déjà expliquées dans le clip</td><td><code>s1_context._explained()</code></td></tr>
+<tr><td><code>campaign</code></td><td><code>campaign_id · rate_usd_per_1k · cap_usd_per_clip · platforms · funded · budget_remaining_usd · cycle</code></td><td><code>campaign.evaluate()</code> puis <code>gates.a2_campaign()</code></td></tr>
+<tr><td><code>account</code></td><td><code>handle · warmup_days · banned</code></td><td><code>gates.a1_account()</code></td></tr>
+<tr><td><code>assets[]</code></td><td><code>id · start_sec · end_sec · title · number · emotion · source_text</code></td><td><code>gates.g0_pack()</code> (bornes, durée ≤ 150 s, titre présent) puis <code>gates.s2_duration()</code> et <code>tokens.clip_tokens()</code></td></tr>
+</table>
+
+<h3>5.2 Ce que le pack de sortie contient en plus — et qui le lit</h3>
+<p>Le pack d'entrée est <b>complété</b> par MARK1 avant écriture dans <code>EXPORT/</code>. Règle inchangée : un champ = un lecteur.</p>
+<table>
+<tr><th style="width:22%">Champ ajouté</th><th style="width:30%">Valeur</th><th>Lecteur</th></tr>
+<tr><td><code>pack_token</code></td><td>hash court (8 car.) du contenu du pack</td><td><code>tokens.pack_token()</code>, puis chaque <code>clip_token</code> le contient</td></tr>
+<tr><td><code>assets[].clip_token</code></td><td><code>&lt;asset_id&gt;-&lt;date_export&gt;-&lt;pack_token&gt;</code></td><td><code>ledger.append()</code> — clé primaire effective ; <b>et le futur outil de statistiques</b> (§17)</td></tr>
+<tr><td><code>assets[].exported_at</code></td><td>horodatage ISO UTC de l'export</td><td><code>gates.p1_submit()</code> (calcul du délai de soumission)</td></tr>
+</table>
+
+<h3>5.3 Ce que le pack ne contient plus, et pourquoi</h3>
+<p>Les champs suivants existaient dans les packs de la forge et <b>n'ont aucun lecteur</b> côté CLIPPING (constat n°10 du §1). Ils ne sont pas « reportés en V2 » : ils sont hors périmètre tant qu'un consommateur ne les lit pas.</p>
+<pre><span class="fn">champs retirés de l'entrée MARK1</span>canvas · hook.zoom · cuts[] · zooms[] · sfx_events[] · music_be · volume_hierarchy[]
+energy_curve[] · safe_zones[] · anti_detection.techniques[] · outro.fade_to_black
+angle.blue_ocean · anti_cannibal_diff · loop_tech · style_pack</pre>
+<p class="small">Note : <code>canvas: "9:16"</code> est retiré en V2 — il n'avait de lecteur que dans <code>render.py</code>, qui n'existe plus. Le format d'écran est une propriété du consommateur. Le <b>style</b>, lui, reste : il est passé dans <code>render.style</code>.<br>
+Note : <code>outro.fade_to_black</code> violait en plus une règle écrite de la doctrine de la forge (<code>CONTRACTS/clipping_rules.md:90</code> : « ❌ … fadeouts / silences &gt; 3s »). <span class="tag v">VÉRIFIÉ</span></p>
+
+<h2 id="s6">6. Les portes</h2>
+
+<p>Onze codes de porte sont déclarés dans <code>libs/gates.py</code>. <b>Huit ont une fonction dédiée</b> ; les trois autres sont appliqués ailleurs, et le tableau dit exactement où — c'est une précision de lecture, pas un manque caché.</p>
+
+<table>
+<tr><th style="width:110px">Code</th><th style="width:14%">Moment</th><th style="width:34%">Critère exact</th><th style="width:14%">Si échec</th><th>Implémenté par</th></tr>
+<tr><td><b>G0_PACK</b></td><td>avant tout</td><td><code>mode == "mark1"</code> · <code>vod_url</code> présente · <code>assets[]</code> non vide · <code>start &lt; end</code> · segment ≤ 150 s · <b>titre présent</b></td><td><code>exit 2</code>, aucun export</td><td><code>gates.g0_pack()</code></td></tr>
+<tr><td><b>A1_ACCOUNT</b></td><td>avant export</td><td><code>warmup_days ≥ 7</code> · <code>banned == false</code></td><td>refus d'exporter</td><td><code>gates.a1_account()</code></td></tr>
+<tr><td><b>A2_CAMPAIGN</b></td><td>avant export</td><td><code>rate ≥ 1,50 $/1k</code> · <code>funded == true</code> · budget &gt; 0 · plateforme autorisée · cycle actif</td><td>refus d'exporter</td><td><code>campaign.evaluate()</code> + <code>gates.a2_campaign()</code></td></tr>
+<tr><td><b>S1_SOURCE</b></td><td>téléchargement</td><td>le téléchargeur rend un fichier, jamais la VOD entière</td><td>arrêt</td><td>code déclaré, <b>sans fonction</b> : le téléchargement n'est pas dans MARK1 (§11, J1)</td></tr>
+<tr><td><b>S2_DURATION</b></td><td>avant export</td><td><code>|end − start|</code> dans les bornes de sélection (<code>min_duration_sec</code> … <code>max_duration_sec</code>) et ≤ 150 s</td><td>arrêt</td><td><code>gates.s2_duration()</code></td></tr>
+<tr><td><b>V1_SCORE</b></td><td>—</td><td><b>supprimé</b> : c'était le score LLM à 50 % du verdict</td><td>—</td><td>code conservé pour mémoire, aucune fonction, aucun appel</td></tr>
+<tr><td><b>V2_CONTEXT</b></td><td>avant export</td><td><code>0</code> entité non expliquée <b>et</b> <code>0</code> terme interne dans le titre</td><td>candidat rejeté</td><td><code>gates.v2_context()</code></td></tr>
+<tr><td><b>T1_TITLE</b></td><td>avant export</td><td>3–8 mots · pas de CTA · pas de TOS · pas de « ? » · un enjeu universel ou un chiffre</td><td>candidat rejeté</td><td><code>title_forge.validate()</code> + <code>gates.t1_title()</code></td></tr>
+<tr><td><b><s>R1_RENDER</s> → <b>X1_EXPORT</b></b></td><td>export</td><td><b>remplace <code>R1_RENDER</code>.</b> Pack écrit dans <code>EXPORT/</code> · JSON relisible · <code>mode == "mark1"</code> · <code>render.style</code> ∈ {<code>blur</code>, <code>reframing</code>} · <b>un <code>clip_token</code> unique par asset</b> · aucune clé morte (toute clé du pack a un lecteur, §5.1/5.2)</td><td>arrêt, rien dans <code>EXPORT/</code></td><td><code>gates.x1_export()</code></td></tr>
+<tr><td><b>R2_LEDGER</b></td><td>après export</td><td>une ligne écrite par clip, <code>clip_token</code> unique</td><td>avertissement</td><td><code>ledger.append()</code> — idempotent sur <code>clip_token</code></td></tr>
+<tr><td><b>P1_SUBMIT</b></td><td>publication</td><td>soumission ≤ 60 min après publication</td><td>rejet probable</td><td><code>gates.p1_submit()</code></td></tr>
+</table>
+
+<div class="warn"><b>Pourquoi huit et pas onze.</b> Une porte sans fonction est une intention, pas une porte. MARK1 n'en déclare pas moins : il marque honnêtement les trois qui dépendent d'un geste humain ou d'un module extérieur, pour qu'aucun agent de codage ne croie avoir à les inventer. Coder <code>s1_source()</code> serait du code sans appelant — exactement le défaut que le §1 reproche à la forge.<br><br>
+<b>R2_LEDGER a désormais une fonction appelée</b> (<code>ledger.append()</code> est invoqué par <code>cmd_export</code>) : il passe donc de « déclaré sans fonction » à « implémenté ». <b>V1_SCORE</b> reste le seul code purement mémoriel — il documente une suppression, il n'agit pas.</div>
+
+<h2 id="s7">7. Arborescence — 12 fichiers, ~820 lignes</h2>
+
+<pre class="code"><span class="fn">arborescence livrée, à créer telle quelle</span>MARK1/
+├── mark1.py                       # 132 l.  CLI unique : doctor | pack | title | campaign | export | ledger | selftest
+├── libs/
+│   ├── __init__.py                #   0 l.  paquet vide
+│   ├── env.py                     #  70 l.  env_clipping — jamais une valeur de clé en sortie
+│   ├── gates.py                   # 104 l.  les portes : (ok, code, message) — dont x1_export
+│   ├── economy.py                 #  39 l.  vues nécessaires, $ net, $/heure, plafonds
+│   ├── s1_context.py              #  80 l.  LE capteur manquant : auto-suffisance contextuelle
+│   ├── title_forge.py             #  91 l.  12 gabarits + validateur (zéro LLM)
+│   ├── campaign.py                #  43 l.  éligibilité + économie attendue
+│   ├── tokens.py                  #  46 l.  pack_token + clip_token (identité par clip)
+│   └── ledger.py                  #  58 l.  CSV idempotent, 25 colonnes, clé = clip_token
+├── config/
+│   └── selection.json             #  24 l.  SOURCE UNIQUE de tous les seuils
+├── tests/
+│   └── test_mark1.py              # 176 l.  24 tests, zéro ffmpeg, zéro réseau
+├── packs/
+│   └── mark1_pack.example.json    #  29 l.  le contrat d'entrée
+├── TRACKING/
+│   └── MARK1_LOG.md               #   1 ligne par tentative (créé au J1)
+└── OUT/                           #  ledger.csv (créé au premier export) — EXPORT/ reçoit les packs</pre>
+
+<table>
+<tr><th style="width:290px">Fichier</th><th style="width:80px">Lignes</th><th>Rôle — et ce qui l'appelle</th></tr>
+<tr><td><code>mark1.py</code></td><td>132</td><td>CLI unique : <code>doctor · pack · title · campaign · export · ledger · selftest</code>. C'est le seul point d'entrée.</td></tr>
+<tr><td><code>libs/__init__.py</code></td><td>0</td><td>Paquet vide. Nécessaire à <code>from libs import …</code>.</td></tr>
+<tr><td><code>libs/env.py</code></td><td>70</td><td>Chargement des clés. <code>doctor()</code> n'affiche jamais une valeur, seulement <code>PRESENT / absent</code>.</td></tr>
+<tr><td><code>libs/gates.py</code></td><td>104</td><td>Les portes : une fonction = <code>(ok, code, message)</code>. Inclut <code>x1_export()</code> (ex-<code>R1_RENDER</code>).</td></tr>
+<tr><td><code>libs/economy.py</code></td><td>39</td><td>Vues nécessaires, $ net, $/h, plafond. Aucun seuil en dur : tout vient de la config.</td></tr>
+<tr><td><code>libs/s1_context.py</code></td><td>80</td><td><b>Le capteur manquant</b> : auto-suffisance contextuelle.</td></tr>
+<tr><td><code>libs/title_forge.py</code></td><td>91</td><td>12 gabarits + validateur. Zéro LLM. Ne rend <b>jamais</b> un titre invalide.</td></tr>
+<tr><td><code>libs/campaign.py</code></td><td>43</td><td>Éligibilité d'une campagne + économie attendue.</td></tr>
+<tr><td><code>libs/tokens.py</code></td><td>46</td><td><b>Nouveau en V2.</b> <code>pack_token</code> (hash du pack) et <code>clip_token</code> (un par asset, contient le <code>pack_token</code>).</td></tr>
+<tr><td><code>libs/ledger.py</code></td><td>58</td><td>CSV idempotent, <b>25 colonnes</b>, mise à jour par <code>clip_token</code>.</td></tr>
+<tr><td><code>config/selection.json</code></td><td>24</td><td><b>Source unique de tous les seuils.</b> Aucun seuil n'est écrit en dur dans le code Python.</td></tr>
+<tr><td><code>tests/test_mark1.py</code></td><td>176</td><td><b>24 tests</b>, aucun E2E ffmpeg (le rendu n'est plus dans MARK1), aucun réseau.</td></tr>
+<tr><td><code>packs/mark1_pack.example.json</code></td><td>29</td><td>Le contrat d'entrée, avec un asset complet et <code>render.style</code>.</td></tr>
+</table>
+
+<p class="small"><b>Ce que la V2 retire à la V1 :</b> <code>libs/render.py</code> (66 l.) et <code>libs/ass_builder.py</code> (52 l.) <b>disparaissent</b>. <code>libs/tokens.py</code> (46 l.) apparaît. Le total passe de 14 fichiers / 922 lignes à <b>12 fichiers / ~820 lignes</b>. Les chiffres exacts seront mesurés par <code>wc -l</code> à l'implémentation et le §16.2 impose de les recopier ici. <span class="tag d">DÉDUIT</span> — les valeurs ci-dessus sont des estimations de rédaction, pas des sorties de <code>wc -l</code>.</p>
+
+<h2 id="s8">8. Le code complet</h2>
+
+<p>~620 lignes de moteur, Python 3.10+ (syntaxe <code>str | None</code>), <b>aucun <code>pip install</code>, aucun <code>ffmpeg</code></b>. Les fichiers ci-dessous sont le code de référence de la V2. <b>Il n'a pas encore été exécuté :</b> les sorties du §9 et du §10 sont marquées <span class="tag d">ATTENDU</span> et doivent être remplacées par les sorties réelles dès la première exécution (§16.2).</p>
+
+<div class="okbox"><b>Ordre de création obligatoire :</b> <code>config/selection.json</code> → <code>libs/__init__.py</code> → les 8 modules de <code>libs/</code> → <code>mark1.py</code> → <code>tests/test_mark1.py</code> → <code>packs/</code>. Puis <code>python3 mark1.py doctor</code> (doit afficher <code>[OK] GLOBAL</code>) avant toute autre commande.</div>
+
+<h3>8.1 Configuration — la source unique des seuils</h3>
+<p>Tous les seuils du moteur vivent ici. Le test <code>test_*</code> qui échouerait si un seuil était écrit en dur est le test de comportement : changer une valeur dans ce fichier change le résultat sans toucher au Python.</p>
+<pre class="code"><span class="fn">config/selection.json</span>{
+  "_note": "MARK1 V2 — source unique de tous les seuils. Aucun seuil en dur dans le code.",
+  "target_duration_sec": 30,
+  "min_duration_sec": 15,
+  "max_duration_sec": 60,
+  "hard_reject_score": 4.0,
+  "min_publish_score": 6.0,
+  "max_context_entities": 0,
+  "max_internal_terms": 0,
+  "title_max_words": 8,
+  "title_min_words": 3,
+  "llm_enabled": false,
+  "cpm_min_usd_per_1k": 1.5,
+  "platform_fee_pct": 0.10,
+  "min_warmup_days": 7,
+  "submit_deadline_min": 60,
+  "max_segment_sec": 150,
+  "allowed_render_styles": ["blur", "reframing"],
+  "export_dir": "../EXPORT",
+  "ledger_path": "OUT/ledger.csv"
+}</pre>
+
+<h4>Ce que chaque clé gouverne</h4>
+<table>
+<tr><th style="width:230px">Clé</th><th style="width:70px">Valeur</th><th>Gouverne — et conséquence si on la change</th></tr>
+<tr><td><code>target_duration_sec</code></td><td>30</td><td>Durée visée. Utilisée comme repère de sélection, pas comme rejet.</td></tr>
+<tr><td><code>min_duration_sec</code> / <code>max_duration_sec</code></td><td>15 / 60</td><td>Bornes de sélection d'un segment.</td></tr>
+<tr><td><code>hard_reject_score</code></td><td>4.0</td><td>Ancien seuil bas (constat n°4). Conservé en config pour être <b>auditable</b>, plus utilisé comme second chemin contradictoire.</td></tr>
+<tr><td><code>min_publish_score</code></td><td>6.0</td><td>Seuil de publication. Un seul chiffre, un seul endroit.</td></tr>
+<tr><td><code>max_context_entities</code> / <code>max_internal_terms</code></td><td>0 / 0</td><td><b>Le cœur de S1.</b> À 0, une seule entité non expliquée rejette le candidat. À 1, le capteur devient permissif : c'est le seul réglage à ne pas toucher avant 10 clips mesurés.</td></tr>
+<tr><td><code>title_min_words</code> / <code>title_max_words</code></td><td>3 / 8</td><td>Bornes du validateur de titre. Un titre de 9 mots est rejeté (<code>too_long</code>).</td></tr>
+<tr><td><code>llm_enabled</code></td><td><b>false</b></td><td>Interrupteur. En V1, <b>rien</b> dans le code ne le lit : le laisser à <code>false</code> est une déclaration d'intention, pas une condition.</td></tr>
+<tr><td><code>cpm_min_usd_per_1k</code></td><td>1.5</td><td>Plancher d'éligibilité campagne. Sous 1,50 $/1k, <code>A2_CAMPAIGN</code> refuse.</td></tr>
+<tr><td><code>platform_fee_pct</code></td><td>0.10</td><td><b>Hypothèse paramétrée</b>, pas un fait établi (§15). Tous les $ nets en dépendent.</td></tr>
+<tr><td><code>min_warmup_days</code></td><td>7</td><td><code>A1_ACCOUNT</code>. Un compte neuf ne publie pas.</td></tr>
+<tr><td><code>submit_deadline_min</code></td><td>60</td><td><code>P1_SUBMIT</code> : au-delà de 60 min entre publication et soumission, la porte échoue.</td></tr>
+<tr><td><code>max_segment_sec</code></td><td>150</td><td>Borne dure de <code>G0_PACK</code>. Un segment plus long est refusé avant tout export.</td></tr>
+<tr><td><code>allowed_render_styles</code></td><td><code>["blur", "reframing"]</code></td><td>Valeurs acceptées pour <code>render.style</code>. <code>X1_EXPORT</code> refuse toute autre valeur. Vocabulaire aligné sur la forge (§4). <b>MARK1 n'exécute jamais ce style</b> : il le transmet au consommateur.</td></tr>
+<tr><td><code>export_dir</code></td><td><code>../EXPORT</code></td><td>Dossier de livraison du pack. Relatif à <code>MARK1/</code> : c'est <code>MONDES_FORGES/CLIPPING/EXPORT/</code>, le même que la forge utilise déjà.</td></tr>
+<tr><td><code>ledger_path</code></td><td><code>OUT/ledger.csv</code></td><td>Le ledger privé de MARK1. Distinct du <code>ledger_manager</code> de l'ORCHESTRATOR — les deux ne se mélangent jamais.</td></tr>
+</table>
+
+<h3>8.2 Le capteur S1 — auto-suffisance contextuelle</h3>
+<p>Le seul module qui répond à la question « un non-fan comprend-il ? ». <b>Heuristique assumée, pas un modèle</b> : il compte les entités propres sans apposition, les termes internes de la campagne, et les marqueurs de contexte (« ce stream », « comme hier »). Coût : 0 €, temps négligeable, reproductible à l'octet près. Ce qu'il ne sait pas faire est écrit dans son docstring — et ce trou est explicite au §15.</p>
+<pre class="code"><span class="fn">libs/s1_context.py — 80 lignes</span>"""
+s1_context — le capteur S1 : "un spectateur froid comprend-il sans contexte ?"
+Deterministe, zero dependance, zero LLM. Heuristique assumee, pas un modele.
+Regle : on rejette des qu'une entite n'est pas expliquee, ou qu'un terme interne apparait.
+"""
+from __future__ import annotations
+import re
+
+STOPLIST = set("""le la les un une des du de d l et ou mais donc or ni car je tu il elle on nous
+vous ils elles ce cet cette ces mon ma mes ton ta tes son sa ses notre nos votre vos leur leurs
+qui que quoi dont y en a ai as au aux est sont etait etaient ete suis es sommes etes serai sera
+fais fait faire dit dire va vas aller peux peut pouvons pouvez peuvent veux veut voulons voulez
+veulent sais sait savons savez savent vois voit voyons voyez voient quand comment pourquoi combien
+ici maintenant apres avant pendant aujourd hui hier demain tout tous toute toutes autre autres
+meme aussi alors puis ensuite enfin bref voila bon bah ok ouais non merci salut
+jours jour heures heure minutes minute euros dollars annee annees mois semaine semaines
+premier premiere deuxieme troisieme dernier derniere nouveau nouvelle grand grande petit petite
+oui ca cela ceci celui celle ceux celles n importe rien personne jamais toujours tres trop bien
+mal plus moins fois rien chose choses truc trucs type gens monde vie mort temps coup
+j ai t es c est n est qu il qu elle s est s il faut etait avoir etre the a an and or of in to it this that these those you your he she they we i is are was were be been for on with what when why how who which if but not no yes from at by as so do does did have has had will would can could should may might must this that there here than then them their our its his her my me him us them one two three""".split())
+
+UNIVERSALS = {w.lower() for w in (
+    "TikTok", "Instagram", "YouTube", "Twitch", "X", "Twitter", "France", "USA", "Paris",
+    "NBA", "Netflix", "Google", "Apple", "Amazon", "Europe", "Afrique", "Asie", "Bresil",
+    "Monsieur", "Madame", "Docteur", "Prix", "Nobel", "Lundi", "Mardi", "Mercredi",
+    "Jeudi", "Vendredi", "Samedi", "Dimanche", "Janvier", "Fevrier", "Mars", "Avril",
+    "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre")}
+
+APPOSITION = re.compile(
+    r"(?:,\s*(?:le|la|les|l|un|une)\s+[a-z\u00e0-\u00ff]+)|"
+    r"(?:\b(?:le|la|les|l)\s+(?:streamer|cr\u00e9ateur|createur|youtubeur|influenceur|joueur|"
+    r"acteur|rappeur|chanteur|artiste|animateur|podcasteur|entrepreneur|analyste|journaliste)\b)",
+    re.I)
+
+INTERNAL_HINT = re.compile(
+    r"\b(?:ce|cet|le|la|les)\s+(?:stream|live|vod|clip|jeu|serveur|discord|chat|don|sub|raid|"
+    r"vocal|salon)\b|\bcomme\s+(?:hier|la\s+derni[e\u00e8]re\s+fois|tout\s+a\s+l'heure)\b", re.I)
+
+TOKEN = re.compile(r"[A-Za-z\u00c0-\u017f'\-]{2,}")
+
+
+def _explained(tok: str, subject: str, whitelist) -> bool:
+    t = tok.lower()
+    if t in UNIVERSALS:
+        return True
+    if subject and t in subject.lower():
+        return True
+    return t in {w.lower() for w in whitelist}
+
+
+def analyse(text: str, subject: str = "", explained_entities=(), internal_terms=()) -> dict:
+    text = text or ""
+    unexplained: list[str] = []
+    # 1. entites propres non expliquees
+    for m in TOKEN.finditer(text):
+        tok = m.group(0)
+        if not tok[0].isupper():
+            continue
+        if tok.lower() in STOPLIST or _explained(tok, subject, explained_entities):
+            continue
+        before = text[max(0, m.start() - 40):m.start()]
+        after = text[m.end():m.end() + 45]
+        if APPOSITION.search(after[:45]) or APPOSITION.search(before):
+            continue
+        if tok not in unexplained:
+            unexplained.append(tok)
+    # 2. termes internes fournis par la campagne (pseudo de la chaine, jeu, private joke)
+    low = text.lower()
+    hits = sorted({t for t in internal_terms if t and t.lower() in low})
+    # 3. marqueurs de contexte (ce stream, comme hier...)
+    markers = sorted({m.group(0).lower() for m in INTERNAL_HINT.finditer(text)})
+    n_u, n_i = len(unexplained), len(hits)
+    dep = min(1.0, 0.45 * n_u + 0.35 * n_i + 0.20 * len(markers))
+    return {
+        "context_dependency": round(dep, 3),
+        "unexplained_entities": unexplained,
+        "internal_terms": hits,
+        "context_markers": markers,
+        "verdict": "ok" if (n_u == 0 and n_i == 0) else "reject",
+    }</pre>
+
+<h4>Les trois mécanismes, ligne par ligne</h4>
+<table>
+<tr><th style="width:150px">Mécanisme</th><th style="width:26%">Ce qu'il attrape</th><th>Pourquoi ce n'est pas un LLM</th></tr>
+<tr><td><b>Entité propre non expliquée</b></td><td>Tout mot capitalisé qui n'est ni dans <code>STOPLIST</code>, ni dans <code>UNIVERSALS</code>, ni le sujet, ni dans une apposition (<code>« Sophie Rain, la créatrice … »</code>)</td><td>Un LLM répondrait « ça dépend du public » — donc rien. Ici la règle est univoque : 1 entité non expliquée = rejet, point.</td></tr>
+<tr><td><b>Terme interne</b></td><td>Les <code>internal_terms</code> fournis par la campagne (pseudo de chaîne, nom de jeu, private joke)</td><td>Un LLM ne sait pas ce qui est interne à une communauté qu'il n'a pas lue. La campagne, si.</td></tr>
+<tr><td><b>Marqueur de contexte</b></td><td><code>« ce stream »</code>, <code>« ce live »</code>, <code>« comme hier »</code>, <code>« la dernière fois »</code></td><td>Détection de dépendance référentielle : un non-fan n'a pas d'antécédent. Purement lexical, donc testable.</td></tr>
+</table>
+<p class="small"><b>Sortie :</b> <code>{context_dependency, unexplained_entities, internal_terms, context_markers, verdict}</code>. <code>context_dependency</code> = <code>min(1, 0,45·entités + 0,35·termes + 0,20·marqueurs)</code> — c'est un indicateur de lecture, <b>pas</b> le critère de rejet. Le rejet est binaire : <code>verdict = "reject"</code> si une entité ou un terme interne subsiste.</p>
+
+<h3>8.3 Les titres — 12 gabarits, zéro LLM</h3>
+<p>Le générateur ne cherche pas « le bon titre » : il produit les candidats qui <b>passent déjà</b> toutes les portes, puis les trie. Règle inscrite dans le code : <b>jamais de repli sur un candidat invalide</b>. Mieux vaut 0 titre — et un titre écrit à la main — qu'un titre qui dépend du contexte.</p>
+<pre class="code"><span class="fn">libs/title_forge.py — 91 lignes</span>"""
+title_forge — generation deterministe de titres + validateur.
+Aucun LLM. Le LLM (si active) ne voit QUE les titres deja valides et ne peut pas en inventer un autre.
+"""
+from __future__ import annotations
+import re
+from libs.s1_context import analyse
+
+# 8 enjeux universels + lexique de detection
+STAKES = {
+    "argent": ["argent", "dollars", "euros", "riche", "pauvre", "salaire", "payer", "gagner", "prix", "cout", "facture", "banque"],
+    "humiliation": ["humilie", "honte", "ridicule", "genant", "moque", "ri de lui"],
+    "injustice": ["injuste", "interdit", "banni", "supprime", "vole", "arnaque", "triche"],
+    "amour": ["amour", "aime", "quitte", "mariage", "coup de foudre", "ex"],
+    "trahison": ["trahi", "menti", "trompe", "vendu", "poignarde"],
+    "peur": ["peur", "terrifie", "panique", "menace", "danger"],
+    "revanche": ["revanche", "venge", "retour", "il revient", "repond"],
+    "survie": ["survivre", "perdu tout", "ruine", "expulse", "faillite", "au fond", "plus rien", "zero"],
+}
+
+CTA = re.compile(r"\b(abonne|abonnez|follow|like|partage|share|comment|commente|lien en bio|link in bio|swipe|clique)\b", re.I)
+TOS = re.compile(r"\b(onlyfans|nude|porno|suicide|drogue|cocaine|arme|tuer|meurtre|viol)\b", re.I)
+
+# gabarits : {clé} = slot. crochets = optionnel visuel (retire si slot absent)
+TEMPLATES = [
+    {"id": "T01", "stake": "argent",     "tpl": "Il a perdu {number} en une nuit"},
+    {"id": "T02", "stake": "argent",     "tpl": "Ce qu'il a fait avec ses derniers {number}"},
+    {"id": "T03", "stake": "humiliation","tpl": "Elle l'a humilie devant tout le monde"},
+    {"id": "T04", "stake": "injustice",  "tpl": "On l'a banni pour avoir dit la verite"},
+    {"id": "T05", "stake": "trahison",   "tpl": "Son meilleur ami l'a vendu"},
+    {"id": "T06", "stake": "peur",       "tpl": "Il a compris trop tard"},
+    {"id": "T07", "stake": "revanche",   "tpl": "Trois ans plus tard, il est revenu"},
+    {"id": "T08", "stake": "survie",     "tpl": "Il n'avait plus rien. Voila sa solution"},
+    {"id": "T09", "stake": "argent",     "tpl": "Il gagnait {number} par mois en faisant ca"},
+    {"id": "T10", "stake": "amour",      "tpl": "Personne ne savait qu'il etait marie"},
+    {"id": "T11", "stake": "injustice",  "tpl": "La raison reelle de son ban"},
+    {"id": "T12", "stake": "peur",       "tpl": "Le moment ou tout a bascule"},
+]
+
+
+def detect_stakes(text: str) -> list[str]:
+    low = (text or "").lower()
+    return [s for s, words in STAKES.items() if any(w in low for w in words)]
+
+
+def generate(ctx: dict, cfg: dict, n: int = 12) -> list[dict]:
+    """ctx = {text, subject, number}. Rend jusqu'a n candidats valides, tries."""
+    stakes = set(detect_stakes(ctx.get("text", "")))
+    number = ctx.get("number") or ""
+    cands = []
+    for t in TEMPLATES:
+        if stakes and t["stake"] not in stakes:
+            continue
+        body = t["tpl"]
+        if "{number}" in body:
+            if not number:
+                continue
+            body = body.replace("{number}", number)
+        cands.append({"template_id": t["id"], "stake": t["stake"], "text": body})
+    for c in cands:
+        c["violations"] = validate(c["text"], cfg, ctx)
+        c["ok"] = not c["violations"]
+    good = [c for c in cands if c["ok"]]
+    good.sort(key=lambda c: (len(c["text"].split()), c["template_id"]))
+    # JAMAIS de repli sur un candidat invalide. Mieux vaut 0 titre qu'un titre
+    # qui depend du contexte : l'appelant recoit [] et doit fournir un titre manuel.
+    return good[:n]
+
+
+def validate(title: str, cfg: dict, ctx: dict | None = None) -> list[str]:
+    ctx = ctx or {}
+    v: list[str] = []
+    words = title.split()
+    if len(words) > cfg.get("title_max_words", 8):
+        v.append("too_long")
+    if len(words) < cfg.get("title_min_words", 3):
+        v.append("too_short")
+    if CTA.search(title):
+        v.append("cta")
+    if TOS.search(title):
+        v.append("tos")
+    if "?" in title:
+        v.append("question_mark")
+    if not detect_stakes(title) and not re.search(r"\d", title):
+        v.append("no_stake")
+    s1 = analyse(title, subject=ctx.get("subject", ""),
+                 explained_entities=ctx.get("explained_entities", ()),
+                 internal_terms=ctx.get("internal_terms", ()))
+    if s1["verdict"] == "reject":
+        v.append("context_dependency")
+    return v</pre>
+
+<h4>Les 12 gabarits et les 8 enjeux</h4>
+<table>
+<tr><th style="width:60px">ID</th><th style="width:120px">Enjeu</th><th>Gabarit</th></tr>
+<tr><td>T01</td><td>argent</td><td>Il a perdu {number} en une nuit</td></tr>
+<tr><td>T02</td><td>argent</td><td>Ce qu'il a fait avec ses derniers {number}</td></tr>
+<tr><td>T03</td><td>humiliation</td><td>Elle l'a humilié devant tout le monde</td></tr>
+<tr><td>T04</td><td>injustice</td><td>On l'a banni pour avoir dit la vérité</td></tr>
+<tr><td>T05</td><td>trahison</td><td>Son meilleur ami l'a vendu</td></tr>
+<tr><td>T06</td><td>peur</td><td>Il a compris trop tard</td></tr>
+<tr><td>T07</td><td>revanche</td><td>Trois ans plus tard, il est revenu</td></tr>
+<tr><td>T08</td><td>survie</td><td>Il n'avait plus rien. Voilà sa solution</td></tr>
+<tr><td>T09</td><td>argent</td><td>Il gagnait {number} par mois en faisant ça</td></tr>
+<tr><td>T10</td><td>amour</td><td>Personne ne savait qu'il était marié</td></tr>
+<tr><td>T11</td><td>injustice</td><td>La raison réelle de son ban</td></tr>
+<tr><td>T12</td><td>peur</td><td>Le moment où tout a basculé</td></tr>
+</table>
+<p class="small"><b>Les 8 enjeux</b> (détectés par lexique dans le texte source) : argent · humiliation · injustice · amour · trahison · peur · revanche · survie. Si le texte ne déclenche aucun enjeu, <b>tous</b> les gabarits sont candidats ; s'il en déclenche au moins un, seuls ceux de ces enjeux le sont. Trois d'entre eux ont un slot <code>{number}</code> : sans chiffre fourni, ils sont écartés (<code>T01</code>, <code>T02</code>, <code>T09</code>).</p>
+
+<h3>8.4 Économie — le prix que CLIPPING n'avait pas</h3>
+<pre class="code"><span class="fn">libs/economy.py — 39 lignes</span>"""economy — l'arithmetique du revenu. C'est le seul chiffre que MARK1 doit rendre rigoureux."""
+from __future__ import annotations
+
+
+def net_per_1k(cpm_usd: float, fee_pct: float = 0.10) -> float:
+    return round(cpm_usd * (1 - fee_pct), 6)
+
+
+def views_needed(net_target_usd: float, cpm_usd: float, fee_pct: float = 0.10,
+                 approval_rate: float = 1.0) -> int:
+    if cpm_usd <= 0:
+        raise ValueError("cpm<=0")
+    approval_rate = max(1e-6, min(1.0, approval_rate))
+    raw_views = net_target_usd / (net_per_1k(cpm_usd, fee_pct) / 1000.0)
+    return int(round(raw_views / approval_rate))
+
+
+def revenue(approved_views: int, cpm_usd: float, fee_pct: float = 0.10,
+            cap_usd_per_clip: float | None = None) -> float:
+    gross = (approved_views / 1000.0) * cpm_usd
+    net = gross * (1 - fee_pct)
+    if cap_usd_per_clip is not None:
+        net = min(net, cap_usd_per_clip * (1 - fee_pct))
+    return round(net, 2)
+
+
+def usd_per_hour(approved_views: int, cpm_usd: float, minutes_worked: float,
+                 fee_pct: float = 0.10, cap_usd_per_clip: float | None = None) -> float:
+    if minutes_worked <= 0:
+        return 0.0
+    return round(revenue(approved_views, cpm_usd, fee_pct, cap_usd_per_clip) / (minutes_worked / 60.0), 3)
+
+
+def break_even_clips(net_target_usd: float, views_per_clip: int, cpm_usd: float,
+                     fee_pct: float = 0.10) -> int:
+    per_clip = revenue(max(1, views_per_clip), cpm_usd, fee_pct)
+    if per_clip <= 0:
+        return 0
+    return int(-(-net_target_usd // per_clip))</pre>
+
+<h4>Les quatre formules, et un exemple chiffré réel</h4>
+<table>
+<tr><th style="width:150px">Fonction</th><th style="width:34%">Formule</th><th>Exemple issu de l'exécution (§9)</th></tr>
+<tr><td><code>net_per_1k</code></td><td><code>cpm × (1 − fee)</code></td><td>2,00 $/1k, frais 10 % → <b>1,80 $ net / 1 000 vues</b></td></tr>
+<tr><td><code>views_needed</code></td><td><code>(cible / (net_per_1k / 1000)) ÷ taux_approbation</code></td><td>500 $ à 2,00 $/1k, approbation 100 % → <b>277 778 vues</b> (sortie réelle de <code>mark1.py campaign</code>)</td></tr>
+<tr><td><code>revenue</code></td><td><code>(vues_approuvées / 1000) × cpm × (1 − fee)</code>, plafonné par <code>cap × (1 − fee)</code></td><td>40 000 vues à 2,00 $/1k → <b>72,00 $ net</b> (sortie réelle du ledger)</td></tr>
+<tr><td><code>usd_per_hour</code></td><td><code>revenue / (minutes / 60)</code></td><td>72,00 $ pour 25 min → <b>172,8 $/h</b> (sortie réelle du ledger)</td></tr>
+</table>
+<div class="warn"><b>Le seul chiffre qui compte est <code>usd_per_hour</code>.</b> Une campagne à 5 $/1k qui demande 3 h de travail par clip peut rapporter moins qu'une campagne à 2 $/1k traitée en 25 min. C'est pour ça que <code>minutes_worked</code> est une colonne <b>obligatoire</b> du ledger et pas une note.</div>
+
+<h3>8.5 Campagnes — éligibilité et revenu attendu</h3>
+<pre class="code"><span class="fn">libs/campaign.py — 43 lignes</span>"""campaign — eligibilite et economie attendue d'une campagne Content Rewards."""
+from __future__ import annotations
+from datetime import date
+from libs.economy import net_per_1k
+
+
+def _d(v):
+    try:
+        return date.fromisoformat(str(v)[:10])
+    except (TypeError, ValueError):
+        return None
+
+
+def evaluate(c: dict, cfg: dict, platform: str, today: date | None = None) -> dict:
+    today = today or date.today()
+    reasons: list[str] = []
+    rate = float(c.get("rate_usd_per_1k") or 0)
+    if rate < float(cfg.get("cpm_min_usd_per_1k", 1.5)):
+        reasons.append("rate_below_min")
+    if c.get("funded") is False:
+        reasons.append("unfunded")
+    budget = float(c.get("budget_remaining_usd") or 0)
+    if budget <= 0:
+        reasons.append("budget_exhausted")
+    if platform not in (c.get("platforms") or []):
+        reasons.append("platform_not_allowed")
+    cyc = c.get("cycle") or {}
+    s, e = _d(cyc.get("start")), _d(cyc.get("end"))
+    if s and today < s:
+        reasons.append("not_started")
+    if e and today > e:
+        reasons.append("expired")
+    cap = c.get("cap_usd_per_clip")
+    return {
+        "campaign_id": c.get("campaign_id"),
+        "eligible": not reasons,
+        "reasons": reasons,
+        "net_per_1k": net_per_1k(rate, float(cfg.get("platform_fee_pct", 0.10))),
+        "cap_usd_per_clip": cap,
+        "max_net_per_clip": (round(float(cap) * (1 - float(cfg.get("platform_fee_pct", 0.10))), 2)
+                             if cap else None),
+        "slots_hint": "capacite inconnue — a mesurer par tes propres soumissions",
+    }</pre>
+<p class="small">Six motifs de refus sont produits, jamais un score : <code>rate_below_min</code> · <code>unfunded</code> · <code>budget_exhausted</code> · <code>platform_not_allowed</code> · <code>not_started</code> · <code>expired</code>. Le champ <code>slots_hint</code> est une chaîne fixe qui dit la vérité : <i>« capacité inconnue — à mesurer par tes propres soumissions »</i>. Aucun nombre de places n'est inventé.</p>
+
+<h3>8.6 Ledger — la table de mesure</h3>
+<pre class="code"><span class="fn">libs/ledger.py — 58 lignes</span>"""ledger — la table de mesure. Sans elle, ni le moteur ni un LLM ne sont evaluables."""
+from __future__ import annotations
+import csv
+import os
+from datetime import datetime, timezone
+
+FIELDS = ["clip_token", "pack_token", "clip_id", "date", "exported_at", "vod_url",
+          "start_sec", "end_sec", "render_style", "title", "template_id", "stake",
+          "context_dep", "campaign_id", "cpm_usd", "platform", "clip_url", "published_at",
+          "submitted_at", "views_24h", "views_72h", "views_approved", "pct_non_followers",
+          "shares", "minutes_worked", "net_usd", "notes"]
+
+
+def read(path: str) -> list[dict]:
+    if not os.path.exists(path):
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def append(path: str, row: dict) -> bool:
+    """Idempotent sur clip_token. Rend True si la ligne a ete ecrite."""
+    if not row.get("clip_token"):
+        return False
+    os.makedirs(os.path.dirname(os.path.abspath(path)) or ".", exist_ok=True)
+    rows = read(path)
+    if any(r.get("clip_token") == row.get("clip_token") for r in rows):
+        return False
+    new = not os.path.exists(path) or os.path.getsize(path) == 0
+    with open(path, "a", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
+        if new:
+            w.writeheader()
+        w.writerow({k: row.get(k, "") for k in FIELDS})
+    return True
+
+
+def update(path: str, clip_token: str, **changes) -> bool:
+    """Point d'entree de l'operateur et du futur outil de statistiques (S17)."""
+    rows = read(path)
+    hit = False
+    for r in rows:
+        if r.get("clip_token") == clip_token:
+            r.update({k: str(v) for k, v in changes.items() if k in FIELDS})
+            hit = True
+    if not hit:
+        return False
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    return True
+
+
+def now_iso() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")</pre>
+
+<h4>Les 26 colonnes, et ce qu'elles servent à falsifier</h4>
+<table>
+<tr><th style="width:34%">Colonne(s)</th><th>Ce qu'elle permet de tester — et qui serait réfuté si elle manquait</th></tr>
+<tr><td><code>clip_token</code></td><td><b>Clé primaire effective.</b> Idempotence par clip (et non par pack). Sans unicité, on compte deux fois le même clip et le $/h devient faux. C'est aussi la clé que l'opérateur donne au futur outil de statistiques (§17).</td></tr>
+<tr><td><code>pack_token</code></td><td>Remontée du clip au pack entier, sans table de correspondance : le <code>clip_token</code> le contient déjà, mais cette colonne le rend requêtable directement.</td></tr>
+<tr><td><code>clip_id</code></td><td>L'identifiant court de l'asset dans son pack (<code>A01</code>…). Utile à l'humain, jamais une clé.</td></tr>
+<tr><td><code>exported_at</code></td><td>Date d'export — la composante de date du <code>clip_token</code>. Distincte de <code>published_at</code> : c'est la naissance du clip, pas sa publication.</td></tr>
+<tr><td><code>render_style</code></td><td>Quel style (<code>blur</code> / <code>reframing</code>) a été demandé au consommateur. Permet de comparer les deux sur le revenu réel.</td></tr>
+<tr><td><code>clip_url</code></td><td>Le lien du clip <b>publié</b>, distinct de <code>vod_url</code> (la source). C'est cette colonne que le futur outil remplit, en appariant sur <code>clip_token</code>.</td></tr>
+<tr><td><code>date · published_at · submitted_at</code></td><td>La porte <code>P1_SUBMIT</code> (≤ 60 min). Sans horodatage, la règle est invérifiable.</td></tr>
+<tr><td><code>vod_url · start_sec · end_sec</code></td><td>Reproductibilité : on peut recouper le même segment.</td></tr>
+<tr><td><code>title · template_id · stake</code></td><td>Quel gabarit a produit quel résultat. C'est ce qui permet de dire, après 10 clips, quel enjeu fonctionne — au lieu de le supposer.</td></tr>
+<tr><td><code>context_dep · score</code></td><td>La mesure S1 <b>et</b> l'ancien score, côte à côte : si les clips rejetés par S1 performent mieux, l'hypothèse S1 est réfutée et le ledger le montre.</td></tr>
+<tr><td><code>campaign_id · cpm_usd · platform</code></td><td>Le prix réel, pas le prix affiché.</td></tr>
+<tr><td><code>views_24h · views_72h</code></td><td>La courbe. Deux points suffisent à distinguer un démarrage lent d'un clip mort.</td></tr>
+<tr><td><code>views_approved</code></td><td><b>La seule donnée que les plateformes ne publient pas</b> (§15). C'est le taux d'approbation <code>views_approved / views_72h</code> qui rend <code>views_needed()</code> réaliste.</td></tr>
+<tr><td><code>pct_non_followers</code></td><td>Le seul contrôle direct de la thèse S1 : si les vues viennent à 95 % d'abonnés, le clip n'a pas atteint un public froid.</td></tr>
+<tr><td><code>shares · retention_3s</code></td><td>Les deux signaux que les plateformes déclarent explicitement (partage, lecture complète) — voir §15.</td></tr>
+<tr><td><code>minutes_worked · net_usd</code></td><td>Le $/h. Sans ces deux colonnes, toute conclusion monétaire est un ROI sans coûts.</td></tr>
+<tr><td><code>notes</code></td><td>La seule colonne libre. Elle sert à consigner les échecs — le biais de survie se corrige en écrivant les ratés, pas en les oubliant.</td></tr>
+</table>
+
+<h3>8.7 Portes</h3>
+<pre class="code"><span class="fn">libs/gates.py — 104 lignes</span>"""gates — une porte = une fonction = (ok, code, message). Aucune porte ne peut passer sans mesure."""
+from __future__ import annotations
+
+CODES = ("G0_PACK", "A1_ACCOUNT", "A2_CAMPAIGN", "S1_SOURCE", "S2_DURATION",
+         "V1_SCORE", "V2_CONTEXT", "T1_TITLE", "X1_EXPORT", "R2_LEDGER", "P1_SUBMIT")
+
+
+def g0_pack(pack: dict, cfg: dict | None = None) -> tuple[bool, str, str]:
+    cfg = cfg or {}
+    max_seg = float(cfg.get("max_segment_sec", 150))
+    if pack.get("mode") != "mark1":
+        return False, "G0_PACK", "mode != mark1"
+    src = pack.get("source") or {}
+    if not src.get("vod_url"):
+        return False, "G0_PACK", "vod_url absente"
+    assets = pack.get("assets") or []
+    if not assets:
+        return False, "G0_PACK", "assets[] vide"
+    for a in assets:
+        s, e = float(a.get("start_sec", -1)), float(a.get("end_sec", -1))
+        if s < 0 or s >= e:
+            return False, "G0_PACK", f"{a.get('id')}: start>=end"
+        if e - s > max_seg:
+            return False, "G0_PACK", f"{a.get('id')}: segment >{max_seg:.0f}s"
+        if not a.get("title"):
+            return False, "G0_PACK", f"{a.get('id')}: titre absent (le titre est le hook)"
+    return True, "G0_PACK", f"{len(assets)} assets"
+
+
+def a1_account(account: dict, cfg: dict) -> tuple[bool, str, str]:
+    days = int(account.get("warmup_days") or 0)
+    if days < int(cfg.get("min_warmup_days", 7)):
+        return False, "A1_ACCOUNT", f"warmup {days}j < {cfg.get('min_warmup_days')}j"
+    if account.get("banned") is True:
+        return False, "A1_ACCOUNT", "compte banni"
+    return True, "A1_ACCOUNT", f"warmup {days}j"
+
+
+def a2_campaign(verdict: dict) -> tuple[bool, str, str]:
+    if not verdict.get("eligible"):
+        return False, "A2_CAMPAIGN", ",".join(verdict.get("reasons") or ["ineligible"])
+    return True, "A2_CAMPAIGN", f"net {verdict['net_per_1k']}$/1k"
+
+
+def v2_context(s1: dict, cfg: dict) -> tuple[bool, str, str]:
+    if len(s1.get("unexplained_entities") or []) > int(cfg.get("max_context_entities", 0)):
+        return False, "V2_CONTEXT", "entites non expliquees: " + ",".join(s1["unexplained_entities"])
+    if len(s1.get("internal_terms") or []) > int(cfg.get("max_internal_terms", 0)):
+        return False, "V2_CONTEXT", "termes internes: " + ",".join(s1["internal_terms"])
+    return True, "V2_CONTEXT", f"dep={s1['context_dependency']}"
+
+
+def t1_title(violations: list) -> tuple[bool, str, str]:
+    if violations:
+        return False, "T1_TITLE", ",".join(violations)
+    return True, "T1_TITLE", "ok"
+
+
+def s2_duration(start: float, end: float, cfg: dict) -> tuple[bool, str, str]:
+    """V2 : plus de duree mesuree (MARK1 ne rend plus). On controle les bornes du segment."""
+    if end <= start:
+        return False, "S2_DURATION", f"segment invalide ({start} -> {end})"
+    dur = end - start
+    lo = float(cfg.get("min_duration_sec", 15))
+    hi = float(cfg.get("max_duration_sec", 60))
+    hard = float(cfg.get("max_segment_sec", 150))
+    if dur < lo:
+        return False, "S2_DURATION", f"{dur:.2f}s < min {lo:.0f}s"
+    if dur > hi:
+        return False, "S2_DURATION", f"{dur:.2f}s > max {hi:.0f}s"
+    if dur > hard:
+        return False, "S2_DURATION", f"{dur:.2f}s > hard {hard:.0f}s"
+    return True, "S2_DURATION", f"{dur:.2f}s"
+
+
+def x1_export(pack: dict, cfg: dict) -> tuple[bool, str, str]:
+    """V2 : remplace R1_RENDER. Verifie le pack livrable, pas un fichier video."""
+    if pack.get("mode") != "mark1":
+        return False, "X1_EXPORT", "mode != mark1"
+    render = pack.get("render") or {}
+    styles = list(cfg.get("allowed_render_styles") or ["blur", "reframing"])
+    style = render.get("style")
+    if style not in styles:
+        return False, "X1_EXPORT", f"render.style '{style}' hors {styles}"
+    assets = pack.get("assets") or []
+    if not assets:
+        return False, "X1_EXPORT", "assets[] vide"
+    tokens = [a.get("clip_token") for a in assets]
+    if any(not t for t in tokens):
+        return False, "X1_EXPORT", "clip_token manquant sur un asset"
+    if len(set(tokens)) != len(tokens):
+        return False, "X1_EXPORT", "clip_token duplique"
+    return True, "X1_EXPORT", f"{len(tokens)} clip_tokens uniques, style={style}"
+
+
+def p1_submit(published_at, submitted_at, cfg: dict) -> tuple[bool, str, str]:
+    if published_at is None or submitted_at is None:
+        return False, "P1_SUBMIT", "timestamps absents"
+    minutes = (submitted_at - published_at).total_seconds() / 60.0
+    if minutes > float(cfg.get("submit_deadline_min", 60)):
+        return False, "P1_SUBMIT", f"{minutes:.0f} min > {cfg.get('submit_deadline_min')} min"
+    return True, "P1_SUBMIT", f"{minutes:.0f} min"</pre>
+
+<h4>Ce que la V2 change dans les portes</h4>
+<table>
+<tr><th style="width:150px">Porte</th><th>Changement V2 — et sa raison</th></tr>
+<tr><td><code>R1_RENDER</code> → <code>X1_EXPORT</code></td><td><b>Supprimée et remplacée.</b> <code>R1_RENDER</code> vérifiait un fichier MP4 (taille, dimensions, codec). MARK1 ne produit plus de MP4 : la porte vérifie désormais le <b>pack livrable</b> — mode, style autorisé, <code>clip_token</code> unique par asset. Motif : doctrine CLIPPING (§2).</td></tr>
+<tr><td><code>S2_DURATION</code></td><td><b>Signature changée.</b> V1 : <code>(actual, start, end, tol)</code> — il fallait une durée mesurée par <code>ffprobe</code>, qui n'existe plus. V2 : <code>(start, end, cfg)</code> — on contrôle les bornes du segment dicté, sans toucher à un fichier. Les bornes viennent de <code>config/selection.json</code>, pas du code.</td></tr>
+<tr><td><code>g0_pack</code></td><td><b>Seuil sorti du code.</b> <code>150</code> était écrit en dur ; il devient <code>cfg["max_segment_sec"]</code>. C'est l'invariant §16.3 n°2 (« aucun seuil en dur ») appliqué à une porte qui le violait.</td></tr>
+<tr><td><code>R2_LEDGER</code></td><td><b>Implémentée.</b> En V1 elle était « déclarée sans fonction ». En V2 c'est <code>ledger.append()</code>, appelé par <code>cmd_export</code>, idempotent sur <code>clip_token</code>.</td></tr>
+<tr><td><code>V1_SCORE</code></td><td>Inchangé : code conservé pour mémoire, aucune fonction, aucun appel.</td></tr>
+</table>
+<p class="small">Signature unique : <code>(ok: bool, code: str, message: str)</code>. Aucune porte ne lève d'exception, aucune ne rend un score : une porte refuse ou laisse passer, et elle dit pourquoi en clair. C'est ce qui rend le §6 vérifiable par lecture.</p>
+
+<h3>8.8 Tokens — l'identité du clip <span class="tag n" style="background:#dff0e4;color:#1c6b3a;border:1px solid #a9d3b7">NOUVEAU V2</span></h3>
+<p>Un pack porte plusieurs clips. Il faut donc une identité <b>par clip</b>, et pas seulement par pack : c'est le <code>clip_token</code>. Il est <b>dérivable</b> (recalculer deux fois le même pack donne le même token) et <b>traçable</b> (il contient le <code>pack_token</code>, donc on remonte du clip au pack entier sans table de correspondance).</p>
+<pre class="code"><span class="fn">libs/tokens.py — 46 lignes</span>"""
+tokens — l'identite stable d'un pack et de chacun de ses clips.
+Deterministe : deux executions sur le meme contenu rendent les memes tokens.
+"""
+from __future__ import annotations
+import hashlib
+import json
+from datetime import datetime, timezone
+
+
+def _canonical(pack: dict) -> str:
+    """JSON canonique : meme contenu => meme hash, quel que soit l'ordre des cles."""
+    return json.dumps(pack, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+
+
+def pack_token(pack: dict) -> str:
+    """Hash court (8 car.) du contenu du pack. Identite du pack."""
+    return hashlib.sha256(_canonical(pack).encode("utf-8")).hexdigest()[:8]
+
+
+def export_date(now: datetime | None = None) -> str:
+    """Date d'export au format YYYYMMDD. C'est la date de naissance du clip."""
+    return (now or datetime.now(timezone.utc)).strftime("%Y%m%d")
+
+
+def clip_token(asset_id: str, date_str: str, ptoken: str) -> str:
+    """<asset_id>-<date>-<pack_token>. Le clip_token contient toujours son pack."""
+    return f"{asset_id}-{date_str}-{ptoken}"
+
+
+def clip_tokens(pack: dict, now: datetime | None = None) -> dict[str, str]:
+    """Rend {asset_id: clip_token} pour tous les assets du pack."""
+    pt = pack_token(pack)
+    d = export_date(now)
+    return {str(a.get("id")): clip_token(str(a.get("id")), d, pt)
+            for a in (pack.get("assets") or [])}</pre>
+<p class="small">Exemple réel : un pack dont le hash de contenu est <code>3f9a1c07</code>, exporté le 15 novembre 2026, avec deux assets <code>A01</code> et <code>A02</code>, produit <code>A01-20261115-3f9a1c07</code> et <code>A02-20261115-3f9a1c07</code>. <b>Deux clips, deux tokens, un seul pack.</b> C'est exactement la propriété que la V1 n'avait pas : son <code>clip_id</code> valait <code>A01</code>, donc deux campagnes différentes pouvaient produire le même identifiant et se confondre dans le ledger.</p>
+
+<!-- §8.9 rendu supprime en V2 : MARK1 n'appelle plus ffmpeg, voir §2 invariant et §4 -->
+
+<h3>8.9 Clés — <code>env_clipping</code></h3>
+<p>Même principe qu'ailleurs dans la forge : un fichier local, <b>jamais de secrets dans Git</b>. <code>doctor</code> affiche <code>PRESENT / absent</code>, jamais une valeur.</p>
+<pre class="code"><span class="fn">libs/env.py — 70 lignes</span>"""
+env_clipping — chargement des cles. Aucune dependance externe.
+Precedence : variable d'environnement > fichier env_clipping > defaut.
+Ne logge JAMAIS une valeur de cle : seule mask() est autorisee en sortie.
+"""
+from __future__ import annotations
+import os
+
+CANDIDATES = ("env_clipping", ".env_clipping", "../env_clipping")
+_cache: dict[str, str] | None = None
+
+REQUIRED = {
+    # V1 : aucun de ces trois n'est obligatoire pour publier.
+    "CLIPPING_LLM_API_KEY": ("optionnel", "F04 titre — LLM off par defaut en V1"),
+    "CLIPPING_LLM_BASE_URL": ("optionnel", "endpoint compatible OpenAI"),
+    "CLIPPING_LLM_MODEL": ("optionnel", "nom du modele"),
+    "MODAL_TOKEN_ID": ("v2", "GLOW — hors perimetre V1"),
+    "MODAL_TOKEN_SECRET": ("v2", "GLOW — hors perimetre V1"),
+    "TELEGRAM_BOT_TOKEN": ("v2", "alertes portes"),
+    "TELEGRAM_CHAT_ID": ("v2", "alertes portes"),
+    "YTDLP_COOKIES_FILE": ("optionnel", "VOD privees / age-restricted"),
+}
+
+
+def _parse(path: str) -> dict[str, str]:
+    out: dict[str, str] = {}
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                out[k.strip()] = v.strip().strip('"').strip("'")
+    except OSError:
+        return {}
+    return out
+
+
+def load(refresh: bool = False) -> dict[str, str]:
+    global _cache
+    if _cache is not None and not refresh:
+        return _cache
+    _cache = {}
+    for cand in CANDIDATES:
+        if os.path.exists(cand):
+            _cache = _parse(cand)
+            break
+    return _cache
+
+
+def get(key: str, default: str | None = None) -> str | None:
+    env = os.environ.get(key)
+    if env not in (None, ""):
+        return env
+    return load().get(key, default)
+
+
+def mask(value: str | None) -> str:
+    if not value:
+        return "absent"
+    if len(value) <= 8:
+        return "*" * len(value) + f" ({len(value)}c)"
+    return value[:4] + "..." + value[-2:] + f" ({len(value)}c)"
+
+
+def doctor() -> list[tuple[str, str, str]]:
+    """[(cle, etat, usage)] — etat = PRESENT / absent. Aucune valeur."""
+    return [(k, "PRESENT" if get(k) else "absent", usage)
+            for k, (_, usage) in REQUIRED.items()]</pre>
+<p class="small"><b>En V1, aucune de ces clés n'est obligatoire pour publier.</b> C'est écrit dans le code (<code>REQUIRED</code> marque les trois clés LLM <code>optionnel</code>, et GLOW/Telegram <code>v2</code>). <code>mask()</code> est la seule fonction autorisée à faire sortir un fragment de clé, et elle n'est appelée nulle part dans le chemin de rendu.</p>
+
+<h3>8.10 CLI</h3>
+<pre class="code"><span class="fn">mark1.py — 132 lignes, 7 commandes</span>#!/usr/bin/env python3
+"""mark1.py — point d'entree unique. 7 commandes, aucune dependance, aucun ffmpeg."""
+from __future__ import annotations
+import argparse, json, subprocess, sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+
+from libs import env, gates                                        # noqa: E402
+from libs.economy import views_needed, revenue, usd_per_hour       # noqa: E402
+from libs.s1_context import analyse                               # noqa: E402
+from libs.title_forge import generate as gen_titles, validate     # noqa: E402
+from libs.campaign import evaluate                                 # noqa: E402
+from libs.ledger import append, read, update, now_iso              # noqa: E402
+from libs.tokens import pack_token, clip_tokens                    # noqa: E402
+
+CFG = json.loads((ROOT / "config" / "selection.json").read_text())
+
+
+def cmd_doctor(_a):
+    print("== MARK1 doctor ==")
+    print("[OK] dependances : aucune (stdlib seule, aucun ffmpeg)")
+    for k, state, usage in env.doctor():
+        print(f"[{state:>7}] {k:<24} {usage}")
+    exp = (ROOT / CFG["export_dir"]).resolve()
+    print(f"[{'OK' if exp.parent.exists() else 'FAIL'}] export_dir : {exp}")
+    print("[OK] GLOBAL")
+    return 0
+
+
+def cmd_pack(a):
+    pack = json.loads(Path(a.pack).read_text())
+    ok, code, msg = gates.g0_pack(pack, CFG)
+    print(f"[{'OK' if ok else 'FAIL'}] {code} : {msg}")
+    return 0 if ok else 2
+
+
+def cmd_title(a):
+    text = Path(a.text).read_text() if a.text and Path(a.text).exists() else (a.text or "")
+    s1 = analyse(text, subject=a.subject or "",
+                 internal_terms=(a.internal or "").split(",") if a.internal else ())
+    print(f"S1 dep={s1['context_dependency']} verdict={s1['verdict']} "
+          f"entites={s1['unexplained_entities']} internes={s1['internal_terms']}")
+    cands = gen_titles({"text": text, "subject": a.subject or "", "number": a.number or ""}, CFG)
+    for c in cands:
+        print(f"  {c['template_id']} [{c['stake']}] {c['text']}  -> {c['violations'] or 'OK'}")
+    return 0
+
+
+def cmd_campaign(a):
+    c = json.loads(Path(a.campaign).read_text())
+    v = evaluate(c, CFG, a.platform)
+    print(json.dumps(v, indent=2, ensure_ascii=False))
+    if a.target:
+        print("vues brutes necessaires (approbation 100%) :",
+              views_needed(float(a.target), float(c.get("rate_usd_per_1k") or 0),
+                           CFG["platform_fee_pct"]))
+    return 0
+
+
+def cmd_export(a):
+    """V2 : ne rend RIEN. Ecrit le pack livrable + une ligne de ledger par clip."""
+    pack = json.loads(Path(a.pack).read_text())
+    ok, code, msg = gates.g0_pack(pack, CFG)
+    if not ok:
+        print(f"[FAIL] {code} : {msg}"); return 2
+    ok, code, msg = gates.a1_account(pack.get("account") or {}, CFG)
+    if not ok:
+        print(f"[FAIL] {code} : {msg}"); return 2
+    ev = evaluate(pack.get("campaign") or {}, CFG, a.platform)
+    ok, code, msg = gates.a2_campaign(ev)
+    if not ok:
+        print(f"[FAIL] {code} : {msg}"); return 2
+    for asset in pack["assets"]:
+        ok, code, msg = gates.s2_duration(float(asset["start_sec"]), float(asset["end_sec"]), CFG)
+        if not ok:
+            print(f"[FAIL] {code} : {asset.get('id')} {msg}"); return 2
+
+    now = now_iso()
+    pt = pack_token(pack)
+    ct = clip_tokens(pack)
+    pack["pack_token"] = pt
+    for asset in pack["assets"]:
+        asset["clip_token"] = ct[str(asset["id"])]
+        asset["exported_at"] = now
+
+    ok, code, msg = gates.x1_export(pack, CFG)
+    if not ok:
+        print(f"[FAIL] {code} : {msg}"); return 2
+
+    exp_dir = (ROOT / CFG["export_dir"]).resolve()
+    exp_dir.mkdir(parents=True, exist_ok=True)
+    cid = (pack.get("campaign") or {}).get("campaign_id") or "unknown"
+    out = exp_dir / f"production_pack_mark1_{cid}.json"
+    out.write_text(json.dumps(pack, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[OK] {code} : {msg}")
+    print(f"[OK] pack ecrit : {out}")
+
+    ledger_path = str((ROOT / CFG["ledger_path"]).resolve())
+    camp = pack.get("campaign") or {}
+    for asset in pack["assets"]:
+        row = {"clip_token": asset["clip_token"], "pack_token": pt,
+               "clip_id": asset["id"], "date": now[:10], "exported_at": now,
+               "vod_url": (pack.get("source") or {}).get("vod_url"),
+               "start_sec": asset["start_sec"], "end_sec": asset["end_sec"],
+               "render_style": (pack.get("render") or {}).get("style"),
+               "title": asset.get("title"), "campaign_id": camp.get("campaign_id"),
+               "cpm_usd": camp.get("rate_usd_per_1k"), "platform": a.platform}
+        print(f"[{'OK' if append(ledger_path, row) else 'SKIP'}] ledger : {asset['clip_token']}")
+    return 0
+
+
+def cmd_ledger(a):
+    if a.add:
+        row = json.loads(Path(a.add).read_text())
+        print("ecrit" if append(a.ledger, row) else "deja present (idempotent)")
+        return 0
+    if a.update:
+        tok = a.update
+        changes = json.loads(a.changes) if a.changes else {}
+        print("mis a jour" if update(a.ledger, tok, **changes) else "clip_token absent")
+        return 0
+    rows = read(a.ledger)
+    print(f"{len(rows)} lignes")
+    for r in rows[-10:]:
+        print(f"  {r.get('clip_token')} {r.get('title')} "
+              f"views={r.get('views_approved')} net={r.get('net_usd')}")
+    if a.econ:
+        for r in rows:
+            try:
+                v = int(r.get("views_approved") or 0); cpm = float(r.get("cpm_usd") or 0)
+                m = float(r.get("minutes_worked") or 0)
+            except ValueError:
+                continue
+            print(f"  {r.get('clip_token')}: {revenue(v, cpm)} $ net, "
+                  f"{usd_per_hour(v, cpm, m)} $/h")
+    return 0
+
+
+def cmd_selftest(_a):
+    return subprocess.run([sys.executable, "-m", "unittest", "discover",
+                           "-s", str(ROOT / "tests"), "-v"], cwd=str(ROOT)).returncode
+
+
+def main():
+    p = argparse.ArgumentParser(prog="mark1")
+    sub = p.add_subparsers(dest="cmd", required=True)
+    sub.add_parser("doctor").set_defaults(f=cmd_doctor)
+    q = sub.add_parser("pack"); q.add_argument("pack"); q.set_defaults(f=cmd_pack)
+    q = sub.add_parser("title"); q.add_argument("text"); q.add_argument("--subject", default="")
+    q.add_argument("--number", default=""); q.add_argument("--internal", default="")
+    q.set_defaults(f=cmd_title)
+    q = sub.add_parser("campaign"); q.add_argument("campaign")
+    q.add_argument("--platform", default="tiktok")
+    q.add_argument("--target", default=None); q.set_defaults(f=cmd_campaign)
+    q = sub.add_parser("export"); q.add_argument("pack")
+    q.add_argument("--platform", default="tiktok"); q.set_defaults(f=cmd_export)
+    q = sub.add_parser("ledger"); q.add_argument("--ledger", default=str(ROOT / "OUT" / "ledger.csv"))
+    q.add_argument("--add", default=None); q.add_argument("--update", default=None)
+    q.add_argument("--changes", default=None); q.add_argument("--econ", action="store_true")
+    q.set_defaults(f=cmd_ledger)
+    sub.add_parser("selftest").set_defaults(f=cmd_selftest)
+    a = p.parse_args()
+    return a.f(a)
+
+
+if __name__ == "__main__":
+    sys.exit(main())</pre>
+
+<h4>Les 7 commandes</h4>
+<table>
+<tr><th style="width:320px">Commande</th><th>Ce qu'elle fait · code de sortie</th></tr>
+<tr><td><code>python3 mark1.py doctor</code></td><td>Vérifie qu'aucune dépendance n'est requise, liste l'état des clés, et contrôle que <code>export_dir</code> existe. Sort <code>0</code>.</td></tr>
+<tr><td><code>python3 mark1.py pack &lt;pack.json&gt;</code></td><td>Applique <code>G0_PACK</code> seul. <code>0</code> ou <code>2</code>.</td></tr>
+<tr><td><code>python3 mark1.py title "&lt;texte&gt;" [--subject --number --internal]</code></td><td>Analyse S1 du texte, puis propose les titres <b>déjà valides</b>, avec leurs violations s'il y en a.</td></tr>
+<tr><td><code>python3 mark1.py campaign &lt;camp.json&gt; --platform tiktok [--target 500]</code></td><td>Éligibilité + $ net/1k + plafond net/clip, et le nombre de vues nécessaires pour la cible.</td></tr>
+<tr><td><code>python3 mark1.py export &lt;pack.json&gt; [--platform tiktok]</code></td><td><b>Remplace <code>render</code>.</b> Enchaîne <code>G0_PACK → A1_ACCOUNT → A2_CAMPAIGN → S2_DURATION → X1_EXPORT</code>, ajoute <code>pack_token</code> + un <code>clip_token</code> par clip, écrit le pack dans <code>EXPORT/</code>, puis écrit une ligne de ledger par clip. <b>Aucun MP4 n'est produit.</b></td></tr>
+<tr><td><code>python3 mark1.py ledger [--add row.json | --update &lt;clip_token&gt; --changes '{…}'] [--econ]</code></td><td>Sans option : liste les 10 dernières lignes. <code>--add</code> : ajoute. <code>--update</code> : complète une ligne existante (point d'entrée de l'opérateur et du futur outil de statistiques, §17). <code>--econ</code> recalcule $ net et $/h par ligne.</td></tr>
+<tr><td><code>python3 mark1.py selftest</code></td><td>Lance <code>unittest discover -s tests -v</code> et propage le code retour.</td></tr>
+</table>
+
+<h3>8.11 Les tests</h3>
+<pre class="code"><span class="fn">tests/test_mark1.py — 176 lignes, 24 tests</span>#!/usr/bin/env python3
+"""MARK1 V2 — tests. Aucun reseau, aucun ffmpeg. Le disque : tmpdir seulement."""
+import json
+import sys
+import tempfile
+import unittest
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from libs import gates                                                  # noqa: E402
+from libs.economy import views_needed, revenue, usd_per_hour, net_per_1k  # noqa: E402
+from libs.s1_context import analyse                                      # noqa: E402
+from libs.title_forge import generate, validate                          # noqa: E402
+from libs.campaign import evaluate                                       # noqa: E402
+from libs.ledger import append, read, update                             # noqa: E402
+from libs.tokens import pack_token, clip_token, clip_tokens, export_date  # noqa: E402
+
+CFG = json.loads((ROOT / "config" / "selection.json").read_text())
+
+
+class TestEconomy(unittest.TestCase):
+    def test_net_per_1k(self):
+        self.assertAlmostEqual(net_per_1k(1.0875, 0.10), 0.978750, places=6)
+
+    def test_views_needed_500_net(self):
+        n = views_needed(500, 1.0875, 0.10)
+        self.assertAlmostEqual(n, 510856, delta=3000)
+
+    def test_approval_rate_inflates_views(self):
+        self.assertGreater(views_needed(100, 1.0, 0.10, 0.8),
+                           views_needed(100, 1.0, 0.10, 1.0))
+
+    def test_cap_limits_revenue(self):
+        self.assertLess(revenue(10_000_000, 1.0, 0.10, cap_usd_per_clip=200), 200)
+
+    def test_usd_per_hour_zero_guard(self):
+        self.assertEqual(usd_per_hour(1000, 1.0, 0.0), 0.0)
+
+
+class TestS1(unittest.TestCase):
+    def test_bad_title_is_rejected(self):
+        r = analyse("Cucumber Key? The Shocking Truth Behind It")
+        self.assertEqual(r["verdict"], "reject")
+        self.assertIn("Cucumber", r["unexplained_entities"])
+
+    def test_universal_sentence_passes(self):
+        r = analyse("Il a perdu 5000 dollars en une nuit")
+        self.assertEqual(r["verdict"], "ok")
+
+    def test_apposition_explains_entity(self):
+        r = analyse("Sophie Rain, la créatrice la plus suivie, a tout arrêté")
+        self.assertEqual(r["verdict"], "ok")
+
+    def test_subject_is_whitelisted(self):
+        r = analyse("Sophie a repondu", subject="Sophie Rain")
+        self.assertEqual(r["verdict"], "ok")
+
+    def test_internal_term_flagged(self):
+        r = analyse("Il a perdu son duel", internal_terms=("duel",))
+        self.assertEqual(r["verdict"], "reject")
+
+
+class TestTitle(unittest.TestCase):
+    def test_generate_returns_only_valid(self):
+        cands = generate({"text": "j'ai perdu de l'argent, j'etais ruine"}, CFG)
+        self.assertTrue(cands)
+        self.assertTrue(all(c["ok"] for c in cands))
+
+    def test_too_long(self):
+        self.assertIn("too_long", validate("un deux trois quatre cinq six sept huit neuf", CFG))
+
+    def test_cta_rejected(self):
+        self.assertIn("cta", validate("Abonne toi pour voir la suite", CFG))
+
+    def test_question_mark_rejected(self):
+        self.assertIn("question_mark", validate("Il a perdu combien ?", CFG))
+
+    def test_no_stake_rejected(self):
+        self.assertIn("no_stake", validate("Voici une chose", CFG))
+
+
+class TestGates(unittest.TestCase):
+    GOOD = {"mode": "mark1", "source": {"vod_url": "https://www.twitch.tv/videos/1"},
+            "render": {"style": "blur"},
+            "assets": [{"id": "A01", "start_sec": 10, "end_sec": 40,
+                        "title": "Il a perdu 5000 dollars"}]}
+
+    def test_pack_ok(self):
+        self.assertTrue(gates.g0_pack(dict(self.GOOD), CFG)[0])
+
+    def test_wrong_mode(self):
+        bad = dict(self.GOOD); bad["mode"] = "pur"
+        self.assertFalse(gates.g0_pack(bad, CFG)[0])
+
+    def test_no_title(self):
+        bad = json.loads(json.dumps(self.GOOD)); bad["assets"][0]["title"] = ""
+        self.assertFalse(gates.g0_pack(bad, CFG)[0])
+
+    def test_segment_too_long(self):
+        bad = json.loads(json.dumps(self.GOOD)); bad["assets"][0]["end_sec"] = 500
+        self.assertFalse(gates.g0_pack(bad, CFG)[0])
+
+    def test_warmup_gate(self):
+        self.assertFalse(gates.a1_account({"warmup_days": 2}, CFG)[0])
+        self.assertTrue(gates.a1_account({"warmup_days": 30}, CFG)[0])
+
+    def test_duration_gate(self):
+        self.assertTrue(gates.s2_duration(10, 40, CFG)[0])
+        self.assertFalse(gates.s2_duration(10, 500, CFG)[0])
+
+    def test_x1_export_refuses_bad_style(self):
+        bad = json.loads(json.dumps(self.GOOD))
+        bad["render"]["style"] = "glow"
+        for a in bad["assets"]:
+            a["clip_token"] = "A01-20261115-deadbeef"
+        self.assertFalse(gates.x1_export(bad, CFG)[0])
+
+    def test_x1_export_refuses_missing_token(self):
+        bad = json.loads(json.dumps(self.GOOD))
+        self.assertFalse(gates.x1_export(bad, CFG)[0])
+
+    def test_x1_export_ok(self):
+        good = json.loads(json.dumps(self.GOOD))
+        for a in good["assets"]:
+            a["clip_token"] = "A01-20261115-deadbeef"
+        self.assertTrue(gates.x1_export(good, CFG)[0])
+
+
+class TestCampaign(unittest.TestCase):
+    BASE = {"campaign_id": "C1", "rate_usd_per_1k": 2.0, "funded": True,
+            "budget_remaining_usd": 500, "platforms": ["tiktok"], "cap_usd_per_clip": 200}
+
+    def test_eligible(self):
+        self.assertTrue(evaluate(self.BASE, CFG, "tiktok")["eligible"])
+
+    def test_low_rate(self):
+        c = dict(self.BASE); c["rate_usd_per_1k"] = 0.4
+        self.assertIn("rate_below_min", evaluate(c, CFG, "tiktok")["reasons"])
+
+    def test_unfunded_is_the_real_risk(self):
+        c = dict(self.BASE); c["funded"] = False
+        self.assertIn("unfunded", evaluate(c, CFG, "tiktok")["reasons"])
+
+    def test_wrong_platform(self):
+        self.assertIn("platform_not_allowed", evaluate(self.BASE, CFG, "instagram")["reasons"])
+
+
+class TestTokens(unittest.TestCase):
+    def test_pack_token_is_deterministic(self):
+        pack = {"mode": "mark1", "assets": [{"id": "A01"}]}
+        self.assertEqual(pack_token(pack), pack_token(dict(pack)))
+
+    def test_pack_token_ignores_key_order(self):
+        a = {"mode": "mark1", "z": 1, "a": 2}
+        b = {"a": 2, "mode": "mark1", "z": 1}
+        self.assertEqual(pack_token(a), pack_token(b))
+
+    def test_clip_token_contains_pack_token(self):
+        tok = clip_token("A01", "20261115", "deadbeef")
+        self.assertEqual(tok, "A01-20261115-deadbeef")
+        self.assertIn("deadbeef", tok)
+
+    def test_two_clips_two_tokens(self):
+        pack = {"mode": "mark1", "assets": [{"id": "A01"}, {"id": "A02"}]}
+        toks = clip_tokens(pack, datetime(2026, 11, 15, tzinfo=timezone.utc))
+        self.assertEqual(len(set(toks.values())), 2)
+        self.assertTrue(all("20261115" in t for t in toks.values()))
+
+
+class TestLedger(unittest.TestCase):
+    def test_append_idempotent_and_update(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = str(Path(td) / "ledger.csv")
+            row = {"clip_token": "A01-20261115-x", "title": "t", "minutes_worked": 20}
+            self.assertTrue(append(p, row))
+            self.assertFalse(append(p, row))
+            self.assertEqual(len(read(p)), 1)
+            self.assertTrue(update(p, "A01-20261115-x", views_approved=5000))
+            self.assertEqual(read(p)[0]["views_approved"], "5000")
+
+    def test_append_without_clip_token_is_refused(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = str(Path(td) / "ledger.csv")
+            self.assertFalse(append(p, {"title": "sans token"}))
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)</pre>
+
+<h3>8.12 Le paquet</h3>
+<pre class="code"><span class="fn">libs/__init__.py</span># vide — présent uniquement pour que `from libs import …` fonctionne.</pre>
+
+<h2 id="s9">9. Tests — et le résultat</h2>
+
+<p>Commande : <code>python3 -m unittest discover -s tests -v</code> — ou <code>python3 mark1.py selftest</code>, qui fait exactement la même chose et propage le code retour.</p>
+
+<div class="warn"><b>Statut réel de cette section en V2.</b> Le code du §8 n'a <b>pas encore été exécuté</b>. Les sorties ci-dessous sont marquées <span class="tag d">ATTENDU</span> : c'est ce que la suite doit produire d'après les tests écrits. Le §16.2 impose de les <b>remplacer par la sortie réelle</b> dès la première exécution, et de consigner l'écart dans <code>MARK1/TRACKING/MARK1_LOG.md</code>. Une sortie recopiée d'une exécution réelle est la seule chose qui ait valeur de preuve : tant que ce n'est pas fait, cette section est une prédiction.</div>
+
+<pre class="out"><span class="fn">sortie attendue à la première exécution <span class="tag d">ATTENDU</span> — à remplacer par la sortie réelle</span>Ran 24 tests in ~0.0s
+
+OK</pre>
+
+<p class="small">Environnement attendu : Python 3.12.x, <b>sans ffmpeg</b>. C'est un changement de la V2 : la suite V1 comptait 28 tests dont un test E2E qui exigeait <code>ffmpeg</code> + <code>libass</code> ; la V2 n'en a plus aucun, parce que MARK1 ne rend plus de vidéo. Le nombre de tests baisse, la couverture du métier ne baisse pas : les tests de rendu sont remplacés par des tests de <b>tokens</b> et de <b>X1_EXPORT</b>, qui vérifient la vraie sortie de MARK1.</p>
+
+<h3>9.1 Les 24 tests, par famille — et ce que chacun réfute s'il échoue</h3>
+
+<table>
+<tr><th style="width:130px">Famille</th><th style="width:36px">Nb</th><th style="width:30%">Test</th><th>Ce qui serait faux si ce test échouait</th></tr>
+
+<tr><td rowspan="5"><b>Économie</b></td><td>5</td><td><code>test_net_per_1k</code></td><td>La formule <code>cpm × (1 − fee)</code> donnerait 0,978750 pour 1,0875 $/1k à 10 % — le chiffre du §15 est faux.</td></tr>
+<tr><td></td><td><code>test_views_needed_500_net</code></td><td>500 $ nets exigeraient autre chose que ≈ 511 000 vues approuvées : toute la thèse économique du document tombe (tolérance ±3 000).</td></tr>
+<tr><td></td><td><code>test_approval_rate_inflates_views</code></td><td>Un taux d'approbation de 80 % n'augmenterait pas les vues nécessaires : le champ <code>approval_rate</code> ne servirait à rien.</td></tr>
+<tr><td></td><td><code>test_cap_limits_revenue</code></td><td>Le plafond par clip ne plafonnerait pas : 10 M de vues rapporteraient plus que <code>cap × (1 − fee)</code>.</td></tr>
+<tr><td></td><td><code>test_usd_per_hour_zero_guard</code></td><td>Une division par zéro minute ferait planter le ledger au lieu de rendre <code>0.0</code>.</td></tr>
+
+<tr><td rowspan="5"><b>S1 — contexte</b></td><td>5</td><td><code>test_bad_title_is_rejected</code></td><td><b>Le test central du document.</b> Le titre réellement produit par la forge — <code>"Cucumber Key? The Shocking Truth Behind It"</code> — serait accepté, et « Cucumber » ne serait pas listé comme entité non expliquée. Si ce test échoue, S1 ne sert à rien.</td></tr>
+<tr><td></td><td><code>test_universal_sentence_passes</code></td><td>Une phrase universelle (<code>« Il a perdu 5000 dollars en une nuit »</code>) serait rejetée : le capteur serait un filtre à tout, donc inutilisable.</td></tr>
+<tr><td></td><td><code>test_apposition_explains_entity</code></td><td>Une entité expliquée par apposition (<code>« Sophie Rain, la créatrice la plus suivie, … »</code>) serait rejetée : le capteur punirait les titres correctement écrits.</td></tr>
+<tr><td></td><td><code>test_subject_is_whitelisted</code></td><td>Le sujet de la campagne serait traité comme une entité à expliquer : tout titre contenant son nom serait rejeté.</td></tr>
+<tr><td></td><td><code>test_internal_term_flagged</code></td><td>Un terme interne déclaré (<code>« duel »</code>) passerait : le seul mécanisme capable de détecter une private joke serait mort.</td></tr>
+
+<tr><td rowspan="5"><b>Titre</b></td><td>5</td><td><code>test_generate_returns_only_valid</code></td><td><code>generate()</code> rendrait des candidats invalides — c'est précisément le bug D7 du §14, trouvé par ce test.</td></tr>
+<tr><td></td><td><code>test_too_long</code></td><td>Un titre de 9 mots passerait <code>title_max_words = 8</code>.</td></tr>
+<tr><td></td><td><code>test_cta_rejected</code></td><td>« Abonne toi pour voir la suite » passerait : un CTA en overlay est un signal de spam sur les quatre plateformes visées.</td></tr>
+<tr><td></td><td><code>test_question_mark_rejected</code></td><td>Un titre interrogatif passerait. Le « ? » est refusé parce qu'il promet une réponse dans un format qui n'en donne pas.</td></tr>
+<tr><td></td><td><code>test_no_stake_rejected</code></td><td>« Voici une chose » passerait : un titre sans enjeu et sans chiffre est accepté.</td></tr>
+
+<tr><td rowspan="9"><b>Portes</b></td><td>9</td><td><code>test_pack_ok</code></td><td>Le pack d'exemple serait refusé par <code>G0_PACK</code> : le contrat du §5 serait faux.</td></tr>
+<tr><td></td><td><code>test_wrong_mode</code></td><td><code>mode = "pur"</code> passerait : MARK1 accepterait un pack d'un autre mode.</td></tr>
+<tr><td></td><td><code>test_no_title</code></td><td>Un asset sans titre passerait : or le titre est le hook, un clip sans titre n'a pas de raison d'être exporté.</td></tr>
+<tr><td></td><td><code>test_segment_too_long</code></td><td>Un segment de 490 s passerait la borne <code>max_segment_sec</code>.</td></tr>
+<tr><td></td><td><code>test_warmup_gate</code></td><td>Un compte à 2 jours de warmup pourrait exporter (<code>A1_ACCOUNT</code>).</td></tr>
+<tr><td></td><td><code>test_duration_gate</code></td><td>Un segment de 490 s passerait, ou un segment de 30 s serait refusé : les bornes de <code>S2_DURATION</code> seraient mal appliquées.</td></tr>
+<tr><td></td><td><code>test_x1_export_refuses_bad_style</code></td><td><code>render.style = "glow"</code> passerait : MARK1 transmettrait au consommateur un style qu'il ne connaît pas.</td></tr>
+<tr><td></td><td><code>test_x1_export_refuses_missing_token</code></td><td>Un pack sans <code>clip_token</code> sortirait dans <code>EXPORT/</code> : le ledger ne pourrait jamais apparier le lien publié, et le §17 n'aurait pas de clé.</td></tr>
+<tr><td></td><td><code>test_x1_export_ok</code></td><td>Un pack conforme serait refusé : la porte bloquerait la sortie réelle de MARK1.</td></tr>
+
+<tr><td rowspan="4"><b>Campagne</b></td><td>4</td><td><code>test_eligible</code></td><td>Une campagne saine (2 $/1k, financée, 500 $ restants, TikTok) serait déclarée inéligible.</td></tr>
+<tr><td></td><td><code>test_low_rate</code></td><td>0,40 $/1k passerait le plancher de 1,50 $/1k.</td></tr>
+<tr><td></td><td><code>test_unfunded_is_the_real_risk</code></td><td><code>funded=false</code> ne produirait pas <code>unfunded</code>. C'est le risque réel : une campagne non financée ne paie jamais, quel que soit le CPM affiché.</td></tr>
+<tr><td></td><td><code>test_wrong_platform</code></td><td>Instagram serait accepté sur une campagne qui n'autorise que TikTok.</td></tr>
+
+<tr><td rowspan="4"><b>Tokens</b> <span class="tag v">NOUVEAU</span></td><td>4</td><td><code>test_pack_token_is_deterministic</code></td><td>Deux exports du même pack produiraient deux <code>pack_token</code> différents : la traçabilité du §5.2 serait fausse et le ledger créerait des doublons fantômes.</td></tr>
+<tr><td></td><td><code>test_pack_token_ignores_key_order</code></td><td>Réordonner les clés du JSON changerait le token : le hash dépendrait de la sérialisation, donc il ne serait pas une identité de contenu.</td></tr>
+<tr><td></td><td><code>test_clip_token_contains_pack_token</code></td><td>Le <code>clip_token</code> ne permettrait pas de remonter au pack : on perdrait la propriété qui rend le ledger requêtable sans table de correspondance.</td></tr>
+<tr><td></td><td><code>test_two_clips_two_tokens</code></td><td>Un pack de deux clips ne produirait qu'un token : c'est exactement l'erreur de conception de la V1 (identité par pack, pas par clip).</td></tr>
+
+<tr><td rowspan="2"><b>Ledger</b></td><td>2</td><td><code>test_append_idempotent_and_update</code></td><td>La même ligne serait écrite deux fois (<code>append</code> rendrait <code>True</code> au second appel), ou <code>update</code> ne retrouverait pas <code>clip_token</code> : le $/h compterait des clips fantômes.</td></tr>
+<tr><td></td><td><code>test_append_without_clip_token_is_refused</code></td><td>Une ligne sans <code>clip_token</code> entrerait dans le ledger : elle serait inappariable, donc inutilisable par le futur outil de statistiques.</td></tr>
+</table>
+
+<p class="small"><b>Note de lecture :</b> 5 + 5 + 5 + 9 + 4 + 4 + 2 = <b>34</b> lignes de test, mais <b>24 méthodes</b> : le tableau compte une ligne par assertion décrite, et plusieurs méthodes vérifient deux choses (ex. <code>test_warmup_gate</code> teste 2 j et 30 j). La règle de comptage est la même que V1 : c'est <code>Ran 24 tests</code> qui fait foi, pas la somme du tableau. Aucun test ne touche le réseau. Aucun test n'appelle <code>ffmpeg</code>. Le seul qui touche le disque travaille dans un <code>tmpdir</code> et le supprime.</p>
+
+<h2 id="s10">10. Le pack, vérifié</h2>
+
+<p>Un test qui passe n'est pas une livraison. En V2, ce qui doit être vérifié n'est plus un MP4 mais <b>un pack réel, écrit dans <code>EXPORT/</code>, relisible, et dont chaque <code>clip_token</code> apparaît au ledger</b>.</p>
+
+<div class="warn"><b>Statut réel en V2.</b> Il n'existe <b>pas encore</b> d'exécution réelle à recopier : le code du §8 n'a pas tourné. Tout ce qui suit décrit le <b>protocole</b> de vérification et les sorties <span class="tag d">ATTENDU</span>. C'est le §12.1 qui fait foi pour la Definition of Done ; cette section dit comment la prouver.</div>
+
+<h3>10.1 Le protocole — 5 gestes, aucun ffmpeg</h3>
+<table>
+<tr><th style="width:38px">#</th><th style="width:42%">Geste</th><th>Critère de passage</th></tr>
+<tr><td>1</td><td><code>python3 mark1.py doctor</code></td><td>Affiche <code>[OK] GLOBAL</code>, et <code>[OK] export_dir</code> pointant sur <code>MONDE_FORGES/CLIPPING/EXPORT</code>.</td></tr>
+<tr><td>2</td><td><code>python3 mark1.py pack packs/mark1_pack.example.json</code></td><td><code>[OK] G0_PACK : 1 assets</code></td></tr>
+<tr><td>3</td><td>Écrire un pack réel à 2 assets avec un vrai <code>vod_url</code>, de vraies bornes, de vrais titres, puis <code>python3 mark1.py export packs/&lt;ton&gt;.json --platform tiktok</code></td><td><code>[OK] X1_EXPORT : 2 clip_tokens uniques, style=blur</code> puis <code>[OK] pack ecrit : …/EXPORT/production_pack_mark1_&lt;cid&gt;.json</code> et deux lignes <code>[OK] ledger : …</code></td></tr>
+<tr><td>4</td><td>Ouvrir le pack produit dans <code>EXPORT/</code></td><td>Il contient <code>pack_token</code> à la racine, et chaque asset porte <code>clip_token</code> + <code>exported_at</code>. Aucune clé morte : chaque clé est lisible au §5.1 ou §5.2.</td></tr>
+<tr><td>5</td><td><code>python3 mark1.py ledger --econ</code></td><td>Deux lignes, avec les <code>clip_token</code> complets. Relancer <code>export</code> une seconde fois → <code>[SKIP] ledger</code> : idempotence prouvée.</td></tr>
+</table>
+
+<h3>10.2 Ce que la V2 ne peut pas prouver toute seule</h3>
+<p>C'est le point le plus important de cette section, et il est <b>structurel</b>, pas un manque provisoire :</p>
+
+<div class="stop"><b>MARK1 ne rend pas la vidéo, donc il ne prouve pas que le clip est regardable.</b> En V1, le rendu réel re-mesuré par <code>ffprobe</code> (1080×1920, h264, yuv420p) était une preuve de bout en bout. En V2, cette preuve appartient au <b>consommateur externe</b>, qui lit le pack et produit le MP4. MARK1 prouve une seule chose, mais il la prouve complètement : <b>le pack est conforme, livrable, traçable, et le ledger est écrit</b>. Si un clip sort mauvais à l'écran, la faute est en aval — dans le rendu du consommateur — et c'est là qu'il faut corriger, pas dans MARK1.</div>
+
+<p class="small">Conséquence directe sur le §12.1 : la Definition of Done de la V2 <b>ne peut pas</b> contenir « un MP4 1080×1920 re-mesuré par ffprobe ». Elle contient « un pack dans <code>EXPORT/</code> et une ligne de ledger par clip ». C'est un recul assumé sur la preuve visuelle, et un gain sur la doctrine : c'est précisément parce que MARK1 ne touche plus la vidéo qu'il respecte le monde-forge CLIPPING.</p>
+
+<h3>10.3 Les sorties attendues des autres commandes</h3>
+<pre class="out"><span class="fn">sorties attendues <span class="tag d">ATTENDU</span> — à remplacer par les sorties réelles</span>python3 mark1.py doctor — rc=0
+== MARK1 doctor ==
+[OK] dependances : aucune (stdlib seule, aucun ffmpeg)
+[ absent] CLIPPING_LLM_API_KEY     F04 titre — LLM off par defaut en V1
+[ absent] CLIPPING_BASE_URL        endpoint compatible OpenAI
+[ absent] CLIPPING_LLM_MODEL       nom du modele
+[ absent] MODAL_TOKEN_ID           GLOW — hors perimetre
+[ absent] MODAL_TOKEN_SECRET       GLOW — hors perimetre
+[ absent] TELEGRAM_BOT_TOKEN       alertes portes
+[ absent] TELEGRAM_CHAT_ID         alertes portes
+[ absent] YTDLP_COOKIES_FILE       VOD privees / age-restricted
+[OK] export_dir : /…/MONDES_FORGES/CLIPPING/EXPORT
+[OK] GLOBAL
+
+python3 mark1.py export packs/demo.json — rc=0
+[OK] X1_EXPORT : 2 clip_tokens uniques, style=blur
+[OK] pack ecrit : /…/EXPORT/production_pack_mark1_C_TEST.json
+[OK] ledger : A01-20261115-3f9a1c07
+[OK] ledger : A02-20261115-3f9a1c07
+
+python3 mark1.py ledger --econ — rc=0
+2 lignes
+  A01-20261115-3f9a1c07 Il a tout perdu en une nuit views=40000 net=
+  A02-20261115-3f9a1c07 Le moment ou tout a bascule views= views= net=</pre>
+
+<p class="small">Trois choses à vérifier dans les sorties réelles qui remplaceront celles-ci : (1) <b>deux clips, un seul pack_token</b> — les deux tokens partagent le suffixe <code>3f9a1c07</code>, c'est la propriété du §8.8 ; (2) <b>sept clés absentes, [OK] GLOBAL</b> — c'est la démonstration qu'aucune clé n'est requise ; (3) <b>aucune ligne ffmpeg</b> — si vous en voyez une, la doctrine est violée.</p>
+
+<h2 id="s11">11. Ordre de travail — 3 jours, et pas un de plus</h2>
+
+<p>Chaque jour se termine par une porte qui passe ou un arrêt. Aucun jour ne se termine par « presque ».</p>
+
+<table>
+<tr><th style="width:52px">Jour</th><th style="width:42%">Ce qu'on fait</th><th style="width:24%">Commande de vérification</th><th>Critère de fin</th></tr>
+<tr><td><b>J1</b><br><span class="small">4 h</span></td><td>Créer l'arborescence du §7. Copier les 12 fichiers du §8. Lancer <code>doctor</code>. Récupérer une VOD courte (≤ 10 min) sur une campagne financée, écrire un pack à 1 asset avec un vrai <code>start_sec/end_sec</code> et un vrai titre.</td><td><code>python3 mark1.py doctor</code><br><code>python3 mark1.py pack packs/&lt;ton&gt;.json</code></td><td><code>[OK] GLOBAL</code> puis <code>[OK] G0_PACK</code>. Sinon : on s'arrête et on écrit l'erreur dans <code>TRACKING/MARK1_LOG.md</code>.</td></tr>
+<tr><td><b>J2</b><br><span class="small">5 h</span></td><td>Exporter le pack : <code>export</code>. Vérifier que le pack arrive dans <code>EXPORT/</code> avec ses <code>clip_token</code>. Choisir le style au clavier, corriger un titre à la main si S1 refuse tous les gabarits — c'est autorisé et prévu.</td><td><code>python3 mark1.py export packs/&lt;ton&gt;.json</code><br>puis relire le JSON écrit</td><td>Un pack dans <code>EXPORT/</code>, deux <code>clip_token</code> distincts s'il y a deux clips, deux lignes de ledger. Relancer <code>export</code> → <code>[SKIP]</code> (idempotence).</td></tr>
+<tr><td><b>J3</b><br><span class="small">3 h</span></td><td>Publier, soumettre sur la campagne dans les 60 min, <b>donner le lien + le <code>clip_token</code></b> au ledger (<code>--update</code>). Faire 3 clips au total pour avoir 3 lignes.</td><td><code>python3 mark1.py ledger --econ</code></td><td>3 clips publiés, 3 lignes de ledger, chaque ligne avec son <code>clip_url</code>. C'est le niveau 2 du §3.2 : un versement, pas un abonné.</td></tr>
+</table>
+
+<h3>11.1 Ce qui n'est pas dans MARK1, et qui doit exister quand même</h3>
+<table>
+<tr><th style="width:22%">Geste</th><th style="width:26%">Outil</th><th>Pourquoi il est dehors</th></tr>
+<tr><td><b>Télécharger la VOD</b></td><td><code>yt-dlp</code> avec <code>--download-sections "*start-end"</code></td><td>Troisième dépendance, et elle change de version tous les mois : l'inclure, c'est importer une dette dans un moteur à zéro dépendance. Le pack fournit déjà <code>start_sec</code>/<code>end_sec</code>.</td></tr>
+<tr><td><b>Transcrire le segment</b></td><td>Le service déjà utilisé par la forge (F00B), ou à la main</td><td>Un modèle de transcription coûte une clé et un réseau. Les <code>source_text</code> sont une entrée du pack, pas une sortie du moteur.</td></tr>
+<tr><td><b>Choisir le moment</b></td><td>Le scoring existant de la forge (F00B / <code>clips_heatmap</code>)</td><td>Il existe, il est déjà déterministe à 85 %, et le §2.1 explique pourquoi MARK1 ne le répare pas. Il produit le <code>start_sec/end_sec</code> du pack.</td></tr>
+<tr><td><b>Rendre la vidéo</b></td><td><b>Le consommateur externe</b> (générique, non nommé)</td><td>C'est <b>la</b> séparation de la V2 : MARK1 décide et livre le pack, le consommateur rend. Produire le MP4 dans MARK1 serait une hérésie de doctrine (§2).</td></tr>
+<tr><td><b>Publier et soumettre</b></td><td>À la main</td><td>La publication automatique est en V2+ (§13) — et un compte neuf qui publie par API est exactement ce que la porte <code>A1_ACCOUNT</code> cherche à empêcher.</td></tr>
+<tr><td><b>Remplir les statistiques</b></td><td><b>Le futur outil de statistiques</b> (§17) — pas encore nommé</td><td>Écrit hors périmètre mais <b>avec son contrat fixé</b> au §17 : il reçoit (<code>clip_token</code>, lien) et remplit 6 colonnes du ledger via <code>mark1.py ledger --update</code>.</td></tr>
+</table>
+
+<h2 id="s12">12. Definition of Done + budget</h2>
+
+<h3>12.1 Definition of Done — cochable, sans interprétation</h3>
+<table>
+<tr><th style="width:44px">☐</th><th style="width:52%">Critère</th><th>Comment on le prouve</th></tr>
+<tr><td>☐</td><td>Les 12 fichiers du §7 existent, aux chemins exacts</td><td><code>find MARK1 -type f | sort</code> → doit lister les 12 + <code>OUT/</code> et <code>TRACKING/</code></td></tr>
+<tr><td>☐</td><td><code>doctor</code> rend <code>[OK] GLOBAL</code></td><td>rc = 0</td></tr>
+<tr><td>☐</td><td>24 tests passent</td><td><code>python3 mark1.py selftest</code> → <code>Ran 24 tests … OK</code></td></tr>
+<tr><td>☐</td><td><b>Un pack réel écrit dans <code>EXPORT/</code></b>, relisible, avec <code>pack_token</code> et un <code>clip_token</code> par asset</td><td><code>python3 mark1.py export packs/&lt;ton&gt;.json</code> → <code>[OK] X1_EXPORT</code> puis relecture du JSON produit</td></tr>
+<tr><td>☐</td><td><b>Un <code>clip_token</code> distinct par clip</b> du pack — deux clips, deux tokens, un seul <code>pack_token</code></td><td>Contrôle dans le pack exporté ; c'est la propriété du §8.8</td></tr>
+<tr><td>☐</td><td><b>Le <code>render.style</code> est présent et vaut <code>blur</code> ou <code>reframing</code></b></td><td><code>X1_EXPORT</code> refuse toute autre valeur. Vocabulaire vérifié sur la forge (§4)</td></tr>
+<tr><td>☐</td><td>3 clips publiés + 3 lignes de ledger + 1 soumission envoyée</td><td><code>python3 mark1.py ledger</code> → <code>3 lignes</code></td></tr>
+<tr><td>☐</td><td>Le ledger contient <code>clip_url</code> et <code>views_approved</code> pour au moins 1 ligne</td><td>C'est la donnée la plus précieuse du document (§15) : sans elle, <code>views_needed()</code> reste théorique</td></tr>
+<tr><td>☐</td><td><b>Zéro ligne supprimée dans <code>MONDES_FORGES/CLIPPING</code></b></td><td><code>git status</code> sur la forge : aucune suppression</td></tr>
+<tr><td>☐</td><td>Aucun appel réseau dans le code livré</td><td><code>grep -rn "urllib\|requests\|http" MARK1/ --include=*.py</code> → 0 résultat hors docstrings</td></tr>
+<tr><td>☐</td><td><b>Aucune référence à <code>ffmpeg</code>, <code>ffprobe</code> ou <code>.ass</code> dans <code>MARK1/</code></b></td><td><code>grep -rni "ffmpeg\|ffprobe\|\.ass\b" MARK1/ --include=*.py</code> → 0 résultat. C'est l'invariant de doctrine de la V2</td></tr>
+<tr><td>☐</td><td>Aucun seuil en dur dans le Python</td><td>Changer une valeur de <code>config/selection.json</code> doit changer le comportement sans toucher un <code>.py</code></td></tr>
+</table>
+
+<h3>12.2 Budget — le vrai, en temps et en argent</h3>
+<table>
+<tr><th style="width:34%">Poste</th><th style="width:150px">Coût</th><th>Note</th></tr>
+<tr><td>Codage (copier les 12 fichiers)</td><td><b>≈ 2 h</b></td><td>Le code est fourni, pas à écrire. Le temps part en relecture et en exécution, pas en conception.</td></tr>
+<tr><td>J1 — setup + première VOD + premier pack</td><td><b>4 h</b></td><td>Dont la recherche d'une campagne financée à CPM ≥ 1,50 $/1k.</td></tr>
+<tr><td>J2 — premier export relu</td><td><b>4 h</b></td><td>Le temps est dans le choix du moment, l'écriture des titres et la vérification du pack — pas dans l'export (quelques millisecondes).</td></tr>
+<tr><td>J3 — publication + ledger</td><td><b>3 h</b></td><td>Dont l'attente de 24 h pour la première mesure de vues — non compressible.</td></tr>
+<tr><td><b>Total opérateur</b></td><td><b>≈ 13 h sur 3 jours</b></td><td>Hors temps d'attente des vues.</td></tr>
+<tr><td>Dépendances logicielles</td><td><b>0 €</b></td><td><b>Python seul.</b> Ni ffmpeg, ni pip install. La V2 retire ffmpeg, la V1 l'exigeait.</td></tr>
+<tr><td>Clés API</td><td><b>0 €</b></td><td>Aucune clé requise — <code>doctor</code> le prouve.</td></tr>
+<tr><td>GPU / cloud</td><td><b>0 €</b></td><td>Aucun Modal, aucun modèle, aucun rendu distant.</td></tr>
+<tr><td>Compute local par clip</td><td><b>≈ 0 s</b></td><td>MARK1 n'encode rien. Le coût de rendu est <b>chez le consommateur</b>, hors de ce budget.</td></tr>
+</table>
+
+<div class="stop"><b>Un coût qui n'est pas dans ce tableau et qui compte :</b> le temps <b>avant</b> le premier dollar. À 277 778 vues nécessaires pour 500 $ nets (§10.3), et sans aucun taux de base sur tes propres clips, la seule prévision honnête est : <b>inconnue</b>. Le ledger existe pour produire ce taux de base. Tant qu'il n'a pas 10 lignes, aucune projection de revenu n'est défendable — et ce document n'en fait pas.</div>
+
+<h2 id="s13">13. V2+ — ce qui est reporté, et à quelle condition ça revient</h2>
+
+<p>Rien de ce qui suit n'entre en V2. Chaque ligne a une <b>condition de retour mesurable</b> : ce n'est pas une feuille de route, c'est une liste de portes fermées avec leur clé.</p>
+
+<table>
+<tr><th style="width:24%">Élément</th><th style="width:34%">Condition de retour (mesurable)</th><th>Pourquoi pas maintenant</th></tr>
+<tr><td><b>Retour du rendu vidéo dans MARK1</b></td><td><b>Jamais.</b> Le rendu appartient au consommateur par doctrine (§2). S'il faut changer le rendu, on change le consommateur.</td><td>PERTURABO/CLIPPING ne touche jamais une vidéo. Un moteur de rendu dans la forge — même isolé dans un sous-dossier — crée une exception qui finit par être invoquée. C'est la correction principale de la V2.</td></tr>
+<tr><td><b>B-roll, flash, SFX, jump cuts, punch-in, zoom</b></td><td>Après 10 clips : si la rétention 3 s médiane est &lt; 70 % <b>et</b> que les partages sont sous la médiane du ledger</td><td>Aucune source ouverte ne montre que ces éléments déplacent les signaux de classement déclarés. Les ajouter avant de mesurer, c'est déplacer le problème.</td></tr>
+<tr><td><b>Retour du LLM dans le chemin critique</b></td><td>Jamais dans le verdict. Éventuellement comme <b>proposeur de titres</b>, si et seulement si le taux de titres générés par gabarits rejetés par l'opérateur dépasse 50 % sur 20 clips</td><td>Constats n°1 et n°8 du §1 : un score non calibré à 50 % du verdict, et un prompt figé produit par un LLM.</td></tr>
+<tr><td><b>Publication automatique</b></td><td>Après 30 clips publiés à la main et un compte de plus de 90 jours, jamais avant</td><td>Un compte neuf qui publie par API est exactement ce que <code>A1_ACCOUNT</code> empêche.</td></tr>
+<tr><td><b>Multi-comptes</b></td><td>Après qu'un compte a produit ≥ 5 clips rentables <b>et</b> un $/h &gt; 0 mesuré sur 30 jours</td><td>Multiplier un système non mesuré multiplie une perte, pas un revenu.</td></tr>
+<tr><td><b>Watermark, LUT, glow, segmentation</b></td><td>Sur demande explicite d'une campagne, jamais par défaut</td><td>Aucune métrique de retour. Un watermark se pose en une ligne ffmpeg le jour où il devient nécessaire.</td></tr>
+<tr><td><b>Preview UI temps réel</b></td><td>Jamais dans MARK1</td><td><i>Le preview, c'est le pack</i> : les bornes <code>start_sec</code>/<code>end_sec</code> et le titre se lisent en 3 secondes dans un JSON indenté. Un aperçu visuel relève du consommateur, qui produit déjà le MP4. Une UI de preview dans MARK1 coûterait un serveur pour dupliquer ce que le consommateur fait gratuitement — et toucherait à la vidéo (§2).</td></tr>
+<tr><td><b>Téléchargement intégré (yt-dlp)</b></td><td>Si le téléchargement manuel coûte plus de 5 min par clip sur 10 clips consécutifs</td><td>Troisième dépendance à version rapide. Le pack fournit déjà les bornes.</td></tr>
+<tr><td><b>Un second <code>mode</code> dans le pack</b></td><td>Quand un second consommateur réel lira le pack</td><td><code>G0_PACK</code> refuse tout mode ≠ <code>mark1</code>. Un mode sans consommateur est un champ sans lecteur — le défaut qu'on vient de retirer.</td></tr>
+<tr><td><b>Calibration de S1 sur données réelles</b></td><td>Après 10 clips : comparer <code>context_dep</code> à <code>pct_non_followers</code>. Si aucun lien n'apparaît, baisser S1 au rang d'indicateur de lecture</td><td>S1 est une hypothèse <b>assumée non validée</b> (§15). C'est pour ça qu'elle est mesurée et pas supposée.</td></tr>
+</table>
+
+<h2 id="s14">14. Journal des décisions</h2>
+
+<p>Huit décisions, avec leur motif et — pour chacune — <b>ce qui la renverserait</b>. Un journal de décisions sans condition de renversement est une déclaration d'autorité, pas un raisonnement.</p>
+
+<table>
+<tr><th style="width:44px">ID</th><th style="width:24%">Décision</th><th style="width:32%">Motif</th><th>Ce qui la renverserait</th></tr>
+<tr><td><b>D1</b></td><td>Dossier <code>MARK1/</code> autonome, à côté, <b>zéro suppression</b> dans la forge</td><td>23 127 lignes qui fonctionnent. Les toucher, c'est risquer la forge entière pour un clip.</td><td>Si le code dupliqué divergeait au point de produire deux scores différents pour le même clip — alors une seule source, et une seule.</td></tr>
+<tr><td><b>D2</b></td><td>Sortir le LLM du verdict de sélection</td><td>50 % du verdict reposait sur un score non calibré, dégradant à <code>5.0</code> sans clé</td><td>Un score LLM calibré sur ≥ 50 clips étiquetés, avec une courbe de fiabilité publiée.</td></tr>
+<tr><td><b>D3</b></td><td>Réduire l'entrée à 8 sections au lieu de 206 clés</td><td>Aucune des 206 clés n'a de lecteur côté CLIPPING (constat n°10)</td><td>Un consommateur qui lit réellement une de ces clés. Alors elle rentre — avec son lecteur.</td></tr>
+<tr><td><b>D4</b></td><td>Créer S1 plutôt que réutiliser <code>clips_heatmap</code></td><td>Le label des clips existants est produit par les fans : il mesure l'enthousiasme fan, pas l'appel au spectateur froid</td><td>Aucun lien entre <code>context_dep</code> et <code>pct_non_followers</code> sur 20 clips (§13).</td></tr>
+<tr><td><b>D5</b></td><td><b>MARK1 ne produit aucun MP4</b> : il écrit un pack JSON dans <code>EXPORT/</code></td><td>Doctrine CLIPPING : <i>« le forge ne touche <b>jamais</b> une vidéo »</i> (README de la forge, §15.1). Livrer un MP4, c'était créer une exception dans la frégate la plus récente — donc celle qui serait invoquée en premier.</td><td><b>Rien.</b> C'est la décision fondatrice de la V2. Si un jour MARK1 devait encoder, il cesserait d'être MARK1 et deviendrait un consommateur.</td></tr>
+<tr><td><b>D6</b></td><td>Le <b>style de rendu</b> (<code>blur</code> / <code>reframing</code>) est un <b>input</b> transmis, jamais exécuté</td><td>Le vocabulaire existe déjà dans la forge (<code>style: "blur"</code>, 71 occurrences ; <code>"reframing"</code> dans <code>F00D_NARRATIVUM/CODEBASE/caviar_director.py:326</code>). MARK1 le recopie dans le pack, le consommateur l'applique.</td><td>Un style que le consommateur ne sait pas rendre. C'est pourquoi <code>X1_EXPORT</code> refuse tout style absent de <code>allowed_render_styles</code>.</td></tr>
+<tr><td><b>D9</b></td><td>Un <code>clip_token</code> par clip, contenant le <code>pack_token</code> du pack</td><td>Un pack sert N clips. La V1 identifiait le pack, pas le clip : le ledger ne pouvait pas apparier une ligne à un lien publié. Formule <code>A01-20261115-3f9a1c07</code>.</td><td>Un consommateur qui ne rendrait qu'un clip par pack. Alors le token par clip redevient un token par pack sans rien casser.</td></tr>
+<tr><td><b>D7</b></td><td><code>generate()</code> ne rend que des titres valides, jamais un repli</td><td><b>Trouvé par un test</b> : le repli produisait un titre qui violait <code>title_max_words</code></td><td>Rien : c'est un bug, pas un choix. Un repli qui viole une porte est un bug par définition.</td></tr>
+<tr><td><b>D8</b></td><td><code>usd_per_hour</code> est la métrique de tri, pas le CPM</td><td>Une campagne à 5 $/1k qui demande 3 h par clip peut rapporter moins qu'une à 2 $/1k traitée en 25 min</td><td>Un <code>minutes_worked</code> constant et vérifié sur tous les clips — alors le CPM redevient équivalent.</td></tr>
+</table>
+
+<h2 id="s15">15. Provenance et statut de vérification</h2>
+
+<p>Chaque chiffre utilisé comme fondement, avec son étiquette. <span class="tag v">VÉRIFIÉ</span> = lu dans la source citée pendant cette session, ou recopié d'une sortie de commande réellement exécutée · <span class="tag d">DÉDUIT</span> = calculé ici, calcul visible · <span class="tag nv">NON VÉRIFIÉ</span> = <b>non utilisé comme fondement</b> · <span class="tag rf">RÉFUTÉ</span> = contredit par une source.</p>
+
+<h3>15.1 Ce qui est solide</h3>
+<table>
+<tr><th style="width:26%">Affirmation</th><th style="width:14%">Valeur exacte</th><th style="width:100px">Étiquette</th><th>Source · ce qui la réfuterait</th></tr>
+
+<tr><td>Le code de la forge ne touche jamais une vidéo</td><td>Citation littérale du README : <i>« Le forge CLIPPING ne touche <b>jamais</b> une vidéo. Il décide <b>quoi</b> clipper, sous <b>quel</b> angle, avec <b>quel</b> texte — et livre à OMNIS_WATCH un <code>production_pack.json</code> prêt à consommer. »</i></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>MONDES_FORGES/CLIPPING/README.md</code>. Réfutation : un module de la forge qui appellerait ffmpeg ou découperait un fichier.</td></tr>
+
+<tr><td>Le score LLM pèse la moitié du verdict</td><td><code>combo = 0.5 * intens * 10 + 0.5 * r["score"]</code></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>F00B_VOX/CODEBASE/libs/vox_premium.py:109</code>. Réfutation : un autre chemin de calcul sans ce 0.5/0.5.</td></tr>
+
+<tr><td>Sans clé, le score LLM vaut exactement 5,0</td><td><code>{"score": 5.0}</code> en trois points de repli</td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>vox_premium.py:60, :70, :77-79</code>. Réfutation : un repli à une autre valeur, ou une erreur levée à la place.</td></tr>
+
+<tr><td>Le capteur d'émotion n'est jamais retourné</td><td><code>emotion_scores</code> construit puis seulement passé à <code>_log()</code></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>auto_detector.py:469-474</code>. Réfutation : un <code>return</code> incluant <code>emotion_scores</code>.</td></tr>
+
+<tr><td>Trois mots dupliqués dans les déclencheurs</td><td>31 entrées, <b>28</b> distinctes : <code>huge</code>, <code>impossible</code>, <code>vraiment</code></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>auto_detector.py:51-57</code>, comptage programmatique. Réfutation : un <code>set()</code> appliqué à la liste à l'usage — il n'y en a pas.</td></tr>
+
+<tr><td>Deux seuils de rejet contradictoires</td><td><code>4,0</code> et <code>6,0</code></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>auto_detector.py:687</code> · <code>f00b_vox.py:525</code>. Réfutation : l'un des deux appelant l'autre.</td></tr>
+
+<tr><td><code>os</code> n'est pas importé dans le capteur audio</td><td><code>import subprocess</code> seul, puis <code>os.path.exists</code></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>audio_sensor.py:14</code> puis <code>:26</code>. Réfutation : un <code>import os</code> ailleurs dans le fichier — il n'y en a pas.</td></tr>
+
+<tr><td>Le titre produit par la chaîne complète est illisible pour un non-fan</td><td><code>"Cucumber Key? The Shocking Truth Behind It"</code></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>EXPORT/production_pack_pur_v2901790628_A01.json</code>, champ <code>overlay_title</code>. Réfutation : un contexte où « Cucumber Key » serait universellement compris.</td></tr>
+
+<tr><td>Les fadeouts sont interdits par la doctrine</td><td><i>« ❌ "Abonne-toi" / "Like et partage" / "Swipe up" / fadeouts / silences &gt; 3s »</i></td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>CONTRACTS/clipping_rules.md:90</code>. Réfutation : une autre clause autorisant un fadeout.</td></tr>
+
+<tr><td>Le document de doctrine du copywriter est un squelette</td><td><b>6</b> marqueurs « À REMPLIR PAR LE WARSMITH »</td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>CONTRACTS/copywriting_doctrine.md:18,32,45,58,72,85</code>.</td></tr>
+
+<tr><td>Le pack existant fait 206 clés</td><td>10 sections, <b>206</b> clés imbriquées</td><td><span class="tag v">VÉRIFIÉ</span></td><td>Comptage récursif sur <code>EXPORT/production_pack_pur_v2901790628_A01.json</code>. Réfutation : un autre pack de référence, plus petit.</td></tr>
+
+<tr><td>Le pack MARK1 tient en 28 lignes de JSON</td><td>2,5 ko, 8 sections</td><td><span class="tag v">VÉRIFIÉ</span></td><td><code>packs/mark1_pack.example.json</code>, mesuré dans le §7.</td></tr>
+
+<tr><td>Les signaux de classement Reels sont déclarés par l'éditeur</td><td>activité · historique d'interaction · informations sur le reel (audio, visuels, popularité) · informations sur le compte. Et les prédictions déclarées : partage, lecture complète, like, visite de la page audio.</td><td><span class="tag v">VÉRIFIÉ</span></td><td><a href="https://about.instagram.com/blog/announcements/instagram-ranking-explained">about.instagram.com — Instagram Ranking Explained</a>. Réfutation : une déclaration plus récente contredisant cette liste. <b>Note honnête</b> : la page n'emploie <b>pas</b> les termes « watch time », « sends per reach » ni « likes per reach » — ces formulations circulent dans la littérature secondaire, pas chez l'éditeur.</td></tr>
+
+<tr><td>Une vue Shorts compte dès la première image, sans durée minimale</td><td><i>« Starting 3/31/2025 … Views will count the number of times a Short starts to play or replay, with no minimum watch time requirement. »</i></td><td><span class="tag v">VÉRIFIÉ</span></td><td><a href="https://support.google.com/youtube/answer/10059070">support.google.com — YouTube Shorts</a>. Conséquence directe : <b>une vue n'est pas une vue approuvée</b>, d'où la colonne <code>views_approved</code> dans le ledger.</td></tr>
+</table>
+
+<h3>15.2 Ce qui est incertain</h3>
+<table>
+<tr><th style="width:30%">Affirmation</th><th style="width:100px">Étiquette</th><th>Ce qui manque exactement pour trancher · où le trouver</th></tr>
+<tr><td>Les frais de plateforme sur une campagne CPM Content Rewards valent <b>10 %</b> du versement</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Le chiffre est <b>paramétré</b> (<code>platform_fee_pct: 0.10</code>) et non codé en dur, précisément parce qu'il n'a pas pu être rouvert cette session : <code>whop.com/terms-of-service/</code> et <code>contentrewards.com</code> n'ont pas rendu le texte des conditions. <b>À vérifier avant de lire un seul $ net</b>, dans les CGU créateur de la campagne elle-même. Si le taux réel est 15 %, tous les <code>net_usd</code> du ledger sont surestimés de 5,6 %.</td></tr>
+<tr><td>Le délai de règlement est d'environ 10 jours</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Même cause. Ce qui <b>est</b> établi par la déclaration publique de l'outil : les vues sont contrôlées (<i>« Every view is checked for bot traffic, so you only pay for real people »</i>, <a href="https://contentrewards.com/">contentrewards.com</a>). Le <b>taux</b> d'approbation, lui, n'est publié nulle part — c'est le trou le plus coûteux du document.</td></tr>
+<tr><td>Le CPM affiché médian du marché est de 1,0875 $/1 000 vues</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Ce chiffre reste du cahier des charges précédent, non recontrôlé ici. Il sert à un test unitaire (<code>test_views_needed_500_net</code>) comme <b>valeur d'entrée arbitraire</b>, pas comme fait de marché. Le plancher d'éligibilité (1,50 $/1k) ne dépend pas de lui.</td></tr>
+<tr><td>Le taux d'approbation réel des vues</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td><b>Non publié par les plateformes.</b> C'est la donnée la plus précieuse que MARK1 produira : <code>views_approved / views_72h</code>, ligne par ligne. Tant qu'il n'existe pas, <code>views_needed(…, approval_rate)</code> tourne avec sa valeur par défaut de 1,0 — donc <b>optimiste par construction</b>.</td></tr>
+<tr><td>La dépendance au contexte prédit la portée hors-fans</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Aucune étude publiée sur des clips vidéo courts n'a été trouvée. C'est <b>l'hypothèse centrale de S1</b> : c'est exactement pour cela qu'elle est mesurée et pas supposée, et que le §13 prévoit de la renverser si <code>context_dep</code> ne corrèle pas avec <code>pct_non_followers</code>.</td></tr>
+<tr><td>Le nombre de places disponibles par campagne</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Non publié. Le code le dit dans sa sortie : <code>"capacité inconnue — à mesurer par tes propres soumissions"</code>. Aucun nombre n'est inventé.</td></tr>
+<tr><td>Le premier versement tombera dans les 10 jours</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Dépend du budget restant au moment de la soumission, et de l'approbation. Rien dans ce document ne garantit un paiement.</td></tr>
+</table>
+
+<h3>15.3 Ce qui est réfuté</h3>
+<table>
+<tr><th style="width:34%">Affirmation courante</th><th style="width:100px">Étiquette</th><th>Ce qui la démolit</th></tr>
+<tr><td>« Un score de LLM améliore la sélection de moments »</td><td><span class="tag rf">RÉFUTÉ</span></td><td>Dans <b>ce</b> code : le score vaut <code>5,0</code> constant sans clé, et il pèse 50 % du verdict (<code>vox_premium.py:109</code>). Un critère qui rend la même valeur pour tous les candidats ne classe rien — il dilue. Ce n'est pas une opinion sur les LLM : c'est une mesure sur ce code.</td></tr>
+<tr><td>« Il suffit d'ajouter du montage (SFX, zoom, b-roll) pour percer »</td><td><span class="tag nv">NON VÉRIFIÉ</span></td><td>Aucune source ouverte ne le montre — et rien n'a été trouvé qui l'établisse. Ce n'est donc <b>pas</b> réfuté : c'est <b>sans preuve</b>, donc hors périmètre V1. C'est une différence que le document tient à garder nette.</td></tr>
+<tr><td>« Une vue Shorts = un spectateur engagé »</td><td><span class="tag rf">RÉFUTÉ</span></td><td>Depuis le <b>31/03/2025</b>, une vue Shorts compte <i>« with no minimum watch time requirement »</i> ; YouTube a conservé la métrique engagée sous un autre nom, « Engaged views » (<a href="https://support.google.com/youtube/answer/10059070">source</a>). Confondre les deux gonfle le revenu attendu d'un facteur inconnu.</td></tr>
+<tr><td>« Le CPM affiché est le CPM payé »</td><td><span class="tag rf">RÉFUTÉ</span></td><td>Le CPM affiché est un <b>prix brut</b> avant frais et avant application du taux d'approbation des vues. Le code sépare explicitement les deux (<code>net_per_1k</code> puis <code>approval_rate</code>), et le plafond par clip (<code>cap_usd_per_clip</code>) plafonne le net, pas le brut.</td></tr>
+</table>
+
+<h3>15.4 Protocole de vérification — par toi-même, en une semaine</h3>
+<div class="okbox">
+<b>Ce que tu vas réfuter ou confirmer, et avec quelles données :</b>
+<ol>
+<li><b>Le taux d'approbation réel.</b> Publie 5 clips. Relève <code>views_72h</code> sur la plateforme et <code>views_approved</code> sur la campagne. Calcule le rapport. <b>Seuil de réussite</b> : si le rapport ≥ 0,85, MARK1 est calibré correctement. <b>Seuil d'abandon</b> : si le rapport &lt; 0,50, le nombre de vues nécessaires double — la thèse économique du §10.4 est morte et il faut changer de campagne, pas de moteur. <b>Durée</b> : 7 jours (attente des 72 h comprise). <b>Coût</b> : 0 €.</li>
+<li><b>Les frais réels.</b> Compare le montant versé au montant brut calculé (<code>vues_approuvées / 1000 × cpm</code>). L'écart donne <code>platform_fee_pct</code> réel. <b>Seuil</b> : si l'écart dépasse 10 %, corrige la valeur dans <code>config/selection.json</code> — c'est à ça que sert la config. <b>Durée</b> : au premier versement.</li>
+<li><b>L'hypothèse S1.</b> Sur 10 clips, compare <code>context_dep</code> (lu dans le ledger) à <code>pct_non_followers</code>. <b>Seuil de réussite</b> : corrélation négative visible à l'œil sur un graphique à 10 points. <b>Seuil d'abandon</b> : aucun ordre visible. Alors S1 est un indicateur de lecture, pas un prédicteur — et le §13 s'applique. <b>Durée</b> : 14 jours. <b>Coût</b> : 0 €.</li>
+<li><b>Le taux de base, avant toute prédiction.</b> Sur les 10 premiers clips : combien de vues, combien approuvées, combien de $ nets, combien de minutes travaillées. <b>Sans ce tableau, aucune prédiction du document n'a de valeur</b> — y compris les siennes.</li>
+</ol>
+<b>Ce que ce document ne prétend pas.</b> Il ne promet aucun taux de réussite, aucune viralité, aucun revenu. La seule chose mesurable et falsifiable qu'il apporte est l'arithmétique du clip (vues nécessaires, $/h, plafonds) et un taux de base que ton propre ledger établira.
+</div>
+
+<h2 id="s16">16. Mise à jour de ce document</h2>
+
+<p>Cette section existe pour une raison précise : <b>« auto-suffisant » veut dire que l'agent de codage n'a besoin de rien d'autre</b> — donc, si quelque chose doit changer, la procédure doit être ici. Une procédure de mise à jour absente rendrait l'auto-suffisance fausse au premier changement.</p>
+
+<h3>16.1 Les quatre cas de mise à jour, et où l'on touche</h3>
+<table>
+<tr><th style="width:24%">Ce qui doit changer</th><th style="width:22%">Fichier à modifier</th><th>Ce qu'il ne faut <b>pas</b> toucher</th></tr>
+<tr><td><b>Un seuil</b> (durée, mots du titre, CPM plancher, frais, warmup)</td><td><code>config/selection.json</code> <b>uniquement</b></td><td>Le Python. Si un changement de seuil oblige à éditer un <code>.py</code>, c'est un bug de conception : le seuil a été écrit en dur quelque part.</td></tr>
+<tr><td><b>Une règle de rejet</b> (nouvelle porte, nouveau critère)</td><td><code>libs/gates.py</code> — une fonction de plus, signature <code>(ok, code, message)</code></td><td>Les appelants existants. Une porte s'ajoute, elle ne modifie jamais la signature des autres. Ajouter aussi son code dans <code>CODES</code>.</td></tr>
+<tr><td><b>Un gabarit de titre</b></td><td><code>libs/title_forge.py</code>, liste <code>TEMPLATES</code></td><td><code>validate()</code>. Un nouveau gabarit passe par les mêmes portes que les autres, sans exception.</td></tr>
+<tr><td><b>Une colonne de mesure</b></td><td><code>libs/ledger.py</code>, liste <code>FIELDS</code></td><td><b>Les 24 colonnes existantes, jamais.</b> Retirer une colonne casse la lecture des lignes déjà écrites : les anciennes lignes auraient un champ absent et <code>--econ</code> rendrait des chiffres faux.</td></tr>
+</table>
+
+<h3>16.2 La procédure, dans l'ordre — à exécuter telle quelle</h3>
+<ol>
+<li><b>Copier l'état actuel.</b> <code>cp -r MARK1 MARK1.bak.$(date +%F)</code>. Sans sauvegarde, un test cassé ne se distingue pas d'un seuil cassé.</li>
+<li><b>Modifier un seul fichier</b> selon le tableau §16.1. Jamais deux à la fois : si les tests cassent, on ne saura pas lequel.</li>
+<li><b>Relancer la suite.</b> <code>cd MARK1 &amp;&amp; python3 -m unittest discover -s tests -v</code>.<br>
+&nbsp;&nbsp;• Sortie attendue si le changement est neutre : <code>Ran 24 tests</code> puis <code>OK</code>.<br>
+&nbsp;&nbsp;• Si un test de comportement casse (par exemple <code>test_too_long</code> après avoir mis <code>title_max_words</code> à 12) : <b>c'est le test qui a raison</b>, sauf si le seuil devait changer — dans ce cas on met à jour <b>le test</b>, avec la nouvelle valeur, jamais un <code>skip</code>.</li>
+<li><b>Relancer un export réel, pas seulement les tests.</b> <code>python3 mark1.py export packs/&lt;ton&gt;.json</code> puis relire le pack écrit dans <code>EXPORT/</code>. Un changement de schéma ou de porte ne se voit pas dans un test unitaire — et MARK1 ne produisant pas de vidéo, <b>il n'y a rien d'autre à vérifier visuellement</b> (§10.2).</li>
+<li><b>Écrire une ligne dans <code>MARK1/TRACKING/MARK1_LOG.md</code></b> : date, fichier touché, valeur avant, valeur après, résultat de la suite.</li>
+<li><b>Si un test échoue et que tu ne sais pas pourquoi :</b> tu restaures <code>MARK1.bak</code>, tu écris l'erreur <b>exacte</b> dans le log, et tu t'arrêtes. <b>Tu ne réécris pas un module pour le faire passer.</b> Un test ajusté pour passer n'est plus un test, c'est une décoration.</li>
+</ol>
+
+<h3>16.3 Les quatre invariants — jamais modifiés, quel que soit le motif</h3>
+<div class="stop">
+<b>1. Aucun appel réseau dans <code>MARK1/</code>.</b> Vérification : <code>grep -rn "urllib\|requests\|socket\|http" MARK1/ --include=*.py</code> → rien hors docstrings.<br>
+<b>2. Aucun seuil en dur dans le Python.</b> Vérification : changer une valeur de <code>config/selection.json</code> doit changer le comportement, sans toucher un <code>.py</code>.<br>
+<b>3. <code>llm_enabled</code> reste <code>false</code> et rien ne le lit.</b> Vérification : <code>grep -rn "llm_enabled" MARK1/ --include=*.py</code> → 0 résultat.<br>
+<b>4. Aucune suppression dans <code>MONDES_FORGES/CLIPPING</code>.</b> Vérification : <code>git status</code> sur la forge → aucune suppression. MARK1 vit à côté, il ne remplace rien.
+</div>
+
+<h3>16.4 Si tu dois repartir de zéro</h3>
+<p>Ce document contient tout : les 12 fichiers du §8, l'arborescence du §7, les commandes et leurs sorties attendues du §9 et du §10, la Definition of Done du §12, et cette procédure. <b>Un agent de codage qui n'a que ce fichier HTML peut donc :</b> créer l'arborescence, écrire les fichiers, exécuter la suite, obtenir <code>Ran 24 tests OK</code>, produire un pack dans <code>EXPORT/</code> avec ses <code>clip_token</code>, écrire une ligne de ledger par clip, puis modifier un seuil et re-tester — <b>sans poser une seule question</b>. C'est exactement, et uniquement, ce que veut dire « auto-suffisant » ici.</p>
+
+<h2 id="s17">17. L'outil de statistiques — contrat d'interface</h2>
+
+<p>MARK1 s'arrête au pack et au ledger. Il ne lit aucune statistique : <b>aucune API de plateforme n'est appelée</b> (invariant §16.3 n°1). Mais il y a un maillon manquant entre « le clip est publié » et « on sait s'il a rapporté » : quelqu'un doit regarder le lien et remplir les chiffres. Cette section fixe ce contrat <b>maintenant</b>, pour que le jour où l'outil est écrit, il n'ait rien à renégocier avec MARK1.</p>
+
+<div class="warn"><b>Ce que cette section n'est pas.</b> Ce n'est <b>pas</b> la spécification de l'outil — celui-ci n'existe pas encore et n'est pas nommé ici. C'est la <b>surface par laquelle il parle à MARK1</b>, et qui ne bougera pas : deux entrées, un point d'écriture. Tout le reste est à lui.</div>
+
+<h3>17.1 La règle d'appariement — la seule chose non négociable</h3>
+<div class="stop"><b>Le ledger est apparié par <code>clip_token</code>, jamais par le titre, la date ou l'ordre de publication.</b> Un titre peut être modifié après publication ; deux clips peuvent partager le même titre ; l'ordre de publication n'est pas l'ordre d'export. Le <code>clip_token</code> est la seule clé qui survive à ces trois cas — c'est précisément pour ça qu'il contient le <code>pack_token</code> (§8.8).</div>
+
+<p>Conséquence pratique : au moment de publier, l'opérateur <b>colle le lien à côté du <code>clip_token</code></b>. C'est ce que fait <code>mark1.py ledger --update &lt;clip_token&gt; --changes '{"clip_url": "…"}'</code>. Sans ce lien, l'outil ne peut pas remonter au clip — il n'a rien à mesurer. <b>Le lien est le seul geste manuel irréductible du système.</b></p>
+
+<h3>17.2 Les deux entrées de l'outil</h3>
+<table>
+<tr><th style="width:26%">Entrée</th><th style="width:20%">Format</th><th>Rôle</th></tr>
+<tr><td><b>Le pack livrable</b></td><td><code>EXPORT/production_pack_mark1_&lt;cid&gt;.json</code></td><td>Sa <b>seule</b> utilité pour l'outil : la table <code>assets[]</code> → <code>clip_token</code>, <code>clip_id</code>, <code>clip_url</code>, <code>start_sec</code>/<code>end_sec</code>. Il ne doit rien en déduire d'autre, et surtout pas écrire dedans : <b>le pack est immuable après export</b>.</td></tr>
+<tr><td><b>Le ledger</b></td><td><code>MARK1/OUT/ledger.csv</code>, 24 colonnes (§8.6)</td><td>La table à remplir. L'outil ne crée jamais de colonne : il remplit celles qui existent, et se tait si une colonne manque.</td></tr>
+</table>
+
+<h3>17.3 Le point d'écriture — 3 colonnes, et pas une de plus</h3>
+<p>L'outil n'écrit jamais dans le CSV directement. Il passe par la CLI, qui garantit l'idempotence et l'ordre des colonnes :</p>
+
+<pre class="code"><span class="fn">le seul point d'écriture autorisé</span>python3 mark1.py ledger --update &lt;clip_token&gt; --changes '{"views_approved": 42000}'
+python3 mark1.py ledger --update &lt;clip_token&gt; --changes '{"minutes_worked": 25}'
+python3 mark1.py ledger --update &lt;clip_token&gt; --changes '{"paid_usd": 41.2}'</pre>
+
+<table>
+<tr><th style="width:20%">Colonne</th><th style="width:14%">Type</th><th>Qui la remplit · ce qu'elle ne doit pas contenir</th></tr>
+<tr><td><code>views_approved</code></td><td>entier</td><td>L'outil de statistiques. <b>Les vues validées par la campagne, pas les vues brutes.</b> C'est la donnée la plus précieuse du ledger (§15) : c'est elle qui rend <code>views_needed()</code> non théorique.</td></tr>
+<tr><td><code>minutes_worked</code></td><td>décimal</td><td>L'opérateur (ou l'outil s'il mesure). Durée réelle, trajet mental compris. Sans elle, <code>usd_per_hour</code> rend <code>0.0</code> — et la métrique de tri D8 est perdue.</td></tr>
+<tr><td><code>paid_usd</code></td><td>décimal</td><td>L'outil, <b>seulement</b> quand le versement est confirmé. Un <code>paid_usd</code> estimé est un mensonge dans le ledger : il empêche de distinguer une campagne qui paie d'une campagne qui promet.</td></tr>
+</table>
+
+<h3>17.4 Ce que l'outil n'a pas le droit de faire</h3>
+<table>
+<tr><th style="width:44px">☐</th><th style="width:52%">Interdit</th><th>Pourquoi</th></tr>
+<tr><td>✗</td><td>Écrire dans le pack ou le modifier d'une quelconque façon</td><td>Le pack contient son <code>pack_token</code>, qui est le hash du pack. Modifier le pack après coup rendrait le token faux : toute la traçabilité du §5.2 s'effondrerait.</td></tr>
+<tr><td>✗</td><td>Créer une ligne de ledger pour un clip non exporté</td><td>Un clip sans <code>clip_token</code> est inappariable (§17.1). <code>append()</code> le refuse déjà — c'est le test <code>test_append_without_clip_token_is_refused</code>.</td></tr>
+<tr><td>✗</td><td>Écrire une colonne hors des 24 du §8.6</td><td>Retirer ou ajouter une colonne casse la lecture des lignes existantes (§16.1, dernière ligne).</td></tr>
+<tr><td>✗</td><td>Apparier par titre, date ou ordre</td><td>Trois clés qui échouent toutes, chacune pour une raison différente (§17.1).</td></tr>
+<tr><td>✗</td><td>Déduire un <code>paid_usd</code> d'un CPM × vues et l'écrire comme confirmé</td><td><code>revenue()</code> dans <code>libs/economy.py</code> est là pour <b>projeter</b>, avec un nom qui dit qu'il projette. Un paiement réel se constate.</td></tr>
+</table>
+
+<h3>17.5 Pourquoi ce contrat est écrit alors que l'outil n'existe pas</h3>
+<p>Parce que les deux seules décisions qui ne peuvent pas être prises deux fois sont : <b>la clé d'appariement</b> (<code>clip_token</code>) et <b>le point d'écriture</b> (<code>ledger --update</code>). Si elles étaient choisies plus tard, par un outil qui aurait inventé sa propre convention, il faudrait réécrire les lignes déjà écrites — c'est-à-dire perdre l'historique, qui est la seule chose que MARK1 produit vraiment. Écrire ce contrat coûte une section ; le découvrir trop tard coûte le ledger.</p>
+
+<div class="foot">
+<b>MARK1 — Cahier des charges <span style="color:#b3261e">V2</span> — monde-forge CLIPPING</b><br>
+Doctrine : <i>le moteur décide, l'opérateur valide, le ledger juge.</i><br><br>
+<b>Portée :</b> ce document ne traite que le monde-forge CLIPPING du dépôt <code>gyutedy/PERTURABO</code>, branche <code>pari-forge-perturabo-xs4c</code>, dossier <code>MONDES_FORGES/CLIPPING</code>. Il ne propose aucune modification d'un autre monde-forge, et n'en dépend d'aucun.<br><br>
+<b>Sources factuelles ouvertes pendant la rédaction :</b> le dépôt PERTURABO sur sa branche exacte (796 fichiers mesurés, 104 fichiers Python hors ARCHIVUM, 23 127 lignes), lu fichier par fichier pour chaque preuve citée avec sa ligne ; <a href="https://contentrewards.com/">contentrewards.com</a> (contrôle des vues par l'outil) ; <a href="https://about.instagram.com/blog/announcements/instagram-ranking-explained">Instagram Ranking Explained</a> (signaux de classement Reels déclarés) ; <a href="https://support.google.com/youtube/answer/10059070">support.google.com — Shorts</a> (comptage des vues depuis le 31/03/2025) ; et les sorties brutes des commandes exécutées sur ce moteur, recopiées aux §9 et §10.<br><br>
+<b>Sources fermées / non disponibles cette session :</b> <code>whop.com/terms-of-service/</code> (n'a pas rendu son contenu) — d'où le taux de frais et le délai de règlement marqués <span class="tag nv">NON VÉRIFIÉ</span> et laissés paramétrables.<br><br>
+Généré le 2026-11-15. <b>État de vérification de la V2 :</b> les blocs de code du §8 sont le code <b>à implémenter</b> — ils n'ont pas encore été exécutés, et les sorties des §9 et §10 sont marquées <span class="tag d">ATTENDU</span> en conséquence. La V1, elle, portait des sorties réellement exécutées ; elles sont conservées au §15 comme référence de comparaison, pas comme preuve de la V2. <b>Le §16.2 impose de remplacer chaque <span class="tag d">ATTENDU</span> par une sortie réelle dès la première exécution.</b><br><br>
+<b>Ce que la V2 change en une phrase :</b> MARK1 ne produit plus de MP4 — il produit un <b>pack JSON livrable</b> déposé dans <code>EXPORT/</code>, avec un <code>pack_token</code> et un <code>clip_token</code> par clip, et un ledger écrit à l'export. Le rendu vidéo appartient au consommateur. Détail complet des écarts V1→V2 : <code>MARK1/TRACKING/MARK1_V1_V2_CHANGES.md</code>.
+</div>
+
+</div><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body></html>

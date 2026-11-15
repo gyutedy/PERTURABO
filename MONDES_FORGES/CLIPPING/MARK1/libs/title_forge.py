@@ -1,0 +1,114 @@
+"""libs/title_forge.py -- 12 gabarits de titre, zero LLM.
+
+REGLE (decision D7, trouvee par un test) :
+    generate() ne rend QUE des titres valides. Il n existe pas de repli qui
+    rendrait un titre violant une porte. Si aucun gabarit ne passe, generate()
+    rend une liste vide -- et l operateur ecrit son titre a la main.
+
+Aucun seuil ici : tout vient de config/selection.json via `cfg`.
+"""
+
+from __future__ import annotations
+
+# 12 gabarits. {number} et {stake} sont optionnels : un gabarit dont les trous
+# ne sont pas remplis est simplement ecarte par generate().
+TEMPLATES = (
+    {"id": "T01", "stake": "perte", "pattern": "Il a perdu {number}"},
+    {"id": "T02", "stake": "perte", "pattern": "Elle a tout perdu en {unit}"},
+    {"id": "T03", "stake": "gain", "pattern": "Il a gagne {number} en une nuit"},
+    {"id": "T04", "stake": "choc", "pattern": "Ce jour la tout a bascule"},
+    {"id": "T05", "stake": "choc", "pattern": "Personne ne savait ce qui allait arriver"},
+    {"id": "T06", "stake": "temoignage", "pattern": "Il raconte ce qu il a vraiment vu"},
+    {"id": "T07", "stake": "temoignage", "pattern": "Elle explique comment elle a survecu"},
+    {"id": "T08", "stake": "chiffre", "pattern": "{number} dollars en {unit}"},
+    {"id": "T09", "stake": "chiffre", "pattern": "{number} personnes ont vu la meme chose"},
+    {"id": "T10", "stake": "retournement", "pattern": "Tout le monde pensait qu il mentait"},
+    {"id": "T11", "stake": "retournement", "pattern": "La verite est sortie trois jours apres"},
+    {"id": "T12", "stake": "avertissement", "pattern": "Ne faites jamais ce qu il a fait"},
+)
+
+_STAKE_MARKERS = (
+    "perdu", "perd", "gagne", "gagne", "paye", "dollars", "euro", "euros",
+    "tout", "rien", "jamais", "survecu", "bascule", "verite", "mentait",
+    "personne", "personnes", "nuit", "jour", "apres", "avant", "vue", "vraiment",
+)
+
+
+def _word_count(text):
+    return len([w for w in text.replace(",", " ").split() if w])
+
+
+def validate(title, cfg):
+    """Rend la liste des violations. Liste vide = titre valide.
+
+    Codes : empty, too_long, too_short, too_many_words, cta, question_mark,
+            no_stake.
+    """
+    t = (title or "").strip()
+    v = []
+    if not t:
+        return ["empty"]
+
+    lower = t.lower()
+
+    if len(t) > int(cfg.get("title_max_chars", 60)):
+        v.append("too_long")
+    if len(t) < 12:
+        v.append("too_short")
+
+    wc = _word_count(t)
+    if wc > int(cfg.get("title_max_words", 8)):
+        v.append("too_many_words")
+    if wc < int(cfg.get("title_min_words", 4)):
+        v.append("too_short")
+
+    if any(s in lower for s in cfg.get("cta_stoplist", ())):
+        v.append("cta")
+
+    if not cfg.get("allowed_question_mark", False) and "?" in t:
+        v.append("question_mark")
+
+    if not any(m in lower for m in _STAKE_MARKERS):
+        v.append("no_stake")
+
+    return v
+
+
+def generate(fields, cfg):
+    """Rend les candidats valides, tries par ordre de gabarit.
+
+    `fields` : {"text": ..., "subject": ..., "number": ..., "unit": ...}
+    Chaque candidat : {"template_id", "stake", "text", "violations", "ok"}.
+    Seuls les candidats ok=True sont rendus. Si aucun gabarit ne passe : [].
+    """
+    text = (fields.get("text") or "").strip()
+    number = str(fields.get("number") or "").strip()
+    unit = str(fields.get("unit") or "une nuit").strip()
+
+    out = []
+    seen = set()
+    for tpl in TEMPLATES:
+        pattern = tpl["pattern"]
+        if "{number}" in pattern and not number:
+            continue
+        try:
+            title = pattern.format(number=number, unit=unit) if (
+                "{number}" in pattern or "{unit}" in pattern
+            ) else pattern
+        except (KeyError, IndexError):
+            continue
+        title = title.strip()
+        if not title or title in seen:
+            continue
+        seen.add(title)
+        viol = validate(title, cfg)
+        if viol:
+            continue
+        out.append({
+            "template_id": tpl["id"],
+            "stake": tpl["stake"],
+            "text": title,
+            "violations": viol,
+            "ok": True,
+        })
+    return out

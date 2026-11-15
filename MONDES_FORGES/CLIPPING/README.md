@@ -73,6 +73,7 @@ Composants annexes :
 | TYRANT | Deux modes : réactif (analyse campagne) + prospectif (océan bleu sur même source que le Démon) |
 | F00_CAPTEURS | **Commandité Warsmith** (pas auto). Cartographie marché, Démons, YouTube Shorts, océans rouge/bleu et preuves réelles |
 | ORCHESTRATOR | 4 Portes, pattern hybride (sauf F04 qui dialog direct premium) |
+| **MARK1** | **Frégate autonome** (dossier `MARK1/`) : sélection S1, titres par gabarits, éligibilité campagne, pack JSON + ledger. **Ne rend jamais de vidéo** — livraison à OMNIS_WATCH. 0 dépendance, 0 clé. Voir `GUIDE_UTILISATION/24_MODE_MARK1.md` |
 
 ---
 

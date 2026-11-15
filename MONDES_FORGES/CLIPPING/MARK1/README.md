@@ -1,0 +1,125 @@
+# MARK1 — frégate autonome de sélection et de livraison de clips
+
+> *Le moteur décide, l'opérateur valide, le ledger juge.*
+
+MARK1 vit **à côté** de la forge, dans `MONDES_FORGES/CLIPPING/MARK1/`. Il ne
+remplace aucune frégate, ne supprime aucune ligne, et ne dépend d'aucune clé.
+
+---
+
+## Ce que MARK1 fait — et ce qu'il ne fait JAMAIS
+
+MARK1 **décide** quels segments valent un clip, **forge** le titre, **vérifie**
+que la campagne paie, **emballe** le pack et **écrit** le ledger.
+
+MARK1 **ne produit jamais de vidéo.** Ni MP4, ni ffmpeg, ni `.ass`. C'est la
+doctrine du monde-forge CLIPPING :
+
+> « Le forge CLIPPING ne touche **jamais** une vidéo. Il décide **quoi** clipper,
+> sous **quel** angle, avec **quel** texte — et livre à OMNIS_WATCH un
+> `production_pack.json` prêt à consommer. »
+
+MARK1 produit un **pack JSON** déposé dans `EXPORT/`. Le consommateur
+(OMNIS_WATCH) le récupère et produit le clip.
+
+```
+MARK1                    │   OMNIS_WATCH            │   Opérateur
+─────────────────────────┼──────────────────────────┼──────────────────────
+décide, titre, vérifie   │   coupe, reframe, rend   │   publie, soumet <1h
+écrit le pack + ledger   │   applique asset_mode     │   colle le lien
+                         │                          │   remplit les vues
+```
+
+---
+
+## Démarrage en 4 commandes
+
+```bash
+cd MONDES_FORGES/CLIPPING/MARK1
+
+python mark1.py doctor                      # prouve qu'aucune clé n'est requise
+python mark1.py pack packs/demo.json        # valide le pack d'entrée
+python mark1.py export packs/demo.json      # écrit le pack livrable + le ledger
+python mark1.py selftest                    # 36 tests, 0 dépendance
+```
+
+---
+
+## Les 7 commandes
+
+| Commande | Ce qu'elle fait |
+|---|---|
+| `doctor` | Liste l'état des clés, vérifie `export_dir` et les `asset_mode`. Sort `0`. |
+| `pack <pack.json>` | Applique `G0_PACK` seul. |
+| `title "<texte>" [--number --subject --internal]` | Analyse S1 puis propose les titres **déjà valides**. |
+| `campaign <camp.json> --platform tiktok [--target 500]` | Éligibilité + $ net/1k + vues nécessaires. |
+| `export <pack.json> [--platform tiktok]` | **La commande centrale.** `G0_PACK → A1_ACCOUNT → A2_CAMPAIGN → S2_DURATION → C2_DISCLOSURE → X1_EXPORT`, écrit le pack dans `EXPORT/`, écrit une ligne de ledger par clip. **Aucun MP4.** |
+| `ledger [--add | --update <clip_token> --changes '{…}'] [--econ]` | Liste, ajoute, complète, recalcule. |
+| `selftest` | Lance la suite de tests. |
+
+---
+
+## Les deux tokens
+
+| Token | Formule | Rôle |
+|---|---|---|
+| `pack_token` | hash SHA-256 tronqué à 8 car. | Identité du **contenu** du pack. Stable, insensible à l'ordre des clés. |
+| `clip_token` | `<asset_id>-<AAAAMMJJ>-<pack_token>` | Identité d'**un clip**. Contient le `pack_token`. Ex. `A01-20261115-3f9a1c07`. |
+
+Un pack sert N clips → **N `clip_token` pour 1 `pack_token`**. Le ledger est
+apparié **par `clip_token`**, jamais par titre, date ou ordre de publication.
+
+---
+
+## `asset_mode` — les deux valeurs admises
+
+MARK1 ne transmet que **`blur`** et **`reframing`** (validés à l'usage sur la
+forge). Le vocabulaire complet de la forge (`split`, `reframing`, `ranking`,
+`blur`, cf. `F00D_NARRATIVUM/CODEBASE/caviar_director.py:34`) est plus large :
+MARK1 n'accepte que les deux qui sont éprouvés.
+
+MARK1 **transmet** `asset_mode`. Il ne l'exécute jamais.
+
+---
+
+## Les invariants — jamais violés, quel que soit le motif
+
+1. **Aucun appel réseau.** `grep -rn "urllib\|requests\|socket" MARK1/ --include=*.py` → rien.
+2. **Aucun seuil en dur.** Tout dans `config/selection.json`.
+3. **`llm_enabled` reste `false` et rien ne le lit.**
+4. **Aucune suppression dans `MONDES_FORGES/CLIPPING`.**
+5. **Aucun ffmpeg, ffprobe, `.ass`, MP4.** MARK1 ne rend pas de vidéo.
+
+---
+
+## Arborescence
+
+```
+MARK1/
+├── mark1.py                  CLI, 7 commandes (248 l.)
+├── config/selection.json     source unique des seuils
+├── libs/
+│   ├── env.py                les 8 clés optionnelles (38 l.)
+│   ├── economy.py            net, revenue, vues nécessaires, $/h (60 l.)
+│   ├── s1_context.py         auto-suffisance contextuelle (156 l.)
+│   ├── title_forge.py        12 gabarits, 0 LLM (114 l.)
+│   ├── campaign.py           éligibilité + revenu attendu (61 l.)
+│   ├── gates.py              6 portes implémentées (207 l.)
+│   ├── tokens.py             pack_token + clip_token (87 l.)
+│   └── ledger.py             CSV, 26 colonnes, idempotent (126 l.)
+├── tests/test_mark1.py       36 tests (224 l.)
+├── packs/demo.json           pack d'exemple
+├── OUT/                      ledger.csv (gitignoré)
+└── TRACKING/                 journal + notes de migration
+```
+
+**~1 326 lignes de Python, 0 dépendance.**
+
+---
+
+## Documentation
+
+- `TRACKING/MARK1_LOG.md` — journal d'implémentation, décisions, écarts
+- `TRACKING/MARK1_V1_V2_CHANGES.md` — ce que la V2 change par rapport à la V1
+- `MARK1_CDC_V2_CLIPPING.html` — cahier des charges complet (dans `GUIde_UTILISATION/24_MODE_MARK1.md` côté forge)
+- `GUIDE_UTILISATION/24_MODE_MARK1.md` — guide opérateur dans la forge

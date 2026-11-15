@@ -20,6 +20,8 @@
 | `F04_COPYWRITER` | `../F04_COPYWRITER/CODEBASE/TRACKING.md` | Frégate lourde — texte viral via premium direct |
 | `F05_PACKAGER` | `../F05_PACKAGER/CODEBASE/TRACKING.md` | Emballe production packs |
 | `F06_TRACKER` | `../F06_TRACKER/CODEBASE/TRACKING.md` | Checklist submission active + learnings |
+| `MARK1` | `../MARK1/TRACKING/MARK1_LOG.md` | Frégate autonome — journal d'implémentation et sorties mesurées |
+| `MARK1` | `../MARK1/TRACKING/MARK1_V1_V2_CHANGES.md` | Écarts V1 → V2 (pack JSON, plus de MP4) |
 
 ## Composants annexes
 
