@@ -1,14 +1,19 @@
 {
-  "_comment": "MARK1 — source unique des seuils. Aucun seuil n'est ecrit en dur dans le Python : ce fichier est le seul endroit ou l'on change un comportement.",
+  "_comment": "MARK1 V3 -- source unique des seuils. Aucun seuil n'est ecrit en dur dans le Python : ce fichier est le seul endroit ou l'on change un comportement.",
 
   "title_max_words": 8,
-  "title_min_words": 4,
+  "title_min_words": 3,
   "title_max_chars": 60,
-  "cta_stoplist": [
-    "abonne", "abonne-toi", "abonnez-vous", "subscribe", "suis-moi", "follow me",
-    "like", "like et partage", "partage", "share", "swipe up", "lien en bio",
-    "link in bio", "commente", "comment below", "tag a friend", "act now"
-  ],
+  "overlay_max_words": 4,
+  "overlay_max_chars_per_line": 60,
+  "metadata_title_max_chars": 85,
+  "description_max_chars": 220,
+  "cta_stoplist": {
+    "fr": ["abonne", "abonne-toi", "abonnez-vous", "suis-moi", "like et partage",
+           "partage", "lien en bio", "commente", "act now"],
+    "en": ["subscribe", "follow me", "like and share", "share this", "link in bio",
+           "comment below", "smash that", "tag a friend", "act now"]
+  },
   "allowed_question_mark": false,
 
   "min_segment_sec": 8,
@@ -17,8 +22,12 @@
   "allowed_asset_modes": ["blur", "reframing"],
   "default_asset_mode": "blur",
 
-  "min_cpm_usd_per_1k": 1.5,
-  "platform_fee_pct": 0.10,
+  "min_cpm_usd_per_1k": 0.15,
+  "_comment_cpm": "Plancher 0.15 $/1k : decision du Warsmith, pas un fait de marche. La campagne AISHAH paie 15 $/50k vues = 0.30 $/1k.",
+
+  "platform_fee_pct": 0.0,
+  "_comment_fee": "Les campagnes Clipify/Whop versent le montant affiche : pas de frais deduits cote createur.",
+
   "default_approval_rate": 1.0,
   "default_cap_usd_per_clip": 200,
 
@@ -27,9 +36,56 @@
   "disclosure_tags": ["#ad", "#sponsored"],
   "require_disclosure": true,
 
+  "languages": {
+    "en": {
+      "directive_value": "English",
+      "default": "en"
+    },
+    "fr": {
+      "directive_value": "French",
+      "default": "fr"
+    }
+  },
+  "default_language": "en",
+
+  "directiva": {
+    "path": "../ARCHIVUM/campaign/campaign_directive.json",
+    "watermark_dir": "../ARCHIVUM/campaign/watermarks",
+    "watermark_rules": "../ARCHIVUM/campaign/watermarks/watermark_rules.json",
+    "required_fields": ["campaign_id", "language", "platforms", "payout", "caption_rules"]
+  },
+
+  "watermark": {
+    "opacity": 0.80,
+    "position": "center",
+    "size_pct": 15,
+    "platforms_obliged": ["tiktok", "instagram_reels", "youtube_shorts"],
+    "platforms_optional": ["twitter_x"]
+  },
+
+  "llm": {
+    "enabled": false,
+    "_comment": "false = mode ORACLE (semi-automatique). true + cle presente = mode direct. true + cle absente = bascule ORACLE.",
+    "model_env": "CLIPPING_LLM_MODEL",
+    "key_env": "CLIPPING_LLM_API_KEY",
+    "base_url_env": "CLIPPING_BASE_URL",
+    "candidates_per_round": 3,
+    "max_rounds": 3,
+    "timeout_sec": 120
+  },
+
+  "vox": {
+    "modal_url_env": "MODAL_URL",
+    "modal_token_env": "MODAL_TOKEN_ID",
+    "piece_sec": 480,
+    "request_timeout": 900
+  },
+
   "export_dir": "../EXPORT",
   "export_prefix": "production_pack_mark1_",
   "ledger_path": "OUT/ledger.csv",
+  "oracle_pending_dir": "../ORACLE/pending",
+  "oracle_answers": "../ORACLE/answers.json",
 
   "internal_terms_min_chars": 3,
   "s1_max_unexplained_entities": 0

@@ -23,10 +23,15 @@ HYPOTHESE CENTRALE (non validee) : context_dep bas -> portee hors-fans haute.
 
 from __future__ import annotations
 
+import json
+import os
 import re
 
-# Mots qui n ont besoin d aucun contexte : un spectateur froid les comprend.
-_UNIVERSAL = frozenset("""
+_LANG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lang")
+_CACHE = {}
+
+# Repli francais : si aucune langue n'est chargee, on garde le comportement V2.
+_FR_UNIVERSAL = frozenset("""
 il elle ils elles on nous vous je tu me moi toi lui leur
 un une des le la les ce cet cette ces mon ma mes ton ta tes son sa ses notre nos
 a ai as avons avez ont avait avaient eu etre ete suis es est sommes etes sont
@@ -53,16 +58,42 @@ seul seule ensemble
 monde terre pays ville maison voiture telephone ordinateur travail ecole
 """.split())
 
-_APPOSITION = re.compile(r"\s*,\s*(?:le|la|les|l|un|une|the)\s+", re.IGNORECASE)
-_CAP_SEQ = re.compile(r"\b[A-Z][\w-]*(?:\s+[A-Z][\w-]*)*")
-_WORD = re.compile(r"[A-Za-z]+")
+_CAP_SEQ = re.compile(r'\b[A-Z][\w-]*(?:\s+[A-Z][\w-]*)*')
+_WORD = re.compile(r"[A-Za-zÀ-ſ]+")
 
 
-def _universal(token):
-    return token.lower().strip("-") in _UNIVERSAL
+def load_lang(lang):
+    """Charge (et met en cache) le lexique d'une langue. Repli FR sinon."""
+    code = (lang or "fr").lower()
+    if code in _CACHE:
+        return _CACHE[code]
+    path = os.path.join(_LANG_DIR, "%s.json" % code)
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as fh:
+            data = json.load(fh)
+        spec = {
+            "universal": frozenset(w.lower() for w in data.get("universal", [])),
+            "stake": tuple(data.get("stake_markers", [])),
+            "articles": tuple(data.get("apposition_articles", ["le", "la", "les", "un", "une"])),
+        }
+    else:
+        spec = {
+            "universal": _FR_UNIVERSAL,
+            "stake": ("perdu", "perd", "gagne", "paye", "dollars", "euro", "euros",
+                      "tout", "rien", "jamais", "survecu", "bascule", "verite",
+                      "mentait", "personne", "personnes", "nuit", "jour", "apres",
+                      "avant", "vue", "vraiment"),
+            "articles": ("le", "la", "les", "l", "un", "une", "the"),
+        }
+    _CACHE[code] = spec
+    return spec
 
 
-def _explained_by_apposition(text, entity):
+def _universal(token, spec):
+    return token.lower().strip("-") in spec["universal"]
+
+
+def _explained_by_apposition(text, entity, spec):
     """Vrai si l entite est suivie d une virgule puis d un article (apposition).
 
     "Sophie Rain, la creatrice la plus suivie, a tout arrete" -> expliquee.
@@ -71,38 +102,34 @@ def _explained_by_apposition(text, entity):
     if idx < 0:
         return False
     tail = text[idx + len(entity):]
-    return bool(_APPOSITION.match(tail))
+    m = re.match(r"\s*,\s*([A-Za-zÀ-ſ]+)\s+", tail)
+    if not m:
+        return False
+    return m.group(1).lower() in spec["articles"]
 
 
-def _candidate_entities(text):
-    """Sequences capitalisees de 2 caracteres ou plus, hors mots universels.
-
-    Les mots en debut de phrase sont captures aussi : c est voulu. Un titre
-    qui commence par un nom propre inconnu doit etre signale.
-    """
+def _candidate_entities(text, spec):
+    """Sequences capitalisees de 2 caracteres ou plus, hors mots universels."""
     found = []
     for m in _CAP_SEQ.finditer(text):
         seq = m.group(0).strip()
         if len(seq) < 2:
             continue
         tokens = seq.split()
-        if all(_universal(t) for t in tokens):
+        if all(_universal(t, spec) for t in tokens):
             continue
         found.append((seq, m.start()))
     return found
 
 
-def analyse(text, subject="", internal_terms=()):
+def analyse(text, subject="", internal_terms=(), lang=None):
     """Analyse un texte (titre ou hook) et rend un dict.
 
-    Cles rendues :
-        verdict                 : "ok" ou "reject"
-        context_dependency      : 0.0 a 1.0, part du texte non universelle
-        unexplained_entities    : entites capitalisees non expliquees
-        internal_terms          : termes internes trouves
-        reasons                 : liste lisible de ce qui a fait rejeter
-        word_count              : nombre de mots
+    `lang` : "en" ou "fr". Absent -> repli FR (comportement V2 inchange).
+    Cles rendues : verdict, context_dependency, unexplained_entities,
+                   internal_terms, reasons, word_count
     """
+    spec = load_lang(lang)
     raw = (text or "").strip()
     reasons = []
 
@@ -121,27 +148,23 @@ def analyse(text, subject="", internal_terms=()):
     words = _WORD.findall(raw)
     lowered = raw.lower()
 
-    # 1. Termes internes declares -- la seule facon de detecter une private joke.
     hit_internals = [t for t in internals if t.lower() in lowered]
     if hit_internals:
         reasons.append("internal_term")
 
-    # 2. Entites capitalisees non expliquees.
     unexplained = []
-    for seq, _pos in _candidate_entities(raw):
+    for seq, _pos in _candidate_entities(raw, spec):
         if subject_norm and seq.lower() in subject_norm:
             continue
-        if _explained_by_apposition(raw, seq):
+        if _explained_by_apposition(raw, seq, spec):
             continue
         if seq not in unexplained:
             unexplained.append(seq)
-
     if unexplained:
         reasons.append("unexplained_entity")
 
-    # 3. Dependance au contexte : part des mots non universels.
     if words:
-        unknown = sum(1 for w in words if not _universal(w))
+        unknown = sum(1 for w in words if not _universal(w, spec))
         dep = round(unknown / len(words), 4)
     else:
         dep = 0.0
@@ -153,4 +176,5 @@ def analyse(text, subject="", internal_terms=()):
         "internal_terms": hit_internals,
         "reasons": reasons,
         "word_count": len(words),
+        "lang": (lang or "fr").lower(),
     }

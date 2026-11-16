@@ -18,6 +18,7 @@ CHANGEMENT V2 (aligne sur CONTRACTS/clipping_rules.md) :
 from __future__ import annotations
 
 CODES = (
+    "D0_DIRECTIVE",
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
@@ -32,6 +33,7 @@ CODES = (
 
 # Codes dont une fonction existe dans ce module.
 IMPLEMENTED = (
+    "D0_DIRECTIVE",
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
@@ -39,6 +41,60 @@ IMPLEMENTED = (
     "S2_DURATION",
     "X1_EXPORT",
 )
+
+
+def d0_directive(directive, cfg):
+    """La directive de campagne est-elle complete et utilisable ?
+
+    C'est la porte qui applique la doctrine : MARK1 lit la directive depuis
+    ARCHIVUM a CHAQUE siege, et refuse un siege qui ne s'appuie pas sur une
+    directive valide. Les champs manquants sont listes, pas devines.
+    """
+    d = directive or {}
+    missing = list(d.get("missing") or [])
+    reasons = []
+
+    if not d.get("campaign_id"):
+        missing.append("campaign_id")
+    if not d.get("language"):
+        missing.append("language")
+
+    if missing:
+        reasons.append("champs manquants: " + ", ".join(missing))
+
+    platforms = d.get("platforms") or []
+    if not platforms:
+        reasons.append("aucune plateforme")
+
+    # langue : la directive doit etre EN ou FR (connue du moteur)
+    langs = {code for code, spec in (cfg.get("languages") or {}).items()
+             if spec.get("directive_value")}
+    lang = d.get("language") or ""
+    if lang not in langs and lang not in (cfg.get("languages") or {}):
+        reasons.append("langue %r inconnue (attendu %s)" % (lang, sorted(langs)))
+
+    # payout : unite reelle de la campagne, comparee au plancher
+    rate = None
+    for code, spec in (d.get("payouts") or {}).items():
+        rate = spec.get("usd_per_1k")
+        break
+    plancher = float(cfg.get("min_cpm_usd_per_1k", 0.15))
+    if rate is None:
+        reasons.append("aucun payout exploitable")
+    elif rate < plancher:
+        reasons.append("payout %.4f $/1k < plancher %.2f $/1k" % (rate, plancher))
+
+    # captions : un handle au moins
+    captions = d.get("captions") or {}
+    if not captions:
+        reasons.append("aucune regle de caption")
+
+    if reasons:
+        return False, "D0_DIRECTIVE", "; ".join(reasons)
+    return True, "D0_DIRECTIVE", "%s | %s | %.2f $/1k | %d plates | %d captions" % (
+        d.get("campaign_id"), d.get("language"),
+        rate if rate is not None else 0.0,
+        len(platforms), len(captions))
 
 
 def g0_pack(pack, cfg):

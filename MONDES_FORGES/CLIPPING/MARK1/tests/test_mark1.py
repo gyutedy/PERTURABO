@@ -169,7 +169,7 @@ class TestCampaign(unittest.TestCase):
         self.assertTrue(evaluate(self.BASE, CFG, "tiktok")["eligible"])
 
     def test_low_rate(self):
-        c = dict(self.BASE); c["rate_usd_per_1k"] = 0.4
+        c = dict(self.BASE); c["rate_usd_per_1k"] = 0.05
         self.assertIn("rate_below_min", evaluate(c, CFG, "tiktok")["reasons"])
 
     def test_unfunded_is_the_real_risk(self):

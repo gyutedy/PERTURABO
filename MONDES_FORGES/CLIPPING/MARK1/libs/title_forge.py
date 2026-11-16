@@ -38,7 +38,25 @@ def _word_count(text):
     return len([w for w in text.replace(",", " ").split() if w])
 
 
-def validate(title, cfg):
+def _stoplist(cfg, lang=None):
+    """Rend la stoplist CTA pour la langue demandee.
+
+    Accepte les deux formes de config : une liste plate (V2) ou un dict par
+    langue (V3). Retrocompatible : sans langue, on fusionne toutes les langues,
+    ce qui est plus strict et ne laisse passer aucun CTA.
+    """
+    raw = cfg.get("cta_stoplist", ())
+    if isinstance(raw, dict):
+        if lang and lang in raw:
+            return [s.lower() for s in raw[lang]]
+        merged = []
+        for v in raw.values():
+            merged.extend(v)
+        return [s.lower() for s in merged]
+    return [s.lower() for s in raw]
+
+
+def validate(title, cfg, lang=None):
     """Rend la liste des violations. Liste vide = titre valide.
 
     Codes : empty, too_long, too_short, too_many_words, cta, question_mark,
@@ -62,7 +80,7 @@ def validate(title, cfg):
     if wc < int(cfg.get("title_min_words", 4)):
         v.append("too_short")
 
-    if any(s in lower for s in cfg.get("cta_stoplist", ())):
+    if any(s in lower for s in _stoplist(cfg, lang)):
         v.append("cta")
 
     if not cfg.get("allowed_question_mark", False) and "?" in t:
@@ -74,7 +92,7 @@ def validate(title, cfg):
     return v
 
 
-def generate(fields, cfg):
+def generate(fields, cfg, lang=None):
     """Rend les candidats valides, tries par ordre de gabarit.
 
     `fields` : {"text": ..., "subject": ..., "number": ..., "unit": ...}
@@ -101,7 +119,7 @@ def generate(fields, cfg):
         if not title or title in seen:
             continue
         seen.add(title)
-        viol = validate(title, cfg)
+        viol = validate(title, cfg, lang)
         if viol:
             continue
         out.append({

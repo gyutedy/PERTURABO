@@ -1,0 +1,45 @@
+{
+  "_comment": "Lexique anglais : mots qu'un spectateur froid comprend sans contexte.",
+
+  "universal": [
+    "i", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them",
+    "my", "your", "his", "its", "our", "their", "this", "that", "these", "those",
+    "a", "an", "the", "some", "any", "all", "every", "no", "none", "nobody",
+    "someone", "something", "anything", "everything", "nothing",
+    "is", "are", "was", "were", "be", "been", "being", "am",
+    "have", "has", "had", "do", "does", "did", "done",
+    "say", "says", "said", "tell", "told", "talk", "talked",
+    "go", "goes", "went", "gone", "come", "came", "get", "got", "give", "gave",
+    "take", "took", "make", "made", "put", "see", "saw", "seen", "look", "looked",
+    "lose", "lost", "win", "won", "pay", "paid", "sell", "sold", "buy", "bought",
+    "find", "found", "leave", "left", "stop", "stopped", "start", "started",
+    "change", "changed", "keep", "kept", "run", "ran", "die", "died", "kill",
+    "day", "days", "night", "nights", "week", "weeks", "month", "months",
+    "year", "years", "hour", "hours", "minute", "minutes", "second", "seconds", "time", "times",
+    "dollar", "dollars", "euro", "euros", "cent", "cents",
+    "million", "millions", "billion", "billions", "thousand", "hundred",
+    "money", "price", "expensive", "cheap", "free",
+    "man", "woman", "girl", "boy", "kid", "kids", "child", "children", "guy", "people",
+    "father", "mother", "brother", "sister", "friend", "friends", "family",
+    "life", "death", "dead", "alive", "young", "old", "big", "small", "little",
+    "first", "last", "best", "worst", "good", "bad", "new", "same", "other",
+    "more", "less", "very", "too", "much", "many", "enough", "still", "already",
+    "never", "always", "often", "again", "only", "just", "even", "back",
+    "before", "after", "during", "since", "until", "without", "with", "for",
+    "and", "or", "but", "so", "because", "if", "when", "while", "then",
+    "not", "what", "who", "how", "why", "where", "here", "there", "now",
+    "true", "false", "real", "fake", "alone", "together",
+    "world", "country", "city", "house", "car", "phone", "computer", "work", "school",
+    "everyone", "nobody", "anyone", "himself", "herself", "themselves"
+  ],
+
+  "stake_markers": [
+    "lost", "lose", "win", "won", "paid", "pay", "dollars", "euros", "million",
+    "thousand", "everything", "nothing", "never", "survived", "died", "death",
+    "truth", "lied", "liar", "nobody", "everyone", "night", "day", "after",
+    "before", "really", "actually", "broke", "ruined", "destroyed", "gave up",
+    "quit", "arrested", "caught", "exposed", "revealed", "confessed"
+  ],
+
+  "apposition_articles": ["the", "a", "an"]
+}
