@@ -133,6 +133,14 @@ def cmd_export(a):
         return 2
     print("[OK] D0_DIRECTIVE : %s" % msg)
 
+    # --- M0b : cycle encore ouvert ? ---
+    ok, code, msg = gates.m0b_cycle(directive, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        print("       (la campagne a peut-etre change de cycle : relis l'annonce)")
+        return 2
+    print("[OK] M0B_CYCLE : %s" % msg)
+
     # --- M1 : selection ---
     segments = selector.select(pack_in, directive, cfg, str(ROOT))
     ok, code, msg = gates.m1_selection(segments, directive, cfg)
@@ -176,6 +184,16 @@ def cmd_export(a):
         print("[FAIL] %s : %s" % (code, msg))
         return 2
     print("[OK] M2_METADATA : %s (overlay=%s, %d round(s))" % (msg, overlay_mode, rounds))
+
+    # --- M2b : vocabulaire, focus, bait, negative PR ---
+    for b in built:
+        b["subject"] = directive.get("creator_name") or ""
+        b["source_text"] = b.get("source_text") or b.get("transcript") or ""
+    ok, code, msg = gates.m2b_compliance(built, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] M2B_COMPLIANCE : %s" % msg)
 
     # --- M3 : watermark ---
     wm = vexillum.build(cfg, str(ROOT), directive, platform)

@@ -120,3 +120,27 @@ import ou en appel. Le nom `M00F_VOX` est une sous-frégate de MARK1, pas
 
 *Document vivant. Toute nouvelle exception doit apparaître ici avec son
 rayon exact et sa commande de contrôle, ou elle n'existe pas.*
+
+---
+
+## Ce que MARK1 ne verifie PAS (et ne pretend pas verifier)
+
+Depuis la directive du cycle 2026-07-24, quatre regles existent qui sont
+**hors du perimetre de MARK1**, parce qu'il ne produit pas la video :
+
+| Regle de la campagne | Qui la gere |
+|---|---|
+| Aucun autre logo visible | OMNIS_WATCH (montage) |
+| Caption non editee sur IG Reels | l'operateur (saisie plateforme) |
+| Post public, commentaires ouverts | l'operateur |
+| Engagement organique normal | la plateforme / le ledger |
+
+**Les mettre dans MARK1 serait du theatre.** Une porte qui pretend verifier
+ce qu'elle ne peut pas voir est pire qu'une porte absente : elle donne une
+fausse assurance.
+
+En revanche, ces regles SONT verifiees par MARK1 parce qu'il produit le texte :
+- **main focus** -> presence du sujet dans la transcription (`compliance.focus_report`)
+- **pas de bait** -> overlay soutenu par le texte source (`compliance.bait_report`)
+- **pas de negative PR** -> marqueurs d'attaque (`compliance.negative_pr_report`)
+- **vocabulaire interdit** -> nettoyage + refus sur overlay (`compliance.scrub`, `check_asset`)

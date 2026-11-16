@@ -1,6 +1,5 @@
 {
   "_comment": "MARK1 V3 -- source unique des seuils. Aucun seuil n'est ecrit en dur dans le Python : ce fichier est le seul endroit ou l'on change un comportement.",
-
   "title_max_words": 8,
   "title_min_words": 3,
   "title_max_chars": 60,
@@ -9,33 +8,49 @@
   "metadata_title_max_chars": 85,
   "description_max_chars": 220,
   "cta_stoplist": {
-    "fr": ["abonne", "abonne-toi", "abonnez-vous", "suis-moi", "like et partage",
-           "partage", "lien en bio", "commente", "act now"],
-    "en": ["subscribe", "follow me", "like and share", "share this", "link in bio",
-           "comment below", "smash that", "tag a friend", "act now"]
+    "fr": [
+      "abonne",
+      "abonne-toi",
+      "abonnez-vous",
+      "suis-moi",
+      "like et partage",
+      "partage",
+      "lien en bio",
+      "commente",
+      "act now"
+    ],
+    "en": [
+      "subscribe",
+      "follow me",
+      "like and share",
+      "share this",
+      "link in bio",
+      "comment below",
+      "smash that",
+      "tag a friend",
+      "act now"
+    ]
   },
   "allowed_question_mark": false,
-
   "min_segment_sec": 8,
   "max_segment_sec": 90,
-
-  "allowed_asset_modes": ["blur", "reframing"],
+  "allowed_asset_modes": [
+    "blur",
+    "reframing"
+  ],
   "default_asset_mode": "blur",
-
   "min_cpm_usd_per_1k": 0.15,
   "_comment_cpm": "Plancher 0.15 $/1k : decision du Warsmith, pas un fait de marche. La campagne AISHAH paie 15 $/50k vues = 0.30 $/1k.",
-
   "platform_fee_pct": 0.0,
   "_comment_fee": "Les campagnes Clipify/Whop versent le montant affiche : pas de frais deduits cote createur.",
-
   "default_approval_rate": 1.0,
   "default_cap_usd_per_clip": 200,
-
   "min_warmup_days": 7,
-
-  "disclosure_tags": ["#ad", "#sponsored"],
+  "disclosure_tags": [
+    "#ad",
+    "#sponsored"
+  ],
   "require_disclosure": true,
-
   "languages": {
     "en": {
       "directive_value": "English",
@@ -47,22 +62,31 @@
     }
   },
   "default_language": "en",
-
   "directiva": {
     "path": "../ARCHIVUM/campaign/campaign_directive.json",
     "watermark_dir": "../ARCHIVUM/campaign/watermarks",
     "watermark_rules": "../ARCHIVUM/campaign/watermarks/watermark_rules.json",
-    "required_fields": ["campaign_id", "language", "platforms", "payout", "caption_rules"]
+    "required_fields": [
+      "campaign_id",
+      "language",
+      "platforms",
+      "payout",
+      "caption_rules"
+    ]
   },
-
   "watermark": {
-    "opacity": 0.80,
+    "opacity": 0.8,
     "position": "center",
     "size_pct": 15,
-    "platforms_obliged": ["tiktok", "instagram_reels", "youtube_shorts"],
-    "platforms_optional": ["twitter_x"]
+    "platforms_obliged": [
+      "tiktok",
+      "instagram_reels",
+      "youtube_shorts"
+    ],
+    "platforms_optional": [
+      "twitter_x"
+    ]
   },
-
   "llm": {
     "enabled": false,
     "_comment": "false = mode ORACLE (semi-automatique). true + cle presente = mode direct. true + cle absente = bascule ORACLE.",
@@ -73,20 +97,90 @@
     "max_rounds": 3,
     "timeout_sec": 120
   },
-
   "vox": {
     "modal_url_env": "MODAL_URL",
     "modal_token_env": "MODAL_TOKEN_ID",
     "piece_sec": 480,
     "request_timeout": 900
   },
-
   "export_dir": "../EXPORT",
   "export_prefix": "production_pack_mark1_",
   "ledger_path": "OUT/ledger.csv",
   "oracle_pending_dir": "../ORACLE/pending",
   "oracle_answers": "../ORACLE/answers.json",
-
   "internal_terms_min_chars": 3,
-  "s1_max_unexplained_entities": 0
+  "s1_max_unexplained_entities": 0,
+  "forbidden_terms": {
+    "_comment": "Mixte : remplacement dans les champs mecaniques, refus sur overlay_title.",
+    "terms": [
+      "onlyfans",
+      "only fans",
+      "of creator",
+      "of model",
+      "of star",
+      "of girl",
+      "of account"
+    ],
+    "replacements": {
+      "onlyfans": "content creator",
+      "only fans": "content creator",
+      "of creator": "content creator",
+      "of model": "content creator",
+      "of star": "popular influencer",
+      "of girl": "popular influencer",
+      "of account": "content creator"
+    },
+    "approved_alternatives": [
+      "popular influencer",
+      "content creator",
+      "twitch streamer"
+    ],
+    "replace_in": [
+      "tags",
+      "hashtags",
+      "description",
+      "metadata_title",
+      "caption"
+    ],
+    "reject_in": [
+      "overlay_title"
+    ]
+  },
+  "focus": {
+    "_comment": "Aishah doit etre le sujet. Mesure sur la transcription, pas sur la video.",
+    "min_mention_ratio": 0.15,
+    "min_mentions": 1
+  },
+  "bait": {
+    "_comment": "L'overlay ne doit pas promettre ce que le texte ne tient pas.",
+    "hype_markers": [
+      "you won't believe",
+      "shocking",
+      "insane",
+      "must see",
+      "click",
+      "exposed",
+      "banned",
+      "deleted",
+      "gone wrong",
+      "caught"
+    ],
+    "require_support_ratio": 0.5
+  },
+  "negative_pr": {
+    "_comment": "Pas de negative PR. Marqueurs d'attaque personnelle.",
+    "markers": [
+      "scam",
+      "fraud",
+      "liar",
+      "fake",
+      "pathetic",
+      "disgusting",
+      "cringe",
+      "washed up",
+      "clout chaser",
+      "gold digger",
+      "desperate"
+    ]
+  }
 }

@@ -169,3 +169,33 @@ manquant.
 - `TRACKING/LES_EXCEPTIONS.md` : EXC-1 (overlay LLM contraint), EXC-2 (VOX),
   3 invariants abrogés bornés, 3 grep de contrôle documentés et vérifiés.
 - Budget : 14 462/15 000 crédits consommés, 36 tests verts, 4 poussées GitHub.
+
+## V3.1 — 2026-11-16 (conformite reelle de campagne)
+
+Directive source du cycle utilisee : `ARCHIVUM/campaign/directive_aishah_2026-07-24.txt`
+(archivee, 3744 octets). Confrontation texte <-> base : 4 ecarts trouves.
+
+1. **Payouts faux sur 2 plateformes.** La base disait 15$ pour les quatre ;
+   la directive dit 10$ pour X et IG Reels. Corrige (0.200 $/1k au lieu de
+   0.300). Le ledger surevaluait de 50% la moitie des plateformes.
+2. **Porte M0B_CYCLE.** La directive impose "Always follow the announcement
+   for the current cycle". Rien ne verifiait `cycle.end`. **Le cycle AISHAH
+   est expire depuis le 2026-11-15** : un siege aujourd'hui est refuse en
+   rouge. C'est le premier blocage reel de la porte, et il est legitime.
+3. **Porte M2B_COMPLIANCE** : vocabulaire interdit (refus sur overlay,
+   nettoyage ailleurs), main focus (mesure sur la transcription),
+   bait (overlay non soutenu par le texte), negative PR (marqueurs).
+4. **Vocabulaire interdit mixte** : `metaforge` nettoie tags/description/
+   caption/metadata_title ; `check_asset` refuse si un terme interdit
+   subsiste dans overlay_title.
+
+Ce qui n'est PAS traite, et ne doit pas l'etre : logos visibles, caption
+editee sur IG, post prive, engagement organique. MARK1 ne produit pas la
+video -- ces regles appartiennent a OMNIS_WATCH et a l'operateur.
+
+56 tests OK (36 V2 + 10 V3 + 10 V3.1).
+
+### A FAIRE avant le premier siege reel
+- [ ] La campagne doit avoir un cycle ouvert (M0B le dit, en rouge)
+- [ ] `MODAL_URL` / `MODAL_TOKEN_ID` pour la transcription (EXC-2)
+- [ ] Fournir une transcription horodatee OU un audio par segment (option B)

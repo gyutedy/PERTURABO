@@ -19,6 +19,8 @@ from __future__ import annotations
 
 CODES = (
     "D0_DIRECTIVE",
+    "M0B_CYCLE",
+    "M2B_COMPLIANCE",
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
@@ -228,6 +230,68 @@ def m5_vox(vox_results, cfg):
         return False, "M5_VOX", "; ".join(reasons)
     with_text = sum(1 for r in vox_results if (r.get("transcript") or "").strip())
     return True, "M5_VOX", "%d segments, %d transcrits" % (len(vox_results), with_text)
+
+
+def m0b_cycle(directive, cfg, today=None):
+    """Le cycle de campagne est-il encore ouvert ?
+
+    La directive le dit : "Always follow the announcement for the current
+    cycle". Un pack exporte avec un cycle expire est refuse au paiement,
+    sans que rien ne l'ait signale. Cette porte le signale.
+    """
+    from datetime import date, datetime
+
+    cycle = (directive or {}).get("cycle") or {}
+    start = cycle.get("start")
+    end = cycle.get("end")
+    if not end:
+        return False, "M0B_CYCLE", "cycle.end absent de la directive"
+
+    if today is None:
+        today = date.today()
+    elif isinstance(today, str):
+        today = datetime.strptime(today[:10], "%Y-%m-%d").date()
+
+    try:
+        end_d = datetime.strptime(str(end)[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return False, "M0B_CYCLE", "cycle.end illisible : %r" % (end,)
+
+    if today > end_d:
+        return False, "M0B_CYCLE", "cycle expire le %s (aujourd'hui %s)" % (end_d, today)
+
+    if start:
+        try:
+            start_d = datetime.strptime(str(start)[:10], "%Y-%m-%d").date()
+            if today < start_d:
+                return False, "M0B_CYCLE", "cycle pas encore ouvert (%s)" % start_d
+        except ValueError:
+            pass
+
+    return True, "M0B_CYCLE", "cycle %s -> %s, ouvert" % (start or "?", end_d)
+
+
+def m2b_compliance(assets, cfg):
+    """Les regles de contenu verifiables sont-elles respectees ?
+
+    Couvre : vocabulaire interdit, main focus, bait, negative PR.
+    Ne couvre PAS : logos, caption editee, post prive -- MARK1 ne produit
+    pas la video, ces regles appartiennent a OMNIS_WATCH.
+    """
+    from libs import compliance
+
+    if not assets:
+        return False, "M2B_COMPLIANCE", "aucun asset"
+
+    reasons = []
+    for a in assets:
+        ok, why = compliance.check_asset(a, cfg)
+        if not ok:
+            reasons.append("%s: %s" % (a.get("id"), " | ".join(why)))
+
+    if reasons:
+        return False, "M2B_COMPLIANCE", "; ".join(reasons)
+    return True, "M2B_COMPLIANCE", "%d assets conformes" % len(assets)
 
 
 def g0_pack(pack, cfg):

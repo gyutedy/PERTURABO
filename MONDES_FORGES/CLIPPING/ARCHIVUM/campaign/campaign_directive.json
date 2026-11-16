@@ -18,11 +18,11 @@
         "views_per_unit": 50000
       },
       "twitter_x": {
-        "payout_usd": 15,
+        "payout_usd": 10,
         "views_per_unit": 50000
       },
       "instagram_reels": {
-        "payout_usd": 15,
+        "payout_usd": 10,
         "views_per_unit": 50000
       },
       "youtube_shorts": {
@@ -33,7 +33,14 @@
     "minimum": "50K views total (cumulatively across all posts combined)",
     "maximum": "$900",
     "budget": "$5,000",
-    "methods": "USDC, PayPal"
+    "methods": "USDC, PayPal",
+    "_corrected_from": {
+      "tiktok": 15,
+      "twitter_x": 15,
+      "instagram_reels": 15,
+      "youtube_shorts": 15
+    },
+    "_correction_note": "X et IG paient 10$/50k, pas 15$. Corrige d'apres la directive source du cycle 2026-07-24."
   },
   "caption_rules": {
     "tiktok": {
@@ -82,7 +89,7 @@
     "Repeated violations may result in disqualification from the campaign"
   ],
   "content_source": {
-    "approved_period": "Anything from her streams from 7/20 forward, can be on other streams as long she's the main focus of the clip. No reaction clips.",
+    "approved_period": "Anything from her streams from 7/20 forward, can be on other streams as long she's the main focus of the clip.",
     "restrictions": [
       "**Payment Setup:** You must set your payment method before the campaign cycle ends using `/setpayment`. If your payment method is not set by the deadline, you risk missing your payout.",
       "The amount shown in your dashboard is not always your final payout.",

@@ -174,4 +174,17 @@ def build(segment, directive, cfg, platform):
     seg["hashtags"] = make_hashtags(seg, directive, cfg)
     seg["caption"] = make_caption(seg, directive, cfg, platform)
     seg["platform"] = platform
+
+    # Vocabulaire interdit : on NETTOIE les champs mecaniques, on ne touche
+    # pas a overlay_title (remplace automatiquement, il sonnerait faux ;
+    # la porte M2B le refuse a la place).
+    from libs import compliance
+    for field in ("metadata_title", "description", "caption"):
+        cleaned, hits = compliance.scrub(seg.get(field) or "", cfg)
+        if hits:
+            seg[field] = cleaned
+            seg.setdefault("scrubbed", []).extend("%s:%s" % (field, h) for h in hits)
+    seg["tags"] = [t for t in (compliance.scrub(x, cfg)[0] for x in seg.get("tags") or [])]
+    seg["tags"] = [t for t in dict.fromkeys(seg["tags"]) if t]
+
     return seg

@@ -145,16 +145,27 @@ partager un titre.
 
 ---
 
-## 8. Les 6 portes implémentées
+## 8. Les portes implémentées (V3.1)
 
 | Porte | Quand | Critère | Si échec |
 |---|---|---|---|
-| `G0_PACK` | avant tout | `mode=mark1`, `vod_url`, `asset_mode` ∈ {blur, reframing}, assets non vides, titres présents, bornes dans `[min,max]_segment_sec` | arrêt |
+| `G0_PACK` | avant tout | `mode=mark1`, `vod_url`, `asset_mode` ∈ {blur, reframing}, assets non vides, bornes dans `[min,max]_segment_sec` | arrêt |
+| **`D0_DIRECTIVE`** | M0 | directive lue depuis ARCHIVUM, `campaign_id`, langue connue, payout ≥ plancher, caption_rules | arrêt |
+| **`M0B_CYCLE`** | M0b | `cycle.end` ≥ aujourd'hui (règle « follow the announcement for the current cycle ») | **refus : pack périmé** |
+| **`M1_SELECTION`** | M1 | segments valides, langue == directive, durée bornée, texte présent | arrêt |
+| **`M5_VOX`** | M5 | transcription disponible ou `source_text` fourni | arrêt |
+| **`M2_METADATA`** | M2 | overlay valide, titres/descriptions sous les limites, tags, hashtags, `#ad` | arrêt |
+| **`M2B_COMPLIANCE`** | M2b | vocabulaire interdit, main focus, bait, negative PR | arrêt |
+| **`M3_WATERMARK`** | M3 | PNG présent pour chaque plateforme obligée, opacité ≥ 0,75 | arrêt |
 | `A1_ACCOUNT` | avant export | `warmup_days ≥ 7` (règle C5), `banned == false` | refus d'exporter |
-| `A2_CAMPAIGN` | avant export | CPM ≥ 1,50 $/1k, **`funded == true`**, budget > 0, plateforme autorisée | refus d'exporter |
+| `A2_CAMPAIGN` | avant export | CPM ≥ 0,15 $/1k, `funded == true`, budget > 0, plateforme autorisée | refus d'exporter |
 | `S2_DURATION` | par asset | `min_segment_sec ≤ durée ≤ max_segment_sec` | arrêt |
 | **`C2_DISCLOSURE`** | par asset | `#ad` ou `#sponsored` dans la caption (règle C2) | arrêt |
 | `X1_EXPORT` | finale | `pack_token` présent, `asset_mode` valide, un `clip_token` unique par asset, `exported_at` présent | rien dans `EXPORT/` |
+
+> **Ordre : M0 → M0b → M1 → M5 → M2 → M2b → M3 → M4.** La transcription
+> passe avant les métadonnées parce que le focus et le bait se mesurent sur
+> elle.
 
 ---
 

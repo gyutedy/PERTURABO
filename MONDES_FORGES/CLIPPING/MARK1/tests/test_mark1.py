@@ -348,3 +348,92 @@ class TestV3Gates(unittest.TestCase):
         p1 = packager.build([asset], d, {"file": "x.png"}, self.cfg, {})
         p2 = packager.build([asset], d, {"file": "x.png"}, self.cfg, {})
         self.assertEqual(p1["pack_token"], p2["pack_token"])
+
+
+# ---------------------------------------------------------------------------
+# Tests V3.1 : cycle, compliance, payouts corriges.
+# ---------------------------------------------------------------------------
+
+class TestV31Compliance(unittest.TestCase):
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        for sub in ("M00A_DIRECTIVA", "M00C_METADATA"):
+            p = str(root / sub / "CODEBASE")
+            if p not in sys.path:
+                sys.path.insert(0, p)
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+
+    def test_payouts_corriges(self):
+        """X et IG paient 10$/50k = 0.200 $/1k, pas 0.300."""
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        pay = {k: v["usd_per_1k"] for k, v in d["payouts"].items()}
+        self.assertAlmostEqual(pay["tiktok"], 0.300, places=3)
+        self.assertAlmostEqual(pay["youtube_shorts"], 0.300, places=3)
+        self.assertAlmostEqual(pay["twitter_x"], 0.200, places=3)
+        self.assertAlmostEqual(pay["instagram_reels"], 0.200, places=3)
+
+    def test_cycle_expire_refuse(self):
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        ok, code, msg = gates.m0b_cycle(d, self.cfg, "2030-01-01")
+        self.assertFalse(ok)
+        self.assertIn("expire", msg)
+
+    def test_cycle_ouvert_accepte(self):
+        fake = {"cycle": {"start": "2026-11-01", "end": "2027-01-31"}}
+        ok, code, msg = gates.m0b_cycle(fake, self.cfg, "2026-11-16")
+        self.assertTrue(ok, msg)
+
+    def test_forbidden_scrub(self):
+        from libs import compliance
+        out, hits = compliance.scrub("She is an OnlyFans star", self.cfg)
+        self.assertNotIn("OnlyFans", out)
+        self.assertIn("onlyfans", hits)
+        self.assertIn("content creator", out)
+        self.assertNotIn("an content", out)
+
+    def test_forbidden_rejette_dans_overlay(self):
+        from libs import compliance
+        a = {"id": "A01", "overlay_title": "OnlyFans star exposed",
+             "source_text": "Aishah Sofey spoke about her channel.",
+             "transcript": "Aishah Sofey spoke about her channel.",
+             "subject": "Aishah Sofey", "metadata_title": "x", "description": "y"}
+        ok, why = compliance.check_asset(a, self.cfg)
+        self.assertFalse(ok)
+        self.assertTrue(any("interdit" in w for w in why))
+
+    def test_focus_absent_refuse(self):
+        from libs import compliance
+        r = compliance.focus_report("The boat was big and blue", "Aishah Sofey", "", self.cfg)
+        self.assertFalse(r["ok"])
+
+    def test_focus_present_accepte(self):
+        from libs import compliance
+        r = compliance.focus_report("Aishah Sofey said this boat is hers", "Aishah Sofey", "", self.cfg)
+        self.assertTrue(r["ok"])
+
+    def test_bait_refuse(self):
+        from libs import compliance
+        r = compliance.bait_report("You won't believe this shocking quit", "She lost her keys", self.cfg)
+        self.assertFalse(r["ok"])
+
+    def test_negative_pr_refuse(self):
+        from libs import compliance
+        r = compliance.negative_pr_report("she is a scam artist and a liar", self.cfg)
+        self.assertFalse(r["ok"])
+
+    def test_metaforge_neuveut_pas_onlyfans(self):
+        import metaforge
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        seg = {"id": "A01", "language": "en",
+               "key_fact": "She is an OnlyFans star who lost everything.",
+               "overlay_title": "She lost everything overnight",
+               "entity": ["Aishah Sofey"]}
+        m = metaforge.build(seg, d, self.cfg, "tiktok")
+        blob = " ".join([m["description"], m["caption"], " ".join(m["tags"])]).lower()
+        self.assertNotIn("onlyfans", blob)
