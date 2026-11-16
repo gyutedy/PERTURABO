@@ -21,8 +21,33 @@ import re
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
 DEFAULT_SIGNAL = os.path.join(WORLD, "ARCHIVUM", "vanus", "latest.json")
+DEFAULT_PATHS = {
+    "foot": DEFAULT_SIGNAL,
+    "basket": os.path.join(WORLD, "ARCHIVUM", "vanus", "signals_basket.json"),
+}
 CONTRACT = "vanus.signal.v1"
 _NON_ALNUM = re.compile(r"[^a-z0-9]+")
+
+
+def path(sport="foot"):
+    """Chemin du signal selon le sport. Env ecrase le defaut."""
+    env = os.environ.get("PARI_VANUS_SIGNALS_PATH")
+    return env or DEFAULT_PATHS[sport if sport in DEFAULT_PATHS else "foot"]
+
+
+path_for = path
+
+
+SELECTION_TO_VANUS_BASKET = {
+    "1": "home", "2": "away",
+    "total_over": "total_over", "total_under": "total_under",
+    "spread_home": "spread_home",
+}
+BASKET_OPPOSE = {
+    "home": "away", "away": "home",
+    "total_over": "total_under", "total_under": "total_over",
+    "spread_home": "spread_away", "spread_away": "spread_home",
+}
 
 PICK_TO_PARI = {
     "home": "1",
@@ -144,20 +169,23 @@ def _consensus(entry):
     return c if isinstance(c, dict) else {}
 
 
-def veto_codes(selection):
-    opp = OPPOSE.get(selection)
+def veto_codes(selection, sport="foot"):
+    opp = (BASKET_OPPOSE if sport == "basket" else OPPOSE).get(selection)
     if not opp:
         return []
-    code = PICK_TO_PARI.get(opp)
+    if sport == "basket":
+        code = SELECTION_TO_VANUS_BASKET.get(opp) or opp
+    else:
+        code = PICK_TO_PARI.get(opp)
     return [code] if code else []
 
 
-def gate(home, away, date=None, path=None, blob=None):
+def gate(home, away, date=None, path=None, blob=None, sport="foot"):
     if skipped():
         return _blank(["skip"])
     holes = []
     if blob is None:
-        blob, load_holes = load(path)
+        blob, load_holes = load(path or path_for(sport))
         holes.extend(load_holes)
         if blob is None:
             rec = _blank(holes)
@@ -198,7 +226,7 @@ def gate(home, away, date=None, path=None, blob=None):
     if niveau == "jackpot":
         rec["action"] = "veto"
         rec["flags"] = ["vanus_jackpot"]
-        rec["veto"] = veto_codes(sel)
+        rec["veto"] = veto_codes(sel, sport)
     elif niveau == "alarme":
         rec["action"] = "info"
         rec["flags"] = ["vanus_alarme"]
@@ -224,7 +252,7 @@ def stamp_event(event, rec):
     return out
 
 
-def stamp_predictions(predictions, path=None, blob=None):
+def stamp_predictions(predictions, path=None, blob=None, sport="foot"):
     if not isinstance(predictions, dict):
         return predictions
     out = dict(predictions)
@@ -236,7 +264,7 @@ def stamp_predictions(predictions, path=None, blob=None):
         home = ev.get("dom") or ev.get("home") or ""
         away = ev.get("ext") or ev.get("away") or ""
         date = ev.get("date")
-        rec = gate(home, away, date=date, path=path, blob=blob)
+        rec = gate(home, away, date=date, path=path, blob=blob, sport=sport)
         events.append(stamp_event(ev, rec))
     if "matchs" in out:
         out["matchs"] = events
@@ -247,12 +275,13 @@ def stamp_predictions(predictions, path=None, blob=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--signal", default=DEFAULT_SIGNAL)
+    ap.add_argument("--signal", default=None)
+    ap.add_argument("--sport", default="foot", choices=("foot", "basket"))
     ap.add_argument("--home", required=True)
     ap.add_argument("--away", required=True)
     ap.add_argument("--date", default=None)
     args = ap.parse_args()
-    rec = gate(args.home, args.away, date=args.date, path=args.signal)
+    rec = gate(args.home, args.away, date=args.date, path=args.signal, sport=args.sport)
     print(json.dumps(rec, indent=2, ensure_ascii=False))
 
 
