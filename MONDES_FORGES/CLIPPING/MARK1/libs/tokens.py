@@ -1,17 +1,29 @@
-"""libs/tokens.py -- l identite du clip (NOUVEAU en V2).
+"""libs/tokens.py -- l identite du clip. SOURCE DE VERITE UNIQUE (V3.8).
 
 DEUX TOKENS, DEUX ROLES
     pack_token : identite du CONTENU du pack. 8 caracteres hexadecimaux.
-                 Stable : deux exports du meme pack rendent le meme token.
+                 Stable : deux exports du meme contenu rendent le meme token.
                  Insensible a l ordre des cles (on serialise trie).
     clip_token : identite d UN CLIP. Contient le pack_token.
                  Formule : <asset_id>-<AAAAMMJJ>-<pack_token>
-                 Exemple : A01-20261115-3f9a1c07
+                 Exemple : A01-20261116-e99bd523
 
-POURQUOI PAR CLIP ET PAS PAR PACK
-    Un pack sert plusieurs clips. La V1 identifiait le pack, donc le ledger ne
-    pouvait pas apparier une ligne a un lien publie. Le clip_token contient le
-    pack_token : on remonte du clip au pack sans table de correspondance.
+CE QUI ENTRE DANS LE pack_token, ET CE QUI N Y ENTRE PAS
+    Entre : les 4 champs qui font le contenu editorial d un asset
+            (id, overlay_title, metadata_title, caption).
+    N entre PAS : la date, l heure, exported_at, le watermark (opacite,
+            position, taille), le compte, les plateformes, la declaration de
+            focus. Changer l opacite d un watermark ne cree pas un nouveau
+            clip : c est le meme contenu, donc le meme token.
+
+POURQUOI C EST CRITIQUE
+    Avant la V3.8 il existait DEUX calculs differents : `packager._pack_token`
+    hashait 4 champs par asset, `libs.tokens.pack_token` hashait le pack
+    entier. Sur le pack e99bd523 ils rendaient 275cfb51 et non e99bd523.
+    Un appel a `clip_tokens(pack)` produisait donc des tokens qui ne
+    correspondaient a AUCUN clip livre : le ledger aurait cree des lignes
+    orphelines et l appariement clip_token <-> lien publie aurait casse en
+    silence. Un seul calcul desormais : celui d ici, appele par `packager`.
 
 CE MODULE N ECRIT RIEN. Il calcule.
 """
@@ -22,6 +34,16 @@ import hashlib
 import json
 from datetime import datetime, timezone
 
+#: Les seuls champs d un asset qui definissent son contenu. Toute autre
+#: donnee (tags, hashtags, description, timescodes) est mecanicienne ou
+#: derivee : la changer ne doit pas creer un nouveau clip.
+CONTENT_FIELDS = ("id", "overlay_title", "metadata_title", "caption")
+
+#: Champs du pack exclus du calcul d identite (ils sont generes ou ils
+#: decrivent le contenant, pas le contenu).
+_STRIP = ("pack_token", "clip_token", "clip_tokens", "exported_at",
+          "generated_at", "watermark", "account", "focus_declared")
+
 
 def export_date(when=None):
     """Date d export au format AAAAMMJJ, en UTC."""
@@ -29,34 +51,37 @@ def export_date(when=None):
     return d.strftime("%Y%m%d")
 
 
-def pack_token(pack):
-    """8 caracteres hexadecimaux, derives du contenu du pack.
+def content_signature(assets):
+    """La matiere premiere du pack_token : la liste des 4 champs par asset.
 
-    Les cles deja generees (pack_token, clip_token, exported_at) sont exclues :
-    sinon un second export du meme pack produirait un token different, et le
-    ledger creerait des doublons fantomes.
+    Rend une liste de dicts, dans l ordre des assets. Cet ordre compte : deux
+    packs dont les clips sont permutes sont deux packs differents, parce que
+    le pack livre est une liste ordonnee.
     """
-    if not isinstance(pack, dict):
-        raise TypeError("pack_token attend un dict")
-    clean = _strip_generated(pack)
-    blob = json.dumps(clean, sort_keys=True, ensure_ascii=True, separators=(",", ":"))
+    return [{f: (a or {}).get(f) for f in CONTENT_FIELDS}
+            for a in (assets or [])]
+
+
+def pack_token(pack):
+    """8 hexadecimaux derives du CONTENU du pack.
+
+    Accepte un pack complet (`{"assets": [...]}`) ou deja une signature
+    (liste de dicts), pour que l appelant n ait pas a connaitre la forme.
+    """
+    if isinstance(pack, dict):
+        sig = content_signature(pack.get("assets"))
+    elif isinstance(pack, list):
+        sig = content_signature(pack)
+    else:
+        raise TypeError("pack_token attend un dict ou une liste d assets")
+
+    blob = json.dumps(sig, sort_keys=True, ensure_ascii=False,
+                      separators=(",", ":"), default=str)
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:8]
 
 
-def _strip_generated(obj):
-    if isinstance(obj, dict):
-        return {
-            k: _strip_generated(v)
-            for k, v in obj.items()
-            if k not in ("pack_token", "clip_token", "exported_at")
-        }
-    if isinstance(obj, list):
-        return [_strip_generated(v) for v in obj]
-    return obj
-
-
 def clip_token(asset_id, date, ptoken):
-    """A01 + 20261115 + 3f9a1c07 -> A01-20261115-3f9a1c07."""
+    """A01 + 20261116 + e99bd523 -> A01-20261116-e99bd523."""
     aid = str(asset_id or "").strip()
     if not aid:
         raise ValueError("clip_token : asset_id vide")

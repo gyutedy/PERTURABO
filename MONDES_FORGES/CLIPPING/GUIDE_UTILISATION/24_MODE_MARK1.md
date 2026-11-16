@@ -58,9 +58,9 @@ Sortie réelle de `doctor` (9 clés absentes, `[OK] GLOBAL`) :
 | `pack <pack.json>` | Applique `G0_PACK` seul. |
 | `title "<texte>" [--number N] [--subject S] [--internal a,b]` | Analyse S1, puis propose les titres **déjà valides**. Si aucun ne sort : tu l'écris à la main. |
 | `campaign <camp.json> --platform tiktok [--target 500]` | Éligibilité + `$` net/1k + vues nécessaires pour la cible. |
-| `export <pack.json> [--platform tiktok]` | **La commande centrale.** Enchaîne les portes, écrit le pack dans `EXPORT/`, une ligne de ledger par clip. |
+| `export <pack.json> [--platform tiktok] [--ledger <path>]` | **La commande centrale.** Enchaîne les portes, écrit le pack dans `EXPORT/`, une ligne de ledger par clip, et une trace de siège. |
 | `export <pack> --transcript <path> --nb-segments N` | **Mode transcription.** MARK1 lit un transcript produit par `perturabo_transcribe` dans `ARCHIVUM/montage/transcripts/`, choisit les segments autour des marqueurs d'enjeu, et produit le pack. Ne télécharge rien, n'appelle aucune frégate. |
-| `ledger [--add r.json \| --update <clip_token> --changes '{…}'] [--econ]` | Liste / ajoute / complète / recalcule. |
+| `ledger [--add r.json \| --update <clip_token> --changes '{…}'] [--econ] [--ledger <path>]` | Liste / ajoute / complète / recalcule. `--update` sert à coller le `clip_url`. |
 | `selftest` | Lance la suite. |
 
 ---
@@ -108,20 +108,59 @@ jamais validé.
 
 | Token | Forme | Rôle |
 |---|---|---|
-| `pack_token` | `ae45e408` (8 hex) | Identité du **contenu** du pack. Stable, insensible à l'ordre des clés. |
-| `clip_token` | `A01-20261115-ae45e408` | Identité d'**un clip**. Contient le `pack_token`. |
+| `pack_token` | `ae45e408` (8 hex) | Identité du **contenu** du pack : hash des 4 champs de contenu par asset (`id`, `overlay_title`, `metadata_title`, `caption`). Stable, insensible à l'ordre des clés. |
+| `clip_token` | `A01-20261116-ae45e408` | Identité d'**un clip**. Contient le `pack_token`. |
 
 **Un pack = N clips = N `clip_token`, un seul `pack_token`.** Sortie réelle :
 
 ```
-[OK] X1_EXPORT : 2 clip_tokens uniques, mode=blur
-[OK] ledger : A01-20261115-ae45e408
-[OK] ledger : A02-20261115-ae45e408
+[OK] X1_EXPORT : 3 clip_tokens uniques, mode=blur
+     pack_token=929e411c  clips=3  overlay=oracle
+     ledger=ledger.csv  (3 nouveau(x), 0 deja present(s))
+     trace=2026-11-16T175000_929e411c.json
 ```
 
 Le ledger est apparié **par `clip_token`**. Jamais par titre, jamais par date, jamais par
 ordre de publication — un titre peut changer après publication, deux clips peuvent
 partager un titre.
+
+**Une seule source de vérité : `libs/tokens.py`.** Avant la V3.8, `packager` et
+`libs.tokens` calculaient le token différemment (4 champs vs pack entier) et
+rendaient deux valeurs différentes sur le même pack. `clip_tokens(pack)`
+fabriquait alors des identités qui ne correspondaient à aucun clip livré.
+
+---
+
+## 5 bis. Ce que `export` écrit, et où
+
+| Fichier | Rôle | Réécrit ? |
+|---|---|---|
+| `EXPORT/production_pack_mark1_<token>.json` | **Le livrable** consommé par OMNIS_WATCH. | oui, si le contenu change |
+| `EXPORT/production_pack_mark1_<token>.png/.jpeg` | Le watermark, extension d'origine conservée. | oui |
+| `EXPORT/ledger.csv` | **Une ligne par clip**, clé `clip_token`. C'est là qu'on colle le lien puis les vues. | non (append only) |
+| `EXPORT/sieges/<run>_<token>.json` | **Le parcours** : chaque porte, son verdict, sa durée, le commit du code. | **jamais** : un fichier par run |
+
+**Le cycle de vie d'un clip :**
+
+```
+1. export   → clip_token + pack_token dans ledger.csv (clip_url vide)
+2. tu publies la vidéo
+3. ledger --update <clip_token> --changes '{"clip_url":"https://…","published_at":"…"}'
+4. plus tard : views_raw / views_approved / paid_usd sur le même clip_token
+5. ledger --econ → $ net et $/h par clip
+```
+
+**Une trace par run, jamais un journal global.** Un journal réécrit à chaque
+run est le pire cas pour git : deux runs (local + GitHub Actions) écrivent la
+même ligne, le push est rejeté, du travail disparaît — c'est le bug corrigé par
+`e62386a` sur les transcripts. Ici chaque run écrit un fichier neuf dont le nom
+contient déjà son identité, donc deux runs ne se disputent rien. Et une trace
+immuable est une trace qui prouve quelque chose.
+
+**Ce que la trace ne dit pas.** Elle dit *qu'une* porte a refusé, jamais
+*pourquoi la règle était mal posée*. Ce « pourquoi » appartient à
+`MARK1/TRACKING/MARK1_LOG.md`, écrit à la main. Un journal automatique qui
+prétend remplacer les notes de conception noie la décision dans les `[OK]`.
 
 ---
 
@@ -205,9 +244,12 @@ est une hérésie : MARK1 ne parle qu'à ARCHIVUM.
 
 ## 9. Les 4 pièges
 
-1. **`OUT/` est gitignoré** (`**/OUT/*.json` dans `.gitignore`). Le ledger local ne part
-   pas sur GitHub. Seul le **pack dans `EXPORT/`** est récupérable par OMNIS_WATCH — et
-   `EXPORT/` **n'est pas** ignoré.
+1. **Le ledger vit dans `EXPORT/`, et `EXPORT/` n'est pas ignoré.** `OUT/` l'est
+   (`**/OUT/*.json`) — un journal de gains que git jette ne compte pas les gains.
+   `EXPORT/ledger.csv` porte une ligne par clip, clé `clip_token` : c'est là qu'on colle
+   `clip_url` à la publication, puis `views_approved` et `paid_usd`.
+   Et `export` écrit aussi `EXPORT/sieges/<run>_<token>.json` : le parcours du run,
+   **jamais réécrit**, un fichier par run.
 2. **`funded: false` est le vrai risque.** Une campagne non financée ne paie jamais, quel
    que soit son CPM affiché. `A2_CAMPAIGN` la refuse — c'est volontaire.
 3. **Oublier `#ad`.** `C2_DISCLOSURE` bloque l'export. Ce n'est pas une précaution : c'est

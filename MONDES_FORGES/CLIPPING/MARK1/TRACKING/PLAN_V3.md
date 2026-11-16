@@ -280,22 +280,25 @@ Puis `git push` sur `pari-forge-perturabo-xs4c`.
 
 ---
 
-## 6. Critère de fin — quand peut-on faire un vrai siège ?
+## 6. Critère de fin — où en est-on ?
 
-Le siège réel n'est possible que si **les 8 conditions** suivantes sont vertes :
+Le siège réel était conditionné à **8 conditions**. État au 2026-11-16 :
 
-| # | Condition | Vérification |
-|---|---|---|
-| 1 | `python mark1.py selftest` → tous verts | ~60 tests |
-| 2 | `python mark1.py doctor` → `[OK] GLOBAL` | et signale `MODAL_URL` présent |
-| 3 | Les 7 E2E verts | `tests/e2e/run_e2e.sh` |
-| 4 | Un pack réel va jusqu'à `[OK] M4` dans `EXPORT/` | avec la vraie directive AISHAH |
-| 5 | Le pack contient watermark + 5 champs de métadonnées | relu à la main |
-| 6 | `grep ffprobe` borné à `M00F_VOX` | contrôle EXC-2 |
-| 7 | `grep -rni "ffmpeg\|\.ass\|\.mp4"` ne renvoie rien hors docstrings | doctrine |
-| 8 | Aucune suppression dans `MONDES_FORGES/CLIPPING` | `git diff --diff-filter=D` vide |
+| # | Condition | État | Preuve / reste à faire |
+|---|---|---|---|
+| 1 | `python mark1.py selftest` → tous verts | ✅ **102 tests** | `Ran 102 tests … OK` |
+| 2 | `python mark1.py doctor` → `[OK] GLOBAL` | ✅ | seules les clés LLM/Modal/Telegram manquent (optionnelles) |
+| 3 | Les 7 E2E verts (`tests/e2e/run_e2e.sh`) | ❌ **dossier vide** | le script n'existe pas encore |
+| 4 | Un pack réel va jusqu'à `[OK] M4` dans `EXPORT/` | ✅ **pack `e99bd523`** | 11 portes `[OK]`, voir `TRACKING/JOURNAL_SIEGES.md` |
+| 5 | Le pack contient watermark + 5 champs de métadonnées | ✅ | PNG copié à côté du JSON, `bundled: true` |
+| 6 | `grep ffprobe` borné à `M00F_VOX` | ✅ | 2 appels, tous dans `M00F_VOX/CODEBASE/vox.py` (lecture de durée, jamais de production) |
+| 7 | `grep -rni "ffmpeg\|\.ass\|\.mp4"` vide hors docstrings | ✅ | 4 occurrences, toutes des phrases de docstring (« aucun ffmpeg ») |
+| 8 | Aucune suppression dans `MONDES_FORGES/CLIPPING` | ✅ | `git diff --diff-filter=D 025b08b..HEAD` vide |
 
-**Estimation : ~15 h de travail, réparties sur les 6 phases.**
+**Le premier siège réel a eu lieu le 2026-11-16** (VOD `v2927914500`, pack
+`e99bd523`). Seule la condition 3 reste ouverte : les E2E n'existent pas.
+Le siège a prouvé le pipeline, pas la couverture E2E.
 
-Quand ces 8 conditions sont vertes, on peut lancer le **premier siège réel** :
-une VOD réelle, une vraie directive, un vrai pack, un vrai `clip_token`.
+> **Note V3.8** : le ledger et la trace de siège sont désormais écrits par
+> `export` (`EXPORT/ledger.csv`, `EXPORT/sieges/`). Le siège du 16/11 ne les a
+> pas eus : la fonctionnalité n'existait pas encore.

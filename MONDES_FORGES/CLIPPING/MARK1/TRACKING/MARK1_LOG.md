@@ -264,3 +264,133 @@ Teste de bout en bout sur une fixture reelle (120 segments) :
 TRANSCRIPT -> 2 segments choisis -> D0 -> M0B -> M1 -> M5 -> WAIT oracle.
 
 67 tests OK (36 V2 + 10 V3 + 10 V3.1 + 4 V3.2 + 7 V3.3).
+
+---
+
+## 2026-11-16 — V3.4 : MARK1 lit les 4 formats de transcription
+
+### Ce qui a change
+`libs/transcript.py` lisait un seul format. F00B_VOX livre des
+transcriptions dont la structure varie selon le mode du workflow
+(`segments` a la racine, `words[]` reel, `text` seul). Les 4 formats sont
+desormais lus, avec conversion `words[]` -> segments : ponctuation coupee,
+silence > `word_silence_sec` (0.6) coupe, groupe borne par `word_group_max`
+(60 mots).
+
+### Sorties mesurees
+- `v2901790628` -> 1869 segments
+- `v2873615032` -> 2372 segments
+- `v2927914500` -> 1103 segments
+
+73 tests OK.
+
+---
+
+## 2026-11-16 — V3.5 : les portes qui mentaient
+
+### Le constat (aligne sur l'audit des gates)
+Quatre portes decrivaient un comportement qu'elles n'avaient pas.
+
+1. **A1_ACCOUNT et A2_CAMPAIGN** etaient ecrites, testees, et JAMAIS appelees
+   par `cmd_export`. Le guide promettait qu'un compte banni ou une campagne
+   non financee ne peut pas exporter : c'etait faux. Elles sont desormais
+   branchees avant l'export.
+2. **M3_WATERMARK** jugeait l'opacite (seuil 0.75 en dur, violation de R1)
+   sans jamais regarder un pixel. MARK1 ne produit pas de video : il DECRIT
+   le watermark pour OMNIS_WATCH. Ne verifie plus que : fichier present,
+   non vide, chemin exploitable. Le seuil voyage dans le pack.
+3. **M00E_PACKAGER** ne copiait pas le PNG dans EXPORT/. Il le copie
+   desormais, et le pack porte `watermark.file` + `bundled: true`.
+4. **M1_SELECTION** affichait « source_text manquant » alors qu'elle testait
+   `key_fact`. Message corrige.
+
+78 tests OK.
+
+---
+
+## 2026-11-16 — V3.6 : le focus passe de juge a greffier
+
+### Le probleme (decouvert au premier siege reel)
+La campagne exige « main focus or topic », mais la directive dit aussi
+« as long as she's featured in the clip » : la regle est VISUELLE, pas
+lexicale. Compter les occurrences du nom dans la transcription refusait la
+VOD TWITCHCON DAY 1 (2 h 53, POV camera portee, zero mention du prenom)
+alors que le personnage principal etait a l'ecran 100 % du temps.
+
+MARK1 ne voit pas la video (R3). Il ne peut pas prouver qu'elle est a
+l'ecran. Donc :
+
+- `focus_declared` dans le pack d'entree : l'operateur DECLARE le focus
+  (asserted_by + evidence), MARK1 le recopie dans le pack livrable.
+- Repli de mesure : si rien n'est declare, compter les mentions du nom,
+  comme avant.
+- Refus seulement si rien n'est declare ET zero mention.
+- Bug annexe : `M00B_SELECTOR` jetait `source_text`, ce qui vidait la mesure
+  du bait (0 % sur tous les assets) sans le signaler. Corrige.
+
+84 tests OK. Premier siege reel : pack `e99bd523` (3 clips, focus declare,
+PNG a cote du JSON).
+
+---
+
+## 2026-11-16 — V3.7 : watermark PNG ou JPEG
+
+### Le probleme
+Le watermark fourni par la campagne est un JPEG 960x200 (logos + nom),
+pas un PNG. Trois couches ne connaissaient que `.png` :
+
+- `vexillum.find_png` ne listait que les `.png` : le JPEG etait INVISIBLE,
+  et M3 refusait d'exporter en disant « PNG absent » alors qu'il etait la.
+- `packager` forcait l'extension `.png` a la copie : un JPEG livre devenait
+  un fichier mal nomme dans EXPORT/.
+- `watermark_rules.json` interdisait le jpg.
+
+### Ce qui a change
+- `find_png` -> `find_watermark`, accepte `.png` / `.jpeg` / `.jpg`.
+  Priorite : slug exact du createur tous formats confondus, puis `_1`,
+  puis `slug*` ; a egalite de nom, le PNG (fond transparent) gagne.
+- `packager` conserve l'extension d'origine, expose `bundled_ext`.
+- MARK1 ne convertit rien : le fichier voyage tel quel, OMNIS_WATCH decide
+  de la composition.
+
+90 tests OK.
+
+---
+
+## 2026-11-16 — V3.8 : une identite, une trace, un ledger qui vit
+
+### Le probleme 1 : deux calculs de pack_token
+`packager._pack_token` hashait 4 champs par asset, `libs.tokens.pack_token`
+hashait le pack entier. Sur le pack e99bd523 ils rendaient deux valeurs
+differentes. Un appel a `clip_tokens(pack)` fabriquait des identites qui ne
+correspondaient a aucun clip livre : l'appariement clip_token <-> lien
+publie aurait casse en silence.
+
+**Corrige** : `libs/tokens.py` est la source de verite unique. Le token
+hash les 4 champs de contenu (`id`, `overlay_title`, `metadata_title`,
+`caption`). Le watermark, le compte, les plateformes, la declaration de
+focus et les dates n'entrent PAS dans le token : changer d'opacite n'est
+pas changer de clip.`exported_at` remonte au niveau du pack (et reste par
+asset, X1_EXPORT le verifie par asset).
+
+### Le probleme 2 : le ledger n'etait jamais alimente
+`libs/ledger.py` existait, etait teste, et `cmd_export` ne l'appelait
+jamais. Le siege du 16/11 n'a laisse aucune ligne. `cmd_export` ecrit
+desormais une ligne par clip (cle `clip_token`), et le ledger vit dans
+`EXPORT/` (pas `OUT/`, gitignore par convention).
+
+### Le probleme 3 : pas de trace de siege
+`libs/siege_log.py` : un fichier par run (`EXPORT/sieges/<run>_<token>.json`),
+jamais reecrit, avec chaque porte, son verdict, sa duree, et le commit du
+code. Pas un journal global : deux runs (local + Actions) ecrivent des
+fichiers differents, donc pas de conflit git.
+
+### Cycle de vie d'un clip
+1. export -> ligne dans ledger.csv (clip_url vide)
+2. publication -> `ledger --update <clip_token> --changes '{"clip_url": ...}'`
+3. suivi -> views_raw / views_approved / paid_usd sur le meme clip_token
+4. `ledger --econ` -> $ net et $/h
+
+Valide en local sur le pack twitchcon (cycle ouvert temporairement puis
+restaure a 2026-11-15) : 3 lignes ecrites, rerun = 0 nouveau (idempotent),
+`--update` remplit le lien et les vues. 102 tests OK.

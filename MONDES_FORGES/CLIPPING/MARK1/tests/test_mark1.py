@@ -886,3 +886,208 @@ class TestV37WatermarkFormats(unittest.TestCase):
         self.assertEqual(written["watermark"]["bundled_ext"], "jpeg")
         self.assertTrue(os.path.exists(
             os.path.join(cfg["export_dir"], written["watermark"]["file"])))
+
+
+# ---------------------------------------------------------------------------
+# V3.8 : une seule identite, une trace par run, un ledger qui se remplit.
+# ---------------------------------------------------------------------------
+
+class TestV38IdentiteUnique(unittest.TestCase):
+    """`packager` et `libs.tokens` calculaient le pack_token differemment.
+
+    Sur un vrai pack ils rendaient 275cfb51 au lieu de e99bd523. Un appel a
+    `clip_tokens(pack)` fabriquait donc des tokens qui ne correspondaient a
+    aucun clip livre : le ledger aurait cree des lignes orphelines et
+    l'appariement clip_token <-> lien publie aurait casse en silence.
+    """
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+
+    def _assets(self):
+        return [
+            {"id": "A01", "overlay_title": "She lost 50,000 dollars",
+             "metadata_title": "aishah soft", "caption": "cap one"},
+            {"id": "A02", "overlay_title": "She lost 86,000 seconds",
+             "metadata_title": "aishah soft", "caption": "cap two"},
+        ]
+
+    def test_packager_et_tokens_donnent_le_meme_token(self):
+        import packager
+        from libs import tokens
+        pack = packager.build(self._assets(),
+                              {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                              {"file": ""}, self.cfg, {})
+        self.assertEqual(pack["pack_token"], tokens.pack_token(pack))
+
+    def test_le_watermark_ne_change_pas_le_token(self):
+        """Changer d'opacite n'est pas changer de clip."""
+        import packager
+        a = packager.build(self._assets(),
+                           {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                           {"file": "x.png", "opacity": 0.8}, self.cfg, {})
+        b = packager.build(self._assets(),
+                           {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                           {"file": "x.jpeg", "opacity": 0.95}, self.cfg, {})
+        self.assertEqual(a["pack_token"], b["pack_token"])
+
+    def test_le_contenu_change_le_token(self):
+        import packager
+        assets = self._assets()
+        a = packager.build(assets,
+                           {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                           {"file": ""}, self.cfg, {})
+        assets[0]["overlay_title"] = "Something else entirely"
+        b = packager.build(assets,
+                           {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                           {"file": ""}, self.cfg, {})
+        self.assertNotEqual(a["pack_token"], b["pack_token"])
+
+    def test_clip_tokens_du_pack_correspondent_aux_assets(self):
+        import packager
+        from libs import tokens
+        pack = packager.build(self._assets(),
+                              {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                              {"file": ""}, self.cfg, {})
+        recalcules = tokens.clip_tokens(pack, when=datetime(2026, 11, 16))
+        for asset in pack["assets"]:
+            self.assertEqual(recalcules[asset["id"]], asset["clip_token"])
+
+    def test_exported_at_est_au_niveau_du_pack(self):
+        import packager
+        pack = packager.build(self._assets(),
+                              {"campaign_id": "C", "language": "en", "platforms": ["TikTok"]},
+                              {"file": ""}, self.cfg, {})
+        self.assertTrue(pack["exported_at"])
+        # et reste sur l'asset, parce que X1_EXPORT le verifie par asset
+        self.assertTrue(pack["assets"][0]["exported_at"])
+
+
+class TestV38TraceDeSiege(unittest.TestCase):
+    """Un run doit laisser une trace lisible. Une trace reecrite ne prouve rien."""
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+        self.tmp = tempfile.mkdtemp()
+        self.cfg["siege_log_dir"] = os.path.join(self.tmp, "sieges")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_trace_ecrite_et_relue(self):
+        from libs import siege_log
+        run = siege_log.new_run("packs/x.json", "tiktok")
+        siege_log.gate(run, "G0_PACK", True, "3 assets")
+        siege_log.gate(run, "M0B_CYCLE", False, "cycle expire")
+        siege_log.close(run, "refused")
+        path = siege_log.save(run, self.cfg, self.tmp)
+
+        d = json.loads(open(path, encoding="utf-8").read())
+        self.assertEqual(d["status"], "refused")
+        self.assertEqual(len(d["gates"]), 2)
+        self.assertEqual([g["state"] for g in d["gates"]], ["OK", "FAIL"])
+        self.assertIsNotNone(d["duration_sec"])
+
+    def test_deux_runs_ne_s_ecrasent_pas(self):
+        from libs import siege_log
+        run = siege_log.new_run("packs/x.json", "tiktok")
+        run["pack_token"] = "abc12345"
+        p1 = siege_log.save(run, self.cfg, self.tmp)
+        p2 = siege_log.save(run, self.cfg, self.tmp)
+        self.assertNotEqual(p1, p2)
+        self.assertTrue(os.path.exists(p1))
+        self.assertTrue(os.path.exists(p2))
+
+    def test_trace_ne_contient_aucun_secret(self):
+        from libs import siege_log
+        run = siege_log.new_run("packs/x.json", "tiktok")
+        siege_log.close(run, "exported")
+        path = siege_log.save(run, self.cfg, self.tmp)
+        blob = open(path, encoding="utf-8").read().lower()
+        for danger in ("token_id", "token_secret", "api_key", "password", "ghp_"):
+            self.assertNotIn(danger, blob)
+
+
+class TestV38LedgerAlimente(unittest.TestCase):
+    """`libs.ledger` existait, etait teste, et n'etait JAMAIS appele par export.
+
+    Le siege du 16/11 n'a laisse aucune ligne : le seul journal des gains
+    etait un fichier inexistant.
+    """
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        self.tmp = tempfile.mkdtemp()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_une_ligne_par_clip_avec_les_colonnes_du_suivi(self):
+        from libs.ledger import append, read
+        path = os.path.join(self.tmp, "ledger.csv")
+        row = {
+            "clip_token": "A01-20261116-abc12345",
+            "pack_token": "abc12345",
+            "clip_url": "",
+            "views_approved": "",
+            "paid_usd": "",
+        }
+        self.assertTrue(append(path, row))
+        rows = read(path)
+        self.assertEqual(len(rows), 1)
+        # les colonnes qui servent au suivi existent et attendent leur valeur
+        for col in ("clip_url", "published_at", "submitted_at",
+                    "views_raw", "views_approved", "paid_usd"):
+            self.assertIn(col, rows[0])
+
+    def test_append_idempotent_par_clip_token(self):
+        from libs.ledger import append, read
+        path = os.path.join(self.tmp, "ledger.csv")
+        row = {"clip_token": "A01-20261116-abc12345", "title": "un"}
+        self.assertTrue(append(path, row))
+        self.assertFalse(append(path, row))
+        self.assertFalse(append(path, {"clip_token": row["clip_token"], "title": "deux"}))
+        rows = read(path)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["title"], "un")
+
+    def test_update_remplit_le_lien_publie(self):
+        from libs.ledger import append, read, update
+        path = os.path.join(self.tmp, "ledger.csv")
+        tok = "A02-20261116-abc12345"
+        append(path, {"clip_token": tok})
+        ok = update(path, tok,
+                    clip_url="https://tiktok.com/x",
+                    published_at="2026-11-16T18:00:00Z",
+                    views_approved=51200)
+        self.assertTrue(ok)
+        row = read(path)[0]
+        self.assertEqual(row["clip_url"], "https://tiktok.com/x")
+        self.assertEqual(row["views_approved"], "51200")
+
+    def test_le_ledger_par_defaut_est_dans_export(self):
+        """OUT/ est gitignore par convention : un ledger la-bas est jete."""
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+        self.assertIn("EXPORT", cfg.get("ledger_path", ""))
+        self.assertNotIn("OUT/", cfg.get("ledger_path", ""))

@@ -31,13 +31,21 @@ from datetime import datetime
 
 
 def _pack_token(payload):
-    """8 hex stables : hash du contenu utile, pas de l'horodatage."""
-    material = json.dumps(payload, sort_keys=True, ensure_ascii=False, default=str)
-    return hashlib.sha256(material.encode("utf-8")).hexdigest()[:8]
+    """8 hex stables : delegue a `libs.tokens`, source de verite unique.
+
+    V3.8 : ce module avait sa PROPRE formule (hash des 4 champs par asset),
+    et `libs/tokens.pack_token` en avait une autre (hash du pack entier).
+    Sur un meme pack ils rendaient deux tokens differents, donc
+    `clip_tokens(pack)` pouvait fabriquer des identites qui ne correspondaient
+    a aucun clip livre. Un seul calcul desormais, et c'est `libs.tokens`.
+    """
+    from libs import tokens
+    return tokens.pack_token(payload)
 
 
 def _clip_token(asset_id, pack_token, today):
-    return "%s-%s-%s" % (asset_id, today, pack_token)
+    from libs import tokens
+    return tokens.clip_token(asset_id, today, pack_token)
 
 
 def build(assets, directive, watermark, cfg, pack_meta):
@@ -64,6 +72,11 @@ def build(assets, directive, watermark, cfg, pack_meta):
     } for a in assets]
     pack_token = _pack_token(content_sig)
 
+    # V3.8 : `exported_at` vit au niveau du PACK, pas dans chaque asset.
+    # Il etait duplique par asset alors que `libs/tokens` le cherchait a la
+    # racine : deux modules ne s'accordaient pas sur ou trouver la donnee.
+    exported_at = now.strftime("%Y-%m-%dT%H:%M:%S")
+
     out_assets = []
     for a in assets:
         item = {
@@ -77,7 +90,7 @@ def build(assets, directive, watermark, cfg, pack_meta):
             "hashtags": a.get("hashtags") or [],
             "caption": a.get("caption"),
             "clip_token": _clip_token(a.get("id"), pack_token, today),
-            "exported_at": now.strftime("%Y-%m-%dT%H:%M:%S"),
+            "exported_at": exported_at,
         }
         if a.get("transcript"):
             item["transcript"] = a["transcript"]
@@ -103,6 +116,7 @@ def build(assets, directive, watermark, cfg, pack_meta):
         "watermark": watermark,
         "assets": out_assets,
         "pack_token": pack_token,
+        "exported_at": exported_at,
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
