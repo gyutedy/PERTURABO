@@ -148,8 +148,9 @@ jobs:
           done
 
           cd "$GITHUB_WORKSPACE"
-          git pull --rebase origin "${GITHUB_REF_NAME}" || true
-          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "::warning::push échoué"
+          # fetch + rebase + retry. Le `|| echo warning` laissait partir un run
+          # vert avec du copywriting perdu : un echec doit etre bruyant.
+          bash .github/scripts/push_branch.sh "${GITHUB_REF_NAME}"
 
       - name: Persister le relais oracle (questions/réponses)
         if: always()

@@ -304,8 +304,10 @@ jobs:
           git config user.email "oracle@perturabo.iron"
           git add "$DEST"
           git commit -m "[F00B_MATRIX] auto_detect v${VODID}: transcript + candidats (matrice ${{ inputs.nb_segments || 15 }} segments)" || echo "nothing to commit"
-          # FIX du piège historique : pousser VERS LA BRANCHE DU RUN, jamais HEAD:main
-          git push origin "HEAD:${BRANCH}"
+          # Pousser VERS LA BRANCHE DU RUN (jamais HEAD:main), et jamais un
+          # checkout perime : 3 h de transcription pendant lesquelles la
+          # branche peut avoir bouge. Voir .github/scripts/push_branch.sh
+          bash .github/scripts/push_branch.sh "${BRANCH}"
 
       - name: Persister le relais oracle (questions/réponses)
         if: always()
