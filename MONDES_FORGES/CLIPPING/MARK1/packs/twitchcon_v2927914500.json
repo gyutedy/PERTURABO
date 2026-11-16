@@ -1,0 +1,32 @@
+{
+  "_comment": "Siege de test MARK1 sur la VOD TWITCHCON DAY 1 (v2927914500), transcrite par le workflow perturabo_transcribe du 2026-11-16. Pas d'assets : MARK1 choisit les segments dans le transcript (--transcript + --nb-segments).",
+  "mode": "mark1",
+  "source": {
+    "vod_url": "https://www.twitch.tv/videos/2927914500",
+    "duration_total_sec": 10571
+  },
+  "asset_mode": "blur",
+  "subject": "Aishah Sofey",
+  "internal_terms": [],
+  "campaign": {
+    "campaign_id": "2026-07-24_AISHAH_SOFEY_MULTI",
+    "rate_usd_per_1k": 0.3,
+    "funded": true,
+    "budget_remaining_usd": 500,
+    "platforms": [
+      "tiktok",
+      "youtube_shorts"
+    ],
+    "cap_usd_per_clip": 200
+  },
+  "account": {
+    "handle": "@aishahsofey",
+    "warmup_days": 21,
+    "banned": false
+  },
+  "focus_declared": {
+    "asserted_by": "operator",
+    "evidence": "POV camera portee : Aishah filmе elle-meme toute la VOD (TwitchCon Day 1). Directive : 'as long as she's featured in the clip'.",
+    "asserted_at": "2026-11-16"
+  }
+}

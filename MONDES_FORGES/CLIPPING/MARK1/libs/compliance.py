@@ -67,29 +67,51 @@ def scrub(text, cfg):
     return out, hits
 
 
-def focus_report(transcript, subject, segment_text, cfg):
-    """Le sujet est-il vraiment le sujet du segment ?
+def focus_report(transcript, subject, segment_text, cfg, declared=None):
+    """Le focus est-il etabli pour ce segment ?
 
-    Mesure : occurrences du nom du sujet dans la transcription du segment,
-    rapportees a la longueur. Une campagne qui exige "main focus" ne paie pas
-    un clip ou elle apparait une fois en passant.
+    V3.6 : on ne compte plus les mots comme critere unique. Deux voies :
 
-    Rend {ok, mentions, ratio, reason}.
+    1. DECLARATION -- l'operateur affirme le focus (`focus_declared` du pack).
+       C'est la voie normale : la regle de la directive est visuelle
+       ("as long as she's featured in the clip") et MARK1 ne voit rien.
+       Rend {ok:True, source:"declared"} ; le pack portera la mention, pour
+       qu'OMNIS_WATCH et l'operateur assument la declaration.
+    2. MESURE -- repli quand rien n'est declare : on compte les mentions du
+       nom, comme en V3.1. Zero mention sans declaration = refus : on ne
+       clippe pas en silence sur une campagne qui exige "main focus".
+
+    Rend {ok, mentions, ratio, reason, source}.
     """
     spec = cfg.get("focus") or {}
+    subj = (subject or "").strip()
+    text = (segment_text or transcript or "").lower()
+
+    # -- voie 1 : la declaration de l'operateur --
+    if isinstance(declared, dict) and declared.get("asserted_by"):
+        return {"ok": True, "mentions": None, "ratio": None,
+                "source": "declared",
+                "asserted_by": declared.get("asserted_by"),
+                "evidence": declared.get("evidence") or "",
+                "reason": ""}
+    if declared is True:
+        return {"ok": True, "mentions": None, "ratio": None,
+                "source": "declared", "asserted_by": "operator",
+                "evidence": "", "reason": ""}
+
+    if not subj:
+        return {"ok": True, "mentions": 0, "ratio": 0.0, "source": "none",
+                "reason": "pas de sujet declare"}
+
     min_ratio = float(spec.get("min_mention_ratio", 0.15))
     # un segment court ne peut pas atteindre un ratio eleve : plancher de mots
     min_words_for_ratio = int(spec.get("min_words_for_ratio", 40))
     min_mentions = int(spec.get("min_mentions", 1))
 
-    text = (segment_text or transcript or "").lower()
-    subj = (subject or "").strip().lower()
-    if not subj:
-        return {"ok": True, "mentions": 0, "ratio": 0.0, "reason": "pas de sujet declare"}
-
-    tokens = _WORD.findall(subj)
+    tokens = _WORD.findall(subj.lower())
     if not tokens:
-        return {"ok": True, "mentions": 0, "ratio": 0.0, "reason": "sujet vide"}
+        return {"ok": True, "mentions": 0, "ratio": 0.0, "source": "none",
+                "reason": "sujet vide"}
 
     # le nom complet ou le prenom seul comptent
     full = " ".join(tokens)
@@ -104,12 +126,17 @@ def focus_report(transcript, subject, segment_text, cfg):
 
     if mentions < min_mentions:
         return {"ok": False, "mentions": mentions, "ratio": ratio,
-                "reason": "sujet absent du segment (0 mention)"}
+                "source": "measured",
+                "reason": "sujet absent du segment (0 mention) et aucune "
+                          "declaration de focus dans le pack"}
     if len(words) >= min_words_for_ratio and ratio < min_ratio:
         return {"ok": False, "mentions": mentions, "ratio": ratio,
-                "reason": "sujet trop peu present (%.1f%% < %.1f%%)"
+                "source": "measured",
+                "reason": "sujet trop peu present (%.1f%% < %.1f%%) et aucune "
+                          "declaration de focus dans le pack"
                           % (ratio * 100, min_ratio * 100)}
-    return {"ok": True, "mentions": mentions, "ratio": ratio, "reason": ""}
+    return {"ok": True, "mentions": mentions, "ratio": ratio,
+            "source": "measured", "reason": ""}
 
 
 def _content_words(text):
@@ -169,8 +196,9 @@ def check_asset(asset, cfg):
     if bad:
         reasons.append("overlay contient un terme interdit : %s" % ", ".join(bad))
 
-    # 2. focus
-    f = focus_report(asset.get("transcript") or "", asset.get("subject") or "", src, cfg)
+    # 2. focus : declaration de l'operateur, sinon mesure (voir focus_report)
+    f = focus_report(asset.get("transcript") or "", asset.get("subject") or "",
+                     src, cfg, declared=asset.get("focus_declared"))
     if not f["ok"]:
         reasons.append("focus : " + f["reason"])
 

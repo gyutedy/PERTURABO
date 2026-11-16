@@ -149,9 +149,10 @@
     ]
   },
   "focus": {
-    "_comment": "Aishah doit etre le sujet. Mesure sur la transcription, pas sur la video.",
+    "_comment": "V3.6 : le focus n'est plus un comptage de mots. La campagne exige 'main focus' et la regle est visuelle ('as long as she's featured in the clip'). MARK1 ne voit rien : l'operateur DECLARE le focus dans le pack (focus_declared) et MARK1 le transmet. Ce bloc ne sert plus qu'au REPLI quand rien n'est declare.",
     "min_mention_ratio": 0.15,
-    "min_mentions": 1
+    "min_mentions": 1,
+    "declaration_required": true
   },
   "bait": {
     "_comment": "L'overlay ne doit pas promettre ce que le texte ne tient pas.",

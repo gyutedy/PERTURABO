@@ -172,7 +172,7 @@ est une hérésie : MARK1 ne parle qu'à ARCHIVUM.
 
 ---
 
-## 8. Les portes implémentées (V3.1)
+## 8. Les portes implémentées (V3.6)
 
 | Porte | Quand | Critère | Si échec |
 |---|---|---|---|
@@ -182,17 +182,24 @@ est une hérésie : MARK1 ne parle qu'à ARCHIVUM.
 | **`M1_SELECTION`** | M1 | segments valides, langue == directive, durée bornée, texte présent | arrêt |
 | **`M5_VOX`** | M5 | transcription disponible ou `source_text` fourni | arrêt |
 | **`M2_METADATA`** | M2 | overlay valide, titres/descriptions sous les limites, tags, hashtags, `#ad` | arrêt |
-| **`M2B_COMPLIANCE`** | M2b | vocabulaire interdit, main focus, bait, negative PR | arrêt |
-| **`M3_WATERMARK`** | M3 | PNG présent pour chaque plateforme obligée, opacité ≥ 0,75 | arrêt |
-| `A1_ACCOUNT` | avant export | `warmup_days ≥ 7` (règle C5), `banned == false` | refus d'exporter |
-| `A2_CAMPAIGN` | avant export | CPM ≥ 0,15 $/1k, `funded == true`, budget > 0, plateforme autorisée | refus d'exporter |
-| `S2_DURATION` | par asset | `min_segment_sec ≤ durée ≤ max_segment_sec` | arrêt |
-| **`C2_DISCLOSURE`** | par asset | `#ad` ou `#sponsored` dans la caption (règle C2) | arrêt |
-| `X1_EXPORT` | finale | `pack_token` présent, `asset_mode` valide, un `clip_token` unique par asset, `exported_at` présent | rien dans `EXPORT/` |
+| **`M2B_COMPLIANCE`** | M2b | vocabulaire interdit, **focus (déclaratif, V3.6)**, bait, negative PR | arrêt |
+| **`M3_WATERMARK`** | M3 | PNG présent pour chaque plateforme obligée, non vide, chemin exploitable. **Ne juge plus l'opacité** (V3.5) : celle-ci est une consigne pour OMNIS_WATCH, elle voyage dans le pack | arrêt |
+| `A1_ACCOUNT` | avant export (V3.5) | `warmup_days ≥ 7` (règle C5), `banned == false` | **refus d'exporter** |
+| `A2_CAMPAIGN` | avant export (V3.5) | CPM ≥ 0,15 $/1k, `funded == true`, budget > 0, plateforme autorisée | **refus d'exporter** |
+| `X1_EXPORT` | finale | `pack_token` présent, `asset_mode` valide, un `clip_token` unique par asset, `exported_at` présent, PNG copié dans `EXPORT/` | rien dans `EXPORT/` |
 
-> **Ordre : M0 → M0b → M1 → M5 → M2 → M2b → M3 → M4.** La transcription
-> passe avant les métadonnées parce que le focus et le bait se mesurent sur
-> elle.
+> **Ordre : M0 → M0b → M1 → M5 → M2 → M2b → M3 → A1 → A2 → M4.**
+>
+> **Le focus est déclaratif depuis V3.6.** La campagne exige « main focus or
+> topic » mais la règle est visuelle (*"as long as she's featured in the
+> clip"*) : sur un POV caméra portée, le personnage principal n'est jamais
+> nommé. MARK1 ne voit pas la vidéo, donc il **enregistre la déclaration de
+> l'opérateur** (`focus_declared` dans le pack d'entrée), la recopie dans le
+> pack livrable, et ne refuse que si rien n'est déclaré **et** que le nom
+> n'apparaît pas dans le texte (repli de mesure). Sans la déclaration, une
+> VOD POV comme TWITCHCON DAY 1 (2 h 53, zéro mention du prénom) était
+> refusée à tort. Le `bait`, lui, reste vérifié mécaniquement (recouvrement
+> des mots de contenu overlay ↔ texte).
 
 ---
 

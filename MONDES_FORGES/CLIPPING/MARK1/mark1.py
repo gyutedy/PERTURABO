@@ -216,14 +216,26 @@ def cmd_export(a):
     print("[OK] M2_METADATA : %s (overlay=%s, %d round(s))" % (msg, overlay_mode, rounds))
 
     # --- M2b : vocabulaire, focus, bait, negative PR ---
+    # V3.6 : le focus n'est pas mesurable par MARK1 (la regle de la campagne
+    # est visuelle : "as long as she's featured in the clip"). L'operateur
+    # peut le DECLARER dans le pack (`focus_declared`), et la declaration est
+    # recopiee dans le pack livrable pour etre assumee en aval.
+    focus_declared = pack_in.get("focus_declared") or (pack_in.get("source") or {}).get("focus_declared")
     for b in built:
         b["subject"] = directive.get("creator_name") or ""
         b["source_text"] = b.get("source_text") or b.get("transcript") or ""
+        if focus_declared:
+            b["focus_declared"] = focus_declared
     ok, code, msg = gates.m2b_compliance(built, cfg)
     if not ok:
         print("[FAIL] %s : %s" % (code, msg))
         return 2
-    print("[OK] M2B_COMPLIANCE : %s" % msg)
+    if focus_declared:
+        print("[OK] M2B_COMPLIANCE : %s (focus declare par %s)"
+              % (msg, (focus_declared.get("asserted_by")
+                       if isinstance(focus_declared, dict) else "operator")))
+    else:
+        print("[OK] M2B_COMPLIANCE : %s (focus mesure dans le texte)" % msg)
 
     # --- M3 : watermark ---
     wm = vexillum.build(cfg, str(ROOT), directive, platform)
@@ -232,6 +244,23 @@ def cmd_export(a):
         print("[FAIL] %s : %s" % (code, msg))
         return 2
     print("[OK] M3_WATERMARK : %s" % msg)
+
+    # --- A1 / A2 : le compte et la campagne autorisent-ils ce siege ? ---
+    # Ces deux portes existaient, etaient testees, et n'etaient JAMAIS appelees
+    # par export : un compte banni ou une campagne non financee pouvait
+    # exporter. Le guide les annoncait pourtant comme actives.
+    ok, code, msg = gates.a1_account(pack_in.get("account") or {}, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] A1_ACCOUNT : %s" % msg)
+
+    verdict = evaluate(pack_in.get("campaign") or {}, cfg, platform)
+    ok, code, msg = gates.a2_campaign(verdict)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] A2_CAMPAIGN : %s" % msg)
 
     # --- M4 : packager ---
     asset_mode = pack_in.get("asset_mode") or cfg.get("default_asset_mode", "blur")
@@ -244,6 +273,7 @@ def cmd_export(a):
         "asset_mode": asset_mode,
         "subject": pack_in.get("subject"),
         "account": pack_in.get("account") or {},
+        "focus_declared": focus_declared,
     })
 
     ok, code, msg = gates.x1_export(out, cfg)

@@ -8,6 +8,7 @@ ou : python3 -m unittest discover -s tests -v
 from __future__ import annotations
 
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -629,3 +630,156 @@ class TestTranscriptFormatReel(unittest.TestCase):
         for doc in ({}, None, {"segments": None, "words": []}):
             self.assertEqual(transcript.segments(doc, self.cfg), [])
             self.assertEqual(transcript.candidate_windows(doc or {}, self.cfg), [])
+
+
+# ---------------------------------------------------------------------------
+# V3.5 : A1/A2 enfin branches sur export ; M3 ne juge plus l'opacite ;
+# le pack embarque le PNG dans EXPORT/.
+# ---------------------------------------------------------------------------
+
+class TestV35Gates(unittest.TestCase):
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        for sub in ("M00A_DIRECTIVA", "M00C_METADATA", "M00D_VEXILLUM", "M00E_PACKAGER"):
+            p = str(root / sub / "CODEBASE")
+            if p not in sys.path:
+                sys.path.insert(0, p)
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+
+    def test_m3_opacite_ne_bloque_plus(self):
+        """V3.5 : MARK1 ne pose pas la video ; l'opacite est une consigne pour
+        OMNIS_WATCH, plus un critere de porte. Le PNG qui EXISTE passe meme a 0."""
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        w = {"file": "aishahsofey_1.png", "path": "/tmp/aishahsofey_1.png",
+             "exists": True, "required": True, "opacity": 0.0,
+             "position": "center", "size_pct": 15}
+        ok, code, msg = gates.m3_watermark(w, d, self.cfg)
+        self.assertTrue(ok, msg)
+
+    def test_m3_refuse_png_absent_si_requis(self):
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        w = {"file": "", "exists": False, "required": True}
+        ok, code, msg = gates.m3_watermark(w, d, self.cfg)
+        self.assertFalse(ok)
+        self.assertIn("absent", msg)
+
+    def test_a2_refuse_campagne_non_financee(self):
+        """Le risque reel du guide : funded=false ne paie jamais."""
+        camp = {"campaign_id": "X", "rate_usd_per_1k": 0.3,
+                "funded": False, "budget_remaining_usd": 100,
+                "platforms": ["tiktok"]}
+        verdict = evaluate(camp, self.cfg, "tiktok")
+        ok, code, msg = gates.a2_campaign(verdict)
+        self.assertFalse(ok)
+        self.assertIn("unfunded", verdict["reasons"])
+
+    def test_a1_refuse_warmup_trop_court(self):
+        ok, code, msg = gates.a1_account({"warmup_days": 2, "banned": False}, self.cfg)
+        self.assertFalse(ok)
+        self.assertIn("warmup", msg)
+
+    def test_export_embarque_le_png(self):
+        """write() copie le PNG a cote du pack et reecrit watermark.file."""
+        import packager
+        tmp = tempfile.mkdtemp()
+        fake = {"watermark": {"file": "", "path": None, "exists": False,
+                              "required": True, "opacity": 0.8}}
+        cfg = dict(self.cfg)
+        cfg["export_dir"] = tmp
+        p1 = os.path.join(tmp, "test.png")
+        with open(p1, "wb") as fh:
+            fh.write(b"\x89PNG\r\nfake")
+        fake["watermark"]["path"] = p1
+        fake["watermark"]["exists"] = True
+        fake["pack_token"] = "abcdef01"
+        fake["mode"] = "mark1"
+        p = packager.write(fake, cfg, str(self.root))
+        self.assertTrue(os.path.exists(p))
+        with open(p, "r", encoding="utf-8") as fh:
+            written = json.load(fh)
+        self.assertTrue(written["watermark"]["bundled"])
+        bundled = os.path.join(tmp, written["watermark"]["file"])
+        self.assertTrue(os.path.exists(bundled))
+        self.assertEqual(os.path.getsize(bundled), os.path.getsize(p1))
+
+
+# ---------------------------------------------------------------------------
+# V3.6 : le focus passe de juge a greffier.
+# ---------------------------------------------------------------------------
+
+class TestV36FocusDeclaratif(unittest.TestCase):
+    """La campagne exige "main focus", mais la regle est visuelle.
+
+    Compter le nom dans la transcription refusait la VOD TWITCHCON (POV camera
+    portee, 0 mention du prenom en 2 h 53) alors que le personnage principal
+    etait a l'ecran tout le temps. MARK1 ne peut pas voir : il enregistre la
+    declaration de l'operateur, et refuse seulement si rien n'est declare.
+    """
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+
+    def test_sans_declaration_zero_mention_refuse(self):
+        from libs import compliance
+        f = compliance.focus_report("", "Aishah Sofey",
+                                    "we lost 12 pounds of water chip", self.cfg)
+        self.assertFalse(f["ok"])
+        self.assertEqual(f["source"], "measured")
+        self.assertIn("aucune declaration", f["reason"])
+
+    def test_declaration_operateur_suffit(self):
+        from libs import compliance
+        f = compliance.focus_report(
+            "", "Aishah Sofey", "we lost 12 pounds of water chip", self.cfg,
+            declared={"asserted_by": "operator", "evidence": "POV camera portee"})
+        self.assertTrue(f["ok"])
+        self.assertEqual(f["source"], "declared")
+        self.assertEqual(f["asserted_by"], "operator")
+        self.assertEqual(f["evidence"], "POV camera portee")
+
+    def test_declaration_booleenne(self):
+        from libs import compliance
+        f = compliance.focus_report("", "Aishah Sofey", "x", self.cfg, declared=True)
+        self.assertTrue(f["ok"])
+        self.assertEqual(f["source"], "declared")
+
+    def test_mesure_reste_un_repli_utile(self):
+        """Un segment qui NOMME le sujet passe sans declaration."""
+        from libs import compliance
+        f = compliance.focus_report("", "Aishah Sofey",
+                                    "I'm Aishah and this is my stream", self.cfg)
+        self.assertTrue(f["ok"], f["reason"])
+        self.assertEqual(f["source"], "measured")
+
+    def test_check_asset_propage_la_declaration(self):
+        from libs import compliance
+        asset = {"id": "A01", "subject": "Aishah Sofey",
+                 "source_text": "we lost 12 pounds of water chip",
+                 "overlay_title": "She lost 12 pounds",
+                 "focus_declared": {"asserted_by": "operator"}}
+        ok, why = compliance.check_asset(asset, self.cfg)
+        self.assertTrue(ok, why)
+        asset2 = dict(asset)
+        del asset2["focus_declared"]
+        ok2, why2 = compliance.check_asset(asset2, self.cfg)
+        self.assertFalse(ok2)
+        self.assertTrue(any("focus" in w for w in why2))
+
+    def test_pack_porte_focus_declared(self):
+        import packager
+        out = packager.build([], {"campaign_id": "X", "language": "en", "platforms": ["TikTok"]},
+                             {"file": ""}, self.cfg,
+                             {"focus_declared": {"asserted_by": "operator",
+                                                 "evidence": "POV"}})
+        self.assertEqual(out["focus_declared"]["asserted_by"], "operator")

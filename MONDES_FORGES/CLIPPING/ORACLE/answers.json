@@ -1,4 +1,8 @@
 {
   "version": 1,
-  "answers": {}
+  "answers": {
+    "A01": ["She lost 50,000 dollars"],
+    "A02": ["She lost 86,000 seconds"],
+    "A03": ["She paid 385 was much"]
+  }
 }

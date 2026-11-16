@@ -7,8 +7,15 @@ CE QUE CE PACK EST
 
 CE QU'IL PORTE (impose par le plan V3)
     mode, directive_source, language, source, asset_mode, subject,
-    internal_terms, campaign, account, watermark{...}, assets[...],
-    pack_token, generated_at
+    internal_terms, campaign, account, focus_declared, watermark{...},
+    assets[...], pack_token, generated_at
+
+FOCUS_DECLARED (V3.6)
+    La campagne exige "main focus or topic", mais MARK1 ne voit pas la video :
+    il ne peut pas prouver qu'elle est a l'ecran. Quand l'operateur l'affirme
+    (pack d'entree : `focus_declared`), la declaration voyage DANS le pack
+    livrable. C'est ce qui rend la regle auditable en aval au lieu d'etre
+    devinee ici.
 
 ORDRE IMPOSE
     watermark (M3) et transcription (M5) sont deja resolus quand on arrive ici.
@@ -92,6 +99,7 @@ def build(assets, directive, watermark, cfg, pack_meta):
             "anti_spam": directive.get("anti_spam"),
         },
         "account": pack_meta.get("account") or {},
+        "focus_declared": pack_meta.get("focus_declared") or None,
         "watermark": watermark,
         "assets": out_assets,
         "pack_token": pack_token,
@@ -100,13 +108,40 @@ def build(assets, directive, watermark, cfg, pack_meta):
 
 
 def write(pack, cfg, root):
-    """Ecrit le pack dans EXPORT/ et rend le chemin."""
+    """Ecrit le pack dans EXPORT/ et rend le chemin.
+
+    EXPORT/ est le seul dossier que le consommateur (OMNIS_WATCH) lit. Le pack
+    est autonome : il porte le JSON ET le PNG du watermark, copies a cote sous
+    <prefix><pack_token>.png. `pack.watermark.file` devient ce nom de fichier
+    relatif, pour que le consommateur n'ait aucune resolution de chemin a faire.
+    """
     rel = cfg.get("export_dir", "../EXPORT")
     base = os.path.normpath(os.path.join(root, rel))
     os.makedirs(base, exist_ok=True)
     name = "%s%s.json" % (cfg.get("export_prefix", "production_pack_mark1_"),
                           pack["pack_token"])
     path = os.path.join(base, name)
+
+    wm = pack.get("watermark") or {}
+    src_png = wm.pop("path", None)
+    if src_png and os.path.exists(src_png) and os.path.getsize(src_png) > 0:
+        png_name = "%s%s.png" % (cfg.get("export_prefix", "production_pack_mark1_"),
+                                  pack["pack_token"])
+        dst = os.path.join(base, png_name)
+        try:
+            with open(src_png, "rb") as fi, open(dst, "wb") as fo:
+                fo.write(fi.read())
+            wm["file"] = png_name
+            wm["bundled"] = True
+        except OSError:
+            wm["bundled"] = False
+    else:
+        wm["bundled"] = False
+    pack["watermark"] = wm
+
+    # un pack sans declaration de focus reste un pack sans focus etabli :
+    # on ne l'invente pas, on le dit.
+
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(pack, fh, ensure_ascii=False, indent=2)
     return path

@@ -82,8 +82,12 @@ def _key_fact(text, lang, root):
 def select(pack, directive, cfg, root):
     """Rend la selection : une liste de segments avec leur cadre de titre.
 
-    Chaque segment : id, start_sec, end_sec, entity, numbers[], key_fact,
-                     langue, titre brut (celui du pack, s'il existe).
+    Chaque segment : id, start_sec, end_sec, source_text, entity, numbers[],
+                     key_fact, langue, titre brut (celui du pack, s'il existe).
+
+    `source_text` est CONSERVE tel quel depuis V3.6 : M2B_COMPLIANCE mesure le
+    focus et le bait sur ce texte. L'oublier ici vidait la mesure et faisait
+    echouer le bait a 0 % sur tous les assets, sans que rien ne le signale.
     """
     lang = directive.get("language") or cfg.get("default_language", "en")
     subject = directive.get("creator_name") or pack.get("subject") or ""
@@ -96,6 +100,7 @@ def select(pack, directive, cfg, root):
             "id": asset.get("id"),
             "start_sec": asset.get("start_sec"),
             "end_sec": asset.get("end_sec"),
+            "source_text": text,
             "language": lang,
             "entity": _extract_entities(text, subject, lang, root),
             "numbers": _extract_numbers(text),

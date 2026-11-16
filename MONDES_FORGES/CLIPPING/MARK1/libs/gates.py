@@ -1,10 +1,25 @@
 """libs/gates.py -- les portes. Une porte = une fonction (ok, code, message).
 
-ONZE CODES, HUIT IMPLEMENTEES EN V2.
-    G0_PACK, A1_ACCOUNT, A2_CAMPAIGN, S1_CONTEXT, C2_DISCLOSURE,
-    S2_DURATION, X1_EXPORT          -> implementees ici
-    T1_TITLE, T2_HOOK, S3_HERESY    -> codes reserves, verifies par les
-                                       fonctions de libs/ (title_forge, s1_context)
+DOUZE CODES, DIX IMPLEMENTEES ICI (V3.6).
+    G0_PACK, D0_DIRECTIVE, M0B_CYCLE, M1_SELECTION, M2_METADATA,
+    M2B_COMPLIANCE, M3_WATERMARK, M5_VOX, A1_ACCOUNT, A2_CAMPAIGN,
+    X1_EXPORT                     -> implementees et APPELEES par cmd_export
+    C2_DISCLOSURE, S2_DURATION    -> implementees mais non appelees : M2 et G0
+                                     font deja le travail (redondance assumee)
+
+CHANGEMENT V3.5 : A1_ACCOUNT et A2_CAMPAIGN etaient ecrites et testees mais
+JAMAIS appelees par cmd_export. Le guide promettait qu'un compte banni ou une
+campagne non financee ne pouvait pas exporter : c'etait faux. Elles sont
+maintenant branchees avant l'export.
+
+CHANGEMENT V3.5 : M3_WATERMARK ne juge plus l'opacite, la position ni la taille.
+MARK1 ne produit pas de video : il DECRIT le watermark pour OMNIS_WATCH, qui le
+pose. Verifier l'opacite ici refusait un PNG conforme des que la campagne
+changeait de seuil, sans qu'aucun pixel n'ait ete regarde. Le seuil reste dans
+la directive (watermark_rules.json) et voyage dans le pack.
+
+CHANGEMENT V3.6 : M2B_COMPLIANCE ne MESURE plus le focus, elle ENREGISTRE la
+declaration de l'operateur. Voir libs/compliance.py pour le detail et le motif.
 
 CHANGEMENT V2 : R1_RENDER est supprimee et remplacee par X1_EXPORT.
 R1 verifiait un fichier MP4 (taille, dimensions, codec). MARK1 ne produit plus
@@ -24,13 +39,9 @@ CODES = (
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
-    "S1_CONTEXT",
     "C2_DISCLOSURE",
     "S2_DURATION",
     "X1_EXPORT",
-    "T1_TITLE",
-    "T2_HOOK",
-    "S3_HERESY",
 )
 
 # Codes dont une fonction existe dans ce module.
@@ -129,7 +140,8 @@ def m1_selection(selection, directive, cfg):
         if dur < lo or dur > hi:
             reasons.append("%s: %.1fs hors [%.0f,%.0f]" % (seg.get("id"), dur, lo, hi))
         if not (seg.get("key_fact") or "").strip():
-            reasons.append("%s: aucun texte (source_text manquant)" % seg.get("id"))
+            reasons.append("%s: aucun texte (key_fact vide : ni source_text ni "
+                           "transcript fournis au selecteur)" % seg.get("id"))
 
     if reasons:
         return False, "M1_SELECTION", "; ".join(reasons)
@@ -178,35 +190,38 @@ def m2_metadata(assets, cfg, had_oracle=False):
 
 
 def m3_watermark(wm, directive, cfg):
-    """Le watermark est-il disponible pour chaque plateforme visee ?
+    """Le PNG du watermark existe-t-il et peut-il etre livre ?
 
-    Rouge si : un PNG est requis sur une plateforme visee et il est absent
-    ou vide ; opacite sous le minimum de la directive.
+    MARK1 ne pose AUCUN watermark : il n'a pas le droit de toucher une video
+    (doctrine CLIPPING). `vexillum.py` decrit seulement comment le poser, et
+    `packager` embarque le PNG dans le pack pour qu'OMNIS_WATCH le trouve.
+
+    Donc le seul fait verifiable ici est : le PNG est-il la, non vide, et
+    pourra-t-il etre copie dans EXPORT/. L'opacite, la position et la taille
+    sont des CONSIGNES transmises au consommateur, pas des proprietes que
+    MARK1 peut controler. Les mitiger ici serait juger le travail d'un autre.
+    (Avant V3.5 cette porte comparait l'opacite a un 0.75 ecrit en dur, ce
+    qui violait R1 et refusait un PNG conforme le jour ou la regle changeait.)
     """
     platforms = (directive or {}).get("platforms") or []
     if not platforms:
         return False, "M3_WATERMARK", "aucune plateforme"
 
-    partial = isinstance(wm, dict) and "required" in wm
-    entries = [wm] if partial else [wm.get(p) or {} for p in platforms]
+    if not isinstance(wm, dict):
+        return False, "M3_WATERMARK", "descriptif watermark absent"
 
-    rules_min = 0.75
     reasons = []
-    for w in entries:
-        if not w:
-            reasons.append("watermark absent")
-            continue
-        if w.get("required") and not w.get("exists"):
-            reasons.append("PNG requis mais absent/vide (plates visees)")
-        if float(w.get("opacity") or 0) < rules_min:
-            reasons.append("opacite %.2f < %.2f" % (float(w.get("opacity") or 0), rules_min))
+    if wm.get("required") and not wm.get("exists"):
+        reasons.append("PNG requis mais absent/vide")
+    if wm.get("exists") and not wm.get("path"):
+        reasons.append("PNG present sans chemin exploitable")
 
     if reasons:
         return False, "M3_WATERMARK", "; ".join(dict.fromkeys(reasons))
-    f = entries[0].get("file") if entries else ""
-    return True, "M3_WATERMARK", "%s opacite %.2f pos %s %d%%" % (
-        f or "aucun", float(entries[0].get("opacity") or 0),
-        entries[0].get("position"), int(entries[0].get("size_pct") or 0))
+
+    return True, "M3_WATERMARK", "%s (%s)" % (
+        wm.get("file") or "aucun",
+        "requis" if wm.get("required") else "optionnel")
 
 
 def m5_vox(vox_results, cfg):

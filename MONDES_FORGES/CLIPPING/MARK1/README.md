@@ -17,8 +17,16 @@ n'est **pas une frégate** : c'est un ensemble autonome qui contient ses propres
 | `M00F_VOX` | transcrit le segment (EXC-2) | **M5** |
 | `M00E_PACKAGER` | assemble le pack V3 pour OMNIS_WATCH | **M4** |
 
-**Ordre d'exécution : M0 → M1 → M5 → M2 → M3 → M4.** La transcription passe
-avant le pack parce que le pack la porte.
+**Ordre d'exécution : M0 → M0b → M1 → M5 → M2 → M2b → M3 → A1 → A2 → M4.**
+La transcription passe avant les métadonnées parce que le bait se mesure sur
+elle. `M0b` (cycle de campagne) coupe avant tout travail si le pack est périmé.
+`A1`/`A2` (compte et campagne) coupent juste avant l'export — c'est ce qui
+empêche de livrer un pack pour un compte banni sur une campagne non financée.
+
+**Le pack embarque son watermark.** `M00E_PACKAGER` copie le PNG à côté du JSON
+dans `EXPORT/` (`production_pack_mark1_<token>.png`) et réécrit
+`watermark.file` + `bundled: true`. OMNIS_WATCH n'a plus à deviner où est le
+PNG, et rien ne peut être publié avec le mauvais fichier.
 
 > **Deux exceptions bornées.** MARK1 ne fait de réseau qu'en deux endroits
 > nommés (`overlay.py`, `vox.py`) et ne lit `llm_enabled` qu'à un seul endroit.
