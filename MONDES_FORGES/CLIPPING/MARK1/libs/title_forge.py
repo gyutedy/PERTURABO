@@ -10,6 +10,9 @@ Aucun seuil ici : tout vient de config/selection.json via `cfg`.
 
 from __future__ import annotations
 
+import json
+import os
+
 # 12 gabarits. {number} et {stake} sont optionnels : un gabarit dont les trous
 # ne sont pas remplis est simplement ecarte par generate().
 TEMPLATES = (
@@ -27,11 +30,29 @@ TEMPLATES = (
     {"id": "T12", "stake": "avertissement", "pattern": "Ne faites jamais ce qu il a fait"},
 )
 
-_STAKE_MARKERS = (
-    "perdu", "perd", "gagne", "gagne", "paye", "dollars", "euro", "euros",
+_STAKE_MARKERS_FR = (
+    "perdu", "perd", "gagne", "paye", "dollars", "euro", "euros",
     "tout", "rien", "jamais", "survecu", "bascule", "verite", "mentait",
     "personne", "personnes", "nuit", "jour", "apres", "avant", "vue", "vraiment",
 )
+
+
+def _stake_markers(cfg, lang=None):
+    """Marqueurs d'enjeu pour la langue. Repli FR si lexique absent.
+
+    Sans ce chargement, une campagne `en` ne pouvait jamais rien faire passer :
+    la liste etait francaise en dur (bug trouve en V3).
+    """
+    code = (lang or cfg.get("default_language") or "fr").lower()
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lang", "%s.json" % code)
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            markers = json.load(fh).get("stake_markers") or []
+        if markers:
+            return tuple(m.lower() for m in markers)
+    except (OSError, ValueError):
+        pass
+    return _STAKE_MARKERS_FR
 
 
 def _word_count(text):
@@ -86,7 +107,7 @@ def validate(title, cfg, lang=None):
     if not cfg.get("allowed_question_mark", False) and "?" in t:
         v.append("question_mark")
 
-    if not any(m in lower for m in _STAKE_MARKERS):
+    if not any(m in lower for m in _stake_markers(cfg, lang)):
         v.append("no_stake")
 
     return v

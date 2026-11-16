@@ -35,6 +35,7 @@ CODES = (
 IMPLEMENTED = (
     "D0_DIRECTIVE",
     "M1_SELECTION",
+    "M2_METADATA",
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
@@ -129,6 +130,47 @@ def m1_selection(selection, directive, cfg):
     if reasons:
         return False, "M1_SELECTION", "; ".join(reasons)
     return True, "M1_SELECTION", "%d segments, langue %s" % (len(sel), lang_dir)
+
+
+def m2_metadata(assets, cfg, had_oracle=False):
+    """Toutes les metadonnees sont-elles completes et sous contrainte ?
+
+    Rouge si : overlay_title absent ou invalide, metadata_title trop long,
+    description trop longue, 0 tag, 0 hashtag, caption sans disclosure.
+    """
+    if not assets:
+        return False, "M2_METADATA", "aucun asset"
+
+    from libs import title_forge
+    reasons = []
+    tmax = int(cfg.get("metadata_title_max_chars", 85))
+    dmax = int(cfg.get("description_max_chars", 220))
+    require_disc = bool(cfg.get("require_disclosure", True))
+    disc = [t.lower() for t in cfg.get("disclosure_tags", ["#ad"])]
+
+    for a in assets:
+        aid = a.get("id")
+        ot = a.get("overlay_title") or ""
+        viol = title_forge.validate(ot, cfg, a.get("language"))
+        if viol:
+            reasons.append("%s: overlay %s" % (aid, ",".join(viol)))
+        if len(a.get("metadata_title") or "") > tmax:
+            reasons.append("%s: metadata_title > %d" % (aid, tmax))
+        if len(a.get("description") or "") > dmax:
+            reasons.append("%s: description > %d" % (aid, dmax))
+        if not a.get("tags"):
+            reasons.append("%s: 0 tag" % aid)
+        if not a.get("hashtags"):
+            reasons.append("%s: 0 hashtag" % aid)
+        if require_disc:
+            cap = (a.get("caption") or "").lower()
+            if not any(d in cap for d in disc):
+                reasons.append("%s: caption sans disclosure" % aid)
+
+    if reasons:
+        return False, "M2_METADATA", "; ".join(reasons)
+    return True, "M2_METADATA", "%d assets valides%s" % (
+        len(assets), " (via ORACLE)" if had_oracle else "")
 
 
 def g0_pack(pack, cfg):
