@@ -540,12 +540,15 @@ def cmd_valider1(st, arg):
 def cmd_valider2(st, arg):
     try:
         import moteur_flag
+        import moteur_sport
+        cfgp = moteur_sport.cfg_path()
+        sport_actif = moteur_sport.actif()
     except Exception:
-        moteur_flag = None
-    if moteur_flag is not None and not moteur_flag.tickets_enabled():
-        tell("⛔ MOTEUR GELE — config/moteur.json : tickets_enabled = false.\n"
+        moteur_flag, cfgp, sport_actif = None, None, "foot"
+    if moteur_flag is not None and not moteur_flag.tickets_enabled(cfgp):
+        tell("⛔ MOTEUR GELE — sport " + sport_actif + " : tickets_enabled = false.\n"
              "Aucun ticket, aucune mise, jusqu'a validation du moteur "
-             + moteur_flag.engine() + ".\n"
+             + moteur_flag.engine(cfgp) + ".\n"
              "Le ledger F06 reste intact. `/modele` = etat. `/gel off` quand la phase 2 est verte.")
         return
     if not st.get("steps", {}).get("valider1"):
@@ -1031,11 +1034,18 @@ def cmd_vanus(st, arg):
     except Exception:
         tell("vanus_gate introuvable — F00_RADAR/CODEBASE absent du path.")
         return
-    path = P("ARCHIVUM", "vanus", "latest.json")
+    try:
+        import moteur_sport
+        sport = moteur_sport.actif()
+    except Exception:
+        sport = "foot"
+    default_path = vanus_gate.path(sport)
+    path = (default_path if os.environ.get("PARI_VANUS_SIGNALS_PATH")
+            else P("ARCHIVUM", "vanus", os.path.basename(default_path)))
     blob, holes = vanus_gate.load(path)
     if blob is None:
-        tell("VANUS — signal absent. Trous : " + ",".join(holes or ["vanus_absent"])
-             + ". Coller ARCHIVUM/vanus/latest.json (export VANUS). Jamais un p.")
+        tell("VANUS " + sport.upper() + " — signal absent. Trous : " + ",".join(holes or ["vanus_absent"])
+             + ". Coller le signal VANUS du sport actif. Jamais un p.")
         return
     contrat_holes = vanus_gate.validate(blob)
     if contrat_holes:
@@ -1060,7 +1070,7 @@ def cmd_vanus(st, arg):
             tell("VANUS — match `%s` introuvable dans la carte. `/capture` d'abord." % token)
             return
         rec = vanus_gate.gate(target.get("dom"), target.get("ext"),
-                              date=target.get("date"), blob=blob)
+                              date=target.get("date"), blob=blob, sport=sport)
         tell(_fmt_vanus_line(target, rec))
         return
     if not matchs:
@@ -1069,7 +1079,7 @@ def cmd_vanus(st, arg):
     lines = ["VANUS — lecture seule. Jamais un p. Tickets geles."]
     n_veto = n_info = n_pass = n_hole = 0
     for m in matchs:
-        rec = vanus_gate.gate(m.get("dom"), m.get("ext"), date=m.get("date"), blob=blob)
+        rec = vanus_gate.gate(m.get("dom"), m.get("ext"), date=m.get("date"), blob=blob, sport=sport)
         lines.append(_fmt_vanus_line(m, rec))
         act = rec.get("action")
         if rec.get("holes") and act == "skip":
@@ -1105,28 +1115,91 @@ def cmd_modele(st, rest):
         lignes.append(f"ECE {cal.get('ece')} — logloss {cal.get('logloss_modele')} / {cal.get('logloss_marche')}")
     else:
         lignes.append("Aucune calibration mesuree — `/roi diag` apres backtest_market.py")
+    # Etat des deux moteurs (foot + basket) — jamais fusionnes.
+    try:
+        import moteur_sport
+        etats = moteur_sport.both_states()
+        actif = moteur_sport.actif()
+        tell("SPORT ACTIF : " + actif.upper())
+        for s, e in etats.items():
+            marque = " <- actif" if s == actif else ""
+            tell("  " + s + " : " + str(e["engine"]) + " | TICKETS : "
+                 + ("OUVERTS" if e["tickets_enabled"] else "GELE") + marque)
+    except Exception:
+        tell("moteur_sport introuvable — selecteur de sport absent.")
     tell("\n".join(lignes))
 
 
 def cmd_gel(st, rest):
-    """`/gel on|off` — bascule le drapeau. off exige une calibration valide."""
+    """`/gel on|off` — bascule le drapeau du sport actif. off exige une calibration valide."""
     try:
         import moteur_flag
+        import moteur_sport
+        cfgp = moteur_sport.cfg_path()
+        sport = moteur_sport.actif()
     except Exception:
-        tell("moteur_flag introuvable — F02_BREACHER/CODEBASE absent du path.")
+        tell("moteur_flag ou moteur_sport introuvable.")
         return
     arg = (rest or "").strip().lower()
     if arg not in ("on", "off"):
-        tell(f"Drapeau actuel : tickets_enabled={moteur_flag.tickets_enabled()}. Format `/gel on` ou `/gel off`.")
+        tell(f"Drapeau {sport} : tickets_enabled={moteur_flag.tickets_enabled(cfgp)}. "
+             "Format `/gel on` ou `/gel off`.")
         return
-    if arg == "off" and moteur_flag.load().get("require_calibration"):
-        cal = load_json(P("ARCHIVUM", "learnings", "calibration_moteur.json")) or {}
+    if arg == "off" and (moteur_flag.load(cfgp) or {}).get("require_calibration"):
+        cal_name = ("calibration_basket.json" if "basket" in os.path.basename(cfgp)
+                    else "calibration_moteur.json")
+        cal = load_json(P("ARCHIVUM", "learnings", cal_name)) or {}
         if cal.get("verdict") != "GO":
-            tell("⛔ Refus : calibration absente ou verdict " + str(cal.get("verdict"))
-                 + ". Lance backtest_market.py et lis le verdict.")
+            tell("⛔ Refus : calibration " + sport + " absente ou verdict " + str(cal.get("verdict"))
+                 + ". Lance le backtest du sport et lis le verdict.")
             return
-    blob = moteur_flag.set_tickets(arg == "off")
-    tell(f"Drapeau enregistre : tickets_enabled={blob.get('tickets_enabled')}")
+    blob = moteur_flag.set_tickets(arg == "off", cfgp)
+    tell(f"Drapeau {sport} enregistre : tickets_enabled={blob.get('tickets_enabled')}")
+
+
+def cmd_sport(st, arg):
+    """`/sport` etat, `/sport foot|basket` bascule. Ne degel rien."""
+    try:
+        import moteur_sport
+    except Exception:
+        tell("moteur_sport introuvable — F02_BREACHER/CODEBASE absent du path.")
+        return
+    arg = (arg or "").strip().lower()
+    if arg in moteur_sport.SPORTS:
+        avant = moteur_sport.actif()
+        moteur_sport.set_sport(arg)
+        tell("Sport actif : " + avant + " -> " + moteur_sport.actif()
+             + "\nLe gel est independant par sport : verifier /modele.")
+        return
+    etats = moteur_sport.both_states()
+    tell("SPORT ACTIF : " + moteur_sport.actif().upper())
+    for s, e in etats.items():
+        marque = " <- actif" if e["actif"] else ""
+        tell("  " + s + " : " + str(e["engine"]) + " | TICKETS : "
+             + ("OUVERTS" if e["tickets_enabled"] else "GELE") + marque)
+    tell("Basculer : /sport foot ou /sport basket.")
+
+
+def cmd_basket(st, arg):
+    """`/basket` = bascule vers basket + etat detaille du moteur basket."""
+    try:
+        import moteur_sport
+        import moteur_flag
+    except Exception:
+        tell("moteur_sport/moteur_flag introuvables.")
+        return
+    moteur_sport.set_sport("basket")
+    cfgp = moteur_sport.cfg_path("basket")
+    blob = moteur_flag.load(cfgp) or {}
+    cal = load_json(P("ARCHIVUM", "learnings", "calibration_basket.json")) or {}
+    tell("Sport actif : BASKET (pari.model_basket.v1)"
+         + "\nTICKETS : " + ("OUVERTS" if blob.get("tickets_enabled") else "GELE")
+         + "\nCalibration : " + str(cal.get("verdict") or "absente")
+         + " (n_oos=" + str(cal.get("n_oos") or "?") + ")"
+         + "\nGates : rps/brier_gap <= " + str((blob.get("gates") or {}).get("rps_gap_max"))
+         + " | ece <= " + str((blob.get("gates") or {}).get("ece_max"))
+         + " | n >= " + str((blob.get("gates") or {}).get("min_matches_oos"))
+         + "\nRetour foot : /sport foot")
 
 
 CMDS = {
@@ -1153,6 +1226,8 @@ CMDS = {
     "modele": (cmd_modele, "etat du moteur (lecture seule)"),
     "gel": (cmd_gel, "gele ou degele l'emission de tickets"),
     "vanus": (cmd_vanus, "lecture vanus.signal.v1 (jamais un p)"),
+    "sport": (cmd_sport, "affiche ou change le sport actif (foot|basket)"),
+    "basket": (cmd_basket, "passe au moteur basket + etat detaille"),
 }
 
 

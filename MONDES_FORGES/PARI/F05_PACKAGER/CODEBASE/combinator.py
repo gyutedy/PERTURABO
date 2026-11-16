@@ -355,6 +355,45 @@ def main():
     print(f"[COMBINATOR] JSON : {args.out_json}")
 
 
+def build_system23(jambes, mise_par_double, corr_decote=1.0):
+    """Systeme 2/3 depuis 3 jambes validees.
+    jambes = [(match_id, marche, selection, cote, p_modele), ...] (exactement 3)
+    corr_decote : facteur <= 1.0 applique a p_conjointe si les jambes
+    partagent un facteur commun (ligue, jour). Retourne le detail complet
+    ou lève ValueError si les entrees sont invalides. Jamais d'estimation :
+    une cote absente = ValueError.
+    """
+    if len(jambes) != 3:
+        raise ValueError("systeme 2-3 exige exactement 3 jambes")
+    for (mid, marche, sel, cote, p) in jambes:
+        if not cote or float(cote) <= 1.0:
+            raise ValueError("cote absente ou invalide sur " + str(mid))
+        if not p or not (0.0 < float(p) < 1.0):
+            raise ValueError("p_modele absente sur " + str(mid))
+    a, b, c = jambes
+    pairs = [(a, b), (a, c), (b, c)]
+    doubles = []
+    for x, y in pairs:
+        doubles.append({
+            "jambes": [(x[0], x[1], x[2]), (y[0], y[1], y[2])],
+            "cote": round(float(x[3]) * float(y[3]), 4),
+            "mise": float(mise_par_double),
+        })
+    p_conj = float(a[4]) * float(b[4]) * float(c[4]) * float(corr_decote)
+    gain_3_3 = round(sum(d["cote"] * d["mise"] for d in doubles), 2)
+    # 2/3 : seul le double des deux gagnantes paye (calcule par paire)
+    gain_2_3 = [round(d["cote"] * d["mise"], 2) for d in doubles]
+    return {
+        "type": "systeme_2_3",
+        "doubles": doubles,
+        "mise_totale": round(3.0 * float(mise_par_double), 2),
+        "p_conjointe": round(p_conj, 4),
+        "gain_si_3_3": gain_3_3,
+        "gain_si_2_3_par_paire": gain_2_3,
+        "perte_si_1_3": round(3.0 * float(mise_par_double), 2),
+    }
+
+
 def top3_wrn_from_warnings(top3):
     w = []
     nb = sum(1 for r_ in top3.get("matchs", []) if r_.get("no_bet_recommande"))
