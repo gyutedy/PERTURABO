@@ -1,0 +1,25 @@
+{
+  "note": "Interrupteur du moteur BASKET. Independent du foot. tickets_enabled=false = aucun ticket basket.",
+  "engine": "basket_mle",
+  "engine_version": "pari.model_basket.v1",
+  "tickets_enabled": false,
+  "require_calibration": true,
+  "gates": {
+    "rps_gap_max": 0.0,
+    "brier_gap_max": 0.0,
+    "ece_max": 0.03,
+    "min_matches_oos": 300
+  },
+  "fit": {
+    "half_life_days": 45,
+    "min_team_matches": 5,
+    "sigma_rtg": 4.0,
+    "sigma_pts": 2.5,
+    "home_adv_init": 2.5,
+    "lr": 0.02,
+    "max_iterations": 400,
+    "tol": 1e-9,
+    "mc_sims": 10000,
+    "spread_line": -1.5
+  }
+}

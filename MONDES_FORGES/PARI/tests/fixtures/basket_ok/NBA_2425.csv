@@ -1,0 +1,13 @@
+game_id,date,team_home,team_away,pts_home,pts_away
+G001,2024-10-22,Lakers,Warriors,110,105
+G002,2024-10-25,Celtics,Knicks,120,98
+G003,2024-11-02,Warriors,Lakers,102,111
+G004,2024-11-11,Knicks,Celtics,95,118
+G005,2024-12-01,Lakers,Celtics,99,130
+G006,2024-12-20,Warriors,Knicks,113,109
+G007,2024-12-28,Celtics,Lakers,122,115
+G008,2024-12-30,Knicks,Warriors,108,104
+G009,2025-01-05,Lakers,Knicks,112,107
+G010,2025-01-18,Warriors,Celtics,101,119
+G011,2025-02-02,Celtics,Warriors,116,110
+G012,2025-02-14,Knicks,Lakers,121,114

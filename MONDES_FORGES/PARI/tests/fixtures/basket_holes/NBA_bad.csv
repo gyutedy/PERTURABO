@@ -1,0 +1,5 @@
+game_id,date,team_home,team_away,pts_home,pts_away
+G100,2025-01-05,Lakers,Knicks,,107
+G101,2025-01-06,,Warriors,100,98
+G102,2025-01-07,Celtics,,,,
+,2025-01-08,Knicks,Lakers,110,105
