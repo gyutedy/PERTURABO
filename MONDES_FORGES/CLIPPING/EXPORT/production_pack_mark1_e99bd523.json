@@ -1,0 +1,143 @@
+{
+  "mode": "mark1",
+  "overlay_mode": "oracle",
+  "directive_source": "2026-07-24_AISHAH_SOFEY_MULTI",
+  "language": "en",
+  "source": {
+    "campaign_id": "2026-07-24_AISHAH_SOFEY_MULTI",
+    "directive_path": "D:\\mes couilles\\_perturabo_tmp\\MONDES_FORGES\\CLIPPING\\ARCHIVUM\\campaign\\campaign_directive.json",
+    "platforms": [
+      "tiktok",
+      "twitter_x",
+      "instagram_reels",
+      "youtube_shorts"
+    ],
+    "payouts_usd_per_1k": {
+      "tiktok": 0.3,
+      "twitter_x": 0.2,
+      "instagram_reels": 0.2,
+      "youtube_shorts": 0.3
+    }
+  },
+  "asset_mode": "blur",
+  "subject": "Aishah Sofey",
+  "internal_terms": [],
+  "campaign": {
+    "campaign_id": "2026-07-24_AISHAH_SOFEY_MULTI",
+    "language": "en",
+    "platforms": [
+      "tiktok",
+      "twitter_x",
+      "instagram_reels",
+      "youtube_shorts"
+    ],
+    "anti_spam": true
+  },
+  "account": {
+    "handle": "@aishahsofey",
+    "warmup_days": 21,
+    "banned": false
+  },
+  "focus_declared": {
+    "asserted_by": "operator",
+    "evidence": "POV camera portee : Aishah filmе elle-meme toute la VOD (TwitchCon Day 1). Directive : 'as long as she's featured in the clip'.",
+    "asserted_at": "2026-11-16"
+  },
+  "watermark": {
+    "file": "production_pack_mark1_e99bd523.png",
+    "opacity": 0.8,
+    "position": "centered",
+    "size_pct": 15,
+    "required": true,
+    "exists": true,
+    "available_pngs": [
+      "aishahsofey_1.png"
+    ],
+    "bundled": true
+  },
+  "assets": [
+    {
+      "id": "A01",
+      "start_sec": 10328.0,
+      "end_sec": 10358.0,
+      "overlay_title": "She lost 50,000 dollars",
+      "metadata_title": "Aishah Sofey I looks like it's like 50,000 dollars",
+      "description": "I looks like it's like 50,000 dollars. #aishahsofey @aishah",
+      "tags": [
+        "scary",
+        "like",
+        "dollars",
+        "it's",
+        "looks",
+        "figure",
+        "have",
+        "i'm",
+        "out",
+        "there's"
+      ],
+      "hashtags": [
+        "#aishahsofey",
+        "#scary"
+      ],
+      "caption": "She lost 50,000 dollars @aishah #aishahsofey #ad",
+      "clip_token": "A01-20261116-e99bd523",
+      "exported_at": "2026-11-16T17:18:41"
+    },
+    {
+      "id": "A02",
+      "start_sec": 8616.6,
+      "end_sec": 8646.6,
+      "overlay_title": "She lost 86,000 seconds",
+      "metadata_title": "Aishah Sofey Yo, being timed out for 86,000 seconds is",
+      "description": "Yo, being timed out for 86,000 seconds is. #aishahsofey @aishah",
+      "tags": [
+        "yo",
+        "being",
+        "out",
+        "seconds",
+        "timed",
+        "did",
+        "insane",
+        "miss"
+      ],
+      "hashtags": [
+        "#aishahsofey",
+        "#yo"
+      ],
+      "caption": "She lost 86,000 seconds @aishah #aishahsofey #ad",
+      "clip_token": "A02-20261116-e99bd523",
+      "exported_at": "2026-11-16T17:18:41"
+    },
+    {
+      "id": "A03",
+      "start_sec": 2375.8,
+      "end_sec": 2405.8,
+      "overlay_title": "She paid 385 was much",
+      "metadata_title": "Aishah Sofey I feel like 385 was a bit much,",
+      "description": "I feel like 385 was a bit much,. #aishahsofey @aishah",
+      "tags": [
+        "can",
+        "scarlet",
+        "violetdestinedrivals",
+        "best",
+        "bit",
+        "feel",
+        "like",
+        "much",
+        "ascended",
+        "believe"
+      ],
+      "hashtags": [
+        "#aishahsofey",
+        "#can",
+        "#scarlet",
+        "#violetdestinedrivals"
+      ],
+      "caption": "She paid 385 was much @aishah #aishahsofey #ad",
+      "clip_token": "A03-20261116-e99bd523",
+      "exported_at": "2026-11-16T17:18:41"
+    }
+  ],
+  "pack_token": "e99bd523",
+  "generated_at": "2026-11-16T17:18:41Z"
+}
