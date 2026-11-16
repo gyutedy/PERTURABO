@@ -30,6 +30,21 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
 ```
 
+**Règle de campagne (figée)** : pour ouvrir un **nouveau cycle de paris**, toujours
+`/stop` puis `/start` — une seule campagne active à la fois. Le workflow
+`pari_listen` porte `concurrency: pari-campagne` (`cancel-in-progress: false`) :
+deux runs ne tournent jamais en parallèle, donc pas de deux campagnes simultanées.
+
+Cette règle ne s'applique **pas** aux commandes d'administration `/sport`,
+`/basket`, `/modele`, `/vanus` : elles lisent/écrivent `sport_actif.json` ou
+l'état du moteur, jamais `campagne.json`. Pas de `/stop` + `/start` avant elles —
+cela réinitialiserait le cycle pour rien et ajouterait des runs inutiles à la file.
+
+En cas de run GitHub bloqué en `queued` (comme le 2026-11-16 20:33), ne pas
+enchaîner les commandes : attendre, puis renvoyer **une seule** commande. Le run
+bloqué finira par sortir ou restera sans effet ; la concurrence garantit qu'il ne
+chevauchera pas un cycle en cours.
+
 ### Le second organe : BASKET (reconnaissance, hors production)
 
 Un moteur basket MLE vit dans les mêmes dossiers F00→F06, avec des fichiers
