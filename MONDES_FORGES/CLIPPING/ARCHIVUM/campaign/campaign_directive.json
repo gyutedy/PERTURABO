@@ -100,6 +100,7 @@
   },
   "cycle": {
     "start": "2026-07-20",
-    "end": "2026-11-15"
+    "end": "2026-11-21",
+    "_test_only": "PROVISOIRE pour un siege de test en local. La vraie directive source (directive_aishah_2026-07-24.txt) dit 2026-11-15 : remettre 2026-11-15 avant tout siege reel, ou attendre l'annonce du cycle suivant."
   }
 }
