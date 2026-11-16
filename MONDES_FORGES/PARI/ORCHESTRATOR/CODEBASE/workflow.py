@@ -25,7 +25,9 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
     /status          état de la campagne.  /status ledger = lots.  /status doctor = evidence GO/CHECK/FAIL
     /modele          etat du moteur (drapeau, calibration). Lecture seule.
     /gel on|off      gele ou degele l emission de tickets. off exige verdict GO.
-    /vanus [ID]      lecture vanus.signal.v1 (jackpot veto / alarme info). Jamais un p.
+    /vanus [ID]      lecture vanus.signal.v1 du sport actif (jamais un p)
+    /sport           etat, /sport foot|basket bascule (foot maitre, ne degel rien)
+    /basket          bascule basket + etat detaille (calibration, gates)
     /stop            ferme la campagne (lots F06 intacts, consumed reset)
 
 L'état vit dans SHARED/STATE/campagne.json — la conversation elle-même reste la

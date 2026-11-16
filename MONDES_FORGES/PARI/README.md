@@ -28,6 +28,17 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 
 ---
 
+## MONDE BASKET — second organe (reconnaissance, hors production)
+
+Un moteur basket MLE est greffé sur la même coque F00→F06 via des fichiers `_basket`,
+sa config `config/moteur_basket.json` et le sélecteur `F02_BREACHER/CODEBASE/moteur_sport.py`.
+`/sport foot|basket` et `/basket` commutent ; **foot maître par défaut**, fichier d'état
+illisible = foot, gels indépendants, basculer ne dégèle jamais. Le basket est livré
+**gelé** (`tickets_enabled=false`, aucun CSV, aucune calibration, verdict `null`) :
+aucun ticket ni mise tant que `calibration_basket.json` ne porte pas `verdict: "GO"`
+puis CLV > 0 sur ≥ 100 paris paper-tradés. Guide complet : `docs/CAHIER_BASKET.md`.
+Traçabilité : `TRACKING/INDEX.md`, `CONTINUATION.md` (ETAT v6.0).
+
 ## LES MODES
 
 | Mode | Commande | Ce que ça fait |

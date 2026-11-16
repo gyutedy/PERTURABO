@@ -13,6 +13,16 @@ chaque frégate lit l'OUT de la précédente et écrit son propre OUT selon son 
 | `schema_input_capture.json` | F01 SENTINEL | workflow.py Porte 1 |
 | `schema_listen.json` | ORCHESTRATOR LISTEN (Worker) | pari_listen.yml, workflow.py |
 | `schema_ledger.json` | F06 TRACKER (lots tokenises v2.2.8, `bundle_id` v3.2) | workflow.py `/valider-2`, `/data ledger`, `/roi settle` |
+| `schema_listen.json` | Relais Telegram (v1) — `cmd` accepte `/sport`, `/sport foot\|basket`, `/basket` (codebook v6) | Worker `index.js`, `parse.py`, workflow.py |
+
+### BASKET — contrats du second organe
+
+| Contrat | Producteur | Consommateur |
+|---|---|---|
+| `pari.basket_params.v1` | `fit_basket.py` → `ARCHIVUM/state/basket_params.json` | `engine_basket.py`, `backtest_basket.py` |
+| `pari.calibration_basket.v1` | `backtest_basket.py` → `ARCHIVUM/learnings/calibration_basket.json` | `/gel off` basket, `/basket` |
+| `vanus.signal.v1` + `"sport": "basket"` | VANUS `speculum-basket` → `signals-basket/latest.json` | `vanus_gate.path("basket")`, `/vanus` |
+| `pari.telegram.listen.v1` (v6) | Worker + `parse.py` | `workflow.py` `cmd_sport` / `cmd_basket` |
 
 ## Règles communes
 

@@ -324,3 +324,14 @@ Numerotation commits : `PARI v3.Y` pour le socle mesure/moteur, `PARI v4.Y` pour
 - [x] S16 Oracle + poids
 
 Reprise : premier pack non coche, apres S0 GO.
+
+## 8. Greffe BASKET (2026-11-16) — hors ce plan
+
+Plan S0-S16 clos et inchange pour le foot (toujours GELE, verdict NO-GO `n=950`).
+Un second organe basket a ete livre sur branche `pari-forge-basket-m1` puis fusionne
+dans `pari-forge-perturabo-xs4c` (merge `7b95490`), apres cahier HTML dedicate.
+Il ne modifie aucun verrou ci-dessus : foot maitre par defaut, gels independants,
+`CMDS` etendu en fin uniquement, ledger F06 intact, stdlib seulement.
+Basket livre **GELE** (`config/moteur_basket.json`, verdict `null`, aucun CSV).
+Source de verite : `CONTINUATION.md` ETAT v6.0, `docs/CAHIER_BASKET.md`,
+`TRACKING/INDEX.md` section BASKET. Ce plan reste clos ; aucun pack S a rouvrir.

@@ -30,6 +30,19 @@ Telegram /start → Worker → pari_listen.yml → workflow.py → notifier
 Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos → /valider-1 → /valider-2
 ```
 
+### Le second organe : BASKET (reconnaissance, hors production)
+
+Un moteur basket MLE vit dans les mêmes dossiers F00→F06, avec des fichiers
+suffiés `_basket` et sa propre config `config/moteur_basket.json`. Le foot reste
+**maître par défaut** et les deux gels sont indépendants. Le basket naît gelé
+(`tickets_enabled=false`, aucun CSV, aucune calibration) : aucune mise, aucun
+ticket. Guide complet : `docs/CAHIER_BASKET.md`.
+
+| Commande | Ce que ça fait |
+|---|---|
+| `/sport` | Affiche le sport actif + état des deux moteurs. `/sport foot` / `/sport basket` bascule (persiste dans `ARCHIVUM/state/sport_actif.json`, illisible = foot). Ne dégèle rien. |
+| `/basket` | Bascule vers basket + état détaillé (params, n_matchs, verdict calibration, gates). Retour : `/sport foot`. |
+
 ### Les commandes de campagne
 
 | Commande | Ce que ça fait |
@@ -51,9 +64,10 @@ Mode B (nouveau pari) : /stop → /start → /capture → /budget → /combos �
 | `/radar [N]` | Scan carte courante. Matchs sans stats = trous declares, pas de crash. Defaut N=20. v3.8 : flag `incoherence_modele_empirique` si \|P(O2.5) - taux saison\| >= 0.20 (info, pas NO BET). Saison absente = trou. S14 : ligne PIEGES + SCORER si predictions presentes. |
 | `/pack [N]` | Assemble le pari pack TOP N (defaut 10) depuis predictions + analysis. Refuse si `/valider-1` pas fait. |
 | `/match ID` | Fiche siege d'un match (`M1` ou rang 1-based). Carte puis radar puis analysis. S14 : SCORER 6 criteres + PIEGES. Inconnu = refuse, pas crash. |
-| `/vanus` | Lecture `vanus.signal.v1` sur la carte. Jackpot = veto selections opposees, alarme = flag info. Skip / signal absent / match miss = hole. **Jamais un p.** `/vanus ID` = un match (`M1` ou rang). Tickets geles. |
-| `/modele` | Etat moteur (drapeau tickets, calibration). Lecture seule. |
-| `/gel on\|off` | Gele ou degele l emission de tickets. `off` exige verdict GO. |
+| `/vanus` | Lecture `vanus.signal.v1` du **sport actif** (basket : `ARCHIVUM/vanus/signals_basket.json`). Jackpot = veto, alarme = info. Skip / absent / match miss = hole. **Jamais un p.** `/vanus ID` = un match. Tickets geles. |
+| `/modele` | Etat du moteur actif + **des deux moteurs** (drapeaux foot et basket, jamais fusionnés). Lecture seule. |
+| `/gel on\|off` | Gele/degele le **sport actif** via `moteur_sport.cfg_path()`. `off` exige le verdict GO de la calibration du sport (`calibration_basket.json` pour basket). |
+| `/combos systeme 2-3` | 3 sélections validées → 3 doubles AB/AC/BC. `p1×p2×p3` affiché avant `/approve`. Cote ou `p_modele` absente = refus (`ValueError`). Lisseur de variance, pas un créateur d'edge. Détail : `docs/CAHIER_BASKET.md`. |
 | `/status` | État campagne + ligne doctor (GO/CHECK/FAIL, gate n). `/status ledger` = lots. `/status doctor` = evidence complete (cles **noms seulement**, contrats, whitelist, cache, CLV). |
 
 Exemple compact (`/data`) :

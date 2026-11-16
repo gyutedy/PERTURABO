@@ -90,3 +90,13 @@ Si 1 sans 2 : Actions → `pari-listen` (workflow_dispatch). v2.10.1 : etape Inb
 pdf / KV multi-messages / polling. Photo `/capture` = v2.9 (file_id → getFile → OCR).
 v2.10 : inbox = fichier le plus recent ; leftover photo/md retire a chaque `/capture`.
 Dates markdown `JJ/MM/AA` lues par rang. `/radar` `/pack` `/match` `/vanus` `/modele` `/gel` relays. Pas de scrape bookmaker.
+
+## 6. Codebook v6 — commutation sport
+
+`/sport` (etat), `/sport foot|basket` (bascule persistee), `/basket` (bascule +
+etat detaille) sont dans `parse.py` `KNOWN`, `index.js` `KNOWN` et
+`CONTRACTS/schema_listen.json`, avec `/help` aligne. `/sport` accepte un argument.
+Le relais ne decide rien : le gel reste dans `moteur_flag`, le sport actif dans
+`moteur_sport`. **Foot maitre par defaut** (`sport_actif.json` absent/casse = foot).
+Basket gelé, aucun ticket. Apres deploy du Worker, `/sport` doit repondre sans
+`Commande inconnue`. Guide : `docs/CAHIER_BASKET.md`.

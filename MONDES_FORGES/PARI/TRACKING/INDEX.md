@@ -106,4 +106,22 @@ Cartographie des journaux du monde.
 | `F05_PACKAGER/F05_LOG.md` | Packs + dashboards générés | F05 |
 | `F06_TRACKER/F06_LOG.md` | Tickets loggés/settle, calibration | F06 |
 
+### BASKET — second organe (hors production, gelé)
+
+| Fichier | Contenu | Alimenté par |
+|---|---|---|
+| `config/moteur_basket.json` | Interrupteur basket (`tickets_enabled=false`, engine `basket_mle`, gates brier/ece/n≥300). Indépendant du gel foot. | Warsmith / `moteur_flag.set_tickets(path)` |
+| `ARCHIVUM/state/sport_actif.json` | Sport actif (`foot`/`basket`). Absent/cassé/inconnu = **foot**. | `moteur_sport.set_sport` via `/sport` `/basket` |
+| `ARCHIVUM/cache/basket/*.csv` | Boxscores `game_id,date,team_home,team_away,pts_home,pts_away`. Absent = trous déclarés. | capteur F01 (jamais le moteur) |
+| `ARCHIVUM/state/basket_params.json` | Params fit MLE ridge (`pari.basket_params.v1`). Gitignored. | `fit_basket.py` |
+| `ARCHIVUM/learnings/calibration_basket.json` | Verdict OOS (`pari.calibration_basket.v1`) via `apply_gates`. Sans GO = gel. | `backtest_basket.py` |
+| `ARCHIVUM/vanus/signals_basket.json` | Signal VANUS basket (`sport=basket`), jamais un p. | VANUS `speculum-basket` |
+| `F00_RADAR/CODEBASE/market_basket.py` | Contrat CSV boxscores, `None` + holes, jamais 0. | `fit_basket`, `backtest_basket` |
+| `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. | `backtest_basket` |
+| `F02_BREACHER/CODEBASE/moteur_sport.py` | Sélecteur foot/basket, fail-safe foot. | `/sport` `/basket` `/modele` `/gel` `/valider-2` |
+| `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. | `calibration_basket.json` |
+| `F05_PACKAGER/CODEBASE/combinator.py` | `build_system23` (3 doubles, cote/p absente = `ValueError`). | `/combos systeme 2-3` |
+| `docs/CAHIER_BASKET.md` | Guide opérateur basket (commandes, portes, verdict, paper-trading CLV). | Warsmith |
+| `tests/test_*basket.py`, `test_moteur_sport.py`, `test_system23.py`, `test_workflow_basket.py` | 43 scripts unitaires PARI verts (offline). | CI locale |
+
 Convention : chaque frégate ajoute une ligne `[TS] [mode] détail` dans son LOG.md ; le Warsmith écrit ses notes de décision dans les gates via `IW_CUSTOS.py --mode gate --notes "..."`.

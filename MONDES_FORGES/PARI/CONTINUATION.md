@@ -536,6 +536,45 @@ Ne pas `/valider-2` en live. `/modele` pour l'etat. Relancer
 quand Elo pose / plus de saisons. Sans GO = gel. Signal VANUS a coller
 dans `ARCHIVUM/vanus/latest.json`. Telegram : `/vanus` apres `/capture`.
 
+## ETAT v6.0 — BASKET MLE + COMMUTATION SPORT (2026-11-16)
+
+Cahier `cahiers-des-charges-PARI-BASKET (1).html` execute sur branche
+`pari-forge-basket-m1`, puis fusionne dans `pari-forge-perturabo-xs4c`
+(merge `7b95490`). Foot reste maitre, gaz intact.
+
+- [x] **Phase 0** : `config/moteur_basket.json` (`tickets_enabled=false`, engine
+      `basket_mle`) + `moteur_sport.py` (fail-safe foot, `ARCHIVUM/state/sport_actif.json`).
+      14 tests.
+- [x] **Phase 1** : `market_basket.py` + fixtures CSV. Valeur absente = `None` +
+      trou, jamais 0. 16 tests.
+- [x] **Phase 2** : `model_basket.py` (normal + Monte-Carlo, stdlib),
+      `fit_basket.py` (MLE ridge, centro `<=1e-6`), `engine_basket.py` (μ/σ, jamais un p).
+      49 tests.
+- [x] **Phase 3** : `backtest_basket.py` OOS strict, portes via
+      `backtest_market.apply_gates` (seule autorite). 25 tests. **Verdict = None**
+      (n=4 sur fixtures, pas de cotes de cloture). Basket reste GELE.
+- [x] **VANUS** : depot `gyutedy/VANUS` branche `speculum-basket` → master
+      (`1150fc3`). Champ `sport` optionnel, `BASKET_INDEX_ORDER`,
+      `vitibet_basket.py`, `SHARED/OUT/signals-basket/latest.json`. 144 tests verts.
+      PARI `vanus_gate.py` sport-aware (`path(sport)`, mapping basket, pas de X).
+- [x] **Cahier B** : `/sport` `/basket`, `/modele` 2 etats, `/gel` sur sport actif,
+      `/valider-2` sur le drapeau actif, `build_system23` (3 doubles). Relais
+      `parse.py` + `index.js` + `schema_listen.json` + `/help` alignes. 46 tests.
+- [x] **Cahier C** : `docs/CAHIER_BASKET.md`, TRACKING/INDEX, GUIDE, ce fichier.
+      `env_pari` laisse intact sur decision du Warsmith (C.1 non appliquee).
+- [x] **Verification** : 43/43 scripts `test_*.py` PARI verts, 144/144 VANUS verts.
+      7 e2e échouent mais **identiques sur base saine** (tesseract absent, donnees
+      manquantes) = aucune regression.
+
+**Handoff** : 3 ecarts au cahier notes — (1) `CMDS` avait 23 cles d'origine (pas 22)
+→ 25, aucune cle retiree ; (2) `market_basket` ne transporte pas les cotes et
+`apply_gates(..., logloss_gap=None)` declare un trou `logloss` : le backtest ne peut
+pas rendre GO tel que copie — a corriger avant toute calibration reelle ;
+(3) affichage systeme 2/3 avant `/approve` documente mais non cable dans `workflow.py`.
+Basket GELE, aucun `sport_actif.json`, aucun CSV, aucune calibration. Ne pas
+`/gel off`. Ne pas `/valider-2` en basket. Paper-trading >= 100 paris et CLV > 0
+requis apres GO.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

@@ -1866,3 +1866,10 @@
 ## [2026-11-16T16:13:51Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:eb9572a55ebaf0834aef5b6f8a3457bc — status:done
 
 ## [2026-11-16T16:13:51Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:215c3a46a4d72ca1ff15c64a382f122f — status:done
+
+## [2026-11-16T19:08:37Z] v6.0 — greffe PARI-BASKET (cahier HTML) livree et documentee
+## [2026-11-16T19:08:37Z] Branche pari-forge-basket-m1 (7bfc897, edb08d6, b50cce3) fusionnee dans pari-forge-perturabo-xs4c (merge 7b95490) — pousse
+## [2026-11-16T19:08:37Z] VANUS speculum-basket (1150fc3) fusionne dans master — pousse
+## [2026-11-16T19:08:37Z] Sport actif = foot (par defaut). Basket GELE : tickets_enabled=false, aucun CSV, aucune calibration, verdict null. Aucun ticket, aucune mise.
+## [2026-11-16T19:08:37Z] Docs a jour : GUIDE_UTILISATION, TRACKING/INDEX, CONTINUATION (ETAT v6.0), README, CONTRACTS/README, LISTEN/README, docs/CAHIER_BASKET.md. Relais parse.py + index.js + schema_listen + /help alignes (/sport /basket).
+## [2026-11-16T19:08:37Z] Verification : 43/43 tests PARI, 144/144 VANUS. 7 e2e echouent identiquement sur base saine (environnement) — aucune regression.
