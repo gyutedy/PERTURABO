@@ -11,7 +11,7 @@ POURQUOI LIRE ET NON APPELER
       - chaque transcription est un commit date, donc tracable
       - si le service Modal tombe, MARK1 continue sur l'existant
 
-FORMAT (celui de la forge)
+FORMATS LUS (les deux formes existent dans ARCHIVUM)
     {
       "video_id": "...", "title": "...", "duration": 915,
       "transcript": {
@@ -20,6 +20,16 @@ FORMAT (celui de la forge)
         "status": "OK", "segment_count": 397
       }
     }
+  et, format reel de F00B_VOX auto_detect (mode words) :
+    {
+      "vod_url": "...", "vod_duration": 6440.0, "transcription_mode": "words",
+      "total_words": 10982,
+      "words": [{"word": " Yo,", "start": 75.44, "end": 76.06}, ...],
+      "segments": null,
+      "chat_messages": [...]
+    }
+    (ou directement {"transcript": {"segments": [...]}} en mode segments).
+    Ce module normalise : words -> segments -> fenetres.
 
 CE QUE CE MODULE FAIT
     - cherche le transcript d'une VOD dans ARCHIVUM (par id)
@@ -87,19 +97,84 @@ def load(path):
         return json.load(fh)
 
 
-def segments(doc):
-    """Rend la liste des segments horodates, quel que soit l'emboitement."""
-    t = (doc or {}).get("transcript")
+def _from_words(words, cfg=None):
+    """Regroupe une liste de mots horodates en phrases.
+
+    F00B_VOX auto_detect ecrit `words[]` (mode words) et laisse `segments`
+    a null. MARK1 a besoin de phrases : on coupe sur la ponctuation finale et
+    sur un silence plus long que `word_silence_sec`. Aucune invention : les
+    timestamps viennent des mots.
+    """
+    gap = float((cfg or {}).get("word_silence_sec", 0.6))
+    max_words = int((cfg or {}).get("word_group_max", 60))
+
+    out = []
+    buf = []
+    prev_end = None
+
+    def flush():
+        if not buf:
+            return
+        text = " ".join(w.get("word", "").strip() for w in buf)
+        text = re.sub(r"\s+([,.!?;:])", r"\1", text).strip()
+        start = float(buf[0].get("start") or 0)
+        end = float(buf[-1].get("end") or buf[-1].get("start") or start)
+        out.append({"start": round(start, 3), "text": text,
+                    "duration": round(max(0.0, end - start), 3)})
+        buf.clear()
+
+    for w in words or []:
+        if not isinstance(w, dict):
+            continue
+        start = float(w.get("start") or 0)
+        if prev_end is not None and start - prev_end > gap:
+            flush()
+        buf.append(w)
+        prev_end = float(w.get("end") or start)
+        wtext = str(w.get("word") or "").strip()
+        if wtext and wtext[-1] in ".!?" or len(buf) >= max_words:
+            flush()
+    flush()
+    return out
+
+
+def segments(doc, cfg=None):
+    """Rend la liste des segments horodates, quel que soit le format produit.
+
+    Ordre de lecture, du plus riche au plus pauvre :
+      1. {"transcript": {"segments": [...]}}      (format fixture / mode segments)
+      2. {"transcript": "texte"}                  (texte seul)
+      3. {"segments": [...]} a la racine            (mode segments de F00B)
+      4. {"words": [...]} a la racine               (mode words de F00B)
+      5. rien
+    """
+    doc = doc or {}
+    if isinstance(doc, list):
+        return doc
+
+    t = doc.get("transcript")
     if isinstance(t, dict):
-        segs = t.get("segments") or []
+        segs = t.get("segments")
         if segs:
             return segs
-        # repli : un seul segment couvrant tout
+        words = t.get("words")
+        if words:
+            return _from_words(words, cfg)
         if t.get("text"):
             return [{"start": 0.0, "text": t["text"],
-                     "duration": float((doc or {}).get("duration") or 0)}]
-    if isinstance(t, list):
-        return t
+                     "duration": float(doc.get("duration") or doc.get("vod_duration") or 0)}]
+    if isinstance(t, str) and t.strip():
+        return [{"start": 0.0, "text": t,
+                 "duration": float(doc.get("duration") or doc.get("vod_duration") or 0)}]
+
+    segs = doc.get("segments")
+    if segs:
+        return segs
+
+    words = doc.get("words")
+    if words:
+        return _from_words(words, cfg)
+
     return []
 
 
@@ -108,12 +183,18 @@ def full_text(doc):
     t = (doc or {}).get("transcript")
     if isinstance(t, dict) and t.get("text"):
         return t["text"]
-    return " ".join(s.get("text", "") for s in segments(doc)).strip()
-
-
-def window_text(doc, start_sec, end_sec):
-    """Texte des segments couvrant [start, end]. Borne proprement."""
     segs = segments(doc)
+    if segs:
+        return " ".join(s.get("text", "") for s in segs).strip()
+    words = (doc or {}).get("words")
+    if words:
+        return _from_words(words)
+    return ""
+
+
+def window_text(doc, start_sec, end_sec, cfg=None):
+    """Texte des segments couvrant [start, end]. Borne proprement."""
+    segs = segments(doc, cfg)
     if not segs:
         return ""
     lo = float(start_sec)
@@ -129,12 +210,14 @@ def window_text(doc, start_sec, end_sec):
     return " ".join(x for x in out if x).strip()
 
 
-def duration(doc):
-    segs = segments(doc)
+def duration(doc, cfg=None):
+    segs = segments(doc, cfg)
     if segs:
         last = max(segs, key=lambda s: float(s.get("start") or 0))
         return float(last.get("start") or 0) + float(last.get("duration") or 0)
-    return float((doc or {}).get("duration") or 0)
+    if isinstance(doc, list):
+        return 0.0
+    return float((doc or {}).get("duration") or (doc or {}).get("vod_duration") or 0)
 
 
 def candidate_windows(doc, cfg, limit=None):
@@ -148,7 +231,7 @@ def candidate_windows(doc, cfg, limit=None):
     """
     from libs.s1_context import load_lang
 
-    segs = segments(doc)
+    segs = segments(doc, cfg)
     if not segs:
         return []
 
@@ -180,7 +263,7 @@ def candidate_windows(doc, cfg, limit=None):
             continue
         end = start + target
         # ne pas depasser la duree reelle
-        total = duration(doc)
+        total = duration(doc, cfg)
         if total and end > total:
             end = total
             start = max(0.0, end - target)
@@ -190,7 +273,7 @@ def candidate_windows(doc, cfg, limit=None):
         out.append({
             "start_sec": round(start, 1),
             "end_sec": round(end, 1),
-            "source_text": window_text(doc, start, end),
+            "source_text": window_text(doc, start, end, cfg),
             "score": score,
         })
         if limit and len(out) >= limit:

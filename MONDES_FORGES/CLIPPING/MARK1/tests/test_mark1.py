@@ -564,3 +564,68 @@ class TestTranscript(unittest.TestCase):
     def test_find_transcript_absent_donne_none(self):
         from libs import transcript
         self.assertIsNone(transcript.find_transcript(self.cfg, str(self.root), "999999999999"))
+
+
+class TestTranscriptFormatReel(unittest.TestCase):
+    """Le format que F00B_VOX auto_detect ecrit vraiment dans ARCHIVUM.
+
+    V3.3 avait ete validee contre une fixture au format invente : les
+    transcripts reels ont `segments: null` et des `words[]` horodates. Ces
+    tests portent sur une copie fidele d'un fichier de prod.
+    """
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        self.root = Path(__file__).resolve().parent.parent
+        if str(self.root) not in sys.path:
+            sys.path.insert(0, str(self.root))
+        self.cfg = json.loads((self.root / "config" / "selection.json").read_text(encoding="utf-8"))
+        self.words_sample = self.root / "tests" / "fixtures" / "transcript_words_sample.json"
+
+    def test_words_produisent_des_segments(self):
+        from libs import transcript
+        doc = transcript.load(str(self.words_sample))
+        self.assertIsNone(doc["segments"])
+        segs = transcript.segments(doc, self.cfg)
+        self.assertGreater(len(segs), 4)
+        for s in segs:
+            self.assertIn("start", s)
+            self.assertIn("text", s)
+            self.assertTrue(s["text"])
+
+    def test_words_duration_parle_du_dernier_mot(self):
+        from libs import transcript
+        doc = transcript.load(str(self.words_sample))
+        self.assertAlmostEqual(transcript.duration(doc, self.cfg), 231.1, places=1)
+
+    def test_words_fenetre_lit_le_texte(self):
+        from libs import transcript
+        doc = transcript.load(str(self.words_sample))
+        t = transcript.window_text(doc, 0, 20, self.cfg)
+        self.assertIn("lost everything", t)
+
+    def test_words_fenetres_proposees(self):
+        from libs import transcript
+        doc = transcript.load(str(self.words_sample))
+        w = transcript.candidate_windows(doc, self.cfg, limit=3)
+        self.assertTrue(w, "aucune fenetre sur un transcript en mode words")
+        for x in w:
+            self.assertTrue(x["source_text"])
+            self.assertGreaterEqual(x["end_sec"] - x["start_sec"],
+                                    self.cfg["min_segment_sec"] - 0.5)
+
+    def test_segments_a_la_racine(self):
+        """Mode `segments` de F00B : pas d'enveloppe `transcript`."""
+        from libs import transcript
+        doc = {"vod_duration": 60.0,
+               "segments": [{"start": 0.0, "end": 4.0, "text": "hello there"}]}
+        segs = transcript.segments(doc, self.cfg)
+        self.assertEqual(len(segs), 1)
+        self.assertEqual(segs[0]["text"], "hello there")
+
+    def test_doc_vide_ne_leve_pas(self):
+        from libs import transcript
+        for doc in ({}, None, {"segments": None, "words": []}):
+            self.assertEqual(transcript.segments(doc, self.cfg), [])
+            self.assertEqual(transcript.candidate_windows(doc or {}, self.cfg), [])
