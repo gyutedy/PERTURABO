@@ -1,13 +1,8 @@
 # AUDIT — constats croisés MARK1 ↔ LACRIMAE
 
-> **Copie a la racine de PERTURABO.** La version qui fait foi vit a la racine
-de LACRIMAE (gyutedy/LACRIMAE-FULL, branche sanguinala-v1).
-> Problemes MARK1 (M1-M4) : a traiter ici. Problemes LACRIMAE (L1-L6) : a
-traiter dans LACRIMAE-FULL.
-
-
-
- — constats croisés MARK1 ↔ LACRIMAE
+> **Copie a la racine de PERTURABO.** Version de reference: LACRIMAE-FULL
+> (sanguinala-v1). Problemes MARK1 (M1-M4) a traiter ici. Problemes LACRIMAE
+> (L1-L7) a traiter dans LACRIMAE-FULL.
 
 > Document racine. Chaque problème est daté et décrit avec sa cause et sa
 > conséquence. Aucun correctif n'est appliqué ici : ce document EST la liste
@@ -173,11 +168,12 @@ OUT/*.mp4
 | M3 | vod_url absente | haute | **RESOLU** par l adaptateur (--vod-url) |
 | M4 | format mark1 vs pur | haute | **CORRIGE** (BRIDGE/lac_adapter_mark1.py) |
 | L1 | crash « → » cp1252 | haute | **CORRIGE** (run_all.py reconfigure UTF-8) |
-| L2 | node_modules absent | blocante | non |
+| L2 | node_modules absent | blocante | **CORRIGE** (253 paquets, remotion 4.0.533) |
 | L3 | review absent | moyenne | toléré |
 | L4 | workflow mauvais repo | blocante | **CORRIGE** (gyutedy/PERTURABO, pari-forge) |
 | L5 | fixture sans MP4 | moyenne | non |
 | L6 | python3 vs python | basse | non |
+| L7 | `allow-scripts` global casse npm | blocante | **CONTOURNE** (allowScripts[] + env -u) |
 
 ---
 
@@ -209,6 +205,39 @@ Verifie de bout en bout :
     -> [ok] Pack PUR valide : e99bd523-A01 | segment 10328.0s -> 10358.0s
 
 La chaine MARK1 -> PUR -> bridge est bouclee.
+
+
+### L2 — CORRIGE
+`npm install` dans `F01_LOOK/CODEBASE` : 253 paquets, remotion 4.0.533.
+Verifie reellement : `require('remotion/package.json')` rend 4.0.533,
+`esbuild.transformSync` passe, `node render_pictor.mjs` charge le module et
+echoue proprement sur `CLIP PUR MANQUANT` (comportement attendu : c'est
+F00_PUR qui fournit le clip). Procedure dans `F01_LOOK/CODEBASE/README_DEPS.md`.
+
+### L7 — NOUVEAU, CONTOURNE
+Le `~/.npmrc` global porte `allow-scripts=all`, exporte en
+`npm_config_allow_scripts`. npm 11.16 traite la couche `env` comme un flag
+CLI et refuse alors TOUT install scope projet :
+
+    npm error code EALLOWSCRIPTS
+    npm error --allow-scripts is not allowed in project-scoped installs.
+
+Ni `.npmrc` local, ni `--allow-scripts=all`, ni `npm_config_userconfig=/dev/null`
+ne le corrigent (5 variantes testees). La source npm
+(`lib/utils/resolve-allow-scripts.js`, ligne 104) traite `['cli','env']` comme
+policy CLI et `throw`. Solution : declarer `allowScripts[]` dans
+`package.json` et retirer la variable le temps de l'install :
+
+    env -u npm_config_allow_scripts npm install
+
+### Chaine validee de bout en bout
+    adapter MARK1 -> PUR          : 3 packs
+    lac_bridge_forge --pur        : [ok] manifeste 1080x1920, style blur
+    render_pictor.mjs             : charge, reclame le clip PUR (normal)
+    f00_pur.py --dry-run          : [ok] G0, yt-dlp --download-sections
+                                    *02:52:08.000-02:52:38.000 sur la VOD
+
+Il ne reste QUE le telechargement du segment et le rendu.
 
 ### Restent ouverts
 | # | Constat | Note |
