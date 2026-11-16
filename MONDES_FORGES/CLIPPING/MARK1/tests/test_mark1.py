@@ -437,3 +437,69 @@ class TestV31Compliance(unittest.TestCase):
         m = metaforge.build(seg, d, self.cfg, "tiktok")
         blob = " ".join([m["description"], m["caption"], " ".join(m["tags"])]).lower()
         self.assertNotIn("onlyfans", blob)
+
+
+# ---------------------------------------------------------------------------
+# Tests V3.2 : vox lit la convention de la forge (f00b_secrets.json).
+# ---------------------------------------------------------------------------
+
+class TestVoxSecrets(unittest.TestCase):
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        p = str(root / "M00F_VOX" / "CODEBASE")
+        if p not in sys.path:
+            sys.path.insert(0, p)
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+
+    def test_secrets_absent_donne_raison_claire(self):
+        """Sans base_url, on explique ou le trouver. Pas d'exception."""
+        import vox
+        cfg = json.loads(json.dumps(self.cfg))
+        cfg["vox"]["secrets_path"] = "../CONTRACTS/__absent__.json"
+        c = vox._secrets(cfg, str(self.root))
+        self.assertEqual(c["url"], "")
+        text, reason = vox.transcribe("/tmp/x.m4a", cfg, str(self.root), retries=1)
+        self.assertEqual(text, "")
+        self.assertIn("base_url absent", reason)
+        self.assertIn("perturabo_transcribe", reason)
+
+    def test_secrets_lu_quand_present(self):
+        import vox
+        import tempfile
+        import os
+        fd, path = tempfile.mkstemp(suffix=".json")
+        os.close(fd)
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump({"base_url": "https://x--whisper.modal.run",
+                       "env_var_name": "MODAL_TOKEN_ID", "language": "en",
+                       "max_audio_mb": 24}, fh)
+        try:
+            cfg = json.loads(json.dumps(self.cfg))
+            cfg["vox"]["secrets_path"] = path
+            c = vox._secrets(cfg, str(self.root))
+            self.assertEqual(c["url"], "https://x--whisper.modal.run")
+            self.assertEqual(c["language"], "en")
+            self.assertTrue(c["secrets_found"])
+        finally:
+            os.unlink(path)
+
+    def test_multipart_valide(self):
+        """Le corps doit porter file, language et offset."""
+        import vox
+        body, ctype = vox._multipart({"language": "en", "offset": "897.000"},
+                                     [("file", "seg.m4a", b"FAKE")])
+        self.assertTrue(ctype.startswith("multipart/form-data; boundary="))
+        self.assertIn(b'name="file"', body)
+        self.assertIn(b'name="offset"', body)
+        self.assertIn(b"897.000", body)
+        self.assertIn(b"FAKE", body)
+
+    def test_segment_avec_transcript_neuf_appelle_rien(self):
+        """Option B : une transcription fournie en amont court-circuite le service."""
+        import vox
+        r = vox.transcribe_segment({"id": "A01", "transcript": "already here"}, self.cfg, str(self.root))
+        self.assertEqual(r["transcript"], "already here")
+        self.assertEqual(r["reason"], "")

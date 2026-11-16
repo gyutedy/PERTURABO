@@ -150,7 +150,7 @@ def cmd_export(a):
     print("[OK] M1_SELECTION : %s" % msg)
 
     # --- M5 : transcription (avant M2, le pack porte la transcription) ---
-    vox_results = [vox.transcribe_segment(s_, cfg) for s_ in pack_in.get("assets") or []]
+    vox_results = [vox.transcribe_segment(s_, cfg, str(ROOT)) for s_ in pack_in.get("assets") or []]
     ok, code, msg = gates.m5_vox(vox_results, cfg)
     if not ok:
         print("[FAIL] %s : %s" % (code, msg))

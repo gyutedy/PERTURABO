@@ -199,3 +199,34 @@ video -- ces regles appartiennent a OMNIS_WATCH et a l'operateur.
 - [ ] La campagne doit avoir un cycle ouvert (M0B le dit, en rouge)
 - [ ] `MODAL_URL` / `MODAL_TOKEN_ID` pour la transcription (EXC-2)
 - [ ] Fournir une transcription horodatee OU un audio par segment (option B)
+
+## V3.2 — 2026-11-16 (vox aligne sur la convention de la forge)
+
+**Le probleme** : mon `vox.py` cherchait `MODAL_URL` dans l'environnement.
+La forge, elle, range l'URL dans `CONTRACTS/f00b_secrets.json` (champ
+`base_url`), fichier genere par `.github/workflows/perturabo_transcribe.yml`
+qui l'extrait du log de deploiement :
+
+    URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.modal\.run' /tmp/modal_deploy.log)
+
+Le fichier n'est JAMAIS commite (seul `f00b_secrets.example.json` l'est).
+Resultat : deux conventions pour la meme chose, et le local ne voyait rien.
+
+**Corrige** : `vox.py` lit `CONTRACTS/f00b_secrets.json` comme F00B, avec
+repli sur les variables d'environnement. Le service est un endpoint
+**OpenAI-compatible** `/audio/transcriptions` en multipart/form-data
+(`file`, `language`, `offset`), pas le JSON base64 que j'avais suppose.
+Multipart construit sans dependance externe. Taille bornee par `max_audio_mb`
+du fichier de secrets.
+
+Priorite de transcription : transcript fourni (option B) > source_text >
+audio_path. Message honnete quand la base_url manque.
+
+60 tests OK (36 V2 + 10 V3 + 10 V3.1 + 4 V3.2).
+
+### Pour faire tourner un siege en local
+1. Deployer le service : workflow `perturabo_transcribe` (Actions > Run)
+2. Recuperer `base_url` dans les logs (`Deployed at: https://...`)
+3. Ecrire `CONTRACTS/f00b_secrets.json` avec ce `base_url`
+4. Exporter `MODAL_TOKEN_ID` dans le shell
+5. Fournir un pack avec `source_text` ou `transcript` par segment

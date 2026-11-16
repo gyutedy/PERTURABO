@@ -98,6 +98,8 @@
     "timeout_sec": 120
   },
   "vox": {
+    "_comment": "Lit CONTRACTS/f00b_secrets.json (convention de la forge), pas une var d'env.",
+    "secrets_path": "../CONTRACTS/f00b_secrets.json",
     "modal_url_env": "MODAL_URL",
     "modal_token_env": "MODAL_TOKEN_ID",
     "piece_sec": 480,
