@@ -154,3 +154,18 @@ $ grep -rni "ffmpeg\|ffprobe" MARK1/ --include=*.py             → 3 résultats
 Au premier pack réel de campagne : consigner ici le `pack_token` produit, le
 nombre de clips, et tout champ du pack que le consommateur OMNIS_WATCH déclarera
 manquant.
+
+## V3 — 2026-11-16 (phases 0-6 implémentées)
+
+- 6 sous-frégates latines + 6 portes (M0..M5), ordre M0→M1→M5→M2→M3→M4.
+- Pipeline complète E2E vérifiée sur la vraie directive AISHAH :
+  D0 (0.30 $/1k) → M1 → M5 → WAIT oracle (code 3) → réponse → M2 → M3
+  → pack `production_pack_mark1_dcc4d94b.json`.
+- Le trou V2 « Abonne toi vite » est fermé : le CTA est rejeté par la boucle
+  de réparation, le bon titre est retenu.
+- 46 tests OK (36 V2 + 10 V3).
+- Deux corrections de doctrine : G0_PACK n'exige plus de titre à l'entrée
+  (le moteur produit) ; vox ne ment plus sur la source du texte.
+- `TRACKING/LES_EXCEPTIONS.md` : EXC-1 (overlay LLM contraint), EXC-2 (VOX),
+  3 invariants abrogés bornés, 3 grep de contrôle documentés et vérifiés.
+- Budget : 14 462/15 000 crédits consommés, 36 tests verts, 4 poussées GitHub.

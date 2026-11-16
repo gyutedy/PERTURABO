@@ -1,9 +1,30 @@
-# MARK1 — frégate autonome de sélection et de livraison de clips
+# MARK1 — ensemble autonome de sélection et de livraison de clips
 
 > *Le moteur décide, l'opérateur valide, le ledger juge.*
 
-MARK1 vit **à côté** de la forge, dans `MONDES_FORGES/CLIPPING/MARK1/`. Il ne
-remplace aucune frégate, ne supprime aucune ligne, et ne dépend d'aucune clé.
+MARK1 vit **à côté** de la forge, dans `MONDES_FORGES/CLIPPING/MARK1/`. Ce
+n'est **pas une frégate** : c'est un ensemble autonome qui contient ses propres
+**sous-frégates**, chacune nommée en latin et dotée de sa porte.
+
+## Les 6 sous-frégates (V3)
+
+| Sous-frégate | Rôle | Porte |
+|---|---|---|
+| `M00A_DIRECTIVA` | lit la directive de campagne dans ARCHIVUM | **M0** |
+| `M00B_SELECTOR` | sélectionne les segments, pose le cadre du titre | **M1** |
+| `M00C_METADATA` | overlay_title (EXC-1) + les 4 champs mécaniques | **M2** |
+| `M00D_VEXILLUM` | associe le PNG watermark et ses paramètres | **M3** |
+| `M00F_VOX` | transcrit le segment (EXC-2) | **M5** |
+| `M00E_PACKAGER` | assemble le pack V3 pour OMNIS_WATCH | **M4** |
+
+**Ordre d'exécution : M0 → M1 → M5 → M2 → M3 → M4.** La transcription passe
+avant le pack parce que le pack la porte.
+
+> **Deux exceptions bornées.** MARK1 ne fait de réseau qu'en deux endroits
+> nommés (`overlay.py`, `vox.py`) et ne lit `llm_enabled` qu'à un seul endroit.
+> Tout est écrit dans [`TRACKING/LES_EXCEPTIONS.md`](TRACKING/LES_EXCEPTIONS.md),
+> avec les trois `grep` qui le vérifient. Si le code déroge ailleurs, le code
+> est en faute.
 
 ---
 
