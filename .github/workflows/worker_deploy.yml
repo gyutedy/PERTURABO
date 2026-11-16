@@ -1,8 +1,7 @@
 # PARI LISTEN — deploy Cloudflare Worker quand LISTEN/** change.
-# Creds depuis env_pari (pas GitHub Secrets) :
-#   CLOUDFLARE_API_TOKEN
-#   CLOUDFLARE_ACCOUNT_ID
-# Absents = skip (pas d echec rouge). Pas de wrangler manuel. Pas de webhook Telegram ici.
+# Creds : GitHub Secrets chiffres CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+# (fallback env_pari pour compatibilite). Secrets absents = skip, pas d echec rouge.
+# Pas de token en clair dans le depot. Pas de webhook Telegram ici.
 
 name: pari-worker-deploy
 on:
@@ -20,15 +19,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Charger CLOUDFLARE_* depuis env_pari
+      - name: Charger CLOUDFLARE_* (Secrets GitHub, fallback env_pari)
         id: creds
+        env:
+          SECRET_CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SECRET_CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           python3 << 'PY'
           import os
           from pathlib import Path
           p = Path("MONDES_FORGES/PARI/env_pari")
           vals = {}
-          if p.exists():
+          tok = os.environ.get("SECRET_CF_TOKEN", "").strip()
+          acc = os.environ.get("SECRET_CF_ACCOUNT", "").strip()
+          if tok:
+              vals["CLOUDFLARE_API_TOKEN"] = tok
+          if acc:
+              vals["CLOUDFLARE_ACCOUNT_ID"] = acc
+          if not (vals.get("CLOUDFLARE_API_TOKEN") and vals.get("CLOUDFLARE_ACCOUNT_ID")) and p.exists():
               for line in p.read_text(encoding="utf-8", errors="replace").splitlines():
                   line = line.strip()
                   if not line or line.startswith("#") or "=" not in line:
