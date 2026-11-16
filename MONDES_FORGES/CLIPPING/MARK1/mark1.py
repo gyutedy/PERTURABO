@@ -19,6 +19,19 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from libs import env, gates                                        # noqa: E402
+# Sous-fregates V3. Chacune a son CODEBASE ; import par chemin explicite.
+for _sub in ("M00A_DIRECTIVA", "M00B_SELECTOR", "M00C_METADATA",
+             "M00D_VEXILLUM", "M00E_PACKAGER", "M00F_VOX"):
+    _p = str(ROOT / _sub / "CODEBASE")
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+import directiva        # noqa: E402
+import selector         # noqa: E402
+import metaforge        # noqa: E402
+import overlay          # noqa: E402
+import vexillum         # noqa: E402
+import packager         # noqa: E402
+import vox              # noqa: E402
 from libs.campaign import evaluate                                 # noqa: E402
 from libs.economy import views_needed, revenue, usd_per_hour        # noqa: E402
 from libs.ledger import append, read, update, now_iso              # noqa: E402
@@ -95,72 +108,105 @@ def cmd_campaign(a):
 
 
 def cmd_export(a):
-    """V2 : ne rend RIEN. Ecrit le pack livrable + une ligne de ledger par clip."""
+    """V3 : enchaine M0 -> M1 -> M2 -> M3 -> M5 -> M4 et ecrit le pack.
+
+    Ne produit JAMAIS de video. Le pack est le seul livrable.
+    En mode ORACLE sans reponse, sort avec le code 3 (etat waiting_oracle).
+    """
     cfg = _cfg()
-    pack = json.loads(Path(a.pack).read_text(encoding="utf-8"))
+    pack_in = json.loads(Path(a.pack).read_text(encoding="utf-8"))
 
-    ok, code, msg = gates.g0_pack(pack, cfg)
-    if not ok:
-        print("[FAIL] %s : %s" % (code, msg))
-        return 2
-    if pack.get("account"):
-        ok, code, msg = gates.a1_account(pack["account"], cfg)
-        if not ok:
-            print("[FAIL] %s : %s" % (code, msg))
-            return 2
-    if pack.get("campaign"):
-        ev = evaluate(pack["campaign"], cfg, a.platform)
-        ok, code, msg = gates.a2_campaign(ev)
-        if not ok:
-            print("[FAIL] %s : %s" % (code, msg))
-            return 2
-    for asset in pack["assets"]:
-        ok, code, msg = gates.s2_duration(asset["start_sec"], asset["end_sec"], cfg)
-        if not ok:
-            print("[FAIL] %s : %s %s" % (code, asset.get("id"), msg))
-            return 2
-        ok, code, msg = gates.c2_disclosure(asset, cfg)
-        if not ok:
-            print("[FAIL] %s : %s" % (code, msg))
-            return 2
-
-    now = now_iso()
-    pt = pack_token(pack)
-    tokens = clip_tokens(pack)
-    pack["pack_token"] = pt
-    for asset in pack["assets"]:
-        asset["clip_token"] = tokens[str(asset["id"])]
-        asset["exported_at"] = now
-
-    ok, code, msg = gates.x1_export(pack, cfg)
+    ok, code, msg = gates.g0_pack(pack_in, cfg)
     if not ok:
         print("[FAIL] %s : %s" % (code, msg))
         return 2
 
-    exp_dir = (ROOT / cfg["export_dir"]).resolve()
-    exp_dir.mkdir(parents=True, exist_ok=True)
-    camp = pack.get("campaign") or {}
-    cid = camp.get("campaign_id") or "unknown"
-    out = exp_dir / ("%s%s.json" % (cfg.get("export_prefix", "production_pack_mark1_"), cid))
-    out.write_text(json.dumps(pack, indent=2, ensure_ascii=False), encoding="utf-8")
-    print("[OK] %s : %s" % (code, msg))
-    print("[OK] pack ecrit : %s" % out)
+    # --- M0 : directive (obligatoire, lue depuis ARCHIVUM) ---
+    try:
+        directive = directiva.run(cfg, str(ROOT))
+    except FileNotFoundError as e:
+        print("[FAIL] D0_DIRECTIVE : %s" % e)
+        return 2
+    ok, code, msg = gates.d0_directive(directive, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] D0_DIRECTIVE : %s" % msg)
 
-    ledger_path = str((ROOT / cfg["ledger_path"]).resolve())
-    mode = _asset_mode(pack)
-    for asset in pack["assets"]:
-        row = {
-            "clip_token": asset["clip_token"], "pack_token": pt,
-            "clip_id": asset["id"], "date": now[:10], "exported_at": now,
-            "vod_url": (pack.get("source") or {}).get("vod_url"),
-            "start_sec": asset["start_sec"], "end_sec": asset["end_sec"],
-            "asset_mode": mode,
-            "title": asset.get("title"),
-            "campaign_id": camp.get("campaign_id"),
-            "cpm_usd": camp.get("rate_usd_per_1k"), "platform": a.platform,
-        }
-        print("[%s] ledger : %s" % ("OK" if append(ledger_path, row) else "SKIP",
-                                    asset["clip_token"]))
+    # --- M1 : selection ---
+    segments = selector.select(pack_in, directive, cfg, str(ROOT))
+    ok, code, msg = gates.m1_selection(segments, directive, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] M1_SELECTION : %s" % msg)
+
+    # --- M5 : transcription (avant M2, le pack porte la transcription) ---
+    vox_results = [vox.transcribe_segment(s_, cfg) for s_ in pack_in.get("assets") or []]
+    ok, code, msg = gates.m5_vox(vox_results, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] M5_VOX : %s" % msg)
+    for r in vox_results:
+        if r.get("transcript"):
+            for s_ in segments:
+                if s_["id"] == r["asset_id"]:
+                    s_["transcript"] = r["transcript"]
+
+    # --- M2 : overlay (EXC-1) + metadonnees mecaniques ---
+    platform = a.platform or (directive.get("platforms") or ["tiktok"])[0]
+    pt_probe = "%s" % (pack_in.get("pack_token") or "probe")
+    try:
+        chosen, overlay_mode, rounds, errs = overlay.resolve(
+            segments, directive, cfg, str(ROOT), pt_probe)
+    except overlay.WaitingOracle as e:
+        print("[WAIT] waiting_oracle : %s" % e.pending_path)
+        print("       reponds dans ORACLE/answers.json puis relance la commande.")
+        return 3
+
+    built = []
+    for seg in segments:
+        s_ = dict(seg)
+        s_["overlay_title"] = chosen.get(seg["id"]) or ""
+        built.append(metaforge.build(s_, directive, cfg, platform))
+
+    ok, code, msg = gates.m2_metadata(built, cfg, had_oracle=(overlay_mode == "oracle"))
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] M2_METADATA : %s (overlay=%s, %d round(s))" % (msg, overlay_mode, rounds))
+
+    # --- M3 : watermark ---
+    wm = vexillum.build(cfg, str(ROOT), directive, platform)
+    ok, code, msg = gates.m3_watermark(wm, directive, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+    print("[OK] M3_WATERMARK : %s" % msg)
+
+    # --- M4 : packager ---
+    asset_mode = pack_in.get("asset_mode") or cfg.get("default_asset_mode", "blur")
+    if asset_mode not in (cfg.get("allowed_asset_modes") or ["blur", "reframing"]):
+        print("[FAIL] G0_PACK : asset_mode %r non autorise" % asset_mode)
+        return 2
+    out = packager.build(built, directive, wm, cfg, {
+        "mode": pack_in.get("mode", "mark1"),
+        "overlay_mode": overlay_mode,
+        "asset_mode": asset_mode,
+        "subject": pack_in.get("subject"),
+        "account": pack_in.get("account") or {},
+    })
+
+    ok, code, msg = gates.x1_export(out, cfg)
+    if not ok:
+        print("[FAIL] %s : %s" % (code, msg))
+        return 2
+
+    path = packager.write(out, cfg, str(ROOT))
+    print("[OK] X1_EXPORT : %s" % Path(path).name)
+    print("     pack_token=%s  clips=%d  overlay=%s" % (
+        out["pack_token"], len(out["assets"]), overlay_mode))
     return 0
 
 

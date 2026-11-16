@@ -118,8 +118,15 @@ class TestGates(unittest.TestCase):
         self.assertFalse(gates.g0_pack(_make_pack(asset_mode="glow"), CFG)[0])
 
     def test_no_title(self):
+        """V3 : le titre n'est plus exige a l'entree, MARK1 le produit.
+
+        Doctrine "le moteur produit, l'operateur valide" : exiger un titre en
+        amont la contredisait. Ce qui reste exige : id, bornes valides.
+        """
         p = _make_pack()
         p["assets"][0]["title"] = ""
+        self.assertTrue(gates.g0_pack(p, CFG)[0])
+        p["assets"][0]["id"] = ""
         self.assertFalse(gates.g0_pack(p, CFG)[0])
 
     def test_segment_too_long(self):
@@ -223,3 +230,121 @@ class TestLedger(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+# ---------------------------------------------------------------------------
+# Tests V3 : les sous-fregates et leurs gates.
+# ---------------------------------------------------------------------------
+
+class TestV3Gates(unittest.TestCase):
+    """Chaque gate V3 doit passer sur du bon et refuser du mauvais."""
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        for sub in ("M00A_DIRECTIVA", "M00B_SELECTOR", "M00C_METADATA",
+                    "M00D_VEXILLUM", "M00E_PACKAGER", "M00F_VOX"):
+            p = str(root / sub / "CODEBASE")
+            if p not in sys.path:
+                sys.path.insert(0, p)
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+
+    def test_d0_directive_reelle(self):
+        """M0 doit passer sur la vraie directive AISHAH."""
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        ok, code, msg = gates.d0_directive(d, self.cfg)
+        self.assertTrue(ok, msg)
+        self.assertEqual(d["language"], "en")
+        self.assertAlmostEqual(list(d["payouts"].values())[0]["usd_per_1k"], 0.30, places=2)
+
+    def test_d0_directive_refuse_incomplete(self):
+        ok, code, _ = gates.d0_directive({"missing": ["payout"], "language": "en",
+                                         "campaign_id": "", "platforms": []}, self.cfg)
+        self.assertFalse(ok)
+
+    def test_m1_selection_ok_et_langue(self):
+        import selector
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        pack = {"assets": [{"id": "A01", "start_sec": 10, "end_sec": 30,
+                            "source_text": "She lost everything overnight."}]}
+        sel = selector.select(pack, d, self.cfg, str(self.root))
+        self.assertTrue(gates.m1_selection(sel, d, self.cfg)[0])
+        sel[0]["language"] = "fr"
+        self.assertFalse(gates.m1_selection(sel, d, self.cfg)[0])
+
+    def test_m2_metadata_refuse_cta(self):
+        import metaforge
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        seg = {"id": "A01", "language": "en", "key_fact": "She lost everything overnight.",
+               "overlay_title": "She lost everything overnight", "entity": ["Aishah Sofey"]}
+        a = metaforge.build(seg, d, self.cfg, "tiktok")
+        self.assertTrue(gates.m2_metadata([a], self.cfg)[0])
+        a["overlay_title"] = "Abonne toi vite"
+        self.assertFalse(gates.m2_metadata([a], self.cfg)[0])
+
+    def test_m2_metadata_caption_sans_disclosure(self):
+        import metaforge
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        seg = {"id": "A01", "language": "en", "key_fact": "She lost everything overnight.",
+               "overlay_title": "She lost everything overnight", "entity": ["Aishah Sofey"]}
+        a = metaforge.build(seg, d, self.cfg, "tiktok")
+        a["caption"] = a["caption"].replace("#ad", "").replace("#sponsored", "")
+        self.assertFalse(gates.m2_metadata([a], self.cfg)[0])
+
+    def test_m3_watermark(self):
+        import vexillum
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        w = vexillum.build(self.cfg, str(self.root), d, "tiktok")
+        self.assertEqual(w["file"], "aishahsofey_1.png")
+        self.assertTrue(w["exists"])
+        self.assertGreaterEqual(w["opacity"], 0.75)
+        self.assertTrue(gates.m3_watermark(w, d, self.cfg)[0])
+        w2 = dict(w); w2["exists"] = False
+        self.assertFalse(gates.m3_watermark(w2, d, self.cfg)[0])
+
+    def test_m5_vox(self):
+        import vox
+        r = [vox.transcribe_segment({"id": "A01", "source_text": "x"}, self.cfg)]
+        self.assertTrue(gates.m5_vox(r, self.cfg)[0])
+        r2 = [vox.transcribe_segment({"id": "A02"}, self.cfg)]
+        self.assertFalse(gates.m5_vox(r2, self.cfg)[0])
+
+    def test_overlay_cta_rejete(self):
+        """Le trou de la V2 : un CTA ne doit jamais devenir un overlay_title."""
+        import overlay
+        ok, why = overlay.accept("Abonne toi vite", self.cfg, "en", "", ())
+        self.assertFalse(ok)
+        ok, why = overlay.accept("She lost everything overnight", self.cfg, "en", "", ())
+        self.assertTrue(ok, why)
+
+    def test_packager_tokens(self):
+        import packager
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        asset = {"id": "A01", "start_sec": 1, "end_sec": 20,
+                 "overlay_title": "She lost everything overnight",
+                 "metadata_title": "t", "description": "d", "tags": ["a"],
+                 "hashtags": ["#a"], "caption": "c #ad"}
+        pack = packager.build([asset], d, {"file": "x.png"}, self.cfg, {})
+        self.assertEqual(len(pack["pack_token"]), 8)
+        self.assertIn(pack["pack_token"], pack["assets"][0]["clip_token"])
+        self.assertEqual(pack["language"], "en")
+        self.assertEqual(pack["watermark"]["file"], "x.png")
+
+    def test_packager_token_stable(self):
+        import packager
+        import directiva
+        d = directiva.run(self.cfg, str(self.root))
+        asset = {"id": "A01", "start_sec": 1, "end_sec": 20,
+                 "overlay_title": "She lost everything overnight",
+                 "metadata_title": "t", "description": "d", "tags": ["a"],
+                 "hashtags": ["#a"], "caption": "c #ad"}
+        p1 = packager.build([asset], d, {"file": "x.png"}, self.cfg, {})
+        p2 = packager.build([asset], d, {"file": "x.png"}, self.cfg, {})
+        self.assertEqual(p1["pack_token"], p2["pack_token"])

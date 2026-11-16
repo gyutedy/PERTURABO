@@ -36,6 +36,8 @@ IMPLEMENTED = (
     "D0_DIRECTIVE",
     "M1_SELECTION",
     "M2_METADATA",
+    "M3_WATERMARK",
+    "M5_VOX",
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
@@ -173,6 +175,61 @@ def m2_metadata(assets, cfg, had_oracle=False):
         len(assets), " (via ORACLE)" if had_oracle else "")
 
 
+def m3_watermark(wm, directive, cfg):
+    """Le watermark est-il disponible pour chaque plateforme visee ?
+
+    Rouge si : un PNG est requis sur une plateforme visee et il est absent
+    ou vide ; opacite sous le minimum de la directive.
+    """
+    platforms = (directive or {}).get("platforms") or []
+    if not platforms:
+        return False, "M3_WATERMARK", "aucune plateforme"
+
+    partial = isinstance(wm, dict) and "required" in wm
+    entries = [wm] if partial else [wm.get(p) or {} for p in platforms]
+
+    rules_min = 0.75
+    reasons = []
+    for w in entries:
+        if not w:
+            reasons.append("watermark absent")
+            continue
+        if w.get("required") and not w.get("exists"):
+            reasons.append("PNG requis mais absent/vide (plates visees)")
+        if float(w.get("opacity") or 0) < rules_min:
+            reasons.append("opacite %.2f < %.2f" % (float(w.get("opacity") or 0), rules_min))
+
+    if reasons:
+        return False, "M3_WATERMARK", "; ".join(dict.fromkeys(reasons))
+    f = entries[0].get("file") if entries else ""
+    return True, "M3_WATERMARK", "%s opacite %.2f pos %s %d%%" % (
+        f or "aucun", float(entries[0].get("opacity") or 0),
+        entries[0].get("position"), int(entries[0].get("size_pct") or 0))
+
+
+def m5_vox(vox_results, cfg):
+    """La transcription est-elle disponible pour chaque segment ?
+
+    Une transcription vide est toleree SI le pack portait deja source_text
+    (la raison le dit). Elle est refusee si le segment n'a ni l'un ni l'autre.
+    """
+    if not vox_results:
+        return False, "M5_VOX", "aucun resultat de transcription"
+
+    reasons = []
+    for r in vox_results:
+        if not (r.get("transcript") or "").strip():
+            reason = r.get("reason") or ""
+            if "source_text du pack" in reason:
+                continue
+            reasons.append("%s: %s" % (r.get("asset_id"), reason or "transcription vide"))
+
+    if reasons:
+        return False, "M5_VOX", "; ".join(reasons)
+    with_text = sum(1 for r in vox_results if (r.get("transcript") or "").strip())
+    return True, "M5_VOX", "%d segments, %d transcrits" % (len(vox_results), with_text)
+
+
 def g0_pack(pack, cfg):
     """Le pack d entree est-il conforme au contrat MARK1 ?
 
@@ -211,8 +268,9 @@ def g0_pack(pack, cfg):
         if aid in seen:
             return False, "G0_PACK", "id %r en double" % (aid,)
         seen.add(aid)
-        if not str(a.get("title") or "").strip():
-            return False, "G0_PACK", "asset %s : titre vide" % (aid,)
+        # V3 : le titre n'est PLUS exige a l'entree. C'est MARK1 qui le
+        # produit (overlay M00C). L'exiger en amont contredisait la doctrine
+        # "le moteur produit, l'operateur valide".
         try:
             start = float(a.get("start_sec"))
             end = float(a.get("end_sec"))
