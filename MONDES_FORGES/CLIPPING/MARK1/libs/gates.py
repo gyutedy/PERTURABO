@@ -34,6 +34,7 @@ CODES = (
 # Codes dont une fonction existe dans ce module.
 IMPLEMENTED = (
     "D0_DIRECTIVE",
+    "M1_SELECTION",
     "G0_PACK",
     "A1_ACCOUNT",
     "A2_CAMPAIGN",
@@ -95,6 +96,39 @@ def d0_directive(directive, cfg):
         d.get("campaign_id"), d.get("language"),
         rate if rate is not None else 0.0,
         len(platforms), len(captions))
+
+
+def m1_selection(selection, directive, cfg):
+    """La selection est-elle exploitable ?
+
+    Refuse si : 0 segment ; langue inconnue ; langue != directive ;
+    un segment hors bornes ; un segment sans texte (cadre vide).
+    """
+    sel = selection or []
+    if not sel:
+        return False, "M1_SELECTION", "aucun segment"
+
+    lang_dir = (directive or {}).get("language") or ""
+    reasons = []
+    for seg in sel:
+        if not seg.get("id"):
+            reasons.append("segment sans id")
+        if seg.get("language") and lang_dir and seg["language"] != lang_dir:
+            reasons.append("%s: langue %s != directive %s"
+                           % (seg.get("id"), seg["language"], lang_dir))
+        try:
+            dur = float(seg.get("end_sec") or 0) - float(seg.get("start_sec") or 0)
+        except (TypeError, ValueError):
+            reasons.append("%s: bornes invalides" % seg.get("id")); continue
+        lo = float(cfg.get("min_segment_sec", 8)); hi = float(cfg.get("max_segment_sec", 90))
+        if dur < lo or dur > hi:
+            reasons.append("%s: %.1fs hors [%.0f,%.0f]" % (seg.get("id"), dur, lo, hi))
+        if not (seg.get("key_fact") or "").strip():
+            reasons.append("%s: aucun texte (source_text manquant)" % seg.get("id"))
+
+    if reasons:
+        return False, "M1_SELECTION", "; ".join(reasons)
+    return True, "M1_SELECTION", "%d segments, langue %s" % (len(sel), lang_dir)
 
 
 def g0_pack(pack, cfg):
