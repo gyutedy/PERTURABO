@@ -79,15 +79,27 @@
   avec la valeur provisoire `2026-11-21`, remise à la vraie valeur
   (`2026-11-15`) ensuite. **Ce pack n'est pas rejouable tel quel** :
   `M0B_CYCLE` refuserait aujourd'hui, et c'est la porte qui fait son travail.
-- **Aucune ligne de ledger n'a été écrite pour ce siège** : `cmd_export`
-  n'appelait pas `ledger.append` à l'époque. → **V3.8**, sans rétro-remplissage :
-  inventer des lignes après coup serait pire que le trou.
+- **Aucune ligne de ledger n'a été écrite PAR `export`** pour ce siège :
+  `cmd_export` n'appelait pas `ledger.append` à l'époque. → **V3.8**.
+  Les 3 lignes existent aujourd'hui, mais rétro-remplies à la main.
 
 ### Suivi (à remplir par l'opérateur)
 - [ ] `clip_url` collé dans le ledger, pour chacun des 3 clips
 - [ ] `published_at`, `submitted_at`
 - [ ] `views_raw` / `views_approved` / `paid_usd`
 
-> Prochaine fois : ces cases deviennent trois lignes de `EXPORT/ledger.csv`
-> écrites automatiquement à l'export, et la trace part dans
-> `EXPORT/sieges/` sans intervention.
+**Les 3 lignes du ledger ont été rétro-remplies à la main le 2026-11-16**
+(`outcome: exported`, `notes: … (retro-rempli)`), à partir du pack lui-même :
+les `clip_token`, bornes, titres et `vod_url` viennent du JSON livré, aucune
+valeur n'a été inventée. Ce n'est pas ce que `export` aurait écrit (il n'y
+avait pas de ledger à l'époque) ; c'est la même information posée à la main,
+une seule fois, pour que le suivi des vues puisse commencer.
+
+```
+A01-20261116-e99bd523 | She lost 50,000 dollars
+A02-20261116-e99bd523 | She lost 86,000 seconds
+A03-20261116-e99bd523 | She paid 385 was much
+```
+
+> Prochaine fois : ces cases deviennent trois lignes écrites automatiquement
+> à l'export, et la trace part dans `EXPORT/sieges/` sans intervention.
