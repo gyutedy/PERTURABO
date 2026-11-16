@@ -1,0 +1,177 @@
+{
+  "generated_at": "2026-11-16T14:59:16Z",
+  "source": "https://www.twitch.tv/videos/2927914500",
+  "engine": "auto_detect",
+  "total_words_analyzed": 5313,
+  "total_candidates_raw": 6,
+  "total_accepted": 6,
+  "total_auto_rejected": 0,
+  "candidates": [
+    {
+      "candidate_id": "3560ecbdb3",
+      "start_sec": 147.0,
+      "end_sec": 207.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.49,
+      "signal_start": "00:02:27.000",
+      "top_words": " Hello?  You  can  hear  me?  Hello?",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 8.0,
+          "clarity": 5.2,
+          "quotability": 7.5,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 5.69,
+        "bonuses": [],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 0,
+        "malus_total": -1.5,
+        "final": 4.19
+      }
+    },
+    {
+      "candidate_id": "7ba93906d5",
+      "start_sec": 362.0,
+      "end_sec": 422.0,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.27,
+      "signal_start": "00:06:02.000",
+      "top_words": " What's  good?  Yeah,  how's  everyone's  amazing  days  today?  Three -minute  ads.  I  have  to  go  because  I'm  at  a  party,  so  I  have  to  go.  No,  Trappy,  you  can  keep  me  going  on  y",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 7.1,
+          "clarity": 10,
+          "quotability": 7.5,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.19,
+        "bonuses": [],
+        "maluses": [],
+        "bonus_total": 0,
+        "malus_total": 0,
+        "final": 6.19
+      }
+    },
+    {
+      "candidate_id": "f179db4ed5",
+      "start_sec": 536.06,
+      "end_sec": 583.7,
+      "duration_sec": 47.64,
+      "signal_type": "punchline",
+      "signal_intensity": 0.27,
+      "signal_start": "00:08:56.060",
+      "top_words": " had  more  awards  last  night,  though.  Hey,  congrats  to  all  the  winners!  The  streamer  awards!  Congratulations!  What  are  the  things  now?",
+      "score": {
+        "raw": {
+          "hook_force": 5.5,
+          "emotion": 7.1,
+          "clarity": 5.9,
+          "quotability": 9.0,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.26,
+        "bonuses": [],
+        "maluses": [
+          {
+            "rule": "long_silence",
+            "delta": -1.5
+          }
+        ],
+        "bonus_total": 0,
+        "malus_total": -1.5,
+        "final": 4.76
+      }
+    },
+    {
+      "candidate_id": "51988edc92",
+      "start_sec": 293.98,
+      "end_sec": 353.98,
+      "duration_sec": 60.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.22,
+      "signal_start": "00:04:53.980",
+      "top_words": " My  danda -dan.  Okay,  listen,  listen,  I'm  a  chud  and  I  forgot  how  to  IRL  stream,  so  I  bought  the  wrong  camera,  and  my  usual  mics  aren't  working,  but  see,  look.  Now  look.",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 6.9,
+          "clarity": 9.8,
+          "quotability": 7.5,
+          "timing": 3.0,
+          "format_fit": 6.0
+        },
+        "base": 6.12,
+        "bonuses": [],
+        "maluses": [],
+        "bonus_total": 0,
+        "malus_total": 0,
+        "final": 6.12
+      }
+    },
+    {
+      "candidate_id": "697884f5ad",
+      "start_sec": 87.0,
+      "end_sec": 123.0,
+      "duration_sec": 36.0,
+      "signal_type": "chat_spike",
+      "signal_intensity": 0.2,
+      "signal_start": "00:01:27.000",
+      "top_words": "",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 6.8,
+          "clarity": 5.0,
+          "quotability": 3.0,
+          "timing": 5.0,
+          "format_fit": 7.5
+        },
+        "base": 4.97,
+        "bonuses": [],
+        "maluses": [],
+        "bonus_total": 0,
+        "malus_total": 0,
+        "final": 4.97
+      }
+    },
+    {
+      "candidate_id": "3ba2940b25",
+      "start_sec": 268.26,
+      "end_sec": 298.26,
+      "duration_sec": 30.0,
+      "signal_type": "mixed",
+      "signal_intensity": 0.12,
+      "signal_start": "00:04:28.260",
+      "top_words": " Stay,  stay  with  me.  Guys,  I  think -  Okay,  listen,  I  have  to  tell  you  guys  everything  that's  happened  so  far,  so  ugh,  that  just  like  looks  so  ugly  though.  Is  that  okay? ",
+      "score": {
+        "raw": {
+          "hook_force": 4.0,
+          "emotion": 4.8,
+          "clarity": 8.3,
+          "quotability": 4.5,
+          "timing": 7.0,
+          "format_fit": 7.5
+        },
+        "base": 5.39,
+        "bonuses": [],
+        "maluses": [],
+        "bonus_total": 0,
+        "malus_total": 0,
+        "final": 5.39
+      }
+    }
+  ]
+}
