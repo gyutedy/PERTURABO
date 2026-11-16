@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-16T14:59:16+00:00",
+  "expect_json": true,
+  "id": "25b50502562057bb",
+  "sha256": "25b50502562057bba365635f2c2ef10f9e3bd7509236f55cf8fb04552efa8157",
+  "source": "F00B",
+  "status": "pending",
+  "system": "Tu es l'arbitre viral de PERTURABO (mode PUR). Pour chaque extrait de transcript de stream, juge si le moment a un POTENTIEL DE REFRAMING : peut-il être transformé en histoire virale (sérieux→drôle, drôle→épique, neutre→dramatique, neutre→inspirant, personnel→universel) ? Réponds UNIQUEMENT en JSON : {\"score\": <0..10>, \"transformation\": \"<type>\", \"reason\": \"<10 mots max>\"}",
+  "updated_at": "2026-11-16T14:59:16+00:00",
+  "user": "Extrait (intensité 0.27): \"What's  good?  Yeah,  how's  everyone's  amazing  days  today?  Three -minute  ads.  I  have  to  go  because  I'm  at  a  party,  so  I  have  to  go.  No,  Trappy,  you  can  keep  me  going  on  y\""
+}

@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-16T14:59:16+00:00",
+  "expect_json": true,
+  "id": "b8fdf8ad11830058",
+  "sha256": "b8fdf8ad118300586b1a37ab674678f52513c8c9db20bfc2fbc97da938a56601",
+  "source": "F00B",
+  "status": "pending",
+  "system": "Tu es l'arbitre viral de PERTURABO (mode PUR). Pour chaque extrait de transcript de stream, juge si le moment a un POTENTIEL DE REFRAMING : peut-il être transformé en histoire virale (sérieux→drôle, drôle→épique, neutre→dramatique, neutre→inspirant, personnel→universel) ? Réponds UNIQUEMENT en JSON : {\"score\": <0..10>, \"transformation\": \"<type>\", \"reason\": \"<10 mots max>\"}",
+  "updated_at": "2026-11-16T14:59:16+00:00",
+  "user": "Extrait (intensité 0.22): \"My  danda -dan.  Okay,  listen,  listen,  I'm  a  chud  and  I  forgot  how  to  IRL  stream,  so  I  bought  the  wrong  camera,  and  my  usual  mics  aren't  working,  but  see,  look.  Now  look.\""
+}
