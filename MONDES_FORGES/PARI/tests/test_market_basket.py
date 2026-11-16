@@ -38,6 +38,15 @@ def main():
     check("mk.ok_12_matchs", len(rows) == 12, str(len(rows)))
     check("mk.ok_sans_trou", holes == [], str(holes[:3]))
     check("mk.ok_score_lu", rows[0]["pts_home"] == 110 and rows[0]["pts_away"] == 105)
+    check("mk.odds_absentes_none", rows[0]["odds_home"] is None and rows[0]["odds_away"] is None)
+    check("mk.odds_invalides", mk._odds_num("1.0") is None and mk._odds_num("0") is None
+          and mk._odds_num("") is None and mk._odds_num("x") is None)
+    check("mk.odds_decimale", mk._odds_num("1,85") == 1.85)
+
+    rows_o, holes_o = mk.load_dir(os.path.join(FIX, "basket_odds"))
+    check("mk.odds_lues", len(rows_o) == 12 and holes_o == []
+          and rows_o[0]["odds_home"] == 1.8 and rows_o[0]["odds_away"] == 2.1,
+          str(rows_o[0]) if rows_o else str(holes_o))
 
     rows, holes = mk.load_dir(os.path.join(FIX, "basket_holes"))
     check("mk.trous_ecartes", len(rows) == 0, str(len(rows)))

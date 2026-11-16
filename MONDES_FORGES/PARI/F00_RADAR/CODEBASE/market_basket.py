@@ -3,6 +3,9 @@
 MARKET BASKET — contrat de donnees boxscores (stdlib, offline).
 =============================================================
 CSV: game_id,date,team_home,team_away,pts_home,pts_away
+Colonnes optionnelles: odds_home, odds_away (cotes de cloture 2-way pour le
+Brier marche du backtest). Absentes = None + trou `marche_absent` cote backtest,
+jamais 0, jamais 1.0. La ligne reste valide pour le fit.
 Regles heritees de market_csv.py (foot) :
   - valeur absente = None, jamais 0, jamais estimee ;
   - trous declares dans "holes", jamais silencieux ;
@@ -32,6 +35,18 @@ def _num(raw):
 def _date(raw):
     raw = (raw or "").strip()
     return raw if raw else None
+
+
+def _odds_num(raw):
+    """Cote 2-way : float > 1.0 ou None. Jamais 0, jamais 1.0."""
+    txt = str(raw or "").strip().replace(",", ".")
+    if not txt:
+        return None
+    try:
+        val = float(txt)
+    except ValueError:
+        return None
+    return val if val > 1.0 else None
 
 
 def read_rows(path):
@@ -71,6 +86,8 @@ def normalize(row):
         "away": away or None,
         "pts_home": ph,
         "pts_away": pa,
+        "odds_home": _odds_num(row.get("odds_home")),
+        "odds_away": _odds_num(row.get("odds_away")),
         "holes": holes,
     }
 

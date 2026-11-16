@@ -28,7 +28,9 @@ n'écrit **que** ce fichier : aucun `tickets_enabled` n'est modifié.
 ## Chaîne de production basket
 
 1. Déposer les boxscores CSV (`game_id,date,team_home,team_away,pts_home,pts_away`)
-   dans `ARCHIVUM/cache/basket/`. Valeur absente = `None` + trou déclaré, jamais 0.
+   dans `ARCHIVUM/cache/basket/`, **avec** les colonnes de clôture 2-way
+   `odds_home,odds_away` (cotes > 1.0). Valeur absente = `None` + trou déclaré,
+   jamais 0. Sans cotes, le backtest déclare `marche_absent` et ne peut pas rendre GO.
 2. `python F02_BREACHER/CODEBASE/fit_basket.py` → `ARCHIVUM/state/basket_params.json`.
 3. `python F00_RADAR/CODEBASE/backtest_basket.py 2025-01-01` →
    `ARCHIVUM/learnings/calibration_basket.json`. Split OOS strict. Portes via

@@ -116,7 +116,7 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/state/basket_params.json` | Params fit MLE ridge (`pari.basket_params.v1`). Gitignored. | `fit_basket.py` |
 | `ARCHIVUM/learnings/calibration_basket.json` | Verdict OOS (`pari.calibration_basket.v1`) via `apply_gates`. Sans GO = gel. | `backtest_basket.py` |
 | `ARCHIVUM/vanus/signals_basket.json` | Signal VANUS basket (`sport=basket`), jamais un p. | VANUS `speculum-basket` |
-| `F00_RADAR/CODEBASE/market_basket.py` | Contrat CSV boxscores, `None` + holes, jamais 0. | `fit_basket`, `backtest_basket` |
+| `F00_RADAR/CODEBASE/market_basket.py` | Contrat CSV boxscores + cotes 2-way `odds_home`/`odds_away` (absentes = None, jamais 0). | `fit_basket`, `backtest_basket` |
 | `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. | `backtest_basket` |
 | `F02_BREACHER/CODEBASE/moteur_sport.py` | Sélecteur foot/basket, fail-safe foot. | `/sport` `/basket` `/modele` `/gel` `/valider-2` |
 | `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. | `calibration_basket.json` |

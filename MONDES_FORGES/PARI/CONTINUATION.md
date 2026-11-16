@@ -567,9 +567,11 @@ Cahier `cahiers-des-charges-PARI-BASKET (1).html` execute sur branche
       manquantes) = aucune regression.
 
 **Handoff** : 3 ecarts au cahier notes — (1) `CMDS` avait 23 cles d'origine (pas 22)
-→ 25, aucune cle retiree ; (2) `market_basket` ne transporte pas les cotes et
-`apply_gates(..., logloss_gap=None)` declare un trou `logloss` : le backtest ne peut
-pas rendre GO tel que copie — a corriger avant toute calibration reelle ;
+→ 25, aucune cle retiree ; (2) CORRIGE (2026-11-16) : `market_basket.normalize` transporte desormais
+`odds_home`/`odds_away` (colonnesoptionnelles, absentes = None + trou cote backtest)
+et `backtest_basket` passe `brier_gap` comme 4e argument de `apply_gates` (plus de
+trou `logloss` fantome). Verdict GO atteignable : verifie `n=300, brier_gap<=0,
+ece<=0.03` → GO ; `brier_gap>0` → NO-GO. Trou `n_oos` propage dans la sortie ;
 (3) affichage systeme 2/3 avant `/approve` documente mais non cable dans `workflow.py`.
 Basket GELE, aucun `sport_actif.json`, aucun CSV, aucune calibration. Ne pas
 `/gel off`. Ne pas `/valider-2` en basket. Paper-trading >= 100 paris et CLV > 0

@@ -81,6 +81,21 @@ def main():
         rec3 = bt.run("2025-01-01", os.path.join(tmp, "dir-absent"))
         check("bt.dossier_absent", any("dossier_absent" in h for h in rec3["holes"]))
         check("bt.verdict_sans_donnee", rec3["verdict"] is None, str(rec3["verdict"]))
+
+        FIX_O = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures", "basket_odds")
+        reco = bt.run("2025-01-01", FIX_O)
+        check("bt.brier_gap_calcule", isinstance(reco["brier_gap"], float), str(reco["brier_gap"]))
+        check("bt.brier_marche_calcule", isinstance(reco["brier_marche"], float))
+        check("bt.pas_marche_absent", not any("marche_absent" in h for h in reco["holes"]),
+              str(reco["holes"][:3]))
+        check("bt.pas_trou_logloss", "logloss" not in reco["holes"], str(reco["holes"][:3]))
+        check("bt.verdict_n_insuffisant", reco["verdict"] is None and any("n_oos" in h for h in reco["holes"]),
+              str(reco["verdict"]))
+
+        go = bt.backtest_market.apply_gates(300, -0.01, 0.02, -0.01, gates=gates)
+        check("bt.go_atteignable", go["verdict"] == "GO", str(go))
+        nog = bt.backtest_market.apply_gates(300, 0.01, 0.02, 0.01, gates=gates)
+        check("bt.nogo_si_gap_positif", nog["verdict"] == "NO-GO", str(nog["verdict"]))
     finally:
         bt.DEFAULT_OUT, fb.DEFAULT_OUT = old_out, old_params
 

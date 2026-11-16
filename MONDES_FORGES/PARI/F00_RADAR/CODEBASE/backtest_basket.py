@@ -104,7 +104,7 @@ def run(cutoff_raw=None, csv_dir=None):
                  if brier_model is not None and brier_market is not None else None)
     ece = round(ece_num / n, 6) if n else None
     gates = moteur_flag.gates(moteur_sport_cfg()) or {}
-    verdict_block = backtest_market.apply_gates(n, brier_gap, ece, None, gates=gates)
+    verdict_block = backtest_market.apply_gates(n, brier_gap, ece, brier_gap, gates=gates)
     out = {
         "contract": "pari.calibration_basket.v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -115,7 +115,7 @@ def run(cutoff_raw=None, csv_dir=None):
         "ece": ece,
         "verdict": verdict_block.get("verdict"),
         "reasons": verdict_block.get("reasons") or [],
-        "holes": holes,
+        "holes": list(dict.fromkeys(holes + list(verdict_block.get("holes") or []))),
     }
     os.makedirs(os.path.dirname(DEFAULT_OUT), exist_ok=True)
     with open(DEFAULT_OUT, "w", encoding="utf-8") as f:

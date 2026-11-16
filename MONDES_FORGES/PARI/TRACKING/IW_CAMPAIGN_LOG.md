@@ -1873,3 +1873,4 @@
 ## [2026-11-16T19:08:37Z] Sport actif = foot (par defaut). Basket GELE : tickets_enabled=false, aucun CSV, aucune calibration, verdict null. Aucun ticket, aucune mise.
 ## [2026-11-16T19:08:37Z] Docs a jour : GUIDE_UTILISATION, TRACKING/INDEX, CONTINUATION (ETAT v6.0), README, CONTRACTS/README, LISTEN/README, docs/CAHIER_BASKET.md. Relais parse.py + index.js + schema_listen + /help alignes (/sport /basket).
 ## [2026-11-16T19:08:37Z] Verification : 43/43 tests PARI, 144/144 VANUS. 7 e2e echouent identiquement sur base saine (environnement) — aucune regression.
+## [2026-11-16T19:20:00Z] CORRECTIF GO : market_basket transporte odds_home/odds_away ; backtest_basket passe brier_gap a apply_gates (plus de trou logloss) ; trou n_oos propage. GO atteignable (n>=300, brier_gap<=0, ece<=0.03). Basket reste GELE — aucune donnee reelle.
