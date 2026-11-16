@@ -190,18 +190,21 @@ def m2_metadata(assets, cfg, had_oracle=False):
 
 
 def m3_watermark(wm, directive, cfg):
-    """Le PNG du watermark existe-t-il et peut-il etre livre ?
+    """Le watermark existe-t-il et peut-il etre livre ?
 
     MARK1 ne pose AUCUN watermark : il n'a pas le droit de toucher une video
     (doctrine CLIPPING). `vexillum.py` decrit seulement comment le poser, et
-    `packager` embarque le PNG dans le pack pour qu'OMNIS_WATCH le trouve.
+    `packager` embarque le fichier dans le pack pour qu'OMNIS_WATCH le trouve.
 
-    Donc le seul fait verifiable ici est : le PNG est-il la, non vide, et
+    Donc le seul fait verifiable ici est : le fichier est-il la, non vide, et
     pourra-t-il etre copie dans EXPORT/. L'opacite, la position et la taille
     sont des CONSIGNES transmises au consommateur, pas des proprietes que
-    MARK1 peut controler. Les mitiger ici serait juger le travail d'un autre.
+    MARK1 peut controler. Les verifier ici serait juger le travail d'un autre.
     (Avant V3.5 cette porte comparait l'opacite a un 0.75 ecrit en dur, ce
     qui violait R1 et refusait un PNG conforme le jour ou la regle changeait.)
+
+    Le format est libre (png / jpeg / jpg, V3.7) : la campagne fournit ce
+    qu'elle veut, MARK1 ne convertit rien et ne se plaint pas du format.
     """
     platforms = (directive or {}).get("platforms") or []
     if not platforms:
@@ -212,15 +215,17 @@ def m3_watermark(wm, directive, cfg):
 
     reasons = []
     if wm.get("required") and not wm.get("exists"):
-        reasons.append("PNG requis mais absent/vide")
+        reasons.append("watermark requis mais absent ou vide")
     if wm.get("exists") and not wm.get("path"):
-        reasons.append("PNG present sans chemin exploitable")
+        reasons.append("watermark present sans chemin exploitable")
 
     if reasons:
         return False, "M3_WATERMARK", "; ".join(dict.fromkeys(reasons))
 
-    return True, "M3_WATERMARK", "%s (%s)" % (
+    fmt = (wm.get("format") or "").upper()
+    return True, "M3_WATERMARK", "%s%s (%s)" % (
         wm.get("file") or "aucun",
+        " [%s]" % fmt if fmt else "",
         "requis" if wm.get("required") else "optionnel")
 
 

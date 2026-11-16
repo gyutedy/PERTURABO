@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import sys
 import tempfile
 import unittest
@@ -302,7 +303,11 @@ class TestV3Gates(unittest.TestCase):
         import directiva
         d = directiva.run(self.cfg, str(self.root))
         w = vexillum.build(self.cfg, str(self.root), d, "tiktok")
-        self.assertEqual(w["file"], "aishahsofey_1.png")
+        # V3.7 : priorite au nom exact du createur (slug) tous formats confondus,
+        # puis au PNG plutot qu'au JPEG. Ici `aishahsofey.jpeg` (slug exact)
+        # passe donc avant `aishahsofey_1.png`.
+        self.assertTrue(w["file"].lower().startswith("aishahsofey"), w["file"])
+        self.assertIn(w["format"], ("png", "jpeg", "jpg"), w)
         self.assertTrue(w["exists"])
         self.assertGreaterEqual(w["opacity"], 0.75)
         self.assertTrue(gates.m3_watermark(w, d, self.cfg)[0])
@@ -783,3 +788,101 @@ class TestV36FocusDeclaratif(unittest.TestCase):
                              {"focus_declared": {"asserted_by": "operator",
                                                  "evidence": "POV"}})
         self.assertEqual(out["focus_declared"]["asserted_by"], "operator")
+
+
+# ---------------------------------------------------------------------------
+# V3.7 : le watermark peut etre PNG ou JPEG.
+# ---------------------------------------------------------------------------
+
+class TestV37WatermarkFormats(unittest.TestCase):
+    """Clipify livre tantot un PNG transparent, tantot un JPEG aplati.
+
+    `vexillum` ne cherchait que des `.png` : un JPEG valide dans watermarks/
+    etait invisible, et M3 refusait d'exporter en disant "PNG absent" alors
+    qu'il etait la. Et `packager` forcait l'extension `.png` a la copie, ce
+    qui produisait un JPEG mal nomme dans EXPORT/.
+    """
+
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        self.root = root
+        self.cfg = json.loads((root / "config" / "selection.json").read_text(encoding="utf-8"))
+        self.tmp = tempfile.mkdtemp()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _wm_dir(self):
+        d = os.path.join(self.tmp, "watermarks")
+        os.makedirs(d, exist_ok=True)
+        cfg = json.loads(json.dumps(self.cfg))
+        cfg.setdefault("directiva", {})["watermark_dir"] = d
+        cfg.setdefault("directiva", {})["watermark_rules"] = os.path.join(d, "rules.json")
+        return d, cfg
+
+    def test_jpeg_est_trouve(self):
+        import vexillum
+        d, cfg = self._wm_dir()
+        open(os.path.join(d, "aishahsofey.jpeg"), "wb").write(b"\xff\xd8\xff\xe0fake")
+        found, all_ = vexillum.find_watermark(
+            cfg, self.tmp, "Aishah Sofey", "2026-07-24_AISHAH_SOFEY_MULTI")
+        self.assertIsNotNone(found)
+        self.assertTrue(found.lower().endswith(".jpeg"))
+
+    def test_jpg_est_trouve(self):
+        import vexillum
+        d, cfg = self._wm_dir()
+        open(os.path.join(d, "aishahsofey.jpg"), "wb").write(b"\xff\xd8\xff\xe0fake")
+        found, _ = vexillum.find_watermark(cfg, self.tmp, "Aishah Sofey", "")
+        self.assertIsNotNone(found)
+        self.assertTrue(found.lower().endswith(".jpg"))
+
+    def test_png_reste_prioritaire(self):
+        """Si les deux existent, le PNG (fond transparent) gagne."""
+        import vexillum
+        d, cfg = self._wm_dir()
+        open(os.path.join(d, "aishahsofey.jpeg"), "wb").write(b"\xff\xd8\xff\xe0fake")
+        open(os.path.join(d, "aishahsofey.png"), "wb").write(b"\x89PNGfake")
+        found, _ = vexillum.find_watermark(cfg, self.tmp, "Aishah Sofey", "")
+        self.assertTrue(found.lower().endswith(".png"))
+
+    def test_build_expose_le_format(self):
+        import vexillum
+        d, cfg = self._wm_dir()
+        open(os.path.join(d, "aishahsofey.jpeg"), "wb").write(b"\xff\xd8\xff\xe0fake")
+        wm = vexillum.build(cfg, self.tmp,
+                            {"creator_name": "Aishah Sofey", "campaign_id": "X"}, "tiktok")
+        self.assertEqual(wm["format"], "jpeg")
+        self.assertEqual(wm["ext"], ".jpeg")
+        self.assertTrue(wm["exists"])
+
+    def test_m3_accepte_un_jpeg(self):
+        from libs import gates
+        wm = {"file": "aishahsofey.jpeg", "path": "/x/aishahsofey.jpeg",
+              "format": "jpeg", "required": True, "exists": True}
+        ok, code, msg = gates.m3_watermark(
+            wm, {"platforms": ["TikTok"]}, self.cfg)
+        self.assertTrue(ok, msg)
+        self.assertIn("JPEG", msg)
+
+    def test_packager_conserve_l_extension(self):
+        """Un JPEG reste un .jpeg dans EXPORT/, il ne devient pas .png."""
+        import packager
+        d, cfg = self._wm_dir()
+        cfg["export_dir"] = os.path.join(self.tmp, "EXPORT")
+        src = os.path.join(d, "aishahsofey.jpeg")
+        open(src, "wb").write(b"\xff\xd8\xff\xe0fake-jpeg-bytes")
+        out = packager.build(
+            [], {"campaign_id": "X", "language": "en", "platforms": ["TikTok"]},
+            {"file": "aishahsofey.jpeg", "path": src, "format": "jpeg"},
+            cfg, {})
+        path = packager.write(out, cfg, self.tmp)
+        written = json.loads(open(path, encoding="utf-8").read())
+        self.assertTrue(written["watermark"]["file"].endswith(".jpeg"))
+        self.assertEqual(written["watermark"]["bundled_ext"], "jpeg")
+        self.assertTrue(os.path.exists(
+            os.path.join(cfg["export_dir"], written["watermark"]["file"])))

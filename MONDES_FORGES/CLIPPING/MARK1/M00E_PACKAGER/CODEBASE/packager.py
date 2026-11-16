@@ -111,8 +111,10 @@ def write(pack, cfg, root):
     """Ecrit le pack dans EXPORT/ et rend le chemin.
 
     EXPORT/ est le seul dossier que le consommateur (OMNIS_WATCH) lit. Le pack
-    est autonome : il porte le JSON ET le PNG du watermark, copies a cote sous
-    <prefix><pack_token>.png. `pack.watermark.file` devient ce nom de fichier
+    est autonome : il porte le JSON ET le fichier watermark, copies a cote sous
+    <prefix><pack_token><ext>. L'EXTENSION D'ORIGINE EST CONSERVEE (V3.7) :
+    forcer `.png` sur un JPEG livre produisait un fichier mal nomme, que
+    certains outils refusent d'ouvrir. `pack.watermark.file` devient ce nom
     relatif, pour que le consommateur n'ait aucune resolution de chemin a faire.
     """
     rel = cfg.get("export_dir", "../EXPORT")
@@ -123,16 +125,18 @@ def write(pack, cfg, root):
     path = os.path.join(base, name)
 
     wm = pack.get("watermark") or {}
-    src_png = wm.pop("path", None)
-    if src_png and os.path.exists(src_png) and os.path.getsize(src_png) > 0:
-        png_name = "%s%s.png" % (cfg.get("export_prefix", "production_pack_mark1_"),
-                                  pack["pack_token"])
-        dst = os.path.join(base, png_name)
+    src_wm = wm.pop("path", None)
+    if src_wm and os.path.exists(src_wm) and os.path.getsize(src_wm) > 0:
+        ext = os.path.splitext(src_wm)[1].lower() or ".png"
+        wm_name = "%s%s%s" % (cfg.get("export_prefix", "production_pack_mark1_"),
+                               pack["pack_token"], ext)
+        dst = os.path.join(base, wm_name)
         try:
-            with open(src_png, "rb") as fi, open(dst, "wb") as fo:
+            with open(src_wm, "rb") as fi, open(dst, "wb") as fo:
                 fo.write(fi.read())
-            wm["file"] = png_name
+            wm["file"] = wm_name
             wm["bundled"] = True
+            wm["bundled_ext"] = ext.lstrip(".")
         except OSError:
             wm["bundled"] = False
     else:

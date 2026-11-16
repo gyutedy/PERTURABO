@@ -1,19 +1,35 @@
 # Watermarks — Règles de Gestion
 
 ## Stockage
-Les fichiers watermark PNG sont stockés dans :
+Les fichiers watermark sont stockés dans :
 ```
 ARCHIVUM/campaign/watermarks/
-├── [creator_name]_watermark.png
+├── [creator_name]_watermark.png     (ou .jpeg / .jpg)
 ├── [creator_name]_watermark_preview.png
 └── README.md
 ```
+
+Nommage réel attendu par `M00D_VEXILLUM` : le **slug** du `creator_name`
+sans accent ni espace (`Aishah Sofey` → `aishahsofey`). La résolution essaie
+`<slug>`, puis `<slug>_1`, puis tout `<slug>*`.
+
+## Formats acceptés (V3.7)
+
+| Format | Quand | Comportement |
+|---|---|---|
+| `.png` | fourni transparent | préféré si les deux existent (fond alpha) |
+| `.jpeg` / `.jpg` | fourni déjà aplati avec son fond | accepté tel quel, **jamais converti** |
+| `.webp` | — | non supporté |
+
+MARK1 ne convertit rien : le fichier voyage tel quel dans le pack, et
+`packager` **conserve l'extension d'origine** dans `EXPORT/`. C'est
+OMNIS_WATCH qui décide comment le compositer.
 
 ## Règles techniques
 
 | Paramètre | Valeur | Notes |
 |-----------|--------|-------|
-| Format | PNG (transparency) | Toujours avec canal alpha |
+| Format | PNG (transparency) ou JPEG | PNG préféré ; JPEG accepté même avec fond opaque |
 | Opacité | ≥ 75% | Jamais en dessous |
 | Position | Centré | Horizontalement + verticalement |
 | Taille | Lisible sur mobile | Minimum 15% de la largeur vidéo |

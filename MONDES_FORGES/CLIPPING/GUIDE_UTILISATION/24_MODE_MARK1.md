@@ -183,7 +183,7 @@ est une hérésie : MARK1 ne parle qu'à ARCHIVUM.
 | **`M5_VOX`** | M5 | transcription disponible ou `source_text` fourni | arrêt |
 | **`M2_METADATA`** | M2 | overlay valide, titres/descriptions sous les limites, tags, hashtags, `#ad` | arrêt |
 | **`M2B_COMPLIANCE`** | M2b | vocabulaire interdit, **focus (déclaratif, V3.6)**, bait, negative PR | arrêt |
-| **`M3_WATERMARK`** | M3 | PNG présent pour chaque plateforme obligée, non vide, chemin exploitable. **Ne juge plus l'opacité** (V3.5) : celle-ci est une consigne pour OMNIS_WATCH, elle voyage dans le pack | arrêt |
+| **`M3_WATERMARK`** | M3 | watermark **PNG ou JPEG/JPG** présent pour chaque plateforme obligée, non vide, chemin exploitable ; format conservé tel quel dans le pack. **Ne juge plus l'opacité** (V3.5) : celle-ci est une consigne pour OMNIS_WATCH | arrêt |
 | `A1_ACCOUNT` | avant export (V3.5) | `warmup_days ≥ 7` (règle C5), `banned == false` | **refus d'exporter** |
 | `A2_CAMPAIGN` | avant export (V3.5) | CPM ≥ 0,15 $/1k, `funded == true`, budget > 0, plateforme autorisée | **refus d'exporter** |
 | `X1_EXPORT` | finale | `pack_token` présent, `asset_mode` valide, un `clip_token` unique par asset, `exported_at` présent, PNG copié dans `EXPORT/` | rien dans `EXPORT/` |
