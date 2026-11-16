@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
-from libs import env, gates                                        # noqa: E402
+from libs import env, gates, transcript                                        # noqa: E402
 # Sous-fregates V3. Chacune a son CODEBASE ; import par chemin explicite.
 for _sub in ("M00A_DIRECTIVA", "M00B_SELECTOR", "M00C_METADATA",
              "M00D_VEXILLUM", "M00E_PACKAGER", "M00F_VOX"):
@@ -115,6 +115,36 @@ def cmd_export(a):
     """
     cfg = _cfg()
     pack_in = json.loads(Path(a.pack).read_text(encoding="utf-8"))
+
+    # --- Mode transcript : MARK1 choisit les segments lui-meme ---
+    # Si --transcript est fourni (ou si le pack pointe un transcript ARCHIVUM),
+    # MARK1 lit les segments horodates produits par F00B_VOX et propose des
+    # fenetres. Il ne telecharge rien, il n'appelle aucune fregate.
+    tpath = a.transcript
+    if not tpath and isinstance(pack_in.get("source"), dict):
+        tpath = pack_in["source"].get("transcript_path")
+    if not tpath and isinstance(pack_in.get("source"), dict):
+        tpath = transcript.find_transcript(cfg, str(ROOT), pack_in["source"].get("vod_url") or "")
+    if tpath and not pack_in.get("assets"):
+        try:
+            doc = transcript.load(tpath)
+        except FileNotFoundError as e:
+            print("[FAIL] M1_SELECTION : %s" % e)
+            print("       lance d'abord le workflow perturabo_transcribe sur ce VOD.")
+            return 2
+        windows = transcript.candidate_windows(doc, cfg, limit=a.nb_segments)
+        if not windows:
+            print("[FAIL] M1_SELECTION : aucune fenetre exploitable dans %s" % Path(tpath).name)
+            return 2
+        pack_in["assets"] = [
+            {"id": "A%02d" % (i + 1), "start_sec": w["start_sec"], "end_sec": w["end_sec"],
+             "source_text": w["source_text"]}
+            for i, w in enumerate(windows)
+        ]
+        pack_in.setdefault("source", {})
+        pack_in["source"]["transcript_path"] = tpath
+        print("[OK] TRANSCRIPT : %s -> %d segments choisis"
+              % (Path(tpath).name, len(pack_in["assets"])))
 
     ok, code, msg = gates.g0_pack(pack_in, cfg)
     if not ok:
@@ -292,6 +322,11 @@ def main():
     q = sub.add_parser("export")
     q.add_argument("pack")
     q.add_argument("--platform", default="tiktok")
+    q.add_argument("--transcript", default=None,
+                   help="transcription F00B_VOX (ARCHIVUM/montage/transcripts/). "
+                        "Si fournie, MARK1 choisit les segments au lieu de lire le pack.")
+    q.add_argument("--nb-segments", type=int, default=3,
+                   help="nombre de segments a produire depuis le transcript")
     q.set_defaults(f=cmd_export)
 
     q = sub.add_parser("ledger")

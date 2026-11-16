@@ -503,3 +503,64 @@ class TestVoxSecrets(unittest.TestCase):
         r = vox.transcribe_segment({"id": "A01", "transcript": "already here"}, self.cfg, str(self.root))
         self.assertEqual(r["transcript"], "already here")
         self.assertEqual(r["reason"], "")
+
+
+# ---------------------------------------------------------------------------
+# Tests V3.3 : lecture des transcriptions F00B_VOX depuis ARCHIVUM.
+# ---------------------------------------------------------------------------
+
+class TestTranscript(unittest.TestCase):
+    def setUp(self):
+        import sys
+        from pathlib import Path
+        self.root = Path(__file__).resolve().parent.parent
+        if str(self.root) not in sys.path:
+            sys.path.insert(0, str(self.root))
+        self.cfg = json.loads((self.root / "config" / "selection.json").read_text(encoding="utf-8"))
+        self.sample = self.root / "tests" / "fixtures" / "transcript_sample.json"
+
+    def test_vod_id_twitch(self):
+        from libs import transcript
+        self.assertEqual(transcript.vod_id("https://twitch.tv/videos/2927914500"), "2927914500")
+
+    def test_vod_id_youtube(self):
+        from libs import transcript
+        self.assertEqual(transcript.vod_id("https://www.youtube.com/watch?v=ElGoUp-0cqY"), "ElGoUp-0cqY")
+
+    def test_load_et_segments(self):
+        from libs import transcript
+        doc = transcript.load(str(self.sample))
+        segs = transcript.segments(doc)
+        self.assertGreater(len(segs), 10)
+        self.assertIn("start", segs[0])
+        self.assertIn("text", segs[0])
+
+    def test_window_text(self):
+        from libs import transcript
+        doc = transcript.load(str(self.sample))
+        t = transcript.window_text(doc, 0, 30)
+        self.assertTrue(t)
+        self.assertNotIn("  ", t)
+
+    def test_window_ne_chevauche_pas(self):
+        from libs import transcript
+        doc = transcript.load(str(self.sample))
+        self.assertEqual(transcript.window_text(doc, 100000, 100100), "")
+
+    def test_candidate_windows(self):
+        from libs import transcript
+        doc = transcript.load(str(self.sample))
+        w = transcript.candidate_windows(doc, self.cfg, limit=3)
+        self.assertTrue(w)
+        self.assertLessEqual(len(w), 3)
+        lo = self.cfg["min_segment_sec"]
+        hi = self.cfg["max_segment_sec"]
+        for x in w:
+            d = x["end_sec"] - x["start_sec"]
+            self.assertGreaterEqual(d, lo - 0.5)
+            self.assertLessEqual(d, hi + 0.5)
+            self.assertTrue(x["source_text"])
+
+    def test_find_transcript_absent_donne_none(self):
+        from libs import transcript
+        self.assertIsNone(transcript.find_transcript(self.cfg, str(self.root), "999999999999"))

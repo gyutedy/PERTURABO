@@ -230,3 +230,37 @@ audio_path. Message honnete quand la base_url manque.
 3. Ecrire `CONTRACTS/f00b_secrets.json` avec ce `base_url`
 4. Exporter `MODAL_TOKEN_ID` dans le shell
 5. Fournir un pack avec `source_text` ou `transcript` par segment
+
+## V3.3 — 2026-11-16 (MARK1 lit les transcriptions de F00B_VOX)
+
+**Decision d'architecture** : MARK1 ne parle JAMAIS a F00B_VOX, il lit
+ARCHIVUM. Le declenchement reste a l'operateur (workflow
+`perturabo_transcribe`), parce que MARK1 ne doit pas avoir d'effet de bord
+distant.
+
+Pourquoi ARCHIVUM et pas un appel direct :
+  - la transcription est payee UNE fois et relue autant de fois qu'on veut
+    (un appel direct la rejouerait a chaque siege, a chaque round ORACLE)
+  - chaque transcript est un commit date : tracable, rejouable
+  - si Modal tombe, MARK1 continue sur l'existant
+  - appeler une fregate = heresie dans la doctrine
+
+**`libs/transcript.py`** :
+  - `vod_id(url)` : extrait l'id Twitch (`/videos/1234`) ou YouTube (`v=...`)
+  - `find_transcript(cfg, root, url)` : cherche dans
+    `ARCHIVUM/montage/transcripts/v<ID>_transcript.json`
+  - `segments(doc)` / `window_text(doc, a, b)` : lit les segments horodates
+  - `candidate_windows(doc, cfg, limit)` : propose des fenetres autour des
+    marqueurs d'enjeu et des chiffres, bornees par min/max_segment_sec
+
+**`mark1.py export --transcript <path> --nb-segments N`** : si fourni (ou si
+le pack pointe `source.transcript_path` / `source.vod_url`), MARK1 choisit
+les segments lui-meme au lieu de lire `assets[]`.
+
+Format lu (celui de la forge) :
+    {"transcript": {"text": ..., "segments": [{"start","text","duration"}]}}
+
+Teste de bout en bout sur une fixture reelle (120 segments) :
+TRANSCRIPT -> 2 segments choisis -> D0 -> M0B -> M1 -> M5 -> WAIT oracle.
+
+67 tests OK (36 V2 + 10 V3 + 10 V3.1 + 4 V3.2 + 7 V3.3).

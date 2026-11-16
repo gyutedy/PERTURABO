@@ -58,7 +58,8 @@ Sortie réelle de `doctor` (9 clés absentes, `[OK] GLOBAL`) :
 | `pack <pack.json>` | Applique `G0_PACK` seul. |
 | `title "<texte>" [--number N] [--subject S] [--internal a,b]` | Analyse S1, puis propose les titres **déjà valides**. Si aucun ne sort : tu l'écris à la main. |
 | `campaign <camp.json> --platform tiktok [--target 500]` | Éligibilité + `$` net/1k + vues nécessaires pour la cible. |
-| `export <pack.json> [--platform tiktok]` | **La commande centrale.** Enchaîne les 6 portes, écrit le pack dans `EXPORT/`, une ligne de ledger par clip. |
+| `export <pack.json> [--platform tiktok]` | **La commande centrale.** Enchaîne les portes, écrit le pack dans `EXPORT/`, une ligne de ledger par clip. |
+| `export <pack> --transcript <path> --nb-segments N` | **Mode transcription.** MARK1 lit un transcript produit par `perturabo_transcribe` dans `ARCHIVUM/montage/transcripts/`, choisit les segments autour des marqueurs d'enjeu, et produit le pack. Ne télécharge rien, n'appelle aucune frégate. |
 | `ledger [--add r.json \| --update <clip_token> --changes '{…}'] [--econ]` | Liste / ajoute / complète / recalcule. |
 | `selftest` | Lance la suite. |
 
@@ -142,6 +143,32 @@ partager un titre.
 3. **`llm_enabled` reste `false` et rien ne le lit.** Aucun LLM dans le chemin critique.
 4. **Aucune suppression dans la forge.** MARK1 vit à côté.
 5. **Aucun ffmpeg, ffprobe, `.ass`, MP4.** MARK1 ne rend pas de vidéo — c'est OMNIS_WATCH.
+
+---
+
+## 7 bis. Le flux réel d'un siège (V3.3)
+
+MARK1 **ne déclenche rien**. La transcription est produite par un workflow
+GitHub que **l'opérateur** lance, puis MARK1 la lit.
+
+```
+1. OPERATEUR  Actions > perturabo_transcribe > Run workflow
+              (vod_url = https://twitch.tv/videos/...)
+                    |
+2. GITHUB     apt install ffmpeg + yt-dlp
+              modal deploy transcribe.py   -> recupere l'URL
+              f00b_vox.py auto_detect      -> telecharge, decoupe, transcrit
+              commit ARCHIVUM/montage/transcripts/v<ID>_transcript.json
+                    |
+3. MARK1      python mark1.py export pack.json                   --transcript ARCHIVUM/montage/transcripts/v<ID>_transcript.json                   --nb-segments 3
+              -> choisit les fenetres, D0 -> M0B -> M1 -> M5 -> M2 -> M2b -> M3
+              -> pack dans EXPORT/, ou code 3 (waiting_oracle)
+```
+
+**Pourquoi MARK1 ne déclenche pas la transcription :** une transcription est
+payée une fois et relue autant de fois qu'on veut. Un appel direct à F00B
+la rejouerait à chaque siège, à chaque round ORACLE. Et appeler une frégate
+est une hérésie : MARK1 ne parle qu'à ARCHIVUM.
 
 ---
 
