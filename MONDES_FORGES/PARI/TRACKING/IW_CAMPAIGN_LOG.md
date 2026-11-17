@@ -1875,3 +1875,9 @@
 ## [2026-11-16T19:08:37Z] Verification : 43/43 tests PARI, 144/144 VANUS. 7 e2e echouent identiquement sur base saine (environnement) — aucune regression.
 ## [2026-11-16T19:20:00Z] CORRECTIF GO : market_basket transporte odds_home/odds_away ; backtest_basket passe brier_gap a apply_gates (plus de trou logloss) ; trou n_oos propage. GO atteignable (n>=300, brier_gap<=0, ece<=0.03). Basket reste GELE — aucune donnee reelle.
 ## [2026-11-16T20:56:54Z] REGLE CAMPAGNE (GUIDE_UTILISATION) : /stop puis /start avant tout NOUVEAU cycle de paris (une seule campagne active, concurrency pari-campagne). Pas de /stop+/start avant /sport /basket /modele /vanus (commandes admin, hors campagne). En cas de run queued, une seule commande a la fois.
+
+## [2026-11-17T16:20:28Z] F01 — check-out — status: processing
+
+## [2026-11-17T16:20:28Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:0c60d74ef92302d5780aa4855b27c2a3 — status:done
+
+## [2026-11-17T16:20:29Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:7f2bc0ef5d6de3406da3e112eacb9e99 — status:done
