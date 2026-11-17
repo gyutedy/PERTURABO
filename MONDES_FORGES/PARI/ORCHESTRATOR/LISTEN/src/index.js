@@ -25,6 +25,7 @@ const HELP =
   "Campagne PARI — commandes :\n" +
   "/start\n" +
   "/capture  (markdown DANS le meme message, OU photo + caption /capture)\n" +
+  "   foot : 1X2/O-U/MT  |  basket : colonnes 1 (ML) / 2 (ML), heure Kinshasa\n" +
   "/bankroll 50000  (pot global, une fois)\n" +
   "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +

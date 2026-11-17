@@ -8,6 +8,8 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /capture [file]  capture book (txt, md, png/jpg, pdf, docx) → JSON reconstitue (A_VALIDER)
                    Telegram : markdown DANS le meme message, OU photo + caption /capture
                    sans chemin : inbox F01_SENTINEL/IN/capture_telegram.* le plus recent
+                   SPORT ACTIF : foot = 1X2/O-U/MT/BTTS ; basket = colonnes `1 (ML)`/`2 (ML)`
+                   (1X2 et Handicap/Total = autres paris, declares non utilises). Heure Kinshasa.
   /bankroll 50000  pot global FC (persiste /start /stop). Sans arg : affiche le pot.
   /budget 3000 800 budget du lot + mise FORCEE du ticket sur (reste divise). Retaper avant chaque lot.
   /surticket 800   force (ou corrige) la mise du ticket sur, sans retaper le jour
@@ -190,20 +192,36 @@ def cmd_capture(st, fichier):
     st["capture_id"] = led.new_capture_id(taken)
     st["consumed_legs"] = []
     st["steps"]["capture"] = _now()
-    ok, _ = run_orch("--mode", "input-capture", "--capture", path)
+    try:
+        import moteur_sport
+        sport = moteur_sport.actif()
+    except Exception:
+        sport = "foot"
+    basket = sport == "basket"
+    mode = "input-capture-basket" if basket else "input-capture"
+    jname = "capture_basket.json" if basket else "capture_parsed.json"
+    ok, _ = run_orch("--mode", mode, "--capture", path)
     if not ok:
         tell("⛔ Echec du parsing de la capture — corrige le texte OCR / capture."); return
-    jf = load_json(P("F01_SENTINEL", "OUT", "capture_parsed.json"))
+    jf = load_json(P("F01_SENTINEL", "OUT", jname))
     n = jf.get("n_matchs", 0) if jf else 0
     warn = len(jf.get("warnings", [])) if jf else 0
-    notes_n = enrich_f00_capture()
+    notes_n = 0 if basket else enrich_f00_capture()
     st["notes_count"] = notes_n
     st["capturer_statut"] = "A_VALIDER"
+    st["capture_sport"] = sport
     save(st)
     fmt = (jf or {}).get("source_format") or "texte"
     tell(f"Capture parsee ({fmt}) : **{n} match(s)**, {warn} warning(s), notes: {notes_n} — "
          "regle Zero Data, Zero Calc : **relis le JSON reconstitue** "
-         "(F01_SENTINEL/OUT/capture_parsed.json) → si ok : `/valider-1`")
+         f"(F01_SENTINEL/OUT/{jname}) → si ok : `/valider-1`")
+    if basket:
+        resume = (jf or {}).get("resume") or ""
+        tell(resume or "Aucune analyse basket disponible.")
+        tell("Basket : **ML uniquement** (`1 (ML)` / `2 (ML)`). "
+             "Les colonnes 1X2 et Handicap/Total sont d'autres paris : "
+             "elles sont declarees **non utilisees** (aucune ligne inventee). "
+             "Heure **Kinshasa (UTC+1)**. Moteur GELE — `/valider-2` refusera.")
 
 
 def _parse_fc(text):
@@ -1206,7 +1224,7 @@ def cmd_basket(st, arg):
 
 CMDS = {
     "start": (cmd_start, "ouvre la campagne"),
-    "capture": (cmd_capture, "capture txt/md/png/pdf/docx"),
+    "capture": (cmd_capture, "capture txt/md/png/pdf/docx — foot 1X2/OU/MT ou basket ML (sport actif)"),
     "bankroll": (cmd_bankroll, "pot global FC (persiste)"),
     "budget": (cmd_budget, "plafond jour + mise FORCEE ticket sur"),
     "surticket": (cmd_surticket, "force la mise du ticket sur"),

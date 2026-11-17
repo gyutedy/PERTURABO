@@ -58,6 +58,14 @@ ticket. Guide complet : `docs/CAHIER_BASKET.md`.
 | `/sport` | Affiche le sport actif + état des deux moteurs. `/sport foot` / `/sport basket` bascule (persiste dans `ARCHIVUM/state/sport_actif.json`, illisible = foot). Ne dégèle rien. |
 | `/basket` | Bascule vers basket + état détaillé (params, n_matchs, verdict calibration, gates). Retour : `/sport foot`. |
 
+**Donner les matchs de basket** : `/sport basket` puis `/capture` + le tableau Winner Bet
+dans le même message. Le parseur lit **uniquement** `1 (ML)` / `2 (ML)` (qui gagne, domicile
+ou extérieur). Les colonnes `1X2` (avec le nul) et `Handicap / Total` (prix sans ligne) sont
+d'autres paris : elles sont déclarées **non utilisées**, rien n'est deviné. L'horaire
+`Demain 01:30` est daté en **Africa/Kinshasa (UTC+1)** et le `#20071` sert de `game_id`.
+Réponse Telegram : `match | ML | p_modèle | EV`, JSON dans
+`F01_SENTINEL/OUT/capture_basket.json`. Le basket reste **gelé** : `/valider-2` refusera.
+
 ### Les commandes de campagne
 
 | Commande | Ce que ça fait |

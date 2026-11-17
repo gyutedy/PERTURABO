@@ -602,6 +602,45 @@ requis apres GO.
 puis `fit_basket.py` puis `backtest_basket.py 2025-01-01`. Verdict GO exige
 n>=300, brier_gap<=0, ece<=0.03 — sinon gel conserve. Aucune estimation de cote.
 
+## ETAT v6.2 — CAPTURE BASKET TELEGRAM + COTES GRATUITES + FIT ANCRE (2026-11-17)
+
+- [x] **Cotes de cloture gratuites** : `F01_SENTINEL/CODEBASE/connectors/closing_odds_yahoo.py`
+      recupere les cotes MGM/Yahoo du depot public `csdurfee/scrape_yahoo_odds`
+      (2023 = 1318 matchs, 2024 = 1320). Jonction stricte (date, equipe domicile,
+      equipe exterieure) sur les CSV de `basket_feed.py` : **2454/2455 cotes remplies**.
+      1 trou declare (`0022300945`, absent de la source), jamais de cote estimee.
+      Plus aucune dependance a `ODDS_API_KEY` payante pour le backtest.
+- [x] **Capture basket Telegram** : `/sport basket` puis `/capture` + le tableau Winner Bet
+      **dans le meme message**. `input_capture_basket.py` lit **uniquement** `1 (ML)` / `2 (ML)`.
+      `1X2` (X ~9.60 = nul en fin de temps reglementaire) et `Handicap/Total` (prix sans
+      ligne) sont stockes en `diag` avec `utilise: false` + trou `handicap_total_sans_ligne`.
+      `game_id` = `#20071`, horaire **Africa/Kinshasa (UTC+1)**, `Demain` resolu au moment
+      de la capture, doublons de copier-coller ignores. Reponse Telegram = `match | ML |
+      p_modele | EV`. Sortie `F01_SENTINEL/OUT/capture_basket.json` (A_VALIDER).
+      `/valider-1` reste foot-only ; moteur basket GELE, `/valider-2` refuse.
+- [x] **Correctif fit — ancrage temporel** : `fit_basket.anchor_from_rows()` fixe l'age des
+      matchs sur la **derniere date du jeu de donnees** (un `as_of` explicite reste possible).
+      Avant : `datetime.now()` avec demi-vie 45j sur des donnees 2023-2025 → poids ~0 →
+      ridge ecrasait les 30 ratings a `0.0` → p1 constant `0.557` pour tous les matchs.
+      Apres : **30/30 ratings non nuls** (Boston `0.7693`), sigma `14.9516`, p1 variable
+      `0.522`–`0.560` sur la capture type. C'etait la cause du "moteur qui ne bat pas le marche".
+- [x] **Backtest reel** (cutoff `2025-01-01`) : n_oos=744, brier_modele=`0.244277`,
+      brier_marche=`0.195320`, brier_gap=`+0.048957`, ece=`0.491989` → **verdict NO-GO**
+      (rps_gap, ece, logloss_gap). Le modele reste moins precis que le marche : gel conserve.
+- [x] **Tests** : 111/111 sur 6 fichiers (fit 19, backtest 32, engine 13, model 17,
+      capture basket 15, closing odds 15). Compile OK. Aucun e2e lance.
+
+**Ecart ouvert** : `backtest_basket.py:100` calcule `abs(p-y)` (MAE) et le compare au gate
+`ece_max=0.03` prevu pour un vrai ECE bine (le foot utilise `walkforward.ece(..., bins=10)`)
+— gate structurellement infranchissable. `apply_gates` recoit `brier_gap` deux fois
+(rps_gap et logloss_gap). Non corrige : le cahier interdit de baisser un gate pour forcer un GO.
+Le verdict NO-GO actuel est independant de ces deux points (gap positif suffit).
+
+**Handoff** : basket GELE, aucun ticket, aucune mise. Cotes Yahoo = source gratuite,
+aucune dependance API payante. Suite = ameliorer le modele (sigma ~15 face a des ecarts de
+ratings ~1) et/ou corriger la metrique ECE avec accord Warsmith. Le plan gratuit
+`ODDS_API_KEY` n'est plus bloquant.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

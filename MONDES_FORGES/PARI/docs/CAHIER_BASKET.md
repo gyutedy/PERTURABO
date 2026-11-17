@@ -16,6 +16,25 @@ L'état vit dans `ARCHIVUM/state/sport_actif.json`. Fichier absent, cassé ou va
 inconnue = **foot** (fail-safe, jamais basket par surprise). Basculer de sport
 n'écrit **que** ce fichier : aucun `tickets_enabled` n'est modifié.
 
+## Capture Telegram (ML uniquement)
+
+`/sport basket` puis `/capture` + le tableau Winner Bet **dans le même message** (ou
+photo avec caption `/capture`). Le parseur `input_capture_basket.py` ne lit que les
+colonnes `1 (ML)` / `2 (ML)` — la moneyline 2-way domicile/extérieur, sans nul.
+
+- `1X2` (avec `X ≈ 9.60` = nul en fin de temps réglementaire) est un **autre pari** :
+  stocké en `diag["1x2"]` avec `utilise: false`, jamais utilisé dans le calcul.
+- `Handicap / Total 1` et `2` ne donnent que des prix, **sans la ligne** (`-4.5`, `228.5`) :
+  stockés en `diag["handicap_total"]`, `utilise: false`, avec le trou
+  `handicap_total_sans_ligne`. Aucune ligne inventée.
+- `game_id` = le `#20071` du book ; `Demain 01:30` est résolu au moment de la capture
+  dans le fuseau **Africa/Kinshasa (UTC+1)**. Les doublons de copier-coller sont ignorés.
+- Réponse Telegram : `match | ML | p_modèle | EV`. JSON reconstitué :
+  `F01_SENTINEL/OUT/capture_basket.json` (`A_VALIDER`). `/valider-1` reste foot-only.
+
+Le moteur basket reste **gelé** : `/capture` produit une analyse, jamais un ticket.
+`/valider-2` refuse tant que `calibration_basket.json` n'a pas `verdict: "GO"`.
+
 ## Gel et moteur
 
 - `/modele` affiche les deux moteurs avec leurs drapeaux respectifs.
@@ -31,6 +50,9 @@ n'écrit **que** ce fichier : aucun `tickets_enabled` n'est modifié.
    dans `ARCHIVUM/cache/basket/`, **avec** les colonnes de clôture 2-way
    `odds_home,odds_away` (cotes > 1.0). Valeur absente = `None` + trou déclaré,
    jamais 0. Sans cotes, le backtest déclare `marche_absent` et ne peut pas rendre GO.
+   Le capteur gratuit `closing_odds_yahoo.py` remplit ces colonnes depuis les CSV publics
+   MGM/Yahoo (`csdurfee/scrape_yahoo_odds`) : 2 454 / 2 455 matchs joints, sans clé API
+   ni plan payant. Le plan gratuit `ODDS_API_KEY` n'est plus un blocage.
 2. `python F02_BREACHER/CODEBASE/fit_basket.py` → `ARCHIVUM/state/basket_params.json`.
 3. `python F00_RADAR/CODEBASE/backtest_basket.py 2025-01-01` →
    `ARCHIVUM/learnings/calibration_basket.json`. Split OOS strict. Portes via
@@ -77,6 +99,20 @@ Marge effective : 3 doubles = 3x la marge d'un simple
 
 Le système 2/3 lisse la variance, il ne crée pas d'edge. Aucun système n'est
 construit si le moteur du sport actif est gelé.
+
+## Limites connues (2026-11-17)
+
+- `fit_basket.prepare()` ancre désormais le poids temporel sur la **dernière date du jeu
+  de données** (`anchor_from_rows`), plus sur `datetime.now()`. Avec une demi-vie de 45 j
+  évaluée en 2026 sur des données 2023-2025, les poids tombaient à ~0 et la régularisation
+  écrasait les 30 ratings à `0.0` (probabilité constante, backtest faussé).
+- Le modèle reste **moins précis que le marché** : brier `0.244` vs `0.196`, gap `+0.049`
+  sur 744 matchs OOS → verdict `NO-GO`, gel conservé. L'écart de ratings (~1 pt) reste
+  faible face à sigma (~15) : les probabilités varient peu d'un match à l'autre.
+- `backtest_basket.py` calcule un **MAE** (`abs(p-y)`) et le compare au gate `ece_max=0.03`
+  prévu pour un vrai ECE biné (le foot utilise `walkforward.ece(..., bins=10)`). Ce gate est
+  structurellement infranchissable ; `apply_gates` reçoit aussi `brier_gap` deux fois.
+  Non corrigé : le cahier interdit de baisser un gate pour forcer un GO.
 
 ## Interdits
 

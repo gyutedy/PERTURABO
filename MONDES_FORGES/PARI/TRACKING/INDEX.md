@@ -118,12 +118,15 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/vanus/signals_basket.json` | Signal VANUS basket (`sport=basket`), jamais un p. | VANUS `speculum-basket` |
 | `F00_RADAR/CODEBASE/market_basket.py` | Contrat CSV boxscores + cotes 2-way `odds_home`/`odds_away` (absentes = None, jamais 0). | `fit_basket`, `backtest_basket` |
 | `F01_SENTINEL/CODEBASE/connectors/basket_feed.py` | Capteur : boxscores `nba_api` + cotes historiques The Odds API → CSV `ARCHIVUM/cache/basket/`. Cote absente = trou. | run manuel / capteur F01 |
-| `ARCHIVUM/cache/basket/*.csv` | Cache gitignored : 2023_24.csv (1230), 2024_25.csv (1225). 0 cote — cle Odds API gratuite. | `basket_feed.py` |
-| `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. | `backtest_basket` |
+| `ARCHIVUM/cache/basket/*.csv` | Cache gitignored : 2023_24.csv (1230), 2024_25.csv (1225). Cotes de cloture Yahoo remplies (2454/2455). | `basket_feed.py` + `closing_odds_yahoo.py` |
+| `F01_SENTINEL/CODEBASE/connectors/closing_odds_yahoo.py` | Cotes MGM/Yahoo gratuites (depot public `csdurfee`). Jonction stricte date+équipes, trou si absent, jamais de cote estimée. | run manuel / capteur F01 |
+| `F01_SENTINEL/CODEBASE/input_capture_basket.py` | Capture Telegram basket : **ML uniquement** (`1 (ML)`/`2 (ML)`), 1X2 et Handicap/Total = diag non utilisés, heure Kinshasa, `game_id` = `#xxx`. | `/sport basket` + `/capture` |
+| `F01_SENTINEL/OUT/capture_basket.json` | JSON reconstitué basket (`A_VALIDER`) + résumé `match | ML | p | EV`. | `input_capture_basket.py` |
+| `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. `fit.prepare` ancre l'âge sur la dernière date des rows (plus `datetime.now()`). | `backtest_basket` |
 | `F02_BREACHER/CODEBASE/moteur_sport.py` | Sélecteur foot/basket, fail-safe foot. | `/sport` `/basket` `/modele` `/gel` `/valider-2` |
-| `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. | `calibration_basket.json` |
+| `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. Verdict réel : NO-GO (gap +0.049). | `calibration_basket.json` |
 | `F05_PACKAGER/CODEBASE/combinator.py` | `build_system23` (3 doubles, cote/p absente = `ValueError`). | `/combos systeme 2-3` |
-| `docs/CAHIER_BASKET.md` | Guide opérateur basket (commandes, portes, verdict, paper-trading CLV). | Warsmith |
-| `tests/test_*basket.py`, `test_moteur_sport.py`, `test_system23.py`, `test_workflow_basket.py` | 43 scripts unitaires PARI verts (offline). | CI locale |
+| `docs/CAHIER_BASKET.md` | Guide opérateur basket (capture ML, portes, verdict, paper-trading CLV, limites connues). | Warsmith |
+| `tests/test_*basket.py`, `test_moteur_sport.py`, `test_system23.py`, `test_workflow_basket.py`, `test_input_capture_basket.py`, `test_closing_odds_yahoo.py` | Suite unitaire PARI verts (offline) : 111/111 sur 6 fichiers basket. | CI locale |
 
 Convention : chaque frégate ajoute une ligne `[TS] [mode] détail` dans son LOG.md ; le Warsmith écrit ses notes de décision dans les gates via `IW_CUSTOS.py --mode gate --notes "..."`.

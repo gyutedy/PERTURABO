@@ -50,15 +50,30 @@ def _days_since(date_str, as_of=None):
         return 0.0
 
 
+def anchor_from_rows(rows):
+    """Derniere date du jeu de donnees. Ancrage du poids temporel, jamais l'horloge murale."""
+    dates = []
+    for r in rows:
+        try:
+            dates.append(datetime.strptime(str((r.get("date") or ""))[:10], "%Y-%m-%d"))
+        except ValueError:
+            continue
+    return max(dates) if dates else None
+
+
 def prepare(rows, cfg=None, as_of=None):
     """rows market_basket -> observations ponderees.
-    obs = {home, away, margin, total_h, total_a, weight} """
+    obs = {home, away, margin, total_h, total_a, weight}.
+    Sans as_of explicite, l'age est calcule depuis la derniere date des rows :
+    un backtest sur 2023-2025 ne doit pas etre decime par une demi-vie de 45
+    jours evaluee en 2026 (ratings ecrases a zero, probabilite constante)."""
     c = _cfg(cfg)
+    anchor = as_of if as_of is not None else anchor_from_rows(rows)
     obs = []
     for r in rows:
         if r.get("pts_home") is None or r.get("pts_away") is None:
             continue
-        age = _days_since(r.get("date") or "", as_of)
+        age = _days_since(r.get("date") or "", anchor)
         obs.append({
             "home": r["home"], "away": r["away"],
             "margin": float(r["pts_home"] - r["pts_away"]),

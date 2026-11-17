@@ -33,11 +33,17 @@ Ce monde ne place **jamais** de pari automatiquement. L'opérateur humain est la
 Un moteur basket MLE est greffé sur la même coque F00→F06 via des fichiers `_basket`,
 sa config `config/moteur_basket.json` et le sélecteur `F02_BREACHER/CODEBASE/moteur_sport.py`.
 `/sport foot|basket` et `/basket` commutent ; **foot maître par défaut**, fichier d'état
-illisible = foot, gels indépendants, basculer ne dégèle jamais. Le basket est livré
-**gelé** (`tickets_enabled=false`, aucun CSV, aucune calibration, verdict `null`) :
-aucun ticket ni mise tant que `calibration_basket.json` ne porte pas `verdict: "GO"`
-puis CLV > 0 sur ≥ 100 paris paper-tradés. Guide complet : `docs/CAHIER_BASKET.md`.
-Traçabilité : `TRACKING/INDEX.md`, `CONTINUATION.md` (ETAT v6.0).
+illisible = foot, gels indépendants, basculer ne dégèle jamais. Le basket reste
+**gelé** (`tickets_enabled=false`) : aucun ticket ni mise tant que `calibration_basket.json`
+ne porte pas `verdict: "GO"` puis CLV > 0 sur ≥ 100 paris paper-tradés. Le backtest réel
+(744 matchs OOS) donne `NO-GO` (brier `0.244` vs marché `0.196`).
+
+Entrée Telegram : `/sport basket` puis `/capture` + le tableau du book — **moneyline
+uniquement** (`1 (ML)` / `2 (ML)`), horaire **Africa/Kinshasa (UTC+1)**. Les colonnes
+1X2 et Handicap/Total sont déclarées non utilisées. Les cotes de clôture historiques
+viennent gratuitement de `closing_odds_yahoo.py` (MGM/Yahoo, 2 454 / 2 455 matchs),
+sans clé API payante. Guide complet : `docs/CAHIER_BASKET.md`.
+Traçabilité : `TRACKING/INDEX.md`, `CONTINUATION.md` (ETAT v6.2).
 
 ## LES MODES
 

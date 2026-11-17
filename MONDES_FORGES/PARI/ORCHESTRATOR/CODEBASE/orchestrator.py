@@ -351,8 +351,9 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="ORCHESTRATOR — monde PARI")
     parser.add_argument("--mode", required=True,
-                        choices=["radar", "siege", "pack", "demo", "imprime", "notify",
-                                 "telegram-test", "input-capture", "tickets", "workflow"])
+                         choices=["radar", "siege", "pack", "demo", "imprime", "notify",
+                                  "telegram-test", "input-capture", "input-capture-basket",
+                                  "tickets", "workflow"])
     parser.add_argument("--ids", default=None, help="M1,M2 en mode siege (vide = carte complète)")
     parser.add_argument("--fixtures", default=None)
     parser.add_argument("--top", type=int, default=10)
@@ -433,6 +434,13 @@ def main():
             cmd += ["--capture", args.capture]
         if args.valider:
             cmd += ["--valider", "--out-carte", args.out_carte]
+        r = subprocess.run(cmd)
+        sys.exit(0 if r.returncode == 0 else 1)
+    elif args.mode == "input-capture-basket":
+        cmd = [sys.executable, P("F01_SENTINEL", "CODEBASE", "input_capture_basket.py"),
+               "--out-json", P("F01_SENTINEL", "OUT", "capture_basket.json")]
+        if args.capture:
+            cmd += ["--capture", args.capture]
         r = subprocess.run(cmd)
         sys.exit(0 if r.returncode == 0 else 1)
 
