@@ -117,6 +117,8 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/learnings/calibration_basket.json` | Verdict OOS (`pari.calibration_basket.v1`) via `apply_gates`. Sans GO = gel. | `backtest_basket.py` |
 | `ARCHIVUM/vanus/signals_basket.json` | Signal VANUS basket (`sport=basket`), jamais un p. | VANUS `speculum-basket` |
 | `F00_RADAR/CODEBASE/market_basket.py` | Contrat CSV boxscores + cotes 2-way `odds_home`/`odds_away` (absentes = None, jamais 0). | `fit_basket`, `backtest_basket` |
+| `F01_SENTINEL/CODEBASE/connectors/basket_feed.py` | Capteur : boxscores `nba_api` + cotes historiques The Odds API → CSV `ARCHIVUM/cache/basket/`. Cote absente = trou. | run manuel / capteur F01 |
+| `ARCHIVUM/cache/basket/*.csv` | Cache gitignored : 2023_24.csv (1230), 2024_25.csv (1225). 0 cote — cle Odds API gratuite. | `basket_feed.py` |
 | `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. | `backtest_basket` |
 | `F02_BREACHER/CODEBASE/moteur_sport.py` | Sélecteur foot/basket, fail-safe foot. | `/sport` `/basket` `/modele` `/gel` `/valider-2` |
 | `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. | `calibration_basket.json` |

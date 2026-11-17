@@ -38,6 +38,15 @@ n'écrit **que** ce fichier : aucun `tickets_enabled` n'est modifié.
    `brier_gap: null` + trou `marche_absent`, jamais estimé.
 4. Verdict GO ⇒ `/gel off` basket. **Puis** paper-trading : ≥ 100 paris publiés
    sans mise, CLV moyen > 0 requis avant le premier pari réel.
+
+Le capteur `F01_SENTINEL/CODEBASE/connectors/basket_feed.py` fait la récupération :
+`python basket_feed.py --seasons 2023-24,2024-25` écrit les CSV dans
+`ARCHIVUM/cache/basket/`. Boxscores via `nba_api` (gratuit) ; cotes de clôture via
+l'endpoint historique The Odds API (`basketball_nba`, marché `h2h`) — **plan payant
+requis**. Au 2026-11-17 la clé du dépôt est au plan gratuit (401
+`HISTORICAL_UNAVAILABLE_ON_FREE_USAGE_PLAN`) : 2 455 matchs récupérés, 0 cote,
+verdict `null`, basket toujours gelé. Au moins 300 matchs OOS et `brier_gap ≤ 0`,
+`ece ≤ 0.03` sont exigés pour GO.
 5. Un GO n'ouvre pas le robinet : Kelly ¼, ≤ 5 % de bankroll par jour,
    ledger F06 juge unique (les perdants restent écrits).
 

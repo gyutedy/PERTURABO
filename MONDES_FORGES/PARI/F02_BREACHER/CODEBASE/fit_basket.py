@@ -15,10 +15,14 @@ from __future__ import annotations
 import json
 import math
 import os
+import sys
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
+RADAR = os.path.join(WORLD, "F00_RADAR", "CODEBASE")
+if RADAR not in sys.path:
+    sys.path.insert(0, RADAR)
 DEFAULT_OUT = os.path.join(WORLD, "ARCHIVUM", "state", "basket_params.json")
 
 

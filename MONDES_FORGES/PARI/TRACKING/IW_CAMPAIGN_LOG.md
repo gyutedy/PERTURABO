@@ -1881,3 +1881,6 @@
 ## [2026-11-17T16:20:28Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:0c60d74ef92302d5780aa4855b27c2a3 — status:done
 
 ## [2026-11-17T16:20:29Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:7f2bc0ef5d6de3406da3e112eacb9e99 — status:done
+
+## [2026-11-17T17:54:32Z] CAPTEUR basket_feed.py : 2455 boxscores NBA recuperes (1230 + 1225) dans ARCHIVUM/cache/basket/ (gitignored). 0 cote : ODDS_API_KEY plan gratuit -> 401 HISTORICAL_UNAVAILABLE_ON_FREE_USAGE_PLAN.
+## [2026-11-17T17:54:32Z] fit_basket OK (sigma 16.4964, centre residu 0). backtest cutoff 2025-01-01 : n_oos 744, brier_modele 0.248349, brier_marche null, ece 0.495088, verdict null -> BASKET RESTE GELE. Pas de pari, pas de /gel off.

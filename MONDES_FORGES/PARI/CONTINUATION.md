@@ -577,6 +577,31 @@ Basket GELE, aucun `sport_actif.json`, aucun CSV, aucune calibration. Ne pas
 `/gel off`. Ne pas `/valider-2` en basket. Paper-trading >= 100 paris et CLV > 0
 requis apres GO.
 
+## ETAT v6.1 — CAPTEUR BASKET + DONNEES PARTIELLES (2026-11-17)
+
+- [x] **Capteur F01** `F01_SENTINEL/CODEBASE/connectors/basket_feed.py` : boxscores
+      NBA via `nba_api` (stats.nba.com, sans cle) + cotes h2h historiques The Odds
+      API. Ecrit `ARCHIVUM/cache/basket/<saison>.csv` (gitignored) avec les 8
+      colonnes du contrat. Cote absente = cellule vide + trou `marche_absent`.
+- [x] **Recuperation effectuee** : 2023-24 = 1230 matchs, 2024-25 = 1225 matchs
+      (2455 au total). `fit_basket.py` tourne : `sigma=16.4964`, centre residu 0,
+      `basket_params.json` ecrit (gitignore). **Correctif** : `fit_basket.py` ajoute
+      `F00_RADAR/CODEBASE` au `sys.path` (import direct de `market_basket` repara).
+- [x] **Backtest** `backtest_basket.py 2025-01-01` : `n_oos=744`, `brier_modele=
+      0.248349`, `brier_marche=null`, `ece=0.495088`, **verdict `null`**. Trous
+      `marche_absent` sur les 744 matchs + rps/logloss.
+- [ ] **BLOQUANT** : la cle `ODDS_API_KEY` de `env_pari` est au **plan gratuit**.
+      L'endpoint `/v4/historical/...` repond `401 HISTORICAL_UNAVAILABLE_ON_FREE_USAGE_PLAN`
+      (les endpoints de decouverte `/events` passent, mais ne donnent pas les cotes).
+      Sans cotes de cloture : brier_gap null → **GO impossible** → basket reste GELE.
+      Ne pas `/gel off`, ne pas parier.
+
+**Handoff** : pour debloquer, passer `ODDS_API_KEY` au plan payant The Odds API
+(historique `basketball_nba`, marche `h2h`, depuis mi-2020), relancer
+`python F01_SENTINEL/CODEBASE/connectors/basket_feed.py --seasons 2023-24,2024-25`
+puis `fit_basket.py` puis `backtest_basket.py 2025-01-01`. Verdict GO exige
+n>=300, brier_gap<=0, ece<=0.03 — sinon gel conserve. Aucune estimation de cote.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
