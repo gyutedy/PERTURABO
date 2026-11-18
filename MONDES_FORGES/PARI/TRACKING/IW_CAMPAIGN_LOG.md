@@ -1899,3 +1899,6 @@
 
 ## [2026-11-18T20:30:00Z] Cahier V3 P0-3 : systemes.py (S2 dutching, S3 corridor, S4 pivot couvert) + commande /systeme (2-3|dutching|corridor|pivot) affichee avant /approve. CMDS 24->25, relais parse.py + index.js + /help alignes. Refus si moteur gele ou donnee manquante. Pire cas corridor corrige (plus petite cote : -255 FC). tests/test_systemes 22/22, suite basket 139/139. Aucun ticket cree, gel intact.
 ## [2026-11-18T20:30:00Z] Docs a jour : CONTINUATION (v6.4), CAHIER_BASKET (systemes S1-S4), GUIDE_UTILISATION, README, TRACKING/INDEX. P0 du cahier V3 : P0-2 et P0-3 livres ; P0-1 (rotation secrets + purge) en attente Warsmith.
+
+## [2026-11-18T21:00:00Z] P0-1 etape 2 : 19 Secrets GitHub crees via API chiffree (valeurs actuelles a faire tourner). .github/scripts/write_env_pari.py ecrit env_pari au runtime dans 5 workflows (daily, listen, odds_t0/t2h, worker_deploy). env_pari retire du suivi git (git rm --cached) et gitignore. test_write_env_pari 7/7.
+## [2026-11-18T21:00:00Z] Procedure de purge d'historique preparee dans CONTINUATION (v6.5) mais NON executee : PLAN_PARI_CONSOLIDE interdit a l'agent de réecrire l'histoire. Rotation des identifiants + purge = decision Warsmith. Docs a jour : CONTINUATION (v6.5), TRACKING/INDEX, IW_CAMPAIGN_LOG.

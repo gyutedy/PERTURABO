@@ -1,5 +1,5 @@
 # PARI LISTEN — deploy Cloudflare Worker quand LISTEN/** change.
-# Creds depuis env_pari (pas GitHub Secrets) :
+# Creds depuis les Secrets GitHub, ecrits dans env_pari au runtime :
 #   CLOUDFLARE_API_TOKEN
 #   CLOUDFLARE_ACCOUNT_ID
 # Absents = skip (pas d echec rouge). Pas de wrangler manuel. Pas de webhook Telegram ici.
@@ -19,6 +19,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ecrire env_pari depuis les Secrets GitHub
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+          SPORTRADAR_API_KEY: ${{ secrets.SPORTRADAR_API_KEY }}
+          WHOSCORED_KEY: ${{ secrets.WHOSCORED_KEY }}
+          RAPIDAPI_WHOSCORED_KEY: ${{ secrets.RAPIDAPI_WHOSCORED_KEY }}
+          WHOSCORED_HOST: ${{ secrets.WHOSCORED_HOST }}
+          SOFASCORE_RAPIDAPI_KEY: ${{ secrets.SOFASCORE_RAPIDAPI_KEY }}
+          SOFASCORE_HOST: ${{ secrets.SOFASCORE_HOST }}
+          ORACLE_API_KEY: ${{ secrets.ORACLE_API_KEY }}
+          ORACLE_BASE_URL: ${{ secrets.ORACLE_BASE_URL }}
+          ORACLE_MODEL: ${{ secrets.ORACLE_MODEL }}
+          ZRO_API_KEY: ${{ secrets.ZRO_API_KEY }}
+          ZRO_BASE_URL: ${{ secrets.ZRO_BASE_URL }}
+          ZRO_MODEL: ${{ secrets.ZRO_MODEL }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 .github/scripts/write_env_pari.py
 
       - name: Charger CLOUDFLARE_* depuis env_pari
         id: creds

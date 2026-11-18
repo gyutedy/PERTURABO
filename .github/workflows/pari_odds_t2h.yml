@@ -1,5 +1,5 @@
 # PARI ODDS T-2h — rescan cotes The Odds API si un match est dans 3h.
-# Cle ODDS_API_KEY (alias THE_ODDS_API_KEY) depuis env_pari (pas GitHub Secrets).
+# Cle ODDS_API_KEY (alias THE_ODDS_API_KEY) depuis les Secrets GitHub (env_pari ecrit au runtime).
 # Absente = skip (job vert). Jamais scrape Winner. Jamais Poisson.
 # Kill switch PARI_SKIP_ODDS=1.
 
@@ -25,6 +25,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Ecrire env_pari depuis les Secrets GitHub
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+          SPORTRADAR_API_KEY: ${{ secrets.SPORTRADAR_API_KEY }}
+          WHOSCORED_KEY: ${{ secrets.WHOSCORED_KEY }}
+          RAPIDAPI_WHOSCORED_KEY: ${{ secrets.RAPIDAPI_WHOSCORED_KEY }}
+          WHOSCORED_HOST: ${{ secrets.WHOSCORED_HOST }}
+          SOFASCORE_RAPIDAPI_KEY: ${{ secrets.SOFASCORE_RAPIDAPI_KEY }}
+          SOFASCORE_HOST: ${{ secrets.SOFASCORE_HOST }}
+          ORACLE_API_KEY: ${{ secrets.ORACLE_API_KEY }}
+          ORACLE_BASE_URL: ${{ secrets.ORACLE_BASE_URL }}
+          ORACLE_MODEL: ${{ secrets.ORACLE_MODEL }}
+          ZRO_API_KEY: ${{ secrets.ZRO_API_KEY }}
+          ZRO_BASE_URL: ${{ secrets.ZRO_BASE_URL }}
+          ZRO_MODEL: ${{ secrets.ZRO_MODEL }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 .github/scripts/write_env_pari.py
 
       - name: Odds watch T-2h
         env:

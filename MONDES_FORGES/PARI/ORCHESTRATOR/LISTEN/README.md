@@ -8,7 +8,8 @@ Zero calcul ici. Le siege tourne sur GitHub Actions (`workflow.py`).
 Push sur `MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN/**` (branche `pari-forge-perturabo-xs4c`)
 declenche `.github/workflows/worker_deploy.yml` → `wrangler deploy`.
 
-Creds dans `MONDES_FORGES/PARI/env_pari` (pas GitHub Secrets) :
+Creds dans les **Secrets GitHub** (19 cles), ecrits dans `env_pari` au runtime par
+`.github/scripts/write_env_pari.py` — le fichier n'est plus versionne :
 
 - `CLOUDFLARE_API_TOKEN` (permission Edit Cloudflare Workers)
 - `CLOUDFLARE_ACCOUNT_ID`
@@ -38,12 +39,13 @@ npx wrangler secret put GITHUB_DISPATCH_TOKEN
 `TELEGRAM_WEBHOOK_SECRET` = chaine aleatoire (header `X-Telegram-Bot-Api-Secret-Token`).
 Repo cible : `gyutedy/PERTURABO` (`GH_OWNER` dans wrangler.toml).
 
-## 3. Secrets GitHub (repo) — optionnels
+## 3. Secrets GitHub (repo) — obligatoires depuis v6.5
 
-`notifier.py` charge `MONDES_FORGES/PARI/env_pari` si `TELEGRAM_*` sont vides.
-Ne PAS creer de secrets GitHub vides (ils masquaient `env_pari` avant le fix
-2026-10-30). Secrets Worker restent obligatoires (TELEGRAM_BOT_TOKEN,
-TELEGRAM_CHAT_ID, TELEGRAM_WEBHOOK_SECRET, GITHUB_DISPATCH_TOKEN = PAT gyutedy).
+Les 19 cles de l'ancien `env_pari` vivent dans Settings → Secrets and variables → Actions.
+`write_env_pari.py` reconstruit le fichier au debut de chaque run ; seules les valeurs non
+vides sont ecrites. `notifier.py` continue de charger `env_pari` si les variables sont vides.
+Secrets Worker (Cloudflare) restent obligatoires : TELEGRAM_BOT_TOKEN,
+TELEGRAM_CHAT_ID, TELEGRAM_WEBHOOK_SECRET, GITHUB_DISPATCH_TOKEN = PAT gyutedy.
 
 ## 4. Brancher le webhook Telegram
 

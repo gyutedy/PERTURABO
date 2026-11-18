@@ -684,6 +684,40 @@ aucun `/gel off`. P0-3 (`/systeme` S1-S4) a faire ensuite.
 jamais la marge du book — ils ne rendent pas un moteur NO-GO jouable. Le gel reste
 intact : aucun `/systeme` ne construit de ticket tant que `tickets_enabled = false`.
 
+## ETAT v6.5 — MIGRATION SECRETS GITHUB (Cahier V3 P0-1 étape 2, 2026-11-18)
+
+- [x] **19 Secrets GitHub crees/mis a jour** via API chiffree (noms = cles de l'ancien
+      `env_pari`). Valeurs = celles de l'ancien fichier : **a faire tourner cote
+      fournisseurs, puis a remplacer dans Settings → Secrets**. Aucune valeur n'a ete
+      affichee ni committee.
+- [x] **`.github/scripts/write_env_pari.py`** reconstruit `MONDES_FORGES/PARI/env_pari`
+      au runtime depuis les secrets non vides. Aucune valeur journalisee.
+- [x] **5 workflows cables** : `pari_daily.yml`, `pari_listen.yml`, `pari_odds_t0.yml`,
+      `pari_odds_t2h.yml`, `worker_deploy.yml` (etape « Ecrire env_pari depuis les Secrets
+      GitHub »). Les commentaires « pas GitHub Secrets » ont ete corriges.
+- [x] **`env_pari` retire du suivi git** (`git rm --cached`) et ajoute au `.gitignore`
+      PARI avec `.env`. Le fichier local reste present pour le travail hors CI.
+- [x] **Tests** : `tests/test_write_env_pari.py` 7/7 (noms seulement, valeurs non
+      affichees, fichier ecrit depuis un environnement simule).
+
+**Reste (P0-1 étape 3 — PREPAREE, NON EXECUTEE)** : l'historique git contient encore les
+anciennes valeurs (15 occurrences). Procedure a lancer par le Warsmith **apres rotation** :
+
+    git clone --mirror https://github.com/gyutedy/PERTURABO.git /tmp/perturabo-mirror
+    cd /tmp/perturabo-mirror
+    pip install git-filter-repo
+    git filter-repo --path MONDES_FORGES/PARI/env_pari --invert-paths
+    git remote add origin https://github.com/gyutedy/PERTURABO.git
+    git push --force --all origin
+    git push --force --tags origin
+
+⚠️ Reecrit toutes les SHA, impose un force-push, un arret des Actions pendant l'operation
+et un re-clonage par tous les collaborateurs. Aucune execution sans accord explicite.
+
+**Handoff** : plus aucun secret versionne a partir de ce commit ; seul l'historique ancien
+reste a purger. Le PAT GitHub partage en conversation doit etre revoque en priorite.
+Gel et moteurs inchanges.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

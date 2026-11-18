@@ -318,9 +318,9 @@ python F00_RADAR/CODEBASE/capteurs.py fit-league \
 # WhoScored RapidAPI optionnel (injuries souvent trou).
 
 # Cloudflare Worker deploy (CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
-# dans env_pari, PAS GitHub Secrets). Absents = skip, Worker live stale.
+# dans les Secrets GitHub → env_pari ecrit au runtime). Absents = skip.
 
-# The Odds API T-2h + T-0 (ODDS_API_KEY dans env_pari, PAS GitHub Secrets).
+# The Odds API T-2h + T-0 (ODDS_API_KEY Secret GitHub → env_pari au runtime).
 # Absente = skip. Fenetre 3h avant kickoff (T-2h). T-0 = grace 15 min autour
 # du coup d envoi. Recast EV (p_modele F03). ESTOMPE si VALUE devient EV<=0.
 # Jamais Poisson, jamais scrape Winner. Kill switch PARI_SKIP_ODDS=1.
@@ -353,7 +353,8 @@ le chat n'atteint pas GitHub.
 ```bash
 # 1. @BotFather → /newbot → TOKEN
 # 2. Ecris au bot → getUpdates → chat.id
-# 3. Secrets GitHub : TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
+# 3. Secrets GitHub : TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID (et les 17 autres cles)
+#    write_env_pari.py les ecrit dans env_pari au debut de chaque run — plus de fichier versionne
 # 4. Deploy Worker (une fois) — detail : ORCHESTRATOR/LISTEN/README.md
 cd MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN
 npx wrangler deploy

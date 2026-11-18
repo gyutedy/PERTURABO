@@ -68,7 +68,9 @@ Cartographie des journaux du monde.
 | `F00_RADAR/CODEBASE/{capteurs,enrich,vote,cache,http_util,odds_watch}.py` | Enrich `/capture` : binaire + vote OUT/DOUTE/IGNORE. T-2h + T-0 = `odds_watch` | workflow.py `/capture` `/valider-1` ; `pari_odds_t2h.yml` `pari_odds_t0.yml` |
 | `F01_SENTINEL/CODEBASE/connectors/odds_api.py` | The Odds API (h2h + totals 2.5). Matching nom + difflib 0.9. Cache 1 hit/ligue/jour | odds_watch.py |
 | `ARCHIVUM/odds/` | Snapshots T-2h (`latest.json`, `t2h_*.json`) + T-0 (`latest_t0.json`, `t0_*.json`). T-0 n ecrase pas latest.json. | odds_watch.persist |
-| `env_pari` | Cles operateur (periode de test, versionne). F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY` (calendrier + injuries flags S15), `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. ESPN voix 3 = public sans cle. Odds T-2h : `ODDS_API_KEY` (optionnelle). Oracle : `ORACLE_API_KEY` + `ORACLE_BASE_URL` + `ORACLE_MODEL` (Zro glm-5.3-flash). Charge par `workflow.load_env_pari`. | workflow.py, football_data_org.py, api_football.py, injuries.py, sportradar.py, sofascore.py, espn.py, whoscored.py, odds_api.py, tyrant.py, herald.py, notifier.py |
+| `env_pari` | Cles operateur. **Plus versionne** depuis v6.5 : gitignored, reconstruit au runtime par `.github/scripts/write_env_pari.py` depuis 19 Secrets GitHub. F00 : `FOOTBALL_DATA_ORG_KEY`, `API_FOOTBALL_KEY` (calendrier + injuries S15), `SPORTRADAR_API_KEY`, `SOFASCORE_RAPIDAPI_KEY` / `WHOSCORED_KEY`. Odds : `ODDS_API_KEY`. Oracle : `ORACLE_*` / `ZRO_*`. Charge par `workflow.load_env_pari`. | 5 workflows + write_env_pari.py |
+| `.github/scripts/write_env_pari.py` | Reconstruit `env_pari` depuis les Secrets GitHub, non-vides seulement, valeurs jamais affichees. | 5 workflows (daily, listen, odds_t0/t2h, worker_deploy) |
+| `tests/test_write_env_pari.py` | Migration secrets : noms seulement, fichier ecrit, 7/7. | CI locale |
 | `ARCHIVUM/cache/f00/` | Cache 1 hit / equipe / jour (gitignore) | F00 enrich |
 | `ARCHIVUM/fixtures/notes_qualitatives.json` | Notes votees F00 (OUT → TYRANT) | enrich.py |
 | `F00_RADAR/F00_LOG.md` | Scans de ligue (nombre matchs, top verdicts) | F00 RADAR |
