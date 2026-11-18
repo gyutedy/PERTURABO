@@ -1893,3 +1893,6 @@
 ## [2026-11-18T15:52:50Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:3447fc3e18259e9d589c1eeea7b8749a — status:done
 
 ## [2026-11-18T15:52:50Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:ae65e6bca913c0be4696dd8eccb6ebb7 — status:done
+
+## [2026-11-18T20:00:19Z] Cahier V3 P0-2 : vrai ECE bine (ece_binned, 10 bins) remplace le MAE ; apply_gates recoit un logloss_gap reel (plus brier_gap en double). Gate ece_max 0.03 inchange. test_backtest_basket 38/38. Backtest : n_oos 744, brier_gap +0.048957, ece 0.005797, logloss_gap +0.109056 -> NO-GO (rps_gap, logloss_gap). BASKET RESTE GELE.
+## [2026-11-18T20:00:19Z] P0-1 (securite) : env_pari est SUIVI par git et contient 3 secrets actifs ; 15 occurrences dans l'historique ; 4 workflows lisent ce fichier. Rotation des identifiants + decision sur migration Secrets GitHub / purge histoire = action Warsmith. Aucune réécriture d'historique effectuée sans accord. Docs a jour : CONTINUATION (v6.3), CAHIER_BASKET, TRACKING/INDEX.

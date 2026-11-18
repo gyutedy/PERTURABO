@@ -11,6 +11,7 @@ impute, jamais 'estime a partir de l'ouverture'.
 """
 from __future__ import annotations
 import json
+import math
 import os
 import sys
 from datetime import datetime, timezone
@@ -65,6 +66,23 @@ def brier(p_home, outcome_home_win):
     return (p_home - (1.0 if outcome_home_win else 0.0)) ** 2
 
 
+def ece_binned(pairs, bins=10):
+    """Vrai ECE bine : |confiance - precision| moyen, pondere par bin."""
+    if not pairs:
+        return None
+    n = len(pairs)
+    acc = 0.0
+    for k in range(bins):
+        lo, hi = k / bins, (k + 1) / bins
+        bk = [(p, y) for p, y in pairs
+              if (lo <= p < hi) or (k == bins - 1 and lo <= p <= hi)]
+        if not bk:
+            continue
+        acc += len(bk) / n * abs(sum(p for p, _ in bk) / len(bk)
+                                 - sum(y for _, y in bk) / len(bk))
+    return acc
+
+
 def run(cutoff_raw=None, csv_dir=None):
     rows, holes = market_basket.load_dir(csv_dir)
     cutoff = parse_cutoff(cutoff_raw)
@@ -77,7 +95,9 @@ def run(cutoff_raw=None, csv_dir=None):
     n = 0
     brier_model = 0.0
     brier_market = 0.0
-    ece_num = 0.0
+    ll_model = 0.0
+    ll_market = 0.0
+    pairs_ece = []
     for r in test:
         pred = engine_basket.predict(r, blob=blob)
         if pred.get("mu_home") is None:
@@ -92,19 +112,22 @@ def run(cutoff_raw=None, csv_dir=None):
         y = 1.0 if (r.get("pts_home") or 0) > (r.get("pts_away") or 0) else 0.0
         n += 1
         brier_model += brier(p_home, y == 1.0)
+        ll_model -= math.log(max(p_home if y == 1.0 else 1.0 - p_home, 1e-12))
+        pairs_ece.append((p_home, y))
         mk = implied_2way(r.get("odds_home"), r.get("odds_away"))
         if mk is None:
             holes.append((r.get("game_id") or "") + ":marche_absent")
         else:
             brier_market += brier(mk[0], y == 1.0)
-        ece_num += abs(p_home - y)  # proxy ECE 2 issues, bin unique prudent
+            ll_market -= math.log(max(mk[0] if y == 1.0 else 1.0 - mk[0], 1e-12))
     brier_model = round(brier_model / n, 6) if n else None
     brier_market = round(brier_market / n, 6) if n and brier_market else None
     brier_gap = (round(brier_model - brier_market, 6)
                  if brier_model is not None and brier_market is not None else None)
-    ece = round(ece_num / n, 6) if n else None
+    ece = round(ece_binned(pairs_ece), 6) if n else None
+    ll_gap = (round((ll_model - ll_market) / n, 6) if n and brier_market else None)
     gates = moteur_flag.gates(moteur_sport_cfg()) or {}
-    verdict_block = backtest_market.apply_gates(n, brier_gap, ece, brier_gap, gates=gates)
+    verdict_block = backtest_market.apply_gates(n, brier_gap, ece, ll_gap, gates=gates)
     out = {
         "contract": "pari.calibration_basket.v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -113,6 +136,9 @@ def run(cutoff_raw=None, csv_dir=None):
         "brier_marche": brier_market,
         "brier_gap": brier_gap,
         "ece": ece,
+        "logloss_modele": round(ll_model / n, 6) if n else None,
+        "logloss_marche": round(ll_market / n, 6) if n and brier_market else None,
+        "logloss_gap": ll_gap,
         "verdict": verdict_block.get("verdict"),
         "reasons": verdict_block.get("reasons") or [],
         "holes": list(dict.fromkeys(holes + list(verdict_block.get("holes") or []))),

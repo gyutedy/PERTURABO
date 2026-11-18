@@ -49,6 +49,15 @@ def main():
     check("bt.brier_parfait", bt.brier(1.0, True) == 0.0)
     check("bt.brier_echec", bt.brier(0.0, True) == 1.0)
 
+    calib = [(0.5, 0.0), (0.5, 1.0), (0.5, 0.0), (0.5, 1.0)]
+    inverse = [(0.9, 0.0), (0.9, 0.0), (0.1, 1.0), (0.1, 1.0)]
+    ece_ok = bt.ece_binned(calib)
+    ece_ko = bt.ece_binned(inverse)
+    check("bt.ece_vide", bt.ece_binned([]) is None)
+    check("bt.ece_calibre", ece_ok is not None and abs(ece_ok) < 0.01, str(ece_ok))
+    check("bt.ece_inverse", ece_ko is not None and ece_ko > 0.75, str(ece_ko))
+    check("bt.ece_pas_un_mae", abs((ece_ok or 0.0) - 0.2) > 0.1)
+
     gates = bt.moteur_flag.gates(bt.moteur_sport_cfg()) or {}
     check("bt.gates_min_300", int(gates.get("min_matches_oos") or 0) == 300)
     check("bt.gates_ece", float(gates.get("ece_max") or 9) == 0.03)
@@ -89,6 +98,10 @@ def main():
         check("bt.pas_marche_absent", not any("marche_absent" in h for h in reco["holes"]),
               str(reco["holes"][:3]))
         check("bt.pas_trou_logloss", "logloss" not in reco["holes"], str(reco["holes"][:3]))
+        check("bt.logloss_gap_reel", isinstance(reco.get("logloss_gap"), float),
+              str(reco.get("logloss_gap")))
+        check("bt.ece_bine_dans_sortie", reco.get("ece") is not None
+              and reco["ece"] < 0.5, str(reco.get("ece")))
         check("bt.verdict_n_insuffisant", reco["verdict"] is None and any("n_oos" in h for h in reco["holes"]),
               str(reco["verdict"]))
 

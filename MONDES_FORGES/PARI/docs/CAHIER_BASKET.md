@@ -109,10 +109,11 @@ construit si le moteur du sport actif est gelé.
 - Le modèle reste **moins précis que le marché** : brier `0.244` vs `0.196`, gap `+0.049`
   sur 744 matchs OOS → verdict `NO-GO`, gel conservé. L'écart de ratings (~1 pt) reste
   faible face à sigma (~15) : les probabilités varient peu d'un match à l'autre.
-- `backtest_basket.py` calcule un **MAE** (`abs(p-y)`) et le compare au gate `ece_max=0.03`
-  prévu pour un vrai ECE biné (le foot utilise `walkforward.ece(..., bins=10)`). Ce gate est
-  structurellement infranchissable ; `apply_gates` reçoit aussi `brier_gap` deux fois.
-  Non corrigé : le cahier interdit de baisser un gate pour forcer un GO.
+- ~~ECE = MAE + `brier_gap` dupliqué~~ **CORRIGÉ (ETAT v6.3)** : `ece_binned()` calcule un
+  vrai ECE biné (10 bins pondérés) et `apply_gates` reçoit un `logloss_gap` réel. Le gate
+  `ece_max=0.03` est inchangé et désormais mesurable : ECE observé `0.005797`. Le verdict
+  reste `NO-GO` sur `rps_gap` (`+0.049`) et `logloss_gap` (`+0.109`) — c'est la qualité
+  prédictive, et non plus la mesure, qui est en cause. Aucun seuil n'a été assoupli.
 
 ## Interdits
 

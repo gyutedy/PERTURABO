@@ -124,7 +124,7 @@ Cartographie des journaux du monde.
 | `F01_SENTINEL/OUT/capture_basket.json` | JSON reconstitué basket (`A_VALIDER`) + résumé `match | ML | p | EV`. | `input_capture_basket.py` |
 | `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. `fit.prepare` ancre l'âge sur la dernière date des rows (plus `datetime.now()`). | `backtest_basket` |
 | `F02_BREACHER/CODEBASE/moteur_sport.py` | Sélecteur foot/basket, fail-safe foot. | `/sport` `/basket` `/modele` `/gel` `/valider-2` |
-| `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. Verdict réel : NO-GO (gap +0.049). | `calibration_basket.json` |
+| `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. v6.3 : vrai ECE biné + logloss réel (plus de MAE ni de `brier_gap` dupliqué). Verdict NO-GO (brier +0.049, logloss +0.109, ECE 0.006). | `calibration_basket.json` |
 | `F05_PACKAGER/CODEBASE/combinator.py` | `build_system23` (3 doubles, cote/p absente = `ValueError`). | `/combos systeme 2-3` |
 | `docs/CAHIER_BASKET.md` | Guide opérateur basket (capture ML, portes, verdict, paper-trading CLV, limites connues). | Warsmith |
 | `tests/test_*basket.py`, `test_moteur_sport.py`, `test_system23.py`, `test_workflow_basket.py`, `test_input_capture_basket.py`, `test_closing_odds_yahoo.py` | Suite unitaire PARI verts (offline) : 111/111 sur 6 fichiers basket. | CI locale |

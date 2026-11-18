@@ -641,6 +641,25 @@ aucune dependance API payante. Suite = ameliorer le modele (sigma ~15 face a des
 ratings ~1) et/ou corriger la metrique ECE avec accord Warsmith. Le plan gratuit
 `ODDS_API_KEY` n'est plus bloquant.
 
+## ETAT v6.3 — MESURE D'ECE CORRIGEE (Cahier V3 P0-2, 2026-11-18)
+
+- [x] **Vrai ECE bine** : `backtest_basket.ece_binned()` remplace le MAE `abs(p-y)`.
+      Poids par bin sur 10 bins. Verrouille par test : modele calibre -> 0.0,
+      modele inverse -> 0.9. Le gate `ece_max 0.03` reste **identique** ; il est
+      desormais mesurable au lieu d'etre structurellement infranchissable.
+- [x] **Logloss reel** : `apply_gates(n, brier_gap, ece, ll_gap)` recoit maintenant
+      `ll_gap = (logloss_modele - logloss_marche) / n` au lieu de `brier_gap` deux fois.
+      Nouveaux champs de sortie : `logloss_modele`, `logloss_marche`, `logloss_gap`.
+- [x] **Backtest reel apres correction** : n_oos=744, brier_gap=+0.048957,
+      ece=0.005797 (OK), logloss_gap=+0.109056 -> **NO-GO** (rps_gap, logloss_gap).
+      Le gel reste la regle : le modele est moins precis que le marche, point.
+- [x] **Tests** : `test_backtest_basket` 38/38 (dont ece_vide, ece_calibre, ece_inverse,
+      ece_pas_un_mae, logloss_gap_reel, ece_bine_dans_sortie).
+
+**Handoff** : P0-2 du cahier V3 livre. L'ECE n'est plus un faux probleme ; le vrai travail
+porte sur la qualite predictive (brier_gap > 0 et logloss_gap > 0). Aucun seuil abaisse,
+aucun `/gel off`. P0-3 (`/systeme` S1-S4) a faire ensuite.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
