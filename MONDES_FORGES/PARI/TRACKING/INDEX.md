@@ -125,7 +125,10 @@ Cartographie des journaux du monde.
 | `F02_BREACHER/CODEBASE/{model,fit,engine}_basket.py` | Normal + Monte-Carlo, MLE ridge, μ/σ sans probabilité. `fit.prepare` ancre l'âge sur la dernière date des rows (plus `datetime.now()`). | `backtest_basket` |
 | `F02_BREACHER/CODEBASE/moteur_sport.py` | Sélecteur foot/basket, fail-safe foot. | `/sport` `/basket` `/modele` `/gel` `/valider-2` |
 | `F00_RADAR/CODEBASE/backtest_basket.py` | Split OOS strict, Brier/ECE vs marche, portes uniques. v6.3 : vrai ECE biné + logloss réel (plus de MAE ni de `brier_gap` dupliqué). Verdict NO-GO (brier +0.049, logloss +0.109, ECE 0.006). | `calibration_basket.json` |
-| `F05_PACKAGER/CODEBASE/combinator.py` | `build_system23` (3 doubles, cote/p absente = `ValueError`). | `/combos systeme 2-3` |
+| `F05_PACKAGER/CODEBASE/combinator.py` | `build_system23` (S1 : 3 doubles, cote/p absente = `ValueError`). | `/combos systeme 2-3` |
+| `F05_PACKAGER/CODEBASE/systemes.py` | S2 dutching, S3 corridor, S4 pivot couvert. Variance façonnée, jamais la marge. `ValueError` si cote/p absente. | `/systeme` |
+| `ORCHESTRATOR/CODEBASE/workflow.py` `cmd_systeme` | Affichage S1-S4 avant `/approve` ; refus si moteur gelé ; CMDS 25 clés. Relais `parse.py` + `index.js`. | `/systeme 2-3\|dutching\|corridor\|pivot` |
+| `tests/test_systemes.py` | S1 régression, S2/S3/S4, refus zero-data, pire cas corridor −255 FC, commande enregistrée (22/22). | CI locale |
 | `docs/CAHIER_BASKET.md` | Guide opérateur basket (capture ML, portes, verdict, paper-trading CLV, limites connues). | Warsmith |
 | `tests/test_*basket.py`, `test_moteur_sport.py`, `test_system23.py`, `test_workflow_basket.py`, `test_input_capture_basket.py`, `test_closing_odds_yahoo.py` | Suite unitaire PARI verts (offline) : 111/111 sur 6 fichiers basket. | CI locale |
 

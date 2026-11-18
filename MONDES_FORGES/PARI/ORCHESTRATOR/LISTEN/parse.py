@@ -23,6 +23,7 @@ KNOWN = (
     "budget",
     "surticket",
     "combos",
+    "systeme",
     "marches",
     "marchés",
     "valider-1",
@@ -134,6 +135,7 @@ def parse_update(update, allowed_chat_id):
                 "/bankroll 50000  (pot global, une fois)\n"
                 "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n"
                 "/combos 3  ou  /combos 3:3:2:2\n"
+                "/systeme 2-3|dutching|corridor|pivot  (avant /approve)\n"
                 "/marches  (hint du jour apres /valider-1 ; alias /marchés, option mono)\n"
                  "/valider-1\n"
                  "/valider-2  (lot pending + token L-XXX, anti-cannibal)\n"
@@ -190,7 +192,7 @@ def parse_update(update, allowed_chat_id):
         }
     cmd = "/" + canon
     if extra.strip() and canon in (
-        "budget", "combos", "bankroll", "surticket", "data", "status", "roi",
+        "budget", "combos", "systeme", "bankroll", "surticket", "data", "status", "roi",
         "radar", "pack", "match", "marches", "approve", "gel", "vanus", "sport",
     ):
         cmd = cmd + " " + extra.split("\n", 1)[0].strip()

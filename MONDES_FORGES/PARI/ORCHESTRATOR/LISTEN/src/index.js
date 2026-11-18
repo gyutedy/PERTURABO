@@ -12,7 +12,7 @@
  */
 
 const KNOWN = new Set([
-  "start", "capture", "bankroll", "budget", "surticket", "combos",
+  "start", "capture", "bankroll", "budget", "surticket", "combos", "systeme",
   "marches", "marchés",
   "valider-1", "valider-2", "valider1", "valider2", "approve",
   "data", "radar", "pack", "match", "status", "roi", "stop",
@@ -29,6 +29,7 @@ const HELP =
   "/bankroll 50000  (pot global, une fois)\n" +
   "/budget 3000 800  (plafond jour + mise FORCEE ticket sur)\n" +
   "/combos 3  ou  /combos 3:3:2:2\n" +
+  "/systeme 2-3|dutching|corridor|pivot  (avant /approve)\n" +
   "/marches  (hint du jour apres /valider-1 ; alias /marchés, option mono)\n" +
   "/valider-1\n" +
   "/valider-2  (lot pending + token L-XXX, anti-cannibal)\n" +
@@ -132,7 +133,7 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches" || canon === "approve" || canon === "gel" || canon === "vanus" || canon === "sport")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "systeme" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches" || canon === "approve" || canon === "gel" || canon === "vanus" || canon === "sport")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {

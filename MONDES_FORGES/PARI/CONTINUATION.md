@@ -660,6 +660,30 @@ ratings ~1) et/ou corriger la metrique ECE avec accord Warsmith. Le plan gratuit
 porte sur la qualite predictive (brier_gap > 0 et logloss_gap > 0). Aucun seuil abaisse,
 aucun `/gel off`. P0-3 (`/systeme` S1-S4) a faire ensuite.
 
+## ETAT v6.4 — SYSTEMES S1-S4 CABLES SUR TELEGRAM (Cahier V3 P0-3, 2026-11-18)
+
+- [x] **S1 deja present** : `combinator.build_system23()` (3 doubles AB/AC/BC).
+      L'ecart du cahier V2 (affichage non cable) est desormais resorbé.
+- [x] **Nouveau** `F05_PACKAGER/CODEBASE/systemes.py` : S2 dutching egalise
+      (2 matchs independants, `p_break_even` explicite), S3 corridor Over/Under
+      (meme match, 2 lignes, au moins un gagnant), S4 pivot couvert
+      (doubles Pivot-B/Pivot-C + simple Pivot x2, perte plafonnee si le pivot passe).
+      Aucune cote n'est estimee, aucune proba inventee : `ValueError` si absent.
+      Correctif : le pire cas du corridor prend la **plus petite** cote
+      (over 1.83 / under 1.84 a 1500 FC chacun -> perte -255 FC, pas -240).
+- [x] **Commande Telegram** `/systeme 2-3|dutching|corridor|pivot` : affichage
+      complet (mises, pires cas, EV, `p_break_even` marge incluse) **avant**
+      `/approve`. Refus si le moteur du sport actif est gele, si aucun ticket
+      `/valider-2` n'existe ou si une donnee manque. Registre CMDS 24 -> 25 cles.
+      Relais Worker + `parse.py` + `/help` alignes (`systeme` + argument).
+- [x] **Tests** : `tests/test_systemes.py` 22/22 (S1 regression, S2/S3/S4,
+      refus zero-data, pire cas corridor, commande enregistree). Suite basket
+      complete 139/139. Compile OK.
+
+**Handoff** : P0-3 du cahier V3 livre. Tous les systemes faconnent la **variance**,
+jamais la marge du book — ils ne rendent pas un moteur NO-GO jouable. Le gel reste
+intact : aucun `/systeme` ne construit de ticket tant que `tickets_enabled = false`.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

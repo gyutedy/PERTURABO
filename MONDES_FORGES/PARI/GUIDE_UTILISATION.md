@@ -75,6 +75,7 @@ Réponse Telegram : `match | ML | p_modèle | EV`, JSON dans
 | `/budget bankroll 50000` | Pot global FC. Une fois. Persiste `/start` et `/stop`. **Telegram live : ne pas taper `/bankroll`** (Worker stale = commande inconnue). Alias CLI : `/bankroll 50000`. |
 | `/budget 3000 800` | **Obligatoire 2 nombres** : 3000 FC plafond du jour + **800 FC FORCES sur le ticket sur**. Reste (2200) divise. Alias `/budget 3000 / 800`. |
 | `/surticket 800` | Corrige la mise du ticket sur sans retaper le jour. |
+| `/systeme 2-3\|dutching\|corridor\|pivot` | Affiche un ticket systeme (S1-S4) **avant `/approve`** : mises, pires cas, EV, `p_break_even` (marge du book deja incluse). Refuse si le moteur du sport actif est gele ou si une donnee manque. Aucun systeme ne reduit la marge : il façonne seulement la variance. |
 | `/combos 3` ou `/combos 3:3:2:2` | Nb de tickets + jambes (1 a n+10 matchs distincts). Meme match interdit sur un ticket. |
 | `/marches 1X2` | Elit les marches (canon `/marches`, alias `/marchés`). Table couverture = jambes **jouables** (tank-X hors n). Apres `/valider-1` le hint est `/marches` calque sur cette table — pas le stub `O/U2.5,MT2`. `mono` = ticket mono-marche. 0 match → 0 ticket. THIN hors combo. `cote_plate` = flag, jambe MT reste. |
 | `/valider-1` | Valide le JSON → carte → injection stats (E0/SP1/I1/D1/F1/E1/D2) → siège **complet** (AUTO_GATES) → **Top 3 ecrase** (plus de demo) + table couverture |

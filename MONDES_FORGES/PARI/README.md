@@ -42,7 +42,8 @@ Entrée Telegram : `/sport basket` puis `/capture` + le tableau du book — **mo
 uniquement** (`1 (ML)` / `2 (ML)`), horaire **Africa/Kinshasa (UTC+1)**. Les colonnes
 1X2 et Handicap/Total sont déclarées non utilisées. Les cotes de clôture historiques
 viennent gratuitement de `closing_odds_yahoo.py` (MGM/Yahoo, 2 454 / 2 455 matchs),
-sans clé API payante. Guide complet : `docs/CAHIER_BASKET.md`.
+sans clé API payante. `/systeme 2-3|dutching|corridor|pivot` affiche les tickets S1-S4
+avant `/approve` (jamais si le moteur est gelé). Guide complet : `docs/CAHIER_BASKET.md`.
 Traçabilité : `TRACKING/INDEX.md`, `CONTINUATION.md` (ETAT v6.2).
 
 ## LES MODES

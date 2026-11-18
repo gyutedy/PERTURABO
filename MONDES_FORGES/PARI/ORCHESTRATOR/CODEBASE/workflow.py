@@ -17,6 +17,7 @@ commande à chaque étape et les deux previews servies sur GitHub Pages.
   /corriger-1      (rejoue /capture après correction de la capture OCR)
   /marches 1X2     elit les marches du jour (hint post /valider-1). Alias /marchés. Table couverture = jambes jouables.
   /combos 3        nombre de tickets (1 a n+10 jambes ; option 3:3:2:2)
+  /systeme 2-3     affiche le ticket systeme (2-3|dutching|corridor|pivot) avant /approve
   valider-2        tickets + metro Oracle + fees/slippage + pending L-XXX
   /approve L-XXX   fige le lot pending (snapshot T0). Refuse token mismatch.
     /data            table compacte HAUTE puis FAIBLE.  /data N = fiche (S14 scorer + pieges).  /data ledger = lots.  /data diag = F06 CLV/Platt (jamais mise)
@@ -54,6 +55,9 @@ WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
 _ENGINE_DIR = os.path.join(WORLD, "F02_BREACHER", "CODEBASE")
 if _ENGINE_DIR not in sys.path:
     sys.path.insert(0, _ENGINE_DIR)
+_PACKAGER_DIR = os.path.join(WORLD, "F05_PACKAGER", "CODEBASE")
+if _PACKAGER_DIR not in sys.path:
+    sys.path.insert(0, _PACKAGER_DIR)
 STATE_DIR = os.path.join(WORLD, "SHARED", "STATE")
 STATE_PATH = os.path.join(STATE_DIR, "campagne.json")
 NOTIFIER = os.path.join(HERE, "notifier.py")
@@ -1222,6 +1226,56 @@ def cmd_basket(st, arg):
          + "\nRetour foot : /sport foot")
 
 
+def cmd_systeme(st, arg):
+    """`/systeme 2-3|dutching|corridor|pivot` — affichage avant /approve."""
+    try:
+        import moteur_flag
+        import moteur_sport
+        cfgp = moteur_sport.cfg_path()
+        sport = moteur_sport.actif()
+    except Exception:
+        moteur_flag, cfgp, sport = None, None, "foot"
+    if moteur_flag is not None and not moteur_flag.tickets_enabled(cfgp):
+        tell("⛔ MOTEUR GELE — sport " + sport + " : aucun systeme construit. /modele = etat.")
+        return
+    arg = (arg or "").strip().lower().replace("2/3", "2-3")
+    if arg not in ("2-3", "dutching", "corridor", "pivot"):
+        tell("Usage : /systeme 2-3 | dutching | corridor | pivot"); return
+    tj = load_json(P("F05_PACKAGER", "OUT", "tickets.json")) or {}
+    tickets = tj.get("tickets") or []
+    if not tickets:
+        tell("Aucun ticket — `/valider-2` d'abord (moteur non gele)."); return
+    brutes = tickets[0].get("jambes") or []
+    jambes = []
+    for j in brutes:
+        if j.get("cote") is None or j.get("p_modele") is None:
+            continue
+        jambes.append((j.get("match_id") or j.get("match"), j.get("marche"),
+                       j.get("selection"), j["cote"], j["p_modele"]))
+    mise = float(st.get("surticket_fc") or st.get("budget_fc") or 0)
+    if mise <= 0:
+        tell("Aucune mise — `/budget JOUR SURTICKET` d'abord."); return
+    try:
+        if arg == "2-3":
+            import combinator
+            rec = combinator.build_system23(jambes[:3], mise_par_double=mise)
+        else:
+            import systemes
+            if arg == "dutching":
+                rec = systemes.build_dutching2(jambes[:2], mise)
+            elif arg == "pivot":
+                rec = systemes.build_tri_lettre(jambes[0], jambes[1:3], mise)
+            else:
+                tell("corridor : over/under du meme match requis (lignes T-2h/T-0), "
+                     "non disponible depuis tickets.json."); return
+    except ValueError as exc:
+        tell("⛔ Systeme refuse : " + str(exc)); return
+    tell("SYSTEME " + arg.upper() + "\n" + json.dumps(rec, ensure_ascii=False, indent=1)
+         + "\nMise par pari : %.0f FC — p_break_even inclus dans la cote "
+           "(marge du book deja prelevee)." % mise
+         + "\nRien n'est mise automatiquement — verification avant /approve.")
+
+
 CMDS = {
     "start": (cmd_start, "ouvre la campagne"),
     "capture": (cmd_capture, "capture txt/md/png/pdf/docx — foot 1X2/OU/MT ou basket ML (sport actif)"),
@@ -1229,6 +1283,7 @@ CMDS = {
     "budget": (cmd_budget, "plafond jour + mise FORCEE ticket sur"),
     "surticket": (cmd_surticket, "force la mise du ticket sur"),
     "combos": (cmd_combos, "nb tickets (+jambes 1..n+10)"),
+    "systeme": (cmd_systeme, "ticket systeme (2-3|dutching|corridor|pivot)"),
     "marches": (cmd_marches, "elit les marches (alias /marchés)"),
     "marchés": (cmd_marches, "alias accent"),
     "valider-1": (cmd_valider1, "valide preview 1 → siège"),

@@ -82,6 +82,24 @@ Consensus : 2 index alignés = alarme, 1 seul = isole, jamais une probabilité
 produite. Pas de `X` au basket (prolongation). `/vanus` affiche le signal du
 sport actif.
 
+## Systemes S1-S4 (via `/systeme`)
+
+`/systeme 2-3|dutching|corridor|pivot` affiche le ticket avant `/approve`, depuis les
+jambes du ticket produit par `/valider-2` (mise retenue = sur-ticket, sinon budget du jour).
+
+| Systeme | Nature | Source |
+|---|---|---|
+| S1 2/3 | 3 doubles AB/AC/BC | `combinator.build_system23` |
+| S2 dutching | 2 matchs independants, retour identique quelle que soit la jambe gagnante | `systemes.build_dutching2` |
+| S3 corridor | Over L1 + Under L2 sur le **meme** match, au moins un gagnant (hors push) | `systemes.build_corridor` |
+| S4 pivot couvert | Doubles Pivot-B/Pivot-C + simple Pivot x2, perte plafonnee si le pivot passe | `systemes.build_tri_lettre` |
+
+Le corridor exige `p_corridor` calculee par le moteur (jamais estimee) et refuse L1 ≥ L2.
+Le pire cas est calcule sur la **plus petite** cote : over 1.83 / under 1.84 à 1 500 FC
+chacun donne −255 FC. Aucun systeme ne se construit si le sport actif est gele, si une
+cote ou une probabilite manque (`ValueError`), ou si le resultat n'a pas ete montre avant
+`/approve`. Ces systemes façonnent la variance — **jamais la marge** du bookmaker.
+
 ## Ticket système 2/3
 
 `build_system23(jambes, mise_par_double, corr_decote=1.0)` construit les 3 doubles
