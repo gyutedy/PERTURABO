@@ -1887,3 +1887,9 @@
 
 ## [2026-11-17T21:36:02Z] v6.2 : cotes cloture Yahoo gratuites (2454/2455), capture basket Telegram (/sport basket + /capture, ML seule, heure Kinshasa) et correctif fit (ancrage sur derniere date des rows : 30/30 ratings non nuls au lieu de 0.0). 111/111 tests basket verts.
 ## [2026-11-17T21:36:02Z] backtest reel cutoff 2025-01-01 : n_oos 744, brier_modele 0.244277, brier_marche 0.195320, gap +0.048957, ece 0.491989 -> VERDICT NO-GO. BASKET RESTE GELE. Aucun ticket, aucune mise, pas de /gel off. Docs a jour : CONTINUATION (v6.2), CAHIER_BASKET, GUIDE, README, TRACKING/INDEX.
+
+## [2026-11-18T15:52:50Z] F01 — check-out — status: processing
+
+## [2026-11-18T15:52:50Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:3447fc3e18259e9d589c1eeea7b8749a — status:done
+
+## [2026-11-18T15:52:50Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:ae65e6bca913c0be4696dd8eccb6ebb7 — status:done
