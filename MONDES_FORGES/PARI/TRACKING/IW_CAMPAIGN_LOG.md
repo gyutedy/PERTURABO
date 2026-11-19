@@ -1902,3 +1902,9 @@
 
 ## [2026-11-18T21:00:00Z] P0-1 etape 2 : 19 Secrets GitHub crees via API chiffree (valeurs actuelles a faire tourner). .github/scripts/write_env_pari.py ecrit env_pari au runtime dans 5 workflows (daily, listen, odds_t0/t2h, worker_deploy). env_pari retire du suivi git (git rm --cached) et gitignore. test_write_env_pari 7/7.
 ## [2026-11-18T21:00:00Z] Procedure de purge d'historique preparee dans CONTINUATION (v6.5) mais NON executee : PLAN_PARI_CONSOLIDE interdit a l'agent de réecrire l'histoire. Rotation des identifiants + purge = decision Warsmith. Docs a jour : CONTINUATION (v6.5), TRACKING/INDEX, IW_CAMPAIGN_LOG.
+
+## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
+
+## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done
+
+## [2026-11-19T15:56:32Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:dd3669c1f94fe20502aea761b3a5e8d8 — status:done
