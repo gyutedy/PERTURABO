@@ -905,6 +905,20 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       `EV +42,4/+16,4/−25,2 %` ; Burgos–Albacete `p 44,9/28,3/26,8 %`,
       `fair 45,8/29,1/25,1 %`, `EV −11,5/−12,4/−3,5 %`.
 
+## ETAT v7.7 — OU2.5 BRANCHE SUR LE P_MODELE (2026-11-22)
+
+- [x] `winner_pmodel.py` calcule aussi **Over/Under 2.5** depuis **la meme matrice de scores**
+      (`p_ou25`, ligne 2.5, `P(over) + P(under) = 1`) puis devig les cotes Winner
+      `under_2_5`/`over_2_5` -> EV et edge_net. Le HSH reste `diagnostic_only`, jamais utilise.
+      `tests/test_winner_pmodel.py` **16/16** (dont OU absent = trou, EV et somme des probas).
+- [x] **Reponse CSV** : un fichier football-data.co.uk n'est **pas** par marche. Les **18 CSV**
+      (14 ligues x 2425/2526) contiennent tous `FTHG/FTAG`, `B365H/D/A` **et**
+      `B365>2.5 / B365<2.5` (verifie colonne par colonne). Donc partout ou le 1X2 est
+      calculable, l'OU2.5 l'est aussi — aucun CSV supplementaire a telecharger.
+- [x] **Run reel** : Getafe–Atletico OU `P=62,5/37,5 %`, cotes `1.63/2.10` ->
+      **EV under +1,8 %**, over −21,2 %. Burgos–Albacete OU `P=58,2/41,8 %`,
+      cotes `1.62/2.12` -> EV under −5,7 %, over −11,5 %. Aucun ticket, moteurs geles.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

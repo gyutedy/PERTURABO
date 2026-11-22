@@ -84,6 +84,18 @@ def p_1x2(lh, la, rho):
     return {"1": p1, "X": px, "2": p2} if min(p1, px, p2) > 0 else None
 
 
+def p_ou25(lh, la, rho, line=2.5):
+    """P(over/under) depuis LA MEME matrice de scores (aucune nouvelle equation)."""
+    m = model_dc.score_matrix(lh, la, rho=rho)
+    if not m:
+        return None
+    over = sum(q for i, row in enumerate(m) for j, q in enumerate(row) if i + j > line)
+    under = 1.0 - over
+    if min(over, under) <= 0:
+        return None
+    return {"over": over, "under": under}
+
+
 def analyse(match, blob):
     """Un match -> diagnostic p_modele/EV. Jamais de ticket."""
     holes = []
@@ -120,6 +132,25 @@ def analyse(match, blob):
     sel = {"home": "1", "draw": "X", "away": "2"}
     ev = {k: round(p[sel[k]] * float(cotes[k]) - 1.0, 6) for k in need}
     edge = {k: round(p[sel[k]] / fair["p_fair"][k] - 1.0, 6) for k in need}
+    holes = []
+    ou = {"p_modele": None, "p_fair": None, "cote": None, "ev": None,
+          "edge_net": None, "holes": ["ou25_absente"]}
+    ou_cotes = {k: cotes.get(k) for k in ("under_2_5", "over_2_5")}
+    if all(v is not None and float(v) > 1 for v in ou_cotes.values()):
+        p_ou = p_ou25(lam["lh"], lam["la"], rho)
+        f_ou = devig.multiplicative(ou_cotes)
+        if p_ou and f_ou["ok"]:
+            mapping = {"under_2_5": "under", "over_2_5": "over"}
+            ou = {
+                "p_modele": {k: round(p_ou[mapping[k]], 6) for k in ou_cotes},
+                "p_fair": {k: round(f_ou["p_fair"][k], 6) for k in ou_cotes},
+                "cote": {k: float(ou_cotes[k]) for k in ou_cotes},
+                "ev": {k: round(p_ou[mapping[k]] * float(ou_cotes[k]) - 1.0, 6)
+                       for k in ou_cotes},
+                "edge_net": {k: round(p_ou[mapping[k]] / f_ou["p_fair"][k] - 1.0, 6)
+                             for k in ou_cotes},
+                "holes": [],
+            }
     return {
         "match_key": match.get("match_key"),
         "home": match.get("home"), "away": match.get("away"),
@@ -129,7 +160,8 @@ def analyse(match, blob):
         "cote": {k: float(cotes[k]) for k in need},
         "ev": ev,
         "edge_net": edge,
-        "holes": [],
+        "ou25": ou,
+        "holes": holes,
         "ticket": False,
     }
 

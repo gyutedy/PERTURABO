@@ -1936,6 +1936,8 @@
 ## [2026-11-22T17:45:00Z] p_modele Winner apres refit : 2/8 matchs calculables. Getafe–Atletico EV +42.4%/+16.4%/−25.2% ; Burgos–Albacete EV tous négatifs -> aucun bet. AC Milan–Frosinone = ligue_differente (I1 vs I2), 5 autres = equipe_absente. Zéro ticket, moteurs gelés.
 
 ## [2026-11-22T18:00:00Z] Ajout Championship (E1) et Bundesliga 2 (D2) — CSV 2425+2526. Refit fit_dc --as-of 2026-01-01 : 14 ligues, 6904 lignes. Ligue des champions indisponible sur football-data.co.uk (CL.csv = HTML) -> pas de CSV inventé. Les 2 matchs analysés gardent les mêmes p/EV (fit indépendant par ligue).
+
+## [2026-11-22T18:20:00Z] Branchment OU2.5 sur winner_pmodel (meme matrice de scores, aucun changement d'equation). test_winner_pmodel 16/16. Run reel : Getafe–Atletico under 62.5% a 1.63 -> EV +1.8% ; Burgos–Albacete under 58.2% a 1.62 -> EV -5.7%. HSH toujours diagnostic_only. Vérification des 18 CSV : 1X2 + OU2.5 + scores présents partout, pas de CSV par marché. Zéro ticket.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done

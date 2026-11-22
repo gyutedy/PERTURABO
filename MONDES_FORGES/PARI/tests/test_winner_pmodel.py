@@ -32,7 +32,8 @@ TEAMS = {
 BLOB = {"leagues": {"SP1": {"params": "fitted", "mu": 0.2, "home_adv": 0.15,
                             "rho": -0.13, "teams": TEAMS}}}
 MATCH = {"match_key": "getafe_ath", "home": "Getafe CF", "away": "Atletico Madrid",
-         "odds": {"home": 6.50, "draw": 3.90, "away": 1.55}}
+         "odds": {"home": 6.50, "draw": 3.90, "away": 1.55,
+                  "under_2_5": 1.63, "over_2_5": 2.10}}
 
 
 def run_checks():
@@ -47,6 +48,17 @@ def run_checks():
     check("EV = p*cote - 1", abs(r["ev"]["home"] -
           (r["p_modele"]["home"] * 6.50 - 1)) < 1e-5, str(r["ev"]))
     check("edge_net calcule", r["edge_net"]["home"] is not None)
+    ou = r["ou25"]
+    check("OU25 p_modele", ou["p_modele"] is not None and
+          abs(ou["p_modele"]["under_2_5"] + ou["p_modele"]["over_2_5"] - 1) < 1e-6, str(ou))
+    check("OU25 EV = p*cote - 1", abs(ou["ev"]["over_2_5"] -
+          (ou["p_modele"]["over_2_5"] * 2.10 - 1)) < 1e-5, str(ou["ev"]))
+    check("OU25 meme matrice", abs(ou["p_modele"]["over_2_5"] -
+          (1 - ou["p_modele"]["under_2_5"])) < 1e-9)
+    no_ou = wp.analyse({**MATCH, "odds": {k: v for k, v in MATCH["odds"].items()
+                       if k not in ("under_2_5", "over_2_5")}}, BLOB)
+    check("OU25 absent = trou", no_ou["ou25"]["p_modele"] is None
+          and no_ou["ou25"]["holes"] == ["ou25_absente"])
     check("aucun ticket", r["ticket"] is False)
     missing = wp.analyse({**MATCH, "away": "Sparta Praga"}, BLOB)
     check("equipe absente = trou + pas de p",

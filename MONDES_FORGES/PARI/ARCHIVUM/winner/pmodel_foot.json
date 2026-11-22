@@ -1,6 +1,6 @@
 {
   "contract": "pari.winner_pmodel.v1",
-  "generated_at": "2026-11-22T18:35:02.133022+00:00",
+  "generated_at": "2026-11-22T21:27:13.685803+00:00",
   "sport": "foot",
   "source": "F02 fit_dc (CSV historiques) + F03 devig + cotes Winner",
   "analyses": [
@@ -88,6 +88,29 @@
         "draw": -0.029001,
         "away": 0.068943
       },
+      "ou25": {
+        "p_modele": {
+          "under_2_5": 0.58232,
+          "over_2_5": 0.41768
+        },
+        "p_fair": {
+          "under_2_5": 0.566845,
+          "over_2_5": 0.433155
+        },
+        "cote": {
+          "under_2_5": 1.62,
+          "over_2_5": 2.12
+        },
+        "ev": {
+          "under_2_5": -0.056641,
+          "over_2_5": -0.114519
+        },
+        "edge_net": {
+          "under_2_5": 0.027301,
+          "over_2_5": -0.035727
+        },
+        "holes": []
+      },
       "holes": [],
       "ticket": false
     },
@@ -120,6 +143,29 @@
         "home": 0.503021,
         "draw": 0.228243,
         "away": -0.210663
+      },
+      "ou25": {
+        "p_modele": {
+          "under_2_5": 0.624812,
+          "over_2_5": 0.375188
+        },
+        "p_fair": {
+          "under_2_5": 0.563003,
+          "over_2_5": 0.436997
+        },
+        "cote": {
+          "under_2_5": 1.63,
+          "over_2_5": 2.1
+        },
+        "ev": {
+          "under_2_5": 0.018444,
+          "over_2_5": -0.212105
+        },
+        "edge_net": {
+          "under_2_5": 0.109785,
+          "over_2_5": -0.141441
+        },
+        "holes": []
       },
       "holes": [],
       "ticket": false
