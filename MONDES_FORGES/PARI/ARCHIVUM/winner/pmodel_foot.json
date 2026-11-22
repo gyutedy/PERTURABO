@@ -1,6 +1,6 @@
 {
   "contract": "pari.winner_pmodel.v1",
-  "generated_at": "2026-11-22T18:27:13.421838+00:00",
+  "generated_at": "2026-11-22T18:35:02.133022+00:00",
   "sport": "foot",
   "source": "F02 fit_dc (CSV historiques) + F03 devig + cotes Winner",
   "analyses": [

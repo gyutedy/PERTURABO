@@ -891,6 +891,20 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       cache pour `test_baseline`, `sport_actif=basket` en local pour les 2 autres) et sont
       identiques sur une base propre.
 
+## ETAT v7.6 — COMPLETION DES LIGUES DE COUPE (2026-11-22)
+
+- [x] Premier League (`E0`), Ligue 1 (`F1`), Bundesliga (`D1`) etaient deja en cache ;
+      **Championship (`E1`)** et **Bundesliga 2 (`D2`)** ajoutes (CSV 2425+2526, gitignore).
+      `market_csv.COVERED` et `capteurs.LIGUE_CODE` les couvraient deja.
+- [x] **Ligue des champions : indisponible** — `.../2526/CL.csv` renvoie une page HTML, pas un
+      CSV ; football-data.co.uk ne couvre pas les coupes d'Europe. Aucun CSV invente ; les
+      matchs de C1 resteront des trous tant qu'une source whitelistee n'est pas ajoutee.
+- [x] Refit `fit_dc --as-of 2026-01-01` : 14 ligues, **6904 lignes**. Les 2 matchs deja analysés
+      gardent exactement les memes chiffres (fit independant par ligue) :
+      Getafe–Atletico `p 21,9/29,8/48,3 %`, `fair 14,6/24,3/61,1 %`,
+      `EV +42,4/+16,4/−25,2 %` ; Burgos–Albacete `p 44,9/28,3/26,8 %`,
+      `fair 45,8/29,1/25,1 %`, `EV −11,5/−12,4/−3,5 %`.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
