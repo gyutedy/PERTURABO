@@ -825,6 +825,22 @@ que les CSV foot reels sont presents dans le cache (comportement attendu hors CI
 image reelle ; eventuellement second point de prix T-2h/T-0 via `vanus_fetch --kind slate`.
 Tickets et gels inchanges.
 
+## ETAT v7.2 — TEST REEL FOOT (2026-11-22)
+
+- [x] **Capture foot reelle** : `t1.jpeg` + `t2.jpeg` (8 matchs : La Liga, La Liga 2,
+      Serie A, HNL, Czech Liga) -> `winner_vision.py --sport foot` : **8 matchs, 0 trou**,
+      double transcription concordante. 1X2 et U/O 2.5 conformes aux images sur les 8 matchs
+      (ex. AC Milan `1.63/4.30/4.70`, U/O `2.60/1.48` ; Getafe–Atletico `6.50/3.90/1.55`,
+      U/O `1.63/2.10`). HSH `3.10/3.00/2.02` identique sur les 8 matchs -> confirme le
+      tarif template ; capture mais **diagnostic_only**, jamais un ticket.
+- [x] `winner_ingest.py foot` -> `latest_foot.json`, `/winner foot` affiche les 8 matchs
+      avec 1X2, U/O, HSH marque diagnostic, rappel devig F03, **jamais un p**.
+- [x] Deux sports maintenant couverts en reel : basket (`cap2.PNG`, 3 matchs) et foot
+      (`t1/t2.jpeg`, 8 matchs). Aucun ticket, aucun `/gel off`, aucun seuil abaisse.
+
+**Reste** : cablage « photo Telegram -> LLM -> slate » automatique (aujourd'hui image locale
+en `--images`, Telegram affiche avec `/winner`) ; second point de prix T-2h/T-0 si utile.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

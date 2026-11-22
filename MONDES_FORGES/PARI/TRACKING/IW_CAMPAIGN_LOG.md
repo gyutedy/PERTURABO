@@ -1926,6 +1926,8 @@
 ## [2026-11-22T16:10:00Z] Run reel LLM vision (cap2.PNG, nvidia/nemotron-3.5-super-vl-120b-a12b) : 3 matchs basket lus, 0 trou, double transcription concordante. Slate et latest ecrits dans ARCHIVUM/winner ; /winner basket affiche cotes + rappel devig F03, jamais un p. Image archivee avant lecture (ARCHIVUM/winner/images, gitignore). Cle LLM uniquement dans env_pari, aucun secret dans un commit.
 
 ## [2026-11-22T16:20:00Z] Correctifs prompt LLM : tiret obligatoire entre equipes + colonne 2 Way (2 cotes) et non FT 1X2 (3 cotes, confusion observee sur cap4.PNG). Test vision 18/18, ingest 9/9, telegram 9/9, fetch 46/46. Aucun ticket, gel intact.
+
+## [2026-11-22T16:40:00Z] Test reel foot : t1.jpeg + t2.jpeg -> 8 matchs lus, 0 trou, double transcription concordante. 1X2 et U/O conformes aux images, HSH 3.10/3.00/2.02 identique sur les 8 matchs (template, diagnostic_only). winner_ingest foot + /winner foot OK, jamais un p. Les deux sports sont desormais couverts en reel. Gel et tickets inchanges.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done
