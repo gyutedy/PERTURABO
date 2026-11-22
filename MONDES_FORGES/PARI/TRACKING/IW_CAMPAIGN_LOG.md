@@ -1922,6 +1922,10 @@
 ## [2026-11-22T13:00:00Z] PARI voie primaire : llm_vision.py (LLM generique OpenAI-compatible, cle/base/model uniquement dans env_pari, deux lectures independantes) + winner_vision.py (gardes V1-V4, N matchs >10, en-tete unique en haut). test_winner_vision 18/18.
 
 ## [2026-11-22T13:30:00Z] PARI transport + consommation : vanus_fetch --kind slate (46/46) ecrit ARCHIVUM/winner/slate_{sport}.json ; winner_ingest 9/9 (contrat faux/cross-sport/absent = vide + trou). /winner ajoute en fin de CMDS (26 -> 27), relais parse.py + index.js + schema + /help ; test_winner_telegram 9/9, test_workflow_basket 18/18. Gel et verdicts inchanges. Run reel LLM en attente de la cle fournie par l'operateur.
+
+## [2026-11-22T16:10:00Z] Run reel LLM vision (cap2.PNG, nvidia/nemotron-3.5-super-vl-120b-a12b) : 3 matchs basket lus, 0 trou, double transcription concordante. Slate et latest ecrits dans ARCHIVUM/winner ; /winner basket affiche cotes + rappel devig F03, jamais un p. Image archivee avant lecture (ARCHIVUM/winner/images, gitignore). Cle LLM uniquement dans env_pari, aucun secret dans un commit.
+
+## [2026-11-22T16:20:00Z] Correctifs prompt LLM : tiret obligatoire entre equipes + colonne 2 Way (2 cotes) et non FT 1X2 (3 cotes, confusion observee sur cap4.PNG). Test vision 18/18, ingest 9/9, telegram 9/9, fetch 46/46. Aucun ticket, gel intact.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done

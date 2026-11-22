@@ -234,7 +234,17 @@ def main():
     extra = []
     if args.images:
         import llm_vision
-        a, b, extra = llm_vision.read_capture_twice(args.images, args.sport)
+        from shutil import copy2
+        from datetime import datetime, timezone
+        archive = os.path.join("ARCHIVUM", "winner", "images")
+        os.makedirs(archive, exist_ok=True)
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        saved = []
+        for src in args.images:
+            dst = os.path.join(archive, stamp + "_" + os.path.basename(src))
+            copy2(src, dst)
+            saved.append(dst)
+        a, b, extra = llm_vision.read_capture_twice(saved, args.sport)
         text, text_b = a, b
     else:
         if not args.inp:

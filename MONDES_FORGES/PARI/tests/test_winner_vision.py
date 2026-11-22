@@ -98,8 +98,13 @@ HSH 3.10/3.00/2.02"""
 
     for k in (lv.KEY_VAR, lv.URL_VAR, lv.MODEL_VAR):
         os.environ.pop(k, None)
-    cfg = lv.config()
-    check("LLM config absente = 3 trous", cfg[3] == ["llm_key_absent", "llm_url_absent", "llm_model_absent"])
+    old_world = lv.WORLD
+    lv.WORLD = tempfile.mkdtemp(prefix="pari-llm-vide-")
+    try:
+        cfg = lv.config()
+        check("LLM config absente = 3 trous", cfg[3] == ["llm_key_absent", "llm_url_absent", "llm_model_absent"])
+    finally:
+        lv.WORLD = old_world
     tmp = tempfile.mkdtemp(prefix="pari-llm-")
     with open(os.path.join(tmp, "env_pari"), "w", encoding="utf-8") as f:
         f.write("PARI_WINNER_LLM_KEY=test-key\nPARI_WINNER_LLM_BASE_URL=https://example.invalid/v1\n"

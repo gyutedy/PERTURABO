@@ -68,7 +68,9 @@ def _system_prompt(sport, passage):
                "ML 2.08/1.73\n"
                "Total 226.5\n"
                "Under 1.80 / Over 1.87")
-        cols = "ML (2 cotes), Total (ligne), Under/Over (2 cotes)"
+        cols = ("ML = colonne '2 Way' avec EXACTEMENT 2 cotes "
+                "(ne PAS prendre les 3 cotes du FT 1X2 1/X/2), "
+                "Total (ligne), Under/Over (2 cotes)")
     else:
         fmt = ("Erzurumspor FK - Goztepe Izmir\n"
                "Today 11:30 | #401\n"

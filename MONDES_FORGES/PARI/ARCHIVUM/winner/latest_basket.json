@@ -1,0 +1,53 @@
+{
+  "contract": "vanus.slate.v1",
+  "sport": "basket",
+  "generated_at": "2026-11-22T16:17:01.673417+00:00",
+  "matches": {
+    "newyorkknicks_torontoraptors": {
+      "home": "Toronto Raptors",
+      "away": "New York Knicks",
+      "kickoff": "01:30",
+      "source_event_id": "20071",
+      "odds": {
+        "ml_1": 2.42,
+        "ml_2": 1.55,
+        "total_line": 214.5,
+        "total_under": 1.84,
+        "total_over": 1.83
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "detroitpistons_sanantoniospurs": {
+      "home": "San Antonio Spurs",
+      "away": "Detroit Pistons",
+      "kickoff": "02:00",
+      "source_event_id": "20089",
+      "odds": {
+        "ml_1": 1.22,
+        "ml_2": 4.2,
+        "total_line": 221.5,
+        "total_under": 1.86,
+        "total_over": 1.81
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "minnesotatimberw_portlandtrailblazers": {
+      "home": "Minnesota Timberw...",
+      "away": "Portland Trail Blazers",
+      "kickoff": "02:00",
+      "source_event_id": "20105",
+      "odds": {
+        "ml_1": 1.68,
+        "ml_2": 2.16,
+        "total_line": 225.5,
+        "total_under": 1.81,
+        "total_over": 1.86
+      },
+      "diagnostic_only": [],
+      "holes": []
+    }
+  },
+  "holes": []
+}

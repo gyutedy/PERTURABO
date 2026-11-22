@@ -800,6 +800,31 @@ pret, il suffit de poser les 3 variables dans `env_pari` puis
 Aucun `/gel off`, aucun ticket, aucun seuil abaisse. `test_baseline` echoue en local parce
 que les CSV foot reels sont presents dans le cache (comportement attendu hors CI vierge).
 
+## ETAT v7.1 — RUN REEL LLM VISION (2026-11-22)
+
+- [x] **Cle et fournisseur** : `env_pari` contient `PARI_WINNER_LLM_KEY`,
+      `PARI_WINNER_LLM_BASE_URL=https://integrate.api.nvidia.com/v1` et
+      `PARI_WINNER_LLM_MODEL=nvidia/nemotron-3.5-super-vl-120b-a12b` (les autres modeles
+      testes timeout ; gemma-3-12b-it renvoie une 404 « function not found » sur ce compte).
+      Fichier gitignore : aucune valeur dans un commit, aucun log, aucun GitHub Secret.
+- [x] **Run reel `cap2.PNG`** : `winner_vision.py --images ... --sport basket` ->
+      `ARCHIVUM/winner/slate_basket.json` : **3 matchs, 0 trou**, double transcription
+      concordante. Toronto–NY `2.42/1.55`, total `214.5`, `1.84/1.83` ; San Antonio–Detroit
+      `1.22/4.20`, total `221.5`, `1.86/1.81` ; Minnesota–Portland `1.68/2.16`, total
+      `225.5`, `1.81/1.86`. `winner_ingest.py basket` -> `latest_basket.json`.
+      `/winner basket` affiche les 3 matchs + rappel devig F03, jamais un p.
+- [x] **Trace** : l'image est desormais copiee dans `ARCHIVUM/winner/images/` AVANT lecture
+      LLM (horodatage). Ce dossier est gitignore ; les slates sontversionnes comme observations.
+- [x] **Corrections suite au run** : prompt impose le tiret entre equipes (sans lui le parseur
+      ne separait pas les equipes) et impose la colonne **2 Way (2 cotes)**, pas le FT 1X2
+      (3 cotes) que le LLM lisait a tort sur `cap4.PNG`. Tests : vision 18/18, ingest 9/9,
+      telegram 9/9, fetch 46/46.
+
+**Reste** : capture **foot** (les 4 PNG ne contiennent que du basket) pour exercer
+`/winner foot` et le HSH `diagnostic_only` en reel ; brancher le relais Telegram avec une
+image reelle ; eventuellement second point de prix T-2h/T-0 via `vanus_fetch --kind slate`.
+Tickets et gels inchanges.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
