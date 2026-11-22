@@ -16,7 +16,7 @@ const KNOWN = new Set([
   "marches", "marchés",
   "valider-1", "valider-2", "valider1", "valider2", "approve",
   "data", "radar", "pack", "match", "status", "roi", "stop",
-  "modele", "gel", "vanus", "sport", "basket",
+  "modele", "gel", "vanus", "sport", "basket", "winner",
 ]);
 const LOCAL = new Set(["help", "aide"]);
 const CANON = { valider1: "valider-1", valider2: "valider-2", "marchés": "marches" };
@@ -37,6 +37,7 @@ const HELP =
   "/data  /data N  /data ledger  /data diag\n" +
   "/radar  /pack  /match ID\n" +
   "/vanus  /vanus ID  /modele  /gel on|off\n" +
+  "/winner  /winner foot|basket  (cotes capture LLM, lecture seule)\n" +
   "/sport  /sport foot|basket  /basket  (commutation, foot maitre)\n" +
   "/status  /status ledger  /status doctor\n" +
   "/roi  /roi settle L-XXX\n" +
@@ -133,11 +134,12 @@ export function parseUpdate(update, allowedChatId) {
     };
   }
   let cmd = "/" + canon;
-  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "systeme" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches" || canon === "approve" || canon === "gel" || canon === "vanus" || canon === "sport")) {
+  if (String(extra).trim() && (canon === "budget" || canon === "combos" || canon === "systeme" || canon === "bankroll" || canon === "surticket" || canon === "data" || canon === "status" || canon === "roi" || canon === "radar" || canon === "pack" || canon === "match" || canon === "marches" || canon === "approve" || canon === "gel" || canon === "vanus" || canon === "sport" || canon === "winner")) {
     cmd = cmd + " " + String(extra).split("\n")[0].trim();
   }
   return {
     ok: true, action: "dispatch", cmd, capture_text: null,
+    capture_file_id: canon === "winner" ? photoFileId(msg) : null,
     chat_id: chatId, update_id: update.update_id, message_id: msg.message_id,
   };
 }
