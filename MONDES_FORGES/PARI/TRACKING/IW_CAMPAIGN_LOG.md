@@ -1910,3 +1910,20 @@
 ## [2026-11-19T10:00:00Z] Correction basket : vanus_gate.veto_codes utilisait le mapping a l'envers (away au lieu de 2). VANUS_TO_PARI_BASKET inverse. packager.build_pack(sport=) transmet le sport au gate. test_vanus_packager 25/25. Aucun ticket cree.
 
 ## [2026-11-19T10:30:00Z] Cahier V3 critere 4-(2) + dette B3 : /systeme affiche la marge effective (top3.json, trou si absente) ; test_systemes 24/24. vanus_calibrate.save_verdict persiste verdict_foot.json (pari.verdict_foot.v1, resume sans donnees brutes) a chaque run CLI ; /modele l'affiche en repli ; test_vanus_calibrate 47/47. Fichier initial = reconstruction documentee du run VX n=950 NO-GO. Reseau ferme ici (5 holes http sur vanus_fetch) : aucun run live. PAT + purge historique = Warsmith.
+## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
+
+## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done
+
+## [2026-11-19T15:56:32Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:dd3669c1f94fe20502aea761b3a5e8d8 — status:done
+
+## [2026-11-20T15:40:00Z] F01 — check-out — status: processing
+
+## [2026-11-20T15:40:00Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:02a43cb2ebe18f5383a078f30864c7ba — status:done
+
+## [2026-11-20T15:40:00Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:69418deaaebd3b2f87577ae0ec169d8e — status:done
+
+## [2026-11-21T14:51:10Z] F01 — check-out — status: processing
+
+## [2026-11-21T14:51:10Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:19da85cd70e3822607d5da056648f6d1 — status:done
+
+## [2026-11-21T14:51:10Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:826f404de2b4ca40e0643b1ecf6ca4b7 — status:done
