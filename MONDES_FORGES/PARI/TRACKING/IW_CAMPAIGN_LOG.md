@@ -1910,6 +1910,10 @@
 ## [2026-11-19T10:00:00Z] Correction basket : vanus_gate.veto_codes utilisait le mapping a l'envers (away au lieu de 2). VANUS_TO_PARI_BASKET inverse. packager.build_pack(sport=) transmet le sport au gate. test_vanus_packager 25/25. Aucun ticket cree.
 
 ## [2026-11-19T10:30:00Z] Cahier V3 critere 4-(2) + dette B3 : /systeme affiche la marge effective (top3.json, trou si absente) ; test_systemes 24/24. vanus_calibrate.save_verdict persiste verdict_foot.json (pari.verdict_foot.v1, resume sans donnees brutes) a chaque run CLI ; /modele l'affiche en repli ; test_vanus_calibrate 47/47. Fichier initial = reconstruction documentee du run VX n=950 NO-GO. Reseau ferme ici (5 holes http sur vanus_fetch) : aucun run live. PAT + purge historique = Warsmith.
+
+## [2026-11-22T07:00:00Z] Runs reels foot : 10 CSV Big 5 (2425+2526, football-data.co.uk) poses dans ARCHIVUM/cache/f00 (gitignore). vanus_calibrate --seasons 2425,2526 --cutoff 2026-01-01 --skip-fetch : n=950, verdict NO-GO (rps_gap +0.009378, ece 0.008296, logloss_gap +0.029895, holes []). verdict_foot.json regenere (source vanus_calibrate, plus de reconstruction). Gel conserve.
+
+## [2026-11-22T07:05:00Z] backtest_scores_foot.py run reel (cutoff 2026-01-01) : n_oos=950, n_marche=950, rps_gap +0.011518, ece 0.027339, logloss_gap +0.036687, CLV -0.026119 sur n_clv=339, verdict NO-GO via apply_gates. calibration_scores_foot.json gitignore. Aucun seuil abaisse, aucun ticket, gel conserve.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done

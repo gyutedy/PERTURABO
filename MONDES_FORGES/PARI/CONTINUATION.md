@@ -747,14 +747,20 @@ un seul producteur de nombre (`apply_gates`), stdlib seulement.
       `ARCHIVUM/learnings/verdict_foot.json` (`contract pari.verdict_foot.v1`) a chaque run
       CLI (`--verdict-out`), sans donnees brutes. `/modele` l'affiche en repli si
       `calibration_moteur.json` absent. Fichier initial = reconstruction documentee du run
-      VX (n=950 NO-GO), pas une nouvelle mesure. `test_vanus_calibrate` 47/47.
+      VX (n=950 NO-GO), desormais remplace par le run reel du 2026-11-22 (n=950 NO-GO, holes []). `test_vanus_calibrate` 47/47.
+
+- [x] **Runs reels 2026-11-22** : 10 CSV Big 5 (2425+2526) telecharges dans
+      `ARCHIVUM/cache/f00/` (gitignore). `vanus_calibrate.py --seasons 2425,2526
+      --cutoff 2026-01-01 --skip-fetch` : n=950, verdict **NO-GO** (rps_gap +0.009378,
+      ece 0.008296, logloss_gap +0.029895, holes []). `backtest_scores_foot.py --cutoff
+      2026-01-01` : n_oos=950, rps_gap +0.011518, ece 0.027339, logloss_gap +0.036687,
+      CLV -0.026119 sur n_clv=339 → **NO-GO**. Aucun seuil abaisse, gel conserve.
 
 **Reste hors agent** : (1) **revoquer le PAT GitHub** (cahier P0-1) et purger l'historique
-(`git filter-repo`) apres accord Warsmith ; (2) recoller les CSV Big 5 (`vanus_fetch.py`,
-reseau ferme ici : 5 holes `http`) puis relancer `vanus_calibrate.py --seasons 2425,2526
---cutoff 2026-01-01` pour regenerer un verdict **mesure** ; (3) deployer VANUS sur
-PythonAnywhere et fournir l'URL du export basket pour que `/vanus` montre un signal reel.
-Aucun `/gel off`, aucun `/valider-2` basket, aucun seuil abaisse.
+(`git filter-repo`) apres accord Warsmith ; (2) deployer VANUS sur PythonAnywhere et
+fournir l'URL du export basket pour que `/vanus` montre un signal reel. Les CSV et runs
+reels foot sont desormais faits (ci-dessus). Aucun `/gel off`, aucun `/valider-2` basket,
+aucun seuil abaisse.
 
 ## PROCHAINES ETAPES (a faire plus tard)
 
