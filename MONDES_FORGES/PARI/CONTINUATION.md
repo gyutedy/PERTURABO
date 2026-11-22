@@ -841,6 +841,38 @@ Tickets et gels inchanges.
 **Reste** : cablage « photo Telegram -> LLM -> slate » automatique (aujourd'hui image locale
 en `--images`, Telegram affiche avec `/winner`) ; second point de prix T-2h/T-0 si utile.
 
+## ETAT v7.3 — VERIFICATION MOTEUR SUR COTES WINNER REELLES (2026-11-22)
+
+Avant tout cablage Telegram, la chaine de math a ete exercee sur les slates reels :
+`tests/test_winner_moteur.py` **10/10**. `devig.multiplicative` respecte l'invariant
+`S>1 => fair_odds > cote` sur **tous** les marchs reels (foot 1X2 + OU2.5, basket ML +
+Total) ; marges Winner mesurees : **1X2 foot 8,99 %**, **OU2.5 foot 8,61 %**,
+**ML basket 5,81 %**, **Total basket 9,01 %**. Le HSH (`3.10/3.00/2.02`) est identique
+sur les 8 matchs, sa marge est superieure a celle du 1X2, et il reste `diagnostic_only`.
+Aucune probabilite produite, aucun ticket, moteurs toujours geles (`tickets_enabled=false`).
+
+**Suite** : cablage « photo Telegram -> LLM -> slate » (input uniquement Telegram),
+puis verification e2e avant toute decision. Rien n'est ouvert automatiquement.
+
+## ETAT v7.4 — P_MODELE SUR LES COTES WINNER (2026-11-22)
+
+`F03_FORGEWARD/CODEBASE/winner_pmodel.py` : le `p_modele` n'est **pas** lu dans les cotes.
+Il est calcule par le moteur Dixon-Coles deja entraine (`dc_params.json`, CSV 2425+2526,
+cutoff 2026-01-01) : normalisation des noms Winner (`Getafe CF` -> `Getafe`,
+`Atletico Madrid` -> `Ath Madrid`), `lambdas_for`, matrice de scores -> `P(1/X/2)`, puis
+comparaison aux cotes Winner deviguees : `EV = p_modele * cote - 1`, `edge_net = p/p_fair - 1`.
+`tests/test_winner_pmodel.py` **12/12**.
+
+Run reel sur `latest_foot.json` : **8 analyses, 1 seul `p_modele` disponible** — Getafe–Atletico
+(`SP1`) : `P(1)=21,9 %`, `P(X)=29,8 %`, `P(2)=48,3 %` ; cote `6.50/3.90/1.55` ->
+**EV `+42,4 % / +16,4 % / −25,2 %** (edge net positif sur Getafe et le nul). Les 7 autres
+matchs sont des **trous `equipe_absente`** : Frosinone, Sparta Praga, HNK, Osasuna, Eibar,
+Celta Fortuna, Burgos ne sont pas dans les CSV telecharges (Big 5 seulement) — Zero Data,
+Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais utilise.
+
+**Pourquoi 1 seul** : nos CSV couvrent E0/SP1/I1/D1/F1 ; il faut ajouter lesligues manquantes
+(La Liga 2, HNL, Czech Liga) pour couvrir les 8 matchs. Ce n'est pas un bug de calcul.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

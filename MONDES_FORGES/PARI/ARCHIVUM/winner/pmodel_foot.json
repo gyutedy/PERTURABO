@@ -1,0 +1,107 @@
+{
+  "contract": "pari.winner_pmodel.v1",
+  "generated_at": "2026-11-22T18:09:30.219522+00:00",
+  "sport": "foot",
+  "source": "F02 fit_dc (CSV historiques) + F03 devig + cotes Winner",
+  "analyses": [
+    {
+      "match_key": "acmilan_frosinonecalcio",
+      "holes": [
+        "equipe_absente:Frosinone Calcio"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "fcslovanliberec_spartapraga",
+      "holes": [
+        "equipe_absente:Sparta Praga"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "hnkgorica_hnkrijeka",
+      "holes": [
+        "equipe_absente:HNK Rijeka"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "caosasuna_malagacf",
+      "holes": [
+        "equipe_absente:CA Osasuna"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "gironafc_sdeibar",
+      "holes": [
+        "equipe_absente:SD Eibar"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "rcceltafortuna_realvalladolid",
+      "holes": [
+        "equipe_absente:RC Celta Fortuna"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "albacetebalompie_burgoscf",
+      "holes": [
+        "equipe_absente:Burgos CF"
+      ],
+      "p_modele": null,
+      "ev": null,
+      "ticket": false
+    },
+    {
+      "match_key": "atleticomadrid_getafecf",
+      "home": "Getafe CF",
+      "away": "Atletico Madrid",
+      "league": "SP1",
+      "p_modele": {
+        "home": 0.219092,
+        "draw": 0.298398,
+        "away": 0.48251
+      },
+      "p_fair": {
+        "home": 0.145768,
+        "draw": 0.242947,
+        "away": 0.611285
+      },
+      "cote": {
+        "home": 6.5,
+        "draw": 3.9,
+        "away": 1.55
+      },
+      "ev": {
+        "home": 0.424101,
+        "draw": 0.16375,
+        "away": -0.252109
+      },
+      "edge_net": {
+        "home": 0.503021,
+        "draw": 0.228243,
+        "away": -0.210663
+      },
+      "holes": [],
+      "ticket": false
+    }
+  ],
+  "n_analyse": 8,
+  "n_avec_p": 1,
+  "tickets_enabled": false
+}

@@ -1928,6 +1928,8 @@
 ## [2026-11-22T16:20:00Z] Correctifs prompt LLM : tiret obligatoire entre equipes + colonne 2 Way (2 cotes) et non FT 1X2 (3 cotes, confusion observee sur cap4.PNG). Test vision 18/18, ingest 9/9, telegram 9/9, fetch 46/46. Aucun ticket, gel intact.
 
 ## [2026-11-22T16:40:00Z] Test reel foot : t1.jpeg + t2.jpeg -> 8 matchs lus, 0 trou, double transcription concordante. 1X2 et U/O conformes aux images, HSH 3.10/3.00/2.02 identique sur les 8 matchs (template, diagnostic_only). winner_ingest foot + /winner foot OK, jamais un p. Les deux sports sont desormais couverts en reel. Gel et tickets inchanges.
+
+## [2026-11-22T17:00:00Z] Verification moteur sur cotes Winner reelles : test_winner_moteur 10/10. Devig invariant respecte sur foot 1X2/OU2.5 et basket ML/Total ; marges mesurees 8.99% / 8.61% / 5.81% / 9.01%. HSH template confirme (marge superieure, diagnostic_only). Aucun p, aucun ticket, moteurs geles. Avant cablage Telegram.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done
