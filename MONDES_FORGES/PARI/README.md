@@ -48,7 +48,7 @@ avant `/approve` (jamais si le moteur est gelé), avec marge effective. Le signa
 (URL aussi dans `PARI_VANUS_SIGNALS_URL`) ; jamais une probabilitǸ. CǻtǸ foot,
 `backtest_scores_foot.py` mesure le 1X2 walk-forward et `verdict_foot.json` persiste le
 rǸsumǸ du verdict. Guide complet : `docs/CAHIER_BASKET.md`.
-Traçabilité : `TRACKING/INDEX.md`, `CONTINUATION.md` (ETAT v6.6).
+Traçabilité : `TRACKING/INDEX.md`, `CONTINUATION.md` (ETAT v7.0). Capteur Winner (v7.0) : `/winner foot|basket` lit les cotes de la capture LLM, sur les deux sports et Telegram ; le lecteur LLM generique prend sa cle dans `env_pari` (`PARI_WINNER_LLM_KEY`, `_BASE_URL`, `_MODEL`), lit tous les matchs visibles et ne produit jamais de probabilité..
 
 ## LES MODES
 

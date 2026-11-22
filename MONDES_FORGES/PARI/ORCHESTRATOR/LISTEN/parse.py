@@ -43,6 +43,7 @@ KNOWN = (
     "vanus",
     "sport",
     "basket",
+    "winner",
 )
 LOCAL = ("help", "aide")
 MAX_CAPTURE = 4096
@@ -143,6 +144,7 @@ def parse_update(update, allowed_chat_id):
                  "/data  /data N  /data ledger  /data diag\n"
                  "/radar  /pack  /match ID\n"
                   "/vanus  /vanus ID  /modele  /gel on|off\n"
+                  "/winner  /winner foot|basket  (cotes capture LLM, lecture seule)\n"
                   "/sport  /sport foot|basket  /basket  (commutation, foot maitre)\n"
                   "/status  /status ledger  /status doctor\n"
                  "/roi  /roi settle L-XXX\n"
@@ -193,7 +195,7 @@ def parse_update(update, allowed_chat_id):
     cmd = "/" + canon
     if extra.strip() and canon in (
         "budget", "combos", "systeme", "bankroll", "surticket", "data", "status", "roi",
-        "radar", "pack", "match", "marches", "approve", "gel", "vanus", "sport",
+        "radar", "pack", "match", "marches", "approve", "gel", "vanus", "sport", "winner",
     ):
         cmd = cmd + " " + extra.split("\n", 1)[0].strip()
     return {

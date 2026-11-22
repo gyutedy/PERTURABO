@@ -762,6 +762,44 @@ fournir l'URL du export basket pour que `/vanus` montre un signal reel. Les CSV 
 reels foot sont desormais faits (ci-dessus). Aucun `/gel off`, aucun `/valider-2` basket,
 aucun seuil abaisse.
 
+## ETAT v7.0 — CAPTEUR WINNER V5 / LLM VISION (2026-11-22)
+
+Branches dediees : `pari-winner-sensor-m1` (PARI, depuis `ffc0785`) et `speculum-winner`
+(VANUS, depuis `1150fc3`). Fork avant tout code, conformement a l'etape 0 du cahier.
+Aucun moteur, gel, ledger ou registre existant n'est retouche hors ajout en fin de CMDS.
+
+- [x] **VANUS (cahier A)** : `winner_common.py` (lecture seule, HTML archive avant parsing),
+      `winner_basket.py` (2 Way + Total Spreads), `winner_foot.py` (1X2 + OU2.5 + HSH
+      `diagnostic_only`), `winner_order.py` (VANUS **ordonne** les donnees : tri/dedupe par
+      match_key, jamais un calcul), 2 fixtures, `tests/test_winner.py` **30/30** hors ligne.
+- [x] **PARI (voie primaire)** : `llm_vision.py` — lecteur LLM **generique OpenAI-compatible**.
+      Cle/base/model lus **uniquement dans `env_pari`** (`PARI_WINNER_LLM_KEY`,
+      `PARI_WINNER_LLM_BASE_URL`, `PARI_WINNER_LLM_MODEL`), jamais dans un GitHub Secret,
+      jamais dans le code ou un log. Deux lectures independantes (passage 1 temperature 0,
+      passage 2 temperature 0.2) : divergence = trou, jamais une moyenne. Prompt : tous les
+      matchs visibles (meme >10), en-tete du haut applique a toutes les lignes, rien invente.
+      Le LLM est un **lecteur**, pas un producteur de p ni de verdict.
+- [x] **PARI (parseur et gardes)** : `winner_vision.py` — V1 double transcription, V2 bornes
+      (cote [1.01,50], ligne NBA [180,320]), V3 grille 1X2 [1.00,1.35], V4 absent = null +
+      trou. `tests/test_winner_vision.py` **18/18** (dont 12 matchs d'un coup et config LLM
+      lue depuis un `env_pari` temporaire — le vrai fichier n'est jamais ecrit par le test).
+- [x] **Transport automatique** : `vanus_fetch.py --kind slate` (URL = `PARI_WINNER_SLATE_URL`)
+      valide `vanus.slate.v1` + sport et ecrit `ARCHIVUM/winner/slate_{sport}.json` — le
+      facteur livree quand PARI en a besoin. `tests/test_vanus_fetch.py` **46/46**.
+- [x] **Consommation** : `winner_ingest.py` + `tests/test_winner_ingest.py` **9/9**. Contrat
+      faux / cross-sport / slate absent = vide + trou, jamais de lecture partielle. Marches
+      `diagnostic_only` (HSH) conserves et marques ; devig F03 s'applique comme partout.
+- [x] **Telegram** : `/winner [foot|basket]` ajoute en fin de `CMDS` (26 -> **27 cles**),
+      relais `parse.py` + `index.js` + `schema_listen.json` + `/help` alignes.
+      `tests/test_winner_telegram.py` **9/9**, `test_workflow_basket` **18/18**.
+      `cmd_winner` corrige le bug du cahier (defaut = sport actif, pas toujours basket).
+
+**Non fait (depend de l'operateur)** : run reel sur une capture avec la cle LLM — le code est
+pret, il suffit de poser les 3 variables dans `env_pari` puis
+`python F01_SENTINEL/CODEBASE/winner_vision.py --images <captures> --sport basket`.
+Aucun `/gel off`, aucun ticket, aucun seuil abaisse. `test_baseline` echoue en local parce
+que les CSV foot reels sont presents dans le cache (comportement attendu hors CI vierge).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

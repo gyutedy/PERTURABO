@@ -127,6 +127,26 @@ def t_signal():
     check("vc.signal_cli", cli["sport"] == "basket" and "url_absente" in cli["holes"], str(cli))
 
 
+def t_slate():
+    tmp = tempfile.mkdtemp(prefix="pari-vc-slate-")
+    target = os.path.join(tmp, "slate_basket.json")
+    slate = {"contract": "vanus.slate.v1", "index": "winner_vision", "sport": "basket",
+             "matches": [{"match_key": "a_b", "odds": {"ml_1": 2.08}}], "holes": []}
+    ok = vf.fetch_slate(url="https://example.invalid/slate.json", path=target,
+                        getter=lambda *a, **k: json.dumps(slate))
+    check("vc.slate_ok", ok["ok"] and ok["n_matchs"] == 1 and ok["holes"] == [], str(ok))
+    check("vc.slate_contenu", json.load(open(target, encoding="utf-8")) == slate)
+    wrong = vf.fetch_slate(url="https://example.invalid/slate.json", path=os.path.join(tmp, "x.json"),
+                           getter=lambda *a, **k: json.dumps({**slate, "contract": "vanus.signal.v1"}))
+    check("vc.slate_contrat_refuse", wrong["holes"] == ["contrat"] and not wrong["ok"])
+    cross = vf.fetch_slate(url="https://example.invalid/slate.json", path=os.path.join(tmp, "y.json"),
+                           sport="foot", getter=lambda *a, **k: json.dumps(slate))
+    check("vc.slate_cross_sport_refuse", cross["holes"] == ["sport"])
+    no_url = vf.fetch_slate(url=None, path=os.path.join(tmp, "z.json"),
+                            getter=lambda *a, **k: json.dumps(slate))
+    check("vc.slate_url_absente", no_url["holes"] == ["url_absente"])
+
+
 def main():
     print("=" * 70)
     print("TEST VC — vanus_fetch")
@@ -207,6 +227,8 @@ def main():
         os.environ.pop("PARI_SKIP_VANUS", None)
     rec = json.load(open(rec_path, encoding="utf-8"))
     check("vc.cli_skip", rec["n_lignes"] == 0 and rec["hors_couverture"] == list(vf.BIG5), str(rec))
+
+    t_slate()
 
     n_fail = sum(1 for _, ok, _ in CHECKS if not ok)
     print("=" * 70)

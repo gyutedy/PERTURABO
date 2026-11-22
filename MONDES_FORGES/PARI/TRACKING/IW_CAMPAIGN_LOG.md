@@ -1914,6 +1914,14 @@
 ## [2026-11-22T07:00:00Z] Runs reels foot : 10 CSV Big 5 (2425+2526, football-data.co.uk) poses dans ARCHIVUM/cache/f00 (gitignore). vanus_calibrate --seasons 2425,2526 --cutoff 2026-01-01 --skip-fetch : n=950, verdict NO-GO (rps_gap +0.009378, ece 0.008296, logloss_gap +0.029895, holes []). verdict_foot.json regenere (source vanus_calibrate, plus de reconstruction). Gel conserve.
 
 ## [2026-11-22T07:05:00Z] backtest_scores_foot.py run reel (cutoff 2026-01-01) : n_oos=950, n_marche=950, rps_gap +0.011518, ece 0.027339, logloss_gap +0.036687, CLV -0.026119 sur n_clv=339, verdict NO-GO via apply_gates. calibration_scores_foot.json gitignore. Aucun seuil abaisse, aucun ticket, gel conserve.
+
+## [2026-11-22T12:00:00Z] Cahier V5 — forks crees : pari-winner-sensor-m1 (PARI depuis ffc0785) et speculum-winner (VANUS depuis 1150fc3). Etape 0 respectee, aucun travail sur les branches maitres.
+
+## [2026-11-22T12:30:00Z] VANUS cahier A : winner_common/basket/foot + winner_order (VANUS ordonne, ne calcule rien) + 2 fixtures + test_winner 30/30 hors ligne. HSH foot diagnostic_only, jamais de probabilite.
+
+## [2026-11-22T13:00:00Z] PARI voie primaire : llm_vision.py (LLM generique OpenAI-compatible, cle/base/model uniquement dans env_pari, deux lectures independantes) + winner_vision.py (gardes V1-V4, N matchs >10, en-tete unique en haut). test_winner_vision 18/18.
+
+## [2026-11-22T13:30:00Z] PARI transport + consommation : vanus_fetch --kind slate (46/46) ecrit ARCHIVUM/winner/slate_{sport}.json ; winner_ingest 9/9 (contrat faux/cross-sport/absent = vide + trou). /winner ajoute en fin de CMDS (26 -> 27), relais parse.py + index.js + schema + /help ; test_winner_telegram 9/9, test_workflow_basket 18/18. Gel et verdicts inchanges. Run reel LLM en attente de la cle fournie par l'operateur.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done

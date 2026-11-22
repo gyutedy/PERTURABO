@@ -144,4 +144,11 @@ Cartographie des journaux du monde.
 | `F05_PACKAGER/CODEBASE/packager.py` `build_pack(sport=)` | v6.6 : sport transmis au gate VANUS (defaut foot) ; mapping veto basket inverse corrige (`home` → `2`). | `vanus_gate.py` |
 | `tests/test_vanus_packager.py` | v6.6 : jackpot basket drop la selection `2`, 25/25. | CI locale |
 
+| `F01_SENTINEL/CODEBASE/llm_vision.py` | v7.0 : lecteur LLM vision **generique** (OpenAI-compatible). Cle/base/model depuis `env_pari` uniquement, deux lectures independantes, jamais un p ni un log de cle. | capture Telegram / `winner_vision.py` |
+| `F01_SENTINEL/CODEBASE/winner_vision.py` | v7.0 : capture transcrite -> `vanus.slate.v1` avec gardes V1-V4 ; N matchs (>10) ; en-tete unique en haut. | `llm_vision.py` / `--in` |
+| `F00_RADAR/CODEBASE/winner_ingest.py` | v7.0 : slate Winner -> vue indexee par match_key ; contrat faux/cross-sport/absent = vide + trou ; `diagnostic_only` marque. | `vanus_fetch.py --kind slate` |
+| `vanus_fetch.py --kind slate` | v7.0 : facteur automatique, `vanus.slate.v1` + sport valides -> `ARCHIVUM/winner/slate_{sport}.json`. URL `PARI_WINNER_SLATE_URL`. | `winner_ingest.py` |
+| `ORCHESTRATOR/CODEBASE/workflow.py` `cmd_winner` | v7.0 : `/winner foot\|basket`, lecture seule, cotes + trous + rappel devig F03, jamais un p. CMDS 27 cles. | `/winner` |
+| `tests/test_winner*.py` | v7.0 : vision 18/18, ingest 9/9, telegram 9/9 ; VANUS `test_winner` 30/30. | CI locale |
+
 Convention : chaque frégate ajoute une ligne `[TS] [mode] détail` dans son LOG.md ; le Warsmith écrit ses notes de décision dans les gates via `IW_CUSTOS.py --mode gate --notes "..."`.
