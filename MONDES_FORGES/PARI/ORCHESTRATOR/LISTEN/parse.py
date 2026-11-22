@@ -203,6 +203,7 @@ def parse_update(update, allowed_chat_id):
         "action": "dispatch",
         "cmd": cmd,
         "capture_text": None,
+        "capture_file_id": _photo_file_id(msg) if canon == "winner" else None,
         "chat_id": chat_id,
         "update_id": update.get("update_id"),
         "message_id": msg.get("message_id"),

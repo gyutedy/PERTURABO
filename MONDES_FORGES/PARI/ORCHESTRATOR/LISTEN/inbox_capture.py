@@ -36,7 +36,7 @@ def drop(path):
         print("[listen] retire leftover", path.name)
 
 
-def write_photo(inbox, file_id):
+def write_photo(inbox, file_id, prefix="capture_telegram"):
     token = load_token()
     if not token:
         print("[listen] capture_file_id sans TELEGRAM_BOT_TOKEN — skip download")
@@ -56,7 +56,7 @@ def write_photo(inbox, file_id):
     ext = Path(fpath).suffix.lower() or ".jpg"
     if ext not in PHOTO_EXTS:
         ext = ".jpg"
-    dest = inbox / ("capture_telegram" + ext)
+    dest = inbox / (prefix + ext)
     file_url = api + "/file/bot" + token + "/" + fpath
     try:
         with urllib.request.urlopen(file_url, timeout=60) as r:

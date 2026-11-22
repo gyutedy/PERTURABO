@@ -139,6 +139,7 @@ export function parseUpdate(update, allowedChatId) {
   }
   return {
     ok: true, action: "dispatch", cmd, capture_text: null,
+    capture_file_id: canon === "winner" ? photoFileId(msg) : null,
     chat_id: chatId, update_id: update.update_id, message_id: msg.message_id,
   };
 }

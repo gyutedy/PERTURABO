@@ -919,6 +919,23 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       **EV under +1,8 %**, over −21,2 %. Burgos–Albacete OU `P=58,2/41,8 %`,
       cotes `1.62/2.12` -> EV under −5,7 %, over −11,5 %. Aucun ticket, moteurs geles.
 
+## ETAT v7.8 — CABLAGE PHOTO TELEGRAM -> LLM (2026-11-22)
+
+- [x] **Secrets GitHub** : `PARI_WINNER_LLM_KEY`, `PARI_WINNER_LLM_BASE_URL`,
+      `PARI_WINNER_LLM_MODEL` crees via API chiffree (SealedBox), valeurs jamais affichees.
+      `write_env_pari.py` les ecrit dans `env_pari` au runtime des Actions.
+- [x] **Relais** : `parse.py` + `index.js` transmettent `capture_file_id` pour `/winner` avec
+      photo (caption `/winner foot` ou `/winner basket`, defaut basket).
+- [x] **pipeline** : `ORCHESTRATOR/LISTEN/winner_telegram.py` telecharge la photo, appelle
+      `llm_vision` en **double lecture**, ecrit `ARCHIVUM/winner/slate_{sport}.json` et la vue
+      `latest_{sport}.json`. `pari_listen.yml` l'execute avant `workflow.py`, qui affiche ensuite
+      `/winner` avec cotes, trous et rappel devig F03. Image archivee avant lecture.
+- [x] **Tests** : `test_winner_telegram` **13/13** (photo transmise, sport depuis cmd, yml,
+      cles secrets). Suite unitaire 50/53 ; les 3 echecs restent environnementaux et identiques
+      sur base propre.
+- [ ] **Verification en ligne** : necessitates un vrai envoi photo dans Telegram + un run Actions
+      (non executable ici). Le chemin local `--images` reste disponible en repli.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
