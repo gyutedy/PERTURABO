@@ -1,13 +1,13 @@
 {
   "contract": "pari.winner_pmodel.v1",
-  "generated_at": "2026-11-22T18:09:30.219522+00:00",
+  "generated_at": "2026-11-22T18:27:13.421838+00:00",
   "sport": "foot",
   "source": "F02 fit_dc (CSV historiques) + F03 devig + cotes Winner",
   "analyses": [
     {
       "match_key": "acmilan_frosinonecalcio",
       "holes": [
-        "equipe_absente:Frosinone Calcio"
+        "ligue_differente"
       ],
       "p_modele": null,
       "ev": null,
@@ -60,11 +60,35 @@
     },
     {
       "match_key": "albacetebalompie_burgoscf",
-      "holes": [
-        "equipe_absente:Burgos CF"
-      ],
-      "p_modele": null,
-      "ev": null,
+      "home": "Burgos CF",
+      "away": "Albacete Balompie",
+      "league": "SP2",
+      "p_modele": {
+        "home": 0.449306,
+        "draw": 0.282701,
+        "away": 0.267993
+      },
+      "p_fair": {
+        "home": 0.458147,
+        "draw": 0.291145,
+        "away": 0.250708
+      },
+      "cote": {
+        "home": 1.97,
+        "draw": 3.1,
+        "away": 3.6
+      },
+      "ev": {
+        "home": -0.114868,
+        "draw": -0.123626,
+        "away": -0.035226
+      },
+      "edge_net": {
+        "home": -0.019297,
+        "draw": -0.029001,
+        "away": 0.068943
+      },
+      "holes": [],
       "ticket": false
     },
     {
@@ -102,6 +126,6 @@
     }
   ],
   "n_analyse": 8,
-  "n_avec_p": 1,
+  "n_avec_p": 2,
   "tickets_enabled": false
 }

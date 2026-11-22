@@ -873,6 +873,24 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 **Pourquoi 1 seul** : nos CSV couvrent E0/SP1/I1/D1/F1 ; il faut ajouter lesligues manquantes
 (La Liga 2, HNL, Czech Liga) pour couvrir les 8 matchs. Ce n'est pas un bug de calcul.
 
+## ETAT v7.5 — LIGUES SP2/I2 AJOUTEES (2026-11-22)
+
+- [x] **Whitelist** : `market_csv.COVERED` + `capteurs.LIGUE_CODE` acceptent `SP2` (La Liga 2)
+      et `I2` (Serie B). 4 CSV telecharges (2425+2526) dans `ARCHIVUM/cache/f00` (gitignore).
+      Croatie HNL et Czech Liga **absentes** de football-data.co.uk (verifie sur la page
+      `data.php`) : aucun CSV invente, ces matchs restent des trous `equipe_absente`.
+- [x] **Refit propre** : `fit_dc.py --as-of 2026-01-01` (meme cutoff que le backtest, sinon
+      les poids recent changent le p_modele). `dc_params.json` contient maintenant **12 ligues**
+      dont SP2/I2 ; 5188 lignes.
+- [x] **Run reel** : `winner_pmodel.py --sport foot` -> **2 matchs avec p_modele sur 8** :
+      Getafe–Atletico (SP1) `P=21,9/29,8/48,3 %`, EV `+42,4/+16,4/−25,2 %` ;
+      Burgos–Albacete (SP2) `P=44,9/28,3/26,8 %`, EV tous negatifs -> **aucun bet**.
+      AC Milan–Frosinone = `ligue_differente` (I1 vs I2) : jamais de comparaison跨-ligues.
+      Les 5 autres = `equipe_absente`. Aucun ticket, moteurs geles.
+- [x] **Tests** : 50/53 verts ; les 3 echecs restent environnementaux (CSV foot reels en
+      cache pour `test_baseline`, `sport_actif=basket` en local pour les 2 autres) et sont
+      identiques sur une base propre.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
