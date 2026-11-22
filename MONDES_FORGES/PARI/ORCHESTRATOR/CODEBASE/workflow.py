@@ -1309,48 +1309,6 @@ def cmd_systeme(st, arg):
          + "\nRien n'est mise automatiquement — verification avant /approve.")
 
 
-def cmd_winner(st, arg):
-    """/winner [foot|basket] — lit la derniere feuille de cotes Winner.
-    Lecture seule : cotes + trous, jamais un p, jamais un ticket."""
-    try:
-        import winner_ingest
-    except Exception:
-        tell("winner_ingest introuvable — F00_RADAR/CODEBASE absent du path.")
-        return
-    sport = (arg or "").strip().lower()
-    if sport not in ("foot", "basket"):
-        try:
-            import moteur_sport
-            sport = moteur_sport.actif()
-        except Exception:
-            sport = "basket"
-    if sport not in ("foot", "basket"):
-        sport = "basket"
-    view = winner_ingest.ingest(sport)
-    lignes = ["WINNER " + sport.upper() + " — lecture seule. "
-              "Cotes retail margees : devig F03 obligatoire avant tout usage."]
-    for key, m in list(view["matches"].items())[:20]:
-        o = m["odds"]
-        if sport == "basket":
-            lignes.append("  %s - %s  ML %s/%s  Total %s: %s/%s%s" % (
-                m.get("home"), m.get("away"), o.get("ml_1"), o.get("ml_2"),
-                o.get("total_line"), o.get("total_under"), o.get("total_over"),
-                ("  [trous: %s]" % ",".join(m["holes"])) if m["holes"] else ""))
-        else:
-            lignes.append("  %s - %s  1X2 %s/%s/%s  U2.5/O2.5 %s/%s"
-                          "  [HSH diagnostic: %s/%s/%s]%s" % (
-                              m.get("home"), m.get("away"), o.get("home"),
-                              o.get("draw"), o.get("away"), o.get("under_2_5"),
-                              o.get("over_2_5"), o.get("hsh_first"),
-                              o.get("hsh_equal"), o.get("hsh_second"),
-                              ("  [trous: %s]" % ",".join(m["holes"])) if m["holes"] else ""))
-    if view["holes"]:
-        lignes.append("Trous globaux : " + ", ".join(view["holes"]))
-    if not view["matches"]:
-        lignes.append("Aucun match — verifier le poll VANUS / la capture LLM puis /vanus.")
-    tell("\n".join(lignes))
-
-
 CMDS = {
     "start": (cmd_start, "ouvre la campagne"),
     "capture": (cmd_capture, "capture txt/md/png/pdf/docx — foot 1X2/OU/MT ou basket ML (sport actif)"),
@@ -1378,7 +1336,6 @@ CMDS = {
     "vanus": (cmd_vanus, "lecture vanus.signal.v1 (jamais un p)"),
     "sport": (cmd_sport, "affiche ou change le sport actif (foot|basket)"),
     "basket": (cmd_basket, "passe au moteur basket + etat detaille"),
-    "winner": (cmd_winner, "cotes Winner via capture LLM (lecture seule, jamais un p)"),
 }
 
 

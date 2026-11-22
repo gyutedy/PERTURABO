@@ -67,9 +67,6 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PARI_WINNER_LLM_KEY: ${{ secrets.PARI_WINNER_LLM_KEY }}
-          PARI_WINNER_LLM_BASE_URL: ${{ secrets.PARI_WINNER_LLM_BASE_URL }}
-          PARI_WINNER_LLM_MODEL: ${{ secrets.PARI_WINNER_LLM_MODEL }}
         run: python3 .github/scripts/write_env_pari.py
 
       - name: tesseract OCR (capture png/jpg)
@@ -87,19 +84,6 @@ jobs:
         run: |
           cd MONDES_FORGES/PARI
           python3 ORCHESTRATOR/LISTEN/inbox_capture.py
-
-      - name: Winner vision (photo /winner -> slate)
-        if: startsWith(github.event.inputs.cmd, '/winner') && github.event.inputs.capture_file_id != ''
-        env:
-          CMD: ${{ github.event.inputs.cmd }}
-          WINNER_FILE_ID: ${{ github.event.inputs.capture_file_id }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          PARI_WINNER_LLM_KEY: ${{ secrets.PARI_WINNER_LLM_KEY }}
-          PARI_WINNER_LLM_BASE_URL: ${{ secrets.PARI_WINNER_LLM_BASE_URL }}
-          PARI_WINNER_LLM_MODEL: ${{ secrets.PARI_WINNER_LLM_MODEL }}
-        run: |
-          cd MONDES_FORGES/PARI
-          python3 ORCHESTRATOR/LISTEN/winner_telegram.py
 
       - name: Executer workflow.py
         env:

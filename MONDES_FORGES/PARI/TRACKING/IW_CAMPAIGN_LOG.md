@@ -1914,32 +1914,6 @@
 ## [2026-11-22T07:00:00Z] Runs reels foot : 10 CSV Big 5 (2425+2526, football-data.co.uk) poses dans ARCHIVUM/cache/f00 (gitignore). vanus_calibrate --seasons 2425,2526 --cutoff 2026-01-01 --skip-fetch : n=950, verdict NO-GO (rps_gap +0.009378, ece 0.008296, logloss_gap +0.029895, holes []). verdict_foot.json regenere (source vanus_calibrate, plus de reconstruction). Gel conserve.
 
 ## [2026-11-22T07:05:00Z] backtest_scores_foot.py run reel (cutoff 2026-01-01) : n_oos=950, n_marche=950, rps_gap +0.011518, ece 0.027339, logloss_gap +0.036687, CLV -0.026119 sur n_clv=339, verdict NO-GO via apply_gates. calibration_scores_foot.json gitignore. Aucun seuil abaisse, aucun ticket, gel conserve.
-
-## [2026-11-22T12:00:00Z] Cahier V5 — forks crees : pari-winner-sensor-m1 (PARI depuis ffc0785) et speculum-winner (VANUS depuis 1150fc3). Etape 0 respectee, aucun travail sur les branches maitres.
-
-## [2026-11-22T12:30:00Z] VANUS cahier A : winner_common/basket/foot + winner_order (VANUS ordonne, ne calcule rien) + 2 fixtures + test_winner 30/30 hors ligne. HSH foot diagnostic_only, jamais de probabilite.
-
-## [2026-11-22T13:00:00Z] PARI voie primaire : llm_vision.py (LLM generique OpenAI-compatible, cle/base/model uniquement dans env_pari, deux lectures independantes) + winner_vision.py (gardes V1-V4, N matchs >10, en-tete unique en haut). test_winner_vision 18/18.
-
-## [2026-11-22T13:30:00Z] PARI transport + consommation : vanus_fetch --kind slate (46/46) ecrit ARCHIVUM/winner/slate_{sport}.json ; winner_ingest 9/9 (contrat faux/cross-sport/absent = vide + trou). /winner ajoute en fin de CMDS (26 -> 27), relais parse.py + index.js + schema + /help ; test_winner_telegram 9/9, test_workflow_basket 18/18. Gel et verdicts inchanges. Run reel LLM en attente de la cle fournie par l'operateur.
-
-## [2026-11-22T16:10:00Z] Run reel LLM vision (cap2.PNG, nvidia/nemotron-3.5-super-vl-120b-a12b) : 3 matchs basket lus, 0 trou, double transcription concordante. Slate et latest ecrits dans ARCHIVUM/winner ; /winner basket affiche cotes + rappel devig F03, jamais un p. Image archivee avant lecture (ARCHIVUM/winner/images, gitignore). Cle LLM uniquement dans env_pari, aucun secret dans un commit.
-
-## [2026-11-22T16:20:00Z] Correctifs prompt LLM : tiret obligatoire entre equipes + colonne 2 Way (2 cotes) et non FT 1X2 (3 cotes, confusion observee sur cap4.PNG). Test vision 18/18, ingest 9/9, telegram 9/9, fetch 46/46. Aucun ticket, gel intact.
-
-## [2026-11-22T16:40:00Z] Test reel foot : t1.jpeg + t2.jpeg -> 8 matchs lus, 0 trou, double transcription concordante. 1X2 et U/O conformes aux images, HSH 3.10/3.00/2.02 identique sur les 8 matchs (template, diagnostic_only). winner_ingest foot + /winner foot OK, jamais un p. Les deux sports sont desormais couverts en reel. Gel et tickets inchanges.
-
-## [2026-11-22T17:00:00Z] Verification moteur sur cotes Winner reelles : test_winner_moteur 10/10. Devig invariant respecte sur foot 1X2/OU2.5 et basket ML/Total ; marges mesurees 8.99% / 8.61% / 5.81% / 9.01%. HSH template confirme (marge superieure, diagnostic_only). Aucun p, aucun ticket, moteurs geles. Avant cablage Telegram.
-
-## [2026-11-22T17:40:00Z] Ajout SP2/I2 a la whitelist (market_csv.COVERED + capteurs.LIGUE_CODE) et telechargement des CSV 2425+2526. Refit fit_dc --as-of 2026-01-01 sur 12 ligues / 5188 lignes. Croatie HNL et Czech Liga absentes de football-data.co.uk -> trous assumés, aucune donnée inventée.
-
-## [2026-11-22T17:45:00Z] p_modele Winner apres refit : 2/8 matchs calculables. Getafe–Atletico EV +42.4%/+16.4%/−25.2% ; Burgos–Albacete EV tous négatifs -> aucun bet. AC Milan–Frosinone = ligue_differente (I1 vs I2), 5 autres = equipe_absente. Zéro ticket, moteurs gelés.
-
-## [2026-11-22T18:00:00Z] Ajout Championship (E1) et Bundesliga 2 (D2) — CSV 2425+2526. Refit fit_dc --as-of 2026-01-01 : 14 ligues, 6904 lignes. Ligue des champions indisponible sur football-data.co.uk (CL.csv = HTML) -> pas de CSV inventé. Les 2 matchs analysés gardent les mêmes p/EV (fit indépendant par ligue).
-
-## [2026-11-22T18:20:00Z] Branchment OU2.5 sur winner_pmodel (meme matrice de scores, aucun changement d'equation). test_winner_pmodel 16/16. Run reel : Getafe–Atletico under 62.5% a 1.63 -> EV +1.8% ; Burgos–Albacete under 58.2% a 1.62 -> EV -5.7%. HSH toujours diagnostic_only. Vérification des 18 CSV : 1X2 + OU2.5 + scores présents partout, pas de CSV par marché. Zéro ticket.
-
-## [2026-11-22T18:40:00Z] Cablage photo Telegram : 3 Secrets GitHub LLM crees via API chiffree (valeurs non affichées), write_env_pari les injecte au runtime. parse.py + index.js transmettent capture_file_id pour /winner avec photo. winner_telegram.py : getFile -> double lecture LLM -> slate + latest -> workflow /winner affiche. test_winner_telegram 13/13. Vérification en ligne (vrai message Telegram + run Actions) encore à faire. Zéro ticket, gels intacts.
 ## [2026-11-19T15:56:32Z] F01 — check-out — status: processing
 
 ## [2026-11-19T15:56:32Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:e27c6aee942c75760ea6786dad346947 — status:done

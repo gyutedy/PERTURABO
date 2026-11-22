@@ -33,9 +33,6 @@ DEFAULT_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "ARCHIVUM", "cache
 BASKET_PATH = os.path.normpath(os.path.join(HERE, "..", "..", "ARCHIVUM", "vanus", "signals_basket.json"))
 SIGNAL_URL_ENV = "PARI_VANUS_SIGNALS_URL"
 SIGNAL_CONTRACT = "vanus.signal.v1"
-SLATE_CONTRACT = "vanus.slate.v1"
-SLATE_URL_ENV = "PARI_WINNER_SLATE_URL"
-WINNER_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "ARCHIVUM", "winner"))
 
 
 def skipped():
@@ -232,62 +229,6 @@ def fetch_signal(url=None, path=None, sport="basket", getter=None, timeout=None)
     return rec
 
 
-def fetch_slate(url=None, path=None, sport="basket", getter=None, timeout=None):
-    """Transport automatique : export vanus.slate.v1 -> ARCHIVUM/winner.
-    Le facteur ne doit jamais inventer une cote ni melanger les sports."""
-    rec = {"sport": sport, "kind": "slate", "ok": False, "path": None,
-           "url": url, "n_matchs": 0, "holes": []}
-    if skipped():
-        rec["holes"] = ["skip"]
-        return rec
-    url = url or os.environ.get(SLATE_URL_ENV)
-    rec["url"] = url
-    if not url:
-        rec["holes"] = ["url_absente"]
-        return rec
-    getter = getter or _default_get
-    try:
-        text = getter(url, timeout=timeout)
-    except TimeoutError:
-        rec["holes"] = ["timeout"]
-        return rec
-    except (urllib.error.HTTPError, urllib.error.URLError, OSError, ValueError):
-        rec["holes"] = ["http"]
-        return rec
-    except Exception:
-        rec["holes"] = ["http"]
-        return rec
-    if text is None:
-        rec["holes"] = ["vide"]
-        return rec
-    if is_html(text):
-        rec["holes"] = ["html"]
-        return rec
-    try:
-        blob = json.loads(text)
-    except (TypeError, ValueError):
-        rec["holes"] = ["json"]
-        return rec
-    if not isinstance(blob, dict) or blob.get("contract") != SLATE_CONTRACT:
-        rec["holes"] = ["contrat"]
-        return rec
-    if blob.get("sport") != sport:
-        rec["holes"] = ["sport"]
-        return rec
-    matches = blob.get("matches")
-    if not isinstance(matches, list):
-        rec["holes"] = ["contrat"]
-        return rec
-    target = path or os.path.join(WINNER_DIR, "slate_%s.json" % sport)
-    os.makedirs(os.path.dirname(os.path.abspath(target)), exist_ok=True)
-    with open(target, "w", encoding="utf-8") as f:
-        json.dump(blob, f, indent=2, ensure_ascii=False)
-    rec["ok"] = True
-    rec["path"] = os.path.abspath(target)
-    rec["n_matchs"] = len(matches)
-    return rec
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", default="2526")
@@ -297,14 +238,7 @@ def main():
     ap.add_argument("--sport", choices=("foot", "basket"), default="foot")
     ap.add_argument("--signal", default=None, help="URL de l'export vanus.signal.v1")
     ap.add_argument("--signal-path", default=None)
-    ap.add_argument("--kind", choices=("signal", "slate"), default=None,
-                    help="slate = feuille de cotes Winner vers ARCHIVUM/winner")
     args = ap.parse_args()
-    if args.kind == "slate":
-        rec = fetch_slate(url=args.signal, path=args.signal_path, sport=args.sport)
-        print(json.dumps({k: rec[k] for k in ("sport", "kind", "ok", "path", "n_matchs", "holes")},
-                         indent=2, ensure_ascii=False))
-        return
     if args.sport == "basket":
         rec = fetch_signal(url=args.signal, path=args.signal_path, sport="basket")
         print(json.dumps({k: rec[k] for k in ("sport", "ok", "path", "n_matchs", "holes")},

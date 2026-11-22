@@ -25,7 +25,7 @@ from datetime import datetime
 
 BOOKS = ("B365", "PS", "P", "BF", "BW", "IW", "WH", "VC", "LB")
 OU_LINES = ("2.5", "1.5", "3.5", "4.5", "0.5")
-COVERED = ("E0", "E1", "SP1", "SP2", "I1", "I2", "D1", "D2", "F1", "N1", "T1", "J1")
+COVERED = ("E0", "E1", "SP1", "I1", "D1", "D2", "F1", "N1", "T1", "J1")
 
 
 def _num(raw):

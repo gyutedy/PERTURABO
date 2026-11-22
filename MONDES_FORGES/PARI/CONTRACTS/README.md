@@ -21,7 +21,6 @@ chaque frégate lit l'OUT de la précédente et écrit son propre OUT selon son 
 |---|---|---|
 | `pari.basket_params.v1` | `fit_basket.py` → `ARCHIVUM/state/basket_params.json` | `engine_basket.py`, `backtest_basket.py` |
 | `pari.calibration_basket.v1` | `backtest_basket.py` → `ARCHIVUM/learnings/calibration_basket.json` | `/gel off` basket, `/basket` |
-| `vanus.slate.v1` (Winner) | capture LLM PARI (`winner_vision.py`) ou capteurs VANUS (`winner_*.py`) | `vanus_fetch --kind slate` → `winner_ingest.py` → `/winner`. Aucune probabilité, HSH `diagnostic_only`. |
 | `pari.verdict_foot.v1` | `vanus_calibrate.save_verdict` → `ARCHIVUM/learnings/verdict_foot.json` (resume, jamais de donnees brutes) | `/modele` en repli si `calibration_moteur.json` absent |
 | `pari.calibration_scores_foot.v1` | `backtest_scores_foot.py` → `calibration_scores_foot.json` (gitignore) | diagnostic foot, jamais un producteur de `tickets_enabled` |
 | `vanus.signal.v1` + `"sport": "basket"` | VANUS `speculum-basket` → `signals-basket/latest.json` | `vanus_fetch.fetch_signal` puis `vanus_gate.path("basket")`, `/vanus` |

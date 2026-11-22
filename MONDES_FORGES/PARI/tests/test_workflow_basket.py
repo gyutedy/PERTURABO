@@ -36,8 +36,8 @@ def main():
 
     keys = list(workflow.CMDS.keys())
     check("b.cmds_original_intact", keys[:len(ORIGINAL)] == ORIGINAL, str(keys[:3]))
-    check("b.cmds_ajout_fin", keys[-3:] == ["sport", "basket", "winner"], str(keys[-3:]))
-    check("b.cmds_27", len(keys) == 27, str(len(keys)))
+    check("b.cmds_ajout_fin", keys[-2:] == ["sport", "basket"], str(keys[-2:]))
+    check("b.cmds_26", len(keys) == 26, str(len(keys)))
     check("b.cmds_sport_fn", workflow.CMDS["sport"][0] is workflow.cmd_sport)
     check("b.cmds_basket_fn", workflow.CMDS["basket"][0] is workflow.cmd_basket)
 
