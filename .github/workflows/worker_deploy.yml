@@ -8,7 +8,7 @@ name: pari-worker-deploy
 on:
   push:
     branches:
-      - pari-forge-perturabo-xs4c
+      - pari-winner-sensor-m1
     paths:
       - "MONDES_FORGES/PARI/ORCHESTRATOR/LISTEN/**"
       - ".github/workflows/worker_deploy.yml"

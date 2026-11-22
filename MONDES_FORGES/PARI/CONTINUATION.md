@@ -936,6 +936,18 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [ ] **Verification en ligne** : necessitates un vrai envoi photo dans Telegram + un run Actions
       (non executable ici). Le chemin local `--images` reste disponible en repli.
 
+## ETAT v7.9 — ETANCHEITE DES BRANCHES (2026-11-22)
+
+- [x] Les fusions dans `pari-forge-perturabo-xs4c` et `master` (VANUS) ont ete **annulees**
+      par `git revert` (sans重写 de l'historique). Les branches live sont revenues exactement
+      au point de sauvegarde (`git diff 7e6fa0a origin/...` = vide). Le capteur Winner reste
+      **exclusivement** dans `pari-winner-sensor-m1` et `speculum-winner`.
+- [x] `index.js` : `GH_REF` par defaut = **`pari-winner-sensor-m1`** au lieu de la branche live.
+      `worker_deploy.yml` (copie du fork) ne se declenche que sur `pari-winner-sensor-m1`, donc
+      le Worker deploie le code du fork et envoie les commandes a cette branche.
+- [ ] Aucun test en ligne encore fait (necessite le run `pari-worker-deploy` vert puis un vrai
+      envoi photo `/winner`). Repli local `--images` toujours disponible.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

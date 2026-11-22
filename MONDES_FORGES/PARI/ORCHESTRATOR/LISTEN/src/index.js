@@ -206,7 +206,7 @@ async function ghDispatch(env, parsed) {
   const owner = env.GH_OWNER;
   const repo = env.GH_REPO;
   const workflow = env.GH_WORKFLOW || "pari_listen.yml";
-  const ref = env.GH_REF || "pari-forge-perturabo-xs4c";
+  const ref = env.GH_REF || "pari-winner-sensor-m1";
   if (!token || !owner || !repo) {
     return { ok: false, error: "GITHUB_DISPATCH_TOKEN / GH_OWNER / GH_REPO absents" };
   }
