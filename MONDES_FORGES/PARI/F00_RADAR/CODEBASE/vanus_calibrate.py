@@ -35,6 +35,27 @@ import vanus_fetch as vf  # noqa: E402
 DEFAULT_CACHE = os.path.join(WORLD, "ARCHIVUM", "cache", "f00")
 DEFAULT_FIT = os.path.join(WORLD, "ARCHIVUM", "learnings", "dc_params.json")
 DEFAULT_CAL = os.path.join(WORLD, "ARCHIVUM", "learnings", "calibration_moteur.json")
+DEFAULT_VERDICT = os.path.join(WORLD, "ARCHIVUM", "learnings", "verdict_foot.json")
+VERDICT_CONTRACT = "pari.verdict_foot.v1"
+
+
+def save_verdict(rec, path=None):
+    """Resume versionne du verdict foot (jamais les donnees brutes)."""
+    summary = {
+        "contract": VERDICT_CONTRACT,
+        "generated_at": rec.get("generated_at"),
+        "source": "vanus_calibrate",
+        "seasons": rec.get("seasons"),
+        "cutoff": rec.get("cutoff"),
+        "n": rec.get("n"),
+        "verdict": rec.get("verdict"),
+        "reasons": list(rec.get("reasons") or []),
+        "holes": list(rec.get("holes") or []),
+        "tickets_enabled": False,
+    }
+    target = path or DEFAULT_VERDICT
+    backtest_market.save(summary, target)
+    return summary
 
 
 def parse_seasons(raw, season=None):
@@ -81,9 +102,9 @@ def _empty(cutoff=None, holes=None, reasons=None):
     return rec
 
 
-def run(seasons=None, season=None, cache_dir=None, cutoff=None, getter=None,
-        timeout=None, cfg=None, gates=None, fit_out=None, cal_out=None,
-        skip_fetch=False):
+def _run_impl(seasons=None, season=None, cache_dir=None, cutoff=None, getter=None,
+              timeout=None, cfg=None, gates=None, fit_out=None, cal_out=None,
+              skip_fetch=False):
     seasons = parse_seasons(",".join(seasons) if isinstance(seasons, (list, tuple)) else seasons,
                             season=season)
     cache_dir = cache_dir or DEFAULT_CACHE
@@ -190,6 +211,19 @@ def run(seasons=None, season=None, cache_dir=None, cutoff=None, getter=None,
     return blob
 
 
+def run(*args, **kwargs):
+    """Chaque run persiste le resume du verdict, quel que soit le resultat."""
+    verdict_out = kwargs.pop("verdict_out", None)
+    rec = _run_impl(*args, **kwargs)
+    if verdict_out:
+        try:
+            save_verdict(rec, verdict_out)
+            rec["verdict_out"] = os.path.abspath(verdict_out)
+        except OSError:
+            rec["verdict_out"] = None
+    return rec
+
+
 def main():
     ap = argparse.ArgumentParser(description="VX CSV + fit + backtest GO/NO-GO")
     ap.add_argument("--season", default=None)
@@ -199,11 +233,12 @@ def main():
     ap.add_argument("--fit-out", default=DEFAULT_FIT)
     ap.add_argument("--out", default=DEFAULT_CAL)
     ap.add_argument("--skip-fetch", action="store_true")
+    ap.add_argument("--verdict-out", default=None)
     args = ap.parse_args()
     rec = run(
         seasons=args.seasons, season=args.season, cache_dir=args.dir,
         cutoff=args.cutoff, fit_out=args.fit_out, cal_out=args.out,
-        skip_fetch=args.skip_fetch,
+        skip_fetch=args.skip_fetch, verdict_out=args.verdict_out or DEFAULT_VERDICT,
     )
     print(json.dumps({
         "out": rec.get("out"),

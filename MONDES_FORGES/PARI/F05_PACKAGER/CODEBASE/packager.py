@@ -70,7 +70,7 @@ DISCLAIMER = ("🪙 Jeu responsable : le pari est un divertissement à maîtrise
               "certitudes ; une EV positive est un verdict long terme, pas une promesse du jour.")
 
 
-def build_pack(predictions, analysis, carte, top=10, devise="USD", signal=None, vanus_blob=None):
+def build_pack(predictions, analysis, carte, top=10, devise="USD", signal=None, vanus_blob=None, sport="foot"):
     picks = []
     no_bet = []
     vanus_holes = []
@@ -85,7 +85,7 @@ def build_pack(predictions, analysis, carte, top=10, devise="USD", signal=None, 
 
     for p in (predictions or {}).get("predictions") or []:
         home, away = _split_match(p.get("match"))
-        rec = vg.gate(home, away, date=p.get("date"), path=signal, blob=vanus_blob)
+        rec = vg.gate(home, away, date=p.get("date"), path=signal, blob=vanus_blob, sport=sport)
         vanus_holes.extend(rec.get("holes") or [])
         veto = list(rec.get("veto") or [])
         flags = list(rec.get("flags") or [])

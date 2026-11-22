@@ -53,10 +53,85 @@ def _getter(mapping):
     return g
 
 
+def t_signal():
+    tmp = tempfile.mkdtemp(prefix="pari-vc-signal-")
+    target = os.path.join(tmp, "signals_basket.json")
+    blob = {"contract": "vanus.signal.v1", "sport": "basket", "source": "speculum-basket",
+            "generated_at": "2026-11-18T00:00:00Z", "matches": {"a": {"consensus": {}}}}
+    body = json.dumps(blob)
+    ok = vf.fetch_signal(url="https://example.invalid/latest.json", path=target, getter=lambda *a, **k: body)
+    check("vc.signal_ok", ok["ok"] and ok["n_matchs"] == 1 and ok["holes"] == [], str(ok))
+    written = json.load(open(target, encoding="utf-8"))
+    check("vc.signal_contenu", written == blob and written.get("sport") == "basket")
+    check("vc.signal_pas_p", "p_modele" not in written and "proba" not in written)
+
+    bad = tempfile.mkdtemp(prefix="pari-vc-signalbad-")
+    cases = [
+        ("timeout", TimeoutError("t"), ["timeout"]),
+        ("http", urllib.error.URLError("x"), ["http"]),
+        ("html", "<html>x</html>", ["html"]),
+        ("vide", None, ["vide"]),
+        ("json", "{", ["json"]),
+        ("contrat", json.dumps({"contract": "autre", "sport": "basket", "matches": {}}), ["contrat"]),
+        ("sport", json.dumps({"contract": "vanus.signal.v1", "sport": "foot", "matches": {}}), ["sport"]),
+    ]
+    for name, payload, holes in cases:
+        p = os.path.join(bad, name + ".json")
+        if isinstance(payload, BaseException):
+            def g(url, timeout=None, _e=payload):
+                raise _e
+        else:
+            def g(url, timeout=None, _b=payload):
+                return _b
+        rec = vf.fetch_signal(url="https://example.invalid/latest.json", path=p, getter=g)
+        check("vc.signal_" + name, rec["holes"] == holes and not rec["ok"] and not os.path.exists(p), str(rec))
+
+    abs_rec = vf.fetch_signal(url=None, path=os.path.join(bad, "absent.json"), getter=lambda *a, **k: body)
+    check("vc.signal_url_absente", abs_rec["holes"] == ["url_absente"])
+
+    old_env = os.environ.get("PARI_SKIP_VANUS")
+    os.environ["PARI_SKIP_VANUS"] = "1"
+    try:
+        skip = vf.fetch_signal(url="https://example.invalid/latest.json", path=os.path.join(bad, "skip.json"),
+                               getter=lambda *a, **k: body)
+    finally:
+        if old_env is None:
+            os.environ.pop("PARI_SKIP_VANUS", None)
+        else:
+            os.environ["PARI_SKIP_VANUS"] = old_env
+    check("vc.signal_skip", skip["holes"] == ["skip"])
+
+    old_url = os.environ.get(vf.SIGNAL_URL_ENV)
+    os.environ[vf.SIGNAL_URL_ENV] = "https://example.invalid/env.json"
+    try:
+        env_rec = vf.fetch_signal(path=os.path.join(tmp, "env.json"), getter=lambda *a, **k: body)
+    finally:
+        if old_url is None:
+            os.environ.pop(vf.SIGNAL_URL_ENV, None)
+        else:
+            os.environ[vf.SIGNAL_URL_ENV] = old_url
+    check("vc.signal_env_url", env_rec["ok"] and env_rec["url"].endswith("/env.json"))
+
+    old_argv = sys.argv
+    import io as _io
+    buf = _io.StringIO()
+    sys.argv = ["vanus_fetch.py", "--sport", "basket"]
+    try:
+        old_stdout = sys.stdout
+        sys.stdout = buf
+        vf.main()
+    finally:
+        sys.stdout = old_stdout
+        sys.argv = old_argv
+    cli = json.loads(buf.getvalue())
+    check("vc.signal_cli", cli["sport"] == "basket" and "url_absente" in cli["holes"], str(cli))
+
+
 def main():
     print("=" * 70)
     print("TEST VC — vanus_fetch")
     print("=" * 70)
+    t_signal()
 
     src = _src()
     check("vc.pas_gate", "verdict" not in src)

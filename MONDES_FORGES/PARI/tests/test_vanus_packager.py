@@ -136,6 +136,13 @@ def main():
     check("pk.jackpot_pick_p", pack_jk["top_picks"][0]["p_modele"] == 0.58)
     check("pk.jackpot_nb_veto", pack_jk["metriques"]["nb_vanus_veto"] == 1)
 
+    bblob = _blob("jackpot", "home", n=6, found=6)
+    bblob["sport"] = "basket"
+    pack_bk = packager.build_pack(_preds(), _analysis(), None, vanus_blob=bblob, sport="basket")
+    bsel = [x["selection"] for x in pack_bk["top_picks"]]
+    check("pk.basket_veto_2", "2" not in bsel and "1" in bsel, str(bsel))
+    check("pk.basket_nb_veto", pack_bk["metriques"]["nb_vanus_veto"] == 1)
+
     pack_al = packager.build_pack(_preds(), _analysis(), None, vanus_blob=_blob("alarme", "home", n=2, found=2))
     flags = pack_al["top_picks"][0].get("vanus_flags")
     check("pk.alarme_flag", "vanus_alarme" in (flags or []), str(flags))

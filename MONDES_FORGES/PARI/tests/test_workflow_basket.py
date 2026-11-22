@@ -23,7 +23,7 @@ def check(name, ok, note=""):
     print(f"[T] {'PASS' if ok else 'FAIL'} — {name}" + (f" — {note}" if note else ""))
 
 
-ORIGINAL = ["start", "capture", "bankroll", "budget", "surticket", "combos",
+ORIGINAL = ["start", "capture", "bankroll", "budget", "surticket", "combos", "systeme",
             "marches", "marchés", "valider-1", "valider1", "valider-2", "valider2",
             "approve", "data", "radar", "pack", "match", "status", "roi", "stop",
             "modele", "gel", "vanus"]
@@ -37,7 +37,7 @@ def main():
     keys = list(workflow.CMDS.keys())
     check("b.cmds_original_intact", keys[:len(ORIGINAL)] == ORIGINAL, str(keys[:3]))
     check("b.cmds_ajout_fin", keys[-2:] == ["sport", "basket"], str(keys[-2:]))
-    check("b.cmds_25", len(keys) == 25, str(len(keys)))
+    check("b.cmds_26", len(keys) == 26, str(len(keys)))
     check("b.cmds_sport_fn", workflow.CMDS["sport"][0] is workflow.cmd_sport)
     check("b.cmds_basket_fn", workflow.CMDS["basket"][0] is workflow.cmd_basket)
 

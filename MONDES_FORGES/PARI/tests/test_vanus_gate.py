@@ -152,6 +152,16 @@ def main():
     check("vg.pred_veto", out["matchs"][0].get("vanus_action") == "veto")
     check("vg.pred_p", out["matchs"][0].get("p_modele") == 0.55)
 
+    check("vg.basket_path", vg.path("basket").endswith("signals_basket.json"), vg.path("basket"))
+    check("vg.basket_pas_x", "X" not in vg.BASKET_OPPOSE and "X" not in vg.SELECTION_TO_VANUS_BASKET)
+    check("vg.basket_veto_home", vg.veto_codes("home", "basket") == ["2"], str(vg.veto_codes("home", "basket")))
+    check("vg.basket_veto_total", vg.veto_codes("total_over", "basket") == ["total_under"])
+    bblob = _blob("jackpot", selection="home", n=6, found=6)
+    bblob["sport"] = "basket"
+    rec_bk = vg.gate("Arsenal", "Chelsea", "2026-11-09", blob=bblob, sport="basket")
+    check("vg.basket_gate", rec_bk["action"] == "veto" and rec_bk["veto"] == ["2"], str(rec_bk))
+    check("vg.basket_pas_p", rec_bk.get("p_modele") is None)
+
     idx = rec_is
     check("vg.null_pas_zero", _blob()["matches"]["arsenal_chelsea_2026-11-09"]["indexes"]["metapred"] is None)
     check("vg.gel", moteur_flag.tickets_enabled() is False)

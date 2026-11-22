@@ -97,6 +97,20 @@ def main():
     check("sys.workflow_importe_systemes", os.path.isfile(
         os.path.join(WORLD, "F05_PACKAGER", "CODEBASE", "systemes.py")))
 
+    fake_top3 = {"matchs": [
+        {"id": "M1", "top3": [{"marche": "1X2", "overround": 0.0584}]},
+        {"id": "M2", "top3": [{"marche": "1X2", "marge": 0.0416}]},
+    ]}
+    original_load = workflow.load_json
+    workflow.load_json = lambda p: fake_top3 if str(p).endswith("top3.json") else None
+    try:
+        marge, n_marge = workflow._systeme_marge(legs[:2])
+    finally:
+        workflow.load_json = original_load
+    check("sys.marge_effective", abs(marge - 0.05) < 1e-9 and n_marge == 2,
+          str((marge, n_marge)))
+    check("sys.marge_trou", workflow._systeme_marge([]) == (None, 0))
+
     ok = all(v for _, v in CHECKS)
     print("=" * 70)
     print(f"RESULTAT: {sum(v for _, v in CHECKS)}/{len(CHECKS)} " + ("OK" if ok else "ECHEC"))

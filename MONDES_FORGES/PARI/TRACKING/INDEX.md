@@ -99,7 +99,12 @@ Cartographie des journaux du monde.
 | `F06_TRACKER/CODEBASE/ledger.py` `stamp_vanus` | V6 : freeze T0 flags vanus. Jamais un p. 7 args intact | vanus_gate.py |
 | `tests/test_vanus_ledger.py` | V6 : jackpot/alarme/isole/skip/miss, p intact, gel | ledger.py |
 | `F00_RADAR/CODEBASE/vanus_calibrate.py` | VX : fetch CSV + fit_dc + backtest GO/NO-GO. n<300 = pas de GO | calibration_moteur.json |
-| `tests/test_vanus_calibrate.py` | VX : skip/timeout/HTML, n<300, gel intact, BOM Div | vanus_calibrate.py |
+| `tests/test_vanus_calibrate.py` | VX : skip/timeout/HTML, n<300, gel intact, BOM Div ; v6.6 verdict resume 47/47 | vanus_calibrate.py |
+| `ARCHIVUM/learnings/verdict_foot.json` | Resume versionne `pari.verdict_foot.v1` (verdict n/seasons/cutoff/reasons/holes, jamais de donnees brutes). `/modele` en repli. | `vanus_calibrate.save_verdict` |
+| `F00_RADAR/CODEBASE/backtest_scores_foot.py` | T5 : backtest 1X2 walk-forward, refit strictement anterieur, Brier/RPS/logloss/ECE/CLV, verdict via `apply_gates`. Sortie gitignore. | `calibration_scores_foot.json` |
+| `tests/test_backtest_scores_foot.py` | T5 : 120 rows, n_oos=40, refit < cutoff, marche_absent, n<100, GO/NO-GO (21/21) | backtest_scores_foot.py |
+| `vanus_fetch.fetch_signal` / `--sport basket --signal <url>` | V6 : export `vanus.signal.v1` sport=basket → `ARCHIVUM/vanus/signals_basket.json` ; URL via `PARI_VANUS_SIGNALS_URL` ; holes, jamais un p. CSV foot inchange. | `vanus_fetch.py` |
+| `vanus_gate.VANUS_TO_PARI_BASKET` | V6 : mapping inverse (jackpot home → veto `2`, plus `away`) ; `packager.build_pack(sport=)`. | `vanus_gate.py` / `packager.py` |
 | `tests/test_input_capture_moins_plus.py` | S1 : Moins/Plus sans 2.5, cote_plate, ligue_code E1/D2 | input_capture + capteurs |
 | `tests/test_f06_diag.py` | S9 : CLV ratio, agregats, n<50 lock, Platt/Beta/MC seede | clv.py + diag.py |
 | `F02_BREACHER/F02_LOG.md` | Analyses (λ, matrices, probas) | F02 |
@@ -117,7 +122,7 @@ Cartographie des journaux du monde.
 | `ARCHIVUM/cache/basket/*.csv` | Boxscores `game_id,date,team_home,team_away,pts_home,pts_away`. Absent = trous déclarés. | capteur F01 (jamais le moteur) |
 | `ARCHIVUM/state/basket_params.json` | Params fit MLE ridge (`pari.basket_params.v1`). Gitignored. | `fit_basket.py` |
 | `ARCHIVUM/learnings/calibration_basket.json` | Verdict OOS (`pari.calibration_basket.v1`) via `apply_gates`. Sans GO = gel. | `backtest_basket.py` |
-| `ARCHIVUM/vanus/signals_basket.json` | Signal VANUS basket (`sport=basket`), jamais un p. | VANUS `speculum-basket` |
+| `ARCHIVUM/vanus/signals_basket.json` | Signal VANUS basket (`sport=basket`), jamais un p. Cible de `vanus_fetch.py --sport basket --signal <url>` (URL = `PARI_VANUS_SIGNALS_URL`). | VANUS `speculum-basket` → `vanus_fetch.fetch_signal` |
 | `F00_RADAR/CODEBASE/market_basket.py` | Contrat CSV boxscores + cotes 2-way `odds_home`/`odds_away` (absentes = None, jamais 0). | `fit_basket`, `backtest_basket` |
 | `F01_SENTINEL/CODEBASE/connectors/basket_feed.py` | Capteur : boxscores `nba_api` + cotes historiques The Odds API → CSV `ARCHIVUM/cache/basket/`. Cote absente = trou. | run manuel / capteur F01 |
 | `ARCHIVUM/cache/basket/*.csv` | Cache gitignored : 2023_24.csv (1230), 2024_25.csv (1225). Cotes de cloture Yahoo remplies (2454/2455). | `basket_feed.py` + `closing_odds_yahoo.py` |
@@ -133,5 +138,10 @@ Cartographie des journaux du monde.
 | `tests/test_systemes.py` | S1 régression, S2/S3/S4, refus zero-data, pire cas corridor −255 FC, commande enregistrée (22/22). | CI locale |
 | `docs/CAHIER_BASKET.md` | Guide opérateur basket (capture ML, portes, verdict, paper-trading CLV, limites connues). | Warsmith |
 | `tests/test_*basket.py`, `test_moteur_sport.py`, `test_system23.py`, `test_workflow_basket.py`, `test_input_capture_basket.py`, `test_closing_odds_yahoo.py` | Suite unitaire PARI verts (offline) : 111/111 sur 6 fichiers basket. | CI locale |
+
+| `ORCHESTRATOR/CODEBASE/workflow.py` `_systeme_marge` / `cmd_systeme` | v6.6 : affiche `Marge effective : X%` (moyenne des `overround`/`marge` de top3.json sur les jambes, `— (trou)` sinon) en plus du p_break_even et des pires cas, avant `/approve`. | `/systeme` |
+| `tests/test_systemes.py` | v6.6 : marge effective 0.05 sur 2 jambes + trou, total 24/24. | CI locale |
+| `F05_PACKAGER/CODEBASE/packager.py` `build_pack(sport=)` | v6.6 : sport transmis au gate VANUS (defaut foot) ; mapping veto basket inverse corrige (`home` → `2`). | `vanus_gate.py` |
+| `tests/test_vanus_packager.py` | v6.6 : jackpot basket drop la selection `2`, 25/25. | CI locale |
 
 Convention : chaque frégate ajoute une ligne `[TS] [mode] détail` dans son LOG.md ; le Warsmith écrit ses notes de décision dans les gates via `IW_CUSTOS.py --mode gate --notes "..."`.

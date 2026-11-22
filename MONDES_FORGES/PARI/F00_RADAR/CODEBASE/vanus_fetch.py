@@ -8,6 +8,9 @@ Timeout / HTML / vide / skip = hole. Jamais invente. Pas de gate.
 Usage :
   python vanus_fetch.py --season 2526
   python vanus_fetch.py --season 2526 --dir ARCHIVUM/cache/f00
+  python vanus_fetch.py --sport basket --signal <url-du-export>
+  (URL aussi lisible dans PARI_VANUS_SIGNALS_URL ; cible par defaut
+   ARCHIVUM/vanus/signals_basket.json, ou --signal-path.)
 """
 
 from __future__ import annotations
@@ -27,6 +30,9 @@ TIMEOUT = int(os.environ.get("PARI_F00_TIMEOUT", "8"))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "ARCHIVUM", "cache", "f00"))
+BASKET_PATH = os.path.normpath(os.path.join(HERE, "..", "..", "ARCHIVUM", "vanus", "signals_basket.json"))
+SIGNAL_URL_ENV = "PARI_VANUS_SIGNALS_URL"
+SIGNAL_CONTRACT = "vanus.signal.v1"
 
 
 def skipped():
@@ -167,13 +173,77 @@ def fetch(season="2526", cache_dir=None, codes=None, getter=None, timeout=None):
     }
 
 
+def fetch_signal(url=None, path=None, sport="basket", getter=None, timeout=None):
+    """Telecharge un export vanus.signal.v1 (sport=basket) vers le cache local.
+    Timeout / HTML / vide / skip / contrat faux = hole, jamais de proba."""
+    rec = {"sport": sport, "ok": False, "path": None, "url": url,
+           "n_matchs": 0, "holes": []}
+    if skipped():
+        rec["holes"] = ["skip"]
+        return rec
+    url = url or os.environ.get(SIGNAL_URL_ENV)
+    rec["url"] = url
+    if not url:
+        rec["holes"] = ["url_absente"]
+        return rec
+    getter = getter or _default_get
+    try:
+        text = getter(url, timeout=timeout)
+    except TimeoutError:
+        rec["holes"] = ["timeout"]
+        return rec
+    except (urllib.error.HTTPError, urllib.error.URLError, OSError, ValueError):
+        rec["holes"] = ["http"]
+        return rec
+    except Exception:
+        rec["holes"] = ["http"]
+        return rec
+    if text is None:
+        rec["holes"] = ["vide"]
+        return rec
+    if is_html(text):
+        rec["holes"] = ["html"]
+        return rec
+    try:
+        blob = json.loads(text)
+    except (TypeError, ValueError):
+        rec["holes"] = ["json"]
+        return rec
+    if not isinstance(blob, dict) or blob.get("contract") != SIGNAL_CONTRACT:
+        rec["holes"] = ["contrat"]
+        return rec
+    if blob.get("sport") != sport:
+        rec["holes"] = ["sport"]
+        return rec
+    matches = blob.get("matches")
+    if not isinstance(matches, dict):
+        rec["holes"] = ["contrat"]
+        return rec
+    target = path or BASKET_PATH
+    os.makedirs(os.path.dirname(os.path.abspath(target)), exist_ok=True)
+    with open(target, "w", encoding="utf-8") as f:
+        json.dump(blob, f, indent=2, ensure_ascii=False)
+    rec["ok"] = True
+    rec["path"] = os.path.abspath(target)
+    rec["n_matchs"] = len(matches)
+    return rec
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", default="2526")
     ap.add_argument("--dir", default=DEFAULT_DIR)
     ap.add_argument("--code", default=None)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--sport", choices=("foot", "basket"), default="foot")
+    ap.add_argument("--signal", default=None, help="URL de l'export vanus.signal.v1")
+    ap.add_argument("--signal-path", default=None)
     args = ap.parse_args()
+    if args.sport == "basket":
+        rec = fetch_signal(url=args.signal, path=args.signal_path, sport="basket")
+        print(json.dumps({k: rec[k] for k in ("sport", "ok", "path", "n_matchs", "holes")},
+                         indent=2, ensure_ascii=False))
+        return
     codes = (args.code,) if args.code else None
     blob = fetch(season=args.season, cache_dir=args.dir, codes=codes)
     rec = {k: blob[k] for k in ("dir", "season", "files", "n_lignes", "divisions", "hors_couverture", "holes")}

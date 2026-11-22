@@ -1,0 +1,13 @@
+{
+  "contract": "pari.verdict_foot.v1",
+  "generated_at": "2026-11-10",
+  "source": "CONTINUATION.md ETAT v5.0 (pack VX)",
+  "seasons": ["2425", "2526"],
+  "cutoff": "2026-01-01",
+  "n": 950,
+  "verdict": "NO-GO",
+  "reasons": ["rps_gap", "logloss_gap"],
+  "holes": ["elo"],
+  "tickets_enabled": false,
+  "note": "Resume reconstitue du run documente, pas une nouvelle mesure. Regenerer via vanus_calibrate.py des que les CSV Big 5 sont presents."
+}

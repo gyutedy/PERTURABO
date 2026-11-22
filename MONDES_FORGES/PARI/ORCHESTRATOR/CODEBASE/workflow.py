@@ -1127,6 +1127,7 @@ def cmd_modele(st, rest):
         tell("Moteur illisible — config/moteur.json absent.")
         return
     cal = load_json(P("ARCHIVUM", "learnings", "calibration_moteur.json")) or {}
+    ver = load_json(P("ARCHIVUM", "learnings", "verdict_foot.json")) or {}
     lignes = [
         f"MOTEUR : {blob.get('engine')} / {blob.get('engine_version')}",
         f"TICKETS : {'OUVERTS' if blob.get('tickets_enabled') else 'GELE'}",
@@ -1137,6 +1138,10 @@ def cmd_modele(st, rest):
                       f"n={cal.get('n')} verdict={cal.get('verdict')}")
         lignes.append(f"RPS modele {cal.get('rps_modele')} / marche {cal.get('rps_marche')}")
         lignes.append(f"ECE {cal.get('ece')} — logloss {cal.get('logloss_modele')} / {cal.get('logloss_marche')}")
+    elif ver:
+        lignes.append(f"Verdict foot persiste : {ver.get('generated_at')} "
+                      f"n={ver.get('n')} verdict={ver.get('verdict')} "
+                      f"(source : {ver.get('source')})")
     else:
         lignes.append("Aucune calibration mesuree — `/roi diag` apres backtest_market.py")
     # Etat des deux moteurs (foot + basket) — jamais fusionnes.
@@ -1226,6 +1231,32 @@ def cmd_basket(st, arg):
          + "\nRetour foot : /sport foot")
 
 
+def _systeme_marge(jambes):
+    """Marge effective moyenne des jambes, lue dans top3.json. Trou si absente."""
+    t3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
+    by_key = {}
+    for e in (t3.get("matchs") or []):
+        for top in (e.get("top3") or []):
+            m = top.get("overround")
+            if m is None:
+                m = top.get("marge")
+            if m is None:
+                continue
+            try:
+                key = (str(e.get("id") or e.get("match_id") or ""), str(top.get("marche") or ""))
+                by_key.setdefault(key, float(m))
+            except (TypeError, ValueError):
+                continue
+    vals = []
+    for j in jambes:
+        v = by_key.get((str(j[0]), str(j[1])))
+        if v is not None:
+            vals.append(v)
+    if not vals:
+        return None, 0
+    return sum(vals) / len(vals), len(vals)
+
+
 def cmd_systeme(st, arg):
     """`/systeme 2-3|dutching|corridor|pivot` — affichage avant /approve."""
     try:
@@ -1270,9 +1301,11 @@ def cmd_systeme(st, arg):
                      "non disponible depuis tickets.json."); return
     except ValueError as exc:
         tell("⛔ Systeme refuse : " + str(exc)); return
+    marge, n_marge = _systeme_marge(jambes)
+    marge_txt = "— (trou : top3 sans marge)" if marge is None else "%.2f%% (%d jambes)" % (marge * 100.0, n_marge)
     tell("SYSTEME " + arg.upper() + "\n" + json.dumps(rec, ensure_ascii=False, indent=1)
-         + "\nMise par pari : %.0f FC — p_break_even inclus dans la cote "
-           "(marge du book deja prelevee)." % mise
+         + "\nMise par pari : %.0f FC — p_break_even inclus dans la cote." % mise
+         + "\nMarge effective : " + marge_txt
          + "\nRien n'est mise automatiquement — verification avant /approve.")
 
 

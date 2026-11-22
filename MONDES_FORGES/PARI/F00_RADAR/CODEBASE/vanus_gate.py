@@ -48,6 +48,7 @@ BASKET_OPPOSE = {
     "total_over": "total_under", "total_under": "total_over",
     "spread_home": "spread_away", "spread_away": "spread_home",
 }
+VANUS_TO_PARI_BASKET = {v: k for k, v in SELECTION_TO_VANUS_BASKET.items()}
 
 PICK_TO_PARI = {
     "home": "1",
@@ -174,7 +175,7 @@ def veto_codes(selection, sport="foot"):
     if not opp:
         return []
     if sport == "basket":
-        code = SELECTION_TO_VANUS_BASKET.get(opp) or opp
+        code = VANUS_TO_PARI_BASKET.get(opp) or opp
     else:
         code = PICK_TO_PARI.get(opp)
     return [code] if code else []

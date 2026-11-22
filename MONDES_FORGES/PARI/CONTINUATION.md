@@ -718,6 +718,44 @@ et un re-clonage par tous les collaborateurs. Aucune execution sans accord expli
 reste a purger. Le PAT GitHub partage en conversation doit etre revoque en priorite.
 Gel et moteurs inchanges.
 
+## ETAT v6.6 — CAHIER V3 COMPLETE (2026-11-19)
+
+Packs T5 / V6 / F4 / B3. Doctrine intacte : aucun seuil abaisse, aucun pari automatique,
+un seul producteur de nombre (`apply_gates`), stdlib seulement.
+
+- [x] **T5 (cahier §5)** : `F00_RADAR/CODEBASE/backtest_scores_foot.py`. Walk-forward 1X2
+      vs marche, refit Dixon-Coles tous les 30 jours sur `t < date` uniquement. Adapte aux
+      vraies signatures du depot (`market_csv.load_dir` renvoie un dict, `score_matrix` une
+      matrice, `parse_cutoff` un datetime — `[:10]` sinon fuite de cutoff,ouverte par le test).
+      Brier / RPS / logloss / ECE bine / CLV. Verdict via `backtest_market.apply_gates`
+      (seule autorite) sur `config/moteur.json`. Sortie `calibration_scores_foot.json` gitignore.
+      `tickets_enabled=False` jamais touche. Test `tests/test_backtest_scores_foot.py` 21/21.
+- [x] **V6 (cahier §6)** : `vanus_fetch.fetch_signal()` + `--sport basket --signal <url>`.
+      Cible `ARCHIVUM/vanus/signals_basket.json`, URL aussi dans `PARI_VANUS_SIGNALS_URL`.
+      Contrat `vanus.signal.v1` + `sport=basket` exiges ; timeout / http / vide / html /
+      json / contrat / sport faux = hole, jamais de proba, jamais de fichier ecrit.
+      CSV foot et CLI existante inchanges. `test_vanus_fetch` 41/41, `test_vanus_gate` 37/37.
+- [x] **Correction liee** : `vanus_gate.veto_codes(..., sport="basket")` utilisait le mapping
+      dans le mauvais sens (`"away"` au lieu de `"2"`). `VANUS_TO_PARI_BASKET` inverse.
+      `packager.build_pack(..., sport=)` transmet le sport au gate (defaut foot).
+      `test_vanus_packager` 25/25 (jackpot basket drop bien la selection `2`).
+      Aucun pari basket ne se construit : `tickets_enabled=false`.
+- [x] **F4 (cahier §4 critere ②)** : `/systeme` affiche desormais `Marge effective : X%`
+      (moyenne des `overround`/`marge` de top3.json pour les jambes, `— (trou)` sinon),
+      en plus de p_break_even et des pires cas, avant `/approve`. `test_systemes` 24/24.
+- [x] **B3 (dette)** : `vanus_calibrate.save_verdict()` persiste un resume versionne
+      `ARCHIVUM/learnings/verdict_foot.json` (`contract pari.verdict_foot.v1`) a chaque run
+      CLI (`--verdict-out`), sans donnees brutes. `/modele` l'affiche en repli si
+      `calibration_moteur.json` absent. Fichier initial = reconstruction documentee du run
+      VX (n=950 NO-GO), pas une nouvelle mesure. `test_vanus_calibrate` 47/47.
+
+**Reste hors agent** : (1) **revoquer le PAT GitHub** (cahier P0-1) et purger l'historique
+(`git filter-repo`) apres accord Warsmith ; (2) recoller les CSV Big 5 (`vanus_fetch.py`,
+reseau ferme ici : 5 holes `http`) puis relancer `vanus_calibrate.py --seasons 2425,2526
+--cutoff 2026-01-01` pour regenerer un verdict **mesure** ; (3) deployer VANUS sur
+PythonAnywhere et fournir l'URL du export basket pour que `/vanus` montre un signal reel.
+Aucun `/gel off`, aucun `/valider-2` basket, aucun seuil abaisse.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

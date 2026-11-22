@@ -1902,3 +1902,11 @@
 
 ## [2026-11-18T21:00:00Z] P0-1 etape 2 : 19 Secrets GitHub crees via API chiffree (valeurs actuelles a faire tourner). .github/scripts/write_env_pari.py ecrit env_pari au runtime dans 5 workflows (daily, listen, odds_t0/t2h, worker_deploy). env_pari retire du suivi git (git rm --cached) et gitignore. test_write_env_pari 7/7.
 ## [2026-11-18T21:00:00Z] Procedure de purge d'historique preparee dans CONTINUATION (v6.5) mais NON executee : PLAN_PARI_CONSOLIDE interdit a l'agent de réecrire l'histoire. Rotation des identifiants + purge = decision Warsmith. Docs a jour : CONTINUATION (v6.5), TRACKING/INDEX, IW_CAMPAIGN_LOG.
+
+## [2026-11-19T09:00:00Z] Cahier V3 T5 : backtest_scores_foot.py (walk-forward 1X2 vs marche). Refit Dixon-Coles tous les 30 jours sur t < date ; le test a detecte une fuite de cutoff (parse_cutoff renvoie un datetime) -> corrige via [:10]. Brier/RPS/logloss/ECE bine/CLV ; verdict via apply_gates seul. calibration_scores_foot.json gitignore. test_backtest_scores_foot 21/21. Tickets geles.
+
+## [2026-11-19T09:30:00Z] Cahier V3 V6 : vanus_fetch.fetch_signal + --sport basket --signal <url> (PARI_VANUS_SIGNALS_URL). Contrat vanus.signal.v1 + sport=basket exiges ; timeout/html/vide/json/contrat/sport faux = hole, aucun fichier ecrit, jamais un p. test_vanus_fetch 41/41, test_vanus_gate 37/37.
+
+## [2026-11-19T10:00:00Z] Correction basket : vanus_gate.veto_codes utilisait le mapping a l'envers (away au lieu de 2). VANUS_TO_PARI_BASKET inverse. packager.build_pack(sport=) transmet le sport au gate. test_vanus_packager 25/25. Aucun ticket cree.
+
+## [2026-11-19T10:30:00Z] Cahier V3 critere 4-(2) + dette B3 : /systeme affiche la marge effective (top3.json, trou si absente) ; test_systemes 24/24. vanus_calibrate.save_verdict persiste verdict_foot.json (pari.verdict_foot.v1, resume sans donnees brutes) a chaque run CLI ; /modele l'affiche en repli ; test_vanus_calibrate 47/47. Fichier initial = reconstruction documentee du run VX n=950 NO-GO. Reseau ferme ici (5 holes http sur vanus_fetch) : aucun run live. PAT + purge historique = Warsmith.

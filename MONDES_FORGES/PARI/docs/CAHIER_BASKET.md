@@ -82,6 +82,15 @@ Consensus : 2 index alignés = alarme, 1 seul = isole, jamais une probabilité
 produite. Pas de `X` au basket (prolongation). `/vanus` affiche le signal du
 sport actif.
 
+Récupération locale (v6.6) : `python F00_RADAR/CODEBASE/vanus_fetch.py --sport basket
+--signal <url-de-l-export>` (URL aussi dans `PARI_VANUS_SIGNALS_URL`) écrit
+`ARCHIVUM/vanus/signals_basket.json`. Sans URL ou sur hole (timeout / HTML / vide /
+contrat ou sport faux), aucun fichier n'est écrit : le gate lit alors un trou.
+Le veto basket est converti en code PARI (`home` → `2`, `away` → `1`) par
+`vanus_gate.veto_codes(..., sport="basket")` ; `packager.build_pack(sport="basket")`
+le transmet au gate. Le signal ne produit jamais de probabilité et aucun ticket
+n'est construit tant que `tickets_enabled=false`.
+
 ## Systemes S1-S4 (via `/systeme`)
 
 `/systeme 2-3|dutching|corridor|pivot` affiche le ticket avant `/approve`, depuis les

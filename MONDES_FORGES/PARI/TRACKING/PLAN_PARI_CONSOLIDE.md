@@ -333,5 +333,15 @@ dans `pari-forge-perturabo-xs4c` (merge `7b95490`), apres cahier HTML dedicate.
 Il ne modifie aucun verrou ci-dessus : foot maitre par defaut, gels independants,
 `CMDS` etendu en fin uniquement, ledger F06 intact, stdlib seulement.
 Basket livre **GELE** (`config/moteur_basket.json`, verdict `null`, aucun CSV).
-Source de verite : `CONTINUATION.md` ETAT v6.0, `docs/CAHIER_BASKET.md`,
+Source de verite : `CONTINUATION.md` ETAT v6.6, `docs/CAHIER_BASKET.md`,
 `TRACKING/INDEX.md` section BASKET. Ce plan reste clos ; aucun pack S a rouvrir.
+
+## 9. Cahier V3 (2026-11-19) — hors plan S, clos aussi
+
+Cahier HTML `tcahiers-des-charges-PARI-BASKET-V3.html` (hors depot) : P0-2 (ECE bine),
+P0-3 (`/systeme`) et P0-1 etape 2 (Secrets GitHub) etaient livres en v6.3/v6.4/v6.5.
+Solde livre en v6.6 : §5 `backtest_scores_foot.py` (21/21), §6 `fetch_signal` basket
+(41/41 + gate 37/37 + packager 25/25), critere §4-② marge effective (24/24), dette B3
+verdict foot persiste (47/47). Resent Warsmith uniquement : revoquer le PAT, purger
+l'historique, recoller les CSV Big 5 et deployer l'export VANUS. Aucun seuil abaisse,
+aucun `/gel off`, aucun ticket basket.

@@ -252,7 +252,7 @@ def test_workflow_t0():
     check("cl.wf_exists", os.path.exists(wf))
     src = open(wf, encoding="utf-8").read() if os.path.exists(wf) else ""
     check("cl.wf_close", "--close" in src)
-    check("cl.wf_pas_secrets", "${{ secrets." not in src)
+    check("cl.wf_secrets_via_script", "write_env_pari.py" in src and "env_pari" in src)
     check("cl.wf_pas_poisson", "import breacher" not in src and "dixon" not in src.lower())
     cap = open(os.path.join(WORLD, "F00_RADAR", "CODEBASE", "capteurs.py"), encoding="utf-8").read()
     check("cl.cli_close", "--close" in cap)

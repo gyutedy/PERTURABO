@@ -265,6 +265,17 @@ def main():
         workflow.tell = old_tell
         workflow.WORLD = old_world
 
+    vout = os.path.join(tempfile.mkdtemp(prefix="pari-vx-verdict-"), "verdict_foot.json")
+    vrec = vx.run(season="2526", cache_dir=tmp3, getter=getter_ok, cutoff="2025-09-15",
+                  cfg=CFG_SMALL, gates=GATES_LOOSE, verdict_out=vout)
+    vblob = json.load(open(vout, encoding="utf-8"))
+    check("vx.verdict_persiste", os.path.isfile(vout) and vrec.get("verdict_out") == os.path.abspath(vout))
+    check("vx.verdict_resume", vblob.get("contract") == "pari.verdict_foot.v1"
+          and vblob.get("verdict") == vrec.get("verdict")
+          and "rps_modele" not in vblob and "predictions" not in vblob,
+          str(sorted(vblob.keys())))
+    check("vx.verdict_gele", vblob.get("tickets_enabled") is False)
+
     n_fail = sum(1 for _, ok, _ in CHECKS if not ok)
     print("=" * 70)
     print(f"VX vanus_calibrate : {len(CHECKS) - n_fail}/{len(CHECKS)} PASS" +
