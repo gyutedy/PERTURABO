@@ -1931,3 +1931,9 @@
 ## [2026-11-21T14:51:10Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:19da85cd70e3822607d5da056648f6d1 — status:done
 
 ## [2026-11-21T14:51:10Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:826f404de2b4ca40e0643b1ecf6ca4b7 — status:done
+
+## [2026-11-22T14:46:36Z] F01 — check-out — status: processing
+
+## [2026-11-22T14:46:36Z] F01 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/OUT/matches_intel.json — md5:73b8495e419039275de3f7fe1ae61aa1 — status:done
+
+## [2026-11-22T14:46:36Z] F02 — check-in — /home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F02_BREACHER/OUT/analysis.json — md5:ee1e1f1f4e38c73afbe66290d0fbfc14 — status:done
