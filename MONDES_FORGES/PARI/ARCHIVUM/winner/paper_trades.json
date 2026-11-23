@@ -50,7 +50,25 @@
       "ticket": false
     }
   ],
-  "generated_at": "2026-11-23T03:48:56.129963+00:00",
+  "generated_at": "2026-11-23T04:00:43.559659+00:00",
   "n_bets": 3,
-  "tickets_enabled": false
+  "tickets_enabled": false,
+  "diagnostic": [
+    {
+      "match_key": "albacetebalompie_burgoscf",
+      "marche": "OU_2.5",
+      "selection": "over",
+      "cote": 2.12,
+      "ev": 0.014251,
+      "pari": false
+    },
+    {
+      "match_key": "atleticomadrid_getafecf",
+      "marche": "OU_2.5",
+      "selection": "under",
+      "cote": 1.63,
+      "ev": 0.008535,
+      "pari": false
+    }
+  ]
 }

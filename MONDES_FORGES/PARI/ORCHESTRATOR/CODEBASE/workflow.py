@@ -1309,6 +1309,28 @@ def cmd_systeme(st, arg):
          + "\nRien n'est mise automatiquement — verification avant /approve.")
 
 
+def _winner_diag(sport):
+    """EV>0 mais sous EV_FLOOR : affiche pour trace, jamais propose comme pari."""
+    import winner_pmodel
+    path = P("ARCHIVUM", "winner", "pmodel_%s.json" % sport)
+    blob = load_json(path) or {}
+    lignes = []
+    for r in blob.get("analyses") or []:
+        if not r.get("p_modele"):
+            continue
+        for marche, key, label in (("1X2", "home", "1"), ("1X2", "draw", "X"),
+                                   ("1X2", "away", "2"), ("OU_2.5", "under_2_5", "under"),
+                                   ("OU_2.5", "over_2_5", "over")):
+            section = r if marche == "1X2" else (r.get("ou25") or {})
+            ev = (section.get("ev") or {}).get(key)
+            if ev is None or not (0 < ev < winner_pmodel.EV_FLOOR):
+                continue
+            cote = (section.get("cote") or {}).get(key)
+            lignes.append("  %s - %s  %s %s a %s  EV +%.2f%%" % (
+                r.get("home"), r.get("away"), marche, label, cote, ev * 100.0))
+    return lignes
+
+
 def cmd_winner(st, arg):
     """/winner [foot|basket] — lit la derniere feuille de cotes Winner.
     Lecture seule : cotes + trous, jamais un p, jamais un ticket."""
@@ -1348,6 +1370,10 @@ def cmd_winner(st, arg):
         lignes.append("Trous globaux : " + ", ".join(view["holes"]))
     if not view["matches"]:
         lignes.append("Aucun match — verifier le poll VANUS / la capture LLM puis /vanus.")
+    diag = _winner_diag(sport)
+    if diag:
+        lignes.append("DIAGNOSTIC (EV positif < 3% — affiche pour trace, JAMAIS un pari):")
+        lignes.extend(diag)
     tell("\n".join(lignes))
 
 

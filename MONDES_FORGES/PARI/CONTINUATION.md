@@ -965,6 +965,17 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       (cote prise vs `B365C*`), puis ECE/hit-rate. Objectif **>= 100 paris** avant toute mise.
       Branches live intactes : ce travail reste sur `pari-winner-sensor-m1`.
 
+## ETAT v8.1 — AFFICHAGE DES EV SOUS LE SEUIL (2026-11-22)
+
+- [x] `/winner foot|basket` affiche desormais **tous** les marches, y compris ceux dont l'EV est
+      positif mais **< 3 %**, dans une section `DIAGNOSTIC (EV positif < 3% — affiche pour trace,
+      JAMAIS un pari)`. Exemple reel : Burgos over 2.5 a 2.12 EV +1,43 %, Getafe under 2.5 a
+      1.63 EV +0,85 %. Aucune mise, aucun ticket : le `EV_FLOOR 0.03` reste inviolable.
+- [x] Le journal `paper_trades.json` porte une section `diagnostic` (`pari: false`) avec ces
+      memes jambes. `test_paper_trader` 8/8, `test_winner_telegram` 13/13.
+- [x] Origine du seuil (pour trace) : `TRACKING/PLAN_PARI_CONSOLIDE.md:209`,
+      `CONTINUATION.md:985` — decision Warsmith, pas une norme invente par l'agent.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

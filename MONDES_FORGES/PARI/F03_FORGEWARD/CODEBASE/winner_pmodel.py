@@ -35,6 +35,7 @@ import winner_ingest  # noqa: E402
 
 DEFAULT_PARAMS = os.path.join(WORLD, "ARCHIVUM", "learnings", "dc_params.json")
 CONTRACT = "pari.winner_pmodel.v1"
+EV_FLOOR = 0.03
 SUFFIX = ("calcio", "balompie", "football club", "fussballclub", "deportivo",
           "club", "cf", "fc", "ac", "sd", "ca", "rc", "sc", "as", "ss", "cd", "ud", "ad")
 ALIASES = {

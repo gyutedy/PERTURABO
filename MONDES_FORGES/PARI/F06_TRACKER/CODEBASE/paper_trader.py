@@ -42,6 +42,7 @@ def record(sport="foot", source=None, out=None, ev_floor=EV_FLOOR, mise=1.0):
     ledger.setdefault("bets", [])
     seen = {(b.get("id")) for b in ledger["bets"]}
     added = []
+    diagnostic = []
     generated = blob.get("generated_at") or datetime.now(timezone.utc).isoformat()
     for r in blob.get("analyses") or []:
         if not r.get("p_modele"):
@@ -49,9 +50,17 @@ def record(sport="foot", source=None, out=None, ev_floor=EV_FLOOR, mise=1.0):
         for marche, key, selection in MARCHES:
             section = r if marche == "1X2" else (r.get("ou25") or {})
             ev = (section.get("ev") or {}).get(key)
-            if ev is None or ev < ev_floor:
+            if ev is None:
                 continue
             cote = (section.get("cote") or {}).get(key)
+            if 0 < ev < ev_floor:
+                diagnostic.append({
+                    "match_key": r.get("match_key"), "marche": marche,
+                    "selection": selection, "cote": cote,
+                    "ev": round(ev, 6), "pari": False,
+                })
+            if ev < ev_floor:
+                continue
             p = (section.get("p_modele") or {}).get(key)
             if not cote or not p:
                 continue
@@ -75,6 +84,7 @@ def record(sport="foot", source=None, out=None, ev_floor=EV_FLOOR, mise=1.0):
     ledger["contract"] = CONTRACT
     ledger["generated_at"] = datetime.now(timezone.utc).isoformat()
     ledger["n_bets"] = len(ledger["bets"])
+    ledger["diagnostic"] = diagnostic
     ledger["tickets_enabled"] = False
     target = out or DEFAULT_OUT
     os.makedirs(os.path.dirname(os.path.abspath(target)), exist_ok=True)
