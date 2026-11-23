@@ -1086,6 +1086,26 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [ ] Verification en ligne : attendre le run `pari-worker-deploy` vert puis vraie photo
       Telegram avec `/capture`. Le sport est celui de `sport_actif.json` sauf argument explicite.
 
+## ETAT v9.0 — PLAN DE CALIBRATION BASKET (2026-11-24)
+
+- [x] **Phase 1** : `fit_basket.py` ajoute une **fenetre glissante** (`window_days=540`) et des
+      metadonnees `n_raw/n_iter/grad_final/converged`. Run reel : **1472/3927** matchs retenus,
+      `rtg` etale sur **1,40**, sigma 15,78. `grad_final=72,6` -> **pas converger** ( nouveau
+      diagnostic rendu visible ).
+- [x] **Phase 2** : Comparaison OOS (744 matchs, cotes Yahoo) — fenetre 180 j : Brier **0,237**
+      (rtg 8,91, le moteur discrimine enfin), 365 j : 0,241, 540 j : 0,243, sans fenetre : 0,244.
+      Combine ratings + repos + forme (`basket_calib`) : **0,220** contre **0,195** au marche.
+      Toujours **NO-GO**.
+- [x] **Phase 3** : `/winner basket` affiche « MODELE BASKET NON VALIDE » des que `fiable=false` ;
+      `paper_trader.record_basket` refuse d'enregistrer tant qu'il n'y a pas de GO (trou
+      `modele_non_valide`). `test_basket_phases` **7/7**.
+- [x] **Phase 5** : `basket_prior.py` teste le **prix du book comme prior** (corriger l'ecart
+      resultat - implicite). OOS : Brier 0,19573 contre 0,19532 au marche -> **gap +0,0004**.
+      Aucun edge, module **desactive** (`enabled=false`), jamais producteur de p.
+- [ ] **Bloquant externe** : cotes de cloture NBA 2026 indisponibles — The Odds API repond
+      `HISTORICAL_UNAVAILABLE_ON_FREE_USAGE_PLAN` (401) et Yahoo ne couvre que 2023/2024.
+      Donc **CLV non mesurable**, pretendre un GO serait faux. Moteurs geles, aucun ticket.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

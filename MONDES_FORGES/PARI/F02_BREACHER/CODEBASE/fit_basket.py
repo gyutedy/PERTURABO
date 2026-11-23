@@ -29,6 +29,7 @@ DEFAULT_OUT = os.path.join(WORLD, "ARCHIVUM", "state", "basket_params.json")
 def _cfg(cfg=None):
     base = {
         "half_life_days": 45.0,
+    "window_days": 540.0,
         "min_team_matches": 5,
         "sigma_rtg": 4.0,
         "sigma_pts": 2.5,
@@ -99,8 +100,13 @@ def _team_names(obs):
 
 def fit(obs, cfg=None):
     """MLE approche (ridge + gradient). Renvoie le blob de params.
-    Verdict de centre exige : |somme(rtg)| <= 1e-6 apres recentrage."""
+    Verdict de centre exige : |somme(rtg)| <= 1e-6 apres recentrage.
+    Fenetre glissante : les observations plus vieilles que window_days sont
+    ignorees (poids exponentiel), jamais estimees."""
     c = _cfg(cfg)
+    wmin = 0.5 ** (float(c["window_days"]) / float(c["half_life_days"]))
+    obs_all = list(obs or [])
+    obs = [o for o in obs_all if float(o.get("weight") or 0) >= wmin]
     names = _team_names(obs)
     if not names:
         return {"teams": {}, "home_adv": c["home_adv_init"], "base": None,
@@ -120,7 +126,10 @@ def fit(obs, cfg=None):
     s2 = c["sigma_rtg"] ** 2
     sig2 = c["sigma_pts"] ** 2
     prev = None
+    n_iter = 0
+    grad_final = None
     for it in range(int(c["max_iterations"])):
+        n_iter = it + 1
         g = {t: 0.0 for t in names}
         go = {t: 0.0 for t in names}
         gh = 0.0
@@ -150,6 +159,7 @@ def fit(obs, cfg=None):
         if prev is not None and abs(cur - prev) < c["tol"]:
             break
         prev = cur
+    grad_final = sum(abs(v) for v in g.values()) / max(1, len(g))
     # sigma residuel de la marge
     se = 0.0
     for o in obs:
@@ -174,6 +184,11 @@ def fit(obs, cfg=None):
         "sigma": round(sigma, 4),
         "teams": teams,
         "n_matches": len(obs),
+        "n_raw": len(obs_all),
+        "window_days": c["window_days"],
+        "n_iter": n_iter,
+        "grad_final": round(grad_final or 0, 9),
+        "converged": (grad_final or 0) < 1e-4,
         "holes": holes,
         "center_residual": round(abs(sum(rtg.values())), 9),
     }

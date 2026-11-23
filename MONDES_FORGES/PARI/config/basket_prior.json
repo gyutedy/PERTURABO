@@ -1,0 +1,20 @@
+{
+  "contract": "pari.basket_prior.v1",
+  "generated_at": "2026-11-23T23:05:55.319664+00:00",
+  "n_train": 2,
+  "n_test": 0,
+  "brier_modele": null,
+  "brier_marche": null,
+  "brier_gap": null,
+  "verdict": "NO-GO",
+  "enabled": false,
+  "weights": [
+    0.382927,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "note": " aucun edge OOS ; desactive, jamais producteur de p",
+  "tickets_enabled": false
+}

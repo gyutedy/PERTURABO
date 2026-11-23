@@ -1379,6 +1379,11 @@ def cmd_winner(st, arg):
         lignes.append("Trous globaux : " + ", ".join(view["holes"]))
     if not view["matches"]:
         lignes.append("Aucun match — verifier le poll VANUS / la capture LLM puis /vanus.")
+    if sport == "basket":
+        pm = load_json(P("ARCHIVUM", "winner", "pmodel_basket.json")) or {}
+        if pm and not pm.get("fiable"):
+            lignes.append("MODELE BASKET NON VALIDE — p1/EV ci-dessus sont diagnostiques, "
+                          "jamais un pari (verdict %s)." % pm.get("verdict_calibration"))
     diag = _winner_diag(sport)
     if diag:
         lignes.append("DIAGNOSTIC (EV positif < 3% — affiche pour trace, JAMAIS un pari):")

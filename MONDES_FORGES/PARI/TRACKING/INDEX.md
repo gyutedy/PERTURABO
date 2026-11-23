@@ -146,6 +146,9 @@ Cartographie des journaux du monde.
 
 | `F02_BREACHER/CODEBASE/basket_total.py` | v8.7 : marche Total = points des DEUX equipes, ridge stdlib, sigma_total OOS (19,17 sur 972 matchs). Cotes Under/Over Winner -> EV diagnostic. |
 | `tests/test_basket_total.py` | v8.7 : state sans fuite, intercept non penalise, sigma OOS, p_over (7/7). |
+| `F02_BREACHER/CODEBASE/basket_prior.py` | v9.0 : experience prior marche (correction de l'ecart vs implicite). OOS gap +0,0004 -> aucun edge, `enabled=false`, jamais producteur de p. |
+| `tests/test_basket_phases.py` | v9.0 : fenetre fit, convergence visible, prior desactive, paper basket bloque (7/7). |
+| `config/basket_prior.json` | v9.0 : resultat OOS du prior (desactive). |
 | `F02_BREACHER/CODEBASE/basket_calib.py` | v8.6 : ridge stdlib ratings+repos+forme, OOS 744, brier 0,217 vs marche 0,195 -> NO-GO (aucun seuil baisse). |
 | `tests/test_basket_calib.py` | v8.6 : features sans fuite, poids, verdict, zero ticket (8/8). |
 | `F03_FORGEWARD/CODEBASE/winner_pmodel_basket.py` | v8.5 : `p_modele` ML via MLE NBA + devig Winner. Garde `fiable`/`ratio_dispersion` : EV artificiels si le moteur ne discrimine pas (cas reel, 0,135). Aucun ticket. |

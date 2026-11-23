@@ -104,6 +104,45 @@ def record(sport="foot", source=None, out=None, ev_floor=EV_FLOOR, mise=1.0):
     return ledger, added
 
 
+def record_basket(source=None, out=None, ev_floor=EV_FLOOR, mise=1.0):
+    """Paris simules basket : uniquement si le modele est valide (GO)."""
+    pm = source or os.path.join(WORLD, "ARCHIVUM", "winner", "pmodel_basket.json")
+    blob = _load(pm)
+    if not isinstance(blob, dict) or not blob.get("fiable"):
+        return {"skipped": "modele_non_valide", "ajoutes": []}
+    ledger = _load(out or DEFAULT_OUT)
+    if not isinstance(ledger, dict):
+        ledger = {"contract": CONTRACT, "bets": []}
+    ledger.setdefault("bets", [])
+    seen = {b.get("id") for b in ledger["bets"]}
+    added = []
+    for r in blob.get("analyses") or []:
+        for key, selection in (("home", "1"), ("away", "2")):
+            ev = (r.get("ev") or {}).get(key)
+            cote = (r.get("cote") or {}).get(key)
+            p = (r.get("p_modele") or {}).get(key)
+            if ev is None or ev < ev_floor or not cote or not p:
+                continue
+            bid = "%s|%s|ML|%s|%s" % (blob.get("generated_at", "")[:10],
+                                      r.get("match_key"), selection, cote)
+            if bid in seen:
+                continue
+            seen.add(bid)
+            bet = {"id": bid, "generated_at": blob.get("generated_at"),
+                   "sport": "basket", "match_key": r.get("match_key"),
+                   "home": r.get("home"), "away": r.get("away"),
+                   "marche": "ML", "selection": selection,
+                   "cote": cote, "p_modele": p, "ev": round(ev, 6),
+                   "mise": mise, "resultat": "EN_ATTENTE", "ticket": False,
+                   "clv": None, "holes": ["clv_absent_close_api"]}
+            ledger["bets"].append(bet)
+            added.append(bet)
+    target = out or DEFAULT_OUT
+    with open(target, "w", encoding="utf-8") as f:
+        json.dump(ledger, f, ensure_ascii=False, indent=2)
+    return {"skipped": None, "ajoutes": added}
+
+
 def report(ledger):
     bets = ledger.get("bets") or []
     return {"n": len(bets), "en_attente": sum(1 for b in bets if b.get("resultat") == "EN_ATTENTE"),
@@ -271,6 +310,11 @@ def main():
     if args.settle:
         rec = settle(out=args.out)
         print(json.dumps(rec, indent=2, ensure_ascii=False))
+        return
+    if args.sport == "basket":
+        rec = record_basket(out=args.out, ev_floor=args.ev_floor)
+        print(json.dumps({"sport": "basket", "skipped": rec["skipped"],
+                          "ajoutes": len(rec["ajoutes"])}, indent=2, ensure_ascii=False))
         return
     ledger, added = record(args.sport, out=args.out, ev_floor=args.ev_floor)
     print(json.dumps({"sport": args.sport, "ajoutes": len(added),
