@@ -1311,7 +1311,16 @@ def cmd_systeme(st, arg):
 
 def _winner_diag(sport):
     """EV>0 mais sous EV_FLOOR : affiche pour trace, jamais propose comme pari."""
-    import winner_pmodel
+    try:
+        import winner_pmodel
+    except ImportError:
+        _f03 = P("F03_FORGEWARD", "CODEBASE")
+        if _f03 not in sys.path:
+            sys.path.insert(0, _f03)
+        try:
+            import winner_pmodel
+        except ImportError:
+            return []
     path = P("ARCHIVUM", "winner", "pmodel_%s.json" % sport)
     blob = load_json(path) or {}
     lignes = []

@@ -1,49 +1,124 @@
 {
   "contract": "vanus.slate.v1",
   "sport": "basket",
-  "generated_at": "2026-11-22T16:17:01.673417+00:00",
+  "generated_at": "2026-11-23T08:10:59.852391+00:00",
   "matches": {
-    "newyorkknicks_torontoraptors": {
-      "home": "Toronto Raptors",
-      "away": "New York Knicks",
-      "kickoff": "01:30",
-      "source_event_id": "20071",
+    "charlottehornets_memphisgrizzlies": {
+      "home": "Charlotte Hornets",
+      "away": "Memphis Grizzlies",
+      "kickoff": "01:00",
+      "source_event_id": "20010",
       "odds": {
-        "ml_1": 2.42,
-        "ml_2": 1.55,
-        "total_line": 214.5,
-        "total_under": 1.84,
-        "total_over": 1.83
+        "ml_1": 2.33,
+        "ml_2": 1.58,
+        "total_line": 216.5,
+        "total_under": 1.81,
+        "total_over": 1.86
       },
       "diagnostic_only": [],
       "holes": []
     },
-    "detroitpistons_sanantoniospurs": {
-      "home": "San Antonio Spurs",
-      "away": "Detroit Pistons",
-      "kickoff": "02:00",
-      "source_event_id": "20089",
+    "philadelphia76ers_portlandtrailblazers": {
+      "home": "Philadelphia 76ers",
+      "away": "Portland Trail Blazers",
+      "kickoff": "01:00",
+      "source_event_id": "20049",
       "odds": {
-        "ml_1": 1.22,
-        "ml_2": 4.2,
-        "total_line": 221.5,
+        "ml_1": 1.61,
+        "ml_2": 2.28,
+        "total_line": 231.5,
+        "total_under": 1.82,
+        "total_over": 1.85
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "brooklynnets_minnesotatimberwolves": {
+      "home": "Minnesota Timberwolves",
+      "away": "Brooklyn Nets",
+      "kickoff": "01:30",
+      "source_event_id": "20051",
+      "odds": {
+        "ml_1": 1.14,
+        "ml_2": 5.4,
+        "total_line": 223.5,
+        "total_under": 1.81,
+        "total_over": 1.86
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "indianapacers_oklahomacitythunder": {
+      "home": "Indiana Pacers",
+      "away": "Oklahoma City Thunder",
+      "kickoff": "01:30",
+      "source_event_id": "20103",
+      "odds": {
+        "ml_1": 2.65,
+        "ml_2": 1.46,
+        "total_line": 223.5,
+        "total_under": 1.81,
+        "total_over": 1.86
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "milwaukeebucks_torontoraptors": {
+      "home": "Toronto Raptors",
+      "away": "Milwaukee Bucks",
+      "kickoff": "01:30",
+      "source_event_id": "20065",
+      "odds": {
+        "ml_1": 1.19,
+        "ml_2": 4.5,
+        "total_line": 223.5,
         "total_under": 1.86,
         "total_over": 1.81
       },
       "diagnostic_only": [],
       "holes": []
     },
-    "minnesotatimberw_portlandtrailblazers": {
-      "home": "Minnesota Timberw...",
-      "away": "Portland Trail Blazers",
+    "chicagobulls_clevelandcavaliers": {
+      "home": "Chicago Bulls",
+      "away": "Cleveland Cavaliers",
       "kickoff": "02:00",
-      "source_event_id": "20105",
+      "source_event_id": "20101",
       "odds": {
-        "ml_1": 1.68,
-        "ml_2": 2.16,
-        "total_line": 225.5,
-        "total_under": 1.81,
-        "total_over": 1.86
+        "ml_1": 3.55,
+        "ml_2": 1.28,
+        "total_line": 240.5,
+        "total_under": 1.83,
+        "total_over": 1.84
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "neworleanspelicans_phoenixsuns": {
+      "home": "New Orleans Pelicans",
+      "away": "Phoenix Suns",
+      "kickoff": "02:00",
+      "source_event_id": "20098",
+      "odds": {
+        "ml_1": 2.25,
+        "ml_2": 1.63,
+        "total_line": 233.5,
+        "total_under": 1.82,
+        "total_over": 1.85
+      },
+      "diagnostic_only": [],
+      "holes": []
+    },
+    "houstonrockets_laclippers": {
+      "home": "Houston Rockets",
+      "away": "LA Clippers",
+      "kickoff": "02:30",
+      "source_event_id": "20037",
+      "odds": {
+        "ml_1": 1.14,
+        "ml_2": 5.6,
+        "total_line": 224.5,
+        "total_under": 1.86,
+        "total_over": 1.81
       },
       "diagnostic_only": [],
       "holes": []

@@ -1003,6 +1003,19 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       (429) en cours de route ; `settle_api` gere maintenant le 429 sans crash.
 - [x] Run reel `--settle` : **0 en attente**, 3 regles. `test_paper_trader` 12/12.
 
+## ETAT v8.4 — TEST REEL BASKET (2026-11-23)
+
+- [x] `cap1.PNG` + `cap2.PNG` -> LLM vision : **8 matchs, 0 trou**, double lecture concordante.
+      Colonne **2 Way** (2 cotes) bien separee du FT 1X2 (3 cotes) — la correction du prompt
+      fonctionne. Exemples : Charlotte–Memphis `2.33/1.58`, total `216.5`, `1.81/1.86` ;
+      Chicago–Cleveland `3.55/1.28`, total `240.5`, `1.83/1.84`.
+- [x] `winner_ingest.py basket` -> `latest_basket.json`, `/winner basket` affiche les 8 matchs.
+      Bug corrige : `_winner_diag` importait `winner_pmodel` sans ajouter `F03_FORGEWARD/CODEBASE`
+      au `sys.path` quand `workflow.py` est lance directement (cas Actions) -> ImportError.
+      `test_winner_telegram` 13/13.
+- [ ] `p_modèle` basket toujours non branche : cotes et marches lisibles, mais pas encore d'EV
+      (parametres MLE NBA presents dans `basket_params.json`).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
