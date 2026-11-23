@@ -1,0 +1,353 @@
+{
+  "contract": "pari.winner_pmodel_basket.v1",
+  "generated_at": "2026-11-23T09:04:31.638581+00:00",
+  "sport": "basket",
+  "source": "F02 basket MLE (2455 matchs NBA) + F03 devig + cotes Winner",
+  "analyses": [
+    {
+      "match_key": "charlottehornets_memphisgrizzlies",
+      "home": "Charlotte Hornets",
+      "away": "Memphis Grizzlies",
+      "engine": "basket_mle",
+      "mu_home": 113.981,
+      "mu_away": 114.064,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.497945,
+        "away": 0.502055
+      },
+      "p_fair": {
+        "home": 0.404092,
+        "away": 0.595908
+      },
+      "cote": {
+        "home": 2.33,
+        "away": 1.58
+      },
+      "ev": {
+        "home": 0.160212,
+        "away": -0.206753
+      },
+      "edge_net": {
+        "home": 0.232257,
+        "away": -0.157496
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "philadelphia76ers_portlandtrailblazers",
+      "home": "Philadelphia 76ers",
+      "away": "Portland Trail Blazers",
+      "engine": "basket_mle",
+      "mu_home": 114.751,
+      "mu_away": 113.294,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.536021,
+        "away": 0.463979
+      },
+      "p_fair": {
+        "home": 0.586118,
+        "away": 0.413882
+      },
+      "cote": {
+        "home": 1.61,
+        "away": 2.28
+      },
+      "ev": {
+        "home": -0.137005,
+        "away": 0.057871
+      },
+      "edge_net": {
+        "home": -0.085472,
+        "away": 0.121041
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "brooklynnets_minnesotatimberwolves",
+      "home": "Minnesota Timberwolves",
+      "away": "Brooklyn Nets",
+      "engine": "basket_mle",
+      "mu_home": 115.534,
+      "mu_away": 112.511,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.574403,
+        "away": 0.425597
+      },
+      "p_fair": {
+        "home": 0.825688,
+        "away": 0.174312
+      },
+      "cote": {
+        "home": 1.14,
+        "away": 5.4
+      },
+      "ev": {
+        "home": -0.345181,
+        "away": 1.298224
+      },
+      "edge_net": {
+        "home": -0.304334,
+        "away": 1.441583
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "indianapacers_oklahomacitythunder",
+      "home": "Indiana Pacers",
+      "away": "Oklahoma City Thunder",
+      "engine": "basket_mle",
+      "mu_home": 114.626,
+      "mu_away": 113.419,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.529853,
+        "away": 0.470147
+      },
+      "p_fair": {
+        "home": 0.355231,
+        "away": 0.644769
+      },
+      "cote": {
+        "home": 2.65,
+        "away": 1.46
+      },
+      "ev": {
+        "home": 0.404112,
+        "away": -0.313586
+      },
+      "edge_net": {
+        "home": 0.491574,
+        "away": -0.270829
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "milwaukeebucks_torontoraptors",
+      "home": "Toronto Raptors",
+      "away": "Milwaukee Bucks",
+      "engine": "basket_mle",
+      "mu_home": 114.517,
+      "mu_away": 113.529,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.524444,
+        "away": 0.475556
+      },
+      "p_fair": {
+        "home": 0.790861,
+        "away": 0.209139
+      },
+      "cote": {
+        "home": 1.19,
+        "away": 4.5
+      },
+      "ev": {
+        "home": -0.375911,
+        "away": 1.140001
+      },
+      "edge_net": {
+        "home": -0.336869,
+        "away": 1.273875
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "chicagobulls_clevelandcavaliers",
+      "home": "Chicago Bulls",
+      "away": "Cleveland Cavaliers",
+      "engine": "basket_mle",
+      "mu_home": 114.757,
+      "mu_away": 113.288,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.536317,
+        "away": 0.463683
+      },
+      "p_fair": {
+        "home": 0.26501,
+        "away": 0.73499
+      },
+      "cote": {
+        "home": 3.55,
+        "away": 1.28
+      },
+      "ev": {
+        "home": 0.903927,
+        "away": -0.406486
+      },
+      "edge_net": {
+        "home": 1.02376,
+        "away": -0.36913
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "neworleanspelicans_phoenixsuns",
+      "home": "New Orleans Pelicans",
+      "away": "Phoenix Suns",
+      "engine": "basket_mle",
+      "mu_home": 114.676,
+      "mu_away": 113.369,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.532322,
+        "away": 0.467678
+      },
+      "p_fair": {
+        "home": 0.420103,
+        "away": 0.579897
+      },
+      "cote": {
+        "home": 2.25,
+        "away": 1.63
+      },
+      "ev": {
+        "home": 0.197724,
+        "away": -0.237684
+      },
+      "edge_net": {
+        "home": 0.267121,
+        "away": -0.193515
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    },
+    {
+      "match_key": "houstonrockets_laclippers",
+      "home": "Houston Rockets",
+      "away": "LA Clippers",
+      "engine": "basket_mle",
+      "mu_home": 114.863,
+      "mu_away": 113.182,
+      "sigma": 16.1145,
+      "p_modele": {
+        "home": 0.541541,
+        "away": 0.458459
+      },
+      "p_fair": {
+        "home": 0.830861,
+        "away": 0.169139
+      },
+      "cote": {
+        "home": 1.14,
+        "away": 5.6
+      },
+      "ev": {
+        "home": -0.382644,
+        "away": 1.567372
+      },
+      "edge_net": {
+        "home": -0.348217,
+        "away": 1.71054
+      },
+      "total": {
+        "p_over": null,
+        "ev": null,
+        "holes": [
+          "sigma_total_non_calibre"
+        ],
+        "diagnostic_only": true
+      },
+      "holes": [
+        "discrimination_faible"
+      ],
+      "ticket": false,
+      "fiable": false
+    }
+  ],
+  "n_analyse": 8,
+  "n_avec_p": 8,
+  "n_ev_positif": 8,
+  "dispersion_p_home": 0.076458,
+  "dispersion_marche": 0.565851,
+  "ratio_dispersion": 0.1351,
+  "max_ev_abs": 1.567372,
+  "fiable": false,
+  "tickets_enabled": false
+}

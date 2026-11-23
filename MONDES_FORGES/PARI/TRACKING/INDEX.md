@@ -144,6 +144,8 @@ Cartographie des journaux du monde.
 | `F05_PACKAGER/CODEBASE/packager.py` `build_pack(sport=)` | v6.6 : sport transmis au gate VANUS (defaut foot) ; mapping veto basket inverse corrige (`home` → `2`). | `vanus_gate.py` |
 | `tests/test_vanus_packager.py` | v6.6 : jackpot basket drop la selection `2`, 25/25. | CI locale |
 
+| `F03_FORGEWARD/CODEBASE/winner_pmodel_basket.py` | v8.5 : `p_modele` ML via MLE NBA + devig Winner. Garde `fiable`/`ratio_dispersion` : EV artificiels si le moteur ne discrimine pas (cas reel, 0,135). Aucun ticket. |
+| `tests/test_winner_pmodel_basket.py` | v8.5 : p, EV, total diagnostic, equipe inconnue, garde discrimination (9/9). |
 | `F06_TRACKER/CODEBASE/paper_trader.py` | v8.0 : journal des paris simules Winner (EV >= 3 %, cote prise, p_modele, EN_ATTENTE), aucun ticket ni mise. `ARCHIVUM/winner/paper_trades.json`. |
 | `tests/test_paper_trader.py` | v8.0 : seuil EV, zero ticket, zero HSH, zero duplication, contrat (8/8). |
 | `F03_FORGEWARD/CODEBASE/winner_pmodel.py` | v7.4 : `p_modele` calcule par `fit_dc` (CSV historiques), jamais lu dans la cote ; EV `p*cote-1` et `edge_net` vs devig Winner. Equipe absente = trou. Aucun ticket, HSH exclu. |

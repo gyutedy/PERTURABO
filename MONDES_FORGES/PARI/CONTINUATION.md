@@ -1016,6 +1016,22 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [ ] `p_modèle` basket toujours non branche : cotes et marches lisibles, mais pas encore d'EV
       (parametres MLE NBA presents dans `basket_params.json`).
 
+## ETAT v8.5 — P_MODELE BASKET (2026-11-23)
+
+- [x] `basket_params.json` regenere (`fit_basket.py` : 2455 matchs NBA, sigma **16.1145**,
+      centre residu 0). `F03_FORGEWARD/CODEBASE/winner_pmodel_basket.py` calcule le
+      `p_modele` ML via `engine_basket.predict` + `model_basket.p_home_win`, compare aux cotes
+      Winner deviguees et ecrit `ARCHIVUM/winner/pmodel_basket.json`. `tests/test_winner_pmodel_basket.py`
+      **9/9**.
+- [ ] **RESULTAT IMPORTANT** : le modele **ne discriminent pas** les matchs. Sur les 8 matchs
+      reels, `p_home` va de 0,498 a 0,574 (dispersion **0,076**) alors que le marche Winner va
+      de 0,234 a 0,801 (dispersion **0,566**) — ratio **0,135**. Les EV calcules (jusqu'a +156 %)
+      sont donc **artificiels** et non exploitables. Garde-fou ajoute : `fiable: false`,
+      trou `discrimination_faible` sur chaque ligne. Aucun pari basket ne doit etre journalise.
+- [ ] Suite = cahier V3 P2 : ameliorer la discrimination (fenetre, hierarchie, home_adv,
+      features repos/blessures), en mesurant le `brier_gap` apres CHAQUE changement, sans
+      baisser de seuil. Le marche Total reste diagnostic (`sigma_total_non_calibre`).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
