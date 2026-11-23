@@ -111,7 +111,7 @@ def save(st):
 def tell(text):
     """Répond à l'opérateur : Telegram si les clés sont posées, sinon console."""
     print(text)
-    subprocess.run([sys.executable, NOTIFIER, "--text", text], capture_output=True)
+    subprocess.run([sys.executable, NOTIFIER, "--text", text])
 
 
 def run_orch(*args, extra_env=None):
