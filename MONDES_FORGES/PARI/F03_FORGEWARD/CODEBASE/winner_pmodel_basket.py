@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 
@@ -26,8 +27,10 @@ for _p in (HERE, os.path.join(WORLD, "F02_BREACHER", "CODEBASE"),
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
+import basket_calib  # noqa: E402
 import devig  # noqa: E402
 import engine_basket  # noqa: E402
+import market_basket  # noqa: E402
 import model_basket  # noqa: E402
 import winner_ingest  # noqa: E402
 from winner_pmodel import EV_FLOOR  # noqa: E402
@@ -35,19 +38,35 @@ from winner_pmodel import EV_FLOOR  # noqa: E402
 CONTRACT = "pari.winner_pmodel_basket.v1"
 
 
-def analyse(match, blob=None):
+def analyse(match, blob=None, calib=None, rows=None, ratings=None):
     holes = []
     cotes = match.get("odds") or {}
     if (cotes.get("ml_1") is None or cotes.get("ml_2") is None
             or float(cotes["ml_1"]) <= 1 or float(cotes["ml_2"]) <= 1):
         return {"match_key": match.get("match_key"), "holes": ["ml_absente"],
                 "p_modele": None, "ev": None, "ticket": False}
+    modele = "mle"
     pred = engine_basket.predict(match, blob=blob)
     if pred.get("mu_home") is None:
         return {"match_key": match.get("match_key"),
                 "holes": pred.get("holes") or ["equipe_inconnue"],
                 "p_modele": None, "ev": None, "ticket": False}
     p_home = model_basket.p_home_win(pred["mu_home"], pred["mu_away"], pred["sigma"])
+    if calib and rows is not None:
+        raw_day = (match.get("kickoff") or "")[:10]
+        day = raw_day if re.match(r"^\d{4}-\d{2}-\d{2}", raw_day) else datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        last, diffs = basket_calib.state_at(rows, day)
+        m, ch = basket_calib.predict_margin(calib, match.get("home"), match.get("away"),
+                                            day, last, diffs, ratings)
+        if m is not None:
+            p_home = model_basket.p_home_win(m, -m, calib.get("sigma"))
+            modele = "calib"
+            for c in ch:
+                holes.append(c)
+            if match.get("home") not in last or match.get("away") not in last:
+                holes.append("forme_absente")
+            elif (basket_calib._dt(day) - basket_calib._dt(last[match["home"]])).days > 60:
+                holes.append("donnees_anciennes")
     if not p_home or not (0 < p_home < 1):
         return {"match_key": match.get("match_key"), "holes": ["p_nulle"],
                 "p_modele": None, "ev": None, "ticket": False}
@@ -63,6 +82,7 @@ def analyse(match, blob=None):
         "match_key": match.get("match_key"),
         "home": match.get("home"), "away": match.get("away"),
         "engine": pred.get("engine"),
+        "modele": modele,
         "mu_home": pred.get("mu_home"), "mu_away": pred.get("mu_away"),
         "sigma": pred.get("sigma"),
         "p_modele": {k: round(p[k], 6) for k in group},
@@ -72,26 +92,34 @@ def analyse(match, blob=None):
         "edge_net": edge,
         "total": {"p_over": None, "ev": None,
                   "holes": ["sigma_total_non_calibre"], "diagnostic_only": True},
-        "holes": [],
+        "holes": list(dict.fromkeys(holes)),
         "ticket": False,
     }
 
 
 def run(params_path=None, out_path=None):
     blob = engine_basket.load(params_path)
+    calib = basket_calib.load()
+    rows, _ = market_basket.load_dir()
+    ratings = blob.get("teams") or {}
     view = winner_ingest.ingest("basket")
-    recs = [analyse(dict(m, match_key=k), blob) for k, m in view["matches"].items()]
+    recs = [analyse(dict(m, match_key=k), blob, calib=calib, rows=rows, ratings=ratings)
+            for k, m in view["matches"].items()]
     ph = [r.get("p_modele", {}).get("home") for r in recs if r.get("p_modele")]
     fh = [r.get("p_fair", {}).get("home") for r in recs if r.get("p_fair")]
     dispersion = (max(ph) - min(ph)) if len(ph) >= 2 else 0.0
     marche = (max(fh) - min(fh)) if len(fh) >= 2 else 0.0
     ratio = (dispersion / marche) if marche > 0 else 0.0
     max_ev = max([abs(v) for r in recs for v in (r.get("ev") or {}).values()] or [0])
-    fiable = dispersion >= 0.05 and ratio >= 0.5 and max_ev <= 0.5
+    verdict_calib = (calib or {}).get("verdict", "INCONNU")
+    fiable = (verdict_calib == "GO" and dispersion >= 0.05
+              and ratio >= 0.5 and max_ev <= 0.5)
     if not fiable:
         for r in recs:
             if r.get("p_modele"):
-                r.setdefault("holes", []).append("discrimination_faible")
+                if ratio < 0.5:
+                    r.setdefault("holes", []).append("discrimination_faible")
+                r.setdefault("holes", []).append("modele_non_valide:" + str(verdict_calib))
                 r["fiable"] = False
     else:
         for r in recs:
@@ -109,6 +137,8 @@ def run(params_path=None, out_path=None):
         "dispersion_marche": round(marche, 6),
         "ratio_dispersion": round(ratio, 4),
         "max_ev_abs": round(max_ev, 6),
+        "verdict_calibration": verdict_calib,
+        "brier_gap_calibration": (calib or {}).get("brier_gap"),
         "fiable": fiable,
         "tickets_enabled": False,
     }

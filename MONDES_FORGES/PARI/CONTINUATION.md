@@ -1032,6 +1032,23 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       features repos/blessures), en mesurant le `brier_gap` apres CHAQUE changement, sans
       baisser de seuil. Le marche Total reste diagnostic (`sigma_total_non_calibre`).
 
+## ETAT v8.6 — CALIBRATION BASKET (2026-11-23)
+
+- [x] `F02_BREACHER/CODEBASE/basket_calib.py` : ridge stdlib sur **ratings + repos + forme**
+      (5 features), entrainement strictement avant `2025-01-01` (1711 matchs), OOS 744.
+      Brier modele **0,217** contre **0,195** au marche -> gap **+0,0217** -> **verdict NO-GO**
+      (avant calibration : 0,244, gap +0,049). `tests/test_basket_calib.py` **8/8**.
+      Aucun seuil abaisse ; `config/moteur_basket.json` intact.
+- [x] `winner_pmodel_basket.py` utilise ce modele (`modele: "calib"`) et **corrige deux bugs** :
+      les trous etaient ecrases par `holes: []`, et le jour etait pris dans un `kickoff`
+      « 01:30 » au lieu de la date courante.
+- [ ] **Resultat sur les 8 matchs Winner** : `p_home` tres etale mais **tous les matchs portent
+      `donnees_anciennes` + `modele_non_valide:NO-GO`** : les CSV NBA s'arretent en 2025, donc
+      repos/forme sont perimes. Les EV (ex. Houst.–Clippers `+323 %` sur Clippers) sont
+      **artificiels** et ne doivent pas etre journalises. `fiable: false` global.
+      Pour rendre ces predictions utilisables il faut des donnees NBA **2026** (sources
+      whitelistees) et un `brier_gap <= 0` mesure OOS avant toute ouverture.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
