@@ -1,0 +1,162 @@
+{
+  "contract": "pari.basket_params.v1",
+  "generated_at": "2026-11-23T09:52:19.650385+00:00",
+  "base": 114.4757,
+  "home_adv": 1.9296,
+  "sigma": 15.9642,
+  "teams": {
+    "Atlanta Hawks": {
+      "rtg": 0.076,
+      "off": 0.0328,
+      "n": 262
+    },
+    "Boston Celtics": {
+      "rtg": 0.2126,
+      "off": -0.0642,
+      "n": 263
+    },
+    "Brooklyn Nets": {
+      "rtg": -0.166,
+      "off": -0.0543,
+      "n": 261
+    },
+    "Charlotte Hornets": {
+      "rtg": -0.1719,
+      "off": -0.1832,
+      "n": 261
+    },
+    "Chicago Bulls": {
+      "rtg": -0.1362,
+      "off": 0.0434,
+      "n": 262
+    },
+    "Cleveland Cavaliers": {
+      "rtg": 0.0486,
+      "off": 0.0748,
+      "n": 263
+    },
+    "Dallas Mavericks": {
+      "rtg": -0.0155,
+      "off": -0.033,
+      "n": 262
+    },
+    "Denver Nuggets": {
+      "rtg": 0.0338,
+      "off": 0.0551,
+      "n": 260
+    },
+    "Detroit Pistons": {
+      "rtg": 0.1079,
+      "off": -0.0138,
+      "n": 261
+    },
+    "Golden State Warriors": {
+      "rtg": -0.0381,
+      "off": -0.0706,
+      "n": 263
+    },
+    "Houston Rockets": {
+      "rtg": 0.1607,
+      "off": 0.059,
+      "n": 262
+    },
+    "Indiana Pacers": {
+      "rtg": -0.0763,
+      "off": -0.0339,
+      "n": 260
+    },
+    "LA Clippers": {
+      "rtg": -0.1266,
+      "off": -0.0445,
+      "n": 261
+    },
+    "Los Angeles Lakers": {
+      "rtg": 0.1211,
+      "off": 0.0758,
+      "n": 263
+    },
+    "Memphis Grizzlies": {
+      "rtg": 0.1772,
+      "off": 0.0926,
+      "n": 261
+    },
+    "Miami Heat": {
+      "rtg": 0.0449,
+      "off": 0.1079,
+      "n": 261
+    },
+    "Milwaukee Bucks": {
+      "rtg": -0.2716,
+      "off": -0.0807,
+      "n": 262
+    },
+    "Minnesota Timberwolves": {
+      "rtg": 0.1787,
+      "off": -0.0049,
+      "n": 263
+    },
+    "New Orleans Pelicans": {
+      "rtg": -0.2184,
+      "off": -0.0147,
+      "n": 264
+    },
+    "New York Knicks": {
+      "rtg": 0.1353,
+      "off": -0.0857,
+      "n": 262
+    },
+    "Oklahoma City Thunder": {
+      "rtg": 0.0946,
+      "off": -0.0109,
+      "n": 261
+    },
+    "Orlando Magic": {
+      "rtg": -0.0599,
+      "off": -0.0796,
+      "n": 259
+    },
+    "Philadelphia 76ers": {
+      "rtg": 0.0569,
+      "off": 0.0316,
+      "n": 263
+    },
+    "Phoenix Suns": {
+      "rtg": 0.0011,
+      "off": -0.0061,
+      "n": 261
+    },
+    "Portland Trail Blazers": {
+      "rtg": 0.1265,
+      "off": 0.0126,
+      "n": 262
+    },
+    "Sacramento Kings": {
+      "rtg": -0.2612,
+      "off": -0.1178,
+      "n": 262
+    },
+    "San Antonio Spurs": {
+      "rtg": 0.2672,
+      "off": 0.0482,
+      "n": 260
+    },
+    "Toronto Raptors": {
+      "rtg": -0.0087,
+      "off": -0.0538,
+      "n": 262
+    },
+    "Utah Jazz": {
+      "rtg": -0.1624,
+      "off": -0.0896,
+      "n": 264
+    },
+    "Washington Wizards": {
+      "rtg": -0.1308,
+      "off": -0.0682,
+      "n": 263
+    }
+  },
+  "n_matches": 3927,
+  "holes": [],
+  "center_residual": 0.0
+}
