@@ -32,16 +32,14 @@
           ],
           "analyse": {
             "engine": "basket_mle",
-            "mu_home": null,
-            "mu_away": null,
-            "sigma": null,
-            "p_home": null,
-            "p_away": null,
-            "ev_home": null,
-            "ev_away": null,
-            "holes": [
-              "params_absents"
-            ]
+            "mu_home": 115.165,
+            "mu_away": 113.787,
+            "sigma": 15.9642,
+            "p_home": 0.5344,
+            "p_away": 0.4656,
+            "ev_home": 0.2238,
+            "ev_away": -0.2504,
+            "holes": []
           }
         },
         {
@@ -72,16 +70,14 @@
           ],
           "analyse": {
             "engine": "basket_mle",
-            "mu_home": null,
-            "mu_away": null,
-            "sigma": null,
-            "p_home": null,
-            "p_away": null,
-            "ev_home": null,
-            "ev_away": null,
-            "holes": [
-              "params_absents"
-            ]
+            "mu_home": 115.459,
+            "mu_away": 113.492,
+            "sigma": 15.9642,
+            "p_home": 0.549,
+            "p_away": 0.451,
+            "ev_home": -0.1051,
+            "ev_away": 0.0147,
+            "holes": []
           }
         },
         {
@@ -112,16 +108,14 @@
           ],
           "analyse": {
             "engine": "basket_mle",
-            "mu_home": null,
-            "mu_away": null,
-            "sigma": null,
-            "p_home": null,
-            "p_away": null,
-            "ev_home": null,
-            "ev_away": null,
-            "holes": [
-              "params_absents"
-            ]
+            "mu_home": 115.418,
+            "mu_away": 113.534,
+            "sigma": 15.9642,
+            "p_home": 0.547,
+            "p_away": 0.453,
+            "ev_home": 0.3948,
+            "ev_away": -0.325,
+            "holes": []
           }
         }
       ],
@@ -129,7 +123,7 @@
     }
   ],
   "n_matchs": 3,
-  "resume": "  20010  Charlotte Hornets-Memphis Grizzlies  ML 2.29/1.61  p1 —  EV — / —\n  20049  Philadelphia 76ers-Portland Trail Blazers  ML 1.63/2.25  p1 —  EV — / —\n  20103  Indiana Pacers-Oklahoma City Thunder  ML 2.55/1.49  p1 —  EV — / —",
+  "resume": "  20010  Charlotte Hornets-Memphis Grizzlies  ML 2.29/1.61  p1 0.534  EV +22.4% / -25.0%\n  20049  Philadelphia 76ers-Portland Trail Blazers  ML 1.63/2.25  p1 0.549  EV -10.5% / +1.5%\n  20103  Indiana Pacers-Oklahoma City Thunder  ML 2.55/1.49  p1 0.547  EV +39.5% / -32.5%",
   "warnings": [],
   "holes": [
     "handicap_total_sans_ligne"
