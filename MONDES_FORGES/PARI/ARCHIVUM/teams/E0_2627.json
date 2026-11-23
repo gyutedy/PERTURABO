@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T14:46:27Z",
+  "generated_at": "2026-11-23T18:33:42Z",
   "source": "football-data.co.uk (usage privé, whitelist)",
   "league_code": "E0",
   "season": "2627",
@@ -412,12 +412,12 @@
     },
     "Coventry": {
       "dom": {
-        "mj": 5,
-        "marques": 7.0,
-        "encaisses": 9.0,
-        "marques_mt1": 3.0,
-        "encaisses_mt1": 1.0,
-        "marques_mt2": 4.0,
+        "mj": 6,
+        "marques": 10.0,
+        "encaisses": 11.0,
+        "marques_mt1": 5.0,
+        "encaisses_mt1": 3.0,
+        "marques_mt2": 5.0,
         "encaisses_mt2": 8.0
       },
       "ext": {
@@ -432,12 +432,12 @@
     },
     "Hull": {
       "dom": {
-        "mj": 5,
-        "marques": 7.0,
+        "mj": 6,
+        "marques": 9.0,
         "encaisses": 5.0,
         "marques_mt1": 3.0,
         "encaisses_mt1": 1.0,
-        "marques_mt2": 4.0,
+        "marques_mt2": 6.0,
         "encaisses_mt2": 4.0
       },
       "ext": {
@@ -461,13 +461,13 @@
         "encaisses_mt2": 2.0
       },
       "ext": {
-        "mj": 5,
+        "mj": 6,
         "marques": 9.0,
-        "encaisses": 13.0,
+        "encaisses": 15.0,
         "marques_mt1": 5.0,
-        "encaisses_mt1": 5.0,
+        "encaisses_mt1": 6.0,
         "marques_mt2": 4.0,
-        "encaisses_mt2": 8.0
+        "encaisses_mt2": 9.0
       }
     }
   }
