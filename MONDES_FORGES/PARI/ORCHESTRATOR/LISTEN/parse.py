@@ -185,7 +185,7 @@ def parse_update(update, allowed_chat_id):
         return {
             "ok": True,
             "action": "dispatch",
-            "cmd": "/capture",
+            "cmd": "/capture" + (" " + extra.split("\n", 1)[0].strip() if extra.strip() else ""),
             "capture_text": None if file_id else extra,
             "capture_file_id": file_id,
             "chat_id": chat_id,

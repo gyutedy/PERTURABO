@@ -162,6 +162,7 @@ def parse_block(block, sport):
         "sport": sport,
         "home": home, "away": away,
         "kickoff": ktime.group(1) if ktime else None,
+        "kickoff_raw": (next((l for l in lines if ktime and ktime.group(0) in l), None) if ktime else None),
         "source_event_id": mid.group(1) if mid else None,
         "odds": odds,
         "diagnostic_only": diag,

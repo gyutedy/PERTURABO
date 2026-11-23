@@ -127,7 +127,7 @@ export function parseUpdate(update, allowedChatId) {
       };
     }
     return {
-      ok: true, action: "dispatch", cmd: "/capture",
+      ok: true, action: "dispatch", cmd: "/capture" + (String(extra).trim() ? " " + String(extra).split("\n")[0].trim() : ""),
       capture_text: fileId ? null : extra,
       capture_file_id: fileId,
       chat_id: chatId, update_id: update.update_id, message_id: msg.message_id,

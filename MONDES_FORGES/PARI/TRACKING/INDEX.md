@@ -150,6 +150,8 @@ Cartographie des journaux du monde.
 | `tests/test_basket_calib.py` | v8.6 : features sans fuite, poids, verdict, zero ticket (8/8). |
 | `F03_FORGEWARD/CODEBASE/winner_pmodel_basket.py` | v8.5 : `p_modele` ML via MLE NBA + devig Winner. Garde `fiable`/`ratio_dispersion` : EV artificiels si le moteur ne discrimine pas (cas reel, 0,135). Aucun ticket. |
 | `tests/test_winner_pmodel_basket.py` | v8.5 : p, EV, total diagnostic, equipe inconnue, garde discrimination (9/9). |
+| `ORCHESTRATOR/LISTEN/capture_llm.py` | v8.8 : fusion `/capture` photo -> LLM vision -> tableau Winner -> input_capture. Repli OCR si LLM en echec, aucun ticket. |
+| `tests/test_capture_llm.py` | v8.8 : sport, tableaux foot/basket, jour relatif, repli (8/8). |
 | `F06_TRACKER/CODEBASE/paper_trader.py` | v8.0 : journal des paris simules Winner (EV >= 3 %, cote prise, p_modele, EN_ATTENTE), aucun ticket ni mise. `ARCHIVUM/winner/paper_trades.json`. |
 | `tests/test_paper_trader.py` | v8.0 : seuil EV, zero ticket, zero HSH, zero duplication, contrat (8/8). |
 | `F03_FORGEWARD/CODEBASE/winner_pmodel.py` | v7.4 : `p_modele` calcule par `fit_dc` (CSV historiques), jamais lu dans la cote ; EV `p*cote-1` et `edge_net` vs devig Winner. Equipe absente = trou. Aucun ticket, HSH exclu. |

@@ -58,6 +58,8 @@ ticket. Guide complet : `docs/CAHIER_BASKET.md`.
 | `/sport` | Affiche le sport actif + état des deux moteurs. `/sport foot` / `/sport basket` bascule (persiste dans `ARCHIVUM/state/sport_actif.json`, illisible = foot). Ne dégèle rien. |
 | `/basket` | Bascule vers basket + état détaillé (params, n_matchs, verdict calibration, gates). Retour : `/sport foot`. |
 
+**Une seule photo suffit maintenant** : `/capture` + image (option `/capture foot|basket` pour forcer le sport). Le LLM vision extrait les équipes et les cotes, reconstruit le tableau Winner et alimente le siège ; l'OCR reste en repli si le LLM échoue.
+
 **Donner les matchs de basket** : `/sport basket` puis `/capture` + le tableau Winner Bet
 dans le même message. Le parseur lit **uniquement** `1 (ML)` / `2 (ML)` (qui gagne, domicile
 ou extérieur). Les colonnes `1X2` (avec le nul) et `Handicap / Total` (prix sans ligne) sont

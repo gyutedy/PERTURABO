@@ -101,6 +101,19 @@ jobs:
           cd MONDES_FORGES/PARI
           python3 ORCHESTRATOR/LISTEN/winner_telegram.py
 
+      - name: Capture LLM (photo /capture -> tableau Winner)
+        if: startsWith(github.event.inputs.cmd, '/capture') && github.event.inputs.capture_file_id != ''
+        env:
+          CMD: ${{ github.event.inputs.cmd }}
+          CAPTURE_FILE_ID: ${{ github.event.inputs.capture_file_id }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          PARI_WINNER_LLM_KEY: ${{ secrets.PARI_WINNER_LLM_KEY }}
+          PARI_WINNER_LLM_BASE_URL: ${{ secrets.PARI_WINNER_LLM_BASE_URL }}
+          PARI_WINNER_LLM_MODEL: ${{ secrets.PARI_WINNER_LLM_MODEL }}
+        run: |
+          cd MONDES_FORGES/PARI
+          python3 ORCHESTRATOR/LISTEN/capture_llm.py
+
       - name: Executer workflow.py
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

@@ -1067,6 +1067,25 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [ ] Pour ouvrir le basket il faut `brier_gap <= 0` OOS et des cotes de cloture NBA 2026
       (Yahoo ne couvre que 2023/2024). Le marche Total est traite comme diagnostic.
 
+## ETAT v8.8 — FUSION /capture + LLM (2026-11-24)
+
+- [x] `ORCHESTRATOR/LISTEN/capture_llm.py` : une seule photo avec `/capture` (ou
+      `/capture foot|basket` pour forcer le sport) -> double lecture LLM -> slate ->
+      **tableau Winner reconstitue** ecrit dans `F01_SENTINEL/IN/capture_telegram.md`.
+      `resolve_capture` prend le fichier le plus recent : le tableau LLM remplace la photo,
+      donc `input_capture` / `input_capture_basket` tournent **a l'identique**. Aucun LLM = pas
+      de fichier ecrit -> l'OCR tesseract reste le repli.
+- [x] Relais : `parse.py` et `index.js` transmettent l'argument sport de `/capture` ;
+      `pari_listen.yml` execute `capture_llm.py` avant `workflow.py` (secrets LLM deja en place).
+      `test_capture_llm` **8/8** ; suite unitaire 57/58 (seul `test_baseline` echoue, egal sur
+      base propre : CSV foot reels en cache).
+- [x] **Tests reels locaux** : `cap1/cap2.PNG` -> 8 matchs basket parses par
+      `input_capture_basket` ; `t1/t2.jpeg` -> 8 matchs foot parses par `input_capture`
+      (cotes 1X2/U-O/HSH conformes, warning `cote_plate` attendu). `statut: A_VALIDER` :
+      la Porte 1 reste humaine.
+- [ ] Verification en ligne : attendre le run `pari-worker-deploy` vert puis vraie photo
+      Telegram avec `/capture`. Le sport est celui de `sport_actif.json` sauf argument explicite.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
