@@ -18,6 +18,17 @@ from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORLD = os.path.normpath(os.path.join(HERE, "..", ".."))
+for _p in (os.path.join(WORLD, "F00_RADAR", "CODEBASE"),
+           os.path.join(WORLD, "F02_BREACHER", "CODEBASE"),
+           os.path.join(WORLD, "F03_FORGEWARD", "CODEBASE")):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+import market_csv  # noqa: E402
+import fit_dc  # noqa: E402
+import winner_pmodel  # noqa: E402
+
+
 DEFAULT_OUT = os.path.join(WORLD, "ARCHIVUM", "winner", "paper_trades.json")
 EV_FLOOR = 0.03
 CONTRACT = "pari.paper_trades.v1"
@@ -99,12 +110,78 @@ def report(ledger):
             "ev_moyenne": (sum(b.get("ev") or 0 for b in bets) / len(bets)) if bets else None}
 
 
+def _outcome(row, marche, selection):
+    h, a = row.get("fthg"), row.get("ftag")
+    if h is None or a is None:
+        return None
+    if marche == "1X2":
+        real = "1" if h > a else "X" if h == a else "2"
+    else:
+        total = h + a
+        real = "under" if total < 2.5 else "over"
+    return real == selection
+
+
+def settle(csv_dir=None, out=None, params_path=None):
+    """Regle les paris EN_ATTENTE avec FTHG/FTAG des CSV + CLV T-0 approximatif.
+    Aucune mise reelle. Cote de cloture = proxy football-data (pas Winner)."""
+    ledger = _load(out or DEFAULT_OUT)
+    if not isinstance(ledger, dict):
+        return {"n": 0, "regles": 0}
+    params = fit_dc.load_params(params_path) or {}
+    data = market_csv.load_dir(csv_dir or os.path.join(WORLD, "ARCHIVUM", "cache", "f00"))
+    rows = data.get("rows") or []
+    regles = 0
+    for bet in ledger.get("bets") or []:
+        if bet.get("resultat") != "EN_ATTENTE":
+            continue
+        _, home = winner_pmodel.resolve(bet.get("home"), params)
+        _, away = winner_pmodel.resolve(bet.get("away"), params)
+        if not home or not away:
+            continue
+        candidats = [r for r in rows
+                     if winner_pmodel.norm_team(r.get("home")) == winner_pmodel.norm_team(home)
+                     and winner_pmodel.norm_team(r.get("away")) == winner_pmodel.norm_team(away)
+                     and r.get("date")]
+        if len(candidats) != 1:
+            bet["holes"] = ["match_csv_absent" if not candidats else "match_csv_ambiguous"]
+            continue
+        row = candidats[0]
+        gagnant = _outcome(row, bet.get("marche"), bet.get("selection"))
+        if gagnant is None:
+            continue
+        bet["resultat"] = "G" if gagnant else "P"
+        bet["score"] = "%s-%s" % (row["fthg"], row["ftag"])
+        bet["date_csv"] = row["date"]
+        cf = row.get("cloture") or {}
+        ou = (row.get("ou_cloture") or {}).get("2.5") or {}
+        if bet.get("marche") == "1X2":
+            key = {"1": "home", "X": "draw", "2": "away"}.get(bet.get("selection"))
+            close = cf.get(key)
+        else:
+            close = ou.get(bet.get("selection"))
+        if close and float(close) > 1:
+            bet["cote_cloture"] = float(close)
+            bet["clv"] = round(float(bet["cote"]) / float(close) - 1.0, 6)
+            bet["clv_source"] = "proxy_football_data"
+        regles += 1
+    ledger["generated_at"] = datetime.now(timezone.utc).isoformat()
+    with open(out or DEFAULT_OUT, "w", encoding="utf-8") as f:
+        json.dump(ledger, f, ensure_ascii=False, indent=2)
+    return {**report(ledger), "regles": regles}
+
+
 def main():
     ap = argparse.ArgumentParser(description="journal paper-trading Winner")
     ap.add_argument("--sport", choices=("foot", "basket"), default="foot")
     ap.add_argument("--out", default=None)
     ap.add_argument("--ev-floor", type=float, default=EV_FLOOR)
+    ap.add_argument("--settle", action="store_true", help="regle avec les CSV football-data")
     args = ap.parse_args()
+    if args.settle:
+        rec = settle(out=args.out)
+        print(json.dumps(rec, indent=2, ensure_ascii=False))
+        return
     ledger, added = record(args.sport, out=args.out, ev_floor=args.ev_floor)
     print(json.dumps({"sport": args.sport, "ajoutes": len(added),
                       **report(ledger)}, indent=2, ensure_ascii=False))

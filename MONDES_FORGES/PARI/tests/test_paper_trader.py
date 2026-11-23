@@ -60,6 +60,35 @@ def run_checks():
     stored = json.load(open(out, encoding="utf-8"))
     check("contrat", stored["contract"] == "pari.paper_trades.v1")
 
+    csv_dir = tempfile.mkdtemp(prefix="pari-paper-csv-")
+    with open(os.path.join(csv_dir, "uk_SP1_2627.csv"), "w", encoding="utf-8") as f:
+        f.write("Div,Date,HomeTeam,AwayTeam,FTHG,FTAG,B365CH,B365CD,B365CA,B365C>2.5,B365C<2.5\n")
+        f.write("SP1,22/11/2026,Getafe,Ath Madrid,1,0,2.10,3.40,3.50,2.00,1.80\n")
+    params_path = os.path.join(tmp, "dc_params.json")
+    with open(params_path, "w", encoding="utf-8") as f:
+        json.dump({"leagues": {"SP1": {"params": "fitted", "mu": .2, "home_adv": .1, "rho": -.13,
+                   "teams": {"Getafe": {"n": 30}, "Ath Madrid": {"n": 30}}}}}, f)
+    ledger2 = {"contract": "pari.paper_trades.v1", "bets": [
+        {"id": "b1", "home": "Getafe CF", "away": "Atletico Madrid", "marche": "1X2",
+         "selection": "1", "cote": 6.50, "ev": .42, "resultat": "EN_ATTENTE"},
+        {"id": "b2", "home": "Getafe CF", "away": "Atletico Madrid", "marche": "OU_2.5",
+         "selection": "under", "cote": 1.63, "ev": .018, "resultat": "EN_ATTENTE"},
+        {"id": "b3", "home": "Getafe CF", "away": "Atletico Madrid", "marche": "OU_2.5",
+         "selection": "over", "cote": 2.10, "ev": .01, "resultat": "EN_ATTENTE"},
+    ]}
+    led = os.path.join(tmp, "regle.json")
+    with open(led, "w", encoding="utf-8") as f:
+        json.dump(ledger2, f)
+    res = pt.settle(csv_dir=csv_dir, out=led, params_path=params_path)
+    done = json.load(open(led, encoding="utf-8"))["bets"]
+    check("settle 3 paris", res["regles"] == 3, str(res))
+    check("score 1-0 -> G sur 1 et under", done[0]["resultat"] == "G"
+          and done[1]["resultat"] == "G" and done[2]["resultat"] == "P",
+          str([b.get("resultat") for b in done]))
+    check("score lu dans CSV", done[0]["score"] == "1-0")
+    check("CLV proxy present", done[0].get("clv") is not None
+          and done[0].get("clv_source") == "proxy_football_data", str(done[0].get("clv")))
+
     print(f"paper_trader : {len(PASS)}/{N[0]} PASS")
     return N[0] - len(PASS)
 

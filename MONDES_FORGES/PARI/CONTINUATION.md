@@ -976,6 +976,19 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [x] Origine du seuil (pour trace) : `TRACKING/PLAN_PARI_CONSOLIDE.md:209`,
       `CONTINUATION.md:985` — decision Warsmith, pas une norme invente par l'agent.
 
+## ETAT v8.2 — REGLEMENT DES PARIS SIMULES (2026-11-22)
+
+- [x] `paper_trader.py --settle` lit les CSV `ARCHIVUM/cache/f00/` via `market_csv.load_dir`,
+      retrouve le match par noms normalises (alias `Getafe CF` -> `Getafe`,
+      `Atletico Madrid` -> `Ath Madrid`), lit **FTHG/FTAG** et decide G/P :
+      `1X2` selon `h>a / h=a / h<a`, `OU_2.5` selon `h+a < 3 / > 3`. Ecrit `score`, `date_csv`,
+      et un **CLV proxy** = `cote_prise / cote_cloture_football_data - 1` (marque
+      `clv_source: proxy_football_data` : la cloture vient d'un autre book que Winner).
+- [x] Match introuvable = trou `match_csv_absent`/`match_csv_ambiguous`, jamais un resultat invente.
+      `tests/test_paper_trader.py` **12/12** (dont reglement 1-0, CLV, score).
+- [x] Run reel : **0 regle** — les 3 matchs simules sont du 22/11 et les CSV s'arrevent avant.
+      On relancera `--settle` quand `B365C*` et FTHG/FTAG seront presents pour ces dates.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
