@@ -171,13 +171,103 @@ def settle(csv_dir=None, out=None, params_path=None):
     return {**report(ledger), "regles": regles}
 
 
+def settle_api(out=None, api_key=None):
+    """Reglement via API-Football (source whitelistee) quand les CSV sont en retard."""
+    import urllib.parse
+    import urllib.request
+    ledger = _load(out or DEFAULT_OUT)
+    if not isinstance(ledger, dict):
+        return {"n": 0, "regles": 0}
+    key = (api_key or os.environ.get("API_FOOTBALL_KEY") or "").strip()
+    if not key:
+        return {"n": 0, "holes": ["api_key_absent"]}
+    base = "https://v3.football.api-sports.io"
+    headers = {"x-apisports-key": key}
+
+    def get(path):
+        import urllib.error
+        req = urllib.request.Request(base + path, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=40) as resp:
+                return json.loads(resp.read().decode())
+        except urllib.error.HTTPError as exc:
+            if exc.code == 429:
+                raise RuntimeError("quota_api_epuise") from exc
+            return {}
+
+    def team_id(name):
+        q = urllib.parse.quote(str(name or "").split()[0])
+        data = get("/teams?search=" + q)
+        target = winner_pmodel.norm_team(name)
+        for item in data.get("response") or []:
+            t = item.get("team") or {}
+            cand = winner_pmodel.norm_team(t.get("name"))
+            if cand and (cand == target or cand in target or target in cand):
+                return t.get("id")
+        return None
+
+    cache = {}
+    regles = 0
+    for bet in ledger.get("bets") or []:
+        if bet.get("resultat") != "EN_ATTENTE":
+            continue
+        for side in ("home", "away"):
+            name = bet.get(side)
+            if name not in cache:
+                cache[name] = team_id(name)
+        hid, aid = cache.get(bet.get("home")), cache.get(bet.get("away"))
+        if not hid or not aid:
+            bet["holes"] = ["equipe_api_introuvable"]
+            continue
+        date = (bet.get("date_csv") or bet.get("generated_at") or "")[:10]
+        if not date:
+            continue
+        from datetime import timedelta
+        base_date = datetime.strptime(date, "%Y-%m-%d")
+        match = None
+        for delta in (0, -1, 1, -2, 2):
+            day = (base_date + timedelta(days=delta)).strftime("%Y-%m-%d")
+            data = get("/fixtures?date=" + urllib.parse.quote(day))
+            for fx in data.get("response") or []:
+                teams = fx.get("teams") or {}
+                if ((teams.get("home") or {}).get("id") == hid
+                        and (teams.get("away") or {}).get("id") == aid):
+                    match = fx
+                    break
+            if match:
+                break
+        if not match:
+            bet["holes"] = ["fixture_api_absent"]
+            continue
+        score = match.get("score") or {}
+        h, a = (score.get("fulltime") or {}).get("home"), (score.get("fulltime") or {}).get("away")
+        if h is None or a is None or (match.get("fixture") or {}).get("status", {}).get("short") != "FT":
+            bet["holes"] = ["score_api_absent"]
+            continue
+        gagnant = _outcome({"fthg": h, "ftag": a}, bet.get("marche"), bet.get("selection"))
+        bet["resultat"] = "G" if gagnant else "P"
+        bet["score"] = "%s-%s" % (h, a)
+        bet["date_csv"] = date
+        bet["source_resultat"] = "api_football"
+        bet["holes"] = ["clv_absent_close_api"]
+        regles += 1
+    ledger["generated_at"] = datetime.now(timezone.utc).isoformat()
+    with open(out or DEFAULT_OUT, "w", encoding="utf-8") as f:
+        json.dump(ledger, f, ensure_ascii=False, indent=2)
+    return {**report(ledger), "regles": regles}
+
+
 def main():
     ap = argparse.ArgumentParser(description="journal paper-trading Winner")
     ap.add_argument("--sport", choices=("foot", "basket"), default="foot")
     ap.add_argument("--out", default=None)
     ap.add_argument("--ev-floor", type=float, default=EV_FLOOR)
     ap.add_argument("--settle", action="store_true", help="regle avec les CSV football-data")
+    ap.add_argument("--settle-api", action="store_true", help="regle via API-Football")
     args = ap.parse_args()
+    if args.settle_api:
+        print(json.dumps(settle_api(out=args.out), indent=2, ensure_ascii=False))
+        return
     if args.settle:
         rec = settle(out=args.out)
         print(json.dumps(rec, indent=2, ensure_ascii=False))

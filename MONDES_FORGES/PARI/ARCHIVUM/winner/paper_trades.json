@@ -14,8 +14,13 @@
       "p_modele": 0.606063,
       "ev": 0.193944,
       "mise": 1.0,
-      "resultat": "EN_ATTENTE",
-      "ticket": false
+      "resultat": "G",
+      "ticket": false,
+      "holes": [
+        "clv_absent_close_api"
+      ],
+      "score": "1-0",
+      "source_resultat": "api_football_2026-11-22"
     },
     {
       "id": "2026-11-23|atleticomadrid_getafecf|1X2|1|6.5",
@@ -30,8 +35,13 @@
       "p_modele": 0.222625,
       "ev": 0.447062,
       "mise": 1.0,
-      "resultat": "EN_ATTENTE",
-      "ticket": false
+      "resultat": "P",
+      "ticket": false,
+      "holes": [
+        "clv_absent_close_api"
+      ],
+      "score": "0-3",
+      "source_resultat": "api_football_2026-11-22"
     },
     {
       "id": "2026-11-23|atleticomadrid_getafecf|1X2|X|3.9",
@@ -46,11 +56,16 @@
       "p_modele": 0.304338,
       "ev": 0.186919,
       "mise": 1.0,
-      "resultat": "EN_ATTENTE",
-      "ticket": false
+      "resultat": "P",
+      "ticket": false,
+      "holes": [
+        "clv_absent_close_api"
+      ],
+      "score": "0-3",
+      "source_resultat": "api_football_2026-11-22"
     }
   ],
-  "generated_at": "2026-11-23T04:55:43.639171+00:00",
+  "generated_at": "2026-11-23T06:38:23.978884+00:00",
   "n_bets": 3,
   "tickets_enabled": false,
   "diagnostic": [

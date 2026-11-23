@@ -989,6 +989,20 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [x] Run reel : **0 regle** — les 3 matchs simules sont du 22/11 et les CSV s'arrevent avant.
       On relancera `--settle` quand `B365C*` et FTHG/FTAG seront presents pour ces dates.
 
+## ETAT v8.3 — REGLEMENT REEL DES 3 PARIS (2026-11-23)
+
+- [x] **Resultats** : les CSV football-data etaient encore en retard (dernier match SP1 au 08/11).
+      Recuperes via **API-Football** (source whitelistee, cle `env_pari`) :
+      `Burgos 1-0 Albacete`, `Getafe 0-3 Atletico Madrid` (statut FT, 22/11).
+- [x] **Journal regle** : Burgos 1 a 1.97 = **G** ; Getafe 1 a 6.50 = **P** ; Getafe X a 3.90 = **P**.
+      Bilan : **1G/3P**, retour `1.97 - 1 - 1 = -0,03 FC` sur 3 mises de 1 FC (-1 %).
+      Echantillon trop petit pour conclure ; un EV positif ne promet pas la victoire (Getafe
+      avait ~22 % de chances : perdre etait l'issue la plus probable).
+- [x] **CLV absent** : l'API gratuite n'expose pas les cotes de cloture et les CSV ne sont pas a
+      jour — trou `clv_absent_close_api`, jamais un CLV invente. Quota API journalier epuise
+      (429) en cours de route ; `settle_api` gere maintenant le 429 sans crash.
+- [x] Run reel `--settle` : **0 en attente**, 3 regles. `test_paper_trader` 12/12.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
