@@ -144,6 +144,8 @@ Cartographie des journaux du monde.
 | `F05_PACKAGER/CODEBASE/packager.py` `build_pack(sport=)` | v6.6 : sport transmis au gate VANUS (defaut foot) ; mapping veto basket inverse corrige (`home` → `2`). | `vanus_gate.py` |
 | `tests/test_vanus_packager.py` | v6.6 : jackpot basket drop la selection `2`, 25/25. | CI locale |
 
+| `F06_TRACKER/CODEBASE/paper_trader.py` | v8.0 : journal des paris simules Winner (EV >= 3 %, cote prise, p_modele, EN_ATTENTE), aucun ticket ni mise. `ARCHIVUM/winner/paper_trades.json`. |
+| `tests/test_paper_trader.py` | v8.0 : seuil EV, zero ticket, zero HSH, zero duplication, contrat (8/8). |
 | `F03_FORGEWARD/CODEBASE/winner_pmodel.py` | v7.4 : `p_modele` calcule par `fit_dc` (CSV historiques), jamais lu dans la cote ; EV `p*cote-1` et `edge_net` vs devig Winner. Equipe absente = trou. Aucun ticket, HSH exclu. |
 | `tests/test_winner_pmodel.py` | v7.4 : alias, EV formula, trou equipe/cote, zero ticket, stdlib (12/12). |
 | `F01_SENTINEL/CODEBASE/llm_vision.py` | v7.0 : lecteur LLM vision **generique** (OpenAI-compatible). Cle/base/model depuis `env_pari` uniquement, deux lectures independantes, jamais un p ni un log de cle. | capture Telegram / `winner_vision.py` |

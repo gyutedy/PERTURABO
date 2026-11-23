@@ -1,13 +1,13 @@
 {
   "contract": "pari.winner_pmodel.v1",
-  "generated_at": "2026-11-22T21:27:13.685803+00:00",
+  "generated_at": "2026-11-23T03:47:51.226321+00:00",
   "sport": "foot",
   "source": "F02 fit_dc (CSV historiques) + F03 devig + cotes Winner",
   "analyses": [
     {
       "match_key": "acmilan_frosinonecalcio",
       "holes": [
-        "ligue_differente"
+        "equipe_absente:Frosinone Calcio"
       ],
       "p_modele": null,
       "ev": null,
@@ -43,7 +43,7 @@
     {
       "match_key": "gironafc_sdeibar",
       "holes": [
-        "equipe_absente:SD Eibar"
+        "equipe_absente:Girona FC"
       ],
       "p_modele": null,
       "ev": null,
@@ -64,9 +64,9 @@
       "away": "Albacete Balompie",
       "league": "SP2",
       "p_modele": {
-        "home": 0.449306,
-        "draw": 0.282701,
-        "away": 0.267993
+        "home": 0.606063,
+        "draw": 0.231649,
+        "away": 0.162289
       },
       "p_fair": {
         "home": 0.458147,
@@ -79,19 +79,19 @@
         "away": 3.6
       },
       "ev": {
-        "home": -0.114868,
-        "draw": -0.123626,
-        "away": -0.035226
+        "home": 0.193944,
+        "draw": -0.28189,
+        "away": -0.415761
       },
       "edge_net": {
-        "home": -0.019297,
-        "draw": -0.029001,
-        "away": 0.068943
+        "home": 0.322857,
+        "draw": -0.204353,
+        "away": -0.352679
       },
       "ou25": {
         "p_modele": {
-          "under_2_5": 0.58232,
-          "over_2_5": 0.41768
+          "under_2_5": 0.52158,
+          "over_2_5": 0.47842
         },
         "p_fair": {
           "under_2_5": 0.566845,
@@ -102,12 +102,12 @@
           "over_2_5": 2.12
         },
         "ev": {
-          "under_2_5": -0.056641,
-          "over_2_5": -0.114519
+          "under_2_5": -0.155041,
+          "over_2_5": 0.014251
         },
         "edge_net": {
-          "under_2_5": 0.027301,
-          "over_2_5": -0.035727
+          "under_2_5": -0.079855,
+          "over_2_5": 0.104501
         },
         "holes": []
       },
@@ -120,9 +120,9 @@
       "away": "Atletico Madrid",
       "league": "SP1",
       "p_modele": {
-        "home": 0.219092,
-        "draw": 0.298398,
-        "away": 0.48251
+        "home": 0.222625,
+        "draw": 0.304338,
+        "away": 0.473037
       },
       "p_fair": {
         "home": 0.145768,
@@ -135,19 +135,19 @@
         "away": 1.55
       },
       "ev": {
-        "home": 0.424101,
-        "draw": 0.16375,
-        "away": -0.252109
+        "home": 0.447062,
+        "draw": 0.186919,
+        "away": -0.266793
       },
       "edge_net": {
-        "home": 0.503021,
-        "draw": 0.228243,
-        "away": -0.210663
+        "home": 0.527255,
+        "draw": 0.252695,
+        "away": -0.22616
       },
       "ou25": {
         "p_modele": {
-          "under_2_5": 0.624812,
-          "over_2_5": 0.375188
+          "under_2_5": 0.618733,
+          "over_2_5": 0.381267
         },
         "p_fair": {
           "under_2_5": 0.563003,
@@ -158,12 +158,12 @@
           "over_2_5": 2.1
         },
         "ev": {
-          "under_2_5": 0.018444,
-          "over_2_5": -0.212105
+          "under_2_5": 0.008535,
+          "over_2_5": -0.19934
         },
         "edge_net": {
-          "under_2_5": 0.109785,
-          "over_2_5": -0.141441
+          "under_2_5": 0.098988,
+          "over_2_5": -0.127531
         },
         "holes": []
       },

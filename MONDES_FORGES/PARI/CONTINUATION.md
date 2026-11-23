@@ -948,6 +948,23 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [ ] Aucun test en ligne encore fait (necessite le run `pari-worker-deploy` vert puis un vrai
       envoi photo `/winner`). Repli local `--images` toujours disponible.
 
+## ETAT v8.0 — VALIDATION SAISON COURIANTE + PAPER-TRADING (2026-11-22)
+
+- [x] **Refit 2627** : 9 ligues x 3 saisons (2425, 2526, 2627) = **27 CSV**, 7944 lignes,
+      `fit_dc --as-of 2026-11-01` (cutoff avant les captures du 22/11, zero fuite). Le grand EV
+      n'etait **pas** un artefact de vieilles donnees : Getafe passe de `21,9 %` a `22,3 %`
+      (EV 1X2 `+44,7 %` au lieu de `+42,4 %`) ; Burgos passe a `60,6 %` (EV `+19,4 %`).
+      L'ecart avec Winner est stable — toujours a traiter comme **hypothese**, pas comme pari.
+- [x] **Paper-trading** : `F06_TRACKER/CODEBASE/paper_trader.py` enregistre dans
+      `ARCHIVUM/winner/paper_trades.json` les seules jambes a **EV >= 3 %** (cote Winner prise,
+      p_modele, EV, mise 1 FC, `resultat: EN_ATTENTE`, `ticket: false`). HSH jamais inclus,
+      aucune mise reelle. Run reel : **3 paris simules** (Burgos 1 a 1.97 EV +19,4 % ;
+      Getafe 1 a 6.50 EV +44,7 % ; Getafe X a 3.90 EV +18,7 %). `tests/test_paper_trader.py`
+      **8/8** (seuil, zero ticket, zero HSH, zero duplication).
+- [ ] **Reglement** : des que les resultats 2627 contiennent ces matchs, registrar G/P et CLV
+      (cote prise vs `B365C*`), puis ECE/hit-rate. Objectif **>= 100 paris** avant toute mise.
+      Branches live intactes : ce travail reste sur `pari-winner-sensor-m1`.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

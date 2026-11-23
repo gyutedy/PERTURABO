@@ -1,0 +1,56 @@
+{
+  "contract": "pari.paper_trades.v1",
+  "bets": [
+    {
+      "id": "2026-11-23|albacetebalompie_burgoscf|1X2|1|1.97",
+      "generated_at": "2026-11-23T03:47:51.226321+00:00",
+      "sport": "foot",
+      "match_key": "albacetebalompie_burgoscf",
+      "home": "Burgos CF",
+      "away": "Albacete Balompie",
+      "marche": "1X2",
+      "selection": "1",
+      "cote": 1.97,
+      "p_modele": 0.606063,
+      "ev": 0.193944,
+      "mise": 1.0,
+      "resultat": "EN_ATTENTE",
+      "ticket": false
+    },
+    {
+      "id": "2026-11-23|atleticomadrid_getafecf|1X2|1|6.5",
+      "generated_at": "2026-11-23T03:47:51.226321+00:00",
+      "sport": "foot",
+      "match_key": "atleticomadrid_getafecf",
+      "home": "Getafe CF",
+      "away": "Atletico Madrid",
+      "marche": "1X2",
+      "selection": "1",
+      "cote": 6.5,
+      "p_modele": 0.222625,
+      "ev": 0.447062,
+      "mise": 1.0,
+      "resultat": "EN_ATTENTE",
+      "ticket": false
+    },
+    {
+      "id": "2026-11-23|atleticomadrid_getafecf|1X2|X|3.9",
+      "generated_at": "2026-11-23T03:47:51.226321+00:00",
+      "sport": "foot",
+      "match_key": "atleticomadrid_getafecf",
+      "home": "Getafe CF",
+      "away": "Atletico Madrid",
+      "marche": "1X2",
+      "selection": "X",
+      "cote": 3.9,
+      "p_modele": 0.304338,
+      "ev": 0.186919,
+      "mise": 1.0,
+      "resultat": "EN_ATTENTE",
+      "ticket": false
+    }
+  ],
+  "generated_at": "2026-11-23T03:48:56.129963+00:00",
+  "n_bets": 3,
+  "tickets_enabled": false
+}
