@@ -1049,6 +1049,24 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       Pour rendre ces predictions utilisables il faut des donnees NBA **2026** (sources
       whitelistees) et un `brier_gap <= 0` mesure OOS avant toute ouverture.
 
+## ETAT v8.7 — DONNEES NBA FRAICHES + MARCHE TOTAL (2026-11-23)
+
+- [x] `basket_feed.py --seasons 2025-26,2026-27 --skip-odds` : **1225 + 247** boxscores NBA
+      recuperes (3927 matchs au total avec 2023-25). `fit_basket.py` refit : sigma 15,96.
+      La calibration `basket_calib` et le total utilisent desormais des donnees **2026** — le
+      trou `donnees_anciennes` disparait sur les 8 matchs Winner.
+- [x] `F02_BREACHER/CODEBASE/basket_total.py` : modele du **nombre TOTAL de points des DEUX
+      equipes** (ridge stdlib : points marques/encaisses recents + repos, intercept NON
+      regularise), `sigma_total = **19,17**` mesure sur **972 matchs OOS** (base 229,0).
+      `tests/test_basket_total.py` **7/7**. `winner_pmodel_basket.py` ecrit `ligne`, `p_over`,
+      `p_fair`, `cote` et `ev` pour Under/Over dans `pmodel_basket.json`.
+- [x] Resultats sur les 8 matchs : lignes Winner 216,5 a 240,5 ; `p_over` de 42,3 % a 65,3 %.
+      Un seul EV total >= 3 % : Charlotte over 216,5 a 1.86 -> **+10,3 %** (diagnostic).
+      Le ML reste majoritairement a EV artificiellement eleve (modele global `fiable: false`,
+      verdict calibration **NO-GO** : brier_gap +0,0217). Aucun pari, aucun ticket.
+- [ ] Pour ouvrir le basket il faut `brier_gap <= 0` OOS et des cotes de cloture NBA 2026
+      (Yahoo ne couvre que 2023/2024). Le marche Total est traite comme diagnostic.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

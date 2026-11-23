@@ -1,6 +1,6 @@
 {
   "contract": "pari.winner_pmodel_basket.v1",
-  "generated_at": "2026-11-23T09:28:16.774597+00:00",
+  "generated_at": "2026-11-23T09:56:09.092148+00:00",
   "sport": "basket",
   "source": "F02 basket MLE (2455 matchs NBA) + F03 devig + cotes Winner",
   "analyses": [
@@ -10,12 +10,12 @@
       "away": "Memphis Grizzlies",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 113.981,
-      "mu_away": 114.064,
-      "sigma": 16.1145,
+      "mu_home": 115.165,
+      "mu_away": 113.787,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.063973,
-        "away": 0.936027
+        "home": 0.250843,
+        "away": 0.749157
       },
       "p_fair": {
         "home": 0.404092,
@@ -26,24 +26,35 @@
         "away": 1.58
       },
       "ev": {
-        "home": -0.850943,
-        "away": 0.478923
+        "home": -0.415536,
+        "away": 0.183668
       },
       "edge_net": {
-        "home": -0.841688,
-        "away": 0.570758
+        "home": -0.379243,
+        "away": 0.257169
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.593154,
+        "p_under": 0.406846,
+        "cote": {
+          "under": 1.81,
+          "over": 1.86
+        },
+        "ev": {
+          "under": -0.263609,
+          "over": 0.103267
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 216.5,
+        "p_fair": {
+          "under": 0.506812,
+          "over": 0.493188
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -54,12 +65,12 @@
       "away": "Portland Trail Blazers",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 114.751,
-      "mu_away": 113.294,
-      "sigma": 16.1145,
+      "mu_home": 115.459,
+      "mu_away": 113.492,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.361385,
-        "away": 0.638615
+        "home": 0.587199,
+        "away": 0.412801
       },
       "p_fair": {
         "home": 0.586118,
@@ -70,24 +81,35 @@
         "away": 2.28
       },
       "ev": {
-        "home": -0.418171,
-        "away": 0.456043
+        "home": -0.054609,
+        "away": -0.058815
       },
       "edge_net": {
-        "home": -0.383427,
-        "away": 0.54299
+        "home": 0.001845,
+        "away": -0.002612
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.507918,
+        "p_under": 0.492082,
+        "cote": {
+          "under": 1.82,
+          "over": 1.85
+        },
+        "ev": {
+          "under": -0.10441,
+          "over": -0.060352
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 231.5,
+        "p_fair": {
+          "under": 0.504087,
+          "over": 0.495913
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -98,12 +120,12 @@
       "away": "Brooklyn Nets",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 115.534,
-      "mu_away": 112.511,
-      "sigma": 16.1145,
+      "mu_home": 115.49,
+      "mu_away": 113.462,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.960154,
-        "away": 0.039846
+        "home": 0.615927,
+        "away": 0.384073
       },
       "p_fair": {
         "home": 0.825688,
@@ -114,24 +136,35 @@
         "away": 5.4
       },
       "ev": {
-        "home": 0.094576,
-        "away": -0.784833
+        "home": -0.297844,
+        "away": 1.073996
       },
       "edge_net": {
-        "home": 0.162854,
-        "away": -0.771412
+        "home": -0.254044,
+        "away": 1.203368
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.454358,
+        "p_under": 0.545642,
+        "cote": {
+          "under": 1.81,
+          "over": 1.86
+        },
+        "ev": {
+          "under": -0.012387,
+          "over": -0.154895
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 223.5,
+        "p_fair": {
+          "under": 0.506812,
+          "over": 0.493188
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -142,12 +175,12 @@
       "away": "Oklahoma City Thunder",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 114.626,
-      "mu_away": 113.419,
-      "sigma": 16.1145,
+      "mu_home": 115.418,
+      "mu_away": 113.534,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.342215,
-        "away": 0.657785
+        "home": 0.335953,
+        "away": 0.664047
       },
       "p_fair": {
         "home": 0.355231,
@@ -158,24 +191,35 @@
         "away": 1.46
       },
       "ev": {
-        "home": -0.093131,
-        "away": -0.039633
+        "home": -0.109724,
+        "away": -0.030492
       },
       "edge_net": {
-        "home": -0.036643,
-        "away": 0.020188
+        "home": -0.054269,
+        "away": 0.029899
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.528924,
+        "p_under": 0.471076,
+        "cote": {
+          "under": 1.81,
+          "over": 1.86
+        },
+        "ev": {
+          "under": -0.147352,
+          "over": -0.016202
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 223.5,
+        "p_fair": {
+          "under": 0.506812,
+          "over": 0.493188
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -186,12 +230,12 @@
       "away": "Milwaukee Bucks",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 114.517,
-      "mu_away": 113.529,
-      "sigma": 16.1145,
+      "mu_home": 115.467,
+      "mu_away": 113.484,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.364175,
-        "away": 0.635825
+        "home": 0.536434,
+        "away": 0.463566
       },
       "p_fair": {
         "home": 0.790861,
@@ -202,24 +246,35 @@
         "away": 4.5
       },
       "ev": {
-        "home": -0.566631,
-        "away": 1.86121
+        "home": -0.361644,
+        "away": 1.086048
       },
       "edge_net": {
-        "home": -0.53952,
-        "away": 2.040203
+        "home": -0.321709,
+        "away": 1.216548
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.508489,
+        "p_under": 0.491511,
+        "cote": {
+          "under": 1.86,
+          "over": 1.81
+        },
+        "ev": {
+          "under": -0.08579,
+          "over": -0.079635
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 223.5,
+        "p_fair": {
+          "under": 0.493188,
+          "over": 0.506812
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -230,12 +285,12 @@
       "away": "Cleveland Cavaliers",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 114.757,
-      "mu_away": 113.288,
-      "sigma": 16.1145,
+      "mu_home": 115.409,
+      "mu_away": 113.542,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.654886,
-        "away": 0.345114
+        "home": 0.517186,
+        "away": 0.482814
       },
       "p_fair": {
         "home": 0.26501,
@@ -246,24 +301,35 @@
         "away": 1.28
       },
       "ev": {
-        "home": 1.324847,
-        "away": -0.558255
+        "home": 0.836012,
+        "away": -0.381999
       },
       "edge_net": {
-        "home": 1.471173,
-        "away": -0.530451
+        "home": 0.951571,
+        "away": -0.343102
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.45351,
+        "p_under": 0.54649,
+        "cote": {
+          "under": 1.83,
+          "over": 1.84
+        },
+        "ev": {
+          "under": 7.7e-05,
+          "over": -0.165542
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 240.5,
+        "p_fair": {
+          "under": 0.501362,
+          "over": 0.498638
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -274,12 +340,12 @@
       "away": "Phoenix Suns",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 114.676,
-      "mu_away": 113.369,
-      "sigma": 16.1145,
+      "mu_home": 115.432,
+      "mu_away": 113.52,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.396342,
-        "away": 0.603658
+        "home": 0.27128,
+        "away": 0.72872
       },
       "p_fair": {
         "home": 0.420103,
@@ -290,24 +356,35 @@
         "away": 1.63
       },
       "ev": {
-        "home": -0.10823,
-        "away": -0.016038
+        "home": -0.38962,
+        "away": 0.187814
       },
       "edge_net": {
-        "home": -0.05656,
-        "away": 0.040975
+        "home": -0.354254,
+        "away": 0.256637
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.422717,
+        "p_under": 0.577283,
+        "cote": {
+          "under": 1.82,
+          "over": 1.85
+        },
+        "ev": {
+          "under": 0.050655,
+          "over": -0.217974
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 233.5,
+        "p_fair": {
+          "under": 0.504087,
+          "over": 0.495913
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -318,12 +395,12 @@
       "away": "LA Clippers",
       "engine": "basket_mle",
       "modele": "calib",
-      "mu_home": 114.863,
-      "mu_away": 113.182,
-      "sigma": 16.1145,
+      "mu_home": 115.544,
+      "mu_away": 113.407,
+      "sigma": 15.9642,
       "p_modele": {
-        "home": 0.243912,
-        "away": 0.756088
+        "home": 0.705691,
+        "away": 0.294309
       },
       "p_fair": {
         "home": 0.830861,
@@ -334,24 +411,35 @@
         "away": 5.6
       },
       "ev": {
-        "home": -0.72194,
-        "away": 3.234092
+        "home": -0.195512,
+        "away": 0.64813
       },
       "edge_net": {
-        "home": -0.706434,
-        "away": 3.470203
+        "home": -0.15065,
+        "away": 0.740037
       },
       "total": {
-        "p_over": null,
-        "ev": null,
-        "holes": [
-          "sigma_total_non_calibre"
-        ],
-        "diagnostic_only": true
+        "p_over": 0.653226,
+        "p_under": 0.346774,
+        "cote": {
+          "under": 1.86,
+          "over": 1.81
+        },
+        "ev": {
+          "under": -0.354999,
+          "over": 0.182338
+        },
+        "sigma_total": 19.1693,
+        "holes": [],
+        "diagnostic_only": true,
+        "ligne": 224.5,
+        "p_fair": {
+          "under": 0.493188,
+          "over": 0.506812
+        }
       },
       "holes": [
-        "donnees_anciennes",
-        "modele_non_valide:NO-GO"
+        "modele_non_valide:GO"
       ],
       "ticket": false,
       "fiable": false
@@ -360,12 +448,12 @@
   "n_analyse": 8,
   "n_avec_p": 8,
   "n_ev_positif": 6,
-  "dispersion_p_home": 0.896181,
+  "dispersion_p_home": 0.454848,
   "dispersion_marche": 0.565851,
-  "ratio_dispersion": 1.5838,
-  "max_ev_abs": 3.234092,
-  "verdict_calibration": "NO-GO",
-  "brier_gap_calibration": 0.02174,
+  "ratio_dispersion": 0.8038,
+  "max_ev_abs": 1.086048,
+  "verdict_calibration": "GO",
+  "brier_gap_calibration": -0.077305,
   "fiable": false,
   "tickets_enabled": false
 }

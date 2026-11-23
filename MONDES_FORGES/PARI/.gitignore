@@ -14,3 +14,4 @@ ARCHIVUM/winner/images/
 env_pari
 .env
 ARCHIVUM/state/basket_calib.json
+ARCHIVUM/state/basket_total.json

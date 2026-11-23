@@ -28,6 +28,7 @@ for _p in (HERE, os.path.join(WORLD, "F02_BREACHER", "CODEBASE"),
         sys.path.insert(0, _p)
 
 import basket_calib  # noqa: E402
+import basket_total  # noqa: E402
 import devig  # noqa: E402
 import engine_basket  # noqa: E402
 import market_basket  # noqa: E402
@@ -38,7 +39,42 @@ from winner_pmodel import EV_FLOOR  # noqa: E402
 CONTRACT = "pari.winner_pmodel_basket.v1"
 
 
-def analyse(match, blob=None, calib=None, rows=None, ratings=None):
+def total_rec(match, blob, st, day, inherited_holes=None):
+    base = {"p_over": None, "p_under": None, "cote": None, "ev": None,
+            "sigma_total": (blob or {}).get("sigma_total"),
+            "holes": list(inherited_holes or []), "diagnostic_only": True}
+    odds = match.get("odds") or {}
+    if not blob or not st:
+        base["holes"].append("total_absent")
+        return base
+    line = odds.get("total_line")
+    uo, oo = odds.get("total_under"), odds.get("total_over")
+    if line is None or not uo or not oo or float(uo) <= 1 or float(oo) <= 1:
+        base["holes"].append("cotes_total_absentes")
+        return base
+    p_over = basket_total.p_over(blob, match.get("home"), match.get("away"), day, st, line)
+    if p_over is None:
+        base["holes"].append("total_non_calcule")
+        return base
+    fair = devig.multiplicative({"under": uo, "over": oo})
+    if not fair["ok"]:
+        base["holes"].extend(fair["holes"])
+        return base
+    p = {"under": 1.0 - p_over, "over": p_over}
+    cotes = {"under": float(uo), "over": float(oo)}
+    base.update({
+        "p_over": round(p_over, 6), "p_under": round(1.0 - p_over, 6),
+        "ligne": line,
+        "p_fair": {k: round(fair["p_fair"][k], 6) for k in fair["p_fair"]},
+        "cote": cotes,
+        "ev": {k: round(p[k] * cotes[k] - 1.0, 6) for k in cotes},
+        "holes": list(dict.fromkeys(base["holes"])),
+    })
+    return base
+
+
+def analyse(match, blob=None, calib=None, rows=None, ratings=None,
+            total_blob=None, st_total=None, day=None):
     holes = []
     cotes = match.get("odds") or {}
     if (cotes.get("ml_1") is None or cotes.get("ml_2") is None
@@ -90,8 +126,7 @@ def analyse(match, blob=None, calib=None, rows=None, ratings=None):
         "cote": {k: float(group[k]) for k in group},
         "ev": ev,
         "edge_net": edge,
-        "total": {"p_over": None, "ev": None,
-                  "holes": ["sigma_total_non_calibre"], "diagnostic_only": True},
+        "total": total_rec(match, total_blob, st_total, day, holes),
         "holes": list(dict.fromkeys(holes)),
         "ticket": False,
     }
@@ -102,8 +137,12 @@ def run(params_path=None, out_path=None):
     calib = basket_calib.load()
     rows, _ = market_basket.load_dir()
     ratings = blob.get("teams") or {}
+    total_blob = basket_total.load()
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    st_total = basket_total.state_at(rows, today)
     view = winner_ingest.ingest("basket")
-    recs = [analyse(dict(m, match_key=k), blob, calib=calib, rows=rows, ratings=ratings)
+    recs = [analyse(dict(m, match_key=k), blob, calib=calib, rows=rows, ratings=ratings,
+                    total_blob=total_blob, st_total=st_total, day=today)
             for k, m in view["matches"].items()]
     ph = [r.get("p_modele", {}).get("home") for r in recs if r.get("p_modele")]
     fh = [r.get("p_fair", {}).get("home") for r in recs if r.get("p_fair")]
