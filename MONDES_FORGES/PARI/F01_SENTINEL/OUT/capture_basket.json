@@ -11,8 +11,8 @@
           "date": "2026-11-24T01:00:00+01:00",
           "dom": "Charlotte Hornets",
           "ext": "Memphis Grizzlies",
-          "ml_home": 2.33,
-          "ml_away": 1.58,
+          "ml_home": 2.29,
+          "ml_away": 1.61,
           "diag": {
             "1x2": {
               "home": null,
@@ -22,7 +22,7 @@
             },
             "handicap_total": {
               "prix_1": null,
-              "prix_2": 216.5,
+              "prix_2": 215.5,
               "ligne": null,
               "utilise": false
             }
@@ -32,14 +32,16 @@
           ],
           "analyse": {
             "engine": "basket_mle",
-            "mu_home": 115.165,
-            "mu_away": 113.787,
-            "sigma": 15.9642,
-            "p_home": 0.5344,
-            "p_away": 0.4656,
-            "ev_home": 0.2451,
-            "ev_away": -0.2643,
-            "holes": []
+            "mu_home": null,
+            "mu_away": null,
+            "sigma": null,
+            "p_home": null,
+            "p_away": null,
+            "ev_home": null,
+            "ev_away": null,
+            "holes": [
+              "params_absents"
+            ]
           }
         },
         {
@@ -49,8 +51,8 @@
           "date": "2026-11-24T01:00:00+01:00",
           "dom": "Philadelphia 76ers",
           "ext": "Portland Trail Blazers",
-          "ml_home": 1.61,
-          "ml_away": 2.28,
+          "ml_home": 1.63,
+          "ml_away": 2.25,
           "diag": {
             "1x2": {
               "home": null,
@@ -70,52 +72,16 @@
           ],
           "analyse": {
             "engine": "basket_mle",
-            "mu_home": 115.459,
-            "mu_away": 113.492,
-            "sigma": 15.9642,
-            "p_home": 0.549,
-            "p_away": 0.451,
-            "ev_home": -0.1161,
-            "ev_away": 0.0282,
-            "holes": []
-          }
-        },
-        {
-          "id": "20051",
-          "game_id": "20051",
-          "competition": "",
-          "date": "2026-11-24T01:30:00+01:00",
-          "dom": "Minnesota Timberwolves",
-          "ext": "Brooklyn Nets",
-          "ml_home": 1.14,
-          "ml_away": 5.4,
-          "diag": {
-            "1x2": {
-              "home": null,
-              "draw": null,
-              "away": null,
-              "utilise": false
-            },
-            "handicap_total": {
-              "prix_1": null,
-              "prix_2": 223.5,
-              "ligne": null,
-              "utilise": false
-            }
-          },
-          "holes": [
-            "handicap_total_sans_ligne"
-          ],
-          "analyse": {
-            "engine": "basket_mle",
-            "mu_home": 115.49,
-            "mu_away": 113.462,
-            "sigma": 15.9642,
-            "p_home": 0.5505,
-            "p_away": 0.4495,
-            "ev_home": -0.3724,
-            "ev_away": 1.4271,
-            "holes": []
+            "mu_home": null,
+            "mu_away": null,
+            "sigma": null,
+            "p_home": null,
+            "p_away": null,
+            "ev_home": null,
+            "ev_away": null,
+            "holes": [
+              "params_absents"
+            ]
           }
         },
         {
@@ -125,8 +91,8 @@
           "date": "2026-11-24T01:30:00+01:00",
           "dom": "Indiana Pacers",
           "ext": "Oklahoma City Thunder",
-          "ml_home": 2.65,
-          "ml_away": 1.46,
+          "ml_home": 2.55,
+          "ml_away": 1.49,
           "diag": {
             "1x2": {
               "home": null,
@@ -136,7 +102,7 @@
             },
             "handicap_total": {
               "prix_1": null,
-              "prix_2": 223.5,
+              "prix_2": 221.5,
               "ligne": null,
               "utilise": false
             }
@@ -146,174 +112,24 @@
           ],
           "analyse": {
             "engine": "basket_mle",
-            "mu_home": 115.418,
-            "mu_away": 113.534,
-            "sigma": 15.9642,
-            "p_home": 0.547,
-            "p_away": 0.453,
-            "ev_home": 0.4495,
-            "ev_away": -0.3386,
-            "holes": []
-          }
-        },
-        {
-          "id": "20065",
-          "game_id": "20065",
-          "competition": "",
-          "date": "2026-11-24T01:30:00+01:00",
-          "dom": "Toronto Raptors",
-          "ext": "Milwaukee Bucks",
-          "ml_home": 1.19,
-          "ml_away": 4.5,
-          "diag": {
-            "1x2": {
-              "home": null,
-              "draw": null,
-              "away": null,
-              "utilise": false
-            },
-            "handicap_total": {
-              "prix_1": null,
-              "prix_2": 223.5,
-              "ligne": null,
-              "utilise": false
-            }
-          },
-          "holes": [
-            "handicap_total_sans_ligne"
-          ],
-          "analyse": {
-            "engine": "basket_mle",
-            "mu_home": 115.467,
-            "mu_away": 113.484,
-            "sigma": 15.9642,
-            "p_home": 0.5494,
-            "p_away": 0.4506,
-            "ev_home": -0.3462,
-            "ev_away": 1.0276,
-            "holes": []
-          }
-        },
-        {
-          "id": "20101",
-          "game_id": "20101",
-          "competition": "",
-          "date": "2026-11-24T02:00:00+01:00",
-          "dom": "Chicago Bulls",
-          "ext": "Cleveland Cavaliers",
-          "ml_home": 3.55,
-          "ml_away": 1.28,
-          "diag": {
-            "1x2": {
-              "home": null,
-              "draw": null,
-              "away": null,
-              "utilise": false
-            },
-            "handicap_total": {
-              "prix_1": null,
-              "prix_2": 240.5,
-              "ligne": null,
-              "utilise": false
-            }
-          },
-          "holes": [
-            "handicap_total_sans_ligne"
-          ],
-          "analyse": {
-            "engine": "basket_mle",
-            "mu_home": 115.409,
-            "mu_away": 113.542,
-            "sigma": 15.9642,
-            "p_home": 0.5465,
-            "p_away": 0.4535,
-            "ev_home": 0.9403,
-            "ev_away": -0.4196,
-            "holes": []
-          }
-        },
-        {
-          "id": "20098",
-          "game_id": "20098",
-          "competition": "",
-          "date": "2026-11-24T02:00:00+01:00",
-          "dom": "New Orleans Pelicans",
-          "ext": "Phoenix Suns",
-          "ml_home": 2.25,
-          "ml_away": 1.63,
-          "diag": {
-            "1x2": {
-              "home": null,
-              "draw": null,
-              "away": null,
-              "utilise": false
-            },
-            "handicap_total": {
-              "prix_1": null,
-              "prix_2": 233.5,
-              "ligne": null,
-              "utilise": false
-            }
-          },
-          "holes": [
-            "handicap_total_sans_ligne"
-          ],
-          "analyse": {
-            "engine": "basket_mle",
-            "mu_home": 115.432,
-            "mu_away": 113.52,
-            "sigma": 15.9642,
-            "p_home": 0.5477,
-            "p_away": 0.4523,
-            "ev_home": 0.2322,
-            "ev_away": -0.2627,
-            "holes": []
-          }
-        },
-        {
-          "id": "20037",
-          "game_id": "20037",
-          "competition": "",
-          "date": "2026-11-24T02:30:00+01:00",
-          "dom": "Houston Rockets",
-          "ext": "LA Clippers",
-          "ml_home": 1.14,
-          "ml_away": 5.6,
-          "diag": {
-            "1x2": {
-              "home": null,
-              "draw": null,
-              "away": null,
-              "utilise": false
-            },
-            "handicap_total": {
-              "prix_1": null,
-              "prix_2": 224.5,
-              "ligne": null,
-              "utilise": false
-            }
-          },
-          "holes": [
-            "handicap_total_sans_ligne"
-          ],
-          "analyse": {
-            "engine": "basket_mle",
-            "mu_home": 115.544,
-            "mu_away": 113.407,
-            "sigma": 15.9642,
-            "p_home": 0.5532,
-            "p_away": 0.4468,
-            "ev_home": -0.3693,
-            "ev_away": 1.5018,
-            "holes": []
+            "mu_home": null,
+            "mu_away": null,
+            "sigma": null,
+            "p_home": null,
+            "p_away": null,
+            "ev_home": null,
+            "ev_away": null,
+            "holes": [
+              "params_absents"
+            ]
           }
         }
       ],
       "warnings": []
     }
   ],
-  "n_matchs": 8,
-  "resume": "  20010  Charlotte Hornets-Memphis Grizzlies  ML 2.33/1.58  p1 0.534  EV +24.5% / -26.4%\n  20049  Philadelphia 76ers-Portland Trail Blazers  ML 1.61/2.28  p1 0.549  EV -11.6% / +2.8%\n  20051  Minnesota Timberwolves-Brooklyn Nets  ML 1.14/5.4  p1 0.550  EV -37.2% / +142.7%\n  20103  Indiana Pacers-Oklahoma City Thunder  ML 2.65/1.46  p1 0.547  EV +45.0% / -33.9%\n  20065  Toronto Raptors-Milwaukee Bucks  ML 1.19/4.5  p1 0.549  EV -34.6% / +102.8%\n  20101  Chicago Bulls-Cleveland Cavaliers  ML 3.55/1.28  p1 0.546  EV +94.0% / -42.0%\n  20098  New Orleans Pelicans-Phoenix Suns  ML 2.25/1.63  p1 0.548  EV +23.2% / -26.3%\n  20037  Houston Rockets-LA Clippers  ML 1.14/5.6  p1 0.553  EV -36.9% / +150.2%",
+  "n_matchs": 3,
+  "resume": "  20010  Charlotte Hornets-Memphis Grizzlies  ML 2.29/1.61  p1 —  EV — / —\n  20049  Philadelphia 76ers-Portland Trail Blazers  ML 1.63/2.25  p1 —  EV — / —\n  20103  Indiana Pacers-Oklahoma City Thunder  ML 2.55/1.49  p1 —  EV — / —",
   "warnings": [],
   "holes": [
     "handicap_total_sans_ligne"
