@@ -1,5 +1,5 @@
 {
-  "campagne": "PARI-20261107",
+  "campagne": null,
   "steps": {
     "start": "2026-11-07T18:23:12Z",
     "capture": "2026-11-07T18:23:47Z",
@@ -9,43 +9,24 @@
     "budget": "2026-11-07T18:33:09Z",
     "valider2": "2026-11-07T18:33:48Z"
   },
-  "budget_fc": 1000.0,
-  "surticket_fc": 1000.0,
+  "budget_fc": 0,
+  "surticket_fc": 0,
   "combos": 1,
   "jambes": "3",
-  "marches": [
-    "1X2",
-    "MT_PROLIFIQUE"
-  ],
-  "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "VALIDE",
+  "marches": null,
+  "capture": null,
+  "capturer_statut": null,
   "previews": {
     "preview1": "SHARED/OUT/preview1.html",
     "preview2": "SHARED/OUT/preview2.html"
   },
   "bankroll_fc": 3000.0,
-  "budget_seq": 1,
-  "capture_id": "C-VHK",
-  "consumed_legs": [
-    {
-      "match_id": "M5",
-      "marche": "1X2",
-      "selection": "1"
-    },
-    {
-      "match_id": "M1",
-      "marche": "1X2",
-      "selection": "1"
-    },
-    {
-      "match_id": "M6",
-      "marche": "1X2",
-      "selection": "1"
-    }
-  ],
-  "current_token": "L-NZU",
-  "last_lot_budget_seq": 1,
-  "lots_alloue_jour": 1000.0,
+  "budget_seq": 0,
+  "capture_id": null,
+  "consumed_legs": [],
+  "current_token": null,
+  "last_lot_budget_seq": 0,
+  "lots_alloue_jour": 0,
   "notes_count": 0,
   "marches_mono": false,
   "pending_lot": null,
