@@ -1,26 +1,26 @@
 # 🏟️ FICHE DE SIÈGE — Middlesbrough FC vs Swansea City
-*Générée le 2026-11-24 12:25 UTC — siege_id courant*
+*Générée le 2026-11-24 12:34 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 70.6%
+**Verdict match : 🔥 GO** — meilleure EV: 57.0%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.10 — ext 0.58 (MT1: 0.46+0.28 · MT2: 0.64+0.31)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 46.7% / 35.5% / 17.7%
-- Over 2.5 : **23.9%** · Under 2.5 : 76.1%
-- Les deux marquent : 31.0%
-- Mi-temps : MT1 27.3% · Égalité 33.7% · **MT2 39.0%**
+- λ attendus : dom 1.13 — ext 0.54 (MT1: 0.47+0.25 · MT2: 0.66+0.28)
+- Score le plus probable : **1-0**
+- 1 / X / 2 : 50.0% / 32.7% / 17.3%
+- Over 2.5 : **23.3%** · Under 2.5 : 76.7%
+- Les deux marquent : 28.3%
+- Mi-temps : MT1 27.0% · Égalité 34.2% · **MT2 38.9%**
 - Qualité data : haute (incoherence_modele_empirique)
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.46 | 46.7% | -31.8% | ⛔ NO_BET | — |
-| 1X2 | Nul | 4.8 | 35.5% | 70.6% |  VALUE | 2.32u |
-| 1X2 | Victoire Extérieur | 6.0 | 17.7% | 6.4% | 🟡 THIN | 0.08u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 33.7% | 1.2% | 🟡 THIN | 0.04u |
+| 1X2 | Victoire Domicile | 1.46 | 50.0% | -27.1% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.8 | 32.7% | 57.0% |  VALUE | 1.88u |
+| 1X2 | Victoire Extérieur | 6.0 | 17.3% | 4.0% | 🟡 THIN | 0.05u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 34.2% | 2.5% | 🟡 THIN | 0.08u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +28,7 @@
 
 ## Ordre de marche
 
-- Miser **2.32u** sur **Nul** @ 4.8 (¼ Kelly plafonné).
+- Miser **1.88u** sur **Nul** @ 4.8 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
