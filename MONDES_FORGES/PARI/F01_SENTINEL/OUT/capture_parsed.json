@@ -3,22 +3,22 @@
     {
       "id": "BLOC_001",
       "competition": "Winner FOOT",
-      "date": "2026-11-23",
-      "heure": "18:00",
+      "date": "2026-11-24",
+      "heure": null,
       "matchs": [
         {
           "id": "M1",
-          "dom": "AC Milan",
-          "ext": "Frosinone Calcio",
+          "dom": "Middlesbrough FC",
+          "ext": "Swansea City",
           "cotes": {
-            "1": 1.63,
-            "X": 4.3,
-            "2": 4.7,
+            "1": 1.46,
+            "X": 4.8,
+            "2": 6.0,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.02,
-            "under": 2.6,
-            "over": 1.48
+            "under": 2.67,
+            "over": 1.46
           },
           "marches_disponibles": [
             "1",
@@ -31,79 +31,11 @@
             "under"
           ],
           "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
           ],
           "holes": [
             "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
-        },
-        {
-          "id": "M2",
-          "dom": "Sparta Praha",
-          "ext": "FC Slovan Liberec",
-          "cotes": {
-            "1": 1.68,
-            "X": 3.5,
-            "2": 4.4,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.87,
-            "over": 1.8
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "over",
-            "under"
-          ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
-        },
-        {
-          "id": "M3",
-          "dom": "HNK Rijeka",
-          "ext": "HNK Gorica",
-          "cotes": {
-            "1": 1.3,
-            "X": 4.7,
-            "2": 7.4,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02,
-            "under": 2.12,
-            "over": 1.62
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "over",
-            "under"
-          ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
+          ]
         }
       ],
       "warnings": []
@@ -111,162 +43,83 @@
     {
       "id": "BLOC_002",
       "competition": "Winner FOOT",
-      "date": "2026-11-23",
-      "heure": "18:30",
+      "date": "2026-11-24",
+      "heure": "20:45",
       "matchs": [
+        {
+          "id": "M2",
+          "dom": "Bristol City",
+          "ext": "Wrexham AFC",
+          "cotes": {
+            "1": 2.45,
+            "X": 3.25,
+            "2": 2.92,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.02,
+            "under": 1.67,
+            "over": 2.17
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte",
+            "over",
+            "under"
+          ],
+          "warnings": [
+            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+          ],
+          "holes": [
+            "ligne_totale_Moins_Plus"
+          ]
+        },
+        {
+          "id": "M3",
+          "dom": "Cardiff City",
+          "ext": "Preston North End",
+          "cotes": {
+            "1": 1.49,
+            "X": 4.8,
+            "2": 5.7,
+            "mt1": 3.1,
+            "mte": 3.0,
+            "mt2": 2.02,
+            "under": 2.75,
+            "over": 1.44
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "mt1",
+            "mt2",
+            "mte",
+            "over",
+            "under"
+          ],
+          "warnings": [
+            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
+          ],
+          "holes": [
+            "ligne_totale_Moins_Plus"
+          ]
+        },
         {
           "id": "M4",
-          "dom": "CA Osasuna",
-          "ext": "Malaga CF",
+          "dom": "Charlton Athletic",
+          "ext": "Lincoln City",
           "cotes": {
-            "1": 1.8,
-            "X": 3.6,
-            "2": 4.4,
+            "1": 2.8,
+            "X": 3.25,
+            "2": 2.55,
             "mt1": 3.1,
             "mte": 3.0,
             "mt2": 2.02,
-            "under": 1.76,
-            "over": 1.92
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "over",
-            "under"
-          ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
-        },
-        {
-          "id": "M5",
-          "dom": "Girona FC",
-          "ext": "SD Eibar",
-          "cotes": {
-            "1": 1.83,
-            "X": 3.45,
-            "2": 3.7,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.9,
-            "over": 1.77
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "over",
-            "under"
-          ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
-        },
-        {
-          "id": "M6",
-          "dom": "RC Celta Fortuna",
-          "ext": "Real Valladolid",
-          "cotes": {
-            "1": 3.1,
-            "X": 3.4,
-            "2": 2.05,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.94,
-            "over": 1.74
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "over",
-            "under"
-          ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_003",
-      "competition": "Winner FOOT",
-      "date": "2026-11-23",
-      "heure": "21:00",
-      "matchs": [
-        {
-          "id": "M7",
-          "dom": "Burgos CF",
-          "ext": "Albacete Balompie",
-          "cotes": {
-            "1": 1.97,
-            "X": 3.1,
-            "2": 3.6,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.62,
-            "over": 2.12
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "over",
-            "under"
-          ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
-        },
-        {
-          "id": "M8",
-          "dom": "Getafe CF",
-          "ext": "Atletico Madrid",
-          "cotes": {
-            "1": 6.5,
-            "X": 3.9,
-            "2": 1.55,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.63,
+            "under": 1.71,
             "over": 2.1
           },
           "marches_disponibles": [
@@ -280,22 +133,18 @@
             "under"
           ],
           "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente",
-            "cote_plate: MT identiques sur >=5 matchs (vitrine, conservees)"
+            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
           ],
           "holes": [
             "ligne_totale_Moins_Plus"
-          ],
-          "cote_plate": true
+          ]
         }
       ],
       "warnings": []
     }
   ],
-  "warnings": [
-    "cote_plate: 8 match(s) MT identiques (>=5)"
-  ],
+  "warnings": [],
   "statut": "A_VALIDER",
-  "n_matchs": 8,
+  "n_matchs": 4,
   "source_format": "text+markdown_table"
 }
