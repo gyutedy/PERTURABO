@@ -1,6 +1,6 @@
 ### 🛡️ PERTURABO · PARI — TOP 3 MARCHÉS PAR MATCH (score commun 01-10)
 
-*generated 2026-11-24T12:45:24Z — 4 matchs classés — notes: 0*
+*generated 2026-11-24T13:45:02Z — 4 matchs classés — notes: 0*
 
 - **#1 Charlton Athletic vs Lincoln City** — score **8.5/10** — bucket 🟢 HAUTE (données haute)
     1. Victoire Domicile — cote 2.8 — proba 40% — EV +13.4%

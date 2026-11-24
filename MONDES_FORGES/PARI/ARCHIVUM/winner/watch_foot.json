@@ -1,7 +1,11 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "foot",
+<<<<<<< HEAD
   "generated_at": "2026-11-24T13:51:29.970523+00:00",
+=======
+  "generated_at": "2026-11-24T13:44:00.620311+00:00",
+>>>>>>> origin/pari-winner-sensor-m1
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
   "matches": {
@@ -30,6 +34,7 @@
         },
         {
           "seq": 2,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T13:51:29Z",
           "heures_avant_coup": 4.14,
@@ -39,6 +44,15 @@
             "2": 6.0,
             "under": 2.67,
             "over": 1.46
+=======
+          "capture_id": "C-FUJ",
+          "at": "2026-11-24T13:44:00Z",
+          "heures_avant_coup": 4.27,
+          "cotes": {
+            "1": 1.46,
+            "X": 4.8,
+            "2": 6.0
+>>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
           "mode_detection": "id"
@@ -75,6 +89,7 @@
         },
         {
           "seq": 2,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T13:51:29Z",
           "heures_avant_coup": 5.89,
@@ -84,6 +99,15 @@
             "2": 2.92,
             "under": 1.67,
             "over": 2.17
+=======
+          "capture_id": "C-FUJ",
+          "at": "2026-11-24T13:44:00Z",
+          "heures_avant_coup": 6.02,
+          "cotes": {
+            "1": 2.45,
+            "X": 3.25,
+            "2": 2.92
+>>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
           "mode_detection": "id"
@@ -120,6 +144,7 @@
         },
         {
           "seq": 2,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T13:51:29Z",
           "heures_avant_coup": 5.89,
@@ -129,6 +154,15 @@
             "2": 5.7,
             "under": 2.75,
             "over": 1.44
+=======
+          "capture_id": "C-FUJ",
+          "at": "2026-11-24T13:44:00Z",
+          "heures_avant_coup": 6.02,
+          "cotes": {
+            "1": 1.49,
+            "X": 4.8,
+            "2": 5.7
+>>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
           "mode_detection": "id"
@@ -165,6 +199,7 @@
         },
         {
           "seq": 2,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T13:51:29Z",
           "heures_avant_coup": 5.89,
@@ -174,6 +209,15 @@
             "2": 2.55,
             "under": 1.71,
             "over": 2.1
+=======
+          "capture_id": "C-FUJ",
+          "at": "2026-11-24T13:44:00Z",
+          "heures_avant_coup": 6.02,
+          "cotes": {
+            "1": 2.8,
+            "X": 3.25,
+            "2": 2.55
+>>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
           "mode_detection": "id"

@@ -16,9 +16,7 @@
             "2": 6.0,
             "mt1": 3.1,
             "mte": 3.0,
-            "mt2": 2.02,
-            "under": 2.67,
-            "over": 1.46
+            "mt2": 2.02
           },
           "marches_disponibles": [
             "1",
@@ -26,16 +24,10 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "over",
-            "under"
+            "mte"
           ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ]
+          "warnings": [],
+          "holes": []
         }
       ],
       "warnings": []
@@ -56,9 +48,7 @@
             "2": 2.92,
             "mt1": 3.1,
             "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.67,
-            "over": 2.17
+            "mt2": 2.02
           },
           "marches_disponibles": [
             "1",
@@ -66,16 +56,10 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "over",
-            "under"
+            "mte"
           ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ]
+          "warnings": [],
+          "holes": []
         },
         {
           "id": "M3",
@@ -87,9 +71,7 @@
             "2": 5.7,
             "mt1": 3.1,
             "mte": 3.0,
-            "mt2": 2.02,
-            "under": 2.75,
-            "over": 1.44
+            "mt2": 2.02
           },
           "marches_disponibles": [
             "1",
@@ -97,16 +79,10 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "over",
-            "under"
+            "mte"
           ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ]
+          "warnings": [],
+          "holes": []
         },
         {
           "id": "M4",
@@ -118,9 +94,7 @@
             "2": 2.55,
             "mt1": 3.1,
             "mte": 3.0,
-            "mt2": 2.02,
-            "under": 1.71,
-            "over": 2.1
+            "mt2": 2.02
           },
           "marches_disponibles": [
             "1",
@@ -128,16 +102,10 @@
             "X",
             "mt1",
             "mt2",
-            "mte",
-            "over",
-            "under"
+            "mte"
           ],
-          "warnings": [
-            "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
-          ],
-          "holes": [
-            "ligne_totale_Moins_Plus"
-          ]
+          "warnings": [],
+          "holes": []
         }
       ],
       "warnings": []
