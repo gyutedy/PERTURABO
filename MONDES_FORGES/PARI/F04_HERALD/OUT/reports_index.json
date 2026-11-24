@@ -1,42 +1,5 @@
 {
-  "generated_at": "2026-11-07T18:26:13Z",
-  "reports": [
-    {
-      "id": "M1",
-      "match": "AJ Auxerre vs Paris FC",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
-    },
-    {
-      "id": "M3",
-      "match": "Hertha BSC vs VFL Wolfsburg",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
-    },
-    {
-      "id": "M4",
-      "match": "AS Roma vs Sassuolo Calcio",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
-    },
-    {
-      "id": "M5",
-      "match": "Valencia CF vs Real Madrid",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M5_fiche.md"
-    },
-    {
-      "id": "M6",
-      "match": "Excelsior Rotterdam vs Go Ahead Eagles",
-      "verdict": "GO",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M6_fiche.md"
-    },
-    {
-      "id": "M7",
-      "match": "Paris Saint-Germain vs ESTAC Troyes",
-      "verdict": "NO_BET",
-      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M7_fiche.md"
-    }
-  ],
+  "generated_at": "2026-11-24T12:06:03Z",
+  "reports": [],
   "oracle_utilise": false
 }
