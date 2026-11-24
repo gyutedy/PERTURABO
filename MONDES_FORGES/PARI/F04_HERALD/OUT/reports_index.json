@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T12:34:07Z",
+  "generated_at": "2026-11-24T12:45:25Z",
   "reports": [
     {
       "id": "M1",
@@ -10,13 +10,13 @@
     {
       "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
-      "verdict": "GO",
+      "verdict": "THIN",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
     },
     {
       "id": "M3",
       "match": "Cardiff City vs Preston North End",
-      "verdict": "GO",
+      "verdict": "NO_BET",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {

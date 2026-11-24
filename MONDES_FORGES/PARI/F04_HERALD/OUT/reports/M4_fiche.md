@@ -1,26 +1,26 @@
 # 🏟️ FICHE DE SIÈGE — Charlton Athletic vs Lincoln City
-*Générée le 2026-11-24 12:34 UTC — siege_id courant*
+*Générée le 2026-11-24 12:45 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 20.6%
+**Verdict match : 🔥 GO** — meilleure EV: 13.4%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.99 — ext 0.62 (MT1: 0.28+0.38 · MT2: 0.71+0.23)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 43.1% / 34.9% / 22.1%
-- Over 2.5 : **21.7%** · Under 2.5 : 78.3%
-- Les deux marquent : 29.1%
-- Mi-temps : MT1 24.4% · Égalité 34.7% · **MT2 40.9%**
-- Qualité data : haute (incoherence_modele_empirique)
+- λ attendus : dom 1.41 — ext 1.25 (MT1: 0.39+0.77 · MT2: 1.01+0.47)
+- Score le plus probable : **1-1**
+- 1 / X / 2 : 40.5% / 26.5% / 33.1%
+- Over 2.5 : **49.5%** · Under 2.5 : 50.5%
+- Les deux marquent : 54.0%
+- Mi-temps : MT1 29.7% · Égalité 25.6% · **MT2 44.7%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.8 | 43.1% | 20.6% |  VALUE | 1.43u |
-| 1X2 | Nul | 3.25 | 34.9% | 13.3% |  VALUE | 0.74u |
-| 1X2 | Victoire Extérieur | 2.55 | 22.1% | -43.8% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 34.7% | 4.1% | 🟡 THIN | 0.13u |
+| 1X2 | Victoire Domicile | 2.8 | 40.5% | 13.4% |  VALUE | 0.93u |
+| 1X2 | Nul | 3.25 | 26.5% | -14.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 2.55 | 33.1% | -15.7% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 25.6% | -23.2% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +28,7 @@
 
 ## Ordre de marche
 
-- Miser **1.43u** sur **Victoire Domicile** @ 2.8 (¼ Kelly plafonné).
+- Miser **0.93u** sur **Victoire Domicile** @ 2.8 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
