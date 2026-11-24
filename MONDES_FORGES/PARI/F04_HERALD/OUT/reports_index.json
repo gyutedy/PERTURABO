@@ -1,5 +1,30 @@
 {
-  "generated_at": "2026-11-24T12:06:03Z",
-  "reports": [],
+  "generated_at": "2026-11-24T12:25:26Z",
+  "reports": [
+    {
+      "id": "M1",
+      "match": "Middlesbrough FC vs Swansea City",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M1_fiche.md"
+    },
+    {
+      "id": "M2",
+      "match": "Bristol City vs Wrexham AFC",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M2_fiche.md"
+    },
+    {
+      "id": "M3",
+      "match": "Cardiff City vs Preston North End",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
+    },
+    {
+      "id": "M4",
+      "match": "Charlton Athletic vs Lincoln City",
+      "verdict": "GO",
+      "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M4_fiche.md"
+    }
+  ],
   "oracle_utilise": false
 }

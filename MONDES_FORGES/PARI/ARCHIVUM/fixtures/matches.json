@@ -1,6 +1,6 @@
 {
   "source": "input_capture",
-  "generated_at": "2026-11-24T12:05:51Z",
+  "generated_at": "2026-11-24T12:25:11Z",
   "ligue": "Capture — ligue à confirmer",
   "horizon": "capture 2026-11-24",
   "matchs": [
@@ -40,18 +40,45 @@
         "form",
         "h2h_scores",
         "timing",
-        "injuries"
+        "standings"
       ],
       "warnings": [
         "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
       ],
+      "league_code": "E1",
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 16.0,
+          "encaisses": 11.0,
+          "marques_mt1": 7.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 5.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 10.0,
+          "encaisses": 15.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 6.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 9.0
+        }
+      },
       "s15": {
         "flags": [],
         "holes": [
-          "injuries"
+          "standings"
         ],
         "detail": {
-          "reason": "ligue_inconnue"
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
         },
         "source": "api-football"
       }
@@ -92,18 +119,45 @@
         "form",
         "h2h_scores",
         "timing",
-        "injuries"
+        "standings"
       ],
       "warnings": [
         "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
       ],
+      "league_code": "E1",
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 18.0,
+          "encaisses": 13.0,
+          "marques_mt1": 10.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 12.0,
+          "encaisses": 12.0,
+          "marques_mt1": 6.0,
+          "encaisses_mt1": 4.0,
+          "marques_mt2": 6.0,
+          "encaisses_mt2": 8.0
+        }
+      },
       "s15": {
         "flags": [],
         "holes": [
-          "injuries"
+          "standings"
         ],
         "detail": {
-          "reason": "ligue_inconnue"
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
         },
         "source": "api-football"
       }
@@ -144,18 +198,45 @@
         "form",
         "h2h_scores",
         "timing",
-        "injuries"
+        "standings"
       ],
       "warnings": [
         "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
       ],
+      "league_code": "E1",
+      "stats": {
+        "dom": {
+          "mj": 8,
+          "marques": 21.0,
+          "encaisses": 13.0,
+          "marques_mt1": 13.0,
+          "encaisses_mt1": 7.0,
+          "marques_mt2": 8.0,
+          "encaisses_mt2": 6.0
+        },
+        "ext": {
+          "mj": 12,
+          "marques": 15.0,
+          "encaisses": 13.0,
+          "marques_mt1": 8.0,
+          "encaisses_mt1": 8.0,
+          "marques_mt2": 7.0,
+          "encaisses_mt2": 5.0
+        }
+      },
       "s15": {
         "flags": [],
         "holes": [
-          "injuries"
+          "standings"
         ],
         "detail": {
-          "reason": "ligue_inconnue"
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
         },
         "source": "api-football"
       }
@@ -196,22 +277,52 @@
         "form",
         "h2h_scores",
         "timing",
-        "injuries"
+        "standings"
       ],
       "warnings": [
         "Moins/Plus sans ligne totale — cotes gardees, pas de 2.5 invente"
       ],
+      "league_code": "E1",
+      "stats": {
+        "dom": {
+          "mj": 12,
+          "marques": 14.0,
+          "encaisses": 12.0,
+          "marques_mt1": 5.0,
+          "encaisses_mt1": 8.0,
+          "marques_mt2": 9.0,
+          "encaisses_mt2": 4.0
+        },
+        "ext": {
+          "mj": 8,
+          "marques": 7.0,
+          "encaisses": 10.0,
+          "marques_mt1": 4.0,
+          "encaisses_mt1": 2.0,
+          "marques_mt2": 3.0,
+          "encaisses_mt2": 8.0
+        }
+      },
       "s15": {
         "flags": [],
         "holes": [
-          "injuries"
+          "standings"
         ],
         "detail": {
-          "reason": "ligue_inconnue"
+          "injuries": {
+            "att": [],
+            "def": []
+          },
+          "standings": {
+            "reason": "fetch_ko"
+          }
         },
         "source": "api-football"
       }
     }
+  ],
+  "warnings": [
+    "inject CAPTEURS 2026-11-24T12:25:14Z [E1]: 8 auto / 0 manquants"
   ],
   "notes_count": 0
 }
