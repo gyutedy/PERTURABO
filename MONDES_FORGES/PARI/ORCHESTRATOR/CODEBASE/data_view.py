@@ -220,13 +220,25 @@ def _pieges_cell(row):
     return ",".join(flags) if flags else "—"
 
 
+LEGENDE_SCORER = (
+    "SCORER : edge = écart EV / bande = cohérence de la cote / info = asymétrie "
+    "d'information / data = qualité des données / marge = overround du book / "
+    "confirm = double confirmation. Valeurs 0-1, seuil 0,50-0,60."
+)
+
+LEGENDE_COURTE = (
+    "LEGENDE — Q : HAUTE ≥7 / MOYENNE ≥5 / FAIBLE <5 · Score : 30% qualité données "
+    "+ 40% probabilité + 30% edge · TOP : meilleure cote à EV positive · "
+    "TROU : donnée absente, jamais estimée · PIEGES : cote_plate / marge_anomalique "
+    "/ cote_figée_sur_news / marche_vitrine · /data N = fiche détaillée."
+)
+
+
 def render_compact(top3, md, carte, notes):
     rows = ranked_rows(top3, md)
     if not rows:
-        return "Aucun match classe."
-    header = "#  MATCH            Q   SC  ELO   xG      REPOS  H2H    TROU      OUT TOP PIEGES"
-    haute = []
-    all_lines = []
+        return "Aucun match classé."
+    blocs = [f"DONNEES PARI — {len(rows)} match(s)\n"]
     for i, row in enumerate(rows, 1):
         intel = _match_carte(row, carte or {})
         note = _notes_for(row, intel, notes or {})
@@ -234,31 +246,23 @@ def render_compact(top3, md, carte, notes):
         ext = intel.get("ext") or row.get("ext") or _split_vs(row.get("match"))[1]
         q = _q(row.get("bucket"))
         sc = row.get("score_commun")
-        sc_s = f"{sc:.1f}" if isinstance(sc, (int, float)) else "—"
-        elo = _elo_cell(intel.get("elo"))
-        xg = intel.get("xg") or {}
-        xg_s = _fmt_pair(xg.get("dom"), xg.get("ext"), nd=1)
-        rd = intel.get("rest_days") or {}
-        repos = _fmt_pair(rd.get("dom"), rd.get("ext"))
-        h2h = _h2h_cell(intel.get("h2h"))
-        trou = _trou_cell(intel.get("holes"))
-        out_n = _out_n(note)
+        sc_s = f"{sc:.1f}/10" if isinstance(sc, (int, float)) else "—"
+        qual = {"H": "HAUTE", "M": "MOYENNE", "F": "FAIBLE"}.get(q, "?")
         top = _top_cell(row)
         pie = _pieges_cell(row)
-        match_s = _pair(dom, ext)[:16]
-        line = (
-            f"{i:<2} {match_s:<16} {q} {sc_s:>4}  {elo:>4}  {xg_s:<7}  "
-            f"{repos:<5}  {h2h:<6}  {trou:<8}  {out_n}   {top} {pie}"
-        )
-        all_lines.append(line)
-        if q == "H":
-            haute.append(line)
-    body = "\n".join([header] + all_lines)
-    extra = "\n— = trou. /data N = fiche. PIEGES = cote_plate/marge_anomalique/cote_figee/marche_vitrine."
-    if len(body) + len(extra) > COMPACT_MAX and haute:
-        body = "\n".join([header] + haute) + "\n... /data N"
-        extra = ""
-    return body + extra
+        holes = intel.get("holes") or []
+        lignes = [
+            f"{i}) {dom} — {ext}",
+            f"   Qualité : {qual} | Score : {sc_s}",
+            f"   TOP : {top} | PIEGES : {pie} | Notes : {_out_n(note)}",
+        ]
+        if holes:
+            lignes.append(f"   TROU : {len(holes)} donnée(s) absente(s) — détail dans /data {i}")
+        blocs.append("\n".join(lignes))
+    corps = "\n\n".join(blocs)
+    if len(corps) + len(LEGENDE_COURTE) > COMPACT_MAX:
+        corps = "\n\n".join(blocs[:3]) + "\n\n... suite dans /data N"
+    return corps + "\n\n" + LEGENDE_COURTE
 
 
 def _form_block(title, lines):
@@ -376,16 +380,25 @@ def render_fiche(n, top3, md, carte, notes, n_notes=0, predictions=None):
     rd = intel.get("rest_days") or {}
     holes = intel.get("holes") or []
     form = intel.get("form") or {}
+    qual = {"H": "HAUTE", "M": "MOYENNE", "F": "FAIBLE"}.get(q, "?")
     lines = [
-        f"#{n}  {dom} vs {ext}",
-        f"Q {q}  score {sc_s}  TOP {top}",
-        f"Elo {_dash(elo.get('dom'))}/{_dash(elo.get('ext'))}  "
-        f"delta {_elo_cell(elo)}",
-        f"xG {_fmt_pair(xg.get('dom'), xg.get('ext'), nd=1)}",
-        f"Repos {_fmt_pair(rd.get('dom'), rd.get('ext'))}",
+        f"FICHE {n} — {dom} — {ext}",
+        "",
+        f"Qualité : {qual} | Score : {sc_s}",
+        f"Meilleur pari (TOP) : {top}",
+        "",
+        "DONNEES EQUIPES",
+        f"  Elo domicile/extérieur : {_dash(elo.get('dom'))} / {_dash(elo.get('ext'))}"
+        f" (delta {_elo_cell(elo)})",
+        f"  xG domicile/extérieur : {_fmt_pair(xg.get('dom'), xg.get('ext'), nd=1)}",
+        f"  Jours de repos : {_fmt_pair(rd.get('dom'), rd.get('ext'))}",
+        "",
         _h2h_block(intel.get("h2h")),
-        _form_block("FORME D 10", form.get("dom") or []),
-        _form_block("FORME E 10", form.get("ext") or []),
+        "",
+        _form_block("FORME DOMICILE (10)", form.get("dom") or []),
+        "",
+        _form_block("FORME EXTERIEUR (10)", form.get("ext") or []),
+        "",
     ]
     tm = intel.get("goal_minutes") or {}
     if tm.get("goals"):
@@ -405,10 +418,16 @@ def render_fiche(n, top3, md, carte, notes, n_notes=0, predictions=None):
         lines.append(crit)
     lect = (top_sel or {}).get("lecture_cotes") or {}
     if lect.get("capture") is not None:
-        bits = [f"cap {lect.get('capture')}"]
-        bits.append(f"T-2h {lect.get('t2h') if lect.get('t2h') is not None else '—'}")
-        bits.append(f"T-0 {lect.get('t0') if lect.get('t0') is not None else '—'}")
-        lines.append("COTES " + "  ".join(bits))
+        lignes_cotes = [
+            "COTES ET CLV",
+            f"  Cote prise à la capture : {lect.get('capture')}",
+            f"  T-2h (2h avant coup d'envoi) : "
+            f"{lect.get('t2h') if lect.get('t2h') is not None else '— (trou)'}",
+            f"  T-0 (clôture au coup d'envoi) : "
+            f"{lect.get('t0') if lect.get('t0') is not None else '— (trou)'}",
+            "  CLV = cote prise / cote de clôture − 1. Non mesuré si T-0 absent.",
+        ]
+        lines.extend(lignes_cotes)
     pie = _pieges_cell(row)
     if pie != "—":
         lines.append("PIEGES " + pie)
@@ -417,6 +436,10 @@ def render_fiche(n, top3, md, carte, notes, n_notes=0, predictions=None):
         lines.append("TROU " + ",".join(show))
     ecartes = marches_ecartes(row, predictions)
     if ecartes:
+        lines.append("")
         lines.append("MARCHES CALCULES MAIS NON RETENUS :")
         lines.extend(ecartes)
+    lines.append("")
+    lines.append(LEGENDE_COURTE)
+    lines.append(LEGENDE_SCORER)
     return "\n".join(lines)
