@@ -1,12 +1,378 @@
 {
-  "generated_at": "2026-11-24T12:06:02Z",
+  "generated_at": "2026-11-24T12:25:26Z",
   "ligue": "Capture — ligue à confirmer",
-  "ligue_moyennes": null,
-  "analyses": [],
-  "message": "Zero Data, Zero Calc — aucune stat d'équipe dans la carte. Ajoute les stats via capteurs.py build-stats + inject, ou une carte manuelle.",
-  "o2.5_empirique": null,
-  "o2.5_empirique_n": 0,
-  "empirique_holes": [
-    "o2.5_empirique"
-  ]
+  "ligue_moyennes": {
+    "buts_dom_moy": 1.6584,
+    "buts_ext_moy": 1.2486,
+    "part_mt1_ligue": 0.4968,
+    "league_code": "E1",
+    "rho": -0.13,
+    "bonus_domicile": 1.1,
+    "bonus_exterieur": 0.95,
+    "baseline": "saison",
+    "params": "default",
+    "flags": [
+      "params: default"
+    ],
+    "holes": [],
+    "encaisses_dom_moy": 1.2486,
+    "encaisses_ext_moy": 1.6584
+  },
+  "analyses": [
+    {
+      "id": "M1",
+      "match": "Middlesbrough FC vs Swansea City",
+      "lambdas": {
+        "dom_total": 1.105,
+        "ext_total": 0.581,
+        "dom_mt1": 0.463,
+        "dom_mt2": 0.643,
+        "ext_mt1": 0.275,
+        "ext_mt2": 0.306,
+        "dom_raw": 1.105,
+        "ext_raw": 0.581
+      },
+      "probas": {
+        "1": 0.4671,
+        "X": 0.3555,
+        "2": 0.1774,
+        "o2.5": 0.2393,
+        "u2.5": 0.7607,
+        "btts": 0.3103,
+        "btts_no": 0.6897,
+        "o0.5": 0.7994,
+        "u0.5": 0.2006,
+        "o1.5": 0.5181,
+        "u1.5": 0.4819,
+        "o3.5": 0.0912,
+        "u3.5": 0.9088,
+        "o4.5": 0.0288,
+        "u4.5": 0.9712,
+        "dc_1x": 0.8226,
+        "dc_x2": 0.5329,
+        "dc_12": 0.6445,
+        "tt_h_o0.5": 0.6689,
+        "tt_h_u0.5": 0.3311,
+        "tt_h_o1.5": 0.303,
+        "tt_h_u1.5": 0.697,
+        "tt_h_o2.5": 0.1007,
+        "tt_h_u2.5": 0.8993,
+        "tt_a_o0.5": 0.4408,
+        "tt_a_u0.5": 0.5592,
+        "tt_a_o1.5": 0.1157,
+        "tt_a_u1.5": 0.8843,
+        "tt_a_o2.5": 0.0213,
+        "tt_a_u2.5": 0.9787,
+        "score_le_plus_probable": "0-0",
+        "mt1_plus": 0.2731,
+        "mte": 0.3374,
+        "mt2_plus": 0.3895
+      },
+      "cs": {
+        "0-0": 0.2006,
+        "1-0": 0.1892,
+        "1-1": 0.1344,
+        "2-0": 0.1131,
+        "0-1": 0.0921,
+        "2-1": 0.0657,
+        "3-0": 0.0417,
+        "1-2": 0.0346,
+        "0-2": 0.0313,
+        "3-1": 0.0242
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": [
+          "incoherence_modele_empirique"
+        ]
+      },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
+      "state_factors": {
+        "applied": false,
+        "factor_dom": 1.0,
+        "factor_ext": 1.0,
+        "flags": [],
+        "holes": [
+          "effectifs",
+          "standings"
+        ],
+        "cap_hit": false,
+        "journal": []
+      },
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_ecart": 0.29430215053763437
+    },
+    {
+      "id": "M2",
+      "match": "Bristol City vs Wrexham AFC",
+      "lambdas": {
+        "dom_total": 0.995,
+        "ext_total": 0.824,
+        "dom_mt1": 0.442,
+        "dom_mt2": 0.553,
+        "ext_mt1": 0.428,
+        "ext_mt2": 0.396,
+        "dom_raw": 0.995,
+        "ext_raw": 0.824
+      },
+      "probas": {
+        "1": 0.3666,
+        "X": 0.3596,
+        "2": 0.2738,
+        "o2.5": 0.2745,
+        "u2.5": 0.7255,
+        "btts": 0.3711,
+        "btts_no": 0.6289,
+        "o0.5": 0.8206,
+        "u0.5": 0.1794,
+        "o1.5": 0.5601,
+        "u1.5": 0.4399,
+        "o3.5": 0.1118,
+        "u3.5": 0.8882,
+        "o4.5": 0.0378,
+        "u4.5": 0.9622,
+        "dc_1x": 0.7262,
+        "dc_x2": 0.6334,
+        "dc_12": 0.6404,
+        "tt_h_o0.5": 0.6302,
+        "tt_h_u0.5": 0.3698,
+        "tt_h_o1.5": 0.2624,
+        "tt_h_u1.5": 0.7376,
+        "tt_h_o2.5": 0.0794,
+        "tt_h_u2.5": 0.9206,
+        "tt_a_o0.5": 0.5614,
+        "tt_a_u0.5": 0.4386,
+        "tt_a_o1.5": 0.1999,
+        "tt_a_u1.5": 0.8001,
+        "tt_a_o2.5": 0.051,
+        "tt_a_u2.5": 0.949,
+        "score_le_plus_probable": "0-0",
+        "mt1_plus": 0.3171,
+        "mte": 0.3236,
+        "mt2_plus": 0.3593
+      },
+      "cs": {
+        "0-0": 0.1794,
+        "1-1": 0.1503,
+        "1-0": 0.1441,
+        "0-1": 0.1164,
+        "2-0": 0.0803,
+        "2-1": 0.0662,
+        "0-2": 0.0551,
+        "1-2": 0.0548,
+        "2-2": 0.0273,
+        "3-0": 0.0266
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": [
+          "incoherence_modele_empirique"
+        ]
+      },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
+      "state_factors": {
+        "applied": false,
+        "factor_dom": 1.0,
+        "factor_ext": 1.0,
+        "flags": [],
+        "holes": [
+          "effectifs",
+          "standings"
+        ],
+        "cap_hit": false,
+        "journal": []
+      },
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_ecart": 0.25910215053763436
+    },
+    {
+      "id": "M3",
+      "match": "Cardiff City vs Preston North End",
+      "lambdas": {
+        "dom_total": 1.886,
+        "ext_total": 1.545,
+        "dom_mt1": 1.164,
+        "dom_mt2": 0.722,
+        "ext_mt1": 0.828,
+        "ext_mt2": 0.717,
+        "dom_raw": 1.886,
+        "ext_raw": 1.545
+      },
+      "probas": {
+        "1": 0.4469,
+        "X": 0.2466,
+        "2": 0.3065,
+        "o2.5": 0.6663,
+        "u2.5": 0.3337,
+        "btts": 0.6797,
+        "btts_no": 0.3203,
+        "o0.5": 0.9554,
+        "u0.5": 0.0446,
+        "o1.5": 0.869,
+        "u1.5": 0.131,
+        "o3.5": 0.4485,
+        "u3.5": 0.5515,
+        "o4.5": 0.2617,
+        "u4.5": 0.7383,
+        "dc_1x": 0.6935,
+        "dc_x2": 0.5531,
+        "dc_12": 0.7534,
+        "tt_h_o0.5": 0.8484,
+        "tt_h_u0.5": 0.1516,
+        "tt_h_o1.5": 0.5623,
+        "tt_h_u1.5": 0.4377,
+        "tt_h_o2.5": 0.2926,
+        "tt_h_u2.5": 0.7074,
+        "tt_a_o0.5": 0.7868,
+        "tt_a_u0.5": 0.2132,
+        "tt_a_o1.5": 0.4573,
+        "tt_a_u1.5": 0.5427,
+        "tt_a_o2.5": 0.2026,
+        "tt_a_u2.5": 0.7974,
+        "score_le_plus_probable": "1-1",
+        "mt1_plus": 0.5057,
+        "mte": 0.213,
+        "mt2_plus": 0.2813
+      },
+      "cs": {
+        "1-1": 0.1065,
+        "2-1": 0.0889,
+        "1-2": 0.0728,
+        "2-2": 0.0687,
+        "2-0": 0.0575,
+        "3-1": 0.0559,
+        "1-0": 0.0487,
+        "0-0": 0.0446,
+        "3-2": 0.0432,
+        "0-2": 0.0386
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": []
+      },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
+      "state_factors": {
+        "applied": false,
+        "factor_dom": 1.0,
+        "factor_ext": 1.0,
+        "flags": [],
+        "holes": [
+          "effectifs",
+          "standings"
+        ],
+        "cap_hit": false,
+        "journal": []
+      },
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_ecart": 0.13269784946236562
+    },
+    {
+      "id": "M4",
+      "match": "Charlton Athletic vs Lincoln City",
+      "lambdas": {
+        "dom_total": 0.967,
+        "ext_total": 0.666,
+        "dom_mt1": 0.269,
+        "dom_mt2": 0.698,
+        "ext_mt1": 0.412,
+        "ext_mt2": 0.254,
+        "dom_raw": 0.967,
+        "ext_raw": 0.666
+      },
+      "probas": {
+        "1": 0.3974,
+        "X": 0.3756,
+        "2": 0.227,
+        "o2.5": 0.2252,
+        "u2.5": 0.7748,
+        "btts": 0.3177,
+        "btts_no": 0.6823,
+        "o0.5": 0.7883,
+        "u0.5": 0.2117,
+        "o1.5": 0.502,
+        "u1.5": 0.498,
+        "o3.5": 0.0834,
+        "u3.5": 0.9166,
+        "o4.5": 0.0255,
+        "u4.5": 0.9745,
+        "dc_1x": 0.773,
+        "dc_x2": 0.6026,
+        "dc_12": 0.6244,
+        "tt_h_o0.5": 0.6199,
+        "tt_h_u0.5": 0.3801,
+        "tt_h_o1.5": 0.2522,
+        "tt_h_u1.5": 0.7478,
+        "tt_h_o2.5": 0.0744,
+        "tt_h_u2.5": 0.9256,
+        "tt_a_o0.5": 0.4861,
+        "tt_a_u0.5": 0.5139,
+        "tt_a_o1.5": 0.144,
+        "tt_a_u1.5": 0.856,
+        "tt_a_o2.5": 0.0301,
+        "tt_a_u2.5": 0.9699,
+        "score_le_plus_probable": "0-0",
+        "mt1_plus": 0.2533,
+        "mte": 0.3426,
+        "mt2_plus": 0.4041
+      },
+      "cs": {
+        "0-0": 0.2117,
+        "1-0": 0.1726,
+        "1-1": 0.1421,
+        "0-1": 0.1137,
+        "2-0": 0.0914,
+        "2-1": 0.0608,
+        "0-2": 0.0433,
+        "1-2": 0.0419,
+        "3-0": 0.0295,
+        "2-2": 0.0203
+      },
+      "data_quality": {
+        "niveau": "haute",
+        "flags": [
+          "incoherence_modele_empirique"
+        ]
+      },
+      "engine": "poisson",
+      "holes": [
+        "params_absents",
+        "effectifs",
+        "standings"
+      ],
+      "state_factors": {
+        "applied": false,
+        "factor_dom": 1.0,
+        "factor_ext": 1.0,
+        "flags": [],
+        "holes": [
+          "effectifs",
+          "standings"
+        ],
+        "cap_hit": false,
+        "journal": []
+      },
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_ecart": 0.30840215053763437
+    }
+  ],
+  "o2.5_empirique": 0.5336021505376344,
+  "o2.5_empirique_n": 744,
+  "empirique_source": "uk_E1_2627.csv",
+  "empirique_flags": 3,
+  "empirique_holes": []
 }

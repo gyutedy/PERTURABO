@@ -1,56 +1,65 @@
 {
-  "generated_at": "2026-11-24T12:06:02Z",
+  "generated_at": "2026-11-24T12:25:25Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 0,
-  "no_bet": 4,
-  "recommandation": "NO GO — aucune proie utilisable",
-  "justification": "Tier: exotique. 0 GO / 4 NO BET. Gate 1 à valider par le Warsmith.",
+  "go": 4,
+  "no_bet": 0,
+  "recommandation": "GO — carte analysable",
+  "justification": "Tier: exotique. 4 GO / 0 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
       "match": "Middlesbrough FC vs Swansea City",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
+        "ligue hors top5 → seuil EV durci à 8%",
+        "incoherence_modele_empirique"
       ],
-      "flags": []
+      "flags": [
+        "incoherence_modele_empirique"
+      ],
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.2393
     },
     {
       "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
+        "ligue hors top5 → seuil EV durci à 8%",
+        "incoherence_modele_empirique"
       ],
-      "flags": []
+      "flags": [
+        "incoherence_modele_empirique"
+      ],
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.2745
     },
     {
       "id": "M3",
       "match": "Cardiff City vs Preston North End",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": []
+      "flags": [],
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.6663
     },
     {
       "id": "M4",
       "match": "Charlton Athletic vs Lincoln City",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "raisons": [
-        "échantillon dom insuffisant (None matchs < 6)",
-        "échantillon ext insuffisant (None matchs < 6)",
-        "ligue hors top5 → seuil EV durci à 8%"
+        "ligue hors top5 → seuil EV durci à 8%",
+        "incoherence_modele_empirique"
       ],
-      "flags": []
+      "flags": [
+        "incoherence_modele_empirique"
+      ],
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.2252
     }
   ]
 }
