@@ -1,7 +1,7 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "basket",
-  "generated_at": "2026-11-24T13:51:29.769261+00:00",
+  "generated_at": "2026-11-24T14:07:08.035533+00:00",
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
   "matches": {
@@ -24,6 +24,30 @@
           },
           "source": "winner_capture",
           "mode_detection": "nouveau"
+        },
+        {
+          "seq": 2,
+          "capture_id": null,
+          "at": "2026-11-24T14:04:36Z",
+          "heures_avant_coup": -14.08,
+          "cotes": {
+            "1": 2.29,
+            "2": 1.61
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
+        },
+        {
+          "seq": 3,
+          "capture_id": null,
+          "at": "2026-11-24T14:07:08Z",
+          "heures_avant_coup": -14.12,
+          "cotes": {
+            "1": 2.29,
+            "2": 1.61
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
         }
       ],
       "next_alert_at": null,
@@ -51,6 +75,30 @@
           },
           "source": "winner_capture",
           "mode_detection": "nouveau"
+        },
+        {
+          "seq": 2,
+          "capture_id": null,
+          "at": "2026-11-24T14:04:36Z",
+          "heures_avant_coup": -14.08,
+          "cotes": {
+            "1": 1.63,
+            "2": 2.25
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
+        },
+        {
+          "seq": 3,
+          "capture_id": null,
+          "at": "2026-11-24T14:07:08Z",
+          "heures_avant_coup": -14.12,
+          "cotes": {
+            "1": 1.63,
+            "2": 2.25
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
         }
       ],
       "next_alert_at": null,
@@ -78,6 +126,30 @@
           },
           "source": "winner_capture",
           "mode_detection": "nouveau"
+        },
+        {
+          "seq": 2,
+          "capture_id": null,
+          "at": "2026-11-24T14:04:36Z",
+          "heures_avant_coup": -13.58,
+          "cotes": {
+            "1": 2.55,
+            "2": 1.49
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
+        },
+        {
+          "seq": 3,
+          "capture_id": null,
+          "at": "2026-11-24T14:07:08Z",
+          "heures_avant_coup": -13.62,
+          "cotes": {
+            "1": 2.55,
+            "2": 1.49
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
         }
       ],
       "next_alert_at": null,

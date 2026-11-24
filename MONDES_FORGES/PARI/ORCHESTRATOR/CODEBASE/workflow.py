@@ -599,8 +599,13 @@ def cmd_valider1(st, arg):
     n_go = sum(1 for r in rows if r.get("top3") and not r.get("no_bet_recommande") and r.get("bucket") != "FAIBLE")
     n_skip = sum(1 for r in rows if not r.get("top3"))
     n_faible = sum(1 for r in rows if r.get("top3") and (r.get("no_bet_recommande") or r.get("bucket") == "FAIBLE"))
+    n_nobet = sum(1 for r in rows if (r.get("verdict_modele") or "").upper() == "NO_BET"
+                  and not r.get("top3"))
+    n_thin = max(0, n_skip - n_nobet)
+    n_stats = sum(1 for r in rows if any("stats" in str(h) for h in (r.get("holes") or [])))
     names = ", ".join((r.get("match") or "?") for r in rows[:8]) or "aucun"
-    counts = f"{len(rows)} match(s) : {n_go} GO / {n_faible} FAIBLE-qual / {n_skip} skip-stats"
+    counts = (f"{len(rows)} match(s) : {n_go} GO / {n_faible} FAIBLE-qual / "
+              f"{n_thin} THIN / {n_nobet} NO BET / {n_stats} avertissement-stats")
     if n_go == 0:
         if not stats_ok:
             why = "stats absentes (ligue hors whitelist, alias club, ou reseau)"

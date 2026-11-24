@@ -87,7 +87,9 @@ def test_wiring_bonus_default_inchange():
         {"id": "M1", "dom": "A", "ext": "B", "stats": {"dom": dict(stub), "ext": dict(stub)}},
         {"id": "M2", "dom": "C", "ext": "D", "stats": {"dom": dict(stub), "ext": dict(stub)}},
     ]
-    avg = breacher.league_averages(ms, league_code="E0", csv_dir=os.path.join(tmp := tempfile.mkdtemp(), "empty"))
+    tmp = tempfile.mkdtemp(prefix="pari-lfw-default-")
+    avg = breacher.league_averages(ms, league_code="E0", csv_dir=os.path.join(tmp, "empty"),
+                                   params_path=os.path.join(tmp, "absent_params.json"))
     check("lf.wire_bonus_110", abs(avg.get("bonus_domicile") - 1.10) < 1e-12, str(avg.get("bonus_domicile")))
     check("lf.wire_bonus_e095", abs(avg.get("bonus_exterieur") - 0.95) < 1e-12, str(avg.get("bonus_exterieur")))
     check("lf.wire_rho_dc", abs(avg.get("rho") - breacher.RHO_DC) < 1e-12, str(avg.get("rho")))
@@ -100,7 +102,6 @@ def test_wiring_bonus_default_inchange():
     b = breacher.analyse_match(ms[0], avg2)
     check("lf.wire_lambda_inchange", a["lambdas"]["dom_total"] == b["lambdas"]["dom_total"],
           str((a["lambdas"]["dom_total"], b["lambdas"]["dom_total"])))
-    del tmp
 
 
 def test_wiring_fitted_overrides():
