@@ -1,10 +1,10 @@
 {
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
-  "capture_seq": 8,
+  "capture_seq": 12,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "VALIDE",
-  "capture_id": "C-FUJ",
+  "capturer_statut": "A_VALIDER",
+  "capture_id": "C-YZS",
   "consumed_legs": [],
   "current_token": null,
   "lots_alloue_jour": 0,
@@ -17,7 +17,7 @@
   "pending_lot": null,
   "steps": {
     "start": "2026-11-24T11:55:50Z",
-    "capture": "2026-11-24T13:44:00Z",
+    "capture": "2026-11-24T13:58:23Z",
     "valider1": "2026-11-24T13:44:48Z"
   },
   "previews": {

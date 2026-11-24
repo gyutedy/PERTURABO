@@ -1,11 +1,7 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "foot",
-<<<<<<< HEAD
-  "generated_at": "2026-11-24T13:51:29.970523+00:00",
-=======
-  "generated_at": "2026-11-24T13:44:00.620311+00:00",
->>>>>>> origin/pari-winner-sensor-m1
+  "generated_at": "2026-11-24T13:58:23.820967+00:00",
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
   "matches": {
@@ -19,214 +15,62 @@
       "captures": [
         {
           "seq": 1,
-          "capture_id": "C-XTF",
-          "at": "2026-11-24T11:59:39Z",
-          "heures_avant_coup": 6.01,
-          "cotes": {
-            "1": 1.46,
-            "X": 4.8,
-            "2": 6.0,
-            "under": 2.67,
-            "over": 1.46
-          },
-          "source": "winner_capture",
-          "mode_detection": "nouveau"
-        },
-        {
-          "seq": 2,
-<<<<<<< HEAD
-          "capture_id": null,
-          "at": "2026-11-24T13:51:29Z",
-          "heures_avant_coup": 4.14,
-          "cotes": {
-            "1": 1.46,
-            "X": 4.8,
-            "2": 6.0,
-            "under": 2.67,
-            "over": 1.46
-=======
-          "capture_id": "C-FUJ",
-          "at": "2026-11-24T13:44:00Z",
-          "heures_avant_coup": 4.27,
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
           "cotes": {
             "1": 1.46,
             "X": 4.8,
             "2": 6.0
->>>>>>> origin/pari-winner-sensor-m1
-          },
-          "source": "winner_capture",
-          "mode_detection": "id"
-        }
-      ],
-      "next_alert_at": "2026-11-24T13:59:39+00:00",
-      "last_alert_at": null,
-      "holes": [
-        "match_nouveau"
-      ]
-    },
-    "M2": {
-      "match_key": "M2",
-      "source_event_id": "M2",
-      "home": "Bristol City",
-      "away": "Wrexham AFC",
-      "kickoff_iso": "2026-11-24T20:45:00+01:00",
-      "statut": "ACTIF",
-      "captures": [
-        {
-          "seq": 1,
-          "capture_id": "C-XTF",
-          "at": "2026-11-24T11:59:39Z",
-          "heures_avant_coup": 7.76,
-          "cotes": {
-            "1": 2.45,
-            "X": 3.25,
-            "2": 2.92,
-            "under": 1.67,
-            "over": 2.17
           },
           "source": "winner_capture",
           "mode_detection": "nouveau"
         },
         {
           "seq": 2,
-<<<<<<< HEAD
-          "capture_id": null,
-          "at": "2026-11-24T13:51:29Z",
-          "heures_avant_coup": 5.89,
-          "cotes": {
-            "1": 2.45,
-            "X": 3.25,
-            "2": 2.92,
-            "under": 1.67,
-            "over": 2.17
-=======
-          "capture_id": "C-FUJ",
-          "at": "2026-11-24T13:44:00Z",
-          "heures_avant_coup": 6.02,
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
           "cotes": {
             "1": 2.45,
             "X": 3.25,
             "2": 2.92
->>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
-          "mode_detection": "id"
-        }
-      ],
-      "next_alert_at": "2026-11-24T13:59:39+00:00",
-      "last_alert_at": null,
-      "holes": [
-        "match_nouveau"
-      ]
-    },
-    "M3": {
-      "match_key": "M3",
-      "source_event_id": "M3",
-      "home": "Cardiff City",
-      "away": "Preston North End",
-      "kickoff_iso": "2026-11-24T20:45:00+01:00",
-      "statut": "ACTIF",
-      "captures": [
-        {
-          "seq": 1,
-          "capture_id": "C-XTF",
-          "at": "2026-11-24T11:59:39Z",
-          "heures_avant_coup": 7.76,
-          "cotes": {
-            "1": 1.49,
-            "X": 4.8,
-            "2": 5.7,
-            "under": 2.75,
-            "over": 1.44
-          },
-          "source": "winner_capture",
-          "mode_detection": "nouveau"
+          "mode_detection": "match_inferé"
         },
         {
-          "seq": 2,
-<<<<<<< HEAD
-          "capture_id": null,
-          "at": "2026-11-24T13:51:29Z",
-          "heures_avant_coup": 5.89,
-          "cotes": {
-            "1": 1.49,
-            "X": 4.8,
-            "2": 5.7,
-            "under": 2.75,
-            "over": 1.44
-=======
-          "capture_id": "C-FUJ",
-          "at": "2026-11-24T13:44:00Z",
-          "heures_avant_coup": 6.02,
+          "seq": 3,
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
           "cotes": {
             "1": 1.49,
             "X": 4.8,
             "2": 5.7
->>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
-          "mode_detection": "id"
-        }
-      ],
-      "next_alert_at": "2026-11-24T13:59:39+00:00",
-      "last_alert_at": null,
-      "holes": [
-        "match_nouveau"
-      ]
-    },
-    "M4": {
-      "match_key": "M4",
-      "source_event_id": "M4",
-      "home": "Charlton Athletic",
-      "away": "Lincoln City",
-      "kickoff_iso": "2026-11-24T20:45:00+01:00",
-      "statut": "ACTIF",
-      "captures": [
-        {
-          "seq": 1,
-          "capture_id": "C-XTF",
-          "at": "2026-11-24T11:59:39Z",
-          "heures_avant_coup": 7.76,
-          "cotes": {
-            "1": 2.8,
-            "X": 3.25,
-            "2": 2.55,
-            "under": 1.71,
-            "over": 2.1
-          },
-          "source": "winner_capture",
-          "mode_detection": "nouveau"
+          "mode_detection": "match_inferé"
         },
         {
-          "seq": 2,
-<<<<<<< HEAD
-          "capture_id": null,
-          "at": "2026-11-24T13:51:29Z",
-          "heures_avant_coup": 5.89,
-          "cotes": {
-            "1": 2.8,
-            "X": 3.25,
-            "2": 2.55,
-            "under": 1.71,
-            "over": 2.1
-=======
-          "capture_id": "C-FUJ",
-          "at": "2026-11-24T13:44:00Z",
-          "heures_avant_coup": 6.02,
+          "seq": 4,
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
           "cotes": {
             "1": 2.8,
             "X": 3.25,
             "2": 2.55
->>>>>>> origin/pari-winner-sensor-m1
           },
           "source": "winner_capture",
-          "mode_detection": "id"
+          "mode_detection": "match_inferé"
         }
       ],
-      "next_alert_at": "2026-11-24T13:59:39+00:00",
+      "next_alert_at": "2026-11-24T15:58:23+00:00",
       "last_alert_at": null,
       "holes": [
-        "match_nouveau"
+        "match_nouveau",
+        "match_inferé"
       ]
     }
   },
