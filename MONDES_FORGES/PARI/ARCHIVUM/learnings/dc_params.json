@@ -1,0 +1,2432 @@
+{
+  "generated_at": "2026-11-23T03:47:49Z",
+  "engine": "dc_mle",
+  "engine_version": "pari.model_dc.v1",
+  "leagues": {
+    "D1": {
+      "league_code": "D1",
+      "n": 684,
+      "n_raw": 684,
+      "params": "fitted",
+      "mu": 0.271437,
+      "home_adv": 0.372022,
+      "rho": -0.066374,
+      "teams": {
+        "Augsburg": {
+          "att": 0.094939,
+          "def": -0.090866,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bayern Munich": {
+          "att": 0.58184,
+          "def": 0.19612,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bochum": {
+          "att": -0.002119,
+          "def": -0.000167,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Dortmund": {
+          "att": 0.036739,
+          "def": 0.359226,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ein Frankfurt": {
+          "att": -0.031269,
+          "def": -0.129224,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Elversberg": {
+          "att": 0.095936,
+          "def": -0.096198,
+          "n": 8,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "FC Koln": {
+          "att": -0.22101,
+          "def": 0.007414,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Freiburg": {
+          "att": 0.129095,
+          "def": 0.101793,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hamburg": {
+          "att": -0.208695,
+          "def": -0.119901,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Heidenheim": {
+          "att": -0.02147,
+          "def": -0.031824,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hoffenheim": {
+          "att": 0.027075,
+          "def": -0.085047,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Holstein Kiel": {
+          "att": -0.000416,
+          "def": -0.001201,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leverkusen": {
+          "att": 0.150145,
+          "def": -0.095533,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "M'gladbach": {
+          "att": -0.095996,
+          "def": -0.186847,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Mainz": {
+          "att": 0.098895,
+          "def": -0.202632,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Paderborn": {
+          "att": -0.305277,
+          "def": 0.191504,
+          "n": 8,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "RB Leipzig": {
+          "att": 0.306246,
+          "def": 0.11619,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Schalke 04": {
+          "att": -0.431965,
+          "def": 0.199225,
+          "n": 8,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "St Pauli": {
+          "att": -0.133583,
+          "def": -0.026601,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Stuttgart": {
+          "att": 0.128715,
+          "def": -0.005208,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Union Berlin": {
+          "att": -0.254164,
+          "def": -0.081074,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Werder Bremen": {
+          "att": 0.111878,
+          "def": -0.001307,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Wolfsburg": {
+          "att": -0.055538,
+          "def": -0.017843,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -205.4618,
+      "n_iter": 60,
+      "converged": false
+    },
+    "D2": {
+      "league_code": "D2",
+      "n": 702,
+      "n_raw": 702,
+      "params": "fitted",
+      "mu": 0.121996,
+      "home_adv": 0.429628,
+      "rho": -0.045568,
+      "teams": {
+        "Bielefeld": {
+          "att": 0.057247,
+          "def": 0.020221,
+          "n": 44,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bochum": {
+          "att": -0.197759,
+          "def": 0.10889,
+          "n": 44,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Braunschweig": {
+          "att": -0.024232,
+          "def": -0.099372,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cottbus": {
+          "att": 0.059201,
+          "def": -0.1633,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Darmstadt": {
+          "att": -0.213751,
+          "def": -0.159828,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Dresden": {
+          "att": -0.0276,
+          "def": -0.118599,
+          "n": 44,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Elversberg": {
+          "att": 0.084582,
+          "def": 0.010317,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "FC Koln": {
+          "att": 0.000218,
+          "def": 0.00163,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Fortuna Dusseldorf": {
+          "att": -0.052383,
+          "def": -0.027476,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Greuther Furth": {
+          "att": -0.073611,
+          "def": -0.004921,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hamburg": {
+          "att": 0.002891,
+          "def": 0.00027,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hannover": {
+          "att": -0.145469,
+          "def": -0.02961,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Heidenheim": {
+          "att": 0.002222,
+          "def": -0.049616,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hertha": {
+          "att": 0.254131,
+          "def": 0.24315,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Holstein Kiel": {
+          "att": -0.183224,
+          "def": 0.159021,
+          "n": 44,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Kaiserslautern": {
+          "att": -0.196421,
+          "def": 0.277799,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Karlsruhe": {
+          "att": -0.034949,
+          "def": -0.273647,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Magdeburg": {
+          "att": 0.230612,
+          "def": 0.062423,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Nurnberg": {
+          "att": 0.260935,
+          "def": 0.034644,
+          "n": 78,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Osnabruck": {
+          "att": -0.023694,
+          "def": 0.001529,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Paderborn": {
+          "att": 0.060219,
+          "def": -0.033975,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Preußen Münster": {
+          "att": -0.058434,
+          "def": -0.094694,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Regensburg": {
+          "att": -0.001707,
+          "def": -0.001436,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Schalke 04": {
+          "att": 0.010795,
+          "def": 0.053154,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "St Pauli": {
+          "att": -0.137138,
+          "def": 0.09435,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ulm": {
+          "att": -0.00092,
+          "def": -0.000865,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Wolfsburg": {
+          "att": 0.348238,
+          "def": -0.01006,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -212.6268,
+      "n_iter": 71,
+      "converged": false
+    },
+    "E0": {
+      "league_code": "E0",
+      "n": 849,
+      "n_raw": 849,
+      "params": "fitted",
+      "mu": 0.146645,
+      "home_adv": 0.235111,
+      "rho": -0.050061,
+      "teams": {
+        "Arsenal": {
+          "att": 0.113,
+          "def": 0.368537,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Aston Villa": {
+          "att": 0.036628,
+          "def": -0.004812,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bournemouth": {
+          "att": 0.121678,
+          "def": 0.023194,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Brentford": {
+          "att": 0.13754,
+          "def": 0.077293,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Brighton": {
+          "att": 0.348705,
+          "def": 0.252844,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Burnley": {
+          "att": -0.063595,
+          "def": -0.100557,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Chelsea": {
+          "att": 0.23671,
+          "def": -0.080602,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Coventry": {
+          "att": -0.034723,
+          "def": -0.1522,
+          "n": 9,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Crystal Palace": {
+          "att": -0.15094,
+          "def": -0.314398,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Everton": {
+          "att": -0.13526,
+          "def": 0.006755,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Fulham": {
+          "att": -0.166669,
+          "def": 0.113469,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hull": {
+          "att": -0.071007,
+          "def": 0.025328,
+          "n": 9,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ipswich": {
+          "att": 0.100646,
+          "def": -0.241575,
+          "n": 47,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leeds": {
+          "att": -0.151486,
+          "def": 0.144938,
+          "n": 47,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leicester": {
+          "att": -0.001804,
+          "def": -0.001722,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Liverpool": {
+          "att": 0.009728,
+          "def": 0.138997,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Man City": {
+          "att": 0.254135,
+          "def": 0.102686,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Man United": {
+          "att": -0.058196,
+          "def": -0.081861,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Newcastle": {
+          "att": 0.023734,
+          "def": -0.147324,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Nott'm Forest": {
+          "att": -0.205971,
+          "def": 0.002965,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Southampton": {
+          "att": -0.00215,
+          "def": -0.002649,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sunderland": {
+          "att": -0.188173,
+          "def": -0.151189,
+          "n": 47,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Tottenham": {
+          "att": -0.055957,
+          "def": 0.102757,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "West Ham": {
+          "att": -0.001905,
+          "def": -0.021935,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Wolves": {
+          "att": -0.094669,
+          "def": -0.058938,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -223.0132,
+      "n_iter": 59,
+      "converged": false
+    },
+    "E1": {
+      "league_code": "E1",
+      "n": 1260,
+      "n_raw": 1260,
+      "params": "fitted",
+      "mu": 0.215668,
+      "home_adv": 0.239792,
+      "rho": -0.019032,
+      "teams": {
+        "Birmingham": {
+          "att": 0.141346,
+          "def": 0.228731,
+          "n": 59,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Blackburn": {
+          "att": -0.008843,
+          "def": -0.044809,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bolton": {
+          "att": 0.014953,
+          "def": -0.218012,
+          "n": 13,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bristol City": {
+          "att": -0.152691,
+          "def": 0.058881,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Burnley": {
+          "att": -0.056068,
+          "def": -0.198564,
+          "n": 59,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cardiff": {
+          "att": 0.045433,
+          "def": -0.038288,
+          "n": 59,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Charlton": {
+          "att": -0.303325,
+          "def": -0.105279,
+          "n": 59,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Coventry": {
+          "att": 0.114963,
+          "def": 0.089053,
+          "n": 92,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Derby": {
+          "att": -0.194755,
+          "def": -0.161488,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Hull": {
+          "att": 0.002906,
+          "def": 0.003636,
+          "n": 92,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ipswich": {
+          "att": 0.068885,
+          "def": 0.074955,
+          "n": 46,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leeds": {
+          "att": 0.002836,
+          "def": 0.002585,
+          "n": 46,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leicester": {
+          "att": -0.046633,
+          "def": -0.003985,
+          "n": 46,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lincoln": {
+          "att": -0.100932,
+          "def": -0.189087,
+          "n": 13,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Luton": {
+          "att": -0.00117,
+          "def": 7e-05,
+          "n": 46,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Middlesbrough": {
+          "att": 0.337889,
+          "def": 0.082755,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Millwall": {
+          "att": 0.107168,
+          "def": -0.017044,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Norwich": {
+          "att": 0.14031,
+          "def": -0.116509,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Oxford": {
+          "att": -0.068783,
+          "def": 0.030814,
+          "n": 92,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Plymouth": {
+          "att": -0.000625,
+          "def": -0.00119,
+          "n": 46,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Portsmouth": {
+          "att": -0.098733,
+          "def": 0.165682,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Preston": {
+          "att": -0.294459,
+          "def": -0.259328,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "QPR": {
+          "att": 0.11639,
+          "def": 0.021242,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sheffield United": {
+          "att": -0.028398,
+          "def": 0.088584,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sheffield Weds": {
+          "att": -0.130052,
+          "def": -0.067028,
+          "n": 92,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Southampton": {
+          "att": 0.280955,
+          "def": 0.233853,
+          "n": 59,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Stoke": {
+          "att": -0.029967,
+          "def": 0.092751,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sunderland": {
+          "att": -0.001731,
+          "def": 0.001138,
+          "n": 46,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Swansea": {
+          "att": 0.020287,
+          "def": 0.14401,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Watford": {
+          "att": -0.234309,
+          "def": -0.190456,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "West Brom": {
+          "att": -0.007453,
+          "def": 0.180558,
+          "n": 105,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "West Ham": {
+          "att": 0.384028,
+          "def": -0.012537,
+          "n": 13,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Wolves": {
+          "att": 0.072359,
+          "def": 0.144004,
+          "n": 13,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Wrexham": {
+          "att": -0.09178,
+          "def": -0.019696,
+          "n": 59,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -360.2132,
+      "n_iter": 50,
+      "converged": false
+    },
+    "F1": {
+      "league_code": "F1",
+      "n": 692,
+      "n_raw": 692,
+      "params": "fitted",
+      "mu": 0.232385,
+      "home_adv": 0.279998,
+      "rho": -0.126686,
+      "teams": {
+        "Angers": {
+          "att": -0.231651,
+          "def": -0.19296,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Auxerre": {
+          "att": -0.049705,
+          "def": -0.248857,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Brest": {
+          "att": 0.033132,
+          "def": -0.03975,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Le Havre": {
+          "att": -0.142457,
+          "def": -0.276841,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Le Mans": {
+          "att": -0.144845,
+          "def": -0.148399,
+          "n": 9,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lens": {
+          "att": 0.140436,
+          "def": 0.052739,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lille": {
+          "att": -0.118349,
+          "def": 0.358051,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lorient": {
+          "att": -0.181387,
+          "def": 0.262118,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lyon": {
+          "att": 0.012865,
+          "def": 0.233593,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Marseille": {
+          "att": 0.223875,
+          "def": 0.010751,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Metz": {
+          "att": -0.07752,
+          "def": -0.111075,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Monaco": {
+          "att": 0.00602,
+          "def": 0.074756,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Montpellier": {
+          "att": -0.003115,
+          "def": -0.002177,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Nantes": {
+          "att": -0.108271,
+          "def": 0.038082,
+          "n": 68,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Nice": {
+          "att": 0.028523,
+          "def": 0.031923,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Paris FC": {
+          "att": 0.135791,
+          "def": 0.098298,
+          "n": 43,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Paris SG": {
+          "att": 0.357666,
+          "def": 0.253326,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Reims": {
+          "att": -0.002261,
+          "def": 0.000722,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Rennes": {
+          "att": 0.260654,
+          "def": -0.196736,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "St Etienne": {
+          "att": -0.000259,
+          "def": -0.00211,
+          "n": 34,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Strasbourg": {
+          "att": 0.163572,
+          "def": -0.136661,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Toulouse": {
+          "att": -0.047136,
+          "def": 0.032126,
+          "n": 77,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Troyes": {
+          "att": -0.255577,
+          "def": -0.09092,
+          "n": 9,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -205.178,
+      "n_iter": 64,
+      "converged": false
+    },
+    "I1": {
+      "league_code": "I1",
+      "n": 858,
+      "n_raw": 858,
+      "params": "fitted",
+      "mu": 0.342882,
+      "home_adv": 0.075921,
+      "rho": -0.019062,
+      "teams": {
+        "Atalanta": {
+          "att": 0.136897,
+          "def": -0.106517,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bologna": {
+          "att": 0.008036,
+          "def": 0.109076,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cagliari": {
+          "att": -0.238467,
+          "def": -0.033229,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Como": {
+          "att": 0.11565,
+          "def": 0.348988,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cremonese": {
+          "att": -0.104247,
+          "def": -0.029888,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Empoli": {
+          "att": -0.001677,
+          "def": -0.000723,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Fiorentina": {
+          "att": -0.072254,
+          "def": -0.127454,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Frosinone": {
+          "att": 0.365442,
+          "def": -0.033309,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Genoa": {
+          "att": -0.154611,
+          "def": 0.1246,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Inter": {
+          "att": 0.357773,
+          "def": 0.091271,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Juventus": {
+          "att": -0.074128,
+          "def": 0.21396,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lazio": {
+          "att": 0.289248,
+          "def": 0.186415,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Lecce": {
+          "att": -0.181053,
+          "def": -0.188157,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Milan": {
+          "att": 0.172281,
+          "def": 0.092411,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Monza": {
+          "att": 0.093735,
+          "def": -0.309977,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Napoli": {
+          "att": 0.113684,
+          "def": 0.138628,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Parma": {
+          "att": -0.385835,
+          "def": -0.009011,
+          "n": 85,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Pisa": {
+          "att": -0.144441,
+          "def": -0.107516,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Roma": {
+          "att": 0.441291,
+          "def": 0.146761,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sassuolo": {
+          "att": 0.014663,
+          "def": -0.248504,
+          "n": 47,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Torino": {
+          "att": -0.036887,
+          "def": -0.022675,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Udinese": {
+          "att": -0.192984,
+          "def": -0.1986,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Venezia": {
+          "att": -0.366275,
+          "def": -0.053225,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Verona": {
+          "att": -0.155842,
+          "def": 0.016676,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -258.927,
+      "n_iter": 52,
+      "converged": false
+    },
+    "I2": {
+      "league_code": "I2",
+      "n": 860,
+      "n_raw": 860,
+      "params": "fitted",
+      "mu": 0.188576,
+      "home_adv": 0.13382,
+      "rho": -0.161174,
+      "teams": {
+        "Arezzo": {
+          "att": -0.171899,
+          "def": -0.192761,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ascoli": {
+          "att": 0.117062,
+          "def": 0.286253,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Avellino": {
+          "att": 0.011698,
+          "def": 0.153825,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Bari": {
+          "att": -0.02499,
+          "def": -0.055181,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Benevento": {
+          "att": 0.003293,
+          "def": 0.111395,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Brescia": {
+          "att": -0.000689,
+          "def": 0.000559,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Carrarese": {
+          "att": -0.160605,
+          "def": 0.00874,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Catanzaro": {
+          "att": 0.010097,
+          "def": -0.322922,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cesena": {
+          "att": -0.103321,
+          "def": -0.106707,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cittadella": {
+          "att": -0.001502,
+          "def": -0.000389,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cosenza": {
+          "att": -0.001817,
+          "def": -0.001216,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cremonese": {
+          "att": -0.103198,
+          "def": 0.1055,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Empoli": {
+          "att": -0.114035,
+          "def": -0.164369,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Frosinone": {
+          "att": 0.137771,
+          "def": 0.081951,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Juve Stabia": {
+          "att": -0.091363,
+          "def": 0.118356,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Mantova": {
+          "att": -0.000224,
+          "def": 0.066773,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Modena": {
+          "att": 0.149411,
+          "def": 0.089171,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Monza": {
+          "att": 0.0638,
+          "def": 0.057927,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Padova": {
+          "att": -0.126258,
+          "def": 0.127891,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Palermo": {
+          "att": 0.380567,
+          "def": 0.02425,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Pescara": {
+          "att": 0.012057,
+          "def": -0.040143,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Pisa": {
+          "att": 0.207047,
+          "def": -0.067162,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Reggiana": {
+          "att": -0.082994,
+          "def": -0.0205,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Salernitana": {
+          "att": -0.000898,
+          "def": 0.000843,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sampdoria": {
+          "att": -0.14744,
+          "def": -0.138448,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sassuolo": {
+          "att": 0.001513,
+          "def": 0.000809,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Spezia": {
+          "att": 0.017497,
+          "def": -0.076851,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sudtirol": {
+          "att": -0.161177,
+          "def": 0.006546,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Venezia": {
+          "att": 0.130152,
+          "def": 0.085967,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Verona": {
+          "att": 0.198817,
+          "def": 0.043475,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Vicenza": {
+          "att": -0.005697,
+          "def": -0.194545,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Virtus Entella": {
+          "att": -0.142675,
+          "def": 0.010964,
+          "n": 48,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -240.6806,
+      "n_iter": 55,
+      "converged": false
+    },
+    "SP1": {
+      "league_code": "SP1",
+      "n": 868,
+      "n_raw": 868,
+      "params": "fitted",
+      "mu": 0.178904,
+      "home_adv": 0.2885,
+      "rho": -0.103262,
+      "teams": {
+        "Alaves": {
+          "att": -0.059658,
+          "def": -0.10768,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ath Bilbao": {
+          "att": 0.011893,
+          "def": 0.126755,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ath Madrid": {
+          "att": 0.180543,
+          "def": 0.316277,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Barcelona": {
+          "att": 0.746394,
+          "def": 0.125268,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Betis": {
+          "att": 0.108374,
+          "def": 0.027011,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Celta": {
+          "att": -0.210534,
+          "def": 0.138358,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Elche": {
+          "att": -0.052563,
+          "def": 0.027446,
+          "n": 49,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Espanol": {
+          "att": -0.167186,
+          "def": 0.092654,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Getafe": {
+          "att": -0.307747,
+          "def": 0.05209,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Girona": {
+          "att": -0.071404,
+          "def": 0.047511,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "La Coruna": {
+          "att": -0.087292,
+          "def": 0.040545,
+          "n": 10,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Las Palmas": {
+          "att": -0.002046,
+          "def": -0.000302,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leganes": {
+          "att": -0.000482,
+          "def": 0.000236,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Levante": {
+          "att": 0.045618,
+          "def": -0.134972,
+          "n": 49,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Malaga": {
+          "att": -0.218732,
+          "def": -0.192163,
+          "n": 11,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Mallorca": {
+          "att": -0.013165,
+          "def": 0.004031,
+          "n": 76,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Osasuna": {
+          "att": -0.170818,
+          "def": -0.203159,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Oviedo": {
+          "att": -0.122898,
+          "def": -0.022199,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Real Madrid": {
+          "att": 0.361128,
+          "def": 0.334974,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Santander": {
+          "att": -0.045181,
+          "def": -0.400309,
+          "n": 11,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sevilla": {
+          "att": 0.04583,
+          "def": -0.101844,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sociedad": {
+          "att": 0.24482,
+          "def": -0.174005,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Valencia": {
+          "att": -0.222753,
+          "def": 0.038463,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Valladolid": {
+          "att": -0.002537,
+          "def": -0.003588,
+          "n": 38,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Vallecano": {
+          "att": 0.015743,
+          "def": -0.09306,
+          "n": 86,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Villarreal": {
+          "att": -0.005344,
+          "def": 0.061663,
+          "n": 87,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -261.3282,
+      "n_iter": 57,
+      "converged": false
+    },
+    "SP2": {
+      "league_code": "SP2",
+      "n": 1052,
+      "n_raw": 1052,
+      "params": "fitted",
+      "mu": 0.111912,
+      "home_adv": 0.323139,
+      "rho": -0.016561,
+      "teams": {
+        "Albacete": {
+          "att": -0.137761,
+          "def": -0.163044,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Almeria": {
+          "att": 0.26154,
+          "def": 0.133029,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Andorra": {
+          "att": 0.020002,
+          "def": -0.126497,
+          "n": 53,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Burgos": {
+          "att": -0.018038,
+          "def": 0.195626,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cadiz": {
+          "att": -0.087509,
+          "def": -0.039535,
+          "n": 95,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cartagena": {
+          "att": -0.001177,
+          "def": -0.002411,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Castellon": {
+          "att": 0.236195,
+          "def": 0.364179,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Celta B": {
+          "att": 0.068797,
+          "def": -0.280857,
+          "n": 12,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ceuta": {
+          "att": -0.209689,
+          "def": -0.301616,
+          "n": 54,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cordoba": {
+          "att": 0.110333,
+          "def": -0.133947,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Cultural Leonesa": {
+          "att": -0.095964,
+          "def": -0.061343,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Eibar": {
+          "att": 0.113071,
+          "def": 0.104803,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Elche": {
+          "att": 0.001158,
+          "def": 0.002056,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Eldense": {
+          "att": -0.078617,
+          "def": -0.042423,
+          "n": 54,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Ferrol": {
+          "att": -0.00334,
+          "def": -0.000619,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Girona": {
+          "att": 0.140533,
+          "def": 0.196484,
+          "n": 12,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Granada": {
+          "att": 0.12433,
+          "def": 0.062977,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Huesca": {
+          "att": -0.075159,
+          "def": -0.038109,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "La Coruna": {
+          "att": 0.015152,
+          "def": 0.062907,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Las Palmas": {
+          "att": -0.026949,
+          "def": -0.144611,
+          "n": 53,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Leganes": {
+          "att": -0.30661,
+          "def": -0.064068,
+          "n": 53,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Levante": {
+          "att": 0.001791,
+          "def": 0.001526,
+          "n": 42,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Malaga": {
+          "att": 0.144154,
+          "def": 0.019192,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Mallorca": {
+          "att": -0.065272,
+          "def": 0.329794,
+          "n": 11,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Mirandes": {
+          "att": -0.016185,
+          "def": -0.055779,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Oviedo": {
+          "att": 0.102566,
+          "def": 0.049863,
+          "n": 53,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sabadell": {
+          "att": -0.143207,
+          "def": 0.158486,
+          "n": 12,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Santander": {
+          "att": 0.171507,
+          "def": -0.023404,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sociedad B": {
+          "att": -0.066904,
+          "def": -0.192245,
+          "n": 54,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Sp Gijon": {
+          "att": -0.042574,
+          "def": 0.071989,
+          "n": 96,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Tenerife": {
+          "att": -0.056769,
+          "def": 0.001898,
+          "n": 53,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Valladolid": {
+          "att": 0.040759,
+          "def": -0.071378,
+          "n": 53,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        },
+        "Zaragoza": {
+          "att": -0.120163,
+          "def": -0.012927,
+          "n": 84,
+          "elo": null,
+          "holes": [
+            "elo"
+          ]
+        }
+      },
+      "dropped": [],
+      "holes": [
+        "elo",
+        "non_converged"
+      ],
+      "ll": -304.6698,
+      "n_iter": 62,
+      "converged": false
+    }
+  },
+  "holes": [],
+  "files": [
+    "uk_D1_2425.csv",
+    "uk_D1_2526.csv",
+    "uk_D1_2627.csv",
+    "uk_D2_2425.csv",
+    "uk_D2_2526.csv",
+    "uk_D2_2627.csv",
+    "uk_E0_2425.csv",
+    "uk_E0_2526.csv",
+    "uk_E0_2627.csv",
+    "uk_E1_2425.csv",
+    "uk_E1_2526.csv",
+    "uk_E1_2627.csv",
+    "uk_F1_2425.csv",
+    "uk_F1_2526.csv",
+    "uk_F1_2627.csv",
+    "uk_I1_2425.csv",
+    "uk_I1_2526.csv",
+    "uk_I1_2627.csv",
+    "uk_I2_2425.csv",
+    "uk_I2_2526.csv",
+    "uk_I2_2627.csv",
+    "uk_SP1_2425.csv",
+    "uk_SP1_2526.csv",
+    "uk_SP1_2627.csv",
+    "uk_SP2_2425.csv",
+    "uk_SP2_2526.csv",
+    "uk_SP2_2627.csv"
+  ],
+  "n_lignes": 7944
+}

@@ -39,6 +39,33 @@ def load(path=None):
     return fit_dc.load_params(_path(path))
 
 
+_SUFFIX = ("afc", "fc", "cf", "sc", "city", "athletic", "united", "northend", "county")
+
+
+def _norm(name):
+    import re
+    return re.sub(r"[^a-z0-9]", "", str(name or "").lower())
+
+
+def _resolve_team(name, rec):
+    """Nom capture ('Middlesbrough FC') -> nom CSV ('Middlesbrough')."""
+    teams = {_norm(t): t for t in ((rec or {}).get("teams") or {})}
+    raw = _norm(name)
+    if raw in teams:
+        return teams[raw]
+    cut = raw
+    for suf in _SUFFIX:
+        if cut.endswith(suf) and len(cut) - len(suf) >= 4:
+            cut = cut[:-len(suf)]
+            break
+    if cut in teams:
+        return teams[cut]
+    pres = [k for k in teams if len(k) >= 4 and cut.startswith(k)]
+    if len(pres) == 1:
+        return teams[pres[0]]
+    return None
+
+
 def try_lambdas(m, avg=None, blob=None, path=None):
     """lh, la MLE ou None + holes. Ne lit jamais _PARAMS_CACHE orphelin."""
     if blob is None:
@@ -53,8 +80,15 @@ def try_lambdas(m, avg=None, blob=None, path=None):
     code = str(code).upper() if code else None
     if not home or not away:
         return {"lh": None, "la": None, "holes": ["equipe_absente"]}
+    if not code:
+        return {"lh": None, "la": None, "holes": ["ligue_absente"]}
     rec = fit_dc.params_for(code, blob=blob)
-    return model_dc.lambdas_for(home, away, rec)
+    if rec.get("params") != "fitted":
+        return {"lh": None, "la": None, "holes": rec.get("holes") or ["params_absents"]}
+    home_r, away_r = _resolve_team(home, rec), _resolve_team(away, rec)
+    if not home_r or not away_r:
+        return {"lh": None, "la": None, "holes": ["equipe_absente"]}
+    return model_dc.lambdas_for(home_r, away_r, rec)
 
 
 def overlay(m, avg, lambda_dom, lambda_ext, rho, blob=None, path=None):
