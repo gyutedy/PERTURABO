@@ -1116,8 +1116,11 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       `captures[{seq,capture_id,at,cotes,heures_avant_coup,source:"winner_capture"}]`.
       Devinage sans token : `id` → `match_key` → match actif unique a +/-6h (`match_inferé`)
       → trou `match_ambigu`/`match_nouveau`. Aucune ecrasement d'historique.
-- [x] **Alertes** : `.github/workflows/pari_capture_alerts.yml` (fork, `0 */2 * * *`) +
-      `ORCHESTRATOR/LISTEN/capture_alerts.py`. Rappel Telegram **toutes les 2 h des la
+- [x] **Alertes** : `ORCHESTRATOR/LISTEN/src/index.js` (handler `scheduled`) +
+      `wrangler.toml` (`crons = ["*/15 * * * *"]`) — un cron GitHub sur le fork ne se
+      declenche jamais (uniquement branche par défaut), donc le **Worker Cloudflare** fait
+      le rappel en lisant `watch_*.json` via raw.githubusercontent.com. Anti-doublon par
+      fenetre de 15 min toutes les 2 h, sans ecriture d'etat. Rappel Telegram **toutes les 2 h des la
       premiere capture, meme a T-20 h**, anti-derive (fenetres sautees), arret au kickoff
       ou sur `/stop` (`arret_manuel`, `clv_incomplet`). `test_winner_watch` **12/12**.
 - [x] **CLV same-book** : `paper_trader.settle` prefere `CLV = cote_1re / cote_T0 - 1`

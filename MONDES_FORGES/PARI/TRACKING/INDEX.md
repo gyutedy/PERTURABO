@@ -148,7 +148,7 @@ Cartographie des journaux du monde.
 | `tests/test_basket_total.py` | v8.7 : state sans fuite, intercept non penalise, sigma OOS, p_over (7/7). |
 | `F06_TRACKER/CODEBASE/winner_watch.py` | v10.0 : etat same-book Winner (captures, devinage match, alertes 2h, CLV premiere/derniere cote). `ARCHIVUM/winner/watch_{sport}.json`. |
 | `tests/test_winner_watch.py` | v10.0 : tokens, devinage, alertes 2h, anti-spam, stop, CLV same-book (12/12). |
-| `ORCHESTRATOR/LISTEN/capture_alerts.py` + `.github/workflows/pari_capture_alerts.yml` | v10.0 : rappels Telegram toutes les 2h des la 1re capture, arret kickoff/`stop`. |
+| `ORCHESTRATOR/LISTEN/src/index.js` (scheduled) + `wrangler.toml` | v10.0 : rappels Telegram toutes les 2h via le Worker Cloudflare (cron GitHub indisponible sur le fork), arret kickoff/`stop`. |
 | `F02_BREACHER/CODEBASE/basket_prior.py` | v9.0 : experience prior marche (correction de l'ecart vs implicite). OOS gap +0,0004 -> aucun edge, `enabled=false`, jamais producteur de p. |
 | `tests/test_basket_phases.py` | v9.0 : fenetre fit, convergence visible, prior desactive, paper basket bloque (7/7). |
 | `config/basket_prior.json` | v9.0 : resultat OOS du prior (desactive). |

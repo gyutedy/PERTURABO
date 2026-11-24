@@ -7,3 +7,6 @@ GH_OWNER = "gyutedy"
 GH_REPO = "PERTURABO"
 GH_WORKFLOW = "pari_listen.yml"
 GH_REF = "pari-winner-sensor-m1"
+
+[triggers]
+crons = ["*/15 * * * *"]

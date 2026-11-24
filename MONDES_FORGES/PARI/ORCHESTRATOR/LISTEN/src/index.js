@@ -72,6 +72,41 @@ export default {
     }
     return jsonOk({ ...parsed, dispatched: dispatched.ok });
   },
+
+  // Rappels Winner toutes les 2h des la 1re capture (same-book, sans ecriture d'etat).
+  async scheduled(event, env, ctx) {
+    const now = Date.now();
+    const owner = env.GH_OWNER || "gyutedy";
+    const repo = env.GH_REPO || "PERTURABO";
+    const ref = env.GH_REF || "pari-winner-sensor-m1";
+    for (const sport of ["foot", "basket"]) {
+      const url = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + ref
+        + "/MONDES_FORGES/PARI/ARCHIVUM/winner/watch_" + sport + ".json";
+      try {
+        const res = await fetch(url);
+        if (!res.ok) continue;
+        const blob = await res.json();
+        for (const [key, v] of Object.entries(blob.matches || {})) {
+          if (v.statut !== "ACTIF" || !v.kickoff_iso || !v.captures || !v.captures.length) continue;
+          const kick = Date.parse(v.kickoff_iso);
+          if (!Number.isFinite(kick) || now >= kick) continue;
+          const start = Date.parse(v.captures[0].at);
+          if (!Number.isFinite(start)) continue;
+          const elapsed = now - start;
+          if (elapsed < 0) continue;
+          // une fenetre de 15 min toutes les 2h => anti-doublon sans ecriture
+          if (elapsed % 7200000 >= 900000) continue;
+          const reste = Math.max(0, Math.floor((kick - now) / 3600000));
+          const msg = "RAPPEL WINNER — " + sport.toUpperCase() + " " + (v.home || "")
+            + "-" + (v.away || "") + " (#" + key + ") dans ~" + reste
+            + "h. Envoie la capture Winner maintenant (same-book, /capture).";
+          ctx.waitUntil(tgSend(env, env.TELEGRAM_CHAT_ID, msg));
+        }
+      } catch (e) {
+        // trou silencieux : jamais de faux rappel
+      }
+    }
+  },
 };
 
 export function parseUpdate(update, allowedChatId) {
