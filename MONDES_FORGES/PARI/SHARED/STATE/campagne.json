@@ -1,6 +1,6 @@
 {
-  "campagne": null,
-  "campagne_uid": null,
+  "campagne": "PARI-20261124",
+  "campagne_uid": "O1PJ",
   "capture_seq": 0,
   "capture": null,
   "capturer_statut": null,
@@ -16,8 +16,7 @@
   "marches_mono": false,
   "pending_lot": null,
   "steps": {
-    "start": "2026-11-24T11:32:52Z",
-    "capture": "2026-11-24T11:43:49Z"
+    "start": "2026-11-24T11:55:50Z"
   },
   "previews": {},
   "notes_count": 0,

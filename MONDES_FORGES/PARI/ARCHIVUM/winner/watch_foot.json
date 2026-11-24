@@ -1,9 +1,9 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "foot",
-  "generated_at": "2026-11-24T11:55:08.557623+00:00",
-  "campagne": null,
-  "campagne_uid": null,
+  "generated_at": "2026-11-24T11:55:50.917551+00:00",
+  "campagne": "PARI-20261124",
+  "campagne_uid": "O1PJ",
   "matches": {},
   "tickets_enabled": false
 }
