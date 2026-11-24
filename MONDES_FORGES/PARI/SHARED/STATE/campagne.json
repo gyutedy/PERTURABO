@@ -1,10 +1,10 @@
 {
   "campagne": "PARI-20261124",
   "campagne_uid": "IEZP",
-  "capture_seq": 0,
-  "capture": null,
-  "capturer_statut": null,
-  "capture_id": null,
+  "capture_seq": 4,
+  "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
+  "capturer_statut": "A_VALIDER",
+  "capture_id": "C-RHB",
   "consumed_legs": [],
   "current_token": null,
   "lots_alloue_jour": 0,
@@ -16,7 +16,10 @@
   "marches_mono": false,
   "pending_lot": null,
   "steps": {
-    "start": "2026-11-24T11:32:52Z"
+    "start": "2026-11-24T11:32:52Z",
+    "capture": "2026-11-24T11:43:49Z"
   },
-  "previews": {}
+  "previews": {},
+  "notes_count": 0,
+  "capture_sport": "foot"
 }
