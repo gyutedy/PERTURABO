@@ -1,0 +1,354 @@
+{
+  "generated_at": "2026-11-24T12:30:18Z",
+  "offline": true,
+  "defaults": {
+    "rho": -0.13,
+    "bonus_domicile": 1.1,
+    "bonus_exterieur": 0.95,
+    "part_mt1": 0.44
+  },
+  "leagues": {
+    "D1": {
+      "league_code": "D1",
+      "n": 693,
+      "source": "uk_D1_2627.csv",
+      "params": "fitted",
+      "rho": -0.06,
+      "bonus_domicile": 1.0891976692066339,
+      "bonus_exterieur": 0.9108023307933661,
+      "part_mt1": 0.44,
+      "n_mt": 652,
+      "lambda_dom_moy": 1.7532,
+      "lambda_ext_moy": 1.4661,
+      "sources": [
+        "uk_D1_2425.csv",
+        "uk_D1_2526.csv",
+        "uk_D1_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "D2": {
+      "league_code": "D2",
+      "n": 711,
+      "source": "uk_D2_2627.csv",
+      "params": "fitted",
+      "rho": -0.05,
+      "bonus_domicile": 1.108593012275732,
+      "bonus_exterieur": 0.8914069877242681,
+      "part_mt1": 0.4335,
+      "n_mt": 667,
+      "lambda_dom_moy": 1.6512,
+      "lambda_ext_moy": 1.3277,
+      "sources": [
+        "uk_D2_2425.csv",
+        "uk_D2_2526.csv",
+        "uk_D2_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "E0": {
+      "league_code": "E0",
+      "n": 860,
+      "source": "uk_E0_2627.csv",
+      "params": "fitted",
+      "rho": -0.04,
+      "bonus_domicile": 1.0752157829839704,
+      "bonus_exterieur": 0.9247842170160296,
+      "part_mt1": 0.4401,
+      "n_mt": 811,
+      "lambda_dom_moy": 1.5209,
+      "lambda_ext_moy": 1.3081,
+      "sources": [
+        "uk_E0_2425.csv",
+        "uk_E0_2526.csv",
+        "uk_E0_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "E1": {
+      "league_code": "E1",
+      "n": 1284,
+      "source": "uk_E1_2627.csv",
+      "params": "fitted",
+      "rho": -0.02,
+      "bonus_domicile": 1.121275955461932,
+      "bonus_exterieur": 0.878724044538068,
+      "part_mt1": 0.4603,
+      "n_mt": 1195,
+      "lambda_dom_moy": 1.4509,
+      "lambda_ext_moy": 1.1371,
+      "sources": [
+        "uk_E1_2425.csv",
+        "uk_E1_2526.csv",
+        "uk_E1_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "F1": {
+      "league_code": "F1",
+      "n": 702,
+      "source": "uk_F1_2627.csv",
+      "params": "fitted",
+      "rho": 0.0,
+      "bonus_domicile": 1.1009803921568626,
+      "bonus_exterieur": 0.8990196078431374,
+      "part_mt1": 0.4336,
+      "n_mt": 658,
+      "lambda_dom_moy": 1.5997,
+      "lambda_ext_moy": 1.3063,
+      "sources": [
+        "uk_F1_2425.csv",
+        "uk_F1_2526.csv",
+        "uk_F1_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "I1": {
+      "league_code": "I1",
+      "n": 870,
+      "source": "uk_I1_2627.csv",
+      "params": "fitted",
+      "rho": 0.0,
+      "bonus_domicile": 1.046043808672329,
+      "bonus_exterieur": 0.9539561913276711,
+      "part_mt1": 0.4264,
+      "n_mt": 804,
+      "lambda_dom_moy": 1.3448,
+      "lambda_ext_moy": 1.2264,
+      "sources": [
+        "uk_I1_2425.csv",
+        "uk_I1_2526.csv",
+        "uk_I1_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "I2": {
+      "league_code": "I2",
+      "n": 870,
+      "source": "uk_I2_2627.csv",
+      "params": "fitted",
+      "rho": -0.11,
+      "bonus_domicile": 1.1183970856102003,
+      "bonus_exterieur": 0.8816029143897997,
+      "part_mt1": 0.4492,
+      "n_mt": 797,
+      "lambda_dom_moy": 1.4115,
+      "lambda_ext_moy": 1.1126,
+      "sources": [
+        "uk_I2_2425.csv",
+        "uk_I2_2526.csv",
+        "uk_I2_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "SP1": {
+      "league_code": "SP1",
+      "n": 879,
+      "source": "uk_SP1_2627.csv",
+      "params": "fitted",
+      "rho": 0.01,
+      "bonus_domicile": 1.1358442657638594,
+      "bonus_exterieur": 0.8641557342361406,
+      "part_mt1": 0.4223,
+      "n_mt": 831,
+      "lambda_dom_moy": 1.5267,
+      "lambda_ext_moy": 1.1615,
+      "sources": [
+        "uk_SP1_2425.csv",
+        "uk_SP1_2526.csv",
+        "uk_SP1_2627.csv"
+      ],
+      "n_files": 3
+    },
+    "SP2": {
+      "league_code": "SP2",
+      "n": 1075,
+      "source": "uk_SP2_2627.csv",
+      "params": "fitted",
+      "rho": 0.01,
+      "bonus_domicile": 1.1277280858676209,
+      "bonus_exterieur": 0.8722719141323791,
+      "part_mt1": 0.4363,
+      "n_mt": 983,
+      "lambda_dom_moy": 1.466,
+      "lambda_ext_moy": 1.134,
+      "sources": [
+        "uk_SP2_2425.csv",
+        "uk_SP2_2526.csv",
+        "uk_SP2_2627.csv"
+      ],
+      "n_files": 3
+    }
+  },
+  "D1": {
+    "league_code": "D1",
+    "n": 693,
+    "source": "uk_D1_2627.csv",
+    "params": "fitted",
+    "rho": -0.06,
+    "bonus_domicile": 1.0891976692066339,
+    "bonus_exterieur": 0.9108023307933661,
+    "part_mt1": 0.44,
+    "n_mt": 652,
+    "lambda_dom_moy": 1.7532,
+    "lambda_ext_moy": 1.4661,
+    "sources": [
+      "uk_D1_2425.csv",
+      "uk_D1_2526.csv",
+      "uk_D1_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "D2": {
+    "league_code": "D2",
+    "n": 711,
+    "source": "uk_D2_2627.csv",
+    "params": "fitted",
+    "rho": -0.05,
+    "bonus_domicile": 1.108593012275732,
+    "bonus_exterieur": 0.8914069877242681,
+    "part_mt1": 0.4335,
+    "n_mt": 667,
+    "lambda_dom_moy": 1.6512,
+    "lambda_ext_moy": 1.3277,
+    "sources": [
+      "uk_D2_2425.csv",
+      "uk_D2_2526.csv",
+      "uk_D2_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "E0": {
+    "league_code": "E0",
+    "n": 860,
+    "source": "uk_E0_2627.csv",
+    "params": "fitted",
+    "rho": -0.04,
+    "bonus_domicile": 1.0752157829839704,
+    "bonus_exterieur": 0.9247842170160296,
+    "part_mt1": 0.4401,
+    "n_mt": 811,
+    "lambda_dom_moy": 1.5209,
+    "lambda_ext_moy": 1.3081,
+    "sources": [
+      "uk_E0_2425.csv",
+      "uk_E0_2526.csv",
+      "uk_E0_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "E1": {
+    "league_code": "E1",
+    "n": 1284,
+    "source": "uk_E1_2627.csv",
+    "params": "fitted",
+    "rho": -0.02,
+    "bonus_domicile": 1.121275955461932,
+    "bonus_exterieur": 0.878724044538068,
+    "part_mt1": 0.4603,
+    "n_mt": 1195,
+    "lambda_dom_moy": 1.4509,
+    "lambda_ext_moy": 1.1371,
+    "sources": [
+      "uk_E1_2425.csv",
+      "uk_E1_2526.csv",
+      "uk_E1_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "F1": {
+    "league_code": "F1",
+    "n": 702,
+    "source": "uk_F1_2627.csv",
+    "params": "fitted",
+    "rho": 0.0,
+    "bonus_domicile": 1.1009803921568626,
+    "bonus_exterieur": 0.8990196078431374,
+    "part_mt1": 0.4336,
+    "n_mt": 658,
+    "lambda_dom_moy": 1.5997,
+    "lambda_ext_moy": 1.3063,
+    "sources": [
+      "uk_F1_2425.csv",
+      "uk_F1_2526.csv",
+      "uk_F1_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "I1": {
+    "league_code": "I1",
+    "n": 870,
+    "source": "uk_I1_2627.csv",
+    "params": "fitted",
+    "rho": 0.0,
+    "bonus_domicile": 1.046043808672329,
+    "bonus_exterieur": 0.9539561913276711,
+    "part_mt1": 0.4264,
+    "n_mt": 804,
+    "lambda_dom_moy": 1.3448,
+    "lambda_ext_moy": 1.2264,
+    "sources": [
+      "uk_I1_2425.csv",
+      "uk_I1_2526.csv",
+      "uk_I1_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "I2": {
+    "league_code": "I2",
+    "n": 870,
+    "source": "uk_I2_2627.csv",
+    "params": "fitted",
+    "rho": -0.11,
+    "bonus_domicile": 1.1183970856102003,
+    "bonus_exterieur": 0.8816029143897997,
+    "part_mt1": 0.4492,
+    "n_mt": 797,
+    "lambda_dom_moy": 1.4115,
+    "lambda_ext_moy": 1.1126,
+    "sources": [
+      "uk_I2_2425.csv",
+      "uk_I2_2526.csv",
+      "uk_I2_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "SP1": {
+    "league_code": "SP1",
+    "n": 879,
+    "source": "uk_SP1_2627.csv",
+    "params": "fitted",
+    "rho": 0.01,
+    "bonus_domicile": 1.1358442657638594,
+    "bonus_exterieur": 0.8641557342361406,
+    "part_mt1": 0.4223,
+    "n_mt": 831,
+    "lambda_dom_moy": 1.5267,
+    "lambda_ext_moy": 1.1615,
+    "sources": [
+      "uk_SP1_2425.csv",
+      "uk_SP1_2526.csv",
+      "uk_SP1_2627.csv"
+    ],
+    "n_files": 3
+  },
+  "SP2": {
+    "league_code": "SP2",
+    "n": 1075,
+    "source": "uk_SP2_2627.csv",
+    "params": "fitted",
+    "rho": 0.01,
+    "bonus_domicile": 1.1277280858676209,
+    "bonus_exterieur": 0.8722719141323791,
+    "part_mt1": 0.4363,
+    "n_mt": 983,
+    "lambda_dom_moy": 1.466,
+    "lambda_ext_moy": 1.134,
+    "sources": [
+      "uk_SP2_2425.csv",
+      "uk_SP2_2526.csv",
+      "uk_SP2_2627.csv"
+    ],
+    "n_files": 3
+  }
+}
