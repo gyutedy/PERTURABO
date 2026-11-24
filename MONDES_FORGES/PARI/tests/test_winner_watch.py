@@ -74,6 +74,11 @@ def run_checks():
         ww.mark_stop("basket")
         check("stop", ww.load("basket")["matches"]["20010"]["statut"] == "TERMINE")
 
+        # nouvelle campagne : etat vierge (ids M1.. ne collisionnent pas)
+        nc = ww.new_campaign("basket", "PARI-20261125", "ZZZZ")
+        check("nouvelle campagne vierge", nc["matches"] == {}
+              and nc["campagne_uid"] == "ZZZZ")
+
         # ambiguite : deux matchs actifs proches dans le meme etat
         blob2 = ww.blank("basket")
         for sid in ("20010", "999"):

@@ -140,6 +140,15 @@ def cmd_start(st, arg):
     st["campagne_uid"] = "".join(secrets.choice(string.ascii_uppercase + string.digits)
                                  for _ in range(4))
     st["capture_seq"] = 0
+    try:
+        import winner_watch
+    except ImportError:
+        _p = P("F06_TRACKER", "CODEBASE")
+        if _p not in sys.path:
+            sys.path.insert(0, _p)
+        import winner_watch
+    for _s in ("foot", "basket"):
+        winner_watch.new_campaign(_s, st["campagne"], st["campagne_uid"])
     st["steps"] = {"start": _now()}
     st["capture"] = None
     st["capturer_statut"] = None
@@ -217,9 +226,11 @@ def _watch_from_capture(sport, st=None):
                 continue
             seq = int(st.get("capture_seq") or 0) + 1
             st["capture_seq"] = seq
-            kick_raw = m.get("date") or m.get("date_iso")
-            if sport == "foot" and m.get("heure") and kick_raw and "T" not in str(kick_raw):
-                kick_raw = "%sT%s:00+01:00" % (str(kick_raw)[:10], m["heure"])
+            kick_raw = (m.get("date") or m.get("date_iso")
+                        or groupe.get("date") or groupe.get("date_iso"))
+            grp_heure = m.get("heure") or groupe.get("heure")
+            if sport == "foot" and grp_heure and kick_raw and "T" not in str(kick_raw):
+                kick_raw = "%sT%s:00+01:00" % (str(kick_raw)[:10], grp_heure)
             rec = {
                 "source_event_id": m.get("game_id") or m.get("id"),
                 "home": m.get("dom") or m.get("home"),
@@ -1034,9 +1045,12 @@ def cmd_match(st, arg):
 def cmd_stop(st, arg):
     try:
         import winner_watch
-        winner_watch.mark_stop()
-    except Exception:
-        pass
+    except ImportError:
+        _p = P("F06_TRACKER", "CODEBASE")
+        if _p not in sys.path:
+            sys.path.insert(0, _p)
+        import winner_watch
+    winner_watch.mark_stop()
     br = st.get("bankroll_fc") or 0
     tell(f"Campagne {st.get('campagne')}-{st.get('campagne_uid') or '----'} fermee. Bankroll **{br:.0f} FC** persiste. "
          "Lots F06 intacts (tokens). consumed_legs reset. "

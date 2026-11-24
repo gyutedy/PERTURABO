@@ -146,6 +146,14 @@ def upsert(sport, capture, campagne=None, campagne_uid=None, now=None):
     return save(blob, sport), entry, rec
 
 
+def new_campaign(sport, campagne=None, campagne_uid=None):
+    """Nouvelle campagne : etat watch vierge (les ids M1.. se repetent)."""
+    blob = blank(sport)
+    blob["campagne"] = campagne
+    blob["campagne_uid"] = campagne_uid
+    return save(blob, sport)
+
+
 def mark_stop(sport=None):
     """Arret des alertes : /stop ou coup d'envoi."""
     out = {}
