@@ -1,6 +1,6 @@
 ### 🛡️ PERTURABO · PARI — TOP 3 MARCHÉS PAR MATCH (score commun 01-10)
 
-*generated 2026-11-24T13:59:21Z — 4 matchs classés — notes: 0*
+*generated 2026-11-24T14:28:49Z — 4 matchs classés — notes: 0*
 
 - **#1 Cardiff City vs Preston North End** — score **8.5/10** — bucket 🟢 HAUTE (données haute)
     1. Under 2.5 — cote 2.75 — proba 40% — EV +10.4%

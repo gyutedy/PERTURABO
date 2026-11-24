@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Cardiff City vs Preston North End
-*Générée le 2026-11-24 13:59 UTC — siege_id courant*
+*Générée le 2026-11-24 14:28 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 10.4%
 
