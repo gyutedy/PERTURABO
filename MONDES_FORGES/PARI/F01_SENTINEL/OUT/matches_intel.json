@@ -1,86 +1,11 @@
 {
-  "generated_at": "2026-11-24T14:28:49Z",
+  "generated_at": "2026-11-24T15:41:19Z",
   "source": "siege_file",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": null,
   "matchs": [
     {
       "id": "M1",
-      "dom": "Middlesbrough FC",
-      "ext": "Swansea City",
-      "ligue": "Winner FOOT",
-      "date": "2026-11-24",
-      "heure": null,
-      "cotes": {
-        "1": 1.46,
-        "X": 4.8,
-        "2": 6.0,
-        "u2.5": 2.67,
-        "o2.5": 1.46,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.02
-      },
-      "marches_disponibles": [
-        "1",
-        "2",
-        "X",
-        "mt1",
-        "mt2",
-        "mte",
-        "o2.5",
-        "u2.5"
-      ],
-      "league_code": "E1",
-      "stats": {
-        "dom": {
-          "mj": 12,
-          "marques": 16.0,
-          "encaisses": 11.0,
-          "marques_mt1": 7.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 9.0,
-          "encaisses_mt2": 5.0
-        },
-        "ext": {
-          "mj": 12,
-          "marques": 10.0,
-          "encaisses": 15.0,
-          "marques_mt1": 4.0,
-          "encaisses_mt1": 6.0,
-          "marques_mt2": 6.0,
-          "encaisses_mt2": 9.0
-        }
-      },
-      "s15": {
-        "flags": [],
-        "holes": [
-          "standings"
-        ],
-        "detail": {
-          "injuries": {
-            "att": [],
-            "def": []
-          },
-          "standings": {
-            "reason": "fetch_ko"
-          }
-        },
-        "source": "api-football"
-      },
-      "holes": [
-        "elo",
-        "xg",
-        "rest_days",
-        "h2h",
-        "form",
-        "h2h_scores",
-        "timing",
-        "standings"
-      ]
-    },
-    {
-      "id": "M2",
       "dom": "Bristol City",
       "ext": "Wrexham AFC",
       "ligue": "Winner FOOT",
@@ -92,17 +17,15 @@
         "2": 2.92,
         "u2.5": 1.67,
         "o2.5": 2.17,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.02
+        "ht_u1.5": 1.29,
+        "ht_o1.5": 2.77
       },
       "marches_disponibles": [
         "1",
         "2",
         "X",
-        "mt1",
-        "mt2",
-        "mte",
+        "ht_o1.5",
+        "ht_u1.5",
         "o2.5",
         "u2.5"
       ],
@@ -155,29 +78,27 @@
       ]
     },
     {
-      "id": "M3",
+      "id": "M2",
       "dom": "Cardiff City",
       "ext": "Preston North End",
       "ligue": "Winner FOOT",
       "date": "2026-11-24",
       "heure": "20:45",
       "cotes": {
-        "1": 1.49,
+        "1": 1.47,
         "X": 4.8,
         "2": 5.7,
-        "u2.5": 2.75,
-        "o2.5": 1.44,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.02
+        "u2.5": 2.82,
+        "o2.5": 1.42,
+        "ht_u1.5": 1.65,
+        "ht_o1.5": 1.87
       },
       "marches_disponibles": [
         "1",
         "2",
         "X",
-        "mt1",
-        "mt2",
-        "mte",
+        "ht_o1.5",
+        "ht_u1.5",
         "o2.5",
         "u2.5"
       ],
@@ -230,29 +151,27 @@
       ]
     },
     {
-      "id": "M4",
+      "id": "M3",
       "dom": "Charlton Athletic",
       "ext": "Lincoln City",
       "ligue": "Winner FOOT",
       "date": "2026-11-24",
       "heure": "20:45",
       "cotes": {
-        "1": 2.8,
+        "1": 2.95,
         "X": 3.25,
-        "2": 2.55,
+        "2": 2.42,
         "u2.5": 1.71,
         "o2.5": 2.1,
-        "mt1": 3.1,
-        "mte": 3.0,
-        "mt2": 2.02
+        "ht_u1.5": 1.31,
+        "ht_o1.5": 2.67
       },
       "marches_disponibles": [
         "1",
         "2",
         "X",
-        "mt1",
-        "mt2",
-        "mte",
+        "ht_o1.5",
+        "ht_u1.5",
         "o2.5",
         "u2.5"
       ],

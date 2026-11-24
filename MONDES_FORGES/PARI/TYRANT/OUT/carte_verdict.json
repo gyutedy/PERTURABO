@@ -1,26 +1,15 @@
 {
-  "generated_at": "2026-11-24T14:28:49Z",
+  "generated_at": "2026-11-24T15:41:19Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 4,
+  "go": 3,
   "no_bet": 0,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 4 GO / 0 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 3 GO / 0 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "flags": [],
-      "o2.5_empirique": 0.5336021505376344,
-      "o2.5_modele": 0.5945
-    },
-    {
-      "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
       "verdict": "GO",
       "raisons": [
@@ -31,7 +20,7 @@
       "o2.5_modele": 0.4427
     },
     {
-      "id": "M3",
+      "id": "M2",
       "match": "Cardiff City vs Preston North End",
       "verdict": "GO",
       "raisons": [
@@ -42,7 +31,7 @@
       "o2.5_modele": 0.5986
     },
     {
-      "id": "M4",
+      "id": "M3",
       "match": "Charlton Athletic vs Lincoln City",
       "verdict": "GO",
       "raisons": [

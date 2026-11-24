@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T14:28:49Z",
+  "generated_at": "2026-11-24T15:41:20Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_moyennes": {
     "buts_dom_moy": 1.6584,
@@ -14,96 +14,12 @@
     "flags": [],
     "holes": [],
     "encaisses_dom_moy": 1.2486,
-    "encaisses_ext_moy": 1.6584
+    "encaisses_ext_moy": 1.6584,
+    "ht_u1.5_empirique": 0.6153
   },
   "analyses": [
     {
       "id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
-      "lambdas": {
-        "dom_total": 1.914,
-        "ext_total": 1.166,
-        "dom_mt1": 0.802,
-        "dom_mt2": 1.113,
-        "ext_mt1": 0.551,
-        "ext_mt2": 0.615,
-        "dom_raw": 1.914,
-        "ext_raw": 1.166
-      },
-      "probas": {
-        "1": 0.5463,
-        "X": 0.226,
-        "2": 0.2277,
-        "o2.5": 0.5945,
-        "u2.5": 0.4055,
-        "btts": 0.5887,
-        "btts_no": 0.4113,
-        "o0.5": 0.9521,
-        "u0.5": 0.0479,
-        "o1.5": 0.8144,
-        "u1.5": 0.1856,
-        "o3.5": 0.3706,
-        "u3.5": 0.6294,
-        "o4.5": 0.1983,
-        "u4.5": 0.8017,
-        "dc_1x": 0.7723,
-        "dc_x2": 0.4537,
-        "dc_12": 0.774,
-        "tt_h_o0.5": 0.8526,
-        "tt_h_u0.5": 0.1474,
-        "tt_h_o1.5": 0.5703,
-        "tt_h_u1.5": 0.4297,
-        "tt_h_o2.5": 0.3001,
-        "tt_h_u2.5": 0.6999,
-        "tt_a_o0.5": 0.6883,
-        "tt_a_u0.5": 0.3117,
-        "tt_a_o1.5": 0.3249,
-        "tt_a_u1.5": 0.6751,
-        "tt_a_o2.5": 0.1131,
-        "tt_a_u2.5": 0.8869,
-        "score_le_plus_probable": "1-1",
-        "mt1_plus": 0.3021,
-        "mte": 0.2342,
-        "mt2_plus": 0.4638
-      },
-      "cs": {
-        "1-1": 0.1045,
-        "2-1": 0.0982,
-        "1-0": 0.086,
-        "2-0": 0.0842,
-        "3-1": 0.0626,
-        "1-2": 0.0598,
-        "2-2": 0.0572,
-        "3-0": 0.0537,
-        "0-1": 0.0516,
-        "0-0": 0.0479
-      },
-      "data_quality": {
-        "niveau": "haute",
-        "flags": []
-      },
-      "engine": "dc_mle",
-      "state_factors": {
-        "applied": false,
-        "factor_dom": 1.0,
-        "factor_ext": 1.0,
-        "flags": [],
-        "holes": [
-          "effectifs",
-          "standings"
-        ],
-        "cap_hit": false,
-        "journal": []
-      },
-      "holes": [
-        "effectifs",
-        "standings"
-      ],
-      "o2.5_empirique": 0.5336021505376344,
-      "o2.5_ecart": 0.06089784946236565
-    },
-    {
-      "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
       "lambdas": {
         "dom_total": 1.381,
@@ -149,7 +65,9 @@
         "score_le_plus_probable": "1-1",
         "mt1_plus": 0.337,
         "mte": 0.2721,
-        "mt2_plus": 0.3909
+        "mt2_plus": 0.3909,
+        "ht_u1.5": 0.6723,
+        "ht_o1.5": 0.3277
       },
       "cs": {
         "1-1": 0.1299,
@@ -188,7 +106,7 @@
       "o2.5_ecart": 0.0909021505376344
     },
     {
-      "id": "M3",
+      "id": "M2",
       "match": "Cardiff City vs Preston North End",
       "lambdas": {
         "dom_total": 2.139,
@@ -234,7 +152,9 @@
         "score_le_plus_probable": "2-0",
         "mt1_plus": 0.508,
         "mte": 0.2278,
-        "mt2_plus": 0.2642
+        "mt2_plus": 0.2642,
+        "ht_u1.5": 0.4505,
+        "ht_o1.5": 0.5495
       },
       "cs": {
         "2-0": 0.1031,
@@ -273,7 +193,7 @@
       "o2.5_ecart": 0.06499784946236564
     },
     {
-      "id": "M4",
+      "id": "M3",
       "match": "Charlton Athletic vs Lincoln City",
       "lambdas": {
         "dom_total": 1.407,
@@ -319,7 +239,9 @@
         "score_le_plus_probable": "1-1",
         "mt1_plus": 0.2967,
         "mte": 0.256,
-        "mt2_plus": 0.4473
+        "mt2_plus": 0.4473,
+        "ht_u1.5": 0.6742,
+        "ht_o1.5": 0.3258
       },
       "cs": {
         "1-1": 0.1258,
