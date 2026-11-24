@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-24T14:28:49Z",
+  "generated_at": "2026-11-24T15:41:20Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 5",
+  "titre": "DIRECTION DES SIÈGES — TOP 2",
   "top_picks": [
     {
-      "match_id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
+      "match_id": "M3",
+      "match": "Charlton Athletic vs Lincoln City",
       "marche": "1X2",
-      "selection": "2",
-      "selection_label": "Victoire Extérieur",
-      "cote": 6.0,
-      "p_modele": 0.2277,
-      "ev": 0.3662,
-      "mise_units": 0.92,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.95,
+      "p_modele": 0.405,
+      "ev": 0.1948,
+      "mise_units": 1.25,
       "note_risque": "qualité data: haute",
       "vanus_flags": [],
       "vanus_action": "skip",
@@ -23,15 +23,15 @@
       "rang": 1
     },
     {
-      "match_id": "M4",
-      "match": "Charlton Athletic vs Lincoln City",
-      "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 2.8,
-      "p_modele": 0.405,
-      "ev": 0.134,
-      "mise_units": 0.93,
+      "match_id": "M2",
+      "match": "Cardiff City vs Preston North End",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.82,
+      "p_modele": 0.4014,
+      "ev": 0.1319,
+      "mise_units": 0.91,
       "note_risque": "qualité data: haute",
       "vanus_flags": [],
       "vanus_action": "skip",
@@ -39,60 +39,6 @@
         "vanus_absent"
       ],
       "rang": 2
-    },
-    {
-      "match_id": "M3",
-      "match": "Cardiff City vs Preston North End",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 2.75,
-      "p_modele": 0.4014,
-      "ev": 0.1038,
-      "mise_units": 0.74,
-      "note_risque": "qualité data: haute",
-      "vanus_flags": [],
-      "vanus_action": "skip",
-      "vanus_holes": [
-        "vanus_absent"
-      ],
-      "rang": 3
-    },
-    {
-      "match_id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 4.8,
-      "p_modele": 0.226,
-      "ev": 0.0848,
-      "mise_units": 0.28,
-      "note_risque": "qualité data: haute",
-      "vanus_flags": [],
-      "vanus_action": "skip",
-      "vanus_holes": [
-        "vanus_absent"
-      ],
-      "rang": 4
-    },
-    {
-      "match_id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
-      "marche": "OU_2.5",
-      "selection": "u2.5",
-      "selection_label": "Under 2.5",
-      "cote": 2.67,
-      "p_modele": 0.4055,
-      "ev": 0.0827,
-      "mise_units": 0.62,
-      "note_risque": "qualité data: haute",
-      "vanus_flags": [],
-      "vanus_action": "skip",
-      "vanus_holes": [
-        "vanus_absent"
-      ],
-      "rang": 5
     }
   ],
   "no_bet": [],
@@ -100,27 +46,21 @@
     {
       "jambes": [
         {
-          "match_id": "M1",
-          "selection": "2",
-          "cote": 6.0,
-          "p_modele": 0.2277
-        },
-        {
-          "match_id": "M4",
+          "match_id": "M3",
           "selection": "1",
-          "cote": 2.8,
+          "cote": 2.95,
           "p_modele": 0.405
         },
         {
-          "match_id": "M3",
+          "match_id": "M2",
           "selection": "u2.5",
-          "cote": 2.75,
+          "cote": 2.82,
           "p_modele": 0.4014
         }
       ],
-      "cote_totale": 46.2,
-      "ev_combine": 0.7101,
-      "mise_units": 0.2,
+      "cote_totale": 8.32,
+      "ev_combine": 0.3524,
+      "mise_units": 0.6,
       "kelly_fraction": 0.125,
       "kelly_label": "1/8",
       "kelly_holes": [
@@ -135,11 +75,11 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 3.69,
-    "ev_moyenne_pct": 0.1543,
-    "nb_matchs_analyses": 4,
+    "mise_totale_units": 2.76,
+    "ev_moyenne_pct": 0.1633,
+    "nb_matchs_analyses": 3,
     "nb_no_bet": 0,
-    "nb_matchs_go": 4,
+    "nb_matchs_go": 3,
     "nb_vanus_veto": 0
   },
   "vanus_holes": [

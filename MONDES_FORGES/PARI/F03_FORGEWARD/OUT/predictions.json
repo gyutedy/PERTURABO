@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T14:28:49Z",
+  "generated_at": "2026-11-24T15:41:20Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "kelly_fraction": 0.125,
@@ -12,484 +12,6 @@
   "predictions": [
     {
       "id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
-      "selections": [
-        {
-          "marche": "1X2",
-          "selection": "1",
-          "selection_label": "Victoire Domicile",
-          "cote": 1.46,
-          "cote_juste_marche": 1.548,
-          "p_modele": 0.5463,
-          "ev": -0.2024,
-          "verdict": "NO_BET",
-          "mise_units": null,
-          "p_fair": 0.6462,
-          "fair_odds": 1.548,
-          "edge_net_devig": -0.1546,
-          "double_confirmation": false,
-          "p_fair_additif": 0.665,
-          "fair_odds_additif": 1.504,
-          "devig_gap": -0.018751,
-          "scorer_eligible": false,
-          "scorer_score": 0.465,
-          "scorer_seuil": 0.55,
-          "scorer_gates": {
-            "A1": true,
-            "A2": true,
-            "A3": true,
-            "A4": true
-          },
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "scorer_holes": [
-            "b3_asymetrie"
-          ],
-          "overround": 0.059932,
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.46,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 4.8,
-          "cote_juste_marche": 5.088,
-          "p_modele": 0.226,
-          "ev": 0.0848,
-          "verdict": "VALUE",
-          "mise_units": 0.28,
-          "p_fair": 0.1966,
-          "fair_odds": 5.088,
-          "edge_net_devig": 0.1498,
-          "double_confirmation": true,
-          "p_fair_additif": 0.1884,
-          "fair_odds_additif": 5.309,
-          "devig_gap": 0.008197,
-          "scorer_eligible": true,
-          "scorer_score": 0.7,
-          "scorer_seuil": 0.55,
-          "scorer_gates": {
-            "A1": true,
-            "A2": true,
-            "A3": true,
-            "A4": true
-          },
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "scorer_holes": [
-            "b3_asymetrie"
-          ],
-          "overround": 0.059932,
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 4.8,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 6.0,
-          "cote_juste_marche": 6.36,
-          "p_modele": 0.2277,
-          "ev": 0.3662,
-          "verdict": "VALUE",
-          "mise_units": 0.92,
-          "p_fair": 0.1572,
-          "fair_odds": 6.36,
-          "edge_net_devig": 0.4481,
-          "double_confirmation": true,
-          "p_fair_additif": 0.1467,
-          "fair_odds_additif": 6.817,
-          "devig_gap": 0.010553,
-          "scorer_eligible": true,
-          "scorer_score": 0.65,
-          "scorer_seuil": 0.55,
-          "scorer_gates": {
-            "A1": true,
-            "A2": true,
-            "A3": true,
-            "A4": true
-          },
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.25,
-              "contrib": 0.05
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "scorer_holes": [
-            "b3_asymetrie"
-          ],
-          "overround": 0.059932,
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 6.0,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "u2.5",
-          "selection_label": "Under 2.5",
-          "cote": 2.67,
-          "cote_juste_marche": 2.829,
-          "p_modele": 0.4055,
-          "ev": 0.0827,
-          "verdict": "VALUE",
-          "mise_units": 0.62,
-          "p_fair": 0.3535,
-          "fair_odds": 2.829,
-          "edge_net_devig": 0.1471,
-          "double_confirmation": true,
-          "p_fair_additif": 0.3448,
-          "fair_odds_additif": 2.9,
-          "devig_gap": 0.008711,
-          "scorer_eligible": true,
-          "scorer_score": 0.8,
-          "scorer_seuil": 0.5,
-          "scorer_gates": {
-            "A1": true,
-            "A2": true,
-            "A3": true,
-            "A4": true
-          },
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "scorer_holes": [
-            "b3_asymetrie"
-          ],
-          "overround": 0.059463,
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 2.67,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "marche": "OU_2.5",
-          "selection": "o2.5",
-          "selection_label": "Over 2.5",
-          "cote": 1.46,
-          "cote_juste_marche": 1.547,
-          "p_modele": 0.5945,
-          "ev": -0.132,
-          "verdict": "NO_BET",
-          "mise_units": null,
-          "p_fair": 0.6465,
-          "fair_odds": 1.547,
-          "edge_net_devig": -0.0804,
-          "double_confirmation": false,
-          "p_fair_additif": 0.6552,
-          "fair_odds_additif": 1.526,
-          "devig_gap": -0.008711,
-          "scorer_eligible": false,
-          "scorer_score": 0.465,
-          "scorer_seuil": 0.5,
-          "scorer_gates": {
-            "A1": true,
-            "A2": true,
-            "A3": true,
-            "A4": true
-          },
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 1.0,
-              "contrib": 0.2
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "scorer_holes": [
-            "b3_asymetrie"
-          ],
-          "overround": 0.059463,
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 1.46,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        },
-        {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.453,
-          "p_modele": 0.2342,
-          "ev": -0.2974,
-          "verdict": "NO_BET",
-          "mise_units": null,
-          "p_fair": 0.2896,
-          "fair_odds": 3.453,
-          "edge_net_devig": -0.1913,
-          "double_confirmation": false,
-          "p_fair_additif": 0.283,
-          "fair_odds_additif": 3.533,
-          "devig_gap": 0.0066,
-          "scorer_eligible": false,
-          "scorer_score": 0.435,
-          "scorer_seuil": 0.55,
-          "scorer_gates": {
-            "A1": true,
-            "A2": true,
-            "A3": true,
-            "A4": true
-          },
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.25,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B2": {
-              "poids": 0.25,
-              "raw": 1.0,
-              "contrib": 0.25
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 0.2,
-              "contrib": 0.02
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 0.3,
-              "contrib": 0.015
-            }
-          },
-          "scorer_holes": [
-            "b3_asymetrie"
-          ],
-          "overround": 0.150963,
-          "pieges": [
-            "marge_anomalique"
-          ],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": true,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 3.0,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          }
-        }
-      ],
-      "verdict": "GO",
-      "meilleure_ev": 0.3662
-    },
-    {
-      "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
       "selections": [
         {
@@ -883,25 +405,25 @@
           }
         },
         {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.453,
-          "p_modele": 0.2721,
-          "ev": -0.1837,
+          "marche": "MT_OU_1.5",
+          "selection": "ht_u1.5",
+          "selection_label": "Under 1.5 1re MT",
+          "cote": 1.29,
+          "cote_juste_marche": 1.466,
+          "p_modele": 0.6723,
+          "ev": -0.1327,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.2896,
-          "fair_odds": 3.453,
-          "edge_net_devig": -0.0605,
+          "p_fair": 0.6823,
+          "fair_odds": 1.466,
+          "edge_net_devig": -0.0146,
           "double_confirmation": false,
-          "p_fair_additif": 0.283,
-          "fair_odds_additif": 3.533,
-          "devig_gap": 0.0066,
+          "p_fair_additif": 0.7071,
+          "fair_odds_additif": 1.414,
+          "devig_gap": -0.024825,
           "scorer_eligible": false,
-          "scorer_score": 0.435,
-          "scorer_seuil": 0.55,
+          "scorer_score": 0.305,
+          "scorer_seuil": 0.5,
           "scorer_gates": {
             "A1": true,
             "A2": true,
@@ -911,14 +433,14 @@
           "scorer_refuse": [],
           "scorer_contrib": {
             "B1": {
-              "poids": 0.25,
+              "poids": 0.3,
               "raw": 0.0,
               "contrib": 0.0
             },
             "B2": {
-              "poids": 0.25,
-              "raw": 1.0,
-              "contrib": 0.25
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
             },
             "B3": {
               "poids": 0.2,
@@ -932,8 +454,8 @@
             },
             "B5": {
               "poids": 0.1,
-              "raw": 0.2,
-              "contrib": 0.02
+              "raw": 0.4,
+              "contrib": 0.04
             },
             "B6": {
               "poids": 0.05,
@@ -944,7 +466,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.150963,
+          "overround": 0.136205,
           "pieges": [
             "marge_anomalique"
           ],
@@ -955,7 +477,87 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 3.0,
+            "capture": 1.29,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "MT_OU_1.5",
+          "selection": "ht_o1.5",
+          "selection_label": "Over 1.5 1re MT",
+          "cote": 2.77,
+          "cote_juste_marche": 3.147,
+          "p_modele": 0.3277,
+          "ev": -0.0923,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.3177,
+          "fair_odds": 3.147,
+          "edge_net_devig": 0.0314,
+          "double_confirmation": false,
+          "p_fair_additif": 0.2929,
+          "fair_odds_additif": 3.414,
+          "devig_gap": 0.024825,
+          "scorer_eligible": false,
+          "scorer_score": 0.405,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.4,
+              "contrib": 0.04
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.136205,
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.77,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -967,28 +569,28 @@
       "meilleure_ev": 0.0731
     },
     {
-      "id": "M3",
+      "id": "M2",
       "match": "Cardiff City vs Preston North End",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 1.49,
-          "cote_juste_marche": 1.572,
+          "cote": 1.47,
+          "cote_juste_marche": 1.564,
           "p_modele": 0.6418,
-          "ev": -0.0437,
+          "ev": -0.0566,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.6362,
-          "fair_odds": 1.572,
-          "edge_net_devig": 0.0088,
+          "p_fair": 0.6393,
+          "fair_odds": 1.564,
+          "edge_net_devig": 0.0039,
           "double_confirmation": false,
-          "p_fair_additif": 0.6528,
-          "fair_odds_additif": 1.532,
-          "devig_gap": -0.016632,
+          "p_fair_additif": 0.6589,
+          "fair_odds_additif": 1.518,
+          "devig_gap": -0.019597,
           "scorer_eligible": false,
-          "scorer_score": 0.465,
+          "scorer_score": 0.435,
           "scorer_seuil": 0.55,
           "scorer_gates": {
             "A1": true,
@@ -1020,8 +622,8 @@
             },
             "B5": {
               "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
+              "raw": 0.7,
+              "contrib": 0.07
             },
             "B6": {
               "poids": 0.05,
@@ -1032,7 +634,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.054913,
+          "overround": 0.064044,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1041,7 +643,7 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 1.49,
+            "capture": 1.47,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1053,20 +655,20 @@
           "selection": "X",
           "selection_label": "Nul",
           "cote": 4.8,
-          "cote_juste_marche": 5.064,
+          "cote_juste_marche": 5.107,
           "p_modele": 0.2012,
           "ev": -0.0342,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.1975,
-          "fair_odds": 5.064,
-          "edge_net_devig": 0.0188,
+          "p_fair": 0.1958,
+          "fair_odds": 5.107,
+          "edge_net_devig": 0.0276,
           "double_confirmation": false,
-          "p_fair_additif": 0.19,
-          "fair_odds_additif": 5.262,
-          "devig_gap": 0.00746,
+          "p_fair_additif": 0.187,
+          "fair_odds_additif": 5.348,
+          "devig_gap": 0.008809,
           "scorer_eligible": false,
-          "scorer_score": 0.365,
+          "scorer_score": 0.335,
           "scorer_seuil": 0.55,
           "scorer_gates": {
             "A1": true,
@@ -1098,8 +700,8 @@
             },
             "B5": {
               "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
+              "raw": 0.7,
+              "contrib": 0.07
             },
             "B6": {
               "poids": 0.05,
@@ -1110,7 +712,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.054913,
+          "overround": 0.064044,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1131,20 +733,20 @@
           "selection": "2",
           "selection_label": "Victoire Extérieur",
           "cote": 5.7,
-          "cote_juste_marche": 6.013,
+          "cote_juste_marche": 6.065,
           "p_modele": 0.1571,
           "ev": -0.1045,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.1663,
-          "fair_odds": 6.013,
-          "edge_net_devig": -0.0554,
+          "p_fair": 0.1649,
+          "fair_odds": 6.065,
+          "edge_net_devig": -0.0472,
           "double_confirmation": false,
-          "p_fair_additif": 0.1571,
-          "fair_odds_additif": 6.364,
-          "devig_gap": 0.009172,
+          "p_fair_additif": 0.1541,
+          "fair_odds_additif": 6.49,
+          "devig_gap": 0.010788,
           "scorer_eligible": false,
-          "scorer_score": 0.315,
+          "scorer_score": 0.285,
           "scorer_seuil": 0.55,
           "scorer_gates": {
             "A1": true,
@@ -1176,8 +778,8 @@
             },
             "B5": {
               "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
+              "raw": 0.7,
+              "contrib": 0.07
             },
             "B6": {
               "poids": 0.05,
@@ -1188,7 +790,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.054913,
+          "overround": 0.064044,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1208,19 +810,19 @@
           "marche": "OU_2.5",
           "selection": "u2.5",
           "selection_label": "Under 2.5",
-          "cote": 2.75,
-          "cote_juste_marche": 2.91,
+          "cote": 2.82,
+          "cote_juste_marche": 2.986,
           "p_modele": 0.4014,
-          "ev": 0.1038,
+          "ev": 0.1319,
           "verdict": "VALUE",
-          "mise_units": 0.74,
-          "p_fair": 0.3437,
-          "fair_odds": 2.91,
-          "edge_net_devig": 0.168,
+          "mise_units": 0.91,
+          "p_fair": 0.3349,
+          "fair_odds": 2.986,
+          "edge_net_devig": 0.1985,
           "double_confirmation": true,
-          "p_fair_additif": 0.3346,
-          "fair_odds_additif": 2.989,
-          "devig_gap": 0.009079,
+          "p_fair_additif": 0.3252,
+          "fair_odds_additif": 3.075,
+          "devig_gap": 0.009713,
           "scorer_eligible": true,
           "scorer_score": 0.8,
           "scorer_seuil": 0.5,
@@ -1266,7 +868,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.058081,
+          "overround": 0.058835,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1275,7 +877,7 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 2.75,
+            "capture": 2.82,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1286,19 +888,19 @@
           "marche": "OU_2.5",
           "selection": "o2.5",
           "selection_label": "Over 2.5",
-          "cote": 1.44,
-          "cote_juste_marche": 1.524,
+          "cote": 1.42,
+          "cote_juste_marche": 1.504,
           "p_modele": 0.5986,
-          "ev": -0.138,
+          "ev": -0.15,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.6563,
-          "fair_odds": 1.524,
-          "edge_net_devig": -0.088,
+          "p_fair": 0.6651,
+          "fair_odds": 1.504,
+          "edge_net_devig": -0.1,
           "double_confirmation": false,
-          "p_fair_additif": 0.6654,
-          "fair_odds_additif": 1.503,
-          "devig_gap": -0.009079,
+          "p_fair_additif": 0.6748,
+          "fair_odds_additif": 1.482,
+          "devig_gap": -0.009713,
           "scorer_eligible": false,
           "scorer_score": 0.465,
           "scorer_seuil": 0.5,
@@ -1344,7 +946,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.058081,
+          "overround": 0.058835,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1353,7 +955,7 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 1.44,
+            "capture": 1.42,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1361,25 +963,25 @@
           }
         },
         {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.453,
-          "p_modele": 0.2278,
-          "ev": -0.3166,
+          "marche": "MT_OU_1.5",
+          "selection": "ht_u1.5",
+          "selection_label": "Under 1.5 1re MT",
+          "cote": 1.65,
+          "cote_juste_marche": 1.882,
+          "p_modele": 0.4505,
+          "ev": -0.2567,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.2896,
-          "fair_odds": 3.453,
-          "edge_net_devig": -0.2134,
+          "p_fair": 0.5313,
+          "fair_odds": 1.882,
+          "edge_net_devig": -0.152,
           "double_confirmation": false,
-          "p_fair_additif": 0.283,
-          "fair_odds_additif": 3.533,
-          "devig_gap": 0.0066,
+          "p_fair_additif": 0.5357,
+          "fair_odds_additif": 1.867,
+          "devig_gap": -0.004401,
           "scorer_eligible": false,
-          "scorer_score": 0.435,
-          "scorer_seuil": 0.55,
+          "scorer_score": 0.405,
+          "scorer_seuil": 0.5,
           "scorer_gates": {
             "A1": true,
             "A2": true,
@@ -1389,14 +991,14 @@
           "scorer_refuse": [],
           "scorer_contrib": {
             "B1": {
-              "poids": 0.25,
+              "poids": 0.3,
               "raw": 0.0,
               "contrib": 0.0
             },
             "B2": {
-              "poids": 0.25,
+              "poids": 0.2,
               "raw": 1.0,
-              "contrib": 0.25
+              "contrib": 0.2
             },
             "B3": {
               "poids": 0.2,
@@ -1410,8 +1012,8 @@
             },
             "B5": {
               "poids": 0.1,
-              "raw": 0.2,
-              "contrib": 0.02
+              "raw": 0.4,
+              "contrib": 0.04
             },
             "B6": {
               "poids": 0.05,
@@ -1422,7 +1024,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.150963,
+          "overround": 0.14082,
           "pieges": [
             "marge_anomalique"
           ],
@@ -1433,7 +1035,87 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 3.0,
+            "capture": 1.65,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "MT_OU_1.5",
+          "selection": "ht_o1.5",
+          "selection_label": "Over 1.5 1re MT",
+          "cote": 1.87,
+          "cote_juste_marche": 2.133,
+          "p_modele": 0.5495,
+          "ev": 0.0276,
+          "verdict": "THIN",
+          "mise_units": 0.2,
+          "p_fair": 0.4688,
+          "fair_odds": 2.133,
+          "edge_net_devig": 0.1723,
+          "double_confirmation": true,
+          "p_fair_additif": 0.4643,
+          "fair_odds_additif": 2.154,
+          "devig_gap": 0.004401,
+          "scorer_eligible": true,
+          "scorer_score": 0.59,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.5,
+              "contrib": 0.15
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.4,
+              "contrib": 0.04
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.14082,
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.87,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1442,29 +1124,29 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.1038
+      "meilleure_ev": 0.1319
     },
     {
-      "id": "M4",
+      "id": "M3",
       "match": "Charlton Athletic vs Lincoln City",
       "selections": [
         {
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.8,
-          "cote_juste_marche": 2.96,
+          "cote": 2.95,
+          "cote_juste_marche": 3.127,
           "p_modele": 0.405,
-          "ev": 0.134,
+          "ev": 0.1948,
           "verdict": "VALUE",
-          "mise_units": 0.93,
-          "p_fair": 0.3379,
-          "fair_odds": 2.96,
-          "edge_net_devig": 0.1986,
+          "mise_units": 1.25,
+          "p_fair": 0.3198,
+          "fair_odds": 3.127,
+          "edge_net_devig": 0.2663,
           "double_confirmation": true,
-          "p_fair_additif": 0.3381,
-          "fair_odds_additif": 2.957,
-          "devig_gap": -0.000259,
+          "p_fair_additif": 0.319,
+          "fair_odds_additif": 3.135,
+          "devig_gap": 0.000809,
           "scorer_eligible": true,
           "scorer_score": 0.8,
           "scorer_seuil": 0.55,
@@ -1510,7 +1192,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.056992,
+          "overround": 0.059898,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1519,7 +1201,7 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 2.8,
+            "capture": 2.95,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1531,18 +1213,18 @@
           "selection": "X",
           "selection_label": "Nul",
           "cote": 3.25,
-          "cote_juste_marche": 3.435,
+          "cote_juste_marche": 3.445,
           "p_modele": 0.2646,
           "ev": -0.1401,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.2911,
-          "fair_odds": 3.435,
-          "edge_net_devig": -0.091,
+          "p_fair": 0.2903,
+          "fair_odds": 3.445,
+          "edge_net_devig": -0.0885,
           "double_confirmation": false,
-          "p_fair_additif": 0.2887,
-          "fair_odds_additif": 3.464,
-          "devig_gap": 0.002407,
+          "p_fair_additif": 0.2877,
+          "fair_odds_additif": 3.476,
+          "devig_gap": 0.002577,
           "scorer_eligible": false,
           "scorer_score": 0.365,
           "scorer_seuil": 0.55,
@@ -1588,7 +1270,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.056992,
+          "overround": 0.059898,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1608,19 +1290,19 @@
           "marche": "1X2",
           "selection": "2",
           "selection_label": "Victoire Extérieur",
-          "cote": 2.55,
-          "cote_juste_marche": 2.695,
+          "cote": 2.42,
+          "cote_juste_marche": 2.565,
           "p_modele": 0.3305,
-          "ev": -0.1572,
+          "ev": -0.2002,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.371,
-          "fair_odds": 2.695,
-          "edge_net_devig": -0.1092,
+          "p_fair": 0.3899,
+          "fair_odds": 2.565,
+          "edge_net_devig": -0.1523,
           "double_confirmation": false,
-          "p_fair_additif": 0.3732,
-          "fair_odds_additif": 2.68,
-          "devig_gap": -0.002147,
+          "p_fair_additif": 0.3933,
+          "fair_odds_additif": 2.543,
+          "devig_gap": -0.003386,
           "scorer_eligible": false,
           "scorer_score": 0.465,
           "scorer_seuil": 0.55,
@@ -1666,7 +1348,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.056992,
+          "overround": 0.059898,
           "pieges": [],
           "piege_detail": {
             "cote_plate": false,
@@ -1675,7 +1357,7 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 2.55,
+            "capture": 2.42,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1839,25 +1521,25 @@
           }
         },
         {
-          "marche": "MT_PROLIFIQUE",
-          "selection": "mte",
-          "selection_label": "Égalité de mi-temps",
-          "cote": 3.0,
-          "cote_juste_marche": 3.453,
-          "p_modele": 0.256,
-          "ev": -0.232,
+          "marche": "MT_OU_1.5",
+          "selection": "ht_u1.5",
+          "selection_label": "Under 1.5 1re MT",
+          "cote": 1.31,
+          "cote_juste_marche": 1.491,
+          "p_modele": 0.6742,
+          "ev": -0.1168,
           "verdict": "NO_BET",
           "mise_units": null,
-          "p_fair": 0.2896,
-          "fair_odds": 3.453,
-          "edge_net_devig": -0.1161,
+          "p_fair": 0.6709,
+          "fair_odds": 1.491,
+          "edge_net_devig": 0.005,
           "double_confirmation": false,
-          "p_fair_additif": 0.283,
-          "fair_odds_additif": 3.533,
-          "devig_gap": 0.0066,
+          "p_fair_additif": 0.6944,
+          "fair_odds_additif": 1.44,
+          "devig_gap": -0.023559,
           "scorer_eligible": false,
-          "scorer_score": 0.435,
-          "scorer_seuil": 0.55,
+          "scorer_score": 0.305,
+          "scorer_seuil": 0.5,
           "scorer_gates": {
             "A1": true,
             "A2": true,
@@ -1867,14 +1549,14 @@
           "scorer_refuse": [],
           "scorer_contrib": {
             "B1": {
-              "poids": 0.25,
+              "poids": 0.3,
               "raw": 0.0,
               "contrib": 0.0
             },
             "B2": {
-              "poids": 0.25,
-              "raw": 1.0,
-              "contrib": 0.25
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
             },
             "B3": {
               "poids": 0.2,
@@ -1888,8 +1570,8 @@
             },
             "B5": {
               "poids": 0.1,
-              "raw": 0.2,
-              "contrib": 0.02
+              "raw": 0.4,
+              "contrib": 0.04
             },
             "B6": {
               "poids": 0.05,
@@ -1900,7 +1582,7 @@
           "scorer_holes": [
             "b3_asymetrie"
           ],
-          "overround": 0.150963,
+          "overround": 0.137891,
           "pieges": [
             "marge_anomalique"
           ],
@@ -1911,7 +1593,87 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 3.0,
+            "capture": 1.31,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "MT_OU_1.5",
+          "selection": "ht_o1.5",
+          "selection_label": "Over 1.5 1re MT",
+          "cote": 2.67,
+          "cote_juste_marche": 3.038,
+          "p_modele": 0.3258,
+          "ev": -0.1301,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.3291,
+          "fair_odds": 3.038,
+          "edge_net_devig": -0.0102,
+          "double_confirmation": false,
+          "p_fair_additif": 0.3056,
+          "fair_odds_additif": 3.272,
+          "devig_gap": 0.023559,
+          "scorer_eligible": false,
+          "scorer_score": 0.405,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.4,
+              "contrib": 0.04
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.137891,
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.67,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -1920,34 +1682,28 @@
         }
       ],
       "verdict": "GO",
-      "meilleure_ev": 0.134
+      "meilleure_ev": 0.1948
     }
   ],
   "combines": [
     {
       "jambes": [
         {
-          "match_id": "M1",
-          "selection": "2",
-          "cote": 6.0,
-          "p_modele": 0.2277
-        },
-        {
-          "match_id": "M4",
+          "match_id": "M3",
           "selection": "1",
-          "cote": 2.8,
+          "cote": 2.95,
           "p_modele": 0.405
         },
         {
-          "match_id": "M3",
+          "match_id": "M2",
           "selection": "u2.5",
-          "cote": 2.75,
+          "cote": 2.82,
           "p_modele": 0.4014
         }
       ],
-      "cote_totale": 46.2,
-      "ev_combine": 0.7101,
-      "mise_units": 0.2,
+      "cote_totale": 8.32,
+      "ev_combine": 0.3524,
+      "mise_units": 0.6,
       "kelly_fraction": 0.125,
       "kelly_label": "1/8",
       "kelly_holes": [

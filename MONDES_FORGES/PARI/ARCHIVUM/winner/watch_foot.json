@@ -1,7 +1,7 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "foot",
-  "generated_at": "2026-11-24T15:53:12.818752+00:00",
+  "generated_at": "2026-11-24T15:39:57.507237+00:00",
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
   "matches": {
@@ -28,13 +28,13 @@
         },
         {
           "seq": 2,
-          "capture_id": null,
-          "at": "2026-11-24T15:53:12Z",
-          "heures_avant_coup": 2.11,
+          "capture_id": "C-74J",
+          "at": "2026-11-24T15:39:57Z",
+          "heures_avant_coup": 2.33,
           "cotes": {
-            "1": 1.46,
-            "X": 4.8,
-            "2": 6.0
+            "1": 2.45,
+            "X": 3.25,
+            "2": 2.92
           },
           "source": "winner_capture",
           "mode_detection": "id"
@@ -69,13 +69,13 @@
         },
         {
           "seq": 2,
-          "capture_id": null,
-          "at": "2026-11-24T15:53:12Z",
-          "heures_avant_coup": 3.86,
+          "capture_id": "C-74J",
+          "at": "2026-11-24T15:39:57Z",
+          "heures_avant_coup": 4.08,
           "cotes": {
-            "1": 2.45,
-            "X": 3.25,
-            "2": 2.92
+            "1": 1.47,
+            "X": 4.8,
+            "2": 5.7
           },
           "source": "winner_capture",
           "mode_detection": "id"
@@ -110,13 +110,13 @@
         },
         {
           "seq": 2,
-          "capture_id": null,
-          "at": "2026-11-24T15:53:12Z",
-          "heures_avant_coup": 3.86,
+          "capture_id": "C-74J",
+          "at": "2026-11-24T15:39:57Z",
+          "heures_avant_coup": 4.08,
           "cotes": {
-            "1": 1.49,
-            "X": 4.8,
-            "2": 5.7
+            "1": 2.95,
+            "X": 3.25,
+            "2": 2.42
           },
           "source": "winner_capture",
           "mode_detection": "id"
@@ -148,19 +148,6 @@
           },
           "source": "winner_capture",
           "mode_detection": "nouveau"
-        },
-        {
-          "seq": 2,
-          "capture_id": null,
-          "at": "2026-11-24T15:53:12Z",
-          "heures_avant_coup": 3.86,
-          "cotes": {
-            "1": 2.8,
-            "X": 3.25,
-            "2": 2.55
-          },
-          "source": "winner_capture",
-          "mode_detection": "id"
         }
       ],
       "next_alert_at": "2026-11-24T16:24:37+00:00",
