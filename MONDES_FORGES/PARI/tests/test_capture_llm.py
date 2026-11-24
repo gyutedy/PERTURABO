@@ -34,7 +34,7 @@ SLATE = {
         "source_event_id": "123",
         "odds": {"home": 2.10, "draw": 3.40, "away": 3.50, "under_2_5": 1.80, "over_2_5": 2.00,
                  "hsh_first": 3.10, "hsh_equal": 3.00, "hsh_second": 2.02,
-                 "ml_1": 2.10, "ml_2": 1.80, "total_line": 220.5},
+                 "ml_1": 2.10, "ml_2": 1.80},
     }],
     "holes": [],
 }
@@ -47,6 +47,9 @@ def run_checks():
           and cl.sport_of("/capture basket") == "basket")
     foot = cl.markdown(SLATE, "foot")
     check("entete foot", "| 1 | X | 2 | Moins | Plus | 1st | Égal | 2nd |" in foot)
+    foot_line = cl.markdown({**SLATE, "matches": [{**SLATE["matches"][0],
+        "odds": {**SLATE["matches"][0]["odds"], "total_line": 2.5}}]}, "foot")
+    check("ligne 2.5 dans entete", "| Moins 2.5 | Plus 2.5 |" in foot_line)
     check("ligne foot", "Team A vs Team B" in foot and "Aujourd'hui 20:00 (#123)" in foot
           and "2.1" in foot and "1.8" in foot)
     basket = cl.markdown(SLATE, "basket")

@@ -54,8 +54,30 @@ def markdown(slate, sport):
         head = ("| Compétition & Match | Horaire | 1 (ML) | 2 (ML) | 1 | X | 2 | Handicap | Total |\n"
                 "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     else:
-        head = ("| Compétition & Match | Horaire | 1 | X | 2 | Moins | Plus | 1st | Égal | 2nd |\n"
-                "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+        lignes = []
+        groupes = {}
+        for m in slate.get("matches") or []:
+            ligne = (m.get("odds") or {}).get("total_line")
+            cle = str(ligne).replace(",", ".") if ligne is not None else None
+            groupes.setdefault(cle, []).append(m)
+        for cle, matchs in groupes.items():
+            suff = (" %s" % cle) if cle else ""
+            lignes.append(
+                "| Compétition & Match | Horaire | 1 | X | 2 | Moins%s | Plus%s | 1st | Égal | 2nd |\n"
+                "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
+                % (suff, suff))
+            for m in matchs:
+                o = m.get("odds") or {}
+                when = "%s %s" % (_day(m.get("kickoff_raw")), m.get("kickoff") or "")
+                ident = m.get("source_event_id") or ""
+                hour = "%s (#%s)" % (when, ident) if ident else when
+                cell = "Winner FOOT<br>%s vs %s" % (m.get("home"), m.get("away"))
+                cells = [cell, hour, str(o.get("home") or ""), str(o.get("draw") or ""),
+                         str(o.get("away") or ""), str(o.get("under_2_5") or ""),
+                         str(o.get("over_2_5") or ""), str(o.get("hsh_first") or ""),
+                         str(o.get("hsh_equal") or ""), str(o.get("hsh_second") or "")]
+                lignes.append("| " + " | ".join(cells) + " |")
+        return "\n".join(lignes) + "\n"
     lignes = [head]
     for m in slate.get("matches") or []:
         o = m.get("odds") or {}

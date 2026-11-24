@@ -37,6 +37,7 @@ _TOK = {
     "total": re.compile(r"\bTotal\s*([0-9]{3}(?:\.[05])?)", re.I),
     "under": re.compile(r"\bU(?:nder)?\s*2?\.?5?\s*:?\s*" + _COTE, re.I),
     "over": re.compile(r"\bO(?:ver)?\s*2?\.?5?\s*:?\s*" + _COTE, re.I),
+    "ligne": re.compile(r"\bLigne\s*:?\s*([0-9]{1,3}(?:\.[05])?)", re.I),
     "uo_line": re.compile(r"\b([0-9]{1,3}(?:\.[05])?)\s*:\s*" + _COTE + r"\s*/\s*" + _COTE, re.I),
     "hsh": re.compile(r"\bHSH\s*" + _COTE + r"\s*/\s*" + _COTE + r"\s*/\s*" + _COTE, re.I),
     "mid": re.compile(r"#(\d+)"),
@@ -137,6 +138,9 @@ def parse_block(block, sport):
             if err:
                 holes.append(k + "_" + err)
     if sport == "foot":
+        mligne = _TOK["ligne"].search(joined)
+        if mligne:
+            odds.setdefault("total_line", _f(mligne.group(1)))
         mu = _TOK["uo_line"].search(joined)
         if mu:
             odds["under_2_5"], odds["over_2_5"] = _f(mu.group(2)), _f(mu.group(3))
