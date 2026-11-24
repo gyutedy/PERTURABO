@@ -1,6 +1,6 @@
 {
   "source": "input_capture",
-  "generated_at": "2026-11-24T13:59:06Z",
+  "generated_at": "2026-11-24T14:28:34Z",
   "ligue": "Capture — ligue à confirmer",
   "horizon": "capture 2026-11-24",
   "matchs": [
@@ -306,7 +306,7 @@
     }
   ],
   "warnings": [
-    "inject CAPTEURS 2026-11-24T13:59:09Z [E1]: 8 auto / 0 manquants"
+    "inject CAPTEURS 2026-11-24T14:28:38Z [E1]: 8 auto / 0 manquants"
   ],
   "notes_count": 0
 }
