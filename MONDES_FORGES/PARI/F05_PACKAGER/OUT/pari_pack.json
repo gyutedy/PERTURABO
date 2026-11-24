@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-24T12:34:07Z",
+  "generated_at": "2026-11-24T12:45:25Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 6",
+  "titre": "DIRECTION DES SIÈGES — TOP 3",
   "top_picks": [
     {
-      "match_id": "M3",
-      "match": "Cardiff City vs Preston North End",
+      "match_id": "M1",
+      "match": "Middlesbrough FC vs Swansea City",
       "marche": "1X2",
       "selection": "2",
       "selection_label": "Victoire Extérieur",
-      "cote": 5.7,
-      "p_modele": 0.2851,
-      "ev": 0.6251,
-      "mise_units": 1.66,
+      "cote": 6.0,
+      "p_modele": 0.2277,
+      "ev": 0.3662,
+      "mise_units": 0.92,
       "note_risque": "qualité data: haute",
       "vanus_flags": [],
       "vanus_action": "skip",
@@ -23,15 +23,15 @@
       "rang": 1
     },
     {
-      "match_id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
+      "match_id": "M4",
+      "match": "Charlton Athletic vs Lincoln City",
       "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 4.8,
-      "p_modele": 0.3271,
-      "ev": 0.5701,
-      "mise_units": 1.88,
+      "selection": "1",
+      "selection_label": "Victoire Domicile",
+      "cote": 2.8,
+      "p_modele": 0.405,
+      "ev": 0.134,
+      "mise_units": 0.93,
       "note_risque": "qualité data: haute",
       "vanus_flags": [],
       "vanus_action": "skip",
@@ -41,15 +41,15 @@
       "rang": 2
     },
     {
-      "match_id": "M4",
-      "match": "Charlton Athletic vs Lincoln City",
+      "match_id": "M1",
+      "match": "Middlesbrough FC vs Swansea City",
       "marche": "1X2",
-      "selection": "1",
-      "selection_label": "Victoire Domicile",
-      "cote": 2.8,
-      "p_modele": 0.4308,
-      "ev": 0.2062,
-      "mise_units": 1.43,
+      "selection": "X",
+      "selection_label": "Nul",
+      "cote": 4.8,
+      "p_modele": 0.226,
+      "ev": 0.0848,
+      "mise_units": 0.28,
       "note_risque": "qualité data: haute",
       "vanus_flags": [],
       "vanus_action": "skip",
@@ -57,88 +57,42 @@
         "vanus_absent"
       ],
       "rang": 3
-    },
-    {
-      "match_id": "M4",
-      "match": "Charlton Athletic vs Lincoln City",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 3.25,
-      "p_modele": 0.3487,
-      "ev": 0.1333,
-      "mise_units": 0.74,
-      "note_risque": "qualité data: haute",
-      "vanus_flags": [],
-      "vanus_action": "skip",
-      "vanus_holes": [
-        "vanus_absent"
-      ],
-      "rang": 4
-    },
-    {
-      "match_id": "M2",
-      "match": "Bristol City vs Wrexham AFC",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 3.25,
-      "p_modele": 0.3329,
-      "ev": 0.0819,
-      "mise_units": 0.46,
-      "note_risque": "qualité data: haute",
-      "vanus_flags": [],
-      "vanus_action": "skip",
-      "vanus_holes": [
-        "vanus_absent"
-      ],
-      "rang": 5
-    },
+    }
+  ],
+  "no_bet": [
     {
       "match_id": "M3",
       "match": "Cardiff City vs Preston North End",
-      "marche": "1X2",
-      "selection": "X",
-      "selection_label": "Nul",
-      "cote": 4.8,
-      "p_modele": 0.2253,
-      "ev": 0.0814,
-      "mise_units": 0.27,
-      "note_risque": "qualité data: haute",
+      "raison": "EV < seuil sur tous les marchés",
       "vanus_flags": [],
-      "vanus_action": "skip",
-      "vanus_holes": [
-        "vanus_absent"
-      ],
-      "rang": 6
+      "vanus_action": "skip"
     }
   ],
-  "no_bet": [],
   "combines": [
     {
       "jambes": [
         {
-          "match_id": "M3",
-          "selection": "2",
-          "cote": 5.7,
-          "p_modele": 0.2851
-        },
-        {
           "match_id": "M1",
-          "selection": "X",
-          "cote": 4.8,
-          "p_modele": 0.3271
+          "selection": "2",
+          "cote": 6.0,
+          "p_modele": 0.2277
         },
         {
           "match_id": "M4",
           "selection": "1",
           "cote": 2.8,
-          "p_modele": 0.4308
+          "p_modele": 0.405
+        },
+        {
+          "match_id": "M1",
+          "selection": "X",
+          "cote": 4.8,
+          "p_modele": 0.226
         }
       ],
-      "cote_totale": 76.61,
-      "ev_combine": 2.0777,
-      "mise_units": 0.34,
+      "cote_totale": 80.64,
+      "ev_combine": 0.6806,
+      "mise_units": 0.11,
       "kelly_fraction": 0.125,
       "kelly_label": "1/8",
       "kelly_holes": [
@@ -153,11 +107,11 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 6.78,
-    "ev_moyenne_pct": 0.283,
+    "mise_totale_units": 2.24,
+    "ev_moyenne_pct": 0.195,
     "nb_matchs_analyses": 4,
-    "nb_no_bet": 0,
-    "nb_matchs_go": 4,
+    "nb_no_bet": 1,
+    "nb_matchs_go": 3,
     "nb_vanus_veto": 0
   },
   "vanus_holes": [

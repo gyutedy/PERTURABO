@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T12:34:06Z",
+  "generated_at": "2026-11-24T12:45:24Z",
   "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
@@ -13,28 +13,22 @@
       "match": "Middlesbrough FC vs Swansea City",
       "verdict": "GO",
       "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%",
-        "incoherence_modele_empirique"
+        "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [
-        "incoherence_modele_empirique"
-      ],
+      "flags": [],
       "o2.5_empirique": 0.5336021505376344,
-      "o2.5_modele": 0.2334
+      "o2.5_modele": 0.5945
     },
     {
       "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
       "verdict": "GO",
       "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%",
-        "incoherence_modele_empirique"
+        "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [
-        "incoherence_modele_empirique"
-      ],
+      "flags": [],
       "o2.5_empirique": 0.5336021505376344,
-      "o2.5_modele": 0.2631
+      "o2.5_modele": 0.4427
     },
     {
       "id": "M3",
@@ -45,21 +39,18 @@
       ],
       "flags": [],
       "o2.5_empirique": 0.5336021505376344,
-      "o2.5_modele": 0.6509
+      "o2.5_modele": 0.5986
     },
     {
       "id": "M4",
       "match": "Charlton Athletic vs Lincoln City",
       "verdict": "GO",
       "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%",
-        "incoherence_modele_empirique"
+        "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "flags": [
-        "incoherence_modele_empirique"
-      ],
+      "flags": [],
       "o2.5_empirique": 0.5336021505376344,
-      "o2.5_modele": 0.2171
+      "o2.5_modele": 0.4947
     }
   ]
 }

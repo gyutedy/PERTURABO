@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T12:34:06Z",
+  "generated_at": "2026-11-24T12:45:24Z",
   "methode": "Top 3 = VALUE seulement, tri EV desc puis p_modele desc. Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. Score commun 01-10 = 30% qualité data + 40% p_modele de la jambe #1 + 30% edge EV de la jambe #1 (pas le p_max du pool). Pool vide = score 0 FAIBLE. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. p_fav = max p_modele des selections 1/2. vestiaire_ok = state_factors.applied et effectifs connus.",
   "source_predictions": "predictions.json",
   "matchs": [
@@ -8,7 +8,7 @@
       "match": "Charlton Athletic vs Lincoln City",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
-      "score_commun": 8.7,
+      "score_commun": 8.5,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -18,10 +18,10 @@
           "selection": "1",
           "selection_label": "Victoire Domicile",
           "cote": 2.8,
-          "p_modele": 0.4308,
-          "ev": 0.2062,
+          "p_modele": 0.405,
+          "ev": 0.134,
           "verdict": "VALUE",
-          "edge_net_devig": 0.275,
+          "edge_net_devig": 0.1986,
           "devig_gap": -0.000259,
           "p_fair_additif": 0.3381,
           "overround": 0.056992,
@@ -75,23 +75,36 @@
             "move_t2h": null,
             "move_t0": null
           },
-          "p_fav": 0.4308,
+          "p_fav": 0.405,
           "vestiaire_ok": false
-        },
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 1
+    },
+    {
+      "id": "M1",
+      "match": "Middlesbrough FC vs Swansea City",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.4,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
         {
-          "rang": 2,
+          "rang": 1,
           "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.25,
-          "p_modele": 0.3487,
-          "ev": 0.1333,
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 6.0,
+          "p_modele": 0.2277,
+          "ev": 0.3662,
           "verdict": "VALUE",
-          "edge_net_devig": 0.1979,
-          "devig_gap": 0.002407,
-          "p_fair_additif": 0.2887,
-          "overround": 0.056992,
-          "scorer_score": 0.7,
+          "edge_net_devig": 0.4481,
+          "devig_gap": 0.010553,
+          "p_fair_additif": 0.1467,
+          "overround": 0.059932,
+          "scorer_score": 0.65,
           "scorer_eligible": true,
           "scorer_seuil": 0.55,
           "scorer_refuse": [],
@@ -103,8 +116,8 @@
             },
             "B2": {
               "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
+              "raw": 0.25,
+              "contrib": 0.05
             },
             "B3": {
               "poids": 0.2,
@@ -135,38 +148,25 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 3.25,
+            "capture": 6.0,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
             "move_t0": null
           },
-          "p_fav": 0.4308,
+          "p_fav": 0.5463,
           "vestiaire_ok": false
-        }
-      ],
-      "quality_data": "haute",
-      "rang_global": 1
-    },
-    {
-      "id": "M1",
-      "match": "Middlesbrough FC vs Swansea City",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 8.0,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [
+        },
         {
-          "rang": 1,
+          "rang": 2,
           "marche": "1X2",
           "selection": "X",
           "selection_label": "Nul",
           "cote": 4.8,
-          "p_modele": 0.3271,
-          "ev": 0.5701,
+          "p_modele": 0.226,
+          "ev": 0.0848,
           "verdict": "VALUE",
-          "edge_net_devig": 0.6642,
+          "edge_net_devig": 0.1498,
           "devig_gap": 0.008197,
           "p_fair_additif": 0.1884,
           "overround": 0.059932,
@@ -220,7 +220,7 @@
             "move_t2h": null,
             "move_t0": null
           },
-          "p_fav": 0.4995,
+          "p_fav": 0.5463,
           "vestiaire_ok": false
         }
       ],
@@ -230,224 +230,24 @@
     {
       "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 7.8,
+      "verdict_modele": "THIN",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 3.25,
-          "p_modele": 0.3329,
-          "ev": 0.0819,
-          "verdict": "VALUE",
-          "edge_net_devig": 0.145,
-          "devig_gap": 0.002484,
-          "p_fair_additif": 0.2883,
-          "overround": 0.058321,
-          "scorer_score": 0.7,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 3.25,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          },
-          "p_fav": 0.4025,
-          "vestiaire_ok": false
-        }
-      ],
+      "top3": [],
       "quality_data": "haute",
       "rang_global": 3
     },
     {
       "id": "M3",
       "match": "Cardiff City vs Preston North End",
-      "verdict_modele": "GO",
-      "bucket": "HAUTE",
-      "score_commun": 7.8,
+      "verdict_modele": "NO_BET",
+      "bucket": "FAIBLE",
+      "score_commun": 0.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [
-        {
-          "rang": 1,
-          "marche": "1X2",
-          "selection": "2",
-          "selection_label": "Victoire Extérieur",
-          "cote": 5.7,
-          "p_modele": 0.2851,
-          "ev": 0.6251,
-          "verdict": "VALUE",
-          "edge_net_devig": 0.7143,
-          "devig_gap": 0.009172,
-          "p_fair_additif": 0.1571,
-          "overround": 0.054913,
-          "scorer_score": 0.65,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.25,
-              "contrib": 0.05
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 5.7,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          },
-          "p_fav": 0.4896,
-          "vestiaire_ok": false
-        },
-        {
-          "rang": 2,
-          "marche": "1X2",
-          "selection": "X",
-          "selection_label": "Nul",
-          "cote": 4.8,
-          "p_modele": 0.2253,
-          "ev": 0.0814,
-          "verdict": "VALUE",
-          "edge_net_devig": 0.1408,
-          "devig_gap": 0.00746,
-          "p_fair_additif": 0.19,
-          "overround": 0.054913,
-          "scorer_score": 0.7,
-          "scorer_eligible": true,
-          "scorer_seuil": 0.55,
-          "scorer_refuse": [],
-          "scorer_contrib": {
-            "B1": {
-              "poids": 0.3,
-              "raw": 1.0,
-              "contrib": 0.3
-            },
-            "B2": {
-              "poids": 0.2,
-              "raw": 0.5,
-              "contrib": 0.1
-            },
-            "B3": {
-              "poids": 0.2,
-              "raw": 0.0,
-              "contrib": 0.0
-            },
-            "B4": {
-              "poids": 0.15,
-              "raw": 1.0,
-              "contrib": 0.15
-            },
-            "B5": {
-              "poids": 0.1,
-              "raw": 1.0,
-              "contrib": 0.1
-            },
-            "B6": {
-              "poids": 0.05,
-              "raw": 1.0,
-              "contrib": 0.05
-            }
-          },
-          "pieges": [],
-          "piege_detail": {
-            "cote_plate": false,
-            "marge_anomalique": false,
-            "cote_figee_sur_news": false,
-            "marche_vitrine": false
-          },
-          "lecture_cotes": {
-            "capture": 4.8,
-            "t2h": null,
-            "t0": null,
-            "move_t2h": null,
-            "move_t0": null
-          },
-          "p_fav": 0.4896,
-          "vestiaire_ok": false
-        }
-      ],
+      "top3": [],
       "quality_data": "haute",
       "rang_global": 4
     }
