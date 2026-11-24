@@ -1,9 +1,15 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "foot",
+<<<<<<< HEAD
   "generated_at": "2026-11-24T14:07:08.159638+00:00",
   "campagne": null,
   "campagne_uid": null,
+=======
+  "generated_at": "2026-11-24T13:58:23.820967+00:00",
+  "campagne": "PARI-20261124",
+  "campagne_uid": "O1PJ",
+>>>>>>> origin/pari-winner-sensor-m1
   "matches": {
     "M1": {
       "match_key": "M1",
@@ -15,9 +21,15 @@
       "captures": [
         {
           "seq": 1,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T14:04:36Z",
           "heures_avant_coup": 3.92,
+=======
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
+>>>>>>> origin/pari-winner-sensor-m1
           "cotes": {
             "1": 1.46,
             "X": 4.8,
@@ -28,9 +40,15 @@
         },
         {
           "seq": 2,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T14:04:36Z",
           "heures_avant_coup": 3.92,
+=======
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
+>>>>>>> origin/pari-winner-sensor-m1
           "cotes": {
             "1": 2.45,
             "X": 3.25,
@@ -41,9 +59,15 @@
         },
         {
           "seq": 3,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T14:04:36Z",
           "heures_avant_coup": 3.92,
+=======
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
+>>>>>>> origin/pari-winner-sensor-m1
           "cotes": {
             "1": 1.49,
             "X": 4.8,
@@ -54,13 +78,20 @@
         },
         {
           "seq": 4,
+<<<<<<< HEAD
           "capture_id": null,
           "at": "2026-11-24T14:04:36Z",
           "heures_avant_coup": 3.92,
+=======
+          "capture_id": "C-YZS",
+          "at": "2026-11-24T13:58:23Z",
+          "heures_avant_coup": 4.03,
+>>>>>>> origin/pari-winner-sensor-m1
           "cotes": {
             "1": 2.8,
             "X": 3.25,
             "2": 2.55
+<<<<<<< HEAD
           },
           "source": "winner_capture",
           "mode_detection": "match_inferé"
@@ -119,6 +150,14 @@
         }
       ],
       "next_alert_at": "2026-11-24T16:04:36+00:00",
+=======
+          },
+          "source": "winner_capture",
+          "mode_detection": "match_inferé"
+        }
+      ],
+      "next_alert_at": "2026-11-24T15:58:23+00:00",
+>>>>>>> origin/pari-winner-sensor-m1
       "last_alert_at": null,
       "holes": [
         "match_nouveau",

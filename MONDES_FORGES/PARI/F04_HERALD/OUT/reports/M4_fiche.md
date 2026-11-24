@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Charlton Athletic vs Lincoln City
-*Générée le 2026-11-24 13:45 UTC — siege_id courant*
+*Générée le 2026-11-24 13:59 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 13.4%
 
@@ -20,6 +20,8 @@
 | 1X2 | Victoire Domicile | 2.8 | 40.5% | 13.4% |  VALUE | 0.93u |
 | 1X2 | Nul | 3.25 | 26.5% | -14.0% | ⛔ NO_BET | — |
 | 1X2 | Victoire Extérieur | 2.55 | 33.1% | -15.7% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.71 | 50.5% | -13.6% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 2.1 | 49.5% | 3.9% | 🟡 THIN | 0.22u |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 25.6% | -23.2% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle

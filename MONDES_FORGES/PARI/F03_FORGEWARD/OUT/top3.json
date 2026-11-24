@@ -1,8 +1,87 @@
 {
-  "generated_at": "2026-11-24T13:45:02Z",
+  "generated_at": "2026-11-24T13:59:21Z",
   "methode": "Top 3 = VALUE seulement, tri EV desc puis p_modele desc. Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. Score commun 01-10 = 30% qualité data + 40% p_modele de la jambe #1 + 30% edge EV de la jambe #1 (pas le p_max du pool). Pool vide = score 0 FAIBLE. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. p_fav = max p_modele des selections 1/2. vestiaire_ok = state_factors.applied et effectifs connus.",
   "source_predictions": "predictions.json",
   "matchs": [
+    {
+      "id": "M3",
+      "match": "Cardiff City vs Preston North End",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.5,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.75,
+          "p_modele": 0.4014,
+          "ev": 0.1038,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.168,
+          "devig_gap": 0.009079,
+          "p_fair_additif": 0.3346,
+          "overround": 0.058081,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.75,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.6418,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 1
+    },
     {
       "id": "M4",
       "match": "Charlton Athletic vs Lincoln City",
@@ -80,7 +159,7 @@
         }
       ],
       "quality_data": "haute",
-      "rang_global": 1
+      "rang_global": 2
     },
     {
       "id": "M1",
@@ -222,27 +301,81 @@
           },
           "p_fav": 0.5463,
           "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.67,
+          "p_modele": 0.4055,
+          "ev": 0.0827,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.1471,
+          "devig_gap": 0.008711,
+          "p_fair_additif": 0.3448,
+          "overround": 0.059463,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.67,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5463,
+          "vestiaire_ok": false
         }
       ],
       "quality_data": "haute",
-      "rang_global": 2
+      "rang_global": 3
     },
     {
       "id": "M2",
       "match": "Bristol City vs Wrexham AFC",
       "verdict_modele": "THIN",
-      "bucket": "FAIBLE",
-      "score_commun": 0.0,
-      "no_bet_recommande": false,
-      "marches_exclus_qualitatifs": [],
-      "top3": [],
-      "quality_data": "haute",
-      "rang_global": 3
-    },
-    {
-      "id": "M3",
-      "match": "Cardiff City vs Preston North End",
-      "verdict_modele": "NO_BET",
       "bucket": "FAIBLE",
       "score_commun": 0.0,
       "no_bet_recommande": false,
