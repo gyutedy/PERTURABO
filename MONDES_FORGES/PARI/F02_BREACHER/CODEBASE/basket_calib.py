@@ -89,6 +89,8 @@ def fit(rows, ratings, cutoff=CUTOFF, lam=LAMBDA, out=None):
     for r in rows:
         if r["date"] < cutoff or r.get("pts_home") is None:
             continue
+        if r.get("source_prix") == "proxy_yahoo":
+            continue
         mk = None
         try:
             oh, oa = float(r.get("odds_home")), float(r.get("odds_away"))

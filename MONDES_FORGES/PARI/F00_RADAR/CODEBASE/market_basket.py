@@ -88,6 +88,7 @@ def normalize(row):
         "pts_away": pa,
         "odds_home": _odds_num(row.get("odds_home")),
         "odds_away": _odds_num(row.get("odds_away")),
+        "source_prix": (row.get("source_prix") or "").strip() or None,
         "holes": holes,
     }
 

@@ -1,6 +1,6 @@
 {
   "contract": "pari.basket_prior.v1",
-  "generated_at": "2026-11-23T23:05:55.319664+00:00",
+  "generated_at": "2026-11-24T11:11:11.679706+00:00",
   "n_train": 2,
   "n_test": 0,
   "brier_modele": null,

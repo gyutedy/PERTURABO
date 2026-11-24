@@ -1,0 +1,48 @@
+# PARI — rappels de capture Winner toutes les 2h (fork pari-winner-sensor-m1)
+name: pari-capture-alerts
+on:
+  schedule:
+  - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pari-capture-alerts
+  cancel-in-progress: false
+
+jobs:
+  alertes:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: pari-winner-sensor-m1
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Ecrire env_pari depuis les Secrets GitHub
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: python3 .github/scripts/write_env_pari.py
+
+    - name: Rappels capture Winner
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        cd MONDES_FORGES/PARI
+        python3 ORCHESTRATOR/LISTEN/capture_alerts.py
+
+    - name: Commit etat watch
+      run: |
+        git config user.name "pari-agent"
+        git config user.email "pari-agent@local"
+        git add MONDES_FORGES/PARI/ARCHIVUM/winner/watch_*.json || true
+        git diff --staged --quiet || git commit -m "PARI: etat watch capture Winner"
+        git pull --rebase origin pari-winner-sensor-m1 || true
+        git push origin HEAD:pari-winner-sensor-m1 || true

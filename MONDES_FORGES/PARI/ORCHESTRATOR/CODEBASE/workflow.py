@@ -134,7 +134,12 @@ def _ledger():
 
 
 def cmd_start(st, arg):
+    import secrets
+    import string
     st["campagne"] = f"PARI-{datetime.now(timezone.utc).strftime('%Y%m%d')}"
+    st["campagne_uid"] = "".join(secrets.choice(string.ascii_uppercase + string.digits)
+                                 for _ in range(4))
+    st["capture_seq"] = 0
     st["steps"] = {"start": _now()}
     st["capture"] = None
     st["capturer_statut"] = None
@@ -149,7 +154,7 @@ def cmd_start(st, arg):
     st["pending_lot"] = None
     save(st)
     br = st.get("bankroll_fc") or 0
-    tell(f"Campagne **{st['campagne']}** ouverte.\n"
+    tell(f"Campagne **{st['campagne']}-{st['campagne_uid']}** ouverte.\n"
          + (f"Bankroll : **{br:.0f} FC** (persiste).\n" if br else
             "Bankroll absente — tape `/budget bankroll 50000` une fois (pot global, persiste).\n")
           + "1. Capture Winner Bet : `/capture` + tableau markdown DANS le meme message, ou photo avec caption `/capture`\n"
@@ -181,6 +186,54 @@ def resolve_capture(fichier):
     return cands[0]
 
 
+def _watch_from_capture(sport, st=None):
+    """Enregistre la capture Winner dans l'etat watch (same-book, sans token)."""
+    try:
+        import winner_watch as ww
+    except ImportError:
+        _f06 = P("F06_TRACKER", "CODEBASE")
+        if _f06 not in sys.path:
+            sys.path.insert(0, _f06)
+        try:
+            import winner_watch as ww
+        except ImportError:
+            return []
+    name = "capture_basket.json" if sport == "basket" else "capture_parsed.json"
+    blob = load_json(P("F01_SENTINEL", "OUT", name)) or {}
+    groupes = blob.get("captures") or [{"matchs": blob.get("matchs") or []}]
+    out = []
+    st = st or {}
+    for groupe in groupes:
+        for m in groupe.get("matchs") or []:
+            raw = m.get("cotes") or {}
+            cotes = {}
+            if sport == "basket":
+                cotes = {"1": m.get("ml_home"), "2": m.get("ml_away")}
+            else:
+                cotes = {"1": raw.get("1"), "X": raw.get("X"), "2": raw.get("2"),
+                         "under": raw.get("under"), "over": raw.get("over")}
+            cotes = {k: v for k, v in cotes.items() if v is not None}
+            if not cotes:
+                continue
+            seq = int(st.get("capture_seq") or 0) + 1
+            st["capture_seq"] = seq
+            kick_raw = m.get("date") or m.get("date_iso")
+            if sport == "foot" and m.get("heure") and kick_raw and "T" not in str(kick_raw):
+                kick_raw = "%sT%s:00+01:00" % (str(kick_raw)[:10], m["heure"])
+            rec = {
+                "source_event_id": m.get("game_id") or m.get("id"),
+                "home": m.get("dom") or m.get("home"),
+                "away": m.get("ext") or m.get("away"),
+                "kickoff_iso": ww.kickoff_iso(kick_raw),
+                "capture_id": st.get("capture_id"),
+                "cotes": cotes,
+                "at": _now(),
+            }
+            _, entry, _ = ww.upsert(sport, rec, st.get("campagne"), st.get("campagne_uid"))
+            out.append((entry.get("match_key"), entry.get("statut")))
+    return out
+
+
 def cmd_capture(st, fichier):
     if not st.get("campagne"):
         tell("⛔ Pas de campagne — `/start` d'abord."); return
@@ -208,6 +261,7 @@ def cmd_capture(st, fichier):
     if not ok:
         tell("⛔ Echec du parsing de la capture — corrige le texte OCR / capture."); return
     jf = load_json(P("F01_SENTINEL", "OUT", jname))
+    _watch_from_capture(sport, st)
     n = jf.get("n_matchs", 0) if jf else 0
     warn = len(jf.get("warnings", [])) if jf else 0
     notes_n = 0 if basket else enrich_f00_capture()
@@ -216,7 +270,8 @@ def cmd_capture(st, fichier):
     st["capture_sport"] = sport
     save(st)
     fmt = (jf or {}).get("source_format") or "texte"
-    tell(f"Capture parsee ({fmt}) : **{n} match(s)**, {warn} warning(s), notes: {notes_n} — "
+    tell(f"Capture {st.get('capture_id')} #{st.get('capture_seq')} — campagne {st.get('campagne')}-{st.get('campagne_uid')}\n"
+         f"Capture parsee ({fmt}) : **{n} match(s)**, {warn} warning(s), notes: {notes_n} — "
          "regle Zero Data, Zero Calc : **relis le JSON reconstitue** "
          f"(F01_SENTINEL/OUT/{jname}) → si ok : `/valider-1`")
     if basket:
@@ -977,11 +1032,18 @@ def cmd_match(st, arg):
 
 
 def cmd_stop(st, arg):
+    try:
+        import winner_watch
+        winner_watch.mark_stop()
+    except Exception:
+        pass
     br = st.get("bankroll_fc") or 0
-    tell(f"Campagne {st.get('campagne')} fermee. Bankroll **{br:.0f} FC** persiste. "
+    tell(f"Campagne {st.get('campagne')}-{st.get('campagne_uid') or '----'} fermee. Bankroll **{br:.0f} FC** persiste. "
          "Lots F06 intacts (tokens). consumed_legs reset. "
          "Mode B : `/start` → `/capture` → `/budget` → `/valider-1` → `/valider-2`.")
     st["campagne"] = None
+    st["campagne_uid"] = None
+    st["capture_seq"] = 0
     st["capture"] = None
     st["capturer_statut"] = None
     st["capture_id"] = None
@@ -1357,6 +1419,8 @@ def cmd_winner(st, arg):
             sport = "basket"
     if sport not in ("foot", "basket"):
         sport = "basket"
+    _watch_from_capture(sport, st)
+    save(st)
     view = winner_ingest.ingest(sport)
     lignes = ["WINNER " + sport.upper() + " — lecture seule. "
               "Cotes retail margees : devig F03 obligatoire avant tout usage."]

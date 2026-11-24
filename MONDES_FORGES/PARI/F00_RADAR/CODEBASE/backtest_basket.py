@@ -114,7 +114,11 @@ def run(cutoff_raw=None, csv_dir=None):
         brier_model += brier(p_home, y == 1.0)
         ll_model -= math.log(max(p_home if y == 1.0 else 1.0 - p_home, 1e-12))
         pairs_ece.append((p_home, y))
-        mk = implied_2way(r.get("odds_home"), r.get("odds_away"))
+        if r.get("source_prix") == "proxy_yahoo":
+            holes.append((r.get("game_id") or "") + ":marche_proxy_yahoo")
+            mk = None
+        else:
+            mk = implied_2way(r.get("odds_home"), r.get("odds_away"))
         if mk is None:
             holes.append((r.get("game_id") or "") + ":marche_absent")
         else:
@@ -128,6 +132,9 @@ def run(cutoff_raw=None, csv_dir=None):
     ll_gap = (round((ll_model - ll_market) / n, 6) if n and brier_market else None)
     gates = moteur_flag.gates(moteur_sport_cfg()) or {}
     verdict_block = backtest_market.apply_gates(n, brier_gap, ece, ll_gap, gates=gates)
+    if any("marche_proxy_yahoo" in str(h) for h in holes):
+        verdict_block["verdict"] = None
+        verdict_block.setdefault("reasons", []).append("marche_proxy_yahoo")
     out = {
         "contract": "pari.calibration_basket.v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),

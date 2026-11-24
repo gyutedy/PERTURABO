@@ -50,6 +50,7 @@ def _solve(X, Y, lam):
 
 def fit(rows, features_fn, cutoff="2025-01-01", out=None):
     X, Y = [], []
+    rows = [r for r in rows if r.get("source_prix") != "proxy_yahoo"]
     for r in rows:
         if r.get("date", "") >= cutoff:
             continue

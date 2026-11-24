@@ -58,6 +58,8 @@ ticket. Guide complet : `docs/CAHIER_BASKET.md`.
 | `/sport` | Affiche le sport actif + état des deux moteurs. `/sport foot` / `/sport basket` bascule (persiste dans `ARCHIVUM/state/sport_actif.json`, illisible = foot). Ne dégèle rien. |
 | `/basket` | Bascule vers basket + état détaillé (params, n_matchs, verdict calibration, gates). Retour : `/sport foot`. |
 
+**Campagne Winner same-book** : chaque capture est horodatée et identifiée `C-XXX #n` avec le `campagne_uid`. Le projet devine le match (id Winner → équipes → inférence à ±6 h) — aucun token à taper. Dès la première capture, un rappel Telegram part toutes les **2 h**, même à T-20 h ; il s'arrête au coup d'envoi ou sur `/stop`. Le CLV compare la première cote Winner à la dernière avant T-0 — jamais une cote d'un autre bookmaker.
+
 **Une seule photo suffit maintenant** : `/capture` + image (option `/capture foot|basket` pour forcer le sport). Le LLM vision extrait les équipes et les cotes, reconstruit le tableau Winner et alimente le siège ; l'OCR reste en repli si le LLM échoue.
 
 **Donner les matchs de basket** : `/sport basket` puis `/capture` + le tableau Winner Bet

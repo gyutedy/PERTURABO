@@ -125,6 +125,8 @@ def patch(path, index, dry_run=False):
     with open(path, encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         fields = list(reader.fieldnames or [])
+        if "source_prix" not in fields:
+            fields.append("source_prix")
         rows = list(reader)
     filled = 0
     deja = 0
@@ -144,6 +146,7 @@ def patch(path, index, dry_run=False):
             continue
         row["odds_home"] = "%.3f" % prices[0]
         row["odds_away"] = "%.3f" % prices[1]
+        row["source_prix"] = "proxy_yahoo"
         filled += 1
     if filled and not dry_run:
         tmp = path + ".tmp"

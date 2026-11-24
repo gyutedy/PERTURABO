@@ -199,10 +199,33 @@ def settle(csv_dir=None, out=None, params_path=None):
             close = cf.get(key)
         else:
             close = ou.get(bet.get("selection"))
-        if close and float(close) > 1:
+        clv_same = None
+        try:
+            import winner_watch as ww
+            sport_bet = bet.get("sport") or "foot"
+            watch = ww.load(sport_bet)
+            key = bet.get("match_key") or ww.key_of(bet.get("home"), bet.get("away"))
+            if key not in watch.get("matches", {}):
+                for k, v in watch.get("matches", {}).items():
+                    if (v.get("source_event_id") and str(v["source_event_id"]) == str(bet.get("source_event_id"))) \
+                            or ww.key_of(v.get("home"), v.get("away")) == ww.key_of(bet.get("home"), bet.get("away")):
+                        key = k
+                        break
+            if key in watch.get("matches", {}):
+                clv_same, hole_clv = ww.clv(sport_bet, key, bet.get("selection"))
+                if hole_clv:
+                    bet.setdefault("holes", []).append(hole_clv)
+        except Exception:
+            pass
+        if clv_same is not None:
+            bet["clv"] = clv_same
+            bet["clv_source"] = "winner_same_book"
+            bet["cote_cloture"] = None
+        elif close and float(close) > 1:
             bet["cote_cloture"] = float(close)
             bet["clv"] = round(float(bet["cote"]) / float(close) - 1.0, 6)
             bet["clv_source"] = "proxy_football_data"
+            bet.setdefault("holes", []).append("clv_proxy_only")
         regles += 1
     ledger["generated_at"] = datetime.now(timezone.utc).isoformat()
     with open(out or DEFAULT_OUT, "w", encoding="utf-8") as f:

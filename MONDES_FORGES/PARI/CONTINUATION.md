@@ -1106,6 +1106,29 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       `HISTORICAL_UNAVAILABLE_ON_FREE_USAGE_PLAN` (401) et Yahoo ne couvre que 2023/2024.
       Donc **CLV non mesurable**, pretendre un GO serait faux. Moteurs geles, aucun ticket.
 
+## ETAT v10.0 — CAMPAGNE WINNER SAME-BOOK + ALERTES 2H (2026-11-24)
+
+- [x] **Tokens** : `/start` ajoute `campagne_uid = XXXX` (4 caracteres), `/capture` repond
+      `C-XXX #n — campagne PARI-AAAAJJMM-XXXX`. Le token est **affiche, jamais a taper**.
+      `/stop` ferme la surveillance Winner.
+- [x] **Etat** : `F06_TRACKER/CODEBASE/winner_watch.py` + `ARCHIVUM/winner/watch_{foot,basket}.json`
+      enregistrent chaque capture Winner : `match_key`, `source_event_id`, `kickoff_iso`,
+      `captures[{seq,capture_id,at,cotes,heures_avant_coup,source:"winner_capture"}]`.
+      Devinage sans token : `id` → `match_key` → match actif unique a +/-6h (`match_inferé`)
+      → trou `match_ambigu`/`match_nouveau`. Aucune ecrasement d'historique.
+- [x] **Alertes** : `.github/workflows/pari_capture_alerts.yml` (fork, `0 */2 * * *`) +
+      `ORCHESTRATOR/LISTEN/capture_alerts.py`. Rappel Telegram **toutes les 2 h des la
+      premiere capture, meme a T-20 h**, anti-derive (fenetres sautees), arret au kickoff
+      ou sur `/stop` (`arret_manuel`, `clv_incomplet`). `test_winner_watch` **12/12**.
+- [x] **CLV same-book** : `paper_trader.settle` prefere `CLV = cote_1re / cote_T0 - 1`
+      (`clv_source: winner_same_book`) ; trou `clv_absent` si une seule capture. Le proxy
+      football-data ne reste que repli et porte `clv_proxy_only`, jamais preuve de GO.
+- [x] **Yahoo hors decision** : `closing_odds_yahoo.py` marque les cotes injectees
+      `source_prix = proxy_yahoo` ; `market_basket.load_dir` les expose ; `backtest_basket`,
+      `basket_calib`, `basket_prior` les excluent du benchmark et forcent `verdict=None`.
+      Connecteur et vieux CSV conserves (trace), aucun prix cross-book dans un GO.
+- [x] **Gel intact** : aucune mise, aucun ticket, aucun `/gel off` ; listes diagnostic seulement.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
