@@ -1,0 +1,665 @@
+{
+"mgladbach": [
+"D1"
+],
+"leverkusen": [
+"D1"
+],
+"augsburg": [
+"D1"
+],
+"werderbremen": [
+"D1"
+],
+"freiburg": [
+"D1"
+],
+"stuttgart": [
+"D1"
+],
+"hoffenheim": [
+"D1"
+],
+"holsteinkiel": [
+"D1",
+"D2"
+],
+"mainz": [
+"D1"
+],
+"unionberlin": [
+"D1"
+],
+"rbleipzig": [
+"D1"
+],
+"bochum": [
+"D1",
+"D2"
+],
+"dortmund": [
+"D1"
+],
+"einfrankfurt": [
+"D1"
+],
+"wolfsburg": [
+"D1",
+"D2"
+],
+"bayernmunich": [
+"D1"
+],
+"stpauli": [
+"D1",
+"D2"
+],
+"heidenheim": [
+"D1",
+"D2"
+],
+"fckoln": [
+"D1",
+"D2"
+],
+"hamburg": [
+"D1",
+"D2"
+],
+"elversberg": [
+"D1",
+"D2"
+],
+"paderborn": [
+"D1",
+"D2"
+],
+"schalke04": [
+"D1",
+"D2"
+],
+"hannover": [
+"D2"
+],
+"regensburg": [
+"D2"
+],
+"hertha": [
+"D2"
+],
+"karlsruhe": [
+"D2"
+],
+"nurnberg": [
+"D2"
+],
+"magdeburg": [
+"D2"
+],
+"braunschweig": [
+"D2"
+],
+"darmstadt": [
+"D2"
+],
+"fortunadusseldorf": [
+"D2"
+],
+"greutherfurth": [
+"D2"
+],
+"preuenmnster": [
+"D2"
+],
+"ulm": [
+"D2"
+],
+"kaiserslautern": [
+"D2"
+],
+"bielefeld": [
+"D2"
+],
+"dresden": [
+"D2"
+],
+"osnabruck": [
+"D2"
+],
+"cottbus": [
+"D2"
+],
+"manunited": [
+"E0"
+],
+"fulham": [
+"E0"
+],
+"ipswich": [
+"E0",
+"E1"
+],
+"liverpool": [
+"E0"
+],
+"arsenal": [
+"E0"
+],
+"wolves": [
+"E0",
+"E1"
+],
+"everton": [
+"E0"
+],
+"brighton": [
+"E0"
+],
+"newcastle": [
+"E0"
+],
+"southampton": [
+"E0",
+"E1"
+],
+"nottmforest": [
+"E0"
+],
+"bournemouth": [
+"E0"
+],
+"westham": [
+"E0",
+"E1"
+],
+"astonvilla": [
+"E0"
+],
+"brentford": [
+"E0"
+],
+"crystalpalace": [
+"E0"
+],
+"chelsea": [
+"E0"
+],
+"mancity": [
+"E0"
+],
+"leicester": [
+"E0",
+"E1"
+],
+"tottenham": [
+"E0"
+],
+"sunderland": [
+"E0",
+"E1"
+],
+"burnley": [
+"E0",
+"E1"
+],
+"leeds": [
+"E0",
+"E1"
+],
+"coventry": [
+"E0",
+"E1"
+],
+"hull": [
+"E0",
+"E1"
+],
+"blackburn": [
+"E1"
+],
+"derby": [
+"E1"
+],
+"preston": [
+"E1"
+],
+"sheffieldunited": [
+"E1"
+],
+"cardiff": [
+"E1"
+],
+"bristolcity": [
+"E1"
+],
+"portsmouth": [
+"E1"
+],
+"middlesbrough": [
+"E1"
+],
+"swansea": [
+"E1"
+],
+"millwall": [
+"E1"
+],
+"watford": [
+"E1"
+],
+"oxford": [
+"E1"
+],
+"norwich": [
+"E1"
+],
+"qpr": [
+"E1"
+],
+"westbrom": [
+"E1"
+],
+"stoke": [
+"E1"
+],
+"sheffieldweds": [
+"E1"
+],
+"plymouth": [
+"E1"
+],
+"luton": [
+"E1"
+],
+"birmingham": [
+"E1"
+],
+"charlton": [
+"E1"
+],
+"wrexham": [
+"E1"
+],
+"bolton": [
+"E1"
+],
+"lincoln": [
+"E1"
+],
+"lehavre": [
+"F1"
+],
+"parissg": [
+"F1"
+],
+"brest": [
+"F1"
+],
+"marseille": [
+"F1"
+],
+"reims": [
+"F1"
+],
+"lille": [
+"F1"
+],
+"monaco": [
+"F1"
+],
+"stetienne": [
+"F1"
+],
+"auxerre": [
+"F1"
+],
+"nice": [
+"F1"
+],
+"angers": [
+"F1"
+],
+"lens": [
+"F1"
+],
+"montpellier": [
+"F1"
+],
+"strasbourg": [
+"F1"
+],
+"toulouse": [
+"F1"
+],
+"nantes": [
+"F1"
+],
+"rennes": [
+"F1"
+],
+"lyon": [
+"F1"
+],
+"parisfc": [
+"F1"
+],
+"lorient": [
+"F1"
+],
+"metz": [
+"F1"
+],
+"lemans": [
+"F1"
+],
+"troyes": [
+"F1"
+],
+"genoa": [
+"I1"
+],
+"inter": [
+"I1"
+],
+"parma": [
+"I1"
+],
+"fiorentina": [
+"I1"
+],
+"empoli": [
+"I1",
+"I2"
+],
+"monza": [
+"I1",
+"I2"
+],
+"milan": [
+"I1"
+],
+"torino": [
+"I1"
+],
+"bologna": [
+"I1"
+],
+"udinese": [
+"I1"
+],
+"verona": [
+"I1",
+"I2"
+],
+"napoli": [
+"I1"
+],
+"cagliari": [
+"I1"
+],
+"roma": [
+"I1"
+],
+"lazio": [
+"I1"
+],
+"venezia": [
+"I1",
+"I2"
+],
+"lecce": [
+"I1"
+],
+"atalanta": [
+"I1"
+],
+"juventus": [
+"I1"
+],
+"como": [
+"I1"
+],
+"sassuolo": [
+"I1",
+"I2"
+],
+"cremonese": [
+"I1",
+"I2"
+],
+"pisa": [
+"I1",
+"I2"
+],
+"frosinone": [
+"I1",
+"I2"
+],
+"brescia": [
+"I2"
+],
+"palermo": [
+"I2"
+],
+"bari": [
+"I2"
+],
+"juvestabia": [
+"I2"
+],
+"spezia": [
+"I2"
+],
+"salernitana": [
+"I2"
+],
+"cittadella": [
+"I2"
+],
+"sudtirol": [
+"I2"
+],
+"modena": [
+"I2"
+],
+"catanzaro": [
+"I2"
+],
+"cesena": [
+"I2"
+],
+"carrarese": [
+"I2"
+],
+"cosenza": [
+"I2"
+],
+"sampdoria": [
+"I2"
+],
+"reggiana": [
+"I2"
+],
+"mantova": [
+"I2"
+],
+"pescara": [
+"I2"
+],
+"padova": [
+"I2"
+],
+"virtusentella": [
+"I2"
+],
+"avellino": [
+"I2"
+],
+"vicenza": [
+"I2"
+],
+"arezzo": [
+"I2"
+],
+"benevento": [
+"I2"
+],
+"ascoli": [
+"I2"
+],
+"athbilbao": [
+"SP1"
+],
+"getafe": [
+"SP1"
+],
+"betis": [
+"SP1"
+],
+"girona": [
+"SP1",
+"SP2"
+],
+"celta": [
+"SP1"
+],
+"alaves": [
+"SP1"
+],
+"laspalmas": [
+"SP1",
+"SP2"
+],
+"sevilla": [
+"SP1"
+],
+"osasuna": [
+"SP1"
+],
+"leganes": [
+"SP1",
+"SP2"
+],
+"valencia": [
+"SP1"
+],
+"barcelona": [
+"SP1"
+],
+"sociedad": [
+"SP1"
+],
+"vallecano": [
+"SP1"
+],
+"mallorca": [
+"SP1",
+"SP2"
+],
+"realmadrid": [
+"SP1"
+],
+"valladolid": [
+"SP1",
+"SP2"
+],
+"espanol": [
+"SP1"
+],
+"villarreal": [
+"SP1"
+],
+"athmadrid": [
+"SP1"
+],
+"oviedo": [
+"SP1",
+"SP2"
+],
+"levante": [
+"SP1",
+"SP2"
+],
+"elche": [
+"SP1",
+"SP2"
+],
+"santander": [
+"SP1",
+"SP2"
+],
+"lacoruna": [
+"SP1",
+"SP2"
+],
+"malaga": [
+"SP1",
+"SP2"
+],
+"granada": [
+"SP2"
+],
+"albacete": [
+"SP2"
+],
+"mirandes": [
+"SP2"
+],
+"cordoba": [
+"SP2"
+],
+"cadiz": [
+"SP2"
+],
+"zaragoza": [
+"SP2"
+],
+"eibar": [
+"SP2"
+],
+"castellon": [
+"SP2"
+],
+"ferrol": [
+"SP2"
+],
+"almeria": [
+"SP2"
+],
+"spgijon": [
+"SP2"
+],
+"burgos": [
+"SP2"
+],
+"cartagena": [
+"SP2"
+],
+"huesca": [
+"SP2"
+],
+"eldense": [
+"SP2"
+],
+"tenerife": [
+"SP2"
+],
+"culturalleonesa": [
+"SP2"
+],
+"ceuta": [
+"SP2"
+],
+"sociedadb": [
+"SP2"
+],
+"andorra": [
+"SP2"
+],
+"celtab": [
+"SP2"
+],
+"sabadell": [
+"SP2"
+]
+}

@@ -494,6 +494,11 @@ def inject_stats(carte_path):
         for m in carte.get("matchs") or []:
             lg = m.get("ligue") or carte.get("ligue") or ""
             code = cap.ligue_code(lg)
+            if not code:
+                code = cap.league_for_teams(
+                    m.get("dom") or m.get("home"), m.get("ext") or m.get("away"))
+                if code:
+                    m["league_code"] = code
             if code:
                 if code not in codes:
                     codes.append(code)

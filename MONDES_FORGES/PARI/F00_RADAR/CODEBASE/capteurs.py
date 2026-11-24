@@ -160,6 +160,52 @@ def _alnum(name: str) -> str:
     return "".join(c for c in raw.lower() if c.isalnum())
 
 
+_TEAM_SUFFIX = ("afc", "fc", "cf", "sc", "city", "athletic", "united", "northend", "county")
+
+
+def league_for_teams(home, away):
+    """Reconnait la ligue par les equipes quand l'en-tete de capture est generique.
+    Mapping deconstruit des CSV whitelist, jamais une estimation de cote."""
+    import json
+    path = os.path.normpath(os.path.join(HERE, "..", "..", "ARCHIVUM", "teams", "league_by_team.json"))
+    try:
+        mapping = json.load(open(path, encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    keys = list(mapping.keys())
+
+    def resolve(name):
+        raw = re.sub(r"[^a-z0-9]", "", str(name or "").lower())
+        if not raw:
+            return []
+        if raw in mapping:
+            return mapping[raw]
+        cut = raw
+        for suf in _TEAM_SUFFIX:
+            if cut.endswith(suf) and len(cut) - len(suf) >= 4:
+                cut = cut[:-len(suf)]
+                break
+        if cut in mapping:
+            return mapping[cut]
+        pres = [k for k in keys if len(k) >= 4 and cut.startswith(k)]
+        if len(pres) == 1:
+            return mapping[pres[0]]
+        if len(pres) > 1:
+            longest = max(pres, key=len)
+            return mapping[longest]
+        return []
+
+    a, b = resolve(home), resolve(away)
+    if not a or not b:
+        return None
+    commun = sorted(set(a) & set(b))
+    if len(commun) == 1:
+        return commun[0]
+    if not commun and len(a) == 1 and len(b) == 1:
+        return None
+    return commun[0] if commun else None
+
+
 def ligue_code(name: str):
     lg = re.sub(r"\s+", " ", (name or "").lower().replace("-", " ").strip())
     compact = lg.replace(" ", "")
@@ -342,7 +388,11 @@ def cmd_inject(args):
     filled, manquants = 0, []
     for m in carte.get("matchs", []):
         lg = m.get("ligue") or carte.get("ligue") or ""
-        code = ligue_code(lg)
+        code = ligue_code(lg) or m.get("league_code")
+        if not code:
+            code = league_for_teams(m.get("dom", ""), m.get("ext", ""))
+            if code:
+                m["league_code"] = code
         if stats_code and code and code != stats_code:
             continue
         if stats_code and not code:

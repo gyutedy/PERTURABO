@@ -1132,6 +1132,21 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       Connecteur et vieux CSV conserves (trace), aucun prix cross-book dans un GO.
 - [x] **Gel intact** : aucune mise, aucun ticket, aucun `/gel off` ; listes diagnostic seulement.
 
+## ETAT v10.1 — CORRECTIFS TEST REEL FOOT (2026-11-24)
+
+- [x] **Alertes** : le handler `scheduled` du Worker envoyait un rappel des la 1re capture
+      (`elapsed=0`). Correction : premier rappel **2 h apres** la capture, puis toutes les 2 h
+      (fenetre 15 min anti-doublon). Run reel : 4 rappels recus a tort -> corrige.
+- [x] **Ligue hors whitelist** : l'en-tete `'Winner FOOT'` ne donnait pas de code E1 ->
+      `inject_stats` ne trouvait aucune stats -> `/valider-1` sortait **NO BET**. Ajout de
+      `capteurs.league_for_teams()` + `ARCHIVUM/teams/league_by_team.json` (208 equipes /
+      9 ligues, construit depuis les CSV whitelist) : la ligue est **reconnue par les equipes**
+      (`Middlesbrough FC` + `Swansea City` -> **E1**). `capteurs.py inject` ecrit
+      `league_code` dans la carte. Test reel local : **8 stats remplies / 0 manquantes**.
+      `test_league_for_teams` **6/6**.
+- [x] Apres redploiement, il suffit de **rejouer `/valider-1`** sur la campagne en cours
+      (capture deja validee, `statut: VALIDE`) — pas besoin de renvoyer la capture.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

@@ -93,8 +93,9 @@ export default {
           const start = Date.parse(v.captures[0].at);
           if (!Number.isFinite(start)) continue;
           const elapsed = now - start;
-          if (elapsed < 0) continue;
-          // une fenetre de 15 min toutes les 2h => anti-doublon sans ecriture
+          // premier rappel 2h APRES la capture, puis toutes les 2h
+          if (elapsed < 7200000) continue;
+          // fenetre de 15 min => anti-doublon sans ecriture
           if (elapsed % 7200000 >= 900000) continue;
           const reste = Math.max(0, Math.floor((kick - now) / 3600000));
           const msg = "RAPPEL WINNER — " + sport.toUpperCase() + " " + (v.home || "")
