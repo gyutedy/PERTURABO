@@ -1,9 +1,9 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "basket",
-  "generated_at": null,
-  "campagne": null,
-  "campagne_uid": null,
+  "generated_at": "2026-11-24T11:55:50.917674+00:00",
+  "campagne": "PARI-20261124",
+  "campagne_uid": "O1PJ",
   "matches": {},
   "tickets_enabled": false
 }
