@@ -1,26 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Torino FC vs US Lecce
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Perturabo SC vs Rovers
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 30.1%
+**Verdict match : 🔥 GO** — meilleure EV: 46.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.97 — ext 0.77 (MT1: 0.53+0.34 · MT2: 0.45+0.43)
+- λ attendus : dom 1.10 — ext 0.61 (MT1: 0.50+0.25 · MT2: 0.60+0.36)
 - Score le plus probable : **0-0**
-- 1 / X / 2 : 37.2% / 36.7% / 26.1%
-- Over 2.5 : **25.5%** · Under 2.5 : 74.5%
-- Les deux marquent : 35.2%
-- Mi-temps : MT1 33.0% · Égalité 33.2% · **MT2 33.8%**
+- 1 / X / 2 : 45.9% / 35.5% / 18.6%
+- Over 2.5 : **24.6%** · Under 2.5 : 75.3%
+- Les deux marquent : 32.1%
+- Mi-temps : MT1 27.6% · Égalité 33.4% · **MT2 39.0%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.81 | 37.2% | -32.7% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.55 | 36.7% | 30.1% |  VALUE | 1.48u |
-| 1X2 | Victoire Extérieur | 4.4 | 26.1% | 15.0% |  VALUE | 0.55u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 33.2% | -0.2% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.73 | 45.9% | -20.6% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.64 | 35.5% | 29.2% |  VALUE | 1.38u |
+| 1X2 | Victoire Extérieur | 4.93 | 18.6% | -8.2% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 1.88 | 24.6% | -53.7% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.95 | 75.3% | 46.9% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.77 | 33.4% | 25.9% |  VALUE | 1.17u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- Miser **1.48u** sur **Nul** @ 3.55 (¼ Kelly plafonné).
+- Miser **1.38u** sur **Nul** @ 3.64 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

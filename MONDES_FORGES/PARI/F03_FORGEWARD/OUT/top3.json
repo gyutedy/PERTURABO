@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-11-24T15:41:20Z",
+  "generated_at": "2026-11-24T16:36:18Z",
   "methode": "Top 3 = VALUE seulement, tri EV desc puis p_modele desc. Zero VALUE = top3 vide, jamais de recycle EV/NO_BET. Score commun 01-10 = 30% qualité data + 40% p_modele de la jambe #1 + 30% edge EV de la jambe #1 (pas le p_max du pool). Pool vide = score 0 FAIBLE. Buckets : >=7 HAUTE, >=5 MOYENNE, <5 FAIBLE. p_fav = max p_modele des selections 1/2. vestiaire_ok = state_factors.applied et effectifs connus.",
   "source_predictions": "predictions.json",
   "matchs": [
     {
-      "id": "M2",
-      "match": "Cardiff City vs Preston North End",
+      "id": "M1",
+      "match": "Cyclops vs Trench",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
-      "score_commun": 8.5,
+      "score_commun": 10.0,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -17,14 +17,14 @@
           "marche": "OU_2.5",
           "selection": "u2.5",
           "selection_label": "Under 2.5",
-          "cote": 2.82,
-          "p_modele": 0.4014,
-          "ev": 0.1319,
+          "cote": 2.14,
+          "p_modele": 0.7481,
+          "ev": 0.6009,
           "verdict": "VALUE",
-          "edge_net_devig": 0.1985,
-          "devig_gap": 0.009713,
-          "p_fair_additif": 0.3252,
-          "overround": 0.058835,
+          "edge_net_devig": 0.6088,
+          "devig_gap": 0.000172,
+          "p_fair_additif": 0.4648,
+          "overround": 0.004924,
           "scorer_score": 0.8,
           "scorer_eligible": true,
           "scorer_seuil": 0.5,
@@ -69,13 +69,145 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 2.82,
+            "capture": 2.14,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
             "move_t0": null
           },
-          "p_fav": 0.6418,
+          "p_fav": 0.4728,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.79,
+          "p_modele": 0.3495,
+          "ev": 0.3246,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3988,
+          "devig_gap": 0.004675,
+          "p_fair_additif": 0.2452,
+          "overround": 0.056001,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.79,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4728,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.47,
+          "p_modele": 0.3311,
+          "ev": 0.1489,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.1846,
+          "devig_gap": 0.001671,
+          "p_fair_additif": 0.2778,
+          "overround": 0.031042,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.47,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4728,
           "vestiaire_ok": false
         }
       ],
@@ -83,11 +215,2338 @@
       "rang_global": 1
     },
     {
-      "id": "M3",
-      "match": "Charlton Athletic vs Lincoln City",
+      "id": "M2",
+      "match": "Lions vs Garrison",
       "verdict_modele": "GO",
       "bucket": "HAUTE",
-      "score_commun": 8.5,
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.34,
+          "p_modele": 0.8657,
+          "ev": 1.0257,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.8786,
+          "devig_gap": -0.002846,
+          "p_fair_additif": 0.4637,
+          "overround": -0.07265,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.34,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4051,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.74,
+          "p_modele": 0.4056,
+          "ev": 0.5169,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4776,
+          "devig_gap": -0.001526,
+          "p_fair_additif": 0.276,
+          "overround": -0.02594,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.74,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4051,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.54,
+          "p_modele": 0.4222,
+          "ev": 0.4946,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5761,
+          "devig_gap": 0.003571,
+          "p_fair_additif": 0.2643,
+          "overround": 0.054547,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.54,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4051,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 2
+    },
+    {
+      "id": "M3",
+      "match": "Bastion vs Lions",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.99,
+          "p_modele": 0.7379,
+          "ev": 0.4684,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5316,
+          "devig_gap": 0.000785,
+          "p_fair_additif": 0.481,
+          "overround": 0.043053,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.99,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3486,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.76,
+          "p_modele": 0.3657,
+          "ev": 0.375,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4504,
+          "devig_gap": 0.004453,
+          "p_fair_additif": 0.2477,
+          "overround": 0.054839,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.76,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3486,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.84,
+          "p_modele": 0.3233,
+          "ev": 0.2415,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.2988,
+          "devig_gap": 0.0039,
+          "p_fair_additif": 0.245,
+          "overround": 0.046205,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.84,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3486,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 3
+    },
+    {
+      "id": "M4",
+      "match": "Legion vs Utd Iron",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.93,
+          "p_modele": 0.8569,
+          "ev": 0.6538,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.7706,
+          "devig_gap": 0.001133,
+          "p_fair_additif": 0.4828,
+          "overround": 0.070621,
+          "scorer_score": 0.77,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.93,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4009,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.94,
+          "p_modele": 0.4173,
+          "ev": 0.6442,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.7347,
+          "devig_gap": 0.005111,
+          "p_fair_additif": 0.2354,
+          "overround": 0.055089,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.94,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4009,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 2.93,
+          "p_modele": 0.3981,
+          "ev": 0.1664,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3463,
+          "devig_gap": 0.005802,
+          "p_fair_additif": 0.2899,
+          "overround": 0.154188,
+          "scorer_score": 0.72,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.2,
+              "contrib": 0.02
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.93,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4009,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 4
+    },
+    {
+      "id": "M6",
+      "match": "Utd Iron vs Rovers",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.82,
+          "p_modele": 0.6903,
+          "ev": 0.2563,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4471,
+          "devig_gap": 0.003491,
+          "p_fair_additif": 0.4735,
+          "overround": 0.15186,
+          "scorer_score": 0.72,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.2,
+              "contrib": 0.02
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.82,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5076,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.76,
+          "p_modele": 0.3065,
+          "ev": 0.1524,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.1113,
+          "devig_gap": -0.002054,
+          "p_fair_additif": 0.2779,
+          "overround": -0.035706,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.76,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5076,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.38,
+          "p_modele": 0.3217,
+          "ev": 0.0873,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.1474,
+          "devig_gap": 0.002924,
+          "p_fair_additif": 0.2775,
+          "overround": 0.055217,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.38,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5076,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 5
+    },
+    {
+      "id": "M7",
+      "match": "Utd Iron vs Athletic",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.06,
+          "p_modele": 0.7752,
+          "ev": 0.5969,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5504,
+          "devig_gap": 0.0,
+          "p_fair_additif": 0.5,
+          "overround": -0.029126,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.06,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4665,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.77,
+          "p_modele": 0.3613,
+          "ev": 0.3621,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4366,
+          "devig_gap": 0.004475,
+          "p_fair_additif": 0.247,
+          "overround": 0.054689,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.77,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4665,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.46,
+          "p_modele": 0.3392,
+          "ev": 0.1736,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.2742,
+          "devig_gap": 0.005755,
+          "p_fair_additif": 0.2604,
+          "overround": 0.085721,
+          "scorer_score": 0.645,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.46,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4665,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 6
+    },
+    {
+      "id": "M9",
+      "match": "Orbital vs Rampart",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.1,
+          "p_modele": 0.8448,
+          "ev": 0.7741,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.9467,
+          "devig_gap": 0.006426,
+          "p_fair_additif": 0.4275,
+          "overround": 0.097308,
+          "scorer_score": 0.77,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.1,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3282,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.32,
+          "p_modele": 0.4203,
+          "ev": 0.3954,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4721,
+          "devig_gap": 0.002629,
+          "p_fair_additif": 0.2829,
+          "overround": 0.054967,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.32,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3282,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.56,
+          "p_modele": 0.3849,
+          "ev": 0.3702,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3902,
+          "devig_gap": 0.00082,
+          "p_fair_additif": 0.2761,
+          "overround": 0.014528,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.56,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3282,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 7
+    },
+    {
+      "id": "M11",
+      "match": "Vigil vs Legion",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.02,
+          "p_modele": 0.7388,
+          "ev": 0.4924,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4964,
+          "devig_gap": 1.7e-05,
+          "p_fair_additif": 0.4937,
+          "overround": 0.002664,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.02,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3165,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.88,
+          "p_modele": 0.367,
+          "ev": 0.424,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5026,
+          "devig_gap": 0.004923,
+          "p_fair_additif": 0.2393,
+          "overround": 0.055259,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.88,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3165,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.7,
+          "p_modele": 0.3236,
+          "ev": 0.1973,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.2182,
+          "devig_gap": 0.001182,
+          "p_fair_additif": 0.2644,
+          "overround": 0.017463,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.7,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3165,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 8
+    },
+    {
+      "id": "M12",
+      "match": "Ironside vs Perturabo SC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.01,
+          "p_modele": 0.787,
+          "ev": 0.5819,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.7175,
+          "devig_gap": 0.003582,
+          "p_fair_additif": 0.4546,
+          "overround": 0.085748,
+          "scorer_score": 0.77,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.01,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3749,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.57,
+          "p_modele": 0.3842,
+          "ev": 0.3716,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4465,
+          "devig_gap": 0.0037,
+          "p_fair_additif": 0.2619,
+          "overround": 0.054631,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.57,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3749,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.42,
+          "p_modele": 0.3509,
+          "ev": 0.2001,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3224,
+          "devig_gap": 0.006929,
+          "p_fair_additif": 0.2584,
+          "overround": 0.101921,
+          "scorer_score": 0.615,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.4,
+              "contrib": 0.04
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.42,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3749,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 9
+    },
+    {
+      "id": "M13",
+      "match": "Perturabo SC vs Rovers",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.95,
+          "p_modele": 0.7535,
+          "ev": 0.4693,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5351,
+          "devig_gap": 0.000409,
+          "p_fair_additif": 0.4905,
+          "overround": 0.044735,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.95,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4589,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.64,
+          "p_modele": 0.3549,
+          "ev": 0.2918,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3637,
+          "devig_gap": 0.004063,
+          "p_fair_additif": 0.2562,
+          "overround": 0.0556,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.64,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4589,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.77,
+          "p_modele": 0.334,
+          "ev": 0.2592,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3648,
+          "devig_gap": 0.007436,
+          "p_fair_additif": 0.2373,
+          "overround": 0.083908,
+          "scorer_score": 0.645,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.77,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.4589,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 10
+    },
+    {
+      "id": "M16",
+      "match": "City Steel vs Rampart",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.24,
+          "p_modele": 0.7278,
+          "ev": 0.6303,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5349,
+          "devig_gap": -0.001511,
+          "p_fair_additif": 0.4757,
+          "overround": -0.058522,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.24,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5486,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.93,
+          "p_modele": 0.3198,
+          "ev": 0.2568,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3261,
+          "devig_gap": 0.005083,
+          "p_fair_additif": 0.2361,
+          "overround": 0.055147,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.93,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5486,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.86,
+          "p_modele": 0.3239,
+          "ev": 0.2503,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.2914,
+          "devig_gap": 0.002713,
+          "p_fair_additif": 0.2481,
+          "overround": 0.032877,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.86,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.5486,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 11
+    },
+    {
+      "id": "M17",
+      "match": "Custodia vs Ironside",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 10.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.98,
+          "p_modele": 0.7826,
+          "ev": 0.5495,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.6157,
+          "devig_gap": 0.000667,
+          "p_fair_additif": 0.4837,
+          "overround": 0.042685,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.98,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3705,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.44,
+          "p_modele": 0.3827,
+          "ev": 0.3165,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.3898,
+          "devig_gap": 0.003226,
+          "p_fair_additif": 0.2721,
+          "overround": 0.055653,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.44,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3705,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.25,
+          "p_modele": 0.351,
+          "ev": 0.1407,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.1905,
+          "devig_gap": 0.00168,
+          "p_fair_additif": 0.2932,
+          "overround": 0.043623,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.25,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3705,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 12
+    },
+    {
+      "id": "M14",
+      "match": "Bastion vs Forge FC",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 9.2,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
       "top3": [
@@ -96,14 +2555,14 @@
           "marche": "1X2",
           "selection": "1",
           "selection_label": "Victoire Domicile",
-          "cote": 2.95,
-          "p_modele": 0.405,
-          "ev": 0.1948,
+          "cote": 2.51,
+          "p_modele": 0.5175,
+          "ev": 0.2989,
           "verdict": "VALUE",
-          "edge_net_devig": 0.2663,
-          "devig_gap": 0.000809,
-          "p_fair_additif": 0.319,
-          "overround": 0.059898,
+          "edge_net_devig": 0.3702,
+          "devig_gap": -0.002433,
+          "p_fair_additif": 0.3801,
+          "overround": 0.054855,
           "scorer_score": 0.8,
           "scorer_eligible": true,
           "scorer_seuil": 0.55,
@@ -148,30 +2607,1011 @@
             "marche_vitrine": false
           },
           "lecture_cotes": {
-            "capture": 2.95,
+            "capture": 2.51,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
             "move_t0": null
           },
-          "p_fav": 0.405,
+          "p_fav": 0.5175,
           "vestiaire_ok": false
         }
       ],
       "quality_data": "haute",
-      "rang_global": 2
+      "rang_global": 13
     },
     {
-      "id": "M1",
-      "match": "Bristol City vs Wrexham AFC",
-      "verdict_modele": "THIN",
-      "bucket": "FAIBLE",
-      "score_commun": 0.0,
+      "id": "M10",
+      "match": "Orbital vs Athletic",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.8,
       "no_bet_recommande": false,
       "marches_exclus_qualitatifs": [],
-      "top3": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.55,
+          "p_modele": 0.4505,
+          "ev": 0.5993,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.6879,
+          "devig_gap": 0.003681,
+          "p_fair_additif": 0.2632,
+          "overround": 0.055411,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.55,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3137,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.67,
+          "p_modele": 0.8842,
+          "ev": 0.4766,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.7684,
+          "devig_gap": 0.0,
+          "p_fair_additif": 0.5,
+          "overround": 0.197605,
+          "scorer_score": 0.72,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.2,
+              "contrib": 0.02
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.67,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3137,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.22,
+          "p_modele": 0.4224,
+          "ev": 0.3601,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4357,
+          "devig_gap": 0.002174,
+          "p_fair_additif": 0.292,
+          "overround": 0.055567,
+          "scorer_score": 0.675,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.22,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3137,
+          "vestiaire_ok": false
+        }
+      ],
       "quality_data": "haute",
-      "rang_global": 3
+      "rang_global": 14
+    },
+    {
+      "id": "M15",
+      "match": "Forge FC vs Vigil",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.6,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.96,
+          "p_modele": 0.429,
+          "ev": 0.6988,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.7935,
+          "devig_gap": 0.005243,
+          "p_fair_additif": 0.234,
+          "overround": 0.055695,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.96,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3211,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.88,
+          "p_modele": 0.8571,
+          "ev": 0.6113,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.8457,
+          "devig_gap": 0.005178,
+          "p_fair_additif": 0.4592,
+          "overround": 0.145412,
+          "scorer_score": 0.74,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.4,
+              "contrib": 0.04
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [
+            "marge_anomalique"
+          ],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": true,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.88,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3211,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.72,
+          "p_modele": 0.3964,
+          "ev": 0.4746,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5682,
+          "devig_gap": 0.005114,
+          "p_fair_additif": 0.2477,
+          "overround": 0.063479,
+          "scorer_score": 0.645,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.72,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3211,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 15
+    },
+    {
+      "id": "M18",
+      "match": "Orbital vs Utd Iron",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.5,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.54,
+          "p_modele": 0.4109,
+          "ev": 0.4546,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.5341,
+          "devig_gap": 0.003579,
+          "p_fair_additif": 0.2643,
+          "overround": 0.054647,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.54,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3115,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.67,
+          "p_modele": 0.8282,
+          "ev": 0.3831,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4996,
+          "devig_gap": -0.004404,
+          "p_fair_additif": 0.5567,
+          "overround": 0.084239,
+          "scorer_score": 0.77,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.67,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3115,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "MT_PROLIFIQUE",
+          "selection": "mte",
+          "selection_label": "Égalité de mi-temps",
+          "cote": 3.47,
+          "p_modele": 0.3761,
+          "ev": 0.3051,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4213,
+          "devig_gap": 0.006119,
+          "p_fair_additif": 0.2585,
+          "overround": 0.08905,
+          "scorer_score": 0.645,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.25,
+              "raw": 1.0,
+              "contrib": 0.25
+            },
+            "B2": {
+              "poids": 0.25,
+              "raw": 0.5,
+              "contrib": 0.125
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.47,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3115,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 16
+    },
+    {
+      "id": "M5",
+      "match": "Orbital vs Rovers",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 8.0,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 4.0,
+          "p_modele": 0.3322,
+          "ev": 0.3288,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.4024,
+          "devig_gap": 0.005342,
+          "p_fair_additif": 0.2315,
+          "overround": 0.05538,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 4.0,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3351,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.06,
+          "p_modele": 0.6421,
+          "ev": 0.3227,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.2631,
+          "devig_gap": 0.000377,
+          "p_fair_additif": 0.508,
+          "overround": -0.04508,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.06,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3351,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 17
+    },
+    {
+      "id": "M8",
+      "match": "Utd Iron vs Sapper",
+      "verdict_modele": "GO",
+      "bucket": "HAUTE",
+      "score_commun": 7.6,
+      "no_bet_recommande": false,
+      "marches_exclus_qualitatifs": [],
+      "top3": [
+        {
+          "rang": 1,
+          "marche": "1X2",
+          "selection": "2",
+          "selection_label": "Victoire Extérieur",
+          "cote": 6.28,
+          "p_modele": 0.2561,
+          "ev": 0.6083,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.695,
+          "devig_gap": 0.009822,
+          "p_fair_additif": 0.1413,
+          "overround": 0.053896,
+          "scorer_score": 0.65,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.25,
+              "contrib": 0.05
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 6.28,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3919,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 2,
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.23,
+          "p_modele": 0.7118,
+          "ev": 0.5873,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.53,
+          "devig_gap": -0.001255,
+          "p_fair_additif": 0.4665,
+          "overround": -0.036106,
+          "scorer_score": 0.8,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.5,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.23,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3919,
+          "vestiaire_ok": false
+        },
+        {
+          "rang": 3,
+          "marche": "1X2",
+          "selection": "X",
+          "selection_label": "Nul",
+          "cote": 3.38,
+          "p_modele": 0.352,
+          "ev": 0.1898,
+          "verdict": "VALUE",
+          "edge_net_devig": 0.2539,
+          "devig_gap": 0.002835,
+          "p_fair_additif": 0.2779,
+          "overround": 0.053896,
+          "scorer_score": 0.7,
+          "scorer_eligible": true,
+          "scorer_seuil": 0.55,
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 0.5,
+              "contrib": 0.1
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 3.38,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          },
+          "p_fav": 0.3919,
+          "vestiaire_ok": false
+        }
+      ],
+      "quality_data": "haute",
+      "rang_global": 18
     }
   ]
 }

@@ -1191,6 +1191,18 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [x] Longueur verify : `/data` 662 caracteres, `/data 1` 1180 caracteres (< limite Telegram 4096).
       Suite unitaire 62/63 (toujours `test_baseline`, environnement).
 
+## ETAT v10.6 — REPONSES VALIDER 1/2 LISIBLES (2026-11-24)
+
+- [x] `/valider-1` : rapport restructure (**RESULTAT**, **MATCHS** avec verdict et score,
+      **COUVERTURE** en blocks nommes, **PROCHAINES COMMANDES**, **LEGENDE**) via
+      `_format_valider1()`. Fini les lignes `GO / FAIBLE / THIN` sans explication.
+- [x] `/valider-2` et `/approve` : rapport restructure (**RESUME** token/budget/seuil/nb tickets,
+      **TICKETS** avec mise/cote/EV, **METRO**, detail TICKETS.md, **LEGENDE**) via
+      `_format_valider2()`. `marches.format_coverage()` ecrit aussi des blocks nommes
+      (`Marches jouables | Meilleur EV | Marge book`) au lieu du tableau compact.
+- [x] Longueur verify : `/valider-1` ~790 caracteres, `/valider-2` ~680 (< 4096 Telegram).
+      Suite unitaire 62/63 (toujours `test_baseline`, environnement).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

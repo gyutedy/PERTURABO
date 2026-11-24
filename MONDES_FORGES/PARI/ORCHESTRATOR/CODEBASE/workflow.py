@@ -544,6 +544,43 @@ def inject_stats(carte_path):
         return False
 
 
+def _format_valider1(ok, rows, counts, why, bundle_id, cov, next_cmd):
+    """Rapport /valider-1 lisible : resultat, matchs, couverture, commandes."""
+    lignes = ["VALIDATION 1 — " + ("siege NO BET" if not ok else "siege termine"), ""]
+    if why:
+        lignes += ["MOTIF : " + why, ""]
+    lignes += ["RESULTAT", "  " + counts, ""]
+    if rows:
+        lignes.append("MATCHS")
+        for i, r in enumerate(rows, 1):
+            sc = r.get("score_commun")
+            sc_s = f"{sc:.1f}/10" if isinstance(sc, (int, float)) else "—"
+            verdict = str(r.get("verdict_modele") or "?").upper()
+            lignes.append(f"  {i}) {r.get('match') or '?'} — {verdict} (score {sc_s})")
+        lignes.append("")
+    if ok:
+        lignes += ["PREVIEW 1 : SHARED/OUT/preview1.html"]
+        if bundle_id:
+            lignes.append(f"Bundle {bundle_id} (SHA-256, ecarts declares).")
+        lignes.append("")
+        if cov:
+            lignes += [cov.strip(), ""]
+        lignes += ["PROCHAINES COMMANDES",
+                   "  /data — liste lisible des matchs",
+                   "  /data N — fiche detaillee d'un match"]
+        if next_cmd:
+            lignes.append(f"  {next_cmd} — elire les marches jouables")
+        lignes += ["  /budget 3000 800 — plafond jour + mise forcee sur-ticket",
+                   "  /combos 3 — nombre de tickets",
+                   "  /valider-2 — composer les tickets"]
+    else:
+        lignes += ["Aucun ticket a composer. `/data` pour le detail."]
+    lignes += ["", "LEGENDE — GO : au moins un pari VALUE retenu · "
+               "THIN : EV positive mais sous le seuil · NO BET : aucune cote jouable · "
+               "VALUE : EV au-dessus du seuil · EV = esperance de gain par mise."]
+    return "\n".join(lignes)
+
+
 def cmd_valider1(st, arg):
     if not st.get("capture"):
         tell("⛔ Aucune capture (/capture <fichier> d'abord)."); return
@@ -613,11 +650,9 @@ def cmd_valider1(st, arg):
             why = "data insuffisante (clubs hors CSV ligue / mj < 6)"
         else:
             why = "tous FAIBLE ou NO BET qualitatif"
-        tell(f"VALIDATION 1 : JSON OK, siege **NO BET** ({why}).\n"
-             f"{counts} — {names}\n"
-             "PREVIEW 1 ecrasee (plus de demo). `/data` pour la liste.\n"
-             + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
-             + "Ne pas `/valider-2` — aucun ticket a composer.")
+        tell(_format_valider1(
+            ok=False, rows=rows, counts=counts, why=why, bundle_id=bundle_id,
+            cov="", next_cmd=""))
         return
     cov = ""
     hint = ""
@@ -628,13 +663,45 @@ def cmd_valider1(st, arg):
     except Exception as e:
         print(f"[WF] couverture gracieux: {e}")
     next_cmd = hint if hint else "(0 marche jouable — ne pas /valider-2)"
-    tell("VALIDATION 1 : JSON VALIDE → carte → siege → Top 3.\n"
-         f"{counts} — {names}\n"
-         "PREVIEW 1 : SHARED/OUT/preview1.html\n"
-         + (f"Bundle **{bundle_id}** (SHA-256, gaps declares).\n" if bundle_id else "")
-         + cov + "\n"
-         + f"→ relis ; `{next_cmd}` → `/combos` `/budget JOUR SURTICKET` puis `/valider-2`.\n"
-         "`/data` pour les rangs.")
+    tell(_format_valider1(
+        ok=True, rows=rows, counts=counts, why="", bundle_id=bundle_id,
+        cov=cov, next_cmd=next_cmd))
+
+
+def _format_valider2(frozen, token, metro_line, budget, sur, ev_floor, tickets, tmd, titre=None):
+    """Rapport /valider-2 et /approve lisible : resume, tickets, commandes."""
+    statut = "LOT FIGE (T0)" if frozen else "LOT EN ATTENTE"
+    lignes = [(titre or "VALIDATION 2") + " — " + statut, "",
+              "RESUME",
+              f"  Token du lot : {token}",
+              f"  Budget du jour : {budget:.0f} FC | Sur-ticket force : {sur:.0f} FC",
+              f"  Seuil EV effectif : {ev_floor * 100:.1f}% (frais + slippage inclus)",
+              f"  Tickets composes : {len(tickets or [])}"]
+    if tickets:
+        lignes += ["", "TICKETS"]
+        for i, t in enumerate(tickets[:8], 1):
+            mise = t.get("mise_fc")
+            mise_s = f"{float(mise):.0f} FC" if isinstance(mise, (int, float)) else "—"
+            cote = t.get("cote_totale")
+            cote_s = f"{float(cote):.2f}" if isinstance(cote, (int, float)) else "—"
+            ev = t.get("ev_compose_net")
+            ev_s = f"{float(ev) * 100:+.1f}%" if isinstance(ev, (int, float)) else "—"
+            classe = str(t.get("classe") or "?").upper()
+            lignes.append(f"  {i}) {classe} | {t.get('nb_jambes') or '?'} jambe(s) | "
+                          f"mise {mise_s} | cote {cote_s} | EV composee {ev_s}")
+    if metro_line:
+        lignes += ["", "METRO", "  " + metro_line]
+    if tmd:
+        lignes += ["", "DETAIL DES TICKETS (TICKETS.md)", tmd.strip()]
+    lignes += ["", "PREVIEW 2 : SHARED/OUT/preview2.html — ticket final."]
+    if frozen:
+        lignes += [f"  Lot fige a T0. `/roi settle {token}` apres les matchs."]
+    else:
+        lignes += [f"  `/approve {token}` pour figer T0. Rien n'est place automatiquement."]
+    lignes += ["", "LEGENDE — T0 : snapshot au figeage du lot · EV composee : esperance du ticket "
+               "apres devig et friction · Sur-ticket : mise forcee sur le match au score le plus "
+               "haut · F06 : ledger des lots, n'apprend pas."]
+    return "\n".join(lignes)
 
 
 def cmd_valider2(st, arg):
@@ -747,22 +814,14 @@ def cmd_valider2(st, arg):
     if os.environ.get("PARI_AUTO_GATES") == "1":
         _freeze_pending(st, token, tj, new_legs, budget, sur)
         tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
-        tell("VALIDATION 2 : TICKETS + BACKROLL poses.\n"
-             f"{metro_line}\n"
-             f"TOKEN **{token}** — snapshot T0 fige. `/roi settle {token}` apres les matchs.\n"
-             + (tmd or "") +
-             "\nPREVIEW 2 : SHARED/OUT/preview2.html — ticket final. "
-             "Place chez Winner Bet. F06 a fige le lot (n'apprend pas).")
+        tell(_format_valider2(True, token, metro_line, budget, sur, ev_floor,
+                              tj.get("tickets") or [], tmd))
         return
     st["pending_lot"] = pending
     save(st)
     tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
-    tell("VALIDATION 2 : TICKETS + BACKROLL poses (pending).\n"
-         f"{metro_line}\n"
-         f"TOKEN **{token}** — fees+slippage dans le seuil. `/approve {token}` pour figer T0.\n"
-         + (tmd or "") +
-         "\nPREVIEW 2 : SHARED/OUT/preview2.html — ticket final. "
-         "Lot non fige tant que `/approve` n est pas tape.")
+    tell(_format_valider2(False, token, metro_line, budget, sur, ev_floor,
+                          tj.get("tickets") or [], tmd))
 
 
 def cmd_approve(st, arg):
@@ -787,10 +846,9 @@ def cmd_approve(st, arg):
     sur = pending.get("surticket_fc") or st.get("surticket_fc") or 0
     _freeze_pending(st, tok_p, tj, new_legs, budget, sur)
     tmd = read_text(P("SHARED", "OUT", "TICKETS.md"))
-    tell("APPROVE : lot fige.\n"
-         f"TOKEN **{tok_p}** — snapshot T0. `/roi settle {tok_p}` apres les matchs.\n"
-         + (tmd or "") +
-         "\nPlace chez Winner Bet. F06 a fige le lot (n'apprend pas).")
+    tell(_format_valider2(True, tok_p, "", budget, sur,
+                          float(pending.get("ev_floor") or 0.03),
+                          tj.get("tickets") or [], tmd, titre="APPROVE"))
 
 
 def cmd_data(st, arg):

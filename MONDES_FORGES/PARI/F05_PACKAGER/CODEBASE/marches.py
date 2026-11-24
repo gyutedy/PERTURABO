@@ -264,7 +264,7 @@ def hint_marches(top3, ev_floor=EV_FLOOR):
 def format_coverage(top3, markets=None, ev_floor=EV_FLOOR):
     rows = coverage_rows(top3, ev_floor=ev_floor)
     wanted = {canon_marche(m) for m in markets} if markets else None
-    lines = ["COUVERTURE (VALUE F03)", "Marche          n  meilleur EV  marge"]
+    lignes = ["COUVERTURE — marchés VALUE F03 au-dessus du seuil du jour", ""]
     shown = 0
     total_n = 0
     for r in rows:
@@ -274,12 +274,14 @@ def format_coverage(top3, markets=None, ev_floor=EV_FLOOR):
         total_n += r["n"]
         evs = f"+{r['best_ev'] * 100:.1f}%" if r["best_ev"] is not None else "—"
         mg = f"{r['marge'] * 100:.1f}%" if r["marge"] is not None else "—"
-        lines.append(f"{r['marche']:<14} {r['n']:>2}  {evs:>11}  {mg}")
+        libelle = HINT_LABEL.get(r["marche"], r["marche"])
+        lignes.append(f"{libelle} :")
+        lignes.append(f"  Matchs jouables : {r['n']} | Meilleur EV : {evs} | Marge book : {mg}")
     if shown == 0:
-        lines.append("(aucun marche au-dessus du seuil)")
+        lignes.append("Aucun marché au-dessus du seuil — 0 match.")
     if total_n == 0:
-        lines.append("0 match → 0 ticket.")
-    return "\n".join(lines)
+        lignes.append("0 match → 0 ticket.")
+    return "\n".join(lignes)
 
 
 def filter_events(events, markets, ev_floor=EV_FLOOR):

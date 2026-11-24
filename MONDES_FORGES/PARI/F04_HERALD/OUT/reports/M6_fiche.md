@@ -1,26 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Excelsior Rotterdam vs Go Ahead Eagles
-*Générée le 2026-11-07 18:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Utd Iron vs Rovers
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 55.7%
+**Verdict match : 🔥 GO** — meilleure EV: 25.6%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.06 — ext 1.21 (MT1: 1.09+0.45 · MT2: 0.97+0.76)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 55.6% / 23.6% / 20.8%
-- Over 2.5 : **63.4%** · Under 2.5 : 36.6%
-- Les deux marquent : 62.5%
-- Mi-temps : MT1 34.9% · Égalité 22.6% · **MT2 42.4%**
+- λ attendus : dom 1.30 — ext 0.65 (MT1: 0.54+0.30 · MT2: 0.76+0.35)
+- Score le plus probable : **1-0**
+- 1 / X / 2 : 50.8% / 32.2% / 17.1%
+- Over 2.5 : **31.0%** · Under 2.5 : 69.0%
+- Les deux marquent : 36.3%
+- Mi-temps : MT1 27.7% · Égalité 30.6% · **MT2 41.7%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.8 | 55.6% | 55.7% |  VALUE | 3.0u |
-| 1X2 | Nul | 3.55 | 23.6% | -16.2% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.37 | 20.8% | -50.7% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 22.6% | -32.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.85 | 50.8% | -6.1% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.38 | 32.2% | 8.7% |  VALUE | 0.46u |
+| 1X2 | Victoire Extérieur | 4.57 | 17.1% | -22.0% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 1.66 | 31.0% | -48.6% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.82 | 69.0% | 25.6% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.76 | 30.6% | 15.2% |  VALUE | 0.69u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- Miser **3.0u** sur **Victoire Domicile** @ 2.8 (¼ Kelly plafonné).
+- Miser **0.46u** sur **Nul** @ 3.38 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

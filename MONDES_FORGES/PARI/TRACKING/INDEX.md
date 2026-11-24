@@ -149,6 +149,8 @@ Cartographie des journaux du monde.
 | `F02_BREACHER/CODEBASE/baseline.py` `ht_u1.5_empirique` | v10.3 : taux empirique HT < 1.5 buts (E1 0,6674 / 1284 matchs), transpose dans `league_averages`. |
 | `F03_FORGEWARD/CODEBASE/forgeward.py` `MT_OU_1.5` | v10.3 : groupe HT Under/Over 1.5, proba depuis la matrice mi-temps, EV vs cotes Winner. HSH reste diagnostic. |
 | `tests/test_ht_market.py` | v10.3 : parsing capture, tableau, proba, EV, scorer (7/7). |
+| `ORCHESTRATOR/CODEBASE/workflow.py` `_format_valider1` / `_format_valider2` | v10.6 : rapports Telegram lisibles (resultat, matchs, couverture, tickets, legendes) au lieu des tableaux compacts. |
+| `F05_PACKAGER/CODEBASE/marches.py` `format_coverage` | v10.6 : couverture en blocks nommes (marche, nb matchs, meilleur EV, marge book). |
 | `ORCHESTRATOR/CODEBASE/data_view.py` `marches_ecartes` | v10.4 : `/data N` liste les selections calculees mais non retenues avec cote + motif (EV/seuil/scorer/piege). |
 | `tests/test_data_ecartes.py` | v10.4 : motifs EV negatif, seuil, scorer, section fiche (6/6). |
 | `F06_TRACKER/CODEBASE/winner_watch.py` | v10.0 : etat same-book Winner (captures, devinage match, alertes 2h, CLV premiere/derniere cote). `ARCHIVUM/winner/watch_{sport}.json`. |

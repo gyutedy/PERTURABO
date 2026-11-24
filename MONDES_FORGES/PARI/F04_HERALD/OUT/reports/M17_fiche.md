@@ -1,26 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — SC Paderborn 07 vs Eintracht Frankfurt
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Custodia vs Ironside
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 38.6%
+**Verdict match : 🔥 GO** — meilleure EV: 54.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.01 — ext 1.51 (MT1: 0.93+0.78 · MT2: 1.09+0.72)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 48.3% / 23.9% / 27.8%
-- Over 2.5 : **68.3%** · Under 2.5 : 31.7%
-- Les deux marquent : 68.6%
-- Mi-temps : MT1 37.0% · Égalité 21.8% · **MT2 41.2%**
-- Qualité data : basse (mj_insuffisant)
+- λ attendus : dom 0.91 — ext 0.69 (MT1: 0.46+0.33 · MT2: 0.46+0.36)
+- Score le plus probable : **0-0**
+- 1 / X / 2 : 37.0% / 38.3% / 24.7%
+- Over 2.5 : **21.7%** · Under 2.5 : 78.3%
+- Les deux marquent : 31.5%
+- Mi-temps : MT1 31.7% · Égalité 35.1% · **MT2 33.2%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.87 | 48.3% | 38.6% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.8 | 23.9% | -9.3% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.22 | 27.8% | -38.2% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 21.8% | -34.6% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.58 | 37.0% | -4.4% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.44 | 38.3% | 31.6% |  VALUE | 1.62u |
+| 1X2 | Victoire Extérieur | 2.65 | 24.7% | -34.6% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 1.86 | 21.7% | -59.6% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.98 | 78.3% | 54.9% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.25 | 35.1% | 14.1% |  VALUE | 0.78u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **1.62u** sur **Nul** @ 3.44 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

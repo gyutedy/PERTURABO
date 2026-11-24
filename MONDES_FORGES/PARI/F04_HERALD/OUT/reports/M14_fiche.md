@@ -1,26 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Borussia Dortmund vs SV 07 Elversberg
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Bastion vs Forge FC
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 18.9%
+**Verdict match : 🔥 GO** — meilleure EV: 29.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 3.63 — ext 0.64 (MT1: 1.36+0.14 · MT2: 2.27+0.50)
-- Score le plus probable : **3-0**
-- 1 / X / 2 : 89.4% / 7.9% / 2.7%
-- Over 2.5 : **79.9%** · Under 2.5 : 20.1%
-- Les deux marquent : 46.3%
-- Mi-temps : MT1 19.0% · Égalité 16.7% · **MT2 64.2%**
-- Qualité data : basse (mj_insuffisant)
+- λ attendus : dom 1.58 — ext 0.91 (MT1: 0.59+0.40 · MT2: 0.99+0.51)
+- Score le plus probable : **1-1**
+- 1 / X / 2 : 51.7% / 28.3% / 20.0%
+- Over 2.5 : **45.4%** · Under 2.5 : 54.6%
+- Les deux marquent : 48.9%
+- Mi-temps : MT1 25.5% · Égalité 25.7% · **MT2 48.8%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.33 | 89.4% | 18.9% | ⛔ NO_BET | — |
-| 1X2 | Nul | 5.7 | 7.9% | -54.9% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 7.5 | 2.7% | -79.8% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 16.7% | -49.9% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.51 | 51.7% | 29.9% |  VALUE | 2.47u |
+| 1X2 | Nul | 3.37 | 28.3% | -4.7% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 2.78 | 20.0% | -44.5% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 1.96 | 45.4% | -11.1% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.65 | 54.6% | -9.8% | ⛔ NO_BET | — |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.84 | 25.7% | -1.5% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **2.47u** sur **Victoire Domicile** @ 2.51 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

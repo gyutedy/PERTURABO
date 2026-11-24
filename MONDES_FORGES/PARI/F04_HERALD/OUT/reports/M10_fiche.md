@@ -1,25 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Parma Calcio vs Bologna FC
-*Générée le 2026-11-07 12:48 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Orbital vs Athletic
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : 🟡 THIN** — meilleure EV: 2.6%
+**Verdict match : 🔥 GO** — meilleure EV: 59.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.63 — ext 1.62 (MT1: 0.21+0.75 · MT2: 0.42+0.88)
-- Score le plus probable : **0-1**
-- 1 / X / 2 : 12.8% / 27.2% / 60.0%
-- Over 2.5 : **39.1%** · Under 2.5 : 60.9%
-- Les deux marquent : 39.0%
-- Mi-temps : MT1 27.8% · Égalité 27.9% · **MT2 44.3%**
+- λ attendus : dom 0.65 — ext 0.53 (MT1: 0.28+0.23 · MT2: 0.37+0.30)
+- Score le plus probable : **0-0**
+- 1 / X / 2 : 31.4% / 45.1% / 23.6%
+- Over 2.5 : **11.6%** · Under 2.5 : 88.4%
+- Les deux marquent : 21.0%
+- Mi-temps : MT1 23.9% · Égalité 42.2% · **MT2 33.9%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 5.0 | 12.8% | -35.8% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.6 | 27.2% | -2.2% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 1.71 | 60.0% | 2.6% | 🟡 THIN | 0.23u |
+| 1X2 | Victoire Domicile | 2.6 | 31.4% | -18.4% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.55 | 45.1% | 59.9% |  VALUE | 2.94u |
+| 1X2 | Victoire Extérieur | 2.57 | 23.6% | -39.4% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 1.67 | 11.6% | -80.7% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.67 | 88.4% | 47.7% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.22 | 42.2% | 36.0% |  VALUE | 2.03u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -27,7 +30,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **2.94u** sur **Nul** @ 3.55 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

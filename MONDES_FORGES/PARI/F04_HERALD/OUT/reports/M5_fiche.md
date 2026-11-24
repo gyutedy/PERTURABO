@@ -1,26 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Valencia CF vs Real Madrid
-*Générée le 2026-11-07 18:26 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Orbital vs Rovers
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 175.1%
+**Verdict match : 🔥 GO** — meilleure EV: 32.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.13 — ext 1.48 (MT1: 0.27+0.42 · MT2: 0.87+1.05)
+- λ attendus : dom 1.06 — ext 1.07 (MT1: 0.46+0.44 · MT2: 0.61+0.62)
 - Score le plus probable : **1-1**
-- 1 / X / 2 : 27.5% / 29.1% / 43.4%
-- Over 2.5 : **48.4%** · Under 2.5 : 51.6%
-- Les deux marquent : 53.9%
-- Mi-temps : MT1 13.0% · Égalité 20.7% · **MT2 66.3%**
+- 1 / X / 2 : 33.3% / 33.2% / 33.5%
+- Over 2.5 : **35.8%** · Under 2.5 : 64.2%
+- Les deux marquent : 44.6%
+- Mi-temps : MT1 27.2% · Égalité 28.8% · **MT2 44.0%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 10.0 | 27.5% | 175.1% |  VALUE | 2.43u |
-| 1X2 | Nul | 6.2 | 29.1% | 80.2% |  VALUE | 1.93u |
-| 1X2 | Victoire Extérieur | 1.26 | 43.4% | -45.3% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.7% | -38.0% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.42 | 33.3% | -19.5% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.0 | 33.2% | 32.9% |  VALUE | 1.37u |
+| 1X2 | Victoire Extérieur | 2.55 | 33.5% | -14.5% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 2.13 | 35.8% | -23.8% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 2.06 | 64.2% | 32.3% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.07 | 28.8% | -11.6% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- Miser **2.43u** sur **Victoire Domicile** @ 10.0 (¼ Kelly plafonné).
+- Miser **1.37u** sur **Nul** @ 4.0 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

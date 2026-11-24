@@ -1,29 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Bristol City vs Wrexham AFC
-*Générée le 2026-11-24 15:41 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Cyclops vs Trench
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : 🟡 THIN** — meilleure EV: 7.3%
+**Verdict match : 🔥 GO** — meilleure EV: 60.1%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.38 — ext 1.07 (MT1: 0.61+0.55 · MT2: 0.77+0.51)
-- Score le plus probable : **1-1**
-- 1 / X / 2 : 43.8% / 27.4% / 28.8%
-- Over 2.5 : **44.3%** · Under 2.5 : 55.7%
-- Les deux marquent : 49.4%
-- Mi-temps : MT1 33.7% · Égalité 27.2% · **MT2 39.1%**
+- λ attendus : dom 1.14 — ext 0.60 (MT1: 0.46+0.30 · MT2: 0.68+0.30)
+- Score le plus probable : **0-0**
+- 1 / X / 2 : 47.3% / 34.9% / 17.8%
+- Over 2.5 : **25.2%** · Under 2.5 : 74.8%
+- Les deux marquent : 32.1%
+- Mi-temps : MT1 27.2% · Égalité 33.1% · **MT2 39.6%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.45 | 43.8% | 7.3% | 🟡 THIN | 0.32u |
-| 1X2 | Nul | 3.25 | 27.4% | -10.9% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.92 | 28.8% | -15.9% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 1.67 | 55.7% | -6.9% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.17 | 44.3% | -3.9% | ⛔ NO_BET | — |
-| MT_OU_1.5 | Under 1.5 1re MT | 1.29 | 67.2% | -13.3% | ⛔ NO_BET | — |
-| MT_OU_1.5 | Over 1.5 1re MT | 2.77 | 32.8% | -9.2% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 1.83 | 47.3% | -13.5% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.79 | 34.9% | 32.5% |  VALUE | 1.45u |
+| 1X2 | Victoire Extérieur | 4.07 | 17.8% | -27.7% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 1.86 | 25.2% | -53.1% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 2.14 | 74.8% | 60.1% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.47 | 33.1% | 14.9% |  VALUE | 0.75u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -31,7 +30,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **1.45u** sur **Nul** @ 3.79 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

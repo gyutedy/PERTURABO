@@ -1,26 +1,28 @@
-# 🏟️ FICHE DE SIÈGE — Malaga CF vs Racing Santander
-*Générée le 2026-11-07 09:34 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Orbital vs Rampart
+*Générée le 2026-11-24 16:36 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: 72.1%
+**Verdict match : 🔥 GO** — meilleure EV: 77.4%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 2.80 — ext 1.11 (MT1: 1.26+0.75 · MT2: 1.54+0.36)
-- Score le plus probable : **2-1**
-- 1 / X / 2 : 71.7% / 16.7% / 11.6%
-- Over 2.5 : **74.9%** · Under 2.5 : 25.1%
-- Les deux marquent : 63.9%
-- Mi-temps : MT1 41.8% · Égalité 20.6% · **MT2 37.5%**
-- Qualité data : basse (mj_insuffisant)
+- λ attendus : dom 0.61 — ext 0.74 (MT1: 0.27+0.27 · MT2: 0.34+0.47)
+- Score le plus probable : **0-0**
+- 1 / X / 2 : 25.2% / 42.0% / 32.8%
+- Over 2.5 : **15.5%** · Under 2.5 : 84.5%
+- Les deux marquent : 25.5%
+- Mi-temps : MT1 22.5% · Égalité 38.5% · **MT2 39.0%**
+- Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 2.4 | 71.7% | 72.1% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.5 | 16.7% | -41.5% | ⛔ NO_BET | — |
-| 1X2 | Victoire Extérieur | 2.8 | 11.6% | -67.5% | ⛔ NO_BET | — |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 20.6% | -38.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Domicile | 2.05 | 25.2% | -48.4% | ⛔ NO_BET | — |
+| 1X2 | Nul | 3.32 | 42.0% | 39.5% |  VALUE | 2.13u |
+| 1X2 | Victoire Extérieur | 3.76 | 32.8% | 23.4% |  VALUE | 1.06u |
+| OU_2.5 | Over 2.5 | 1.61 | 15.5% | -75.0% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 2.1 | 84.5% | 77.4% |  VALUE | 3.0u |
+| MT_PROLIFIQUE | Égalité de mi-temps | 3.56 | 38.5% | 37.0% |  VALUE | 1.81u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **2.13u** sur **Nul** @ 3.32 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 
