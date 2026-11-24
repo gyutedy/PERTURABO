@@ -1,1 +1,18 @@
-{}
+{
+  "campagne": null,
+  "campagne_uid": null,
+  "capture_seq": 0,
+  "capture": null,
+  "capturer_statut": null,
+  "capture_id": null,
+  "consumed_legs": [],
+  "current_token": null,
+  "lots_alloue_jour": 0,
+  "last_lot_budget_seq": 0,
+  "budget_fc": 0,
+  "surticket_fc": 0,
+  "budget_seq": 0,
+  "marches": null,
+  "marches_mono": false,
+  "pending_lot": null
+}
