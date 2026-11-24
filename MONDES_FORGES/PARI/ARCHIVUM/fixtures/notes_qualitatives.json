@@ -1,29 +1,23 @@
 {
-  "generated_at": "2026-11-24T14:28:49Z",
+  "generated_at": "2026-11-24T15:40:07Z",
   "source": "f00_vote",
   "notes_count": 0,
   "window_h": 48,
   "notes": [
     {
       "match_id": "M1",
-      "dom": "Middlesbrough FC",
-      "ext": "Swansea City",
-      "items": []
-    },
-    {
-      "match_id": "M2",
       "dom": "Bristol City",
       "ext": "Wrexham AFC",
       "items": []
     },
     {
-      "match_id": "M3",
+      "match_id": "M2",
       "dom": "Cardiff City",
       "ext": "Preston North End",
       "items": []
     },
     {
-      "match_id": "M4",
+      "match_id": "M3",
       "dom": "Charlton Athletic",
       "ext": "Lincoln City",
       "items": []

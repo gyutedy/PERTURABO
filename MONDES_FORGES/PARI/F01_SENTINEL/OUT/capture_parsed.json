@@ -4,46 +4,10 @@
       "id": "BLOC_001",
       "competition": "Winner FOOT",
       "date": "2026-11-24",
-      "heure": null,
-      "matchs": [
-        {
-          "id": "M1",
-          "dom": "Middlesbrough FC",
-          "ext": "Swansea City",
-          "cotes": {
-            "1": 1.46,
-            "X": 4.8,
-            "2": 6.0,
-            "u2.5": 2.67,
-            "o2.5": 1.46,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
-          ],
-          "warnings": [],
-          "holes": []
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_002",
-      "competition": "Winner FOOT",
-      "date": "2026-11-24",
       "heure": "20:45",
       "matchs": [
         {
-          "id": "M2",
+          "id": "M1",
           "dom": "Bristol City",
           "ext": "Wrexham AFC",
           "cotes": {
@@ -52,17 +16,40 @@
             "2": 2.92,
             "u2.5": 1.67,
             "o2.5": 2.17,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02
+            "ht_u1.5": 1.29,
+            "ht_o1.5": 2.77
           },
           "marches_disponibles": [
             "1",
             "2",
             "X",
-            "mt1",
-            "mt2",
-            "mte",
+            "ht_o1.5",
+            "ht_u1.5",
+            "o2.5",
+            "u2.5"
+          ],
+          "warnings": [],
+          "holes": []
+        },
+        {
+          "id": "M2",
+          "dom": "Cardiff City",
+          "ext": "Preston North End",
+          "cotes": {
+            "1": 1.47,
+            "X": 4.8,
+            "2": 5.7,
+            "u2.5": 2.82,
+            "o2.5": 1.42,
+            "ht_u1.5": 1.65,
+            "ht_o1.5": 1.87
+          },
+          "marches_disponibles": [
+            "1",
+            "2",
+            "X",
+            "ht_o1.5",
+            "ht_u1.5",
             "o2.5",
             "u2.5"
           ],
@@ -71,52 +58,23 @@
         },
         {
           "id": "M3",
-          "dom": "Cardiff City",
-          "ext": "Preston North End",
-          "cotes": {
-            "1": 1.49,
-            "X": 4.8,
-            "2": 5.7,
-            "u2.5": 2.75,
-            "o2.5": 1.44,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02
-          },
-          "marches_disponibles": [
-            "1",
-            "2",
-            "X",
-            "mt1",
-            "mt2",
-            "mte",
-            "o2.5",
-            "u2.5"
-          ],
-          "warnings": [],
-          "holes": []
-        },
-        {
-          "id": "M4",
           "dom": "Charlton Athletic",
           "ext": "Lincoln City",
           "cotes": {
-            "1": 2.8,
+            "1": 2.95,
             "X": 3.25,
-            "2": 2.55,
+            "2": 2.42,
             "u2.5": 1.71,
             "o2.5": 2.1,
-            "mt1": 3.1,
-            "mte": 3.0,
-            "mt2": 2.02
+            "ht_u1.5": 1.31,
+            "ht_o1.5": 2.67
           },
           "marches_disponibles": [
             "1",
             "2",
             "X",
-            "mt1",
-            "mt2",
-            "mte",
+            "ht_o1.5",
+            "ht_u1.5",
             "o2.5",
             "u2.5"
           ],
@@ -128,7 +86,7 @@
     }
   ],
   "warnings": [],
-  "statut": "VALIDE",
-  "n_matchs": 4,
+  "statut": "A_VALIDER",
+  "n_matchs": 3,
   "source_format": "text+markdown_table"
 }
