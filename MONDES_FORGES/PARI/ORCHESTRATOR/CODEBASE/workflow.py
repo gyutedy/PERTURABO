@@ -826,9 +826,11 @@ def cmd_data(st, arg):
                   else (notes.get("notes_count") or carte.get("notes_count") or 0))
     from data_view import render_compact, render_fiche  # noqa: E402
     top3 = load_json(P("F03_FORGEWARD", "OUT", "top3.json")) or {}
+    predictions = load_json(P("F03_FORGEWARD", "OUT", "predictions.json")) or {}
     if head and head[0].isdigit():
         n = int(head[0])
-        body = render_fiche(n, top3, t3, carte, notes, n_notes=n_notes)
+        body = render_fiche(n, top3, t3, carte, notes, n_notes=n_notes,
+                            predictions=predictions)
         tell(f"notes: {n_notes}\n" + body)
         return
     body = render_compact(top3, t3, carte, notes)

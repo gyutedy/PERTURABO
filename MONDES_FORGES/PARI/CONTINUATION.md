@@ -1172,6 +1172,16 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [x] `tests/test_ht_market.py` **7/7** (slate, tableau, proba, EV, groupe scorer).
       Suite unitaire 61/62 (seul `test_baseline`, environnement).
 
+## ETAT v10.4 — MARCHES CALCULES MAIS NON RETENUS (2026-11-24)
+
+- [x] `/data N` affiche desormais la section **MARCHES CALCULES MAIS NON RETENUS** :
+      chaque selection present dans `predictions.json` mais absente du Top 3 est listee
+      avec sa cote et le **motif** (`EV <= 0`, `EV < seuil 8%`, `scorer x < y`, piege).
+      Aucun chiffre invente, aucune modification du verdict. `test_data_ecartes` **6/6**.
+- [x] Exemple reel : Cardiff `MT_OU_1.5 ht_o1.5 a 1.87 : EV +2,8% < seuil 8%` — le
+      marche existe, il est juste en dessous du seuil, ce qui repond a la question
+      "pourquoi je ne le vois pas". Suite unitaire 62/63 (hors `test_baseline`).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

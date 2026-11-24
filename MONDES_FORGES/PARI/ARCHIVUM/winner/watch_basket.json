@@ -1,7 +1,7 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "basket",
-  "generated_at": "2026-11-24T15:24:33.451734+00:00",
+  "generated_at": "2026-11-24T15:53:12.705412+00:00",
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
   "matches": {
@@ -54,6 +54,18 @@
           "capture_id": null,
           "at": "2026-11-24T15:24:33Z",
           "heures_avant_coup": -15.41,
+          "cotes": {
+            "1": 2.29,
+            "2": 1.61
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
+        },
+        {
+          "seq": 5,
+          "capture_id": null,
+          "at": "2026-11-24T15:53:12Z",
+          "heures_avant_coup": -15.89,
           "cotes": {
             "1": 2.29,
             "2": 1.61
@@ -123,6 +135,18 @@
           },
           "source": "winner_capture",
           "mode_detection": "id"
+        },
+        {
+          "seq": 5,
+          "capture_id": null,
+          "at": "2026-11-24T15:53:12Z",
+          "heures_avant_coup": -15.89,
+          "cotes": {
+            "1": 1.63,
+            "2": 2.25
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
         }
       ],
       "next_alert_at": null,
@@ -180,6 +204,18 @@
           "capture_id": null,
           "at": "2026-11-24T15:24:33Z",
           "heures_avant_coup": -14.91,
+          "cotes": {
+            "1": 2.55,
+            "2": 1.49
+          },
+          "source": "winner_capture",
+          "mode_detection": "id"
+        },
+        {
+          "seq": 5,
+          "capture_id": null,
+          "at": "2026-11-24T15:53:12Z",
+          "heures_avant_coup": -15.39,
           "cotes": {
             "1": 2.55,
             "2": 1.49

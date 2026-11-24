@@ -310,7 +310,55 @@ def _notes_block(note):
     return "\n".join(lines)
 
 
-def render_fiche(n, top3, md, carte, notes, n_notes=0):
+def _motif_rejet(sel, seuil):
+    """Pourquoi une cote calculee n'a pas ete retenue. Jamais un p invente."""
+    ev = sel.get("ev")
+    if ev is None:
+        return "EV absente"
+    try:
+        ev = float(ev)
+    except (TypeError, ValueError):
+        return "EV illisible"
+    if ev <= 0:
+        return f"EV {ev * 100:+.1f}% <= 0"
+    if seuil is not None and ev < float(seuil):
+        return f"EV {ev * 100:+.1f}% < seuil {float(seuil) * 100:.0f}%"
+    if sel.get("scorer_eligible") is False:
+        return f"scorer {sel.get('scorer_score')} < {sel.get('scorer_seuil')}"
+    if sel.get("pieges"):
+        return "piege " + ",".join(sel["pieges"])
+    return str(sel.get("verdict") or "non retenu")
+
+
+def marches_ecartes(row, predictions=None, max_lignes=12):
+    """Cotes calculees mais absentes du Top 3, avec le motif. Lecture seule."""
+    preds = (predictions or {}).get("predictions") or []
+    seuil = (predictions or {}).get("seuil_ev_applique")
+    cible = None
+    rid = row.get("id")
+    label = (row.get("match") or "").lower()
+    for p in preds:
+        if (rid and str(p.get("id")) == str(rid)) or (label and label in (p.get("match") or "").lower()):
+            cible = p
+            break
+    if not cible:
+        return []
+    retenus = {(s.get("marche"), s.get("selection")) for s in (row.get("top3") or [])}
+    out = []
+    for s in cible.get("selections") or []:
+        key = (s.get("marche"), s.get("selection"))
+        if key in retenus:
+            continue
+        cote = s.get("cote")
+        cote_s = f"{float(cote):.2f}" if isinstance(cote, (int, float)) else "—"
+        out.append(f"  {s.get('marche')} {s.get('selection')} a {cote_s} : {_motif_rejet(s, seuil)}")
+        if len(out) >= max_lignes:
+            out.append("  ...")
+            break
+    return out
+
+
+def render_fiche(n, top3, md, carte, notes, n_notes=0, predictions=None):
     rows = ranked_rows(top3, md)
     if n < 1 or n > len(rows):
         return f"Rang {n} hors liste (1-{len(rows) or 0})."
@@ -367,4 +415,8 @@ def render_fiche(n, top3, md, carte, notes, n_notes=0):
     show = [h for h in holes if h != "timing"]
     if show:
         lines.append("TROU " + ",".join(show))
+    ecartes = marches_ecartes(row, predictions)
+    if ecartes:
+        lines.append("MARCHES CALCULES MAIS NON RETENUS :")
+        lines.extend(ecartes)
     return "\n".join(lines)
