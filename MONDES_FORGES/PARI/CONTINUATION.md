@@ -1159,6 +1159,19 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [ ] `incoherence_modele_empirique` leve sur 3/4 matchs (modele O2.5 ~0,22-0,27 vs empirique
       0,534). Les EV enormes restent **diagnostiques** : aucun pari avant CLV same-book positif.
 
+## ETAT v10.3 — MARCHE HT UNDER/OVER 1.5 (2026-11-24)
+
+- [x] Capture Winner fournie (`rika.PNG`) : le marche `HT Under/Over 1.5` est present avec
+      de vraies cotes (Bristol `1.29/2.77`, Cardiff `1.65/1.87`, Charlton `1.31/2.67`).
+      Le HSH template reste diagnostic, le nouveau marche le remplace pour la lecture.
+- [x] Chaine complete : prompt LLM -> `winner_vision` (`ht_u1.5`/`ht_o1.5`) ->
+      `capture_llm.markdown` (colonnes `HT Moins/Plus 1.5`) -> `input_capture` ->
+      `breacher.ht_ou15()` (matrice mi-temps, jamais une formule inventee) ->
+      `forgeward` groupe `MT_OU_1.5` + `market_scorer.GROUP_KEYS`.
+      `baseline.py` expose aussi `ht_u1.5_empirique` (E1 : **0,6674** sur 1 284 matchs).
+- [x] `tests/test_ht_market.py` **7/7** (slate, tableau, proba, EV, groupe scorer).
+      Suite unitaire 61/62 (seul `test_baseline`, environnement).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).

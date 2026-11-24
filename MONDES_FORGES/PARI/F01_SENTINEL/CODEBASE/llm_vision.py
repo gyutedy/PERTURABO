@@ -77,10 +77,12 @@ def _system_prompt(sport, passage):
                "1X2 2.57/3.00/2.57\n"
                "Ligne 2.5\n"
                "Under 1.60 / Over 2.15\n"
+               "HT Under 1.29 / HT Over 2.77\n"
                "HSH 3.10/3.00/2.02")
         cols = ("1X2 (3 cotes), Ligne totale (ex. 'Ligne 2.5' — le nombre est "
                 "affiche a cote des cotes Under/Over dans la capture), "
-                "Under/Over (2 cotes), HSH (3 cotes)")
+                "Under/Over (2 cotes), HT Under/Over 1.5 (2 cotes, colonne "
+                "'HT Under/Over 1.5'), HSH (3 cotes)")
     return (
         "Tu es un lecteur de capture d'ecran d'un site de paris. "
         "Transcris EXACTEMENT les cotes visibles, sans calcul, sans correction, "

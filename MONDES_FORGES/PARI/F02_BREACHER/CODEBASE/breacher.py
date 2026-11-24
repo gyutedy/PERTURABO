@@ -157,6 +157,15 @@ def half_total_distribution(m):
     return d
 
 
+def ht_ou15(m1):
+    """P(total buts 1re mi-temps < 1.5) depuis la matrice mi-temps."""
+    if not m1:
+        return None
+    under = sum(q for i, row in enumerate(m1) for j, q in enumerate(row)
+                if i + j < 2)
+    return under
+
+
 def mt_probas(m1, m2):
     """P(MT1 > / = / < MT2) depuis les deux matrices de mi-temps (indépendance assumée)."""
     t1 = half_total_distribution(m1)
@@ -353,6 +362,7 @@ def league_averages(matchs, ligue=None, league_code=None,
     if season:
         out["encaisses_dom_moy"] = season.get("encaisses_dom_moy", buts_ext)
         out["encaisses_ext_moy"] = season.get("encaisses_ext_moy", buts_dom)
+        out["ht_u1.5_empirique"] = season.get("ht_u1.5_empirique")
         out["teams"] = season.get("teams") or {}
     return out
 
@@ -447,6 +457,10 @@ def analyse_match(m, avg):
     probas = matrix_stats(m_total)
     scores = probas.pop("_scores", {})
     probas.update(mt_probas(m_mt1, m_mt2))
+    hu = ht_ou15(m_mt1)
+    if hu is not None:
+        probas["ht_u1.5"] = hu
+        probas["ht_o1.5"] = 1.0 - hu
     cs = top_scores(scores, n=10, extra_keys=(m.get("cotes") or {}).keys())
 
     quality = "haute" if not flags else ("moyenne" if set(flags) <= {"sans_cotes", "mt_split_estimate", "mt_split_estimate_opp"} else "basse")

@@ -52,6 +52,7 @@ MARKET_GROUPS = [
     ("TT_A_1.5", ["tt_a_o1.5", "tt_a_u1.5"]),
     ("TT_A_2.5", ["tt_a_o2.5", "tt_a_u2.5"]),
     ("MT_PROLIFIQUE", ["mt1", "mte", "mt2"]),
+    ("MT_OU_1.5", ["ht_u1.5", "ht_o1.5"]),
     ("BTTS", ["btts", "btts_no"]),
 ]
 SELECTION_LABELS = {
@@ -70,6 +71,7 @@ SELECTION_LABELS = {
     "tt_a_o2.5": "Team total exterieur Over 2.5", "tt_a_u2.5": "Team total exterieur Under 2.5",
     "mt1": "1re MT plus prolifique", "mte": "Égalité de mi-temps",
     "mt2": "2e MT plus prolifique", "btts": "Les deux marquent", "btts_no": "Les deux ne marquent pas",
+    "ht_u1.5": "Under 1.5 1re MT", "ht_o1.5": "Over 1.5 1re MT",
 }
 
 def _odds_map(kind="t2h"):

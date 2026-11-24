@@ -63,11 +63,13 @@ def compute_baseline(rows, as_of=None, half_life=None):
             continue
         home = (r.get("HomeTeam") or "").strip()
         away = (r.get("AwayTeam") or "").strip()
-        parsed.append((dt, home, away, fthg, ftag))
+        hthg, htag = backtest._num(r, "HTHG"), backtest._num(r, "HTAG")
+        parsed.append((dt, home, away, fthg, ftag, hthg, htag))
     if not parsed:
         return None
     ref = _as_of_dt(as_of, parsed)
     w_sum = s_dom = s_ext = 0.0
+    w_ht = s_ht_under = 0.0
     teams = {}
 
     def acc(name):
@@ -79,9 +81,13 @@ def compute_baseline(rows, as_of=None, half_life=None):
             "n": 0,
         })
 
-    for dt, home, away, fthg, ftag in parsed:
+    for dt, home, away, fthg, ftag, hthg, htag in parsed:
         age = max((ref - dt).days, 0)
         w = ema_weight(age, half_life)
+        if hthg is not None and htag is not None:
+            w_ht += w
+            if hthg + htag < 2:
+                s_ht_under += w
         s_dom += fthg * w
         s_ext += ftag * w
         w_sum += w
@@ -116,6 +122,7 @@ def compute_baseline(rows, as_of=None, half_life=None):
         "buts_ext_moy": buts_ext,
         "encaisses_dom_moy": buts_ext,
         "encaisses_ext_moy": buts_dom,
+        "ht_u1.5_empirique": (s_ht_under / w_ht) if w_ht > 0 else None,
         "n": len(parsed),
         "half_life_days": half_life,
         "as_of": ref.strftime("%Y-%m-%d"),

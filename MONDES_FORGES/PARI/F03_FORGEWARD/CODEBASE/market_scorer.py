@@ -59,6 +59,7 @@ GROUP_KEYS = {
     "TT_A_1.5": ("tt_a_o1.5", "tt_a_u1.5"),
     "TT_A_2.5": ("tt_a_o2.5", "tt_a_u2.5"),
     "MT_PROLIFIQUE": ("mt1", "mte", "mt2"),
+    "MT_OU_1.5": ("ht_u1.5", "ht_o1.5"),
     "BTTS": ("btts", "btts_no"),
 }
 

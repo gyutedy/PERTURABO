@@ -1,9 +1,122 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "foot",
-  "generated_at": null,
+  "generated_at": "2026-11-24T15:24:33.747551+00:00",
   "campagne": null,
   "campagne_uid": null,
-  "matches": {},
+  "matches": {
+    "M1": {
+      "match_key": "M1",
+      "source_event_id": "M1",
+      "home": "Middlesbrough FC",
+      "away": "Swansea City",
+      "kickoff_iso": "2026-11-24T19:00:00+01:00",
+      "statut": "ACTIF",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T15:24:33Z",
+          "heures_avant_coup": 2.59,
+          "cotes": {
+            "1": 1.46,
+            "X": 4.8,
+            "2": 6.0
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": "2026-11-24T17:24:33+00:00",
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    },
+    "M2": {
+      "match_key": "M2",
+      "source_event_id": "M2",
+      "home": "Bristol City",
+      "away": "Wrexham AFC",
+      "kickoff_iso": "2026-11-24T20:45:00+01:00",
+      "statut": "ACTIF",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T15:24:33Z",
+          "heures_avant_coup": 4.34,
+          "cotes": {
+            "1": 2.45,
+            "X": 3.25,
+            "2": 2.92
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": "2026-11-24T17:24:33+00:00",
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    },
+    "M3": {
+      "match_key": "M3",
+      "source_event_id": "M3",
+      "home": "Cardiff City",
+      "away": "Preston North End",
+      "kickoff_iso": "2026-11-24T20:45:00+01:00",
+      "statut": "ACTIF",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T15:24:33Z",
+          "heures_avant_coup": 4.34,
+          "cotes": {
+            "1": 1.49,
+            "X": 4.8,
+            "2": 5.7
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": "2026-11-24T17:24:33+00:00",
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    },
+    "M4": {
+      "match_key": "M4",
+      "source_event_id": "M4",
+      "home": "Charlton Athletic",
+      "away": "Lincoln City",
+      "kickoff_iso": "2026-11-24T20:45:00+01:00",
+      "statut": "ACTIF",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T15:24:33Z",
+          "heures_avant_coup": 4.34,
+          "cotes": {
+            "1": 2.8,
+            "X": 3.25,
+            "2": 2.55
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": "2026-11-24T17:24:33+00:00",
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    }
+  },
   "tickets_enabled": false
 }

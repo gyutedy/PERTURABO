@@ -63,8 +63,8 @@ def markdown(slate, sport):
         for cle, matchs in groupes.items():
             suff = (" %s" % cle) if cle else ""
             lignes.append(
-                "| Compétition & Match | Horaire | 1 | X | 2 | Moins%s | Plus%s | 1st | Égal | 2nd |\n"
-                "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
+                "| Compétition & Match | Horaire | 1 | X | 2 | Moins%s | Plus%s | 1st | Égal | 2nd | HT Moins 1.5 | HT Plus 1.5 |\n"
+                "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
                 % (suff, suff))
             for m in matchs:
                 o = m.get("odds") or {}
@@ -75,7 +75,8 @@ def markdown(slate, sport):
                 cells = [cell, hour, str(o.get("home") or ""), str(o.get("draw") or ""),
                          str(o.get("away") or ""), str(o.get("under_2_5") or ""),
                          str(o.get("over_2_5") or ""), str(o.get("hsh_first") or ""),
-                         str(o.get("hsh_equal") or ""), str(o.get("hsh_second") or "")]
+                         str(o.get("hsh_equal") or ""), str(o.get("hsh_second") or ""),
+                         str(o.get("ht_u1.5") or ""), str(o.get("ht_o1.5") or "")]
                 lignes.append("| " + " | ".join(cells) + " |")
         return "\n".join(lignes) + "\n"
     lignes = [head]

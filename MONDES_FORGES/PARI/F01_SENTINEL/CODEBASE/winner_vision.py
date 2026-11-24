@@ -38,6 +38,8 @@ _TOK = {
     "under": re.compile(r"\bU(?:nder)?\s*2?\.?5?\s*:?\s*" + _COTE, re.I),
     "over": re.compile(r"\bO(?:ver)?\s*2?\.?5?\s*:?\s*" + _COTE, re.I),
     "ligne": re.compile(r"\bLigne\s*:?\s*([0-9]{1,3}(?:\.[05])?)", re.I),
+    "ht_under": re.compile(r"\bHT\s+U(?:nder)?\s*:?\s*" + _COTE, re.I),
+    "ht_over": re.compile(r"\bHT\s+O(?:ver)?\s*:?\s*" + _COTE, re.I),
     "uo_line": re.compile(r"\b([0-9]{1,3}(?:\.[05])?)\s*:\s*" + _COTE + r"\s*/\s*" + _COTE, re.I),
     "hsh": re.compile(r"\bHSH\s*" + _COTE + r"\s*/\s*" + _COTE + r"\s*/\s*" + _COTE, re.I),
     "mid": re.compile(r"#(\d+)"),
@@ -154,6 +156,10 @@ def parse_block(block, sport):
                 odds.setdefault("under_2_5", None)
                 odds.setdefault("over_2_5", None)
                 holes.append("ou25_absente")
+    if sport == "foot":
+        mhu, mho = _TOK["ht_under"].search(joined), _TOK["ht_over"].search(joined)
+        if mhu and mho:
+            odds["ht_u1.5"], odds["ht_o1.5"] = _f(mhu.group(1)), _f(mho.group(1))
     mh = _TOK["hsh"].search(joined)
     if sport == "foot":
         if mh:

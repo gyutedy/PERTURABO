@@ -42,6 +42,8 @@ MARKET_ALIASES = {
     "mt1": ["mt1", "mt1 dom", "1re mi-temps", "1er mt", "first half"],
     "mte": ["mte", "égalité mt", "egalite mt", "draw half"],
     "mt2": ["mt2", "2e mi-temps", "second half"],
+    "ht_u1.5": ["ht_u1.5", "ht sous 1.5", "ht moins 1.5", "under 1.5 1re mt", "under 1.5 1ere mi-temps"],
+    "ht_o1.5": ["ht_o1.5", "ht plus 1.5", "ht over 1.5", "over 1.5 1re mt", "over 1.5 1ere mi-temps"],
     "dnb1": ["dnb 1", "dnb1", "draw no bet 1"],
     "dnb2": ["dnb 2", "dnb2", "draw no bet 2"],
 }
@@ -144,6 +146,8 @@ HEADER_MAP = {
     "2nd": "mt2", "2e": "mt2", "mt2": "mt2", "2e mt": "mt2",
     "moins": "under", "under": "under", "u": "under",
     "plus": "over", "over": "over", "o": "over",
+    "ht moins": "ht_under", "ht sous": "ht_under", "ht under": "ht_under",
+    "ht plus": "ht_over", "ht over": "ht_over",
     "1x": "1X", "x2": "X2", "12": "12",
     "btts": "btts", "gg": "btts",
 }
@@ -304,7 +308,7 @@ _BOOL_FIELDS = {
     "gardien_1_absent", "milieu_createur_absent", "derby", "meteo", "retour_100",
 }
 _HEADER_LINE_RE = re.compile(
-    r"^(moins|plus|under|over)\s+(?:de\s+)?(\d+[.,]\d+)$"
+    r"^(?:ht\s+)?(moins|plus|under|over)\s+(?:de\s+)?(\d+[.,]\d+)$"
 )
 _HEADER_OU_RE = re.compile(r"^([ou])(\d+[.,]\d+)$")
 
@@ -334,8 +338,10 @@ def _map_header(hkey: str):
     if m:
         side = m.group(1)
         ligne = float(m.group(2).replace(",", "."))
-        mapped = "under" if side in ("moins", "under") else "over"
-        return mapped, ligne
+        base = "under" if side in ("moins", "under") else "over"
+        if h.startswith("ht "):
+            return ("ht_under" if base == "under" else "ht_over"), ligne
+        return base, ligne
     m2 = _HEADER_OU_RE.match(h.replace(" ", ""))
     if m2:
         mapped = "over" if m2.group(1) == "o" else "under"
@@ -667,16 +673,20 @@ def parse_markdown_table(capture_text: str):
             if hkey in _HEADER_SKIP:
                 continue
             mapped, ligne_hdr = _map_header(hkey)
-            if mapped in ("over", "under"):
+            if mapped in ("over", "under", "ht_over", "ht_under"):
                 val = _cote_or_none(cell)
                 if val is None:
                     cleaned = _clean_cell(cell).strip()
                     if cleaned and cleaned.lower() not in LOCKED_TOKENS:
                         m_warn.append(f"{hkey} illisible: {cleaned}")
                     continue
-                ligne = ligne_hdr if ligne_hdr is not None else ligne_totale
+                est_ht = mapped.startswith("ht_")
+                ligne = ligne_hdr if ligne_hdr is not None else (1.5 if est_ht else ligne_totale)
                 if ligne is not None:
-                    tag = ("o" if mapped == "over" else "u") + _fmt_ligne(ligne)
+                    if est_ht:
+                        tag = ("ht_o" if mapped == "ht_over" else "ht_u") + _fmt_ligne(ligne)
+                    else:
+                        tag = ("o" if mapped == "over" else "u") + _fmt_ligne(ligne)
                     cotes[tag] = val
                 else:
                     pending_ou.append((mapped, val, hkey))
