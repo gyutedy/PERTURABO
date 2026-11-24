@@ -2,86 +2,84 @@
   "captures": [
     {
       "id": "BLOC_001",
-      "competition": "Premier League - England 2026-10-29 18:00",
-      "date": "2026-10-29",
-      "heure": "18:00",
+      "competition": "Winner FOOT",
+      "date": "2026-11-24",
+      "heure": "20:45",
       "matchs": [
         {
           "id": "M1",
-          "dom": "Arsenal",
-          "ext": "Chelsea",
+          "dom": "Bristol City",
+          "ext": "Wrexham AFC",
           "cotes": {
-            "o2.5": 1.7,
-            "u2.5": 2.05,
-            "mt1": 2.1,
-            "mt2": 2.2,
-            "1": 1.85,
-            "X": 3.6,
-            "2": 4.2
+            "1": 2.45,
+            "X": 3.25,
+            "2": 2.92,
+            "u2.5": 1.67,
+            "o2.5": 2.17,
+            "ht_u1.5": 1.29,
+            "ht_o1.5": 2.77
           },
           "marches_disponibles": [
             "1",
             "2",
             "X",
-            "mt1",
-            "mt2",
+            "ht_o1.5",
+            "ht_u1.5",
             "o2.5",
             "u2.5"
           ],
-          "warnings": [
-            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
-          ]
+          "warnings": [],
+          "holes": []
         },
         {
           "id": "M2",
-          "dom": "Liverpool",
-          "ext": "Everton",
+          "dom": "Cardiff City",
+          "ext": "Preston North End",
           "cotes": {
-            "1": 1.55,
-            "X": 4.1,
-            "2": 6.0,
-            "btts": 1.95,
-            "btts_no": 1.85
+            "1": 1.47,
+            "X": 4.8,
+            "2": 5.7,
+            "u2.5": 2.82,
+            "o2.5": 1.42,
+            "ht_u1.5": 1.65,
+            "ht_o1.5": 1.87
           },
           "marches_disponibles": [
             "1",
             "2",
             "X",
-            "btts",
-            "btts_no"
+            "ht_o1.5",
+            "ht_u1.5",
+            "o2.5",
+            "u2.5"
           ],
-          "warnings": []
-        }
-      ],
-      "warnings": []
-    },
-    {
-      "id": "BLOC_002",
-      "competition": "Ligue 1 - France 19:45",
-      "date": "2026-10-29",
-      "heure": "19:45",
-      "matchs": [
+          "warnings": [],
+          "holes": []
+        },
         {
           "id": "M3",
-          "dom": "Monaco",
-          "ext": "Bottled",
+          "dom": "Charlton Athletic",
+          "ext": "Lincoln City",
           "cotes": {
-            "o1.5": 1.25,
-            "u1.5": 3.9,
-            "1": 1.62,
-            "X": 3.8,
-            "2": 5.1
+            "1": 2.95,
+            "X": 3.25,
+            "2": 2.42,
+            "u2.5": 1.71,
+            "o2.5": 2.1,
+            "ht_u1.5": 1.31,
+            "ht_o1.5": 2.67
           },
           "marches_disponibles": [
             "1",
             "2",
             "X",
-            "o1.5",
-            "u1.5"
+            "ht_o1.5",
+            "ht_u1.5",
+            "o2.5",
+            "u2.5"
           ],
-          "warnings": [
-            "1X2 déduit par position (3 nombres nus) — l'opérateur doit vérifier l'ordre affiché"
-          ]
+          "warnings": [],
+          "holes": []
         }
       ],
       "warnings": []
@@ -90,5 +88,5 @@
   "warnings": [],
   "statut": "VALIDE",
   "n_matchs": 3,
-  "source_format": "text"
+  "source_format": "text+markdown_table"
 }

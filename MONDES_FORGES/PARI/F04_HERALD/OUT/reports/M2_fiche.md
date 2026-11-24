@@ -1,28 +1,29 @@
-# 🏟️ FICHE DE SIÈGE — Lions vs Garrison
-*Générée le 2026-11-24 16:36 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Cardiff City vs Preston North End
+*Générée le 2026-11-24 15:41 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 102.6%
+**Verdict match : 🔥 GO** — meilleure EV: 13.2%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 0.82 — ext 0.44 (MT1: 0.35+0.21 · MT2: 0.47+0.23)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 40.5% / 42.2% / 17.3%
-- Over 2.5 : **13.4%** · Under 2.5 : 86.6%
-- Les deux marquent : 21.4%
-- Mi-temps : MT1 25.3% · Égalité 40.6% · **MT2 34.2%**
+- λ attendus : dom 2.14 — ext 0.96 (MT1: 1.32+0.52 · MT2: 0.82+0.45)
+- Score le plus probable : **2-0**
+- 1 / X / 2 : 64.2% / 20.1% / 15.7%
+- Over 2.5 : **59.9%** · Under 2.5 : 40.1%
+- Les deux marquent : 54.6%
+- Mi-temps : MT1 50.8% · Égalité 22.8% · **MT2 26.4%**
 - Qualité data : haute
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.71 | 40.5% | -30.7% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.54 | 42.2% | 49.5% |  VALUE | 2.43u |
-| 1X2 | Victoire Extérieur | 5.34 | 17.3% | -7.7% | ⛔ NO_BET | — |
-| OU_2.5 | Over 2.5 | 2.0 | 13.4% | -73.1% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.34 | 86.6% | 102.6% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.74 | 40.6% | 51.7% |  VALUE | 2.36u |
+| 1X2 | Victoire Domicile | 1.47 | 64.2% | -5.7% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.8 | 20.1% | -3.4% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 5.7 | 15.7% | -10.4% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 2.82 | 40.1% | 13.2% |  VALUE | 0.91u |
+| OU_2.5 | Over 2.5 | 1.42 | 59.9% | -15.0% | ⛔ NO_BET | — |
+| MT_OU_1.5 | Under 1.5 1re MT | 1.65 | 45.1% | -25.7% | ⛔ NO_BET | — |
+| MT_OU_1.5 | Over 1.5 1re MT | 1.87 | 54.9% | 2.8% | 🟡 THIN | 0.2u |
 
 ## Lecture du Tyrant/Oracle
 
@@ -30,7 +31,7 @@
 
 ## Ordre de marche
 
-- Miser **2.43u** sur **Nul** @ 3.54 (¼ Kelly plafonné).
+- Miser **0.91u** sur **Under 2.5** @ 2.82 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

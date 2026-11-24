@@ -1,28 +1,25 @@
-# 🏟️ FICHE DE SIÈGE — Utd Iron vs Sapper
-*Générée le 2026-11-24 16:36 UTC — siege_id courant*
+# 🏟️ FICHE DE SIÈGE — Galatasaray Istanbul vs Amed Sportif Faaliyetler
+*Générée le 2026-11-07 12:48 UTC — siege_id courant*
 
-**Verdict match : 🔥 GO** — meilleure EV: 60.8%
+**Verdict match : ⛔ NO_BET** — meilleure EV: 10.9%
 
 ## Modèle (Dixon-Coles)
 
-- λ attendus : dom 1.06 — ext 0.81 (MT1: 0.43+0.36 · MT2: 0.64+0.45)
-- Score le plus probable : **0-0**
-- 1 / X / 2 : 39.2% / 35.2% / 25.6%
-- Over 2.5 : **28.8%** · Under 2.5 : 71.2%
-- Les deux marquent : 38.0%
-- Mi-temps : MT1 26.5% · Égalité 31.4% · **MT2 42.1%**
-- Qualité data : haute
+- λ attendus : dom 3.12 — ext 0.86 (MT1: 1.25+0.20 · MT2: 1.87+0.66)
+- Score le plus probable : **3-0**
+- 1 / X / 2 : 80.9% / 12.7% / 6.3%
+- Over 2.5 : **75.8%** · Under 2.5 : 24.2%
+- Les deux marquent : 55.7%
+- Mi-temps : MT1 21.1% · Égalité 18.1% · **MT2 60.9%**
+- Qualité data : basse (mj_insuffisant)
 
 ## Confrontation cotes (Winner Bet)
 
 | Marché | Sélection | Cote | P modèle | EV | Verdict | Mise |
 |---|---|---|---|---|---|---|
-| 1X2 | Victoire Domicile | 1.67 | 39.2% | -34.5% | ⛔ NO_BET | — |
-| 1X2 | Nul | 3.38 | 35.2% | 19.0% |  VALUE | 1.0u |
-| 1X2 | Victoire Extérieur | 6.28 | 25.6% | 60.8% |  VALUE | 1.44u |
-| OU_2.5 | Over 2.5 | 1.94 | 28.8% | -44.1% | ⛔ NO_BET | — |
-| OU_2.5 | Under 2.5 | 2.23 | 71.2% | 58.7% |  VALUE | 3.0u |
-| MT_PROLIFIQUE | Égalité de mi-temps | 3.51 | 31.4% | 10.1% |  VALUE | 0.5u |
+| 1X2 | Victoire Domicile | 1.37 | 80.9% | 10.9% | ⛔ NO_BET | — |
+| 1X2 | Nul | 4.7 | 12.7% | -40.1% | ⛔ NO_BET | — |
+| 1X2 | Victoire Extérieur | 6.0 | 6.3% | -62.1% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
 
@@ -30,7 +27,7 @@
 
 ## Ordre de marche
 
-- Miser **1.0u** sur **Nul** @ 3.38 (¼ Kelly plafonné).
+- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

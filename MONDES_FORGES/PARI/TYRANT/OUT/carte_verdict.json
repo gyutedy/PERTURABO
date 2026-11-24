@@ -1,210 +1,45 @@
 {
-  "generated_at": "2026-11-24T16:36:09Z",
-  "ligue": "Ligue de Simulation",
+  "generated_at": "2026-11-24T15:41:19Z",
+  "ligue": "Capture — ligue à confirmer",
   "ligue_tier": "exotique",
   "seuil_ev_applique": 0.08,
-  "go": 18,
+  "go": 3,
   "no_bet": 0,
   "recommandation": "GO — carte analysable",
-  "justification": "Tier: exotique. 18 GO / 0 NO BET. Gate 1 à valider par le Warsmith.",
+  "justification": "Tier: exotique. 3 GO / 0 NO BET. Gate 1 à valider par le Warsmith.",
   "verdicts": [
     {
       "id": "M1",
-      "match": "Cyclops vs Trench",
+      "match": "Bristol City vs Wrexham AFC",
       "verdict": "GO",
       "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
       "flags": [],
-      "o2.5_modele": 0.2519
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.4427
     },
     {
       "id": "M2",
-      "match": "Lions vs Garrison",
+      "match": "Cardiff City vs Preston North End",
       "verdict": "GO",
       "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
       "flags": [],
-      "o2.5_modele": 0.1343
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.5986
     },
     {
       "id": "M3",
-      "match": "Bastion vs Lions",
+      "match": "Charlton Athletic vs Lincoln City",
       "verdict": "GO",
       "raisons": [
         "ligue hors top5 → seuil EV durci à 8%"
       ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
       "flags": [],
-      "o2.5_modele": 0.2621
-    },
-    {
-      "id": "M4",
-      "match": "Legion vs Utd Iron",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.1431
-    },
-    {
-      "id": "M5",
-      "match": "Orbital vs Rovers",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.3579
-    },
-    {
-      "id": "M6",
-      "match": "Utd Iron vs Rovers",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.3097
-    },
-    {
-      "id": "M7",
-      "match": "Utd Iron vs Athletic",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.2248
-    },
-    {
-      "id": "M8",
-      "match": "Utd Iron vs Sapper",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.2882
-    },
-    {
-      "id": "M9",
-      "match": "Orbital vs Rampart",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.1552
-    },
-    {
-      "id": "M10",
-      "match": "Orbital vs Athletic",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.1158
-    },
-    {
-      "id": "M11",
-      "match": "Vigil vs Legion",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.2612
-    },
-    {
-      "id": "M12",
-      "match": "Ironside vs Perturabo SC",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.213
-    },
-    {
-      "id": "M13",
-      "match": "Perturabo SC vs Rovers",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.2465
-    },
-    {
-      "id": "M14",
-      "match": "Bastion vs Forge FC",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.4536
-    },
-    {
-      "id": "M15",
-      "match": "Forge FC vs Vigil",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.1429
-    },
-    {
-      "id": "M16",
-      "match": "City Steel vs Rampart",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.2722
-    },
-    {
-      "id": "M17",
-      "match": "Custodia vs Ironside",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.2174
-    },
-    {
-      "id": "M18",
-      "match": "Orbital vs Utd Iron",
-      "verdict": "GO",
-      "raisons": [
-        "ligue hors top5 → seuil EV durci à 8%"
-      ],
-      "oracle": "(Oracle indisponible: HTTP Error 403: Forbidden)",
-      "flags": [],
-      "o2.5_modele": 0.1718
+      "o2.5_empirique": 0.5336021505376344,
+      "o2.5_modele": 0.4947
     }
   ]
 }
