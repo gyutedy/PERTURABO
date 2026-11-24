@@ -1182,6 +1182,15 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
       marche existe, il est juste en dessous du seuil, ce qui repond a la question
       "pourquoi je ne le vois pas". Suite unitaire 62/63 (hors `test_baseline`).
 
+## ETAT v10.5 — AFFICHAGE TELEGRAM LISIBLE (2026-11-24)
+
+- [x] `/data` remplace le tableau compact par **un bloc par match** (Qualité, Score, TOP,
+      PIEGES, Notes) avec une LEGENDE en fin de message. `/data N` utilise des sections
+      nommees (DONNEES EQUIPES, COTES ET CLV, SCORER, MARCHES NON RETENUS) et deux legendes
+      (abreviations + criteres du scorer) — plus de `Q / SC / elo / clv` sans explication.
+- [x] Longueur verify : `/data` 662 caracteres, `/data 1` 1180 caracteres (< limite Telegram 4096).
+      Suite unitaire 62/63 (toujours `test_baseline`, environnement).
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
