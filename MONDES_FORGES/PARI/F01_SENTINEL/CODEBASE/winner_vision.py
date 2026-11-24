@@ -146,9 +146,14 @@ def parse_block(block, sport):
             odds["under_2_5"], odds["over_2_5"] = _f(mu.group(2)), _f(mu.group(3))
             odds.setdefault("total_line", _f(mu.group(1)))
         else:
-            odds.setdefault("under_2_5", None)
-            odds.setdefault("over_2_5", None)
-            holes.append("ou25_absente")
+            munder = _TOK["under"].search(joined)
+            mover = _TOK["over"].search(joined)
+            if munder and mover:
+                odds["under_2_5"], odds["over_2_5"] = _f(munder.group(1)), _f(mover.group(1))
+            else:
+                odds.setdefault("under_2_5", None)
+                odds.setdefault("over_2_5", None)
+                holes.append("ou25_absente")
     mh = _TOK["hsh"].search(joined)
     if sport == "foot":
         if mh:

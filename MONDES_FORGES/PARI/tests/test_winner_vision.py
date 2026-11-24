@@ -75,6 +75,11 @@ Under 1.80 / Over 1.87"""
           and any("ligne_hors_bornes" in h for h in bb["holes"]))
 
     fb = wv.build(TXT_FOOT, "foot")["matches"][0]
+    txt_uo = ("Team A - Team B\nToday 20:45 | #1\n1X2 2.10/3.40/3.50\n"
+              "Ligne 2.5\nUnder 1.60 / Over 2.15\nHSH 3.10/3.00/2.02")
+    uo = wv.build(txt_uo, "foot")["matches"][0]["odds"]
+    check("ligne + Under/Over tokens", uo.get("total_line") == 2.5
+          and uo.get("under_2_5") == 1.60 and uo.get("over_2_5") == 2.15)
     check("foot 1X2+OU parse", fb["odds"]["home"] == 2.57 and fb["odds"]["under_2_5"] == 1.60)
     check("foot HSH diagnostic_only", set(fb["diagnostic_only"]) ==
           {"hsh_first", "hsh_equal", "hsh_second"} and fb["odds"]["hsh_second"] == 2.02)

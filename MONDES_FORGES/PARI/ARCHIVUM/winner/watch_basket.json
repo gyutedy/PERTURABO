@@ -1,9 +1,91 @@
 {
   "contract": "pari.winner_watch.v1",
   "sport": "basket",
-  "generated_at": "2026-11-24T11:55:50.917674+00:00",
+  "generated_at": "2026-11-24T13:51:29.769261+00:00",
   "campagne": "PARI-20261124",
   "campagne_uid": "O1PJ",
-  "matches": {},
+  "matches": {
+    "20010": {
+      "match_key": "20010",
+      "source_event_id": "20010",
+      "home": "Charlotte Hornets",
+      "away": "Memphis Grizzlies",
+      "kickoff_iso": "2026-11-24T01:00:00+01:00",
+      "statut": "TERMINE",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T13:51:29Z",
+          "heures_avant_coup": -13.86,
+          "cotes": {
+            "1": 2.29,
+            "2": 1.61
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": null,
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    },
+    "20049": {
+      "match_key": "20049",
+      "source_event_id": "20049",
+      "home": "Philadelphia 76ers",
+      "away": "Portland Trail Blazers",
+      "kickoff_iso": "2026-11-24T01:00:00+01:00",
+      "statut": "TERMINE",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T13:51:29Z",
+          "heures_avant_coup": -13.86,
+          "cotes": {
+            "1": 1.63,
+            "2": 2.25
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": null,
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    },
+    "20103": {
+      "match_key": "20103",
+      "source_event_id": "20103",
+      "home": "Indiana Pacers",
+      "away": "Oklahoma City Thunder",
+      "kickoff_iso": "2026-11-24T01:30:00+01:00",
+      "statut": "TERMINE",
+      "captures": [
+        {
+          "seq": 1,
+          "capture_id": null,
+          "at": "2026-11-24T13:51:29Z",
+          "heures_avant_coup": -13.36,
+          "cotes": {
+            "1": 2.55,
+            "2": 1.49
+          },
+          "source": "winner_capture",
+          "mode_detection": "nouveau"
+        }
+      ],
+      "next_alert_at": null,
+      "last_alert_at": null,
+      "holes": [
+        "match_nouveau"
+      ]
+    }
+  },
   "tickets_enabled": false
 }
