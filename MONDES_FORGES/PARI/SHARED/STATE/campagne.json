@@ -3,7 +3,7 @@
   "campagne_uid": "O1PJ",
   "capture_seq": 12,
   "capture": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F01_SENTINEL/IN/capture_telegram.md",
-  "capturer_statut": "A_VALIDER",
+  "capturer_statut": "VALIDE",
   "capture_id": "C-YZS",
   "consumed_legs": [],
   "current_token": null,
@@ -18,12 +18,12 @@
   "steps": {
     "start": "2026-11-24T11:55:50Z",
     "capture": "2026-11-24T13:58:23Z",
-    "valider1": "2026-11-24T13:44:48Z"
+    "valider1": "2026-11-24T13:59:06Z"
   },
   "previews": {
     "preview1": "SHARED/OUT/preview1.html"
   },
   "notes_count": 0,
   "capture_sport": "foot",
-  "bundle_id": "B-43Z"
+  "bundle_id": "B-W43"
 }

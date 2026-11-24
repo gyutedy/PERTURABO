@@ -1,7 +1,7 @@
 # 🏟️ FICHE DE SIÈGE — Cardiff City vs Preston North End
-*Générée le 2026-11-24 13:45 UTC — siege_id courant*
+*Générée le 2026-11-24 13:59 UTC — siege_id courant*
 
-**Verdict match : ⛔ NO_BET** — meilleure EV: -3.4%
+**Verdict match : 🔥 GO** — meilleure EV: 10.4%
 
 ## Modèle (Dixon-Coles)
 
@@ -20,6 +20,8 @@
 | 1X2 | Victoire Domicile | 1.49 | 64.2% | -4.4% | ⛔ NO_BET | — |
 | 1X2 | Nul | 4.8 | 20.1% | -3.4% | ⛔ NO_BET | — |
 | 1X2 | Victoire Extérieur | 5.7 | 15.7% | -10.4% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 2.75 | 40.1% | 10.4% |  VALUE | 0.74u |
+| OU_2.5 | Over 2.5 | 1.44 | 59.9% | -13.8% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 22.8% | -31.7% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle
@@ -28,7 +30,7 @@
 
 ## Ordre de marche
 
-- ⛔ **NO BET / PASSER LE MATCH** — aucune valeur mathématique identifiée.
+- Miser **0.74u** sur **Under 2.5** @ 2.75 (¼ Kelly plafonné).
 
 *1u = 1% de la bankroll. Mise max 5% (3% exotique). L'opérateur humain place le pari — le monde ne passe jamais d'ordre.*
 

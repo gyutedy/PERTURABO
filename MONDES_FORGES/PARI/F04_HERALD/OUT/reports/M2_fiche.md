@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Bristol City vs Wrexham AFC
-*Générée le 2026-11-24 13:45 UTC — siege_id courant*
+*Générée le 2026-11-24 13:59 UTC — siege_id courant*
 
 **Verdict match : 🟡 THIN** — meilleure EV: 7.3%
 
@@ -20,6 +20,8 @@
 | 1X2 | Victoire Domicile | 2.45 | 43.8% | 7.3% | 🟡 THIN | 0.32u |
 | 1X2 | Nul | 3.25 | 27.4% | -10.9% | ⛔ NO_BET | — |
 | 1X2 | Victoire Extérieur | 2.92 | 28.8% | -15.9% | ⛔ NO_BET | — |
+| OU_2.5 | Under 2.5 | 1.67 | 55.7% | -6.9% | ⛔ NO_BET | — |
+| OU_2.5 | Over 2.5 | 2.17 | 44.3% | -3.9% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 27.2% | -18.4% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle

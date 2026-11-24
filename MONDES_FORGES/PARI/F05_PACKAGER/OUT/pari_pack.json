@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-24T13:45:02Z",
+  "generated_at": "2026-11-24T13:59:21Z",
   "siege_id": null,
   "devise": "USD",
-  "titre": "DIRECTION DES SIÈGES — TOP 3",
+  "titre": "DIRECTION DES SIÈGES — TOP 5",
   "top_picks": [
     {
       "match_id": "M1",
@@ -41,6 +41,24 @@
       "rang": 2
     },
     {
+      "match_id": "M3",
+      "match": "Cardiff City vs Preston North End",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.75,
+      "p_modele": 0.4014,
+      "ev": 0.1038,
+      "mise_units": 0.74,
+      "note_risque": "qualité data: haute",
+      "vanus_flags": [],
+      "vanus_action": "skip",
+      "vanus_holes": [
+        "vanus_absent"
+      ],
+      "rang": 3
+    },
+    {
       "match_id": "M1",
       "match": "Middlesbrough FC vs Swansea City",
       "marche": "1X2",
@@ -56,18 +74,28 @@
       "vanus_holes": [
         "vanus_absent"
       ],
-      "rang": 3
-    }
-  ],
-  "no_bet": [
+      "rang": 4
+    },
     {
-      "match_id": "M3",
-      "match": "Cardiff City vs Preston North End",
-      "raison": "EV < seuil sur tous les marchés",
+      "match_id": "M1",
+      "match": "Middlesbrough FC vs Swansea City",
+      "marche": "OU_2.5",
+      "selection": "u2.5",
+      "selection_label": "Under 2.5",
+      "cote": 2.67,
+      "p_modele": 0.4055,
+      "ev": 0.0827,
+      "mise_units": 0.62,
+      "note_risque": "qualité data: haute",
       "vanus_flags": [],
-      "vanus_action": "skip"
+      "vanus_action": "skip",
+      "vanus_holes": [
+        "vanus_absent"
+      ],
+      "rang": 5
     }
   ],
+  "no_bet": [],
   "combines": [
     {
       "jambes": [
@@ -84,15 +112,15 @@
           "p_modele": 0.405
         },
         {
-          "match_id": "M1",
-          "selection": "X",
-          "cote": 4.8,
-          "p_modele": 0.226
+          "match_id": "M3",
+          "selection": "u2.5",
+          "cote": 2.75,
+          "p_modele": 0.4014
         }
       ],
-      "cote_totale": 80.64,
-      "ev_combine": 0.6806,
-      "mise_units": 0.11,
+      "cote_totale": 46.2,
+      "ev_combine": 0.7101,
+      "mise_units": 0.2,
       "kelly_fraction": 0.125,
       "kelly_label": "1/8",
       "kelly_holes": [
@@ -107,11 +135,11 @@
     "tickets_suggeres": []
   },
   "metriques": {
-    "mise_totale_units": 2.24,
-    "ev_moyenne_pct": 0.195,
+    "mise_totale_units": 3.69,
+    "ev_moyenne_pct": 0.1543,
     "nb_matchs_analyses": 4,
-    "nb_no_bet": 1,
-    "nb_matchs_go": 3,
+    "nb_no_bet": 0,
+    "nb_matchs_go": 4,
     "nb_vanus_veto": 0
   },
   "vanus_holes": [

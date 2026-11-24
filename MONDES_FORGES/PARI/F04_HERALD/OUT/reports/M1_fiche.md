@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Middlesbrough FC vs Swansea City
-*Générée le 2026-11-24 13:45 UTC — siege_id courant*
+*Générée le 2026-11-24 13:59 UTC — siege_id courant*
 
 **Verdict match : 🔥 GO** — meilleure EV: 36.6%
 
@@ -20,6 +20,8 @@
 | 1X2 | Victoire Domicile | 1.46 | 54.6% | -20.2% | ⛔ NO_BET | — |
 | 1X2 | Nul | 4.8 | 22.6% | 8.5% |  VALUE | 0.28u |
 | 1X2 | Victoire Extérieur | 6.0 | 22.8% | 36.6% |  VALUE | 0.92u |
+| OU_2.5 | Under 2.5 | 2.67 | 40.6% | 8.3% |  VALUE | 0.62u |
+| OU_2.5 | Over 2.5 | 1.46 | 59.5% | -13.2% | ⛔ NO_BET | — |
 | MT_PROLIFIQUE | Égalité de mi-temps | 3.0 | 23.4% | -29.7% | ⛔ NO_BET | — |
 
 ## Lecture du Tyrant/Oracle

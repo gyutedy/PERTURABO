@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T13:45:02Z",
+  "generated_at": "2026-11-24T13:59:21Z",
   "seuil_ev_applique": 0.08,
   "ligue_tier": null,
   "kelly_fraction": 0.125,
@@ -242,6 +242,162 @@
           },
           "lecture_cotes": {
             "capture": 6.0,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.67,
+          "cote_juste_marche": 2.829,
+          "p_modele": 0.4055,
+          "ev": 0.0827,
+          "verdict": "VALUE",
+          "mise_units": 0.62,
+          "p_fair": 0.3535,
+          "fair_odds": 2.829,
+          "edge_net_devig": 0.1471,
+          "double_confirmation": true,
+          "p_fair_additif": 0.3448,
+          "fair_odds_additif": 2.9,
+          "devig_gap": 0.008711,
+          "scorer_eligible": true,
+          "scorer_score": 0.8,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.059463,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.67,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "OU_2.5",
+          "selection": "o2.5",
+          "selection_label": "Over 2.5",
+          "cote": 1.46,
+          "cote_juste_marche": 1.547,
+          "p_modele": 0.5945,
+          "ev": -0.132,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.6465,
+          "fair_odds": 1.547,
+          "edge_net_devig": -0.0804,
+          "double_confirmation": false,
+          "p_fair_additif": 0.6552,
+          "fair_odds_additif": 1.526,
+          "devig_gap": -0.008711,
+          "scorer_eligible": false,
+          "scorer_score": 0.465,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.059463,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.46,
             "t2h": null,
             "t0": null,
             "move_t2h": null,
@@ -571,6 +727,162 @@
           }
         },
         {
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.67,
+          "cote_juste_marche": 1.77,
+          "p_modele": 0.5573,
+          "ev": -0.0693,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.5651,
+          "fair_odds": 1.77,
+          "edge_net_devig": -0.0138,
+          "double_confirmation": false,
+          "p_fair_additif": 0.569,
+          "fair_odds_additif": 1.758,
+          "devig_gap": -0.003882,
+          "scorer_eligible": false,
+          "scorer_score": 0.465,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.059632,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.67,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "OU_2.5",
+          "selection": "o2.5",
+          "selection_label": "Over 2.5",
+          "cote": 2.17,
+          "cote_juste_marche": 2.299,
+          "p_modele": 0.4427,
+          "ev": -0.0393,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.4349,
+          "fair_odds": 2.299,
+          "edge_net_devig": 0.0179,
+          "double_confirmation": false,
+          "p_fair_additif": 0.431,
+          "fair_odds_additif": 2.32,
+          "devig_gap": 0.003882,
+          "scorer_eligible": false,
+          "scorer_score": 0.465,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.059632,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.17,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
@@ -893,6 +1205,162 @@
           }
         },
         {
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 2.75,
+          "cote_juste_marche": 2.91,
+          "p_modele": 0.4014,
+          "ev": 0.1038,
+          "verdict": "VALUE",
+          "mise_units": 0.74,
+          "p_fair": 0.3437,
+          "fair_odds": 2.91,
+          "edge_net_devig": 0.168,
+          "double_confirmation": true,
+          "p_fair_additif": 0.3346,
+          "fair_odds_additif": 2.989,
+          "devig_gap": 0.009079,
+          "scorer_eligible": true,
+          "scorer_score": 0.8,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.058081,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.75,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "OU_2.5",
+          "selection": "o2.5",
+          "selection_label": "Over 2.5",
+          "cote": 1.44,
+          "cote_juste_marche": 1.524,
+          "p_modele": 0.5986,
+          "ev": -0.138,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.6563,
+          "fair_odds": 1.524,
+          "edge_net_devig": -0.088,
+          "double_confirmation": false,
+          "p_fair_additif": 0.6654,
+          "fair_odds_additif": 1.503,
+          "devig_gap": -0.009079,
+          "scorer_eligible": false,
+          "scorer_score": 0.465,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 1.0,
+              "contrib": 0.1
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.058081,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.44,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
@@ -973,8 +1441,8 @@
           }
         }
       ],
-      "verdict": "NO_BET",
-      "meilleure_ev": -0.0342
+      "verdict": "GO",
+      "meilleure_ev": 0.1038
     },
     {
       "id": "M4",
@@ -1215,6 +1683,162 @@
           }
         },
         {
+          "marche": "OU_2.5",
+          "selection": "u2.5",
+          "selection_label": "Under 2.5",
+          "cote": 1.71,
+          "cote_juste_marche": 1.814,
+          "p_modele": 0.5053,
+          "ev": -0.1359,
+          "verdict": "NO_BET",
+          "mise_units": null,
+          "p_fair": 0.5512,
+          "fair_odds": 1.814,
+          "edge_net_devig": -0.0832,
+          "double_confirmation": false,
+          "p_fair_additif": 0.5543,
+          "fair_odds_additif": 1.804,
+          "devig_gap": -0.003121,
+          "scorer_eligible": false,
+          "scorer_score": 0.435,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 0.3,
+              "contrib": 0.015
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.060986,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 1.71,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
+          "marche": "OU_2.5",
+          "selection": "o2.5",
+          "selection_label": "Over 2.5",
+          "cote": 2.1,
+          "cote_juste_marche": 2.228,
+          "p_modele": 0.4947,
+          "ev": 0.0389,
+          "verdict": "THIN",
+          "mise_units": 0.22,
+          "p_fair": 0.4488,
+          "fair_odds": 2.228,
+          "edge_net_devig": 0.1022,
+          "double_confirmation": true,
+          "p_fair_additif": 0.4457,
+          "fair_odds_additif": 2.244,
+          "devig_gap": 0.003121,
+          "scorer_eligible": true,
+          "scorer_score": 0.77,
+          "scorer_seuil": 0.5,
+          "scorer_gates": {
+            "A1": true,
+            "A2": true,
+            "A3": true,
+            "A4": true
+          },
+          "scorer_refuse": [],
+          "scorer_contrib": {
+            "B1": {
+              "poids": 0.3,
+              "raw": 1.0,
+              "contrib": 0.3
+            },
+            "B2": {
+              "poids": 0.2,
+              "raw": 1.0,
+              "contrib": 0.2
+            },
+            "B3": {
+              "poids": 0.2,
+              "raw": 0.0,
+              "contrib": 0.0
+            },
+            "B4": {
+              "poids": 0.15,
+              "raw": 1.0,
+              "contrib": 0.15
+            },
+            "B5": {
+              "poids": 0.1,
+              "raw": 0.7,
+              "contrib": 0.07
+            },
+            "B6": {
+              "poids": 0.05,
+              "raw": 1.0,
+              "contrib": 0.05
+            }
+          },
+          "scorer_holes": [
+            "b3_asymetrie"
+          ],
+          "overround": 0.060986,
+          "pieges": [],
+          "piege_detail": {
+            "cote_plate": false,
+            "marge_anomalique": false,
+            "cote_figee_sur_news": false,
+            "marche_vitrine": false
+          },
+          "lecture_cotes": {
+            "capture": 2.1,
+            "t2h": null,
+            "t0": null,
+            "move_t2h": null,
+            "move_t0": null
+          }
+        },
+        {
           "marche": "MT_PROLIFIQUE",
           "selection": "mte",
           "selection_label": "Égalité de mi-temps",
@@ -1315,15 +1939,15 @@
           "p_modele": 0.405
         },
         {
-          "match_id": "M1",
-          "selection": "X",
-          "cote": 4.8,
-          "p_modele": 0.226
+          "match_id": "M3",
+          "selection": "u2.5",
+          "cote": 2.75,
+          "p_modele": 0.4014
         }
       ],
-      "cote_totale": 80.64,
-      "ev_combine": 0.6806,
-      "mise_units": 0.11,
+      "cote_totale": 46.2,
+      "ev_combine": 0.7101,
+      "mise_units": 0.2,
       "kelly_fraction": 0.125,
       "kelly_label": "1/8",
       "kelly_holes": [

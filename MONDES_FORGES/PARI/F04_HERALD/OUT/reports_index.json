@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T13:45:02Z",
+  "generated_at": "2026-11-24T13:59:21Z",
   "reports": [
     {
       "id": "M1",
@@ -16,7 +16,7 @@
     {
       "id": "M3",
       "match": "Cardiff City vs Preston North End",
-      "verdict": "NO_BET",
+      "verdict": "GO",
       "file": "/home/runner/work/PERTURABO/PERTURABO/MONDES_FORGES/PARI/F04_HERALD/CODEBASE/../OUT/reports/M3_fiche.md"
     },
     {
