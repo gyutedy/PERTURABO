@@ -1,5 +1,5 @@
 # 🏟️ FICHE DE SIÈGE — Bristol City vs Wrexham AFC
-*Générée le 2026-11-24 12:45 UTC — siege_id courant*
+*Générée le 2026-11-24 13:45 UTC — siege_id courant*
 
 **Verdict match : 🟡 THIN** — meilleure EV: 7.3%
 
