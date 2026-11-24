@@ -1147,6 +1147,18 @@ Zero Calc, aucun EV invente. `tickets_enabled=false`, aucun ticket, HSH jamais u
 - [x] Apres redploiement, il suffit de **rejouer `/valider-1`** sur la campagne en cours
       (capture deja validee, `statut: VALIDE`) — pas besoin de renvoyer la capture.
 
+## ETAT v10.2 — FIT LIGUE E1 POUR LE SIEGE (2026-11-24)
+
+- [x] `/valider-1` reel : 4 matchs, **4 GO**, stats E1 injectees (8/8), bundle `B-DDN`,
+      couverture 1X2 `n=4`, meilleur EV **+74,7 %**, marge 5,7 %.
+- [ ] **Mais** `analysis.json` montrait `engine: "poisson"`, `params_absents`, `params: default`
+      — le fit Dixon-Coles n'avait jamais ete produit. `capteurs.py fit-league` lance sur les
+      27 CSV : **9 ligues**, E1 `n=1284`, `rho -0,02`, `bonus_domicile 1,1213`, `part_mt1 0,4603`.
+      `league_params.json` **versionne de force** (gitignored par defaut) pour etre present dans
+      Actions. Apres redploiement, rejouer `/valider-1` : le siege doit passer en `dc_mle`.
+- [ ] `incoherence_modele_empirique` leve sur 3/4 matchs (modele O2.5 ~0,22-0,27 vs empirique
+      0,534). Les EV enormes restent **diagnostiques** : aucun pari avant CLV same-book positif.
+
 ## PROCHAINES ETAPES (a faire plus tard)
 
 1. ~~Connecteurs API live~~ ✅ **BRANCHÉS v1.1** : `capteurs.py` (F00) + 4 connecteurs whitelist — football-data.co.uk (stats Dom/Ext + split MT, **sans clé**, fenêtre glissante 12 matchs/équipe + fusion saisons antérieures), ClubElo (Elo, **sans clé**, gracieux si réseau fermé), API-Football + football-data.org (calendrier, clé). Testé LIVE sur Premier League 2627 (radar réel Arsenal-Man City).
