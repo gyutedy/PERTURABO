@@ -81,8 +81,10 @@ def resolve(blob, match, now=None):
     matches = blob.setdefault("matches", {})
     sid = match.get("source_event_id")
     key = key_of(match.get("home"), match.get("away"), sid)
-    if sid and str(sid) in matches:
-        return str(sid), "id", []
+    if sid:
+        if str(sid) in matches:
+            return str(sid), "id", []
+        return str(sid), "nouveau", ["match_nouveau"]
     if key and key in matches:
         return key, "match_key", []
     actifs = [(k, v) for k, v in matches.items()
